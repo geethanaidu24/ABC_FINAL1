@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:background="@color/colorblack"
+    tools:context="com.example.admin.abc.Login">
+    <include layout="@layout/header1"/>
+    <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+        android:background="#fff"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="20dp"
+       android:layout_marginTop="300px"
+        android:gravity="center"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:drawableLeft="@mipmap/username"
+
+
+                android:hint="   User Name"
+                android:inputType="textEmailAddress"
+                android:id="@+id/editText_user" />
+
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:drawableLeft="@mipmap/pass"
+
+                    android:hint=" Password"
+                    android:inputType="numberPassword"
+                android:id="@+id/editText_password" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:paddingTop="5dp"
+                android:text="Forgot Password?"
+                android:textColor="@color/colorblack" />
+
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="22dp"
+                android:background="@color/cred"
+                android:text="Sign in"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:id="@+id/sign_in_button" />
+        </LinearLayout>
+
+</RelativeLayout>
+
+</RelativeLayout>

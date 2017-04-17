@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:fillViewport="true"
+    >
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical">
+
+    <LinearLayout
+
+
+        android:layout_width="1028px"
+        android:layout_height="110px"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/cred"
+        android:weightSum="25"
+        android:id="@+id/linearLayout"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:layout_width="600px"
+            android:layout_height="100px"
+            app:srcCompat="@mipmap/abctextlogo"
+            android:id="@+id/imageView2"
+
+            android:layout_marginTop="5px"
+            android:layout_marginBottom="5px"
+            android:layout_marginLeft="10dp"
+            />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:src="@mipmap/backbutton"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:id="@+id/back12"
+
+            android:layout_height="20dp" />
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/img1"
+        android:background="@color/ddgrey" />
+
+    <ImageView
+        android:id="@+id/img1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="10dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/nameTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/img1"
+
+        android:layout_marginTop="10dp"
+        android:textColor="@color/cred"
+        android:textSize="24sp"/>
+    <TextView
+        android:text="BRANDS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/nameTxt"
+        android:layout_alignStart="@+id/nameTxt"
+        android:layout_marginTop="50dp"
+        android:id="@+id/brandview"
+        android:textColor="@color/colorblack" />
+    <TextView
+        android:text=":"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/brandview1"
+        android:textColor="@color/colorblack"
+        android:layout_alignBaseline="@+id/brandview"
+        android:layout_alignBottom="@+id/brandview"
+        android:layout_alignStart="@+id/img1" />
+
+    <TextView
+        android:id="@+id/brandTxt"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorblack"
+        android:layout_alignBaseline="@+id/brandview1"
+        android:layout_alignBottom="@+id/brandview1"
+        android:layout_alignStart="@+id/textView28" />
+
+    <TextView
+        android:text="SIZE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/brandview"
+        android:layout_alignStart="@+id/brandview"
+        android:layout_marginTop="20dp"
+        android:id="@+id/sizeview"
+        android:textColor="@color/colorblack" />
+    <TextView
+        android:text=":"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/sizeview"
+        android:layout_alignStart="@+id/brandview1"
+        android:id="@+id/textView27"
+        android:textColor="@color/colorblack" />
+    <TextView
+        android:text="400*300"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView28"
+        android:textColor="@color/colorblack"
+        android:layout_above="@+id/colorTxtview"
+        android:layout_alignStart="@+id/img1"
+        android:layout_marginStart="22dp" />
+    <TextView
+        android:id="@+id/colorTxtview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sizeview"
+        android:layout_alignStart="@+id/sizeview"
+        android:layout_marginTop="19dp"
+        android:text="COLOR"
+        android:textColor="@color/colorblack"/>
+    <TextView
+        android:text=":"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/colorTxtview"
+        android:layout_alignStart="@+id/textView27"
+        android:id="@+id/textView30"
+        android:textColor="@color/colorblack" />
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView30"
+        android:layout_alignStart="@+id/textView28"
+        android:id="@+id/colorTxt"
+        android:textColor="@color/colorblack" />
+
+</LinearLayout>
+</ScrollView>
