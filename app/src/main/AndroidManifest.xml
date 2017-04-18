@@ -27,21 +27,6 @@
             android:name=".Products"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Bathroom"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Basins"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".BasinsSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Size400300"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Size400300full"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Contact"
             android:screenOrientation="portrait" />
         <activity
@@ -63,19 +48,7 @@
             android:name=".Enquiry"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Surfaces"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Paints"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Decoratives"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CeramicTiles"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".CeramicTilesSize"
             android:screenOrientation="portrait" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -85,26 +58,11 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".RusticSize" />
-        <activity android:name=".RusticSizeOne" />
-        <activity android:name=".RusticSizeOneFull" />
-        <activity android:name=".CeramicTilesSizeOne" />
-        <activity android:name=".CeramicTilesSizeOneFull" />
-        <activity android:name=".RusticSizeTiles" />
-        <activity android:name=".PaintsTypes" />
-        <activity android:name=".PaintOne" />
-        <activity android:name=".PaintsOneFull" />
         <activity android:name=".ArtificialGrass" />
         <activity android:name=".ArtificialGrassOne" />
         <activity android:name=".ArtificialGrassOneFull" />
-        <activity android:name=".ToiletsSize" />
-        <activity android:name=".TubsSize" />
         <activity android:name=".ShowerroomSize" />
-        <activity android:name=".UrinalSize" />
-        <activity android:name=".PGVTSize" />
         <activity android:name=".MetallicSize" />
-        <activity android:name=".GVTSize" />
-        <activity android:name=".WoodenSize"></activity>
     </application>
 
 </manifest>

@@ -14,17 +14,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Geetha on 4/12/2017.
+ * Created by Geetha on 4/12/2017 for Parsing previously collected data and storing into ProductImages class .
  */
 
-public class GridProductsDataParser extends AsyncTask<Void,Void,Integer> {
+public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     //GridView gv;
     String jsonData;
 
     ArrayList<ProductImages> productImages=new ArrayList<>();
-    public GridProductsDataParser(Context c, ListView lv, String jsonData) {
+    public ProductsDataParser(Context c, ListView lv, String jsonData) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
@@ -49,29 +49,8 @@ public class GridProductsDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ImageListAdapterClass adapter=new ImageListAdapterClass(c,productImages);
+            final ProductsListAdapter adapter=new ProductsListAdapter(c,productImages);
             lv.setAdapter(adapter);
-
-           /* lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent =null;
-                    String poid = parent.getItemAtPosition(position).toString();
-
-
-
-                    int pId = (int) parent.getItemIdAtPosition(position);
-
-
-
-                     intent = new Intent(c,ProductsFinalDetailsView.class);
-
-                    intent.putExtra("PRODUCTIDPOSITION_KEY", poid);
-                    intent.putExtra("PRODUCTID_KEY",pId);
-                    c.startActivity(intent);
-                }
-            });*/
-
         }
     }
 
@@ -102,6 +81,5 @@ public class GridProductsDataParser extends AsyncTask<Void,Void,Integer> {
         }
         return 0;
     }
-
 
 }

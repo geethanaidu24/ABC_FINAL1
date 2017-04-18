@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -13,22 +14,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Geetha on 4/8/2017 for reading mysql database table data.
+ * Created by Geetha on 4/14/2017 for reading Mysql database data.
  */
 
-public class ProductsDownloader extends AsyncTask<Void, Void, String> {
-
+public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
     Context c;
     String urlAddress;
     ListView lv;
-
-
-    public ProductsDownloader(Context c, String urlAddress, ListView lv) {
+    public ProductTypeSizesDownloader(Context c, String urlAddress, ListView lv) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
+        Log.d("newActivity url: ", "> " + urlAddress);
     }
-
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -36,24 +34,23 @@ public class ProductsDownloader extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... params) {
-        String data = downloadData();
+        String data = downloadTypeData();
         return data;
-    }
 
+    }
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
-        if (s == null) {
-            Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
-        } else {
-
+        if(s==null)
+        {
+            Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+        }else {
             //CALL DATA PARSER TO PARSE
-            ProductsDataParser parser = new ProductsDataParser(c, lv, s);
+            ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c, lv, s);
             parser.execute();
         }
     }
-
-    private String downloadData() {
+    private String downloadTypeData() {
         HttpURLConnection con = Connector.connect(urlAddress);
         if (con == null) {
             return null;
@@ -75,3 +72,4 @@ public class ProductsDownloader extends AsyncTask<Void, Void, String> {
         return null;
     }
 }
+

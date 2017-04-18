@@ -9,19 +9,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.admin.abc.PicassoClient;
-import com.example.admin.abc.ProductImages;
-import com.example.admin.abc.R;
-
 import java.util.ArrayList;
 
 
-public class ImageListAdapterClass extends BaseAdapter {
+public class ProductsListAdapter extends BaseAdapter {
 
     Context c;
     ArrayList<ProductImages> productImages;
     LayoutInflater inflater;
-    public ImageListAdapterClass(Context c, ArrayList<ProductImages> productImages) {
+    public ProductsListAdapter(Context c, ArrayList<ProductImages> productImages) {
         this.c = c;
         this.productImages = productImages;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -63,7 +59,7 @@ public class ImageListAdapterClass extends BaseAdapter {
         return convertView;
     }
     public void openProductTypesActivity(int pid, String name){
-        Intent intent = new Intent(c,ProductsFinalDetailsView.class);
+        Intent intent = new Intent(c,ProductTypes.class);
         intent.putExtra("PRODUCTID_KEY", pid);
         intent.putExtra("PRODUCTNAME_KEY",name);
         c.startActivity(intent);

@@ -17,12 +17,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 
-public class TypeImageGridAdapterClass extends BaseAdapter {
+public class ProductTypesListAdapter extends BaseAdapter {
 
     Context c;
     ArrayList<ProductTypeItem> productTypeItems;
     LayoutInflater inflater;
-    public TypeImageGridAdapterClass(Context c, ArrayList<ProductTypeItem> productTypeItems) {
+    public ProductTypesListAdapter(Context c, ArrayList<ProductTypeItem> productTypeItems) {
         this.c = c;
         this.productTypeItems = productTypeItems;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -43,36 +43,32 @@ public class TypeImageGridAdapterClass extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null)
         {
-            convertView=inflater.inflate(R.layout.producttypeimage_grid_view,parent,false);
+            convertView=inflater.inflate(R.layout.producttypeimage_list_view,parent,false);
         }
         TextView typeNameTxt= (TextView) convertView.findViewById(R.id.textViewURL1);
         ImageView img= (ImageView) convertView.findViewById(R.id.imageTypePro);
         //BIND DATA
         ProductTypeItem productTypeItem=(ProductTypeItem) this.getItem(position);
-      //  final String name = productImage.getName();
-      //  final String url = productImage.getImageUrl();
-        final int pid = productTypeItem.getProductTypeId();
+        final int ptid = productTypeItem.getProductTypeId();
         typeNameTxt.setText(productTypeItem.getProductType());
         //IMG
         PicassoClient.downloadImage(c,productTypeItem.getImageUrl(),img);
 
         // open new activity
-
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizesActivity(pid);
+                openProductTypeSizesActivity(ptid);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSizesActivity(int pid){
-        Intent intent = new Intent(c,BasinsSize.class);
-       // intent.putExtra("PRODUCTID_KEY", pid);
+    public void openProductTypeSizesActivity(int ptid){
+        Intent intent = new Intent(c,ProductTypeSizes.class);
+        intent.putExtra("PRODUCTTYPEID_KEY", ptid);
         c.startActivity(intent);
     }
-
 }
 

@@ -1,6 +1,5 @@
 package com.example.admin.abc;
 
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -14,16 +13,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Geetha on 4/12/2017.
+ * Created by Atwyn on 4/14/2017 for parsing database data and stored into ProductTypeItem array .
  */
 
-public class GridProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
+public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
 
-    ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
-    public GridProductTypesDataParser(Context c, ListView lv, String jsonData) {
+    ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
+
+    public ProductTypeSizesDataParser(Context c, ListView lv, String jsonData) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
@@ -46,9 +46,8 @@ public class GridProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final TypeImageGridAdapterClass adapter=new TypeImageGridAdapterClass(c,productTypeItems);
+            final ProductTypeSizesListAdapter adapter=new ProductTypeSizesListAdapter(c,productTypeSizeDBDatas);
             lv.setAdapter(adapter);
-
         }
     }
     private int parseData()
@@ -57,22 +56,27 @@ public class GridProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         {
             JSONArray ja=new JSONArray(jsonData);
             JSONObject jo=null;
-            productTypeItems.clear();
-            ProductTypeItem productTypeItem;
+            productTypeSizeDBDatas.clear();
+            ProductTypeSizeDBData productTypeSizeDBData;
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
                 Log.d("result response: ", "> " + jo);
+                int SizeId=jo.getInt("SizeId");
+                int Length =jo.getInt("Length");
+                int Width = jo.getInt("Width");
+                int Height = jo.getInt("Height");
+                String Measure =jo.getString("Measurement");
                 int ProductTypeId=jo.getInt("ProductTypeId");
-                String ProductType =jo.getString("ProductType");
-                String ImageUrl=jo.getString("ImageUrl");
-                int ProductId = jo.getInt("ProductId");
-                productTypeItem=new ProductTypeItem();
-                productTypeItem.setProductTypeId(ProductTypeId);
-                productTypeItem.setProductType(ProductType);
-                productTypeItem.setImageUrl(ImageUrl);
-                productTypeItem.setProductId(ProductId);
-                productTypeItems.add(productTypeItem);
+                productTypeSizeDBData=new ProductTypeSizeDBData();
+
+                productTypeSizeDBData.setSizeId(SizeId);
+                productTypeSizeDBData.setLength(Length);
+                productTypeSizeDBData.setWidth(Width);
+                productTypeSizeDBData.setHeight(Height);
+                productTypeSizeDBData.setMeasurement(Measure);
+                productTypeSizeDBData.setProductTypeId(ProductTypeId);
+                productTypeSizeDBDatas.add(productTypeSizeDBData);
             }
             return 1;
         } catch (JSONException e) {

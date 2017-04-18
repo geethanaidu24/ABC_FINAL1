@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Atwyn on 4/12/2017.
+ * Created by Atwyn on 4/12/2017 for reading Mysql database data .
  */
 
 public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
@@ -22,8 +22,6 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
     Context c;
     String urlAddress;
     ListView lv;
-    //GridView gv;
-
 
     public ProductTypesDownloader(Context c, String urlAddress, ListView lv) {
         this.c = c;
@@ -51,7 +49,7 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            GridProductTypesDataParser parser=new GridProductTypesDataParser(c, lv, s);
+            ProductTypesDataParser parser=new ProductTypesDataParser(c, lv, s);
             parser.execute();
         }
     }
