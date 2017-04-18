@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -17,10 +18,12 @@ public class Brands extends AppCompatActivity {
     ImageView back5;
     GridView androidGridView;
 
-    Integer[] imageIDs = {
-            R.mipmap.brone, R.mipmap.brtwo, R.mipmap.brthree, R.mipmap.brfour, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone
+    //Integer[] imageIDs = {
+    //        R.mipmap.brone, R.mipmap.brtwo, R.mipmap.brthree, R.mipmap.brfour, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone
 
-    };
+    //};
+
+    final static String urlAddress = "http://192.168.0.6/abc/getProductImages.php";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -47,6 +50,11 @@ public class Brands extends AppCompatActivity {
 
         // Instance of ImageAdapter Class
         gridView.setAdapter(new ImageAdapter(this));
+
+        final GridView gridView1 = (GridView) findViewById(R.id.grid_view);
+
+        new BrandsDownloader(Brands.this,urlAddress,gridView1).execute();
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
 
