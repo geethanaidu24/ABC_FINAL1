@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ProductTypes extends AppCompatActivity {
     ImageView back;
@@ -25,12 +26,15 @@ public class ProductTypes extends AppCompatActivity {
         setContentView(R.layout.activity_products_types);
 
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
+        TextView typeNameTxt= (TextView) findViewById(R.id.SelProductName);
+
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
         int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         String name = intent.getExtras().getString("PRODUCTNAME_KEY");
+        typeNameTxt.setText(name);
         Log.d("result PID: ", "> " + pid);
 
         String urlAddress = url + pid;

@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,12 +9,12 @@
     <include layout="@layout/header1"/>
 
     <TextView
+        android:id="@+id/SelProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BATHROOMS"
+        android:text="PRODUCTS"
         android:gravity="center"
-        android:id="@+id/t1"
-        android:layout_marginTop="20px"
+        android:layout_marginTop="10px"
         android:layout_gravity="center"
         android:typeface="normal"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -30,7 +28,8 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:elevation="2dp"
+        android:elevation="1dp"
+        android:layout_marginTop="0px"
         android:fillViewport="true"
         android:layout_marginBottom="20px">
 
@@ -39,6 +38,7 @@
         <ListView
 
             android:id="@+id/productTypesLv"
+
             android:layout_width="wrap_content"
             android:layout_height="match_parent" >
 
@@ -47,5 +47,3 @@
 
     </ScrollView>
 </LinearLayout>
-
-

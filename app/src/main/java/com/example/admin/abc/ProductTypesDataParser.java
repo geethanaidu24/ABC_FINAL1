@@ -21,12 +21,14 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
+    String name;
 
     ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
     public ProductTypesDataParser(Context c, ListView lv, String jsonData) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
+        this.name = name;
     }
     @Override
     protected void onPreExecute() {

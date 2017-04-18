@@ -22,11 +22,13 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
     Context c;
     String urlAddress;
     ListView lv;
+    String name;
 
     public ProductTypesDownloader(Context c, String urlAddress, ListView lv) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
+        this.name =name;
         Log.d("newActivity url: ", "> " + urlAddress);
     }
 

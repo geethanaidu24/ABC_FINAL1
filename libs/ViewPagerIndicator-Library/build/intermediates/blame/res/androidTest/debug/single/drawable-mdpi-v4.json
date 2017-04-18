@@ -4,24 +4,8 @@
         "source": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png"
     },
     {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
         "merged": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
         "source": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png"
     },
     {
         "merged": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
@@ -36,15 +20,7 @@
         "source": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png"
     },
     {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png"
-    },
-    {
         "merged": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
         "source": "C:\\Users\\Atwyn\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
-    },
-    {
-        "merged": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
-        "source": "C:\\Users\\Admin\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png"
     }
 ]

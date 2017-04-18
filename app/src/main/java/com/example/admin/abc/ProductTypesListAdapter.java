@@ -20,11 +20,13 @@ import java.util.ArrayList;
 public class ProductTypesListAdapter extends BaseAdapter {
 
     Context c;
+
     ArrayList<ProductTypeItem> productTypeItems;
     LayoutInflater inflater;
     public ProductTypesListAdapter(Context c, ArrayList<ProductTypeItem> productTypeItems) {
         this.c = c;
         this.productTypeItems = productTypeItems;
+
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
