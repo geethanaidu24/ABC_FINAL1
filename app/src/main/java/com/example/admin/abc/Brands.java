@@ -1,8 +1,10 @@
 package com.example.admin.abc;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.GridView;
@@ -16,8 +18,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class Brands extends AppCompatActivity {
     ImageView back5;
-    GridView androidGridView;
 
+    private LruCache<String, Bitmap> mMemoryCache;
     //Integer[] imageIDs = {
     //        R.mipmap.brone, R.mipmap.brtwo, R.mipmap.brthree, R.mipmap.brfour, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone
 
@@ -46,19 +48,40 @@ public class Brands extends AppCompatActivity {
         });
 
 
-
-
-
         final GridView gridView1 = (GridView) findViewById(R.id.brandgrid_view);
 
-        new BrandsDownloader(Brands.this,urlAddress,gridView1).execute();
+        new BrandsDownloader(Brands.this, urlAddress, gridView1).execute();
 
+        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+
+// Use 1/8th of the available memory for this memory cache.
+        final int cacheSize = maxMemory / 8;
+
+        mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
+            @Override
+            protected int sizeOf(String key, Bitmap bitmap) {
+                // The cache size will be measured in kilobytes rather than
+                // number of items.
+                return bitmap.getByteCount() / 1024;
+            }
+        };
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
+        if (getBitmapFromMemCache(key) == null) {
+            mMemoryCache.put(key, bitmap);
+        }
+    }
+
+    public Bitmap getBitmapFromMemCache(String key) {
+        return mMemoryCache.get(key);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
 
 
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     /**
