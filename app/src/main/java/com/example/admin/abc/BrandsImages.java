@@ -5,36 +5,34 @@ package com.example.admin.abc;
  */
 
 public class BrandsImages {
-    public int ProductId;
+    public int Id;
 
 
 
-    public String ImageUrl;
+    public String ImagePath;
 
     public BrandsImages(){
 
     }
 
     public int getId() {
-        return ProductId;
+        return Id;
     }
 
-    public void setId(int ProductId) {
-        this.ProductId = ProductId;
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+    public String getImagePath(){
+        return ImagePath;
+    }
+    public void setImagePath(String imgpath){
+        this.ImagePath = imgpath;
     }
 
-
-    public String getImageUrl() {
-        return ImageUrl;
-    }
-
-    public void setImageUrl(String ImageUrl) {
-        this.ImageUrl = ImageUrl;
-    }
 
     @Override
     public String toString() {
-        return this.ProductId + ". " + "." + this.ImageUrl;
+        return this.Id + ". "  + this.ImagePath;
     }
 }
 

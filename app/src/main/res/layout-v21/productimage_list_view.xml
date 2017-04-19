@@ -49,7 +49,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
             android:typeface="normal"
-            android:layout_width="680px"   />
+            android:layout_width="wrap_content"   />
 
     </TableRow>
 

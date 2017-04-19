@@ -23,7 +23,7 @@ public class Brands extends AppCompatActivity {
 
     //};
 
-    final static String urlAddress = "http://192.168.0.6/abc/getProductImages.php";
+    final static String urlAddress = "http://192.168.0.2/abc/getAllBrandImages.php";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -46,12 +46,12 @@ public class Brands extends AppCompatActivity {
         });
 
 
-        GridView gridView = (GridView) findViewById(R.id.grid_view);
+        GridView gridView = (GridView) findViewById(R.id.brandgrid_view);
 
         // Instance of ImageAdapter Class
         gridView.setAdapter(new ImageAdapter(this));
 
-        final GridView gridView1 = (GridView) findViewById(R.id.grid_view);
+        final GridView gridView1 = (GridView) findViewById(R.id.brandgrid_view);
 
         new BrandsDownloader(Brands.this,urlAddress,gridView1).execute();
 

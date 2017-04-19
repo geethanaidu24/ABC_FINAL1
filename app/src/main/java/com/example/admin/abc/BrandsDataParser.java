@@ -23,7 +23,7 @@ class BrandsDataParser extends AsyncTask<Void,Void,Integer> {
     GridView gridView1;
     String jsonData;
 
-    ArrayList<ProductImages> productImages=new ArrayList<>();
+    ArrayList<BrandsImages> brandsImages=new ArrayList<>();
     public BrandsDataParser(Context c,GridView gridView1, String jsonData) {
         this.c = c;
         this.gridView1 = gridView1;
@@ -49,7 +49,7 @@ class BrandsDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductsListAdapter adapter=new ProductsListAdapter(c,productImages);
+            final BrandsListAdapter adapter=new BrandsListAdapter(c,brandsImages);
             gridView1.setAdapter(adapter);
         }
     }
@@ -60,19 +60,18 @@ class BrandsDataParser extends AsyncTask<Void,Void,Integer> {
         {
             JSONArray ja=new JSONArray(jsonData);
             JSONObject jo=null;
-            productImages.clear();
-            ProductImages productImage;
+            brandsImages.clear();
+            BrandsImages brandsImage;
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
                 Log.d("result response: ", "> " + jo);
-                int ProductId=jo.getInt("ProductId");
-                String ProductName =jo.getString("ProductName");
-                String ImageUrl=jo.getString("ImageUrl");
-                productImage=new ProductImages();
-                productImage.setId(ProductId);
+                int BrandId=jo.getInt("ID");
+                String ImageUrl=jo.getString("ImagePath");
+                brandsImage=new BrandsImages();
+                brandsImage.setId(BrandId);
 
-                productImage.setImageUrl(ImageUrl);
+                brandsImage.setImagePath(ImageUrl);
 
             }
             return 1;
