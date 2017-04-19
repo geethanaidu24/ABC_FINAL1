@@ -46,10 +46,8 @@ public class Brands extends AppCompatActivity {
         });
 
 
-        GridView gridView = (GridView) findViewById(R.id.brandgrid_view);
 
-        // Instance of ImageAdapter Class
-        gridView.setAdapter(new ImageAdapter(this));
+
 
         final GridView gridView1 = (GridView) findViewById(R.id.brandgrid_view);
 
