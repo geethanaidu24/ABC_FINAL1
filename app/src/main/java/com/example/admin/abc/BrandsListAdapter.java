@@ -18,20 +18,20 @@ import java.util.ArrayList;
 public class BrandsListAdapter extends BaseAdapter {
 
     Context c;
-    ArrayList<BrandsImages> productImages;
+    ArrayList<BrandsImages> brandsImages;
     LayoutInflater inflater;
     public BrandsListAdapter(Context c, ArrayList<BrandsImages> productImages) {
         this.c = c;
-        this.productImages = productImages;
+        this.brandsImages = productImages;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        return productImages.size();
+        return brandsImages.size();
     }
     @Override
     public Object getItem(int position) {
-        return productImages.get(position);
+        return brandsImages.get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -41,18 +41,15 @@ public class BrandsListAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null)
         {
-            convertView=inflater.inflate(R.layout.productimage_list_view, parent,false);
+            convertView=inflater.inflate(R.layout.brands_list_gridview, parent,false);
         }
 
-        ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
+        ImageView img= (ImageView) convertView.findViewById(R.id.brandgridimg);
         //BIND DATA
-        ProductImages productImage=(ProductImages) this.getItem(position);
-        final String name = productImage.getName();
-        final String url = productImage.getImageUrl();
-        final int pid = productImage.getId();
+        BrandsImages brandsImage=(BrandsImages) this.getItem(position);
 
         //IMG
-        PicassoClient.downloadImage(c,productImage.getImageUrl(),img);
+        PicassoClient.downloadImage(c,brandsImage.getImagePath(),img);
 
         return convertView;
     }
