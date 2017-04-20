@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+    android:background="@color/white"
+
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/header1"
+        android:id="@+id/include"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    >
+
+
+    <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="200px"
+
+            android:layout_height="200px"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/abclogo"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/textView4"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:lineSpacingExtra="8sp"
+        android:text="Add Data"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        android:typeface="normal"
+
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/include"
+        android:layout_alignEnd="@+id/imageView3" />
+
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Name :"
+        android:layout_alignBaseline="@+id/editText9"
+        android:layout_alignBottom="@+id/editText9"
+        android:layout_toStartOf="@+id/button2" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/editText10"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Brand :"
+        android:layout_alignBaseline="@+id/editText10"
+        android:layout_alignBottom="@+id/editText10"
+        android:layout_alignStart="@+id/textView13" />
+
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_above="@+id/editText12"
+        android:layout_alignStart="@+id/editText12" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Size :"
+        android:layout_alignBaseline="@+id/editText12"
+        android:layout_alignBottom="@+id/editText12"
+        android:layout_alignStart="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/editText12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Lenght"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        android:layout_marginBottom="36dp"
+        android:layout_above="@+id/editText14"
+        android:layout_alignStart="@+id/editText9" />
+
+    <EditText
+        android:id="@+id/editText13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Width"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        android:layout_above="@+id/editText14"
+        android:layout_alignStart="@+id/editText10" />
+
+    <EditText
+        android:id="@+id/editText14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Height"
+        android:inputType="textPersonName"
+        android:textSize="14sp"
+        android:layout_above="@+id/editText15"
+        android:layout_alignStart="@+id/editText13" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Browse For Image"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product Color :"
+        android:layout_marginBottom="26dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/textView14" />
+
+    <EditText
+        android:id="@+id/editText15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_alignStart="@+id/editText14" />
+
+
+</RelativeLayout>
+
