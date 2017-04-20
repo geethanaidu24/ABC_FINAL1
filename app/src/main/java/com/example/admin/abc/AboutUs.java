@@ -16,7 +16,7 @@ ImageView back1;
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_us);
-        back1=(ImageView)findViewById(R.id.back1);
+        back1=(ImageView)findViewById(R.id.back);
         back1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
