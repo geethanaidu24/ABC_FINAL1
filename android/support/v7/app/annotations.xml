@@ -1,0 +1,10 @@
+<root>
+    <item
+        name='android.support.v7.app.AppCompatActivity android.support.v7.app.ActionBar getSupportActionBar()'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+    <item
+        name='android.support.v7.app.AppCompatActivity void setSupportActionBar(android.support.v7.widget.Toolbar)'>
+        <annotation name='java.lang.Deprecated' />
+    </item>
+</root>
