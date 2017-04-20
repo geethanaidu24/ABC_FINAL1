@@ -3,7 +3,7 @@ package com.example.admin.abc;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -12,22 +12,25 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
- * Created by Geetha on 4/14/2017 for reading Mysql database data.
+ * Created by Geetha on 4/20/2017.
  */
 
-public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
+public class ProductTypeSubTypeImagesDownloader extends AsyncTask<Void, Void, String> {
+
     Context c;
-    URL urlAddress;
-    ListView lv;
-    public ProductTypeSizesDownloader(Context c, URL urlAddress, ListView lv) {
+    String urlAddress;
+    GridView gv;
+
+    public ProductTypeSubTypeImagesDownloader(Context c, String urlAddress, GridView gv) {
         this.c = c;
         this.urlAddress = urlAddress;
-        this.lv = lv;
+        this.gv = gv;
+
         Log.d("newActivity url: ", "> " + urlAddress);
     }
+
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
@@ -47,12 +50,12 @@ public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c, lv, s);
+            ProductTypeSubTypeImagesDataParser parser=new ProductTypeSubTypeImagesDataParser(c, gv, s);
             parser.execute();
         }
     }
     private String downloadTypeData() {
-        HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
+        HttpURLConnection con = Connector.connect(urlAddress);
         if (con == null) {
             return null;
         }
@@ -73,4 +76,3 @@ public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
         return null;
     }
 }
-

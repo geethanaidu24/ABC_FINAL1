@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:background="@drawable/back2">
                 <TextView
-                    android:id="@+id/productSize"
+                    android:id="@+id/productTypeSize"
                     android:layout_weight="1"
 
                     android:textColor="@color/cred"

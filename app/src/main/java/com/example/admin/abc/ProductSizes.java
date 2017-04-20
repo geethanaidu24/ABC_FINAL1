@@ -1,53 +1,49 @@
 package com.example.admin.abc;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
 
+/**
+ * Created by Geetha on 4/20/2017 for displaying main product sizes.
+ */
 
+public class ProductSizes extends AppCompatActivity {
+    ImageView back;
 
-public class ProductSizes {
-    public int sizeid;
-    public int typeid;
-    public int length;
-    public int width;
-    public int height;
-    public String mess;
+    //Context c;
+    final static String url = "http://192.168.0.4/abc/getProductSizes.php?ProductId=";
 
-    public ProductSizes(){
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_products_sizes);
 
-    }
-    public int getSizeid(){
-        return sizeid;
-    }
-    public void setSizeid(int sizeid){
-        this.sizeid = sizeid;
-    }
-    public int getTypeid(){
-        return typeid;
-    }
-    public void setTypeid(int typeid){
-        this.typeid = typeid;
-    }
-    public int getLength(){
-        return length;
-    }
-    public void setLength(int length){
-        this.length = length;
-    }
-    public int getWidth(){
-        return width;
-    }
-    public void setWidth(int width){
-        this.width = width;
-    }
-    public int getHeight(){
-        return height;
-    }
-    public void setHeight(int height){
-        this.height=height;
-    }
-    public String getMess(){
-        return mess;
-    }
-    public void setMess(String mess){
-        this.mess=mess;
+        final ListView lv = (ListView) findViewById(R.id.productSizesLv);
+
+        // Get intent data
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        Log.d("result PID: ", "> " + pid);
+
+        String urlAddress = url + pid;
+
+        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv).execute();
+
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(ProductSizes.this,Products.class);
+                in.putExtra("PRODUCTID_KEY",pid);
+                startActivity(in);
+            }
+        });
     }
 }

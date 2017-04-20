@@ -87,7 +87,7 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         return 0;
     }
     public void openProductSizesActivity(int pid) {
-        Intent intent = new Intent(c,ProductTypeSizes.class);
+        Intent intent = new Intent(c,ProductSizes.class);
         intent.putExtra("PRODUCTID_KEY", pid);
         c.startActivity(intent);
     }

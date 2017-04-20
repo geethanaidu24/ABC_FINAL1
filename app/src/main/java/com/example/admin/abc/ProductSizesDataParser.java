@@ -13,17 +13,17 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 /**
- * Created by Atwyn on 4/14/2017 for parsing database data and stored into ProductTypeItem array .
+ * Created by Geetha on 4/20/2017.
  */
 
-public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
+class ProductSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
 
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-    public ProductTypeSizesDataParser(Context c, ListView lv, String jsonData) {
+    public ProductSizesDataParser(Context c, ListView lv, String jsonData) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
@@ -46,7 +46,7 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductTypeSizesListAdapter adapter=new ProductTypeSizesListAdapter(c,productTypeSizeDBDatas);
+            final ProductSizesListAdapter adapter=new ProductSizesListAdapter(c,productTypeSizeDBDatas);
             lv.setAdapter(adapter);
         }
     }
@@ -67,9 +67,9 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
                 int Height = jo.getInt("Height");
                 int Length =jo.getInt("Length");
 
-               // String Measure =jo.getString("Measurement");
-                int ProductTypeId=jo.getInt("ProductTypeId");
-               // int ProductTypeId=jo.getInt("ProductTypeId");
+                // String Measure =jo.getString("Measurement");
+                int ProductTypeId=jo.optInt("ProductTypeId", 0);
+                // int ProductTypeId=jo.getInt("ProductTypeId");
                 int ProductId = jo.getInt("ProductId");
                 productTypeSizeDBData=new ProductTypeSizeDBData();
 
@@ -89,6 +89,4 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         }
         return 0;
     }
-
-
 }
