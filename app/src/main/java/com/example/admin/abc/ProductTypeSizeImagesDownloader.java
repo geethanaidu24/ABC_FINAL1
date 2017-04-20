@@ -3,7 +3,7 @@ package com.example.admin.abc;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import java.io.BufferedInputStream;
@@ -14,22 +14,19 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Atwyn on 4/12/2017 for reading Mysql database data .
+ * Created by Geetha on 4/18/2017.
  */
 
-public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
+class ProductTypeSizeImagesDownloader extends AsyncTask<Void, Void, String> {
 
     Context c;
     String urlAddress;
-    ListView lv;
-    int pid;
+    GridView gv;
 
-
-    public ProductTypesDownloader(Context c, String urlAddress, ListView lv, int pid) {
+    public ProductTypeSizeImagesDownloader(Context c, String urlAddress, GridView gv) {
         this.c = c;
         this.urlAddress = urlAddress;
-        this.lv = lv;
-        this.pid = pid;
+        this.gv = gv;
 
         Log.d("newActivity url: ", "> " + urlAddress);
     }
@@ -53,7 +50,7 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypesDataParser parser=new ProductTypesDataParser(c, lv, s, pid);
+            ProductTypeSizeImagesDataParser parser=new ProductTypeSizeImagesDataParser(c, gv, s);
             parser.execute();
         }
     }

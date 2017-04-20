@@ -50,12 +50,17 @@ public class ProductsListAdapter extends BaseAdapter {
         nametxt.setText(productImage.getName());
         //IMG
         PicassoClient.downloadImage(c,productImage.getImageUrl(),img);
-        convertView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                openProductTypesActivity(pid, name);
-            }
-        });
+
+        // testing new activity condition
+
+            convertView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    openProductTypesActivity(pid, name);
+                }
+            });
+
+
         return convertView;
     }
     public void openProductTypesActivity(int pid, String name){

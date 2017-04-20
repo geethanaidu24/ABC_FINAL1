@@ -45,8 +45,8 @@ class BasinImageListAdapterClass extends BaseAdapter
         {
             convertView=inflater.inflate(R.layout.gridview_layout,parent,false);
         }
-        TextView nametxt= (TextView) convertView.findViewById(R.id.cabecera);
-        ImageView img= (ImageView) convertView.findViewById(R.id.imagen);
+        TextView nametxt= (TextView) convertView.findViewById(R.id.txtTypeSizePro);
+        ImageView img= (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
         //BIND DATA
         BasinImages basinImage=(BasinImages) this.getItem(position);
 

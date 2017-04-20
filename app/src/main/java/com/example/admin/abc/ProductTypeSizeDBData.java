@@ -6,19 +6,19 @@ package com.example.admin.abc;
 
 public class ProductTypeSizeDBData {
 
-    public int SizeId;
+    public int ProductSizeId;
     public int Length;
     public int Width;
     public int Height;
-    public String Measurement;
     public int ProductTypeId;
+    public int ProductId;
 
-    public int getSizeId(){
-        return SizeId;
-    }
-    public void setSizeId(int SizeId){
-        this.SizeId = SizeId;
-    }
+   public int getProductSizeId(){
+       return ProductSizeId;
+   }
+   public void setProductSizeId(int SizeId){
+       this.ProductSizeId = SizeId;
+   }
     public int getLength(){
         return Length;
     }
@@ -37,16 +37,16 @@ public class ProductTypeSizeDBData {
     public void setHeight(int Height){
         this.Height = Height;
     }
-    public String getMeasurement(){
-        return Measurement;
-    }
-    public void setMeasurement(String Meas){
-        this.Measurement = Meas;
-    }
     public int getProductTypeId(){
         return ProductTypeId;
     }
     public void setProductTypeId(int typeid){
         this.ProductTypeId = typeid;
+    }
+    public int getProductId(){
+        return ProductId;
+    }
+    public void setProductId(int ProductId){
+        this.ProductId = ProductId;
     }
 }

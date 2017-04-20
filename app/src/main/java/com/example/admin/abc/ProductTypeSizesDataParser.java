@@ -62,20 +62,25 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
             {
                 jo=ja.getJSONObject(i);
                 Log.d("result response: ", "> " + jo);
-                int SizeId=jo.getInt("SizeId");
-                int Length =jo.getInt("Length");
+                int ProductSizeId=jo.getInt("ProductSizeId");
                 int Width = jo.getInt("Width");
                 int Height = jo.getInt("Height");
-                String Measure =jo.getString("Measurement");
-                int ProductTypeId=jo.getInt("ProductTypeId");
+                int Length =jo.getInt("Length");
+
+               // String Measure =jo.getString("Measurement");
+                int ProductTypeId=jo.optInt("ProductTypeId", 0);
+               // int ProductTypeId=jo.getInt("ProductTypeId");
+                int ProductId = jo.getInt("ProductId");
                 productTypeSizeDBData=new ProductTypeSizeDBData();
 
-                productTypeSizeDBData.setSizeId(SizeId);
-                productTypeSizeDBData.setLength(Length);
+                productTypeSizeDBData.setProductSizeId(ProductSizeId);
                 productTypeSizeDBData.setWidth(Width);
                 productTypeSizeDBData.setHeight(Height);
-                productTypeSizeDBData.setMeasurement(Measure);
+                productTypeSizeDBData.setLength(Length);
+
+                //productTypeSizeDBData.setMeasurement(Measure);
                 productTypeSizeDBData.setProductTypeId(ProductTypeId);
+                productTypeSizeDBData.setProductId(ProductId);
                 productTypeSizeDBDatas.add(productTypeSizeDBData);
             }
             return 1;

@@ -16,7 +16,7 @@ public class ProductTypeSizes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.6/abc/getProductTypeSizes.php?ProductTypeId=";
+    final static String url = "http://192.168.0.4/abc/getProductTypeSizes.php?ProductId=";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class ProductTypeSizes extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
+                Intent in=new Intent(ProductTypeSizes.this,Products.class);
                 startActivity(in);
             }
         });

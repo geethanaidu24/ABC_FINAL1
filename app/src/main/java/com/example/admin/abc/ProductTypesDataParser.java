@@ -2,10 +2,10 @@ package com.example.admin.abc;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,14 +21,15 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
-    String name;
-
+    int pid;
     ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
-    public ProductTypesDataParser(Context c, ListView lv, String jsonData) {
+
+    public ProductTypesDataParser(Context c, ListView lv, String jsonData, int pid) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
-        this.name = name;
+        this.pid = pid;
+
     }
     @Override
     protected void onPreExecute() {
@@ -44,7 +45,10 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         super.onPostExecute(result);
         if(result==0)
         {
-            Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+            // opening new activity
+
+            openProductSizesActivity(pid);
         }else
         {
 
@@ -53,6 +57,7 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
 
         }
     }
+
     private int parseData()
     {
         try
@@ -81,5 +86,10 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
             e.printStackTrace();
         }
         return 0;
+    }
+    public void openProductSizesActivity(int pid) {
+        Intent intent = new Intent(c,ProductTypeSizes.class);
+        intent.putExtra("PRODUCTTYPEID_KEY", pid);
+        c.startActivity(intent);
     }
 }

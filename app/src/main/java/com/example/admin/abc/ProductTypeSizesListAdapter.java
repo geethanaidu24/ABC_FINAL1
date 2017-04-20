@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,84 +50,48 @@ public class ProductTypeSizesListAdapter extends BaseAdapter {
         //BIND DATA
         ProductTypeSizeDBData productTypeSizeDBData = (ProductTypeSizeDBData) this.getItem(position);
 
-        final int sizeid = productTypeSizeDBData.getSizeId();
-        //final int length = productTypeSizeDBData.getLength();
+        final int sizeid = productTypeSizeDBData.getProductSizeId();
         final int length =Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString()) ;
         final int width = Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString());
         final int height = Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString());
-        final String measure =productTypeSizeDBData.getMeasurement().toString();
+        //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
-/*if(Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString())!=0 &&
-        Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString())!=0 &&
-        Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString()) !=0 )
-    {
-          finalSize =  width + "X" + height + "X" + length;
-            typeNameTxt.setText(String.valueOf(finalSize));
-
-        }else if(Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString())==0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString())!=0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString())!=0){
-            finalSize = length + "X" + width;
-            typeNameTxt.setText(String.valueOf(finalSize));
-        }else if(Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString())!=0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString())==0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString())!=0){
-    finalSize = width + "X" + height;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else if(Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString())!=0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString())!=0 && Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString())==0){
-    finalSize = height + "X" + length;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else{
-    finalSize = height + "X" + length;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}*/
-
-if(length !=0 && width !=0 && height !=0 && measure !=null){
-    finalSize =  width + "X" + height + "X" + length + "" + measure;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length ==0 && width !=0 && height !=0 && measure !=null){
-    finalSize =  width + "X" + height + "" +measure;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length !=0 && width ==0 && height !=0 && measure !=null){
-    finalSize =  length + "X" + height + "" +measure;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length !=0 && width !=0 && height ==0 && measure !=null){
-    finalSize =  length + "X" + width + "" + measure;
-    typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length ==0 && width !=0 && height ==0 && measure !=null){
-    finalSize = width + "" +measure;
-    typeNameTxt.setText(finalSize);
-}else if(length !=0 && width ==0 && height ==0 && measure !=null){
-    finalSize = length + "" +measure;
-    typeNameTxt.setText(finalSize);
-}else if(length ==0 && width ==0 && height !=0 && measure !=null){
-    finalSize = height + "" + measure;
-    typeNameTxt.setText(finalSize);
-} else if(length !=0 && width !=0 && height !=0 && measure ==null){
+if(length !=0 && width !=0 && height !=0){
     finalSize =  width + "X" + height + "X" + length;
     typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length ==0 && width !=0 && height !=0 && measure ==null){
+}else if(length ==0 && width !=0 && height !=0){
     finalSize =  width + "X" + height;
     typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length !=0 && width ==0 && height !=0 && measure ==null){
+}else if(length !=0 && width ==0 && height !=0){
     finalSize =  length + "X" + height;
     typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length !=0 && width !=0 && height ==0 && measure ==null){
-    finalSize =  length + "X" + width;
+}else if(length !=0 && width !=0 && height ==0 ){
+    finalSize =  length + "X" + width ;
     typeNameTxt.setText(String.valueOf(finalSize));
-}else if(length ==0 && width !=0 && height ==0 && measure ==null){
-    finalSize = width + "";
+}else if(length ==0 && width !=0 && height ==0 ){
+    finalSize = width + "" ;
     typeNameTxt.setText(finalSize);
-}else if(length !=0 && width ==0 && height ==0 && measure ==null){
+}else if(length !=0 && width ==0 && height ==0 ){
     finalSize = length + "" ;
     typeNameTxt.setText(finalSize);
-}else if(length ==0 && width ==0 && height !=0 && measure ==null){
-    finalSize = height + "";
+}else if(length ==0 && width ==0 && height !=0 ){
+    finalSize = height + "" ;
     typeNameTxt.setText(finalSize);
 }
+        // open new activity
+        convertView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                openProductTypeSizeImagesActivity(sizeid);
+            }
+        });
 
         return convertView;
     }
 
-   /* public void openProductTypeSizesActivity(int ptid){
-        Intent intent = new Intent(c,ProductTypeSizes.class);
-        intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+    public void openProductTypeSizeImagesActivity(int sizeid){
+        Intent intent = new Intent(c,ProductTypeSizeImages.class);
+        intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
         c.startActivity(intent);
-    }*/
+    }
 }
