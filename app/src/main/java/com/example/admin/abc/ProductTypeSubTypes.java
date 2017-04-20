@@ -7,43 +7,45 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
- * Created by Geetha on 4/14/2017 for opening Product Types Size activity based on user clicked product .
+ * Created by Geetha on 4/20/2017 for displaying sub menu for product types of main products.
  */
 
-public class ProductTypeSizes extends AppCompatActivity {
+public class ProductTypeSubTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.4/abc/getProductTypeSizes.php?ProductId= |amp; ProductTypeId=";
+    final static String url = "http://192.168.0.4/abc/getProductTypeSubTypes.php?ProductTypeId=";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products_types_sizes);
+        setContentView(R.layout.activity_products_types_subtypes);
 
-        final ListView lv = (ListView) findViewById(R.id.productTypeSizesLv);
+        final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
+        TextView typeNameTxt= (TextView) findViewById(R.id.SelProductTypeName);
+
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-        int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        Log.d("result PID: ", "> " + pid);
-
         int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
+        typeNameTxt.setText(ptname);
         Log.d("result PID: ", "> " + ptid);
 
-        String urlAddress = url + pid + ptid;
+        String urlAddress = url + ptid;
 
-        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv).execute();
+        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,ptid).execute();
 
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSizes.this,Products.class);
+                Intent in=new Intent(ProductTypeSubTypes.this,ProductTypes.class);
                 startActivity(in);
             }
         });
