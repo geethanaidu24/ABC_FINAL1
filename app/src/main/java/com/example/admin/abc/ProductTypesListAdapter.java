@@ -53,6 +53,7 @@ public class ProductTypesListAdapter extends BaseAdapter {
         ProductTypeItem productTypeItem=(ProductTypeItem) this.getItem(position);
         final int ptid = productTypeItem.getProductTypeId();
         final String ptname = productTypeItem.getProductType();
+        final int pid = productTypeItem.getProductId();
         typeNameTxt.setText(productTypeItem.getProductType());
         //IMG
         PicassoClient.downloadImage(c,productTypeItem.getImageUrl(),img);
@@ -61,15 +62,16 @@ public class ProductTypesListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizesActivity(ptid, ptname);
+                openProductTypeSubTypesActivity(pid,ptid,ptname);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSizesActivity(int ptid, String ptname){
+    public void openProductTypeSubTypesActivity(int pid,int ptid,String ptname){
         Intent intent = new Intent(c,ProductTypeSubTypes.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
         intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
         c.startActivity(intent);

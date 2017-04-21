@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,21 +57,21 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
         PicassoClient.downloadImage(c,productTypeSubTypeItem.getImageUrl(),img);
 
         // open new activity
-       /* convertView.setOnClickListener(new View.OnClickListener(){
+        convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizesActivity(ptid, ptname);
+                openProductTypeSizeImagessActivity(ptid,pstid);
             }
-        });*/
+        });
 
         return convertView;
     }
 
-   /* public void openProductTypeSizesActivity(int ptid, String ptname){
-        Intent intent = new Intent(c,ProductTypeSubTypes.class);
+    public void openProductTypeSizeImagessActivity(int ptid, int pstid){
+        Intent intent = new Intent(c,ProductTypeSubTypeImages.class);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
-        intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
+        intent.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
         c.startActivity(intent);
-    }*/
+    }
 }
 

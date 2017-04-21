@@ -21,14 +21,15 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
     ListView lv;
     String jsonData;
     int ptid;
+    int pid;
     ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems=new ArrayList<>();
 
-    public ProductTypeSubTypesDataParser(Context c, ListView lv, String jsonData, int ptid) {
+    public ProductTypeSubTypesDataParser(Context c, ListView lv, String jsonData, int ptid, int pid) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
         this.ptid = ptid;
-
+        this.pid = pid;
     }
     @Override
     protected void onPreExecute() {
@@ -46,7 +47,7 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity
-            openProductSizesActivity(ptid);
+            openProductSizesActivity(pid,ptid);
         }else
         {
 
@@ -85,8 +86,9 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         }
         return 0;
     }
-    public void openProductSizesActivity(int ptid) {
+    public void openProductSizesActivity(int pid,int ptid) {
         Intent intent = new Intent(c,ProductTypeSizes.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
         c.startActivity(intent);
     }

@@ -59,7 +59,11 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypes"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ProductSizes"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypeSubTypes"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProductTypeSubTypeImages"
             android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypeSizes"
             android:screenOrientation="portrait"/>
