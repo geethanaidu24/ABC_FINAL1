@@ -3,6 +3,7 @@ package com.example.admin.abc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +26,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_subtypes);
 
+
         final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
         TextView typeNameTxt= (TextView) findViewById(R.id.SelProductTypeName);
 
@@ -43,7 +45,28 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,ptid,pid).execute();
 
-        back=(ImageView)findViewById(R.id.back);
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(ProductTypeSubTypes.this,ProductTypes.class);
+                    in.putExtra("PRODUCTID_KEY",pid);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("PRODUCTTYPENAME_KEY",ptname);
+
+                    startActivity(in);
+                }
+            });
+
+            // Inflate a menu to be displayed in the toolbar
+          //  actionbar.inflateMenu(R.menu.actions);
+        }
+
+      /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +76,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
                 in.putExtra("PRODUCTTYPENAME_KEY",ptname);
                 startActivity(in);
             }
-        });
+        });*/
     }
 
 }

@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.util.LruCache;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,14 +39,29 @@ public class Brands extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_brands);
 
-        back5 = (ImageView) findViewById(R.id.back);
+        /*back5 = (ImageView) findViewById(R.id.back);
         back5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(Brands.this, Main2Activity.class);
                 startActivity(in);
             }
-        });
+        });*/ Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(Brands.this,Main2Activity.class);
+                    startActivity(in);
+                }
+            });
+
+            // Inflate a menu to be displayed in the toolbar
+          //  actionbar.inflateMenu(R.menu.actions);
+        }
 
 
         final GridView gridView1 = (GridView) findViewById(R.id.brandgrid_view);
