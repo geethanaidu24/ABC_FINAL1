@@ -15,7 +15,7 @@ public class ProductTypesDetails extends AppCompatActivity {
 
     // @Written By Geetha - Code Starts Here
 
-    final static String urlAddress = "http://192.168.0.3/abc/getProductImages.php";
+    final static String urlAddress = "http://192.168.0.2/abc/getProductImages.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();

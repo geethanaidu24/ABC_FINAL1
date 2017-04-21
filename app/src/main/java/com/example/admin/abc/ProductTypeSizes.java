@@ -21,7 +21,7 @@ public class ProductTypeSizes extends AppCompatActivity {
 
     //Context c;
   //  final static String url = "http://192.168.0.4/abc/getProductSizes.php?ProductId="+"&ProductTypeId=";
-    final static String url = "http://192.168.0.4/abc/getProductTypeSizes.php?";
+    final static String url = "http://192.168.0.2/abc/getProductTypeSizes.php?";
     final String PRODUCTID_PARAM = "ProductId";
     final String PRODUCTTYPEID_PARAM = "ProductTypeId";
 

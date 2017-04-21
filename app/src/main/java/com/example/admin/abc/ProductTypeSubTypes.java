@@ -17,7 +17,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.4/abc/getProductTypeSubTypes.php?ProductTypeId=";
+    final static String url = "http://192.168.0.2/abc/getProductTypeSubTypes.php?ProductTypeId=";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

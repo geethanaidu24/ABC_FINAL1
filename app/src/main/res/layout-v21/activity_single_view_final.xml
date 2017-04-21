@@ -13,7 +13,8 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/header1"/>
+    <include layout="@layout/header1"
+             android:id="@+id/include2"/>
 
 
 
@@ -31,9 +32,8 @@
         android:layout_height="200dp"
 
         android:id="@+id/img1"
-        android:layout_marginTop="130px"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/include2"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="CERA CLOISTER"

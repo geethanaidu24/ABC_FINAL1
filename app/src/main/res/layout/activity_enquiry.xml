@@ -10,10 +10,11 @@
  >
     <include layout="@layout/header1"/>
     <RelativeLayout
-        android:layout_width="680px"
-        android:layout_height="450dp"
+        android:layout_width="500dp"
+        android:layout_height="700dp"
         android:background="@color/colorblack"
-        android:gravity="center"
+        android:gravity="center_horizontal"
+
         android:layout_marginBottom="10dp"
         android:layout_marginTop="130px"
         android:layout_alignParentTop="true"

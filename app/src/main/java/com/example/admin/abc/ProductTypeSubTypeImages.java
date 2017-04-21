@@ -15,7 +15,7 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.4/abc/getProductTypeSubTypeImages.php?ProductSubTypeId=";
+    final static String url = "http://192.168.0.2/abc/getProductTypeSubTypeImages.php?ProductSubTypeId=";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
         setContentView(R.layout.activity_products_types_subtype_images);
 
         final GridView gv = (GridView) findViewById(R.id.gv);
-
+     gv.setNumColumns(2);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
