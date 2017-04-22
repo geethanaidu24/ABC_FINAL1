@@ -38,7 +38,7 @@
             android:id="@+id/textViewURL"
 
 
-            android:layout_height="80px"
+            android:layout_height="30dp"
             android:text="Basins"
             android:gravity="center"
 
