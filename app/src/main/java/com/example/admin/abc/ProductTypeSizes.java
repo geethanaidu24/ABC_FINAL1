@@ -21,11 +21,9 @@ public class ProductTypeSizes extends AppCompatActivity {
 
     //Context c;
   //  final static String url = "http://192.168.0.4/abc/getProductSizes.php?ProductId="+"&ProductTypeId=";
-    final static String url = "http://192.168.0.4/abc/getProductTypeSizes.php?";
-    final String PRODUCTID_PARAM = "ProductId";
-    final String PRODUCTTYPEID_PARAM = "ProductTypeId";
+    final static String url = Config.productTypeSizesUrlAddress;
 
-    @Override
+        @Override
     public void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
@@ -36,18 +34,16 @@ public class ProductTypeSizes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-        int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         Log.d("result PID: ", "> " + pid);
 
         Log.d("result PtID: ", "> " + ptid);
-       // String urlAddress = url + pid + ptid;
-       // String urlAddress = url + pid;
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
-                .appendQueryParameter(PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(PRODUCTTYPEID_PARAM, Integer.toString(ptid))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
                 .build();
         URL urlAddress = null;
         try {
@@ -56,13 +52,15 @@ public class ProductTypeSizes extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv).execute();
+        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv,pid,ptid).execute();
 
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSizes.this,Products.class);
+                Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
+                in.putExtra("PRODUCTID_KEY", pid);
+                //in.putExtra("PRODUCTNAME_KEY",name);
                 startActivity(in);
             }
         });
