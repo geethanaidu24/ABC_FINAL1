@@ -40,6 +40,9 @@
 
     </android.support.v7.widget.Toolbar>
 
+
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -58,6 +61,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="CERA CLOISTER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -109,7 +113,7 @@
         android:textColor="@color/colorblack" />
 
     <TextView
-
+        android:text="400*300"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView27"
@@ -142,10 +146,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView30"
         android:layout_alignStart="@+id/sizeTxt"
-
+        android:text="WHITE"
         android:textColor="@color/colorblack" />
 
     <TextView
+        android:text="CERA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandTxt"
