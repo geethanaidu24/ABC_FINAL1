@@ -13,8 +13,35 @@
     android:orientation="vertical"
     >
 
-    <include layout="@layout/header1"
-             android:id="@+id/include2"/>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="7dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="600px"
+            android:layout_height="100px"
+            android:layout_marginBottom="5px"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5px"
+            app:srcCompat="@mipmap/abctextlogo"/>
+
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+
 
     <View
         android:layout_width="match_parent"
@@ -29,10 +56,12 @@
         android:layout_height="200dp"
 
         android:id="@+id/img1"
-        android:layout_below="@+id/include2"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="130px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="CERA CLOISTER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -65,35 +94,7 @@
         android:textColor="@color/colorblack" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/brandview"
-        android:layout_alignStart="@+id/brandview"
-        android:layout_marginTop="19dp"
-        android:id="@+id/colorTxtview"
-        android:text="COLOR"
-        android:textColor="@color/colorblack" />
-
-    <TextView
-        android:text=":"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView30"
-        android:textColor="@color/colorblack"
-        android:layout_below="@+id/colorTxtview"
-        android:layout_toEndOf="@+id/brandTxt"
-        android:layout_marginStart="43dp" />
-
-    <TextView
-        android:id="@+id/colorTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView30"
-        android:layout_alignStart="@+id/textView28"
-
-        android:textColor="@color/colorblack" />
-
-    <TextView
+        android:text="CERA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandTxt"
@@ -101,6 +102,36 @@
         android:layout_alignBottom="@+id/brandview1"
         android:layout_alignEnd="@+id/img1"
         android:textColor="@color/colorblack" />
+
+    <TextView
+        android:id="@+id/colorTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/brandview"
+        android:layout_below="@+id/brandview"
+        android:layout_marginTop="21dp"
+        android:text="COLOR"
+        android:textColor="@color/colorblack"/>
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/colorTxt"
+        android:layout_alignStart="@+id/img1"
+        android:layout_marginStart="67dp"
+        android:text=":"
+        android:textColor="@color/colorblack"/>
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView16"
+        android:layout_alignBottom="@+id/textView16"
+        android:layout_alignStart="@+id/brandTxt"
+        android:text="white"
+        android:textColor="@color/colorblack"/>
 
 
 </RelativeLayout>
