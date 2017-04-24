@@ -83,18 +83,17 @@ public class ProductSizesListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductSizeImagesActivity(pid,sizeid,finalSize);
+                openProductSizeImagesActivity(pid,sizeid);
             }
         });
 
         return convertView;
     }
 
-    public void openProductSizeImagesActivity(int pid,int sizeid,String finalSize){
+    public void openProductSizeImagesActivity(int pid,int sizeid){
         Intent intent = new Intent(c,ProductSizeImages.class);
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTSIZEID_KEY", sizeid);
-        intent.putExtra("PRODUCTSIZE_KEY",finalSize);
         c.startActivity(intent);
     }
 }

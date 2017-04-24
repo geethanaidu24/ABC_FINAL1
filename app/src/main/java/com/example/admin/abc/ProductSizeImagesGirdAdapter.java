@@ -20,17 +20,15 @@ class ProductSizeImagesGirdAdapter  extends BaseAdapter {
 
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems;
     LayoutInflater inflater;
-    String  psize;
+    String finalSize;
     int pid,psid;
 
 
-    public ProductSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems,int pid,int psid,String psize) {
+    public ProductSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems,int pid,int psid) {
         this.c = c;
         this.productTypeSizeImageItems = productTypeSizeImageItems;
         this.pid = pid;
         this.psid = psid;
-        this.psize =psize;
-
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -67,13 +65,40 @@ class ProductSizeImagesGirdAdapter  extends BaseAdapter {
         final String brand = productTypeSizeImageItem.getBrand();
         final String color = productTypeSizeImageItem.getColor();
         final int sizeid = productTypeSizeImageItem.getProductSizeId();
+        final int length =Integer.parseInt(String.valueOf(productTypeSizeImageItem.getLength()).toString()) ;
+        final int width = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getWidth()).toString());
+        final int height = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getHeight()).toString());
+        //final String measure =productTypeSizeDBData.getMeasurement().toString();
+
+        if(length !=0 && width !=0 && height !=0){
+            finalSize =  width + "X" + height + "X" + length;
+
+        }else if(length ==0 && width !=0 && height !=0){
+            finalSize =  width + "X" + height;
+
+        }else if(length !=0 && width ==0 && height !=0){
+            finalSize =  length + "X" + height;
+
+        }else if(length !=0 && width !=0 && height ==0 ){
+            finalSize =  length + "X" + width ;
+
+        }else if(length ==0 && width !=0 && height ==0 ){
+            finalSize = width + "" ;
+
+        }else if(length !=0 && width ==0 && height ==0 ){
+            finalSize = length + "" ;
+
+        }else if(length ==0 && width ==0 && height !=0 ){
+            finalSize = height + "" ;
+
+        }
 
         // open new activity
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //open detail activity
-                openDetailActivity(pid,psid,name, url, brand, color, psize);
+                openDetailActivity(pid,psid,name, url, brand, color,finalSize);
             }
         });
         return convertView;
