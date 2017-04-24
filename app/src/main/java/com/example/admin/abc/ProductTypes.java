@@ -18,7 +18,7 @@ public class ProductTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.2/abc/getProductTypesImages.php?ProductId=";
+    final static String url =Config.productTypesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class ProductTypes extends AppCompatActivity {
 
         String urlAddress = url + pid;
 
-        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,pid).execute();
+        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,pid,name).execute();
 
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

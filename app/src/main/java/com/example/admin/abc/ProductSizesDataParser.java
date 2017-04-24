@@ -20,13 +20,15 @@ class ProductSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
+    int pid;
 
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-    public ProductSizesDataParser(Context c, ListView lv, String jsonData) {
+    public ProductSizesDataParser(Context c, ListView lv, String jsonData,int pid) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
+        this.pid = pid;
     }
     @Override
     protected void onPreExecute() {
@@ -46,7 +48,7 @@ class ProductSizesDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductSizesListAdapter adapter=new ProductSizesListAdapter(c,productTypeSizeDBDatas);
+            final ProductSizesListAdapter adapter=new ProductSizesListAdapter(c,productTypeSizeDBDatas,pid);
             lv.setAdapter(adapter);
         }
     }

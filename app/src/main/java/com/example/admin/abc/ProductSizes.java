@@ -16,7 +16,7 @@ public class ProductSizes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.2/abc/getProductSizes.php?ProductId=";
+    final static String url = Config.productSizesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,14 +34,13 @@ public class ProductSizes extends AppCompatActivity {
 
         String urlAddress = url + pid;
 
-        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv).execute();
+        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,pid).execute();
 
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductSizes.this,Products.class);
-                in.putExtra("PRODUCTID_KEY",pid);
                 startActivity(in);
             }
         });

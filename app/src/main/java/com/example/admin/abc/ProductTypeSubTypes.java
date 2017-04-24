@@ -18,7 +18,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.2/abc/getProductTypeSubTypes.php?ProductTypeId=";
+    final static String url = Config.productTypeSubTypesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,8 +33,8 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-
       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
       final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
       final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
         typeNameTxt.setText(ptname);
@@ -43,7 +43,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         String urlAddress = url + ptid;
 
-        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,ptid,pid).execute();
+        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,pid,pname,ptid,ptname).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -55,6 +55,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeSubTypes.this,ProductTypes.class);
                     in.putExtra("PRODUCTID_KEY",pid);
+                    in.putExtra("PRODUCTNAME_KEY",ptid);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY",ptname);
 

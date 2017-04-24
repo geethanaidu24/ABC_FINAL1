@@ -5,18 +5,24 @@ package com.example.admin.abc;
  */
 
 public class ProductTypeSizeImageItem {
-    public int ImageId;
+    public int ProductSizeImageId;
     public String Name;
     public String ImagePath;
-    public String Brands;
+    public String Brand;
     public String Color;
-    public int SizeId;
+    public int ProductSizeId;
+    public int ProductSubTypeId;
+    public int ProductTypeId;
+    public int ProductId;
+    public int Width;
+    public int Height;
+    public int Length;
 
-    public int getImageId(){
-        return ImageId;
+    public int getProductSizeImageId(){
+        return ProductSizeImageId;
     }
-    public void setImageId(int ImageId){
-        this.ImageId = ImageId;
+    public void setProductSizeImageId(int ImageId){
+        this.ProductSizeImageId = ImageId;
     }
     public String getName(){
         return Name;
@@ -30,11 +36,11 @@ public class ProductTypeSizeImageItem {
     public void setImagePath(String ImgPath){
         this.ImagePath = ImgPath;
     }
-    public String getBrands(){
-        return Brands;
+    public String getBrand(){
+        return Brand;
     }
-    public void setBrands(String Brands){
-        this.Brands = Brands;
+    public void setBrand(String Brand){
+        this.Brand = Brand;
     }
     public String getColor(){
         return Color;
@@ -42,11 +48,38 @@ public class ProductTypeSizeImageItem {
     public void setColor(String color){
         this.Color = color;
     }
-    public int getSizeId(){
-        return SizeId;
+    public int getProductSizeId(){
+        return ProductSizeId;
     }
-    public void setSizeId(int sizeid){
-        this.SizeId = sizeid;
+    public void setProductSizeId(int sizeid){
+        this.ProductSizeId = sizeid;
     }
-
+    public int getProductSubTypeId(){return ProductSubTypeId;}
+    public void setProductSubTypeId(int prosid){this.ProductSubTypeId = prosid;}
+    public int getProductTypeId(){
+        return ProductTypeId;
+    }
+    public void setProductTypeId(int protid){
+        this.ProductTypeId = protid;
+    }
+    public int getProductId(){
+        return ProductId;
+    }
+    public void setProductId(int proid){
+        this.ProductId = proid;
+    }
+    public int getWidth(){
+        return Width;
+    }
+    public void setWidth(int width){
+        this.Width = width;
+    }
+    public int getHeight(){
+        return Height;
+    }
+    public void setHeight(int height){
+        this.Height = height;
+    }
+    public int getLength(){ return Length;}
+    public void setLength(int len){ this.Length = len;}
 }

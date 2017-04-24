@@ -20,11 +20,16 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
     Context c;
 
     ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems;
+    int pid,ptid;
+    String pname,ptname;
     LayoutInflater inflater;
-    public ProductTypeSubTypesListAdapter(Context c, ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems) {
+    public ProductTypeSubTypesListAdapter(Context c, ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems, int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.productTypeSubTypeItems = productTypeSubTypeItems;
-
+        this.pid = pid;
+        this.pname = pname;
+        this.ptid = ptid;
+        this.ptname = ptname;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -60,16 +65,19 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizeImagessActivity(ptid,pstid);
+                openProductTypeSizeImagessActivity(pid,pname,ptid,ptname,pstid);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSizeImagessActivity(int ptid, int pstid){
+    public void openProductTypeSizeImagessActivity(int pid, String pname, int ptid, String ptname,  int pstid){
         Intent intent = new Intent(c,ProductTypeSubTypeImages.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+        intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
         intent.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
         c.startActivity(intent);
     }

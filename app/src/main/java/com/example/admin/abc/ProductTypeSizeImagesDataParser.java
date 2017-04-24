@@ -65,19 +65,32 @@ class ProductTypeSizeImagesDataParser  extends AsyncTask<Void,Void,Integer> {
                 jo=ja.getJSONObject(i);
                 Log.d("result response: ", "> " + jo);
 
-                int ImageId=jo.getInt("ImageId");
+                int ImageId=jo.getInt("ProductSizeImageId");
                 String Name =jo.getString("Name");
                 String ImageUrl=jo.getString("ImagePath");
-                String Brands = jo.getString("Brands");
+                String Brands = jo.getString("Brand");
                 String Color = jo.getString("Color");
-                int SizeId = jo.getInt("SizeId");
+                int SizeId = jo.getInt("ProductSizeId");
+                int ProductSTypeId = jo.optInt("ProductSubTypeId", 0);
+                int ProductTypeId = jo.getInt("ProductTypeId");
+                int ProductId = jo.getInt("ProductId");
+                int Width = jo.getInt("Width");
+                int Height = jo.getInt("Height");
+                int Length = jo.getInt("Length");
+
                 productTypeSizeImageItem=new ProductTypeSizeImageItem();
-                productTypeSizeImageItem.setImageId(ImageId);
+                productTypeSizeImageItem.setProductSizeImageId(ImageId);
                 productTypeSizeImageItem.setName(Name);
                 productTypeSizeImageItem.setImagePath(ImageUrl);
-                productTypeSizeImageItem.setBrands(Brands);
+                productTypeSizeImageItem.setBrand(Brands);
                 productTypeSizeImageItem.setColor(Color);
-                productTypeSizeImageItem.setSizeId(SizeId);
+                productTypeSizeImageItem.setProductSizeId(SizeId);
+                productTypeSizeImageItem.setProductSubTypeId(ProductSTypeId);
+                productTypeSizeImageItem.setProductTypeId(ProductTypeId);
+                productTypeSizeImageItem.setProductId(ProductId);
+                productTypeSizeImageItem.setWidth(Width);
+                productTypeSizeImageItem.setHeight(Height);
+                productTypeSizeImageItem.setLength(Length);
                 productTypeSizeImageItems.add(productTypeSizeImageItem);
             }
             return 1;

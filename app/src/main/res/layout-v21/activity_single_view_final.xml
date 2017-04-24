@@ -16,9 +16,6 @@
     <include layout="@layout/header1"
              android:id="@+id/include2"/>
 
-
-
-
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -36,7 +33,6 @@
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:text="CERA CLOISTER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -69,38 +65,10 @@
         android:textColor="@color/colorblack" />
 
     <TextView
-        android:text="SIZE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/brandview"
         android:layout_alignStart="@+id/brandview"
-        android:layout_marginTop="20dp"
-        android:id="@+id/sizeview"
-        android:textColor="@color/colorblack" />
-
-    <TextView
-        android:text=":"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sizeview"
-        android:layout_alignStart="@+id/brandview1"
-        android:id="@+id/textView27"
-        android:textColor="@color/colorblack" />
-
-    <TextView
-        android:text="400*300"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView27"
-        android:layout_alignStart="@+id/brandTxt"
-        android:id="@+id/textView28"
-        android:textColor="@color/colorblack" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sizeview"
-        android:layout_alignStart="@+id/sizeview"
         android:layout_marginTop="19dp"
         android:id="@+id/colorTxtview"
         android:text="COLOR"
@@ -110,10 +78,11 @@
         android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/colorTxtview"
-        android:layout_alignStart="@+id/textView27"
         android:id="@+id/textView30"
-        android:textColor="@color/colorblack" />
+        android:textColor="@color/colorblack"
+        android:layout_below="@+id/colorTxtview"
+        android:layout_toEndOf="@+id/brandTxt"
+        android:layout_marginStart="43dp" />
 
     <TextView
         android:id="@+id/colorTxt"
@@ -121,11 +90,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView30"
         android:layout_alignStart="@+id/textView28"
-        android:text="WHITE"
+
         android:textColor="@color/colorblack" />
 
     <TextView
-        android:text="CERA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandTxt"

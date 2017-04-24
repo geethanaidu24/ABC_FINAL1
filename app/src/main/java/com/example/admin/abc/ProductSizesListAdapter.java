@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +19,13 @@ public class ProductSizesListAdapter extends BaseAdapter {
     Context c;
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas;
     LayoutInflater inflater;
-
+    int pid;
     String finalSize;
 
-    public ProductSizesListAdapter(Context c, ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas) {
+    public ProductSizesListAdapter(Context c, ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas, int pid) {
         this.c = c;
         this.productTypeSizeDBDatas = productTypeSizeDBDatas;
+        this.pid = pid;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -78,19 +80,21 @@ public class ProductSizesListAdapter extends BaseAdapter {
             typeNameTxt.setText(finalSize);
         }
         // open new activity
-       /* convertView.setOnClickListener(new View.OnClickListener(){
+        convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizeImagesActivity(sizeid);
+                openProductSizeImagesActivity(pid,sizeid,finalSize);
             }
-        });*/
+        });
 
         return convertView;
     }
 
-   /* public void openProductTypeSizeImagesActivity(int sizeid){
-        Intent intent = new Intent(c,ProductTypeSizeImages.class);
-        intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
+    public void openProductSizeImagesActivity(int pid,int sizeid,String finalSize){
+        Intent intent = new Intent(c,ProductSizeImages.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTSIZEID_KEY", sizeid);
+        intent.putExtra("PRODUCTSIZE_KEY",finalSize);
         c.startActivity(intent);
-    }*/
+    }
 }

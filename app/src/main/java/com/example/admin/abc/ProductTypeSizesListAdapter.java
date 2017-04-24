@@ -51,6 +51,8 @@ public class ProductTypeSizesListAdapter extends BaseAdapter {
         ProductTypeSizeDBData productTypeSizeDBData = (ProductTypeSizeDBData) this.getItem(position);
 
         final int sizeid = productTypeSizeDBData.getProductSizeId();
+        final int proid = productTypeSizeDBData.getProductId();
+        final int protid = productTypeSizeDBData.getProductTypeId();
         final int length =Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString()) ;
         final int width = Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString());
         final int height = Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString());
@@ -82,15 +84,17 @@ if(length !=0 && width !=0 && height !=0){
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizeImagesActivity(sizeid);
+                openProductTypeSizeImagesActivity(proid,protid,sizeid);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSizeImagesActivity(int sizeid){
+    public void openProductTypeSizeImagesActivity(int proid,int protid,int sizeid){
         Intent intent = new Intent(c,ProductTypeSizeImages.class);
+        intent.putExtra("PRODUCTID_KEY",proid);
+        intent.putExtra("PRODUCTTYPEID_KEY",protid);
         intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
         c.startActivity(intent);
     }

@@ -22,11 +22,18 @@ public class ProductTypeSubTypeImagesDownloader extends AsyncTask<Void, Void, St
     Context c;
     String urlAddress;
     GridView gv;
+    int pid,ptid,pstid;
+    String pname,ptname;
 
-    public ProductTypeSubTypeImagesDownloader(Context c, String urlAddress, GridView gv) {
+    public ProductTypeSubTypeImagesDownloader(Context c, String urlAddress, GridView gv, int pid,String pname,int ptid,String ptname,int pstid) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.gv = gv;
+        this.pid = pid;
+        this.pname = pname;
+        this.ptid = ptid;
+        this.ptname = ptname;
+        this.pstid = pstid;
 
         Log.d("newActivity url: ", "> " + urlAddress);
     }
@@ -50,7 +57,7 @@ public class ProductTypeSubTypeImagesDownloader extends AsyncTask<Void, Void, St
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypeSubTypeImagesDataParser parser=new ProductTypeSubTypeImagesDataParser(c, gv, s);
+            ProductTypeSubTypeImagesDataParser parser=new ProductTypeSubTypeImagesDataParser(c, gv, s, pid, pname, ptid, ptname, pstid);
             parser.execute();
         }
     }

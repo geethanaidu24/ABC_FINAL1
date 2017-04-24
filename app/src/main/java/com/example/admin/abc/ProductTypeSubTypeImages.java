@@ -16,7 +16,7 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = "http://192.168.0.2/abc/getProductTypeSubTypeImages.php?ProductSubTypeId=";
+    final static String url = Config.productTypeSubTypeImgUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,15 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
+        final int pid =intent.getExtras().getInt("PRODUCTID_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
         final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
         final int pstid = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
 
         String urlAddress = url + pstid;
 
-        new ProductTypeSubTypeImagesDownloader(ProductTypeSubTypeImages.this,urlAddress,gv).execute();
+        new ProductTypeSubTypeImagesDownloader(ProductTypeSubTypeImages.this,urlAddress,gv,pid,pname,ptid,ptname,pstid).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -44,11 +47,14 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSubTypeImages.this,ProductTypeSubTypes.class);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+                    Intent intent=new Intent(ProductTypeSubTypeImages.this,ProductTypeSubTypes.class);
+                    intent.putExtra("PRODUCTID_KEY",pid);
+                    intent.putExtra("PRODUCTNAME_KEY",pname);
+                    intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
+                    intent.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
 
-                    startActivity(in);
+                    startActivity(intent);
                 }
             });
 

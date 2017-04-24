@@ -24,15 +24,17 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
     ListView lv;
     int ptid;
     int pid;
+    String pname,ptname;
 
 
-    public ProductTypeSubTypesDownloader(Context c, String urlAddress, ListView lv, int ptid, int pid) {
+    public ProductTypeSubTypesDownloader(Context c, String urlAddress, ListView lv, int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
         this.ptid = ptid;
         this.pid =pid;
-
+        this.pname = pname;
+        this.ptname = ptname;
         Log.d("newActivity url: ", "> " + urlAddress);
     }
 
@@ -55,7 +57,7 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypeSubTypesDataParser parser=new ProductTypeSubTypesDataParser(c, lv, s, ptid, pid);
+            ProductTypeSubTypesDataParser parser=new ProductTypeSubTypesDataParser(c, lv, s, pid, pname,ptid,ptname);
             parser.execute();
         }
     }

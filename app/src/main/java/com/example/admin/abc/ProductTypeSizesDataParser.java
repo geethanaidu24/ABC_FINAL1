@@ -1,10 +1,10 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,13 +20,17 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     String jsonData;
+    int pid;
+    int ptid;
 
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-    public ProductTypeSizesDataParser(Context c, ListView lv, String jsonData) {
+    public ProductTypeSizesDataParser(Context c, ListView lv, String jsonData, int pid, int ptid) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
+        this.pid = pid;
+        this.ptid=  ptid;
     }
     @Override
     protected void onPreExecute() {
@@ -42,13 +46,21 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         super.onPostExecute(result);
         if(result==0)
         {
-            Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+           // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+            openGridViewActivity();
+
         }else
         {
 
             final ProductTypeSizesListAdapter adapter=new ProductTypeSizesListAdapter(c,productTypeSizeDBDatas);
             lv.setAdapter(adapter);
         }
+    }
+    public void openGridViewActivity() {
+        Intent intent = new Intent(c,ProductTypeImages.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+        c.startActivity(intent);
     }
     private int parseData()
     {

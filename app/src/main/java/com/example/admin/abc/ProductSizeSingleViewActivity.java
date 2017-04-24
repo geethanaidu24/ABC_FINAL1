@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Geetha on 4/10/2017.
+ * Created by Geetha on 4/21/2017.
  */
 
-public class SingleViewActivity extends AppCompatActivity {
+public class ProductSizeSingleViewActivity extends AppCompatActivity {
 
     ImageView back;
 
@@ -32,29 +32,28 @@ public class SingleViewActivity extends AppCompatActivity {
 
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-      final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-      final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
-      final int psid = i.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
-      final String name = i.getExtras().getString("NAME_KEY");
-      final String image = i.getExtras().getString("IMAGE_KEY");
-      final String brand = i.getExtras().getString("BRAND_KEY");
-      final String color = i.getExtras().getString("COLOR_KEY");
-      final String size = i.getExtras().getString("SIZE_KEY");
-      nameTxt.setText(name);
-      brandTxt.setText(brand);
-      colorTxt.setText(color);
-      sizeTxt.setText(size);
-       PicassoClient.downloadImage(c,image,selectedImage);
-       back=(ImageView)findViewById(R.id.back);
-       back.setOnClickListener(new View.OnClickListener() {
+        final int pid = i.getExtras().getInt("PRODUCTID_KEY");
+        final int psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
+        final String name = i.getExtras().getString("NAME_KEY");
+        final String image = i.getExtras().getString("IMAGE_KEY");
+        final String brand = i.getExtras().getString("BRAND_KEY");
+        final String color = i.getExtras().getString("COLOR_KEY");
+        final String size = i.getExtras().getString("SIZE_KEY");
+        nameTxt.setText(name);
+        brandTxt.setText(brand);
+        colorTxt.setText(color);
+        sizeTxt.setText(size);
+        PicassoClient.downloadImage(c,image,selectedImage);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(SingleViewActivity.this,ProductTypeSizeImages.class);
+                Intent in=new Intent(ProductSizeSingleViewActivity.this,ProductSizeImages.class);
                 in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                in.putExtra("PRODUCTTYPESIZEID_KEY", psid);
+                in.putExtra("PRODUCTSIZEID_KEY", psid);
+                in.putExtra("PRODUCTSIZE_KEY", size);
                 startActivity(in);
-           }
+            }
         });
 
     }

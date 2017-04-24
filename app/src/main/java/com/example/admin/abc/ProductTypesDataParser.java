@@ -22,13 +22,15 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     ListView lv;
     String jsonData;
     int pid;
+    String name;
     ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
 
-    public ProductTypesDataParser(Context c, ListView lv, String jsonData, int pid) {
+    public ProductTypesDataParser(Context c, ListView lv, String jsonData, int pid, String name) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
         this.pid = pid;
+        this.name = name;
 
     }
     @Override
@@ -46,17 +48,22 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         if(result==0)
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-            // opening new activity
+            // opening new activity if product has no types
             openProductSizesActivity(pid);
         }else
         {
 
-            final ProductTypesListAdapter adapter=new ProductTypesListAdapter(c,productTypeItems);
+            final ProductTypesListAdapter adapter=new ProductTypesListAdapter(c,productTypeItems,pid,name);
             lv.setAdapter(adapter);
 
         }
     }
-
+    public void openProductSizesActivity(int pid) {
+        Intent intent = new Intent(c,ProductSizes.class);
+        intent.putExtra("PRODUCTID_KEY", pid);
+       // intent.putExtra("PRODUCTNAME_KEY", name);
+        c.startActivity(intent);
+    }
     private int parseData()
     {
         try
@@ -86,9 +93,5 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         }
         return 0;
     }
-    public void openProductSizesActivity(int pid) {
-        Intent intent = new Intent(c,ProductSizes.class);
-        intent.putExtra("PRODUCTID_KEY", pid);
-        c.startActivity(intent);
-    }
+
 }

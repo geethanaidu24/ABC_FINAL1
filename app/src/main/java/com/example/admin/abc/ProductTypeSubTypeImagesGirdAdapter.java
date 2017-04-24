@@ -20,12 +20,18 @@ public class ProductTypeSubTypeImagesGirdAdapter extends BaseAdapter {
     Context c;
 
     ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems;
+    int pid,ptid,pstid;
+    String pname,ptname;
     LayoutInflater inflater;
 
-    public ProductTypeSubTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems) {
+    public ProductTypeSubTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems, int pid, String pname, int ptid, String ptname,int pstid) {
         this.c = c;
         this.productTypeSubTypeImageItems = productTypeSubTypeImageItems;
-
+        this.pid = pid;
+        this.pname = pname;
+        this.ptid = ptid;
+        this.ptname = ptname;
+        this.pstid = pstid;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -70,25 +76,31 @@ public class ProductTypeSubTypeImagesGirdAdapter extends BaseAdapter {
 
         final String brand = productTypeSubTypeImageItem.getBrand();
         final String color = productTypeSubTypeImageItem.getColor();
+        final int protypeid = productTypeSubTypeImageItem.getProductTypeId();
+        final int prosubtypeid = productTypeSubTypeImageItem.getProductSubTypeId();
                // open new activity
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //open detail activity
                 // startDeatilActivity();
-                openDetailActivity(name,url,brand,color);
+                openDetailActivity(pid,pname,ptid,ptname,pstid,name,url,brand,color);
             }
         });
         return convertView;
     }
-    private void openDetailActivity(String...details)
+    private void openDetailActivity(int pid, String pname,int ptid,String ptname, int pstid, String...details)
     {
-        Intent i = new Intent(c,SingleViewActivity.class);
+        Intent i = new Intent(c,ProductSubTypeSingleViewActivity.class);
+        i.putExtra("PRODUCTID_KEY",pid);
+        i.putExtra("PRODUCTNAME_KEY",pname);
+        i.putExtra("PRODUCTTYPEID_KEY", ptid);
+        i.putExtra("PRODUCTTYPENAME_KEY",ptname);
+        i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
         i.putExtra("NAME_KEY", details[0]);
         i.putExtra("IMAGE_KEY",details[1]);
         i.putExtra("BRAND_KEY", details[2]);
         i.putExtra("COLOR_KEY", details[3]);
-
         c.startActivity(i);
     }
 }

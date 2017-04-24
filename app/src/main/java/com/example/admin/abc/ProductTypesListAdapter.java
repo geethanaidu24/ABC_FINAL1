@@ -23,9 +23,12 @@ public class ProductTypesListAdapter extends BaseAdapter {
 
     ArrayList<ProductTypeItem> productTypeItems;
     LayoutInflater inflater;
-    public ProductTypesListAdapter(Context c, ArrayList<ProductTypeItem> productTypeItems) {
+    String name;
+    int pid;
+    public ProductTypesListAdapter(Context c, ArrayList<ProductTypeItem> productTypeItems,int pid, String name) {
         this.c = c;
         this.productTypeItems = productTypeItems;
+        this.name = name;
 
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -62,16 +65,17 @@ public class ProductTypesListAdapter extends BaseAdapter {
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSubTypesActivity(pid,ptid,ptname);
+                openProductTypeSubTypesActivity(pid,name,ptid,ptname);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSubTypesActivity(int pid,int ptid,String ptname){
+    public void openProductTypeSubTypesActivity(int pid,String name,int ptid,String ptname){
         Intent intent = new Intent(c,ProductTypeSubTypes.class);
         intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTNAME_KEY",name);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
         intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
         c.startActivity(intent);

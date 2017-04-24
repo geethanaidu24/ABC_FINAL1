@@ -73,14 +73,16 @@ class ProductSizeImagesGirdAdapter  extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //open detail activity
-                openDetailActivity(name, url, brand, color, psize);
+                openDetailActivity(pid,psid,name, url, brand, color, psize);
             }
         });
         return convertView;
     }
 
-    private void openDetailActivity(String... details) {
-        Intent i = new Intent(c, SingleViewActivity.class);
+    private void openDetailActivity(int pid,int psid,String... details) {
+        Intent i = new Intent(c, ProductSizeSingleViewActivity.class);
+        i.putExtra("PRODUCTID_KEY",pid);
+        i.putExtra("PRODUCTSIZEID_KEY",psid);
         i.putExtra("NAME_KEY", details[0]);
         i.putExtra("IMAGE_KEY", details[1]);
         i.putExtra("BRAND_KEY", details[2]);

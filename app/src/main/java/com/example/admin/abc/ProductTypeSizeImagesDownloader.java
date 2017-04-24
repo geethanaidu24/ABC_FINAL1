@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 /**
  * Created by Geetha on 4/18/2017.
@@ -20,10 +21,10 @@ import java.net.HttpURLConnection;
 class ProductTypeSizeImagesDownloader extends AsyncTask<Void, Void, String> {
 
     Context c;
-    String urlAddress;
+    URL urlAddress;
     GridView gv;
 
-    public ProductTypeSizeImagesDownloader(Context c, String urlAddress, GridView gv) {
+    public ProductTypeSizeImagesDownloader(Context c, URL urlAddress, GridView gv) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.gv = gv;
@@ -55,7 +56,7 @@ class ProductTypeSizeImagesDownloader extends AsyncTask<Void, Void, String> {
         }
     }
     private String downloadTypeData() {
-        HttpURLConnection con = Connector.connect(urlAddress);
+        HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
         if (con == null) {
             return null;
         }

@@ -20,7 +20,7 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
 
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems;
     LayoutInflater inflater;
-
+String finalSize;
     public ProductTypeSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems) {
         this.c = c;
         this.productTypeSizeImageItems = productTypeSizeImageItems;
@@ -52,24 +52,50 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
         ImageView img = (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
         //BIND DATA
         ProductTypeSizeImageItem productTypeSizeImageItem = (ProductTypeSizeImageItem) this.getItem(position);
-        final int ptid = productTypeSizeImageItem.getSizeId();
         typeNameTxt.setText(productTypeSizeImageItem.getName());
         //IMG
         PicassoClient.downloadImage(c, productTypeSizeImageItem.getImagePath(), img);
         //BIND DATA
         final String name = productTypeSizeImageItem.getName();
         final String url = productTypeSizeImageItem.getImagePath();
-        final String brand = productTypeSizeImageItem.getBrands();
+        final String brand = productTypeSizeImageItem.getBrand();
         final String color = productTypeSizeImageItem.getColor();
-       final int sizeid = productTypeSizeImageItem.getSizeId();
+        final int sizeid = productTypeSizeImageItem.getProductSizeId();
+        final int width = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getWidth()).toString());
+        final int height = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getHeight()).toString());
+        final int length = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getLength()).toString());
+
+
+
+        if(length !=0 && width !=0 && height !=0){
+            finalSize =  width + "X" + height + "X" + length;
+
+        }else if(length ==0 && width !=0 && height !=0){
+            finalSize =  width + "X" + height;
+
+        }else if(length !=0 && width ==0 && height !=0){
+            finalSize =  length + "X" + height;
+
+        }else if(length !=0 && width !=0 && height ==0 ){
+            finalSize =  length + "X" + width ;
+
+        }else if(length ==0 && width !=0 && height ==0 ){
+            finalSize = width + "" ;
+
+        }else if(length !=0 && width ==0 && height ==0 ){
+            finalSize = length + "" ;
+
+        }else if(length ==0 && width ==0 && height !=0 ){
+            finalSize = height + "" ;
+
+        }
 
         // open new activity
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 //open detail activity
-                // startDeatilActivity();
-                openDetailActivity(name,url,brand,color);
+                openDetailActivity(name,url,brand,color,finalSize);
             }
         });
         return convertView;
@@ -81,7 +107,7 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
         i.putExtra("IMAGE_KEY",details[1]);
         i.putExtra("BRAND_KEY", details[2]);
         i.putExtra("COLOR_KEY", details[3]);
-
+        i.putExtra("SIZE_KEY", details[4]);
         c.startActivity(i);
     }
 }

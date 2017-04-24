@@ -22,14 +22,17 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
     String jsonData;
     int ptid;
     int pid;
+    String pname, ptname;
     ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems=new ArrayList<>();
 
-    public ProductTypeSubTypesDataParser(Context c, ListView lv, String jsonData, int ptid, int pid) {
+    public ProductTypeSubTypesDataParser(Context c, ListView lv, String jsonData, int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.lv = lv;
         this.jsonData = jsonData;
         this.ptid = ptid;
         this.pid = pid;
+        this.pname = pname;
+        this.ptname = ptname;
     }
     @Override
     protected void onPreExecute() {
@@ -47,16 +50,21 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity
-            openProductSizesActivity(pid,ptid);
+            openProductTypesSizesActivity(pid,ptid);
         }else
         {
 
-            final ProductTypeSubTypesListAdapter adapter=new ProductTypeSubTypesListAdapter(c,productTypeSubTypeItems);
+            final ProductTypeSubTypesListAdapter adapter=new ProductTypeSubTypesListAdapter(c,productTypeSubTypeItems,pid,pname,ptid,ptname);
             lv.setAdapter(adapter);
 
         }
     }
-
+    public void openProductTypesSizesActivity(int pid,int ptid) {
+        Intent intent = new Intent(c,ProductTypeSizes.class);
+        intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+        c.startActivity(intent);
+    }
     private int parseData()
     {
         try
@@ -86,10 +94,5 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         }
         return 0;
     }
-    public void openProductSizesActivity(int pid,int ptid) {
-        Intent intent = new Intent(c,ProductTypeSizes.class);
-        intent.putExtra("PRODUCTID_KEY",pid);
-        intent.putExtra("PRODUCTTYPEID_KEY", ptid);
-        c.startActivity(intent);
-    }
+
 }

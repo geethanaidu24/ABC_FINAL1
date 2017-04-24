@@ -23,13 +23,15 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
     String urlAddress;
     ListView lv;
     int pid;
+    String name;
 
 
-    public ProductTypesDownloader(Context c, String urlAddress, ListView lv, int pid) {
+    public ProductTypesDownloader(Context c, String urlAddress, ListView lv, int pid, String name) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
         this.pid = pid;
+        this.name = name;
 
         Log.d("newActivity url: ", "> " + urlAddress);
     }
@@ -53,7 +55,7 @@ public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypesDataParser parser=new ProductTypesDataParser(c, lv, s, pid);
+            ProductTypesDataParser parser=new ProductTypesDataParser(c, lv, s, pid, name);
             parser.execute();
         }
     }

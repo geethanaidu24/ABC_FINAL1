@@ -70,9 +70,17 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypeSubTypeImages"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ProductTypeImages"
+            android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypeSizes"
             android:screenOrientation="portrait"/>
         <activity android:name=".ProductTypeSizeImages"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProductTypeSingleViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProductSubTypeSingleViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProductSizeImages"
             android:screenOrientation="portrait"/>
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
