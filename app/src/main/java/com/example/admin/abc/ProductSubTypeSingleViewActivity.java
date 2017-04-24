@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +26,8 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_final);
+
+
         selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);
@@ -33,7 +36,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-        final String pname =i.getExtras().getString("PRODUCTNAME_KEY");
+        final String pname = i.getExtras().getString("PRODUCTNAME_KEY");
         final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
         final String ptname = i.getExtras().getString("PRODUCTTYPENAME_KEY");
         final int pstid = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
@@ -45,8 +48,8 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         brandTxt.setText(brand);
         colorTxt.setText(color);
         PicassoClient.downloadImage(c, image, selectedImage);
-        back = (ImageView) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
+       /* back = (ImageView) findViewById(R.id.back);
+      back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductTypeSubTypeImages.class);
@@ -57,7 +60,27 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
                 in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
                 startActivity(in);
             }
-        });
+        });*/
 
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductTypeSubTypeImages.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
+                    in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+
+                    startActivity(in);
+                }
+            });
+
+        }
     }
 }
