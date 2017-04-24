@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/txtSubTypePro"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="Basins"
             android:gravity="center"
 

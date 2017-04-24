@@ -26,7 +26,7 @@ import java.util.Map;
 public class Login extends AppCompatActivity {
     ImageView im4;
 
-    public static final String LOGIN_URL = "192.168.0.2/login1.php";
+    public static final String LOGIN_URL = "192.168.0.3/login1.php";
 
     //Keys for email and password as defined in our $_POST['key'] in login.php
     public static final String KEY_USERNAME = "username";
