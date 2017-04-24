@@ -13,32 +13,7 @@
     android:orientation="vertical"
     >
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cred"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="7dp">
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="600px"
-            android:layout_height="100px"
-            android:layout_marginBottom="5px"
-
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="5px"
-            app:srcCompat="@mipmap/abctextlogo"/>
-
-
-
-
-
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/header1"/>
 
 
 
@@ -100,14 +75,14 @@
         android:layout_below="@+id/brandview"
         android:layout_alignStart="@+id/brandview"
         android:layout_marginTop="20dp"
-        android:id="@+id/colorTxtview"
+        android:id="@+id/sizeview"
         android:textColor="@color/colorblack" />
 
     <TextView
         android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/colorTxtview"
+        android:layout_alignBottom="@+id/sizeview"
         android:layout_alignStart="@+id/brandview1"
         android:id="@+id/textView27"
         android:textColor="@color/colorblack" />
@@ -118,14 +93,14 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView27"
         android:layout_alignStart="@+id/brandTxt"
-        android:id="@+id/colorTxt"
+        android:id="@+id/sizeTxt"
         android:textColor="@color/colorblack" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/colorTxtview"
-        android:layout_alignStart="@+id/colorTxtview"
+        android:layout_below="@+id/sizeview"
+        android:layout_alignStart="@+id/sizeview"
         android:layout_marginTop="19dp"
         android:id="@+id/colorTxtview"
         android:text="COLOR"
@@ -145,7 +120,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView30"
-        android:layout_alignStart="@+id/colorTxt"
+        android:layout_alignStart="@+id/sizeTxt"
         android:text="WHITE"
         android:textColor="@color/colorblack" />
 
