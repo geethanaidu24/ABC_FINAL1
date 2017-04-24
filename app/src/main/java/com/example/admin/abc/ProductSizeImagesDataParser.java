@@ -21,16 +21,16 @@ class ProductSizeImagesDataParser extends AsyncTask<Void,Void,Integer> {
     GridView gv;
     String jsonData;
     int pid,psid;
-    String psize;
+
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems=new ArrayList<>();
 
-    public ProductSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,int psid,String psize) {
+    public ProductSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,int psid) {
         this.c = c;
         this.gv = gv;
         this.jsonData = jsonData;
         this.pid = pid;
         this.psid = psid;
-        this.psize = psize;
+
 
     }
     @Override
@@ -51,7 +51,7 @@ class ProductSizeImagesDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductSizeImagesGirdAdapter adapter=new ProductSizeImagesGirdAdapter(c,productTypeSizeImageItems,pid,psid,psize);
+            final ProductSizeImagesGirdAdapter adapter=new ProductSizeImagesGirdAdapter(c,productTypeSizeImageItems,pid,psid);
             gv.setAdapter(adapter);
 
         }
@@ -78,6 +78,9 @@ class ProductSizeImagesDataParser extends AsyncTask<Void,Void,Integer> {
                 int ProductSTypeId = jo.optInt("ProductSubTypeId", 0);
                 int ProductTypeId = jo.optInt("ProductTypeId",0);
                 int ProductId = jo.getInt("ProductId");
+                int SizeWidth = jo.getInt("Width");
+                int SizeHeight = jo.getInt("Height");
+                int SizeLength = jo.getInt("Length");
                 productTypeSizeImageItem=new ProductTypeSizeImageItem();
                 productTypeSizeImageItem.setProductSizeImageId(ImageId);
                 productTypeSizeImageItem.setName(Name);
@@ -88,6 +91,9 @@ class ProductSizeImagesDataParser extends AsyncTask<Void,Void,Integer> {
                 productTypeSizeImageItem.setProductSubTypeId(ProductSTypeId);
                 productTypeSizeImageItem.setProductTypeId(ProductTypeId);
                 productTypeSizeImageItem.setProductId(ProductId);
+                productTypeSizeImageItem.setWidth(SizeWidth);
+                productTypeSizeImageItem.setHeight(SizeHeight);
+                productTypeSizeImageItem.setLength(SizeLength);
 
                 productTypeSizeImageItems.add(productTypeSizeImageItem);
             }

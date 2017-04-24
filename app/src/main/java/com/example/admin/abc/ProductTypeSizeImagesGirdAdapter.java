@@ -20,7 +20,7 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
 
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems;
     LayoutInflater inflater;
-String finalSize;
+   static String finalSize ;
     public ProductTypeSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems) {
         this.c = c;
         this.productTypeSizeImageItems = productTypeSizeImageItems;
@@ -52,7 +52,9 @@ String finalSize;
         ImageView img = (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
         //BIND DATA
         ProductTypeSizeImageItem productTypeSizeImageItem = (ProductTypeSizeImageItem) this.getItem(position);
+
         typeNameTxt.setText(productTypeSizeImageItem.getName());
+
         //IMG
         PicassoClient.downloadImage(c, productTypeSizeImageItem.getImagePath(), img);
         //BIND DATA
@@ -64,6 +66,7 @@ String finalSize;
         final int width = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getWidth()).toString());
         final int height = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getHeight()).toString());
         final int length = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getLength()).toString());
+
 
 
 

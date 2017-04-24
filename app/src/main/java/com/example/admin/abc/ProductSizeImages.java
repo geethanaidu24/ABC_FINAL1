@@ -33,7 +33,6 @@ public class ProductSizeImages extends AppCompatActivity {
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
       final  int psid = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
-      final  String psize = intent.getExtras().getString("PRODUCTSIZE_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
@@ -47,7 +46,7 @@ public class ProductSizeImages extends AppCompatActivity {
         }
 
 
-        new ProductSizeImagesDownloader(ProductSizeImages.this,urlAddress,gv,pid,psid,psize).execute();
+        new ProductSizeImagesDownloader(ProductSizeImages.this,urlAddress,gv,pid,psid).execute();
 
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

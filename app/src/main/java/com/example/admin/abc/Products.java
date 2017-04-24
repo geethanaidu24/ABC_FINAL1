@@ -13,7 +13,7 @@ public class Products extends AppCompatActivity {
     ImageView back;
 
 
-    final static String urlAddress = "http://192.168.0.2/abc/getProductImages.php";
+    final static String urlAddress = Config.productsUrlAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

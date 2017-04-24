@@ -24,15 +24,15 @@ class ProductSizeImagesDownloader extends AsyncTask<Void, Void, String> {
     URL urlAddress;
     GridView gv;
     int pid,psid;
-    String psize;
 
-    public ProductSizeImagesDownloader(Context c, URL urlAddress, GridView gv, int pid,int psid,String psize) {
+
+    public ProductSizeImagesDownloader(Context c, URL urlAddress, GridView gv, int pid,int psid) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.gv = gv;
         this.pid = pid;
         this.psid =psid;
-        this.psize = psize;
+
 
         Log.d("newActivity url: ", "> " + urlAddress);
     }
@@ -56,7 +56,7 @@ class ProductSizeImagesDownloader extends AsyncTask<Void, Void, String> {
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductSizeImagesDataParser parser=new ProductSizeImagesDataParser(c, gv, s,pid,psid,psize);
+            ProductSizeImagesDataParser parser=new ProductSizeImagesDataParser(c, gv, s,pid,psid);
             parser.execute();
         }
     }
