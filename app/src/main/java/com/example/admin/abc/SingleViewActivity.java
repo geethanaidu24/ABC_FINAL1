@@ -28,8 +28,8 @@ public class SingleViewActivity extends AppCompatActivity {
         selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
         nameTxt = (TextView)findViewById(R.id.nameTxt);
         brandTxt = (TextView)findViewById(R.id.brandTxt);
-        sizeTxt = (TextView)findViewById(R.id.sizeTxt);
-        colorTxt = (TextView)findViewById(R.id.colorTxt);
+        sizeTxt = (TextView)findViewById(R.id.colorTxt);
+        colorTxt = (TextView)findViewById(R.id.sizeTxt);
 
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
@@ -47,6 +47,25 @@ public class SingleViewActivity extends AppCompatActivity {
       colorTxt.setText(color);
       sizeTxt.setText(size);
        PicassoClient.downloadImage(c,image,selectedImage);
+
+        selectedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(SingleViewActivity.this,SingleViewImageFull.class);
+                in.putExtra("IMAGE_KEY",image);
+                in.putExtra("PRODUCTID_KEY",pid);
+                in.putExtra("PRODUCTNAME_KEY",pname);
+                in.putExtra("PRODUCTTYPEID_KEY",ptid);
+
+                in.putExtra("PRODUCTSUBTYPEID_KEY",ptsid);
+                in.putExtra("NAME_KEY",name);
+                in.putExtra("BRAND_KEY",brand);
+                in.putExtra("COLOR_KEY",color);
+                startActivity(in);
+            }
+        });
+
+
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
