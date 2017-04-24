@@ -62,6 +62,23 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             }
         });*/
 
+        selectedImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(ProductSubTypeSingleViewActivity.this,ProductSubTypeSingleViewImageFull.class);
+                in.putExtra("IMAGE_KEY",image);
+                in.putExtra("PRODUCTID_KEY",pid);
+                in.putExtra("PRODUCTNAME_KEY",pname);
+                in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                in.putExtra("PRODUCTTYPENAME_KEY",ptname);
+                in.putExtra("PRODUCTSUBTYPEID_KEY",pstid);
+                in.putExtra("NAME_KEY",name);
+                in.putExtra("BRAND_KEY",brand);
+                in.putExtra("COLOR_KEY",color);
+                startActivity(in);
+            }
+        });
+
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -76,7 +93,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-
                     startActivity(in);
                 }
             });
