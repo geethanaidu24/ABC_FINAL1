@@ -100,14 +100,14 @@
         android:layout_below="@+id/brandview"
         android:layout_alignStart="@+id/brandview"
         android:layout_marginTop="20dp"
-        android:id="@+id/sizeview"
+        android:id="@+id/colorTxtview"
         android:textColor="@color/colorblack" />
 
     <TextView
         android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sizeview"
+        android:layout_alignBottom="@+id/colorTxtview"
         android:layout_alignStart="@+id/brandview1"
         android:id="@+id/textView27"
         android:textColor="@color/colorblack" />
@@ -118,14 +118,14 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView27"
         android:layout_alignStart="@+id/brandTxt"
-        android:id="@+id/sizeTxt"
+        android:id="@+id/colorTxt"
         android:textColor="@color/colorblack" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/sizeview"
-        android:layout_alignStart="@+id/sizeview"
+        android:layout_below="@+id/colorTxtview"
+        android:layout_alignStart="@+id/colorTxtview"
         android:layout_marginTop="19dp"
         android:id="@+id/colorTxtview"
         android:text="COLOR"
@@ -145,7 +145,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView30"
-        android:layout_alignStart="@+id/sizeTxt"
+        android:layout_alignStart="@+id/colorTxt"
         android:text="WHITE"
         android:textColor="@color/colorblack" />
 
