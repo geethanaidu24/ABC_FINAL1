@@ -21,12 +21,18 @@ class ProductTypeSizeImagesDataParser  extends AsyncTask<Void,Void,Integer> {
     Context c;
     GridView gv;
     String jsonData;
+    int pid,ptid,ptsid;
+    String pname;
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems=new ArrayList<>();
 
-    public ProductTypeSizeImagesDataParser(Context c, GridView gv, String jsonData) {
+    public ProductTypeSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,String pname, int ptid,int ptsid) {
         this.c = c;
         this.gv = gv;
         this.jsonData = jsonData;
+        this.pid=pid;
+        this.pname=pname;
+        this.ptid=ptid;
+        this.ptsid=ptsid;
 
     }
     @Override
@@ -47,7 +53,7 @@ class ProductTypeSizeImagesDataParser  extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductTypeSizeImagesGirdAdapter adapter=new ProductTypeSizeImagesGirdAdapter(c,productTypeSizeImageItems);
+            final ProductTypeSizeImagesGirdAdapter adapter=new ProductTypeSizeImagesGirdAdapter(c,productTypeSizeImageItems,pid,pname,ptid,ptsid);
             gv.setAdapter(adapter);
 
         }

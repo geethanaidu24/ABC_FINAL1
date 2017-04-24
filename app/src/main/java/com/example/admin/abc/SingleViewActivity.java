@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,8 +34,9 @@ public class SingleViewActivity extends AppCompatActivity {
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
       final int pid = i.getExtras().getInt("PRODUCTID_KEY");
+        final String pname =i.getExtras().getString("PRODUCTNAME_KEY");
       final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
-      final int psid = i.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+      final int ptsid = i.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
       final String name = i.getExtras().getString("NAME_KEY");
       final String image = i.getExtras().getString("IMAGE_KEY");
       final String brand = i.getExtras().getString("BRAND_KEY");
@@ -45,7 +47,28 @@ public class SingleViewActivity extends AppCompatActivity {
       colorTxt.setText(color);
       sizeTxt.setText(size);
        PicassoClient.downloadImage(c,image,selectedImage);
-       back=(ImageView)findViewById(R.id.back);
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(SingleViewActivity.this,ProductTypeSizeImages.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",pname);
+                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                    in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
+
+                    startActivity(in);
+                }
+            });
+
+            // Inflate a menu to be displayed in the toolbar
+            //  actionbar.inflateMenu(R.menu.actions);
+        }
+       /*back=(ImageView)findViewById(R.id.back);
        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,7 +78,7 @@ public class SingleViewActivity extends AppCompatActivity {
                 in.putExtra("PRODUCTTYPESIZEID_KEY", psid);
                 startActivity(in);
            }
-        });
+        });*/
 
     }
 }

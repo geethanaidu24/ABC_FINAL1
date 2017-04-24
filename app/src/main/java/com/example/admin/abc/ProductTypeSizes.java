@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -29,16 +29,15 @@ public class ProductTypeSizes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_sizes);
 
+
         final ListView lv = (ListView) findViewById(R.id.productTypeSizesLv);
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        Log.d("result PID: ", "> " + pid);
-
-        Log.d("result PtID: ", "> " + ptid);
+       final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
+       final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
@@ -52,18 +51,35 @@ public class ProductTypeSizes extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv,pid,ptid).execute();
+        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv,pid,ptid,pname).execute();
+            Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+            if (null != actionbar) {
+                actionbar.setNavigationIcon(R.mipmap.backbutton);
 
-        back=(ImageView)findViewById(R.id.back);
+                //  actionbar.setTitle(R.string.title_activity_settings);
+                actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
+                        in.putExtra("PRODUCTID_KEY", pid);
+                        in.putExtra("PRODUCTNAME_KEY",pname);
+                        startActivity(in);
+                    }
+                });
+
+                // Inflate a menu to be displayed in the toolbar
+                //  actionbar.inflateMenu(R.menu.actions);
+            }
+       /* back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
                 in.putExtra("PRODUCTID_KEY", pid);
-                //in.putExtra("PRODUCTNAME_KEY",name);
+                in.putExtra("PRODUCTNAME_KEY",pname);
                 startActivity(in);
             }
-        });
+        });*/
     }
 
 }

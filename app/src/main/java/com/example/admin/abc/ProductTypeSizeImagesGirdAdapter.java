@@ -21,10 +21,15 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
     ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems;
     LayoutInflater inflater;
    static String finalSize ;
-    public ProductTypeSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems) {
+    int pid,ptid,ptsid;
+    String pname;
+    public ProductTypeSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems, int pid, String pname, int ptid, int ptsid) {
         this.c = c;
         this.productTypeSizeImageItems = productTypeSizeImageItems;
-
+this.pid= pid;
+        this.pname=pname;
+        this.ptid=ptid;
+        this.ptsid=ptsid;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -98,14 +103,18 @@ public class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
             @Override
             public void onClick(View v){
                 //open detail activity
-                openDetailActivity(name,url,brand,color,finalSize);
+                openDetailActivity(pid,pname,ptid,ptsid,name,url,brand,color,finalSize);
             }
         });
         return convertView;
     }
-    private void openDetailActivity(String...details)
+    private void openDetailActivity(int pid,String pname,int ptid,int ptsid,String...details)
     {
         Intent i = new Intent(c,SingleViewActivity.class);
+        i.putExtra("PRODUCTID_KEY",pid);
+        i.putExtra("PRODUCTNAME_KEY",pname);
+        i.putExtra("PRODUCTTYPEID_KEY",ptid);
+        i.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
         i.putExtra("NAME_KEY", details[0]);
         i.putExtra("IMAGE_KEY",details[1]);
         i.putExtra("BRAND_KEY", details[2]);

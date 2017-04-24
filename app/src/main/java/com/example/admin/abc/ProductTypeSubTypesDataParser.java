@@ -50,7 +50,7 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity
-            openProductTypesSizesActivity(pid,ptid);
+            openProductTypesSizesActivity(pid,pname,ptid);
         }else
         {
 
@@ -59,9 +59,10 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
 
         }
     }
-    public void openProductTypesSizesActivity(int pid,int ptid) {
+    public void openProductTypesSizesActivity(int pid,String pname,int ptid) {
         Intent intent = new Intent(c,ProductTypeSizes.class);
         intent.putExtra("PRODUCTID_KEY",pid);
+        intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
         c.startActivity(intent);
     }

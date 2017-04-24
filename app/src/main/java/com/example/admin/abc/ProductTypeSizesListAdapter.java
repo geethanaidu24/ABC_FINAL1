@@ -20,11 +20,15 @@ public class ProductTypeSizesListAdapter extends BaseAdapter {
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas;
     LayoutInflater inflater;
 
-    String finalSize;
+    String finalSize,pname;
+    int pid,ptid;
 
-    public ProductTypeSizesListAdapter(Context c, ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas) {
+    public ProductTypeSizesListAdapter(Context c, ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas,int pid,String pname,int ptid) {
         this.c = c;
         this.productTypeSizeDBDatas = productTypeSizeDBDatas;
+        this.pid = pid;
+        this.pname=pname;
+        this.ptid=ptid;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
@@ -84,16 +88,17 @@ if(length !=0 && width !=0 && height !=0){
         convertView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                openProductTypeSizeImagesActivity(proid,protid,sizeid);
+                openProductTypeSizeImagesActivity(pid,pname,ptid,sizeid);
             }
         });
 
         return convertView;
     }
 
-    public void openProductTypeSizeImagesActivity(int proid,int protid,int sizeid){
+    public void openProductTypeSizeImagesActivity(int proid,String pname,int protid,int sizeid){
         Intent intent = new Intent(c,ProductTypeSizeImages.class);
         intent.putExtra("PRODUCTID_KEY",proid);
+        intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY",protid);
         intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
         c.startActivity(intent);
