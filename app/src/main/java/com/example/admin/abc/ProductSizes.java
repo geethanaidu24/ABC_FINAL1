@@ -3,6 +3,7 @@ package com.example.admin.abc;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,14 +30,27 @@ public class ProductSizes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         Log.d("result PID: ", "> " + pid);
 
         String urlAddress = url + pid;
 
-        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,pid).execute();
+        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, pid).execute();
 
-        back=(ImageView)findViewById(R.id.back);
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ProductSizes.this, Products.class);
+                    startActivity(in);
+                }
+            });
+
+        /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,5 +58,7 @@ public class ProductSizes extends AppCompatActivity {
                 startActivity(in);
             }
         });
+*/
+        }
     }
 }
