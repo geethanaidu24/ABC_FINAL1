@@ -20,7 +20,7 @@ public class ProductSizeImages extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = Config.productSizeImgUrlAddress;
+    final static String url =Config.productSizeImgUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class ProductSizeImages extends AppCompatActivity {
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int psid = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+      final  int psid = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
@@ -47,18 +47,7 @@ public class ProductSizeImages extends AppCompatActivity {
         }
 
 
-        new ProductSizeImagesDownloader(ProductSizeImages.this, urlAddress, gv, pid, psid).execute();
-
-     /*   back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductSizeImages.this,ProductSizes.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                startActivity(in);
-            }
-        });*/
-
+        new ProductSizeImagesDownloader(ProductSizeImages.this,urlAddress,gv,pid,psid).execute();
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -67,11 +56,23 @@ public class ProductSizeImages extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeImages.this, ProductSizes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    Intent in=new Intent(ProductSizeImages.this,ProductSizes.class);
+                    in.putExtra("PRODUCTID_KEY",pid);
                     startActivity(in);
                 }
             });
+
+            // Inflate a menu to be displayed in the toolbar
+            //actionbar.inflateMenu(R.menu.actions);
         }
+        /*back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(ProductSizeImages.this,ProductSizes.class);
+                in.putExtra("PRODUCTID_KEY",pid);
+                startActivity(in);
+            }
+        });*/
     }
 }

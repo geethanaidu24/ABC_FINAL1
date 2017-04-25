@@ -21,11 +21,14 @@ class ProductTypeImagesGirdAdapter extends BaseAdapter {
 
     ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems;
     LayoutInflater inflater;
-
-    public ProductTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeImageItems) {
+    int pid,ptid;
+    String pname;
+    public ProductTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeImageItems, int pid,int ptid,String pname) {
         this.c = c;
         this.productTypeSubTypeImageItems = productTypeImageItems;
-
+        this.pid=pid;
+        this.ptid=ptid;
+        this.pname=pname;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -78,16 +81,17 @@ class ProductTypeImagesGirdAdapter extends BaseAdapter {
             public void onClick(View v){
                 //open detail activity
                 // startDeatilActivity();
-                openDetailActivity(proid,protypeid,name,url,brand,color);
+                openDetailActivity(pid,ptid,pname,name,url,brand,color);
             }
         });
         return convertView;
     }
-    private void openDetailActivity(int pid, int ptid, String...details)
+    private void openDetailActivity(int pid, int ptid,String pname, String...details)
     {
         Intent i = new Intent(c,ProductTypeSingleViewActivity.class);
         i.putExtra("PRODUCTID_KEY", pid);
         i.putExtra("PRODUCTTYPEID_KEY", ptid);
+        i.putExtra("PRODUCTNAME_KEY",pname);
         i.putExtra("NAME_KEY", details[0]);
         i.putExtra("IMAGE_KEY",details[1]);
         i.putExtra("BRAND_KEY", details[2]);

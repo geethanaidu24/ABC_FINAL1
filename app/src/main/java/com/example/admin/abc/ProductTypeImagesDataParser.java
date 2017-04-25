@@ -20,13 +20,17 @@ class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     GridView gv;
     String jsonData;
+    int pid,ptid;
+    String pname;
     ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems=new ArrayList<>();
 
-    public ProductTypeImagesDataParser(Context c, GridView gv, String jsonData) {
+    public ProductTypeImagesDataParser(Context c, GridView gv, String jsonData, int pid, int ptid, String pname) {
         this.c = c;
         this.gv = gv;
         this.jsonData = jsonData;
-
+        this.pid=pid;
+        this.ptid=ptid;
+        this.pname=pname;
     }
     @Override
     protected void onPreExecute() {
@@ -46,7 +50,7 @@ class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,productTypeSubTypeImageItems);
+            final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,productTypeSubTypeImageItems,pid,ptid,pname);
             gv.setAdapter(adapter);
 
         }
@@ -71,8 +75,8 @@ class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
                 String Brands = jo.getString("Brand");
                 String Color = jo.getString("Color");
                 int ProductSizeId = jo.optInt("ProductSizeId");
-                int ProductSubTypeId = jo.getInt("ProductSubTypeId");
-                int ProductTypeId = jo.optInt("ProductTypeId");
+                int ProductSubTypeId = jo.optInt("ProductSubTypeId");
+                int ProductTypeId = jo.getInt("ProductTypeId");
                 int ProductId = jo.getInt("ProductId");
                 productTypeSubTypeImageItem=new ProductTypeSubTypeImageItem();
                 productTypeSubTypeImageItem.setProductSizeId(ProductSizeImageId);

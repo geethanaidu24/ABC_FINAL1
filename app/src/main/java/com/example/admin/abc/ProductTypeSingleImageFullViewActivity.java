@@ -7,28 +7,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
- * Created by Geetha on 4/21/2017.
+ * Created by Geetha on 4/24/2017.
  */
 
-public class ProductTypeSingleViewActivity extends AppCompatActivity {
+public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
 
     ImageView back;
 
     ImageView selectedImage;
-    TextView nameTxt, brandTxt, colorTxt;
+
     Context c;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_view_final);
-        selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
-        nameTxt = (TextView)findViewById(R.id.nameTxt);
-        brandTxt = (TextView)findViewById(R.id.brandTxt);
-        colorTxt = (TextView)findViewById(R.id.colorTxt);
+        setContentView(R.layout.activity_product_size_single_view_full_image);
+        selectedImage = (ImageView) findViewById(R.id.fullimage) ; //init a ImageView
+
 
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
@@ -39,26 +36,8 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
         final String image = i.getExtras().getString("IMAGE_KEY");
         final String brand = i.getExtras().getString("BRAND_KEY");
         final String color = i.getExtras().getString("COLOR_KEY");
-        nameTxt.setText(name);
-        brandTxt.setText(brand);
-        colorTxt.setText(color);
+
         PicassoClient.downloadImage(c,image,selectedImage);
-        selectedImage.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypeSingleImageFullViewActivity.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                in.putExtra("NAME_KEY",name);
-                in.putExtra("IMAGE_KEY",image);
-                in.putExtra("BRAND_KEY",brand);
-                in.putExtra("COLOR_KEY",color);
-                startActivity(in);
-
-            }
-        });
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -67,10 +46,14 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypeImages.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypeImages.class);
+                    in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                    in.putExtra("NAME_KEY",name);
+                    in.putExtra("IMAGE_KEY",image);
+                    in.putExtra("BRAND_KEY",brand);
+                    in.putExtra("COLOR_KEY",color);
                     startActivity(in);
                 }
             });

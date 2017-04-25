@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class ProductTypeImages extends AppCompatActivity {
 
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
@@ -48,9 +50,26 @@ public class ProductTypeImages extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductTypeImagesDownloader(ProductTypeImages.this,urlAddress,gv,pid,ptid).execute();
+        new ProductTypeImagesDownloader(ProductTypeImages.this,urlAddress,gv,pid,ptid,pname).execute();
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
 
-        back=(ImageView)findViewById(R.id.back);
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(ProductTypeImages.this,ProductTypes.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",pname);
+                     startActivity(in);
+                }
+            });
+
+            // Inflate a menu to be displayed in the toolbar
+            //  actionbar.inflateMenu(R.menu.actions);
+        }
+        /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,6 +78,6 @@ public class ProductTypeImages extends AppCompatActivity {
                 in.putExtra("PRODUCTTYPEID_KEY", ptid);
                 startActivity(in);
             }
-        });
+        });*/
     }
 }

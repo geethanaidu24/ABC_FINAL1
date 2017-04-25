@@ -30,13 +30,12 @@ public class ProductSizes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         Log.d("result PID: ", "> " + pid);
 
         String urlAddress = url + pid;
 
-        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, pid).execute();
-
+        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,pid).execute();
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -45,11 +44,14 @@ public class ProductSizes extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizes.this, Products.class);
+                    Intent in=new Intent(ProductSizes.this,Products.class);
                     startActivity(in);
                 }
             });
 
+            // Inflate a menu to be displayed in the toolbar
+            //actionbar.inflateMenu(R.menu.actions);
+        }
         /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +59,6 @@ public class ProductSizes extends AppCompatActivity {
                 Intent in=new Intent(ProductSizes.this,Products.class);
                 startActivity(in);
             }
-        });
-*/
-        }
+        });*/
     }
 }

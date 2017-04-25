@@ -49,7 +49,7 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         if(result==0)
         {
            // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-            openGridViewActivity();
+            openGridViewActivity(pid,ptid,pname);
 
         }else
         {
@@ -58,10 +58,11 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
             lv.setAdapter(adapter);
         }
     }
-    public void openGridViewActivity() {
+    public void openGridViewActivity(int pid,int ptid,String pname) {
         Intent intent = new Intent(c,ProductTypeImages.class);
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+        intent.putExtra("PRODUCTNAME_KEY",pname);
         c.startActivity(intent);
     }
     private int parseData()
