@@ -72,6 +72,7 @@ class BrandsDataParser extends AsyncTask<Void,Void,Integer> {
                 brandsImage.setId(BrandId);
 
                 brandsImage.setImagePath(ImageUrl);
+                brandsImages.add(brandsImage);
 
             }
             return 1;
