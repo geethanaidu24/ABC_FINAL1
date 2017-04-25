@@ -70,7 +70,7 @@ public class ProductTypeSizeImages extends AppCompatActivity {
             });
 
             // Inflate a menu to be displayed in the toolbar
-            //  actionbar.inflateMenu(R.menu.actions);
+             actionbar.inflateMenu(R.menu.actions);
         }
        /* back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
