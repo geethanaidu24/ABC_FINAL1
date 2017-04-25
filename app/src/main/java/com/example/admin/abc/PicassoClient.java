@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso;
  * Created by Geetha on 4/8/2017 for Picasso ImageLoader to download our image into an imageview
  */
 public class PicassoClient {
-    public static void downloadImage(Context c,String imageUrl,ImageView img)
+    public static void downloadImage(Context c, String imageUrl, ImageView img)
     {
         if(imageUrl.length()>0 && imageUrl!=null)
         {

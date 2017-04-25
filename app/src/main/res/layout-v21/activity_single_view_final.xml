@@ -12,6 +12,7 @@
 
     android:orientation="vertical"
     >
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -38,6 +39,10 @@
 
 
     </android.support.v7.widget.Toolbar>
+
+
+
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -51,10 +56,12 @@
         android:layout_height="200dp"
 
         android:id="@+id/img1"
-        android:layout_below="@+id/include2"
-        android:layout_centerHorizontal="true"/>
+        android:layout_marginTop="130px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="CERA CLOISTER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -87,35 +94,44 @@
         android:textColor="@color/colorblack" />
 
     <TextView
+        android:id="@+id/colorTxtview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/brandview"
         android:layout_alignStart="@+id/brandview"
-        android:layout_marginTop="19dp"
-        android:id="@+id/colorTxtview"
+        android:layout_below="@+id/brandview"
+        android:layout_marginTop="20dp"
         android:text="COLOR"
-        android:textColor="@color/colorblack" />
+        android:textColor="@color/colorblack"/>
 
     <TextView
         android:text=":"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView30"
-        android:textColor="@color/colorblack"
-        android:layout_below="@+id/colorTxtview"
-        android:layout_toEndOf="@+id/brandTxt"
-        android:layout_marginStart="43dp" />
+        android:layout_alignBottom="@+id/colorTxtview"
+        android:layout_alignStart="@+id/brandview1"
+        android:id="@+id/textView27"
+        android:textColor="@color/colorblack" />
 
     <TextView
         android:id="@+id/colorTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView30"
-        android:layout_alignStart="@+id/textView28"
+        android:layout_alignBottom="@+id/textView27"
+        android:layout_alignStart="@+id/brandTxt"
+        android:text="White"
+        android:textColor="@color/colorblack"/>
 
+    <TextView
+        android:text=":"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/colorTxtview"
+        android:layout_alignStart="@+id/textView27"
+        android:id="@+id/textView30"
         android:textColor="@color/colorblack" />
 
     <TextView
+        android:text="CERA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/brandTxt"
