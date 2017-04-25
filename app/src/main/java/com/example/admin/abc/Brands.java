@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -26,7 +25,7 @@ public class Brands extends AppCompatActivity {
 
     //};
 
-    final static String urlAddress = "http://192.168.0.3/abc/getAllBrandImages.php";
+    final static String urlAddress = Config.brandsImgUrlAddress;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.

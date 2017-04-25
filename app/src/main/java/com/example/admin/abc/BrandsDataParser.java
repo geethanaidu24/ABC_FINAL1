@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.GridView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -72,6 +71,7 @@ class BrandsDataParser extends AsyncTask<Void,Void,Integer> {
                 brandsImage.setId(BrandId);
 
                 brandsImage.setImagePath(ImageUrl);
+                brandsImages.add(brandsImage);
 
             }
             return 1;

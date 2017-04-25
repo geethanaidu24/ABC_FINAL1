@@ -1,13 +1,11 @@
 package com.example.admin.abc;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,9 +18,9 @@ public class BrandsListAdapter extends BaseAdapter {
     Context c;
     ArrayList<BrandsImages> brandsImages;
     LayoutInflater inflater;
-    public BrandsListAdapter(Context c, ArrayList<BrandsImages> productImages) {
+    public BrandsListAdapter(Context c, ArrayList<BrandsImages> brandsImages) {
         this.c = c;
-        this.brandsImages = productImages;
+        this.brandsImages = brandsImages;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
