@@ -20,17 +20,16 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="600px"
-            android:layout_height="100px"
-            android:layout_marginBottom="5px"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="2dp"
 
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5px"
+            android:layout_marginTop="2dp"
             app:srcCompat="@mipmap/abctextlogo"/>
 
-
-
     </android.support.v7.widget.Toolbar>
+
 
     <TextView
         android:id="@+id/SelProductName"
