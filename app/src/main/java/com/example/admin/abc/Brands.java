@@ -26,7 +26,7 @@ public class Brands extends AppCompatActivity {
 
     //};
 
-    final static String urlAddress = "http://192.168.0.3/abc/getAllBrandImages.php";
+    final static String urlAddress = "http://192.168.0.4/abc/getAllBrandImages.php";
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
