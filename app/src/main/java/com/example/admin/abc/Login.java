@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +49,7 @@ public class Login extends AppCompatActivity {
 
     //Defining views
     private EditText editName;
-    private EditText  editPassword;
+    private EditText editPassword;
     private Button sign_in_button;
 
     //boolean variable to check user is logged in or not
@@ -61,7 +62,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        im4=(ImageView)findViewById(R.id.back);
+        /*im4=(ImageView)findViewById(R.id.back);
 
         im4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,26 +71,39 @@ public class Login extends AppCompatActivity {
                 startActivity(in);
             }
         });
+*/
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(Login.this, Main2Activity.class);
+                    startActivity(in);
+                }
+            });
 
 
-        editName = (EditText)findViewById(R.id.editText_user);
-        editPassword= (EditText)findViewById(R.id.editText_password);
-        sign_in_button = (Button) findViewById(R.id.sign_in_button);
+            editName = (EditText) findViewById(R.id.editText_user);
+            editPassword = (EditText) findViewById(R.id.editText_password);
+            sign_in_button = (Button) findViewById(R.id.sign_in_button);
 
-        sign_in_button.setOnClickListener(new View.OnClickListener() {
+            sign_in_button.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
 
-                login();
-            }
-        });
-    }
+                   // login();
+                }
+            });
+        }
 
-    /**
-     * Created by Geetha
-     */
-
+        /**
+         * Created by Geetha
+         */
+/*
     @Override
     protected void onResume() {
         super.onResume();
@@ -166,6 +180,7 @@ public class Login extends AppCompatActivity {
     }
 
 
+*/
 
-
+    }
 }

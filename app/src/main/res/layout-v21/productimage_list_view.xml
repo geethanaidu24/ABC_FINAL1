@@ -38,7 +38,7 @@
             android:id="@+id/textViewURL"
 
 
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:text="Basins"
             android:gravity="center"
 
@@ -46,6 +46,7 @@
             android:background="@color/colorblack"
             android:layout_gravity="center"
             android:textSize="24sp"
+
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
             android:typeface="normal"

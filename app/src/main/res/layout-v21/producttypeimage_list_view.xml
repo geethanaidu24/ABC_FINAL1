@@ -41,6 +41,7 @@
             android:text="Basins"
             android:gravity="center"
             android:layout_height="40dp"
+            android:layout_width="wrap_content"
             android:textColor="@android:color/white"
             android:background="@color/colorblack"
             android:layout_gravity="center"
