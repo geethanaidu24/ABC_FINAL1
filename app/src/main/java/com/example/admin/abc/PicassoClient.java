@@ -14,8 +14,10 @@ public class PicassoClient {
         if(imageUrl.length()>0 && imageUrl!=null)
         {
             Picasso.with(c).load(imageUrl).placeholder(R.drawable.pageloader).into(img);
+           // Glide.with(c).load(imageUrl).placeholder(R.drawable.pageloader).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
         }else {
             Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
+           // Glide.with(c).load(R.mipmap.ic_launcher).into(img);
         }
     }
 }

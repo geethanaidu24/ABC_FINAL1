@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -19,15 +21,17 @@ import java.util.ArrayList;
 public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
+    LinearLayout ll;
     String jsonData;
     int ptid;
     int pid;
     String pname, ptname;
     ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems=new ArrayList<>();
 
-    public ProductTypeSubTypesDataParser(Context c, ListView lv, String jsonData, int pid, String pname, int ptid, String ptname) {
+    public ProductTypeSubTypesDataParser(Context c, ListView lv,LinearLayout ll, String jsonData, int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.lv = lv;
+        this.ll=ll;
         this.jsonData = jsonData;
         this.ptid = ptid;
         this.pid = pid;
@@ -50,7 +54,8 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity
-            openProductTypesSizesActivity(pid,pname,ptid);
+            ll.setVisibility(View.INVISIBLE);
+            openProductTypesSizesActivity(pid,pname,ptid,ll);
         }else
         {
 
@@ -59,11 +64,12 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
 
         }
     }
-    public void openProductTypesSizesActivity(int pid,String pname,int ptid) {
+    public void openProductTypesSizesActivity(int pid,String pname,int ptid,LinearLayout ll) {
         Intent intent = new Intent(c,ProductTypeSizes.class);
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+        //intent = intent.putExtra("LAYOUT_KEY", ll);
         c.startActivity(intent);
     }
     private int parseData()

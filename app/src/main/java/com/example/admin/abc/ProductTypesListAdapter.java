@@ -58,8 +58,10 @@ public class ProductTypesListAdapter extends BaseAdapter {
         final String ptname = productTypeItem.getProductType();
         final int pid = productTypeItem.getProductId();
         typeNameTxt.setText(productTypeItem.getProductType());
+        final String url = productTypeItem.getImageUrl();
+        final String finalUrl=Config.mainUrlAddress + url;
         //IMG
-        PicassoClient.downloadImage(c,productTypeItem.getImageUrl(),img);
+        PicassoClient.downloadImage(c,finalUrl,img);
 
         // open new activity
         convertView.setOnClickListener(new View.OnClickListener(){

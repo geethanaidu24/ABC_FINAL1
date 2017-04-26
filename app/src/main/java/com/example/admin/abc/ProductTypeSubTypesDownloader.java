@@ -3,6 +3,7 @@ package com.example.admin.abc;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,15 +23,17 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
     Context c;
     String urlAddress;
     ListView lv;
+    LinearLayout ll;
     int ptid;
     int pid;
     String pname,ptname;
 
 
-    public ProductTypeSubTypesDownloader(Context c, String urlAddress, ListView lv, int pid, String pname, int ptid, String ptname) {
+    public ProductTypeSubTypesDownloader(Context c, String urlAddress, ListView lv, LinearLayout ll,int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
+        this.ll=ll;
         this.ptid = ptid;
         this.pid =pid;
         this.pname = pname;
@@ -57,7 +60,7 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypeSubTypesDataParser parser=new ProductTypeSubTypesDataParser(c, lv, s, pid, pname,ptid,ptname);
+            ProductTypeSubTypesDataParser parser=new ProductTypeSubTypesDataParser(c, lv, ll,s, pid, pname,ptid,ptname);
             parser.execute();
         }
     }

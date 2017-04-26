@@ -45,9 +45,11 @@ public class BrandsListAdapter extends BaseAdapter {
         ImageView img= (ImageView) convertView.findViewById(R.id.brandgridimg);
         //BIND DATA
         BrandsImages brandsImage=(BrandsImages) this.getItem(position);
+        final String url = brandsImage.getImagePath();
+        final String finalUrl=Config.mainUrlAddress + url;
 
         //IMG
-        PicassoClient.downloadImage(c,brandsImage.getImagePath(),img);
+        PicassoClient.downloadImage(c,finalUrl,img);
 
         return convertView;
     }

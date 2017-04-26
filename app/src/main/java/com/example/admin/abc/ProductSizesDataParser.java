@@ -3,6 +3,7 @@ package com.example.admin.abc;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -19,14 +20,16 @@ import java.util.ArrayList;
 class ProductSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
+    LinearLayout ll;
     String jsonData;
     int pid;
 
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-    public ProductSizesDataParser(Context c, ListView lv, String jsonData,int pid) {
+    public ProductSizesDataParser(Context c, ListView lv,LinearLayout ll, String jsonData,int pid) {
         this.c = c;
         this.lv = lv;
+        this.ll=ll;
         this.jsonData = jsonData;
         this.pid = pid;
     }

@@ -61,10 +61,12 @@ this.pid= pid;
         typeNameTxt.setText(productTypeSizeImageItem.getName());
 
         //IMG
-        PicassoClient.downloadImage(c, productTypeSizeImageItem.getImagePath(), img);
+        final String url = productTypeSizeImageItem.getImagePath();
+        final String finalUrl=Config.mainUrlAddress + url;
+        PicassoClient.downloadImage(c,finalUrl, img);
         //BIND DATA
         final String name = productTypeSizeImageItem.getName();
-        final String url = productTypeSizeImageItem.getImagePath();
+
         final String brand = productTypeSizeImageItem.getBrand();
         final String color = productTypeSizeImageItem.getColor();
         final int sizeid = productTypeSizeImageItem.getProductSizeId();
@@ -103,7 +105,7 @@ this.pid= pid;
             @Override
             public void onClick(View v){
                 //open detail activity
-                openDetailActivity(pid,pname,ptid,ptsid,name,url,brand,color,finalSize);
+                openDetailActivity(pid,pname,ptid,ptsid,name,finalUrl,brand,color,finalSize);
             }
         });
         return convertView;

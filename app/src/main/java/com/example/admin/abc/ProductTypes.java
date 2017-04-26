@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,6 +26,7 @@ public class ProductTypes extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -55,7 +57,7 @@ public class ProductTypes extends AppCompatActivity {
 
         String urlAddress = url + pid;
 
-        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,pid,name).execute();
+        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
 
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
