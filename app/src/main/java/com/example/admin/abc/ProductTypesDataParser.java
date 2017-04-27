@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -19,15 +21,19 @@ import java.util.ArrayList;
 
 public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
-    ListView lv;
+
     String jsonData;
     int pid;
+    ListView lv;
+    LinearLayout lvv;
     String name;
     ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
 
-    public ProductTypesDataParser(Context c, ListView lv, String jsonData, int pid, String name) {
+    public ProductTypesDataParser(Context c, ListView lv,LinearLayout lvv, String jsonData, int pid, String name) {
         this.c = c;
         this.lv = lv;
+
+        this.lvv=lvv;
         this.jsonData = jsonData;
         this.pid = pid;
         this.name = name;
@@ -47,6 +53,7 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         super.onPostExecute(result);
         if(result==0)
         {
+            lvv.setVisibility(View.INVISIBLE);
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity if product has no types
             openProductSizesActivity(pid);
