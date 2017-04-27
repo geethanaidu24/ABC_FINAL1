@@ -17,6 +17,7 @@ public class ProductsListAdapter extends BaseAdapter {
     Context c;
     ArrayList<ProductImages> productImages;
     LayoutInflater inflater;
+
     public ProductsListAdapter(Context c, ArrayList<ProductImages> productImages) {
         this.c = c;
         this.productImages = productImages;
@@ -47,9 +48,11 @@ public class ProductsListAdapter extends BaseAdapter {
         final String name = productImage.getName();
         final String url = productImage.getImageUrl();
         final int pid = productImage.getId();
+        final String finalUrl=Config.mainUrlAddress + url;
         nametxt.setText(productImage.getName());
+
         //IMG
-        PicassoClient.downloadImage(c,productImage.getImageUrl(),img);
+        PicassoClient.downloadImage(c,finalUrl,img);
 
         // testing new activity condition
 

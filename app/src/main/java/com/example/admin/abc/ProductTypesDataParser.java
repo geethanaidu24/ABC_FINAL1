@@ -21,19 +21,17 @@ import java.util.ArrayList;
 
 public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
-
+    ListView lv;
+    LinearLayout ll;
     String jsonData;
     int pid;
-    ListView lv;
-    LinearLayout lvv;
     String name;
     ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
 
-    public ProductTypesDataParser(Context c, ListView lv,LinearLayout lvv, String jsonData, int pid, String name) {
+    public ProductTypesDataParser(Context c, ListView lv, LinearLayout ll,String jsonData, int pid, String name) {
         this.c = c;
         this.lv = lv;
-
-        this.lvv=lvv;
+        this.ll=ll;
         this.jsonData = jsonData;
         this.pid = pid;
         this.name = name;
@@ -53,9 +51,9 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         super.onPostExecute(result);
         if(result==0)
         {
-            lvv.setVisibility(View.INVISIBLE);
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity if product has no types
+            ll.setVisibility(View.INVISIBLE);
             openProductSizesActivity(pid);
         }else
         {

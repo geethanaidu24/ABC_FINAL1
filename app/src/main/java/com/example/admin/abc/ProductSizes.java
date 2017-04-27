@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 /**
@@ -25,6 +26,8 @@ public class ProductSizes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_sizes);
 
+        LinearLayout ll = (LinearLayout) findViewById(R.id.products_size);
+
         final ListView lv = (ListView) findViewById(R.id.productSizesLv);
 
         // Get intent data
@@ -35,7 +38,7 @@ public class ProductSizes extends AppCompatActivity {
 
         String urlAddress = url + pid;
 
-        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,pid).execute();
+        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,ll,pid).execute();
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);

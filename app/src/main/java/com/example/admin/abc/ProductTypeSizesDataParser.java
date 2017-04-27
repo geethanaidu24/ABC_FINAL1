@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
+    LinearLayout ll;
     String jsonData;
     int pid;
     int ptid;
@@ -26,9 +29,11 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
 
     ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-    public ProductTypeSizesDataParser(Context c, ListView lv, String jsonData, int pid, int ptid,String pname) {
+    public ProductTypeSizesDataParser(Context c, ListView lv, LinearLayout ll,String jsonData, int pid, int ptid,String pname) {
         this.c = c;
         this.lv = lv;
+        this.ll=ll;
+
         this.jsonData = jsonData;
         this.pid = pid;
         this.ptid=  ptid;
@@ -49,6 +54,8 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         if(result==0)
         {
            // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+
+            ll.setVisibility(View.INVISIBLE);
             openGridViewActivity(pid,ptid,pname);
 
         }else

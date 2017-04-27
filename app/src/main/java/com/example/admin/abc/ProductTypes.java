@@ -26,7 +26,7 @@ public class ProductTypes extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
-        LinearLayout lvv=(LinearLayout)findViewById(R.id.linearLayout);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -57,7 +57,7 @@ public class ProductTypes extends AppCompatActivity {
 
         String urlAddress = url + pid;
 
-        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,lvv,pid,name).execute();
+        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
 
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

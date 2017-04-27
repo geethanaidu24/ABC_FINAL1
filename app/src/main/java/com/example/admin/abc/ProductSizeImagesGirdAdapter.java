@@ -58,10 +58,12 @@ class ProductSizeImagesGirdAdapter  extends BaseAdapter {
         ProductTypeSizeImageItem productTypeSizeImageItem = (ProductTypeSizeImageItem) this.getItem(position);
         typeNameTxt.setText(productTypeSizeImageItem.getName());
         //IMG
-        PicassoClient.downloadImage(c, productTypeSizeImageItem.getImagePath(), img);
+        final String url = productTypeSizeImageItem.getImagePath();
+        final String finalUrl=Config.mainUrlAddress + url;
+        PicassoClient.downloadImage(c, finalUrl, img);
         //BIND DATA
         final String name = productTypeSizeImageItem.getName();
-        final String url = productTypeSizeImageItem.getImagePath();
+
         final String brand = productTypeSizeImageItem.getBrand();
         final String color = productTypeSizeImageItem.getColor();
         final int sizeid = productTypeSizeImageItem.getProductSizeId();
@@ -98,7 +100,7 @@ class ProductSizeImagesGirdAdapter  extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //open detail activity
-                openDetailActivity(pid,psid,name, url, brand, color,finalSize);
+                openDetailActivity(pid,psid,name, finalUrl, brand, color,finalSize);
             }
         });
         return convertView;

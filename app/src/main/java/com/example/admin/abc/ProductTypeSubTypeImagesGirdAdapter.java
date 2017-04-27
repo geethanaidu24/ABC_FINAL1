@@ -64,13 +64,14 @@ public class ProductTypeSubTypeImagesGirdAdapter extends BaseAdapter {
         typeNameTxt.setText(productTypeSubTypeImageItem.getName());
 
         final String url = productTypeSubTypeImageItem.getImagePath();
+        final String finalUrl=Config.mainUrlAddress + url;
         try {
             java.net.URLEncoder.encode(url,"utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         //IMG
-        PicassoClient.downloadImage(c, url, img);
+        PicassoClient.downloadImage(c, finalUrl, img);
         //BIND DATA
         final String name = productTypeSubTypeImageItem.getName();
 
@@ -84,7 +85,7 @@ public class ProductTypeSubTypeImagesGirdAdapter extends BaseAdapter {
             public void onClick(View v){
                 //open detail activity
                 // startDeatilActivity();
-                openDetailActivity(pid,pname,ptid,ptname,pstid,name,url,brand,color);
+                openDetailActivity(pid,pname,ptid,ptname,pstid,name,finalUrl,brand,color);
             }
         });
         return convertView;

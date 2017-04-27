@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,7 +27,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_subtypes);
 
-
+        LinearLayout ll = (LinearLayout) findViewById(R.id.products_subtype);
         final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
         TextView typeNameTxt= (TextView) findViewById(R.id.SelProductTypeName);
 
@@ -43,7 +44,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         String urlAddress = url + ptid;
 
-        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,pid,pname,ptid,ptname).execute();
+        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,ll,pid,pname,ptid,ptname).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {

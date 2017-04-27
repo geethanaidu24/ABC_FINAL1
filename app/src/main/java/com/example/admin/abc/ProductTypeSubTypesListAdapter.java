@@ -57,9 +57,11 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
         final int pstid = productTypeSubTypeItem.getProductSubTypeId();
         final int ptid = productTypeSubTypeItem.getProductTypeId();
         final String pstname = productTypeSubTypeItem.getProductSubTypeName();
+        final String url = productTypeSubTypeItem.getImageUrl();
+        final String finalUrl=Config.mainUrlAddress + url;
         typeNameTxt.setText(productTypeSubTypeItem.getProductSubTypeName());
         //IMG
-        PicassoClient.downloadImage(c,productTypeSubTypeItem.getImageUrl(),img);
+        PicassoClient.downloadImage(c,finalUrl,img);
 
         // open new activity
         convertView.setOnClickListener(new View.OnClickListener(){
