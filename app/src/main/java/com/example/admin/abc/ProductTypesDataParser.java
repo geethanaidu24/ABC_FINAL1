@@ -53,10 +53,12 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity if product has no types
-            ll.setVisibility(View.INVISIBLE);
+           // ll.setVisibility(View.INVISIBLE);
+           // ll.setVisibility(View.GONE);
             openProductSizesActivity(pid);
         }else
         {
+            ll.setVisibility(View.VISIBLE);
 
             final ProductTypesListAdapter adapter=new ProductTypesListAdapter(c,productTypeItems,pid,name);
             lv.setAdapter(adapter);

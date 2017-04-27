@@ -24,33 +24,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Login extends AppCompatActivity {
+public class Login extends AppCompatActivity implements View.OnClickListener {
     ImageView im4;
 
-    public static final String LOGIN_URL = "192.168.0.3/login1.php";
-
-    //Keys for email and password as defined in our $_POST['key'] in login.php
-    public static final String KEY_USERNAME = "username";
-    public static final String KEY_PASSWORD = "password";
-
-    //If server response is equal to this that means login is successful
-    public static final String LOGIN_SUCCESS = "success";
-
-    //Keys for Sharedpreferences
-    //This would be the name of our shared preferences
-    public static final String SHARED_PREF_NAME = "login";
-
-    //This would be used to store the email of current logged in user
-    public static final String EMAIL_SHARED_PREF = "username";
-
-    //We will use this to store the boolean in sharedpreference to track user is loggedin or not
-    public static final String LOGGEDIN_SHARED_PREF = "loggedin";
-
-
-    //Defining views
+       //Defining views
     private EditText editName;
     private EditText editPassword;
     private Button sign_in_button;
+
 
     //boolean variable to check user is logged in or not
     //initially it is false
@@ -62,16 +43,12 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        /*im4=(ImageView)findViewById(R.id.back);
 
-        im4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(Login.this,Main2Activity.class);
-                startActivity(in);
-            }
-        });
-*/
+        editName = (EditText) findViewById(R.id.editText_user);
+        editPassword = (EditText) findViewById(R.id.editText_password);
+        sign_in_button = (Button) findViewById(R.id.sign_in_button);
+        sign_in_button.setOnClickListener(this);
+
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -84,39 +61,22 @@ public class Login extends AppCompatActivity {
                     startActivity(in);
                 }
             });
-
-
-            editName = (EditText) findViewById(R.id.editText_user);
-            editPassword = (EditText) findViewById(R.id.editText_password);
-            sign_in_button = (Button) findViewById(R.id.sign_in_button);
-
-            sign_in_button.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                   // login();
-                }
-            });
         }
 
-        /**
-         * Created by Geetha
-         */
-/*
+    }
     @Override
     protected void onResume() {
         super.onResume();
         //In onresume fetching value from sharedpreference
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
         //Fetching the boolean value form sharedpreferences
-        loggedIn = sharedPreferences.getBoolean(LOGGEDIN_SHARED_PREF, false);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
 
         //If we will get true
         if(loggedIn){
-            //We will start the Products Activity
-            Intent intent = new Intent(Login.this, Products.class);
+            //We will start the Main Activity
+            Intent intent = new Intent(Login.this, Main2Activity.class);
             startActivity(intent);
         }
     }
@@ -127,27 +87,34 @@ public class Login extends AppCompatActivity {
         final String password = editPassword.getText().toString().trim();
 
         //Creating a string request
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, LOGIN_URL,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, Config.loginUrlAddress,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         //If we are getting success from server
-                        if(response.equalsIgnoreCase(LOGIN_SUCCESS)){
+                        if(response.equalsIgnoreCase(Config.LOGIN_SUCCESS)){
                             //Creating a shared preference
-                            SharedPreferences sharedPreferences = Login.this.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                            SharedPreferences sharedPreferences = Login.this.getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
 
                             //Creating editor to store values to shared preferences
                             SharedPreferences.Editor editor = sharedPreferences.edit();
 
                             //Adding values to editor
-                            editor.putBoolean(LOGGEDIN_SHARED_PREF, true);
-                            editor.putString(EMAIL_SHARED_PREF, username);
+                            editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                            editor.putString(Config.USER_SHARED_PREF, username);
+                            editor.putString(Config.LOGIN_CHECK,"suc");
+
+
+                            //editor.putBoolean(loginExits,true);
+
 
                             //Saving values to editor
                             editor.commit();
 
                             //Starting profile activity
-                            Intent intent = new Intent(Login.this, Products.class);
+                            Intent intent = new Intent(Login.this, Main2Activity.class);
+                           // intent.putExtra("logc", "sucs");
+
                             startActivity(intent);
                         }else{
                             //If the server response is not success
@@ -166,8 +133,8 @@ public class Login extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
                 //Adding parameters to request
-                params.put(KEY_USERNAME, username);
-                params.put(KEY_PASSWORD, password);
+                params.put(Config.KEY_USER, username);
+                params.put(Config.KEY_PASS, password);
 
                 //returning parameter
                 return params;
@@ -180,7 +147,9 @@ public class Login extends AppCompatActivity {
     }
 
 
-*/
+    @Override
+    public void onClick(View v) {
+        login();
 
     }
 }

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
-    LinearLayout ll;
+    LinearLayout ll,pstll;
     String jsonData;
     int pid;
     int ptid;
@@ -33,7 +33,7 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         this.c = c;
         this.lv = lv;
         this.ll=ll;
-
+       // this.pstll=pstll;
         this.jsonData = jsonData;
         this.pid = pid;
         this.ptid=  ptid;
@@ -54,13 +54,14 @@ public class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
         if(result==0)
         {
            // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-
-            ll.setVisibility(View.INVISIBLE);
+           // pstll.setVisibility(View.INVISIBLE);
+            //ll.setVisibility(View.INVISIBLE);
+           // ll.setVisibility(View.GONE);
             openGridViewActivity(pid,ptid,pname);
 
         }else
         {
-
+            ll.setVisibility(View.VISIBLE);
             final ProductTypeSizesListAdapter adapter=new ProductTypeSizesListAdapter(c,productTypeSizeDBDatas,pid,pname,ptid);
             lv.setAdapter(adapter);
         }

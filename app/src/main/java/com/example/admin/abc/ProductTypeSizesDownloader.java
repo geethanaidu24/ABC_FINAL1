@@ -23,7 +23,7 @@ public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
     Context c;
     URL urlAddress;
     ListView lv;
-    LinearLayout ll;
+    LinearLayout ll,pstll;
     int pid;
     int ptid;
     String pname;
@@ -31,6 +31,7 @@ public class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
+       // this.pstll=pstll;
         this.ll=ll;
 
         this.pid = pid;

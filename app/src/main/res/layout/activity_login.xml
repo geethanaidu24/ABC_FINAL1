@@ -70,7 +70,7 @@
                     android:drawableLeft="@mipmap/pass"
 
                     android:hint=" Password"
-                    android:inputType="numberPassword"
+                    android:inputType="textPassword"
                 android:id="@+id/editText_password" />
 
 
