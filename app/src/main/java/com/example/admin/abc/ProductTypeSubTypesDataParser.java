@@ -54,11 +54,12 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             // opening new activity
-            ll.setVisibility(View.INVISIBLE);
+            //ll.setVisibility(View.INVISIBLE);
+            //ll.setVisibility(View.GONE);
             openProductTypesSizesActivity(pid,pname,ptid,ll);
         }else
         {
-
+            ll.setVisibility(View.VISIBLE);
             final ProductTypeSubTypesListAdapter adapter=new ProductTypeSubTypesListAdapter(c,productTypeSubTypeItems,pid,pname,ptid,ptname);
             lv.setAdapter(adapter);
 
@@ -69,7 +70,10 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
-        //intent = intent.putExtra("LAYOUT_KEY", ll);
+       // intent.putExtra("layout", R.layout.activity_products_types_subtypes);
+       // intent = intent.putExtra("LAYOUT_KEY", ll);
+      //  intent.putExtra(String.valueOf(ll), "LAYOUT_KEY");
+
         c.startActivity(intent);
     }
     private int parseData()

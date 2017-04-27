@@ -8,7 +8,11 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.7/abc/";
+public final static String mainUrlAddress = "http://192.168.0.3/abc/";
+
+    // For admin login
+
+public final static String loginUrlAddress = mainUrlAddress+"login.php";
 
     // For Getting all main products data from database
 
@@ -53,5 +57,12 @@ public final static String brandsImgUrlAddress = mainUrlAddress+"getAllBrandImag
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";
 public final static String PRODUCTSIZEID_PARAM ="ProductSizeId";
+public final static String KEY_USER = "username";
+public final static String KEY_PASS = "password";
+public final static String LOGIN_SUCCESS = "success";
+public final static String SHARED_PREF_NAME = "loginapp";
+public final static String USER_SHARED_PREF = "username";
+public final static String LOGGEDIN_SHARED_PREF = "loggedIn";
+public final static String LOGIN_CHECK ="fail";
 
 }

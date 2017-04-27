@@ -30,8 +30,8 @@ public class ProductTypeSizes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_sizes);
 
-            LinearLayout ll= (LinearLayout) findViewById(R.id.productTypes_size);
-            LinearLayout pstll =(LinearLayout)findViewById(R.id.productTypes_size);
+            LinearLayout ll1= (LinearLayout) findViewById(R.id.productTypes_size);
+           // LinearLayout pstll =(LinearLayout)findViewById(R.id.productTypes_size);
         final ListView lv = (ListView) findViewById(R.id.productTypeSizesLv);
 
         // Get intent data
@@ -40,7 +40,9 @@ public class ProductTypeSizes extends AppCompatActivity {
        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-      // final LinearLayout pstll = (LinearLayout) intent.getExtras().get("LAYOUT_KEY");
+           // getIntent().getSerializableExtra("LAYOUT_KEY");
+      // final LinearLayout pstll = (LinearLayout) intent.getExtras().get("layout");
+         //   final LinearLayout psll = (LinearLayout) intent.getExtras().get("layout");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
@@ -53,7 +55,7 @@ public class ProductTypeSizes extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv,ll,pid,ptid,pname).execute();
+        new ProductTypeSizesDownloader(ProductTypeSizes.this,urlAddress,lv,ll1,pid,ptid,pname).execute();
             Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
             if (null != actionbar) {
                 actionbar.setNavigationIcon(R.mipmap.backbutton);

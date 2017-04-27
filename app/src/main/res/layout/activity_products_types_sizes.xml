@@ -14,6 +14,7 @@
     android:background="@color/white"
 
     android:orientation="vertical"
+    android:visibility="invisible"
     >
 
     <android.support.v7.widget.Toolbar
