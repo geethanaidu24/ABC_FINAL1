@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 /**
  * Created by Admin on 3/21/2017.
@@ -38,7 +37,7 @@ public class MyCustomPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         View itemView = layoutInflater.inflate(R.layout.item, container, false);
 
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
+        ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView_pic);
         imageView.setImageResource(images[position]);
 
         container.addView(itemView);

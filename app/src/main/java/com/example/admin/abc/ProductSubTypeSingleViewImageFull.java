@@ -8,9 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import static android.R.attr.name;
-import static com.example.admin.abc.R.id.image;
-
 /**
  * Created by Admin on 4/24/2017.
  */

@@ -5,7 +5,7 @@ android:layout_height="fill_parent"
 android:padding="1dip" >
 
 <ImageView
-    android:id="@+id/image"
+    android:id="@+id/image1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:adjustViewBounds="true"

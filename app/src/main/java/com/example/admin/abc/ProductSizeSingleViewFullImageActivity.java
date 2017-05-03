@@ -8,11 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-import static com.example.admin.abc.R.id.fullimage;
-import static com.example.admin.abc.R.id.imageView;
-
 public class ProductSizeSingleViewFullImageActivity extends AppCompatActivity {
     ImageView im;
     Context c;

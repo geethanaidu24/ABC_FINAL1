@@ -8,8 +8,8 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.8/abc/";
-public final static String UrlAddress = mainUrlAddress+"Upload.php";
+public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+
     // For admin login
 
 public final static String loginUrlAddress = mainUrlAddress+"login.php";
