@@ -34,7 +34,22 @@ public class Products extends AppCompatActivity {
             });
 
             // Inflate a menu to be displayed in the toolbar
-           // actionbar.inflateMenu(R.menu.actions);
+            /*actionbar.inflateMenu(R.menu.actions);
+            actionbar.setOnMenuItemClickListener(
+                    new Toolbar.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            // Handle menu item click event
+
+                            int id = item.getItemId();
+
+                            if (id == R.id.home) {
+                                Intent in = new Intent(Products.this, AddProducts.class);
+                                startActivity(in);
+                            }
+                            return true;
+                        }
+                    });*/
         }
        /* back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
