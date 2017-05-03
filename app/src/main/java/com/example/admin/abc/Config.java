@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+public final static String mainUrlAddress = "http://192.168.0.8/abc/";
 
     // For admin login
 
@@ -53,6 +53,15 @@ public final static String productSizeImgUrlAddress = mainUrlAddress+"getProduct
     // For getting all Brands from DB
 
 public final static String brandsImgUrlAddress = mainUrlAddress+"getAllBrandImages.php";
+
+   // For geting product names for spinner
+
+public final static String productSpinner =mainUrlAddress+"productSpinner.php";
+
+   // For adding new products into main products
+
+public final static String addProductTypes = mainUrlAddress+"addProductTypes.php";
+
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";

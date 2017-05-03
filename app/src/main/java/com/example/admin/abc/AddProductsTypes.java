@@ -1,11 +1,13 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -14,22 +16,38 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.UUID;
 
 import static android.view.View.*;
 
 public class AddProductsTypes extends AppCompatActivity implements OnClickListener {
-    private static final String UPLOAD_URL = "http://192.168.0.4/abc/insert_image.php";
+    private static final String UPLOAD_URL = Config.addProductTypes;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -38,6 +56,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    final ArrayList<ProductImages> productcrafts =new ArrayList<>();
+    private Spinner sp;
+    private ArrayAdapter<ProductImages> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +82,111 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         imageView = (ImageView)findViewById(R.id.image2);
         etCaption = (EditText)findViewById(R.id.products);
         tvPath    = (TextView)findViewById(R.id.path);
+        sp = (Spinner)findViewById(R.id.addProTySp);
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
 
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+        BackTask bt = new BackTask();
+        bt.execute();
+    }
+    private class BackTask extends AsyncTask<Void,Void,Void>{
+        ArrayList<String> list;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            list = new ArrayList<>();
+        }
+
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(Config.productSpinner);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray ja = new JSONArray(result);
+                JSONObject jo=null;
+                productcrafts.clear();
+                ProductImages productcraft;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo=ja.getJSONObject(i);
+                    // add interviewee name to arraylist
+                    int pid = jo.getInt("ProductId");
+                    String pname = jo.getString("ProductName");
+                    productcraft=new ProductImages();
+                    productcraft.setId(pid);
+                    productcraft.setName(pname);
+                    productcrafts.add(productcraft);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+
+            // productcrafts.addAll(productcrafts);
+            final ArrayList<String> listItems = new ArrayList<>();
+            for(int i=0;i<productcrafts.size();i++){
+                listItems.add(productcrafts.get(i).getName());
+            }
+            adapter=new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
+            sp.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
+                                           int position, long id) {
+                    ProductImages productcraft = (ProductImages) productcrafts.get(position);
+                    final String name = productcraft.getName();
+                    //  final int pid
+                    final int pid =productcraft.getId() ;
+                    uploadMultipart(pid);
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            // TODO Auto-generated method stub
+                            dialog.dismiss();
+                        }
+                    };
+                }
+                public void onNothingSelected(AdapterView<?> arg0) {
+                    // TODO Auto-generated method stub
+                    Toast.makeText(AddProductsTypes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            });
+        }
     }
 
     @Override
@@ -76,9 +196,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        }else if(view == btnUpload){
+        }/*else if(view == btnUpload){
             uploadMultipart();
-        }
+        }*/
     }
 
     @Override
@@ -95,25 +215,40 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         }
     }
 
-    public void uploadMultipart() {
+    public void uploadMultipart(final int pid) {
         String caption = etCaption.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        //Uploading code
-        try {
-            String uploadId = UUID.randomUUID().toString();
+        //getting the spinner selected value
+        String spinSelVal = sp.getSelectedItem().toString();
 
-            //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                    .addFileToUpload(path, "image") //Adding file
-                    .addParameter("caption", caption) //Adding text parameter to the request
-                    .setNotificationConfig(new UploadNotificationConfig())
-                    .setMaxRetries(2)
-                    .startUpload(); //Starting the upload
-        } catch (Exception exc) {
-            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+        final int rpid=pid;
+
+        if((caption.length()<1))
+        {
+            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            ProductImages s = new ProductImages();
+            s.setName(caption);
+            s.setId(rpid);
+            //Uploading code
+            try {
+                String uploadId = UUID.randomUUID().toString();
+
+                //Creating a multi part request
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addFileToUpload(path, "image") //Adding file
+                        .addParameter("caption", caption) //Adding text parameter to the request
+                        .addParameter("productid", String.valueOf(rpid))
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload(); //Starting the upload
+            } catch (Exception exc) {
+                Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
