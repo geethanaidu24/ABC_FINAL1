@@ -4,10 +4,10 @@
         <item
             android:id="@+id/productsadd"
 
-            android:title="ADD" />
+            android:title="NEW" />
 
         <item
-            android:id="@+id/productsdelete"
+            android:id="@+id/productdelete"
 
             android:title="DELETE" />
 
