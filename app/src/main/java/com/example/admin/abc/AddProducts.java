@@ -1,82 +1,42 @@
 package com.example.admin.abc;
 
-import android.app.ProgressDialog;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
+import net.gotev.uploadservice.MultipartUploadRequest;
+import net.gotev.uploadservice.UploadNotificationConfig;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
 
-import javax.net.ssl.HttpsURLConnection;
-
-
-import static com.example.admin.abc.R.id.imageView_pic;
-
-public class AddProducts extends AppCompatActivity  {
-    Button GetImageFromGalleryButton, UploadImageOnServerButton;
-
-    ImageView ShowSelectedImage;
-
-    EditText GetImageName;
-
-    Bitmap FixBitmap;
-
-    String ImageTag = "ImageUrl" ;
-
-    String ImageName = "ProductName" ;
-
-    String ServerUploadPath ="http://192.168.0.4/abc/ProductsUpload.php" ;
-
-    ProgressDialog progressDialog ;
-
-    ByteArrayOutputStream byteArrayOutputStream ;
-
-    byte[] byteArray ;
-
-    String ConvertImage ;
-
-    String GetImageNameFromEditText;
-
-    HttpURLConnection httpURLConnection ;
-
-    URL url;
-
-    OutputStream outputStream;
-
-    BufferedWriter bufferedWriter ;
-
-    int RC ;
-
-    BufferedReader bufferedReader ;
-
-    StringBuilder stringBuilder;
-
-    boolean check = true;
+public class AddProducts extends AppCompatActivity implements View.OnClickListener {
+    private static final String UPLOAD_URL = "http://192.168.0.4/abc/insert_image.php";
+    private static final int IMAGE_REQUEST_CODE = 3;
+    private static final int STORAGE_PERMISSION_CODE = 123;
+    private ImageView imageView;
+    private EditText etCaption;
+    private TextView tvPath;
+    private Button btnUpload;
+    private Bitmap bitmap;
+    private Uri filePath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,209 +57,112 @@ public class AddProducts extends AppCompatActivity  {
             });
 
         }
-        GetImageFromGalleryButton = (Button)findViewById(R.id.button_selectpic);
+        imageView = (ImageView)findViewById(R.id.image2);
+        etCaption = (EditText)findViewById(R.id.products);
+        tvPath    = (TextView)findViewById(R.id.path);
+        btnUpload = (Button)findViewById(R.id.addbtn);
 
-        UploadImageOnServerButton = (Button)findViewById(R.id.button2);
+        requestStoragePermission();
 
-        ShowSelectedImage = (ImageView)findViewById(imageView_pic);
-
-        GetImageName = (EditText)findViewById(R.id.editText);
-
-        byteArrayOutputStream = new ByteArrayOutputStream();
-
-        GetImageFromGalleryButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent();
-
-                intent.setType("image/*");
-
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-
-                startActivityForResult(Intent.createChooser(intent, "Select Image From Gallery"), 1);
-
-            }
-        });
-
-
-        UploadImageOnServerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                GetImageNameFromEditText = GetImageName.getText().toString();
-
-                UploadImageToServer();
-
-            }
-        });
+        imageView.setOnClickListener(this);
+        btnUpload.setOnClickListener(this);
     }
-
 
     @Override
-    protected void onActivityResult(int RC, int RQC, Intent I) {
+    public void onClick(View view) {
+        if(view == imageView){
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
+        }else if(view == btnUpload){
+            uploadMultipart();
+            Toast.makeText(this, "Successfull Completed", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        super.onActivityResult(RC, RQC, I);
-
-        if (RC == 1 && RQC == RESULT_OK && I != null && I.getData() != null) {
-
-            Uri uri = I.getData();
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filePath = data.getData();
             try {
-
-                FixBitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-
-                ShowSelectedImage.setImageBitmap(FixBitmap);
-
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                tvPath.setText("Path: ". concat(getPath(filePath)));
+                imageView.setImageBitmap(bitmap);
             } catch (IOException e) {
-
                 e.printStackTrace();
             }
         }
     }
 
-    public void UploadImageToServer(){
+    public void uploadMultipart() {
+        String caption = etCaption.getText().toString().trim();
 
-       FixBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        //getting the actual path of the image
+        String path = getPath(filePath);
 
-        byteArray = byteArrayOutputStream.toByteArray();
+        //Uploading code
+        try {
+            String uploadId = UUID.randomUUID().toString();
 
-       ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
-       Log.d("imag",ConvertImage);
-        //encode image to base64 string
-       /* ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.aboutus);
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-
-        //decode base64 string to image
-        imageBytes = Base64.decode(imageString, Base64.DEFAULT);
-        Bitmap decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        ShowSelectedImage.setImageBitmap();
-        //decode base64 string to image
-        imageBytes = Base64.decode(imageString, Base64.DEFAULT);
-        decodedImage = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-        imageView.setImageBitmap(decodedImage);*/
-
-
-        class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
-
-            @Override
-            protected void onPreExecute() {
-
-                super.onPreExecute();
-
-                progressDialog = ProgressDialog.show(AddProducts.this,"Image is Uploading","Please Wait",false,false);
-            }
-
-            @Override
-            protected void onPostExecute(String string1) {
-
-                super.onPostExecute(string1);
-
-                progressDialog.dismiss();
-
-                Toast.makeText(AddProducts.this,string1,Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            protected String doInBackground(Void... params) {
-
-                ImageProcessClass imageProcessClass = new ImageProcessClass();
-
-                HashMap<String,String> HashMapParams = new HashMap<String,String>();
-
-                HashMapParams.put(ImageName, GetImageNameFromEditText);
-
-                HashMapParams.put(ImageTag, ConvertImage);
-
-                String FinalData = imageProcessClass.ImageHttpRequest(ServerUploadPath, HashMapParams);
-
-                return FinalData;
-            }
+            //Creating a multi part request
+            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                    .addFileToUpload(path, "image") //Adding file
+                    .addParameter("caption", caption) //Adding text parameter to the request
+                    .setNotificationConfig(new UploadNotificationConfig())
+                    .setMaxRetries(2)
+                    .startUpload(); //Starting the upload
+        } catch (Exception exc) {
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        AsyncTaskUploadClass AsyncTaskUploadClassOBJ = new AsyncTaskUploadClass();
-        AsyncTaskUploadClassOBJ.execute();
     }
 
-    public class ImageProcessClass{
+    public String getPath(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+        cursor.moveToFirst();
+        String document_id = cursor.getString(0);
+        document_id = document_id.substring(document_id.lastIndexOf(":") + 1);
+        cursor.close();
 
-        public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
+        cursor = getContentResolver().query(
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
+        cursor.moveToFirst();
+        String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+        cursor.close();
 
-            StringBuilder stringBuilder = new StringBuilder();
-
-            try {
-                url = new URL(requestURL);
-
-                httpURLConnection = (HttpURLConnection) url.openConnection();
-
-                httpURLConnection.setReadTimeout(20000);
-
-                httpURLConnection.setConnectTimeout(20000);
-
-                httpURLConnection.setRequestMethod("POST");
-
-                httpURLConnection.setDoInput(true);
-
-                httpURLConnection.setDoOutput(true);
-
-                outputStream = httpURLConnection.getOutputStream();
-
-                bufferedWriter = new BufferedWriter(
-
-                        new OutputStreamWriter(outputStream, "UTF-8"));
-
-                bufferedWriter.write(bufferedWriterDataFN(PData));
-
-                bufferedWriter.flush();
-
-                bufferedWriter.close();
-
-                outputStream.close();
-
-                RC = httpURLConnection.getResponseCode();
-
-                if (RC == HttpsURLConnection.HTTP_OK) {
-
-                    bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
-
-                    stringBuilder = new StringBuilder();
-
-                    String RC2;
-
-                    while ((RC2 = bufferedReader.readLine()) != null){
-
-                        stringBuilder.append(RC2);
-                    }
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return stringBuilder.toString();
-        }
-
-        private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException {
-
-            stringBuilder = new StringBuilder();
-
-            for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
-                if (check)
-                    check = false;
-                else
-                    stringBuilder.append("&");
-
-                stringBuilder.append(URLEncoder.encode(KEY.getKey(), "UTF-8"));
-
-                stringBuilder.append("=");
-
-                stringBuilder.append(URLEncoder.encode(KEY.getValue(), "UTF-8"));
-            }
-
-            return stringBuilder.toString();
-        }
-
+        return path;
     }
+
+    private void requestStoragePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            return;
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            //If the user has denied the permission previously your code will come to this block
+            //Here you can explain why you need this permission
+            //Explain here why you need this permission
+        }
+        //And finally ask for the permission
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
+    }
+
+    //This method will be called when the user will tap on allow or deny
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        //Checking the request code of our request
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+
+            //If permission is granted
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //Displaying a toast
+                Toast.makeText(this, "Permission granted now you can read the storage", Toast.LENGTH_LONG).show();
+            } else {
+                //Displaying another toast if permission is not granted
+                Toast.makeText(this, "Oops you just denied the permission", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
 }
-
