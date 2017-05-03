@@ -1,28 +1,16 @@
 package com.example.admin.abc;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import static android.os.Build.ID;
-import static android.provider.Telephony.Mms.Part.TEXT;
-import static android.support.v7.app.ActionBar.DISPLAY_SHOW_CUSTOM;
 
 public class MainActivity extends AppCompatActivity {
     ImageView im1;
@@ -32,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
     private static int SPLASH_TIME_OUT = 500;
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        im1 = (ImageView) findViewById(R.id.imageView);
+        im1 = (ImageView) findViewById(R.id.imageView_pic);
 
         new Handler().postDelayed(new Runnable() {
 
@@ -61,51 +50,11 @@ public class MainActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
 
 
-
-
-
-
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.

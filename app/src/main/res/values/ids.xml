@@ -2,4 +2,6 @@
 <resources>
     <item name="resource_name" type="id">r</item>
     <item name="indicator1" type="id" />
+    <item name="menuLogout" type="id"/>
+    <item name="mainproducts" type="id"/>
 </resources>

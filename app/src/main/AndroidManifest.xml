@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.admin.abc">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission  android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -99,27 +102,37 @@
         <activity
             android:name=".ProductSizeSingleViewActivity"
             android:screenOrientation="portrait"/>
-
-
-        <activity android:name=".ProductSizeSingleViewFullImageActivity">
+        <activity
+            android:name=".AddProducts"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ProductSizeSingleViewFullImageActivity"
+            android:screenOrientation="portrait">
         </activity>
-
-
-        <activity android:name=".ProductSubTypeSingleViewImageFull">
+        <activity
+            android:name=".ProductSubTypeSingleViewImageFull"
+            android:screenOrientation="portrait">
         </activity>
-
-        <activity android:name=".SingleViewImageFull">
+        <activity
+            android:name=".SingleViewImageFull"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".ProductTypeSingleImageFullViewActivity"></activity>
-
+        <activity
+            android:name=".ProductTypeSingleImageFullViewActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".AddProductsTypes">
+        </activity>
+        <activity android:name=".AddProductsSubType">
+        </activity>
         <!--
 ATTENTION: This was auto-generated to add Google Play services to your project for
     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-       -->
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
-        <meta-data android:name="com.example.admin.abc.GlideConfiguration"
+        <meta-data
+            android:name="com.example.admin.abc.GlideConfiguration"
             android:value="GlideModule"/>
 
 
