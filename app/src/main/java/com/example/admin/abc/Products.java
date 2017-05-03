@@ -1,19 +1,13 @@
 package com.example.admin.abc;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-import static com.example.admin.abc.R.layout.item;
 
 public class Products extends AppCompatActivity {
 
@@ -73,35 +67,4 @@ public class Products extends AppCompatActivity {
 }
 
 
-
-       /* back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(Products.this,Main2Activity.class);
-                startActivity(in);
-            }
-       });*/
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mainproducts, menu);
-        return true;
-    }
-
-    @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        int id = item.getItemId();
-
-        if (id == R.id.productsadd) {
-            Intent in = new Intent(Products.this, Main2Activity.class);
-            startActivity(in);
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-    }*/
 

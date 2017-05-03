@@ -1,6 +1,3 @@
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
@@ -112,7 +109,7 @@
             android:textSize="18sp"/>
 
         <Spinner
-            android:id="@+id/spinner5"
+            android:id="@+id/addProTySp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/products"
