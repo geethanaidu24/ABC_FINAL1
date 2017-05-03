@@ -58,7 +58,11 @@ public class Products extends AppCompatActivity {
                         int id = item.getItemId();
 
                         if (id == R.id.productsadd) {
-                            Intent in = new Intent(Products.this, AddProductsTypes.class);
+                            Intent in = new Intent(Products.this, AddProducts.class);
+                            startActivity(in);
+                        }
+                        if (id ==R.id.productdelete){
+                            Intent in = new Intent(Products.this, DeleteProducts.class);
                             startActivity(in);
                         }
                         return true;

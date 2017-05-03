@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,22 +30,22 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_subtype);
         final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
-        TextView typeNameTxt= (TextView) findViewById(R.id.SelProductTypeName);
+        TextView typeNameTxt = (TextView) findViewById(R.id.SelProductTypeName);
 
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-      final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
-      final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-      final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
+        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
         typeNameTxt.setText(ptname);
         Log.d("result PID: ", "> " + pid);
         Log.d("result PTID: ", "> " + ptid);
 
         String urlAddress = url + ptid;
 
-        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this,urlAddress,lv,ll,pid,pname,ptid,ptname).execute();
+        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this, urlAddress, lv, ll, pid, pname, ptid, ptname).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -54,19 +55,38 @@ public class ProductTypeSubTypes extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSubTypes.this,ProductTypes.class);
-                    in.putExtra("PRODUCTID_KEY",pid);
-                    in.putExtra("PRODUCTNAME_KEY",ptid);
+                    Intent in = new Intent(ProductTypeSubTypes.this, ProductTypes.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", ptid);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY",ptname);
+                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
 
                     startActivity(in);
                 }
             });
 
             // Inflate a menu to be displayed in the toolbar
-          //actionbar.inflateMenu(R.menu.actions);
+            actionbar.inflateMenu(R.menu.actions);
+
+            actionbar.setOnMenuItemClickListener(
+                    new Toolbar.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            // Handle menu item click event
+
+                            int id = item.getItemId();
+
+                            if (id == R.id.producttypesadd) {
+                                Intent in = new Intent(ProductTypeSubTypes.this, AddProductsSubType.class);
+                                startActivity(in);
+                            }
+                            return true;
+                        }
+                    });
+
         }
+    }
+}
 
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +99,6 @@ public class ProductTypeSubTypes extends AppCompatActivity {
                 startActivity(in);
             }
         });*/
-    }
 
-}
+
+

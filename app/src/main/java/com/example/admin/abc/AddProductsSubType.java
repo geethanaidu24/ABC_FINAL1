@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,10 +39,26 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_sub_type);
-        imageView = (ImageView)findViewById(R.id.image1);
-        etCaption = (EditText)findViewById(R.id.producttypes);
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(AddProductsSubType.this, ProductTypeSubTypes.class);
+                    startActivity(in);
+                }
+            });
+
+        }
+
+        imageView = (ImageView)findViewById(R.id.image2);
+        etCaption = (EditText)findViewById(R.id.products);
         tvPath    = (TextView)findViewById(R.id.path);
         btnUpload = (Button)findViewById(R.id.btnUpload);
 

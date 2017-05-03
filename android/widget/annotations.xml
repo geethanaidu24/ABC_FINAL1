@@ -1,0 +1,5 @@
+<root>
+    <item name='android.widget.ImageView void setImageBitmap(android.graphics.Bitmap)'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

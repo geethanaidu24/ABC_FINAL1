@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,23 +28,9 @@ public class ProductTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
 
-            //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in=new Intent(ProductTypes.this,Products.class);
-                    startActivity(in);
-                }
-            });
 
-            // Inflate a menu to be displayed in the toolbar
-            //actionbar.inflateMenu(R.menu.actions);
-        }
-        final ListView lv = (ListView) findViewById(R.id.productTypesLv);
+    final ListView lv = (ListView) findViewById(R.id.productTypesLv);
         TextView typeNameTxt= (TextView) findViewById(R.id.SelProductName);
 
 
@@ -59,6 +46,41 @@ public class ProductTypes extends AppCompatActivity {
 
         new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
 
+        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+        if (null != actionbar) {
+            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(ProductTypes.this,Products.class);
+                    startActivity(in);
+                }
+            });
+
+            actionbar.inflateMenu(R.menu.productstypes);
+
+
+            actionbar.setOnMenuItemClickListener(
+                    new Toolbar.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            // Handle menu item click event
+
+                            int id = item.getItemId();
+
+                            if (id == R.id.producttypesadd) {
+                                Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
+                                startActivity(in);
+                            }
+                            return true;
+                        }
+                    });
+
+        }
+    }
+
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,4 +90,4 @@ public class ProductTypes extends AppCompatActivity {
             }
         });*/
     }
-}
+
