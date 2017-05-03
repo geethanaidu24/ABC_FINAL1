@@ -8,12 +8,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -44,7 +44,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static android.view.View.*;
+import static android.view.View.OnClickListener;
 
 public class AddProductsTypes extends AppCompatActivity implements OnClickListener {
     private static final String UPLOAD_URL = Config.addProductTypes;
@@ -56,6 +56,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    public int pid=0;
     final ArrayList<ProductImages> productcrafts =new ArrayList<>();
     private Spinner sp;
     private ArrayAdapter<ProductImages> adapter ;
@@ -138,7 +139,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int pid = jo.getInt("ProductId");
+                    pid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
                     productcraft=new ProductImages();
                     productcraft.setId(pid);
@@ -161,7 +162,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             adapter=new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            /*sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
@@ -169,7 +170,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     final String name = productcraft.getName();
                     //  final int pid
                     final int pid =productcraft.getId() ;
-                    uploadMultipart(pid);
+                    //uploadMultipart();
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {
@@ -185,7 +186,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                             Toast.LENGTH_SHORT).show();
                 }
 
-            });
+            });*/
         }
     }
 
@@ -196,9 +197,19 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        }/*else if(view == btnUpload){
+        }else if(view == btnUpload){
+            checkData();
+            //uploadMultipart();
+        }
+    }
+
+    private void checkData() {
+        if(etCaption.length()<1 || tvPath.length()<1){
+            Toast.makeText(AddProductsTypes.this,"Fill All",Toast.LENGTH_SHORT).show();
+        }
+        else {
             uploadMultipart();
-        }*/
+        }
     }
 
     @Override
@@ -215,25 +226,46 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         }
     }
 
-    public void uploadMultipart(final int pid) {
+    public void uploadMultipart() {
         String caption = etCaption.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-        //getting the spinner selected value
-        String spinSelVal = sp.getSelectedItem().toString();
+            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
+                                       int position, long id) {
+                ProductImages productcraft = (ProductImages) productcrafts.get(position);
+                final String name = productcraft.getName();
+                //  final int pid
+               pid =productcraft.getId() ;
+                //uploadMultipart();
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        // TODO Auto-generated method stub
+                        dialog.dismiss();
+                    }
+                };
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+                Toast.makeText(AddProductsTypes.this,
+                        "Your Selected : Nothing",
+                        Toast.LENGTH_SHORT).show();
+            }
 
-        final int rpid=pid;
+        });
 
-        if((caption.length()<1))
+       /* if((caption.length()<1))
         {
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
-        else {
+        else {*/
             ProductImages s = new ProductImages();
             s.setName(caption);
-            s.setId(rpid);
+            s.setId(pid);
+            //s.setId(pid);
             //Uploading code
             try {
                 String uploadId = UUID.randomUUID().toString();
@@ -242,14 +274,14 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                         .addFileToUpload(path, "image") //Adding file
                         .addParameter("caption", caption) //Adding text parameter to the request
-                        .addParameter("productid", String.valueOf(rpid))
+                        .addParameter("productid", String.valueOf(pid))
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(2)
                         .startUpload(); //Starting the upload
             } catch (Exception exc) {
                 Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
+       /* }*/
     }
 
     public String getPath(Uri uri) {
