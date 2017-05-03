@@ -197,7 +197,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }/*else if(view == btnUpload){
-            uploadMultipart();
+            uploadMultipart(pid);
         }*/
     }
 

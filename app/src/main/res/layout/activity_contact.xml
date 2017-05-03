@@ -316,6 +316,616 @@
 
     </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r4"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r3"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ernakulam"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="Abc Emporio LLP,33/622,Kaydapadath Building Toll Junction,Edapally,Ernakulam."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+                <ImageView
+                    app:srcCompat="@mipmap/email"
+                    android:id="@+id/im6"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im5"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tx8"
+                    android:layout_alignTop="@+id/im6"
+                    android:text="infoempcok@abcsalescorporation.com"
+                    android:textColor="@color/colorblack"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r5"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r4"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Taliparamba"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="Abc Mercantile Group India Pvt Ltd,Corporate House,PPXII 130a/130b,Kuppam PO,Taliparamba."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+                <ImageView
+                    app:srcCompat="@mipmap/email"
+                    android:id="@+id/im6"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im5"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tx8"
+                    android:layout_alignTop="@+id/im6"
+                    android:text="infotpba@abcmercantile.com"
+                    android:textColor="@color/colorblack"/>
+
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r6"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r5"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Kannur"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="Abc Buildwares India Pvt Ltd,Business House,Embet,Pariyaram,Kannur."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r7"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r6"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Cochin"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="Abc Impex,Door No 5/191 J,Edapally,Pookattupadi Road,Trikkakara,Cochin."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r8"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r7"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Cochin"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="Bathx Bathware India Pvt Ltd,Door No 5/191 J2,Edapally,Pookattupadi Road,Trikkakara,Cochin."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r9"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r8"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Payyannur"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="ABC Sales Corporation,ABC Esquire,NH Perumba,Payyannur."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+                <ImageView
+                    app:srcCompat="@mipmap/email"
+                    android:id="@+id/im6"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im5"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tx8"
+                    android:layout_alignTop="@+id/im6"
+                    android:text="infopnr@abcsalescorporation.com"
+                    android:textColor="@color/colorblack"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#999999"
+                android:layout_marginTop="10dp"
+                android:id="@+id/r10"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_below="@+id/r9"
+                android:layout_centerHorizontal="true">
+
+                <TextView
+                    android:id="@+id/tx13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_alignParentStart="true"
+                    android:layout_marginLeft="15dp"
+
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Kanhangad"
+                    android:textColor="@color/cred"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/tx8"
+                    android:layout_marginTop="10dp"
+                    android:text="Working Hours :9:00 AM to 6:00 PM"
+                    android:textColor="@android:color/black"
+                    android:layout_alignTop="@+id/im5"
+                    android:layout_alignStart="@+id/tx15" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    app:srcCompat="@drawable/time"
+                    android:id="@+id/im5"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im4"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <ImageView
+                    app:srcCompat="@drawable/location"
+                    android:id="@+id/im4"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/tx13"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tx15"
+                    android:text="ABC Sales CorporationWhite House Tower,Iqbal Road Junction,North Kottachery,Kanhangad."
+                    android:textSize="14sp"
+                    android:layout_marginRight="15px"
+                    android:fontFamily="sans-serif"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/colorblack"
+                    android:layout_alignTop="@+id/im4"
+                    android:layout_toEndOf="@+id/im5"
+                    android:layout_marginStart="28dp"/>
+
+                <ImageView
+                    app:srcCompat="@mipmap/email"
+                    android:id="@+id/im6"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="30dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/im5"
+                    android:layout_alignStart="@+id/tx13" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/tx8"
+                    android:layout_alignTop="@+id/im6"
+                    android:text="infotpba@abcsalescorporation.com"
+                    android:textColor="@color/colorblack"/>
+
+
+            </RelativeLayout>
 </RelativeLayout>
 </ScrollView>
 </LinearLayout>

@@ -74,6 +74,11 @@ public class ProductTypes extends AppCompatActivity {
                                 Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
                                 startActivity(in);
                             }
+
+                            /*if (id == R.id.producttypesdelete) {
+                                Intent in = new Intent(ProductTypes.this, DeleteProductsTypes.class);
+                                startActivity(in);
+                            }*/
                             return true;
                         }
                     });

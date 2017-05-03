@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:layout_above="@+id/spinner5"
+            android:layout_above="@+id/addProTySp"
             android:layout_alignParentEnd="true"/>
 
         <Button

@@ -51,7 +51,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProducts.this, Main2Activity.class);
+                    Intent in = new Intent(AddProducts.this, Products.class);
                     startActivity(in);
                 }
             });
@@ -75,9 +75,15 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        }else if(view == btnUpload){
-            uploadMultipart();
-            Toast.makeText(this, "Successfull Completed", Toast.LENGTH_SHORT).show();
+        }else {
+            if (view == btnUpload) {
+                if (etCaption.length() < 1 && tvPath.length() < 1) {
+                    Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+                } else {
+                    uploadMultipart();
+                    Toast.makeText(this, "Successfull Completed", Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 
