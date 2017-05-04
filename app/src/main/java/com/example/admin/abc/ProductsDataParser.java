@@ -20,10 +20,9 @@ import java.util.ArrayList;
 public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
-    //GridView gv;
     String jsonData;
 
-    ArrayList<ProductImages> productImages=new ArrayList<>();
+    ArrayList<ProductsDB> productsDBs=new ArrayList<>();
     public ProductsDataParser(Context c, ListView lv, String jsonData) {
         this.c = c;
         this.lv = lv;
@@ -49,7 +48,7 @@ public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
         }else
         {
 
-            final ProductsListAdapter adapter=new ProductsListAdapter(c,productImages);
+            final ProductsListAdapter adapter=new ProductsListAdapter(c,productsDBs);
             lv.setAdapter(adapter);
         }
     }
@@ -60,8 +59,8 @@ public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
         {
             JSONArray ja=new JSONArray(jsonData);
             JSONObject jo=null;
-            productImages.clear();
-            ProductImages productImage;
+            productsDBs.clear();
+            ProductsDB productsDB;
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
@@ -69,11 +68,11 @@ public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
                 int ProductId=jo.getInt("ProductId");
                 String ProductName =jo.getString("ProductName");
                 String ImageUrl=jo.getString("ImageUrl");
-                productImage=new ProductImages();
-                productImage.setId(ProductId);
-                productImage.setName(ProductName);
-                productImage.setImageUrl(ImageUrl);
-                productImages.add(productImage);
+                productsDB=new ProductsDB();
+                productsDB.setId(ProductId);
+                productsDB.setName(ProductName);
+                productsDB.setImageUrl(ImageUrl);
+                productsDBs.add(productsDB);
             }
             return 1;
         } catch (JSONException e) {

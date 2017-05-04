@@ -46,7 +46,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class AddProductsSubType extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = Config.addProductSubTypes;
+    private static final String UPLOAD_URL = Config.productSubTypesCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -58,15 +58,21 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     public int ptid=0;
 
     Context context;
-    final ArrayList<ProductTypeItem> productcrafts =new ArrayList<>();
+    final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
 
     private Spinner sp1;
-    private ArrayAdapter<ProductTypeItem> adapter ;
+    private ArrayAdapter<ProductTypesDB> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_sub_type);
+        // Get intent data
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -75,7 +81,11 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductsSubType.this, ProductTypeSubTypes.class);
+                    Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", ptid);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     startActivity(in);
                 }
             });
@@ -113,7 +123,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSpinner1);
+                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -138,17 +148,17 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productcrafts.clear();
-                ProductTypeItem productcraft;
+                productTypesDBs.clear();
+                ProductTypesDB productTypesDB;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     ptid = jo.getInt("ProductTypeId");
                     String pname = jo.getString("ProductType");
-                    productcraft=new ProductTypeItem();
-                    productcraft.setProductTypeId(ptid);
-                    productcraft.setProductType(pname);
-                    productcrafts.add(productcraft);
+                    productTypesDB=new ProductTypesDB();
+                    productTypesDB.setProductTypeId(ptid);
+                    productTypesDB.setProductType(pname);
+                    productTypesDBs.add(productTypesDB);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -160,8 +170,8 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productcrafts.size();i++){
-                listItems.add(productcrafts.get(i).getProductType());
+            for(int i=0;i<productTypesDBs.size();i++){
+                listItems.add(productTypesDBs.get(i).getProductType());
             }
             adapter=new ArrayAdapter(AddProductsSubType.this,R.layout.spinner_layout1, R.id.txt1,listItems);
             sp1.setAdapter(adapter);
@@ -215,10 +225,10 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                ProductTypeItem productcraft = (ProductTypeItem) productcrafts.get(position);
-                final String name = productcraft.getProductType();
+                ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
+                final String name = productTypesDB.getProductType();
                 //  final int pid
-                ptid =productcraft.getProductTypeId() ;
+                ptid =productTypesDB.getProductTypeId() ;
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -243,7 +253,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
         else {*/
-        ProductTypeItem s = new ProductTypeItem();
+        ProductTypesDB s = new ProductTypesDB();
         s.setProductType(caption);
 
         s.setProductTypeId(ptid);
@@ -254,6 +264,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                    .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
 
@@ -267,32 +278,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         }
 
     }
-    /*public void checkupload(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage("Do You want to Continue.");
-        builder1.setCancelable(true);
 
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
-                        startActivity(in);
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,Products.class);
-                        startActivity(in);
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-       /* }}*/
 
 
     public String getPath(Uri uri) {

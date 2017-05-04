@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 
 /**
- * Created by Atwyn on 4/12/2017 for reading Mysql database data .
+ * Created by Geetha on 4/12/2017 for reading Mysql database data .
  */
 
 public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {

@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+public final static String mainUrlAddress = "http://192.168.0.7/abc/";
 
     // For admin login
 
@@ -28,7 +28,7 @@ public final static String productSizesUrlAddress = mainUrlAddress+"getProductSi
 
     // For getting all main products types subtypes data from DB
 
-public final static String productTypeSubTypesUrlAddress = mainUrlAddress+"getProductTypeSubTypes.php?ProductTypeId=";
+public final static String productSubTypesUrlAddress = mainUrlAddress+"getProductTypeSubTypes.php?ProductTypeId=";
 
     // For getting all main products types sizes from DB
 
@@ -54,34 +54,28 @@ public final static String productSizeImgUrlAddress = mainUrlAddress+"getProduct
 
 public final static String brandsImgUrlAddress = mainUrlAddress+"getAllBrandImages.php";
 
-    //For adding new products into main products
-public final static String addProducts = mainUrlAddress+"CRUD.php";
+    //For performing crud on main products
+public final static String productsCRUD = mainUrlAddress+"productsCRUD.php";
 
-   // For geting product names for spinner
+   // For performing crud on product types
+public final static String productTypesCRUD = mainUrlAddress+"productTypesCRUD.php";
 
-public final static String productSpinner =mainUrlAddress+"productSpinner.php";
-
-   // For adding new products into products types
-
-public final static String addProductTypes = mainUrlAddress+"addProductTypes.php";
-
-    //For geting producttypes names for spinner
+    //For performing crud on product subtypes
+public final static String productSubTypesCRUD = mainUrlAddress+"productSubTypesCRUD.php";
 
 
-    public final static String productSpinner1 =mainUrlAddress+"productSpinner1.php";
-
-    // For adding new products into main products
-
-    public final static String addProductSubTypes = mainUrlAddress+"addProductSubTypes.php";
-
-//For adding grid details into product size images
-    public final static String addGridData = mainUrlAddress+"addGridData.php";
 
 
-    public final static String gridSpinner = mainUrlAddress+"gridspinner.php";
 
 
-    public final static String PRODUCTID_PARAM ="ProductId";
+                                            // FOR Spinners
+
+    // For product Types spinner
+public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinner.php";
+    // For product Subtypes spinner
+public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
+
+public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";
 public final static String PRODUCTSIZEID_PARAM ="ProductSizeId";
 public final static String KEY_USER = "username";

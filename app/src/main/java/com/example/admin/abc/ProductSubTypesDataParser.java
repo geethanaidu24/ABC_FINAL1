@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Created by Geetha on 4/20/2017 for storing database data into an array.
  */
 
-public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> {
+public class ProductSubTypesDataParser extends AsyncTask<Void,Void,Integer> {
     Context c;
     ListView lv;
     LinearLayout ll;
@@ -26,9 +26,9 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
     int ptid;
     int pid;
     String pname, ptname;
-    ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems=new ArrayList<>();
+    ArrayList<ProductSubTypesDB> productSubTypesDBs=new ArrayList<>();
 
-    public ProductTypeSubTypesDataParser(Context c, ListView lv,LinearLayout ll, String jsonData, int pid, String pname, int ptid, String ptname) {
+    public ProductSubTypesDataParser(Context c, ListView lv,LinearLayout ll, String jsonData, int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.lv = lv;
         this.ll=ll;
@@ -52,15 +52,11 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         super.onPostExecute(result);
         if(result==0)
         {
-            //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-            // opening new activity
-            //ll.setVisibility(View.INVISIBLE);
-            //ll.setVisibility(View.GONE);
             openProductTypesSizesActivity(pid,pname,ptid,ll);
         }else
         {
             ll.setVisibility(View.VISIBLE);
-            final ProductTypeSubTypesListAdapter adapter=new ProductTypeSubTypesListAdapter(c,productTypeSubTypeItems,pid,pname,ptid,ptname);
+            final ProductSubTypesListAdapter adapter=new ProductSubTypesListAdapter(c,productSubTypesDBs,pid,pname,ptid,ptname);
             lv.setAdapter(adapter);
 
         }
@@ -70,10 +66,6 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);
-       // intent.putExtra("layout", R.layout.activity_products_types_subtypes);
-       // intent = intent.putExtra("LAYOUT_KEY", ll);
-      //  intent.putExtra(String.valueOf(ll), "LAYOUT_KEY");
-
         c.startActivity(intent);
     }
     private int parseData()
@@ -82,8 +74,8 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
         {
             JSONArray ja=new JSONArray(jsonData);
             JSONObject jo=null;
-            productTypeSubTypeItems.clear();
-            ProductTypeSubTypeItem productTypeSubTypeItem;
+            productSubTypesDBs.clear();
+            ProductSubTypesDB productSubTypesDB;
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
@@ -92,12 +84,12 @@ public class ProductTypeSubTypesDataParser extends AsyncTask<Void,Void,Integer> 
                 String ProductSubTypeName =jo.getString("ProductSubTypeName");
                 String ImageUrl=jo.getString("ImageUrl");
                 int ProductTypeId=jo.getInt("ProductTypeId");
-                productTypeSubTypeItem=new ProductTypeSubTypeItem();
-                productTypeSubTypeItem.setProductSubTypeId(ProductSubTypeId);
-                productTypeSubTypeItem.setProductSubTypeName(ProductSubTypeName);
-                productTypeSubTypeItem.setImageUrl(ImageUrl);
-                productTypeSubTypeItem.setProductTypeId(ProductTypeId);
-                productTypeSubTypeItems.add(productTypeSubTypeItem);
+                productSubTypesDB=new ProductSubTypesDB();
+                productSubTypesDB.setProductSubTypeId(ProductSubTypeId);
+                productSubTypesDB.setProductSubTypeName(ProductSubTypeName);
+                productSubTypesDB.setImageUrl(ImageUrl);
+                productSubTypesDB.setProductTypeId(ProductTypeId);
+                productSubTypesDBs.add(productSubTypesDB);
             }
             return 1;
         } catch (JSONException e) {

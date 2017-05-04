@@ -18,7 +18,7 @@ import java.net.HttpURLConnection;
  * Created by Geetha on 4/20/2017 for downloading data into json object from given url.
  */
 
-public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String> {
+public class ProductSubTypesDownloader extends AsyncTask<Void, Void, String> {
 
     Context c;
     String urlAddress;
@@ -29,7 +29,7 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
     String pname,ptname;
 
 
-    public ProductTypeSubTypesDownloader(Context c, String urlAddress, ListView lv, LinearLayout ll,int pid, String pname, int ptid, String ptname) {
+    public ProductSubTypesDownloader(Context c, String urlAddress, ListView lv, LinearLayout ll,int pid, String pname, int ptid, String ptname) {
         this.c = c;
         this.urlAddress = urlAddress;
         this.lv = lv;
@@ -60,7 +60,7 @@ public class ProductTypeSubTypesDownloader extends AsyncTask<Void, Void, String>
             Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
         }else {
             //CALL DATA PARSER TO PARSE
-            ProductTypeSubTypesDataParser parser=new ProductTypeSubTypesDataParser(c, lv, ll,s, pid, pname,ptid,ptname);
+            ProductSubTypesDataParser parser=new ProductSubTypesDataParser(c, lv, ll,s, pid, pname,ptid,ptname);
             parser.execute();
         }
     }

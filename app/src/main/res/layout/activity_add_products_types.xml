@@ -1,13 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
 
-              android:layout_height="match_parent"
+    android:layout_height="match_parent"
 
 
-              tools:context=".MainActivity">
+    tools:context=".MainActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:layout_marginTop="10dp"
             android:text="ADD DATA"
             android:textColor="@color/cred"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/image2"
@@ -54,7 +54,7 @@
             android:layout_below="@+id/textView13"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
-            app:srcCompat="@mipmap/browseimage"/>
+            app:srcCompat="@mipmap/browseimage" />
 
         <TextView
             android:id="@+id/path"
@@ -65,7 +65,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="13dp"
-            android:text="Path: "/>
+            android:text="Path: " />
 
         <TextView
             android:id="@+id/textView18"
@@ -76,27 +76,29 @@
             android:layout_marginTop="10dp"
             android:text="PRODUCTS TYPES"
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/productsubtypes"
+            android:id="@+id/producttypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView18"
+            android:layout_alignBottom="@+id/textView18"
+            android:layout_alignParentEnd="true"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:layout_above="@+id/addProTySp"
-            android:layout_alignParentEnd="true"/>
+            android:inputType="textPersonName" />
 
         <Button
             android:id="@+id/btnUpload"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/cred"
-            android:text="ADD"
-            android:textColor="@color/white"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp"/>
+            android:layout_marginBottom="19dp"
+            android:background="@color/cred"
+            android:text="ADD"
+            android:textColor="@color/white" />
+
         <TextView
             android:id="@+id/textView15"
             android:layout_width="150dp"
@@ -106,14 +108,14 @@
             android:layout_marginTop="10dp"
             android:text="PRODUCTS "
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Spinner
-            android:id="@+id/addProTySp"
+            android:id="@+id/addProSp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/productsubtypes"
-            android:layout_alignTop="@+id/textView15"/>
+            android:layout_alignTop="@+id/textView15"
+            android:layout_toEndOf="@+id/textView15" />
 
 
     </RelativeLayout>

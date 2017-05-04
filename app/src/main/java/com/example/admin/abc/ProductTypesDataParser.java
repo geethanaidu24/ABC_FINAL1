@@ -26,7 +26,7 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
     String jsonData;
     int pid;
     String name;
-    ArrayList<ProductTypeItem> productTypeItems=new ArrayList<>();
+    ArrayList<ProductTypesDB> productTypesDBs=new ArrayList<>();
 
     public ProductTypesDataParser(Context c, ListView lv, LinearLayout ll,String jsonData, int pid, String name) {
         this.c = c;
@@ -51,16 +51,12 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         super.onPostExecute(result);
         if(result==0)
         {
-            //Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-            // opening new activity if product has no types
-           // ll.setVisibility(View.INVISIBLE);
-           // ll.setVisibility(View.GONE);
             openProductSizesActivity(pid);
         }else
         {
             ll.setVisibility(View.VISIBLE);
 
-            final ProductTypesListAdapter adapter=new ProductTypesListAdapter(c,productTypeItems,pid,name);
+            final ProductTypesListAdapter adapter=new ProductTypesListAdapter(c,productTypesDBs,pid,name);
             lv.setAdapter(adapter);
 
         }
@@ -77,8 +73,8 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
         {
             JSONArray ja=new JSONArray(jsonData);
             JSONObject jo=null;
-            productTypeItems.clear();
-            ProductTypeItem productTypeItem;
+            productTypesDBs.clear();
+            ProductTypesDB productTypesDB;
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
@@ -87,12 +83,12 @@ public class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
                 String ProductType =jo.getString("ProductType");
                 String ImageUrl=jo.getString("ImageUrl");
                 int ProductId = jo.getInt("ProductId");
-                productTypeItem=new ProductTypeItem();
-                productTypeItem.setProductTypeId(ProductTypeId);
-                productTypeItem.setProductType(ProductType);
-                productTypeItem.setImageUrl(ImageUrl);
-                productTypeItem.setProductId(ProductId);
-                productTypeItems.add(productTypeItem);
+                productTypesDB=new ProductTypesDB();
+                productTypesDB.setProductTypeId(ProductTypeId);
+                productTypesDB.setProductType(ProductType);
+                productTypesDB.setImageUrl(ImageUrl);
+                productTypesDB.setProductId(ProductId);
+                productTypesDBs.add(productTypesDB);
             }
             return 1;
         } catch (JSONException e) {

@@ -16,11 +16,11 @@ import android.widget.TextView;
  * Created by Geetha on 4/20/2017 for displaying sub menu for product types of main products.
  */
 
-public class ProductTypeSubTypes extends AppCompatActivity {
+public class ProductSubTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = Config.productTypeSubTypesUrlAddress;
+    final static String url = Config.productSubTypesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,9 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_subtypes);
 
-
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_subtype);
         final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductTypeName);
-
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
@@ -46,7 +44,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
         String urlAddress = url + ptid;
 
-        new ProductTypeSubTypesDownloader(ProductTypeSubTypes.this, urlAddress, lv, ll, pid, pname, ptid, ptname).execute();
+        new ProductSubTypesDownloader(ProductSubTypes.this, urlAddress, lv, ll, pid, pname, ptid, ptname).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -56,7 +54,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductTypeSubTypes.this, ProductTypes.class);
+                    Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", ptid);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -78,7 +76,19 @@ public class ProductTypeSubTypes extends AppCompatActivity {
                             int id = item.getItemId();
 
                             if (id == R.id.productsubtypesadd) {
-                                Intent in = new Intent(ProductTypeSubTypes.this, AddProductsSubType.class);
+                                Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
+                                in.putExtra("PRODUCTNAME_KEY", ptid);
+                                in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                                in.putExtra("PRODUCTTYPENAME_KEY", ptname);
+                                startActivity(in);
+                            }
+                            if (id == R.id.productsubtypesdelete) {
+                                Intent in = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
+                                in.putExtra("PRODUCTNAME_KEY", ptid);
+                                in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                                in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                                 startActivity(in);
                             }
                             return true;
@@ -88,17 +98,8 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         }
     }
 }
-      /*  back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSubTypes.this,ProductTypes.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                in.putExtra("PRODUCTTYPENAME_KEY",ptname);
-                startActivity(in);
-            }
-        });*/
+
+
 
 
 

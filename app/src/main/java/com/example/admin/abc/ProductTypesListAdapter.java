@@ -21,24 +21,24 @@ public class ProductTypesListAdapter extends BaseAdapter {
 
     Context c;
 
-    ArrayList<ProductTypeItem> productTypeItems;
+    ArrayList<ProductTypesDB> productTypesDBs;
     LayoutInflater inflater;
     String name;
     int pid;
-    public ProductTypesListAdapter(Context c, ArrayList<ProductTypeItem> productTypeItems,int pid, String name) {
+    public ProductTypesListAdapter(Context c, ArrayList<ProductTypesDB> productTypesDBs,int pid, String name) {
         this.c = c;
-        this.productTypeItems = productTypeItems;
+        this.productTypesDBs = productTypesDBs;
         this.name = name;
 
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        return productTypeItems.size();
+        return productTypesDBs.size();
     }
     @Override
     public Object getItem(int position) {
-        return productTypeItems.get(position);
+        return productTypesDBs.get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -53,12 +53,12 @@ public class ProductTypesListAdapter extends BaseAdapter {
         TextView typeNameTxt= (TextView) convertView.findViewById(R.id.textViewURL1);
         ImageView img= (ImageView) convertView.findViewById(R.id.imageTypePro);
         //BIND DATA
-        ProductTypeItem productTypeItem=(ProductTypeItem) this.getItem(position);
-        final int ptid = productTypeItem.getProductTypeId();
-        final String ptname = productTypeItem.getProductType();
-        final int pid = productTypeItem.getProductId();
-        typeNameTxt.setText(productTypeItem.getProductType());
-        final String url = productTypeItem.getImageUrl();
+        ProductTypesDB productTypesDB=(ProductTypesDB) this.getItem(position);
+        final int ptid = productTypesDB.getProductTypeId();
+        final String ptname = productTypesDB.getProductType();
+        final int pid = productTypesDB.getProductId();
+        typeNameTxt.setText(productTypesDB.getProductType());
+        final String url = productTypesDB.getImageUrl();
         final String finalUrl=Config.mainUrlAddress + url;
         //IMG
         PicassoClient.downloadImage(c,finalUrl,img);
@@ -75,7 +75,7 @@ public class ProductTypesListAdapter extends BaseAdapter {
     }
 
     public void openProductTypeSubTypesActivity(int pid,String name,int ptid,String ptname){
-        Intent intent = new Intent(c,ProductTypeSubTypes.class);
+        Intent intent = new Intent(c,ProductSubTypes.class);
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTNAME_KEY",name);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);

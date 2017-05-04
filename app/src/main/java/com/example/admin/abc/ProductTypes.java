@@ -20,7 +20,7 @@ public class ProductTypes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = Config.productTypesUrlAddress;
+    final static String url =Config.productTypesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,26 +28,17 @@ public class ProductTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
-
-        //  setSupportActionBar(actionbar);
-        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //  getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
-        TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
-
-
+        TextView typeNameTxt= (TextView) findViewById(R.id.SelProductName);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-
-        int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        String name = intent.getExtras().getString("PRODUCTNAME_KEY");
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         typeNameTxt.setText(name);
         Log.d("result PID: ", "> " + pid);
-
         String urlAddress = url + pid;
 
-        new ProductTypesDownloader(ProductTypes.this, urlAddress, lv, ll, pid, name).execute();
+        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
 
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -57,7 +48,7 @@ public class ProductTypes extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductTypes.this, Products.class);
+                    Intent in=new Intent(ProductTypes.this,Products.class);
                     startActivity(in);
                 }
             });
@@ -75,10 +66,14 @@ public class ProductTypes extends AppCompatActivity {
 
                             if (id == R.id.producttypesadd) {
                                 Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
+                                in.putExtra("PRODUCTNAME_KEY",name);
                                 startActivity(in);
                             }
                             if (id == R.id.producttypesdelete) {
                                 Intent in = new Intent(ProductTypes.this, DeleteProductTypes.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
+                                in.putExtra("PRODUCTNAME_KEY",name);
                                 startActivity(in);
                             }
                             return true;
@@ -88,13 +83,5 @@ public class ProductTypes extends AppCompatActivity {
         }
     }
 
-}     /*  back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypes.this,Products.class);
-                startActivity(in);
-            }
-        });*/
-
+}
 

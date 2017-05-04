@@ -15,21 +15,21 @@ import java.util.ArrayList;
 public class ProductsListAdapter extends BaseAdapter {
 
     Context c;
-    ArrayList<ProductImages> productImages;
+    ArrayList<ProductsDB> productsDBs;
     LayoutInflater inflater;
 
-    public ProductsListAdapter(Context c, ArrayList<ProductImages> productImages) {
+    public ProductsListAdapter(Context c, ArrayList<ProductsDB> productsDBs) {
         this.c = c;
-        this.productImages = productImages;
+        this.productsDBs = productsDBs;
         inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        return productImages.size();
+        return productsDBs.size();
     }
     @Override
     public Object getItem(int position) {
-        return productImages.get(position);
+        return productsDBs.get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -44,18 +44,17 @@ public class ProductsListAdapter extends BaseAdapter {
         TextView nametxt= (TextView) convertView.findViewById(R.id.textViewURL);
         ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
         //BIND DATA
-        ProductImages productImage=(ProductImages) this.getItem(position);
-        final String name = productImage.getName();
-        final String url = productImage.getImageUrl();
-        final int pid = productImage.getId();
+        ProductsDB productsDB=(ProductsDB) this.getItem(position);
+        final String name = productsDB.getName();
+        final String url = productsDB.getImageUrl();
+        final int pid = productsDB.getId();
         final String finalUrl=Config.mainUrlAddress + url;
-        nametxt.setText(productImage.getName());
+        nametxt.setText(productsDB.getName());
 
         //IMG
         PicassoClient.downloadImage(c,finalUrl,img);
 
         // testing new activity condition
-
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){

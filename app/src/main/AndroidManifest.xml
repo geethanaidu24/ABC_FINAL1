@@ -76,7 +76,7 @@
             android:name=".ProductSizes"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ProductTypeSubTypes"
+            android:name=".ProductSubTypes"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ProductTypeSubTypeImages"
@@ -143,6 +143,8 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:value="GlideModule"/>
 
         <activity android:name=".AddTypesSizes">
+        </activity>
+        <activity android:name="DeleteProductSubTypes">
         </activity>
     </application>
 
