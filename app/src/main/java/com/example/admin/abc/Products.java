@@ -12,8 +12,6 @@ import android.widget.ListView;
 public class Products extends AppCompatActivity {
 
     ImageView back;
-
-
     final static String urlAddress = Config.productsUrlAddress;
 
     @Override
