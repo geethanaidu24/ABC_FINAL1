@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+
+              android:layout_height="match_parent"
+
+
+              tools:context=".MainActivity">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="7dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="2dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@mipmap/abctextlogo"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="ADD Sizes"
+            android:textColor="@color/cred"
+            android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/addbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="19dp"
+            android:background="@color/cred"
+            android:text="ADD"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView13"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="60dp"
+            android:text="Enter Width"
+            android:textColor="@color/cred"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/wid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView35"
+            android:layout_alignBottom="@+id/textView35"
+            android:layout_alignStart="@+id/addbtn"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView35"
+            android:layout_below="@+id/wid"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:text="Enter Height"/>
+
+        <EditText
+            android:id="@+id/hei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/wid"
+            android:layout_below="@+id/wid"
+            android:ems="10"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView36"
+            android:layout_below="@+id/hei"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:text="Enter Length"/>
+
+        <EditText
+            android:id="@+id/len"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/hei"
+            android:layout_below="@+id/hei"
+            android:ems="10"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:inputType="textPersonName"
+            />
+
+        <TextView
+            android:id="@+id/textView38"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView37"
+            android:layout_below="@+id/len"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:text="Product Types"/>
+
+        <Spinner
+            android:id="@+id/spinner7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView38"
+            android:layout_alignStart="@+id/len"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:layout_alignEnd="@+id/len"/>
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView38"
+            android:layout_below="@+id/textView38"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:text="Products"/>
+
+        <Spinner
+            android:id="@+id/spinner8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView39"
+            android:layout_alignStart="@+id/spinner7"
+            android:layout_alignEnd="@+id/spinner7"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -28,6 +28,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_subtypes);
 
+
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_subtype);
         final ListView lv = (ListView) findViewById(R.id.productTypeSubTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductTypeName);
@@ -87,7 +88,6 @@ public class ProductTypeSubTypes extends AppCompatActivity {
         }
     }
 }
-
       /*  back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

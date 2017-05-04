@@ -35,7 +35,7 @@ public class DeleteProducts extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<ProductImages> adapter ;
-    private static final String DATA_INSERT_URL="http://192.168.0.8/abc/CRUD.php";
+    private static final String DATA_INSERT_URL="http://192.168.0.4/abc/CRUD.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();

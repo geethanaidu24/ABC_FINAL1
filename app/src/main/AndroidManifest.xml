@@ -124,6 +124,13 @@
         </activity>
         <activity android:name=".AddProductsSubType">
         </activity>
+        <activity android:name=".DeleteProducts">
+        </activity>
+        <activity android:name=".DeleteProductTypes">
+        </activity>
+        <activity android:name=".AddGridSubTypes">
+        </activity>
+
         <!--
 ATTENTION: This was auto-generated to add Google Play services to your project for
     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -135,9 +142,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="com.example.admin.abc.GlideConfiguration"
             android:value="GlideModule"/>
 
-        <activity android:name=".DeleteProducts">
-        </activity>
-        <activity android:name=".DeleteProductTypes">
+        <activity android:name=".AddTypesSizes">
         </activity>
     </application>
 

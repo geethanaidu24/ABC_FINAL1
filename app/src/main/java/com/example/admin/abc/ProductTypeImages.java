@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -65,9 +66,29 @@ public class ProductTypeImages extends AppCompatActivity {
                      startActivity(in);
                 }
             });
+            actionbar.inflateMenu(R.menu.gridproducts);
 
-            // Inflate a menu to be displayed in the toolbar
-            // actionbar.inflateMenu(R.menu.actions);
+
+            actionbar.setOnMenuItemClickListener(
+                    new Toolbar.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            // Handle menu item click event
+
+                            int id = item.getItemId();
+
+                            if (id == R.id.gridadd) {
+                                Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
+                                startActivity(in);
+                            }
+                            if (id == R.id.griddelete) {
+                                Intent in = new Intent(ProductTypeImages.this, DeleteProducts.class);
+                                startActivity(in);
+                            }
+                            return true;
+                        }
+                    });
+
         }
         /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

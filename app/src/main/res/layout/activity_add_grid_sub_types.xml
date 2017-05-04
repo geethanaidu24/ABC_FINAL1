@@ -63,7 +63,7 @@
                 android:textSize="24sp"/>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_below="@+id/textView4"
@@ -80,11 +80,11 @@
                 android:textColor="@color/cred"
                 android:textSize="18sp"
                 android:layout_marginLeft="20dp"
-                android:layout_below="@+id/imageView3"
+                android:layout_below="@+id/image"
                 />
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/name1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -99,14 +99,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView11"
-                android:layout_below="@+id/editText2"
+                android:layout_below="@+id/name1"
                 android:layout_marginTop="15dp"
                 android:text="BRAND"
                 android:textColor="@color/cred"
                 android:textSize="18sp"/>
 
             <EditText
-                android:id="@+id/editText6"
+                android:id="@+id/brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -137,11 +137,11 @@
                 android:layout_alignStart="@+id/textView17"/>
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/sizespinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView19"
-                android:layout_alignStart="@+id/editText6"/>
+                android:layout_alignStart="@+id/brand"/>
 
 
             <TextView
@@ -157,21 +157,21 @@
 
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/subtypesspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textView21"
                 android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/spinner" />
+                android:layout_alignStart="@+id/sizespinner"
+                android:layout_alignTop="@+id/textView21"/>
 
             <EditText
-                android:id="@+id/editText8"
+                android:id="@+id/color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
                 android:layout_alignBottom="@+id/textView17"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:ems="10"
+                android:inputType="textPersonName"/>
 
             <TextView
                 android:id="@+id/textView22"
@@ -186,12 +186,12 @@
 
 
             <Spinner
-                android:id="@+id/spinner3"
+                android:id="@+id/typesspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textView22"
                 android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/spinner" />
+                android:layout_alignStart="@+id/sizespinner"
+                android:layout_alignTop="@+id/textView22"/>
 
             <TextView
                 android:id="@+id/textView23"
@@ -206,29 +206,38 @@
 
 
             <Spinner
-                android:id="@+id/spinner4"
+                android:id="@+id/productspinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/textView23"
-                android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/spinner" />
+                android:layout_alignParentEnd="true"/>
 
 
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnadd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView23"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:layout_below="@+id/textView23"
-        android:text="ADD"
         android:background="@color/cred"
+        android:text="ADD"
         android:textColor="@color/white"/>
         </RelativeLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/path"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/toolbar"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="200dp"
+        android:text="Path"/>
 
 </RelativeLayout>
 

@@ -67,6 +67,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_products_types);
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -81,7 +82,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             });
 
         }
-        setContentView(R.layout.activity_add_products_types);
+
         imageView = (ImageView)findViewById(R.id.image2);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.path);
