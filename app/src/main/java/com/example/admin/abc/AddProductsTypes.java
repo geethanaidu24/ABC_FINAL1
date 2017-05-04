@@ -57,7 +57,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pid=0;
+    public int spid=0;
     Context context;
     final ArrayList<ProductsDB> productsDBs =new ArrayList<>();
     private Spinner sp;
@@ -147,10 +147,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                  int pid = jo.getInt("ProductId");
+                  int proid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
                     productsDB=new ProductsDB();
-                    productsDB.setId(pid);
+                    productsDB.setId(proid);
                     productsDB.setName(pname);
                     productsDBs.add(productsDB);
                 }
@@ -222,9 +222,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
                 ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
-                final String name = productsDB.getName();
+                final String productName = productsDB.getName();
 
-               pid =productsDB.getId() ;
+               spid =productsDB.getId() ;
 
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -244,7 +244,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         });
         ProductsDB s = new ProductsDB();
         s.setName(caption);
-        s.setId(pid);
+        s.setId(spid);
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -254,7 +254,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
-                    .addParameter("productid", String.valueOf(pid))
+                    .addParameter("productid", String.valueOf(spid))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

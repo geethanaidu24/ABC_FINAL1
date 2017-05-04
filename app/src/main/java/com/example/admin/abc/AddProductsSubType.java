@@ -55,7 +55,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
-    public int ptid=0;
+    public int pstid=0;
 
     Context context;
     final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
@@ -83,7 +83,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
                     in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", ptid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     startActivity(in);
@@ -96,7 +96,6 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.path);
         sp1 = (Spinner)findViewById(R.id.spproductstypes);
-       // sp1=(Spinner)findViewById(R.id.sp1producttypes) ;
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
@@ -153,10 +152,10 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    ptid = jo.getInt("ProductTypeId");
+                    pstid = jo.getInt("ProductTypeId");
                     String pname = jo.getString("ProductType");
                     productTypesDB=new ProductTypesDB();
-                    productTypesDB.setProductTypeId(ptid);
+                    productTypesDB.setProductTypeId(pstid);
                     productTypesDB.setProductType(pname);
                     productTypesDBs.add(productTypesDB);
                 }
@@ -198,8 +197,12 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             Toast.makeText(AddProductsSubType.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
+            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+            etCaption.setText("");
+            tvPath.setText("");
+            imageView.setImageResource(R.mipmap.browseimage);
         }
-        //  checkupload();
+
     }
 
     @Override
@@ -228,7 +231,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                 ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
                 final String name = productTypesDB.getProductType();
                 //  final int pid
-                ptid =productTypesDB.getProductTypeId() ;
+                pstid =productTypesDB.getProductTypeId() ;
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -247,17 +250,10 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         });
 
-
-       /* if((caption.length()<1))
-        {
-            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
-        }
-        else {*/
         ProductTypesDB s = new ProductTypesDB();
         s.setProductType(caption);
 
-        s.setProductTypeId(ptid);
-        //s.setId(pid);
+        s.setProductTypeId(pstid);
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -267,8 +263,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
-
-                    .addParameter("producttypeid",String.valueOf(ptid))
+                    .addParameter("producttypeid",String.valueOf(pstid))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
@@ -278,7 +273,6 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         }
 
     }
-
 
 
     public String getPath(Uri uri) {

@@ -56,7 +56,7 @@ public class ProductSubTypes extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
                     in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", ptid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
 
@@ -78,7 +78,7 @@ public class ProductSubTypes extends AppCompatActivity {
                             if (id == R.id.productsubtypesadd) {
                                 Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
                                 in.putExtra("PRODUCTID_KEY", pid);
-                                in.putExtra("PRODUCTNAME_KEY", ptid);
+                                in.putExtra("PRODUCTNAME_KEY", pname);
                                 in.putExtra("PRODUCTTYPEID_KEY", ptid);
                                 in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                                 startActivity(in);
@@ -86,7 +86,7 @@ public class ProductSubTypes extends AppCompatActivity {
                             if (id == R.id.productsubtypesdelete) {
                                 Intent in = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
                                 in.putExtra("PRODUCTID_KEY", pid);
-                                in.putExtra("PRODUCTNAME_KEY", ptid);
+                                in.putExtra("PRODUCTNAME_KEY", pname);
                                 in.putExtra("PRODUCTTYPEID_KEY", ptid);
                                 in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                                 startActivity(in);

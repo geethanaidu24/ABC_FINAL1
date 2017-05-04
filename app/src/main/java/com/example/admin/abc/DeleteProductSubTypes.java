@@ -38,7 +38,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<ProductTypesDB> adapter ;
-    private static final String DATA_DELETE_URL=Config.productTypesCRUD;
+    private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -60,7 +60,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
                     in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", ptid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     startActivity(in);
@@ -80,7 +80,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int pid)
+    private void handleClickEvents(final int pstid)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -90,11 +90,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpid = pid;
+                final int rpstid = pstid;
 
                 //SAVE
-                ProductsDB s=new ProductsDB();
-                s.setId(rpid);
+                ProductSubTypesDB s=new ProductSubTypesDB();
+                s.setProductSubTypeId(rpstid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -103,7 +103,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("productsubtypeid", String.valueOf(s.getId()))
+                            .addBodyParameter("productsubtypeid", String.valueOf(s.getProductSubTypeId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -119,8 +119,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                Intent in=new Intent(DeleteProductSubTypes.this,DeleteProducts.class);
-                                                startActivity(in);
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                                 //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
@@ -141,7 +142,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     }
     public void onStart() {
         super.onStart();
-        DeleteProductSubTypes.BackTask bt = new BackTask();
+        BackTask bt = new BackTask();
         bt.execute();
     }
 
@@ -218,9 +219,8 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                            int position, long id) {
                     ProductSubTypesDB productSubTypesDB = (ProductSubTypesDB) productSubTypesDBs.get(position);
                     final String name = productSubTypesDB.getProductSubTypeName();
-                    //  final int pid
-                    final int pid =productSubTypesDB.getProductSubTypeId() ;
-                    handleClickEvents(pid);
+                    final int pstid =productSubTypesDB.getProductSubTypeId() ;
+                    handleClickEvents(pstid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {

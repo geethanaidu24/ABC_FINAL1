@@ -29,6 +29,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
 public class DeleteProductTypes extends AppCompatActivity {
 
     final ArrayList<ProductTypesDB> productTypesDBs = new ArrayList<>();
@@ -41,8 +42,9 @@ public class DeleteProductTypes extends AppCompatActivity {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_types);
+        // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -72,7 +74,7 @@ public class DeleteProductTypes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int pid)
+    private void handleClickEvents(final int ptid)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +84,11 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpid = pid;
+                final int rptid = ptid;
 
                 //SAVE
-                ProductsDB s=new ProductsDB();
-                s.setId(rpid);
+                ProductTypesDB s=new ProductTypesDB();
+                s.setProductTypeId(rptid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -95,7 +97,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                 {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("producttypeid", String.valueOf(s.getId()))
+                            .addBodyParameter("producttypeid", String.valueOf(s.getProductTypeId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -111,9 +113,10 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                Intent in=new Intent(DeleteProductTypes.this,DeleteProducts.class);
-                                                startActivity(in);
-                                               // Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
+                                               //Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -210,9 +213,9 @@ public class DeleteProductTypes extends AppCompatActivity {
                                            int position, long id) {
                     ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
                     final String name = productTypesDB.getProductType();
-                    //  final int pid
-                    final int pid =productTypesDB.getProductTypeId() ;
-                    handleClickEvents(pid);
+
+                    final int ptid =productTypesDB.getProductTypeId() ;
+                    handleClickEvents(ptid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {
