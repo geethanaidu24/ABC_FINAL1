@@ -137,6 +137,8 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
 
         <activity android:name=".DeleteProducts">
         </activity>
+        <activity android:name=".DeleteProductTypes">
+        </activity>
     </application>
 
 </manifest>

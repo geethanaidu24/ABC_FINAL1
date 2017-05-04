@@ -82,7 +82,7 @@
             android:textSize="18sp"/>
 
         <EditText
-            android:id="@+id/products"
+            android:id="@+id/productsubtypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -113,29 +113,11 @@
             android:id="@+id/textView15"/>
 
         <Spinner
-            android:id="@+id/spinner5"
+            android:id="@+id/spproductstypes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/products"
+            android:layout_alignStart="@+id/productsubtypes"
             android:layout_alignTop="@+id/textView15"/>
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/textView15"
-            android:layout_below="@+id/spinner5"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/cred"
-            android:textSize="18sp"
-            android:text="PRODUCTS"/>
-
-        <Spinner
-            android:id="@+id/spinner6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView16"
-            android:layout_alignStart="@+id/spinner5"/>
 
 
     </RelativeLayout>

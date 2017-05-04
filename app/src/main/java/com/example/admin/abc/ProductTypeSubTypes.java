@@ -66,7 +66,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
             });
 
             // Inflate a menu to be displayed in the toolbar
-            actionbar.inflateMenu(R.menu.actions);
+            actionbar.inflateMenu(R.menu.productsubtypes);
 
             actionbar.setOnMenuItemClickListener(
                     new Toolbar.OnMenuItemClickListener() {
@@ -76,7 +76,7 @@ public class ProductTypeSubTypes extends AppCompatActivity {
 
                             int id = item.getItemId();
 
-                            if (id == R.id.producttypesadd) {
+                            if (id == R.id.productsubtypesadd) {
                                 Intent in = new Intent(ProductTypeSubTypes.this, AddProductsSubType.class);
                                 startActivity(in);
                             }

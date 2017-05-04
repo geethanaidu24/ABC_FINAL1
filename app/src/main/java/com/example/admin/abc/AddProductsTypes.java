@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -57,6 +58,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Bitmap bitmap;
     private Uri filePath;
     public int pid=0;
+    Context context;
     final ArrayList<ProductImages> productcrafts =new ArrayList<>();
     private Spinner sp;
     private ArrayAdapter<ProductImages> adapter ;
@@ -81,7 +83,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         }
         setContentView(R.layout.activity_add_products_types);
         imageView = (ImageView)findViewById(R.id.image2);
-        etCaption = (EditText)findViewById(R.id.products);
+        etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.path);
         sp = (Spinner)findViewById(R.id.addProTySp);
         btnUpload = (Button)findViewById(R.id.btnUpload);
@@ -204,12 +206,12 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     }
 
     private void checkData() {
-        if(etCaption.length()<1 || tvPath.length()<1){
-            Toast.makeText(AddProductsTypes.this,"Fill All",Toast.LENGTH_SHORT).show();
-        }
-        else {
+        if (etCaption.length() < 1 || tvPath.length() < 1) {
+            Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
+        } else {
             uploadMultipart();
         }
+      //  checkupload();
     }
 
     @Override
@@ -278,11 +280,39 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(2)
                         .startUpload(); //Starting the upload
+
             } catch (Exception exc) {
                 Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
             }
-       /* }*/
+
     }
+    /*public void checkupload(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setMessage("Do You want to Continue.");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
+                        startActivity(in);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent in=new Intent(AddProductsTypes.this,Products.class);
+                        startActivity(in);
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+       /* }}*/
+
 
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);

@@ -62,8 +62,18 @@ public final static String productSpinner =mainUrlAddress+"productSpinner.php";
 
 public final static String addProductTypes = mainUrlAddress+"addProductTypes.php";
 
+    //For geting producttypes names for spinner
 
-public final static String PRODUCTID_PARAM ="ProductId";
+
+    public final static String productSpinner1 =mainUrlAddress+"productSpinner1.php";
+
+    // For adding new products into main products
+
+    public final static String addProductSubTypes = mainUrlAddress+"addProductSubTypes.php";
+
+
+
+    public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";
 public final static String PRODUCTSIZEID_PARAM ="ProductSizeId";
 public final static String KEY_USER = "username";
