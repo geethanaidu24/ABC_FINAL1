@@ -119,7 +119,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                Intent in=new Intent(DeleteProductSubTypes.this,DeleteProducts.class);
+                                                startActivity(in);
+                                                //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
