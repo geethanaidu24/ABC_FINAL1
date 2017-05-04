@@ -1,11 +1,14 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -14,20 +17,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class AddProductsSubType extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = "http://192.168.0.4/abc/insert_image.php";
+    private static final String UPLOAD_URL = Config.addProductSubTypes;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -36,7 +55,13 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    public int ptid=0;
 
+    Context context;
+    final ArrayList<ProductTypeItem> productcrafts =new ArrayList<>();
+
+    private Spinner sp1;
+    private ArrayAdapter<ProductTypeItem> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -58,8 +83,10 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         }
 
         imageView = (ImageView)findViewById(R.id.image2);
-        etCaption = (EditText)findViewById(R.id.products);
+        etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.path);
+        sp1 = (Spinner)findViewById(R.id.spproductstypes);
+       // sp1=(Spinner)findViewById(R.id.sp1producttypes) ;
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
@@ -67,6 +94,81 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
+    @Override
+    public void onStart(){
+        super.onStart();
+       BackTask bt = new BackTask();
+        bt.execute();
+    }
+    private class BackTask extends AsyncTask<Void,Void,Void>{
+        ArrayList<String> list;
+        protected void onPreExecute() {
+            super.onPreExecute();
+            list = new ArrayList<>();
+        }
+
+
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(Config.productSpinner1);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray ja = new JSONArray(result);
+                JSONObject jo=null;
+                productcrafts.clear();
+                ProductTypeItem productcraft;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo=ja.getJSONObject(i);
+                    // add interviewee name to arraylist
+                    ptid = jo.getInt("ProductTypeId");
+                    String pname = jo.getString("ProductType");
+                    productcraft=new ProductTypeItem();
+                    productcraft.setProductTypeId(ptid);
+                    productcraft.setProductType(pname);
+                    productcrafts.add(productcraft);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+
+            // productcrafts.addAll(productcrafts);
+            final ArrayList<String> listItems = new ArrayList<>();
+            for(int i=0;i<productcrafts.size();i++){
+                listItems.add(productcrafts.get(i).getProductType());
+            }
+            adapter=new ArrayAdapter(AddProductsSubType.this,R.layout.spinner_layout1, R.id.txt1,listItems);
+            sp1.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 
     @Override
     public void onClick(View view) {
@@ -76,8 +178,18 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else if(view == btnUpload){
+            checkData();
+            //uploadMultipart();
+        }
+    }
+
+    private void checkData() {
+        if (etCaption.length() < 1 || tvPath.length() < 1) {
+            Toast.makeText(AddProductsSubType.this, "Fill All", Toast.LENGTH_SHORT).show();
+        } else {
             uploadMultipart();
         }
+        //  checkupload();
     }
 
     @Override
@@ -99,7 +211,43 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         //getting the actual path of the image
         String path = getPath(filePath);
+        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
+                                       int position, long id) {
+                ProductTypeItem productcraft = (ProductTypeItem) productcrafts.get(position);
+                final String name = productcraft.getProductType();
+                //  final int pid
+                ptid =productcraft.getProductTypeId() ;
+                //uploadMultipart();
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        // TODO Auto-generated method stub
+                        dialog.dismiss();
+                    }
+                };
+            }
+            public void onNothingSelected(AdapterView<?> arg0) {
+                // TODO Auto-generated method stub
+                Toast.makeText(AddProductsSubType.this,
+                        "Your Selected : Nothing",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+
+       /* if((caption.length()<1))
+        {
+            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
+        }
+        else {*/
+        ProductTypeItem s = new ProductTypeItem();
+        s.setProductType(caption);
+
+        s.setProductTypeId(ptid);
+        //s.setId(pid);
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -108,13 +256,44 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
+
+                    .addParameter("producttypeid",String.valueOf(ptid))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
+
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
     }
+    /*public void checkupload(){
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
+        builder1.setMessage("Do You want to Continue.");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
+                        startActivity(in);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent in=new Intent(AddProductsTypes.this,Products.class);
+                        startActivity(in);
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+       /* }}*/
+
 
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
