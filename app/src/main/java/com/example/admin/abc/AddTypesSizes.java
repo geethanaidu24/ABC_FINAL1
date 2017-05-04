@@ -128,17 +128,15 @@ public class AddTypesSizes extends AppCompatActivity {
                     s.setHeight(heig);
                     s.getLength(leng);
                     s.setProductId(pid);
-
                     s.setProductTypeId(ptid);
-
-                    (AddTypesSizes.this).add(s,spinSelVal,spinSelVal1,txtwidth,txtheight,txtlength);
+                    new MySQLClient(AddTypesSizes.this).add(s,spinSelVal,spinSelVal1,txtwidth,txtheight,txtlength);
                 }
             }
         });
 
     }
 
-    private void add(SizesDB s, String spinSelVal, String spinSelVal1, EditText txtwidth, EditText txtheight, EditText txtlength) {
+   /* private void add(SizesDB s, String spinSelVal, String spinSelVal1, EditText txtwidth, EditText txtheight, EditText txtlength) {
         if(s==null)
         {
             Toast.makeText(c, "No Data To Save", Toast.LENGTH_SHORT).show();
@@ -193,7 +191,7 @@ public class AddTypesSizes extends AppCompatActivity {
                                 }
                             });
         }
-    }
+    }*/
 
     public void onStart() {
         super.onStart();

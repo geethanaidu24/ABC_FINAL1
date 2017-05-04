@@ -97,7 +97,11 @@ class SizesDB {
         public void setName(String ProductName) {
             this.ProductName = ProductName;
         }
+
+    public char[] setLength() {
+        return new char[0];
     }
+}
 
 
 
