@@ -48,7 +48,7 @@ import java.util.UUID;
 import static com.example.admin.abc.R.id.name1;
 
 public class AddGridSubTypes extends AppCompatActivity implements View.OnClickListener {
-    private static final String addGridData = Config.addGridData;
+    private static final String addGridData = Config.productSubTypeGridsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -63,10 +63,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     public int psid=0;
 
     Context context;
-    final ArrayList<GridDataDB> productcrafts =new ArrayList<>();
+    final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
 
     private Spinner sp1,sp2,sp3,sp4;
-    private ArrayAdapter<ProductTypeItem> adapter ;
+    private ArrayAdapter<GridDataDB> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -122,7 +122,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 String result = "";
                 try {
                     HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(Config.gridSpinner);
+                    HttpPost httppost = new HttpPost(Config.productSubTypeGridSpinner);
                     HttpResponse response = httpclient.execute(httppost);
                     HttpEntity entity = response.getEntity();
                     // Get our response as a String.
@@ -147,8 +147,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 try {
                     JSONArray ja = new JSONArray(result);
                     JSONObject jo = null;
-                    productcrafts.clear();
-                    GridDataDB productcraft;
+                    gridDataDBs.clear();
+                    GridDataDB gridDataDB;
                     for (int i = 0; i < ja.length(); i++) {
                         jo = ja.getJSONObject(i);
                         // add interviewee name to arraylist
@@ -166,21 +166,21 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         String brand = jo.getString("Brand");
                         String color = jo.getString("Color");
 
-                        productcraft = new GridDataDB();
-                        productcraft.setProductSizeId(psid);
-                        productcraft.setProductSubTypeId(pstid);
-                        productcraft.setProductTypeId(ptid);
-                        productcraft.setProductId(pid);
-                        productcraft.setName(ProductName);
-                        productcraft.setProductType(productType);
-                        productcraft.setProductSubTypeName(subTypeName);
-                        productcraft.setWidth(width);
-                        productcraft.setHeight(height);
-                        productcraft.setLength(length);
-                        productcraft.setNname(name);
-                        productcraft.setBrand(brand);
-                        productcraft.setColor(color);
-                        productcrafts.add(productcraft);
+                        gridDataDB = new GridDataDB();
+                        gridDataDB.setProductSizeId(psid);
+                        gridDataDB.setProductSubTypeId(pstid);
+                        gridDataDB.setProductTypeId(ptid);
+                        gridDataDB.setProductId(pid);
+                        gridDataDB.setName(ProductName);
+                        gridDataDB.setProductType(productType);
+                        gridDataDB.setProductSubTypeName(subTypeName);
+                        gridDataDB.setWidth(width);
+                        gridDataDB.setHeight(height);
+                        gridDataDB.setLength(length);
+                        gridDataDB.setNname(name);
+                        gridDataDB.setBrand(brand);
+                        gridDataDB.setColor(color);
+                        gridDataDBs.add(gridDataDB);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -201,8 +201,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 adapter.notifyDataSetChanged();*/
 
                 final ArrayList<String> listItems2 = new ArrayList<>();
-                for (int i = 0; i < productcrafts.size(); i++) {
-                    listItems2.add(productcrafts.get(i).getProductSubTypeName());
+                for (int i = 0; i < gridDataDBs.size(); i++) {
+                    listItems2.add(gridDataDBs.get(i).getProductSubTypeName());
 
                 }
                 adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
@@ -210,8 +210,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 adapter.notifyDataSetChanged();
 
                 final ArrayList<String> listItems3 = new ArrayList<>();
-                for (int i = 0; i < productcrafts.size(); i++) {
-                    listItems3.add(productcrafts.get(i).getProductType());
+                for (int i = 0; i < gridDataDBs.size(); i++) {
+                    listItems3.add(gridDataDBs.get(i).getProductType());
 
                 }
                 adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
@@ -219,8 +219,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 adapter.notifyDataSetChanged();
 
                 final ArrayList<String> listItems4 = new ArrayList<>();
-                for (int i = 0; i < productcrafts.size(); i++) {
-                    listItems4.add(productcrafts.get(i).getName());
+                for (int i = 0; i < gridDataDBs.size(); i++) {
+                    listItems4.add(gridDataDBs.get(i).getName());
 
                 }
                 adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout4, R.id.txt4, listItems4);
@@ -292,7 +292,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) productcrafts.get(position);
+                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
                 final String name = productcraft.getProductType();
                 //  final int pid
                 pstid = productcraft.getProductSubTypeId();
@@ -319,7 +319,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) productcrafts.get(position);
+                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
                 final String name = productcraft.getProductType();
                 //  final int pid
                 ptid = productcraft.getProductTypeId();
@@ -346,7 +346,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) productcrafts.get(position);
+                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
                 final String name = productcraft.getProductType();
                 //  final int pid
                 pid = productcraft.getProductId();
