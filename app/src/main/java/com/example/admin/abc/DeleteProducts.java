@@ -30,12 +30,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DeleteProducts extends AppCompatActivity {
-    final ArrayList<ProductImages> productcrafts = new ArrayList<>();
-    // ArrayAdapter<String> adapter;
+    final ArrayList<ProductsDB> productsDBs = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<ProductImages> adapter ;
-    private static final String DATA_INSERT_URL="http://192.168.0.8/abc/CRUD.php";
+    private ArrayAdapter<ProductsDB> adapter ;
+    private static final String DATA_INSERT_URL=Config.productsCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -80,17 +79,17 @@ public class DeleteProducts extends AppCompatActivity {
                 final int rpid = pid;
 
                     //SAVE
-                    ProductImages s=new ProductImages();
+                    ProductsDB s=new ProductsDB();
                     s.setId(rpid);
                 if(s==null)
                 {
-                    Toast.makeText(DeleteProducts.this, "No Data To Save", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DeleteProducts.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     AndroidNetworking.post(DATA_INSERT_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("id", String.valueOf(s.getId()))
+                            .addBodyParameter("productid", String.valueOf(s.getId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -102,11 +101,15 @@ public class DeleteProducts extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
+
                                                 //CLEAR EDITXTS
+
 
                                             }else
                                             {
-                                                Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                Intent in=new Intent(DeleteProducts.this,DeleteProducts.class);
+                                                startActivity(in);
+                                                //Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -143,7 +146,7 @@ public class DeleteProducts extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost("http://10.0.2.2/abc/deleteproducts.php");
+                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -168,19 +171,17 @@ public class DeleteProducts extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productcrafts.clear();
-                ProductImages productcraft;
+                productsDBs.clear();
+                ProductsDB productsDB;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     int pid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
-                    productcraft=new ProductImages();
-                    productcraft.setId(pid);
-                    productcraft.setName(pname);
-                    productcrafts.add(productcraft);
-
-
+                    productsDB=new ProductsDB();
+                    productsDB.setId(pid);
+                    productsDB.setName(pname);
+                    productsDBs.add(productsDB);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -192,8 +193,8 @@ public class DeleteProducts extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productcrafts.size();i++){
-                listItems.add(productcrafts.get(i).getName());
+            for(int i=0;i<productsDBs.size();i++){
+                listItems.add(productsDBs.get(i).getName());
             }
 
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
@@ -203,10 +204,10 @@ public class DeleteProducts extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductImages productcraft = (ProductImages) productcrafts.get(position);
-                    final String name = productcraft.getName();
+                    ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
+                    final String name = productsDB.getName();
                     //  final int pid
-                    final int pid =productcraft.getId() ;
+                    final int pid =productsDB.getId() ;
                     handleClickEvents(pid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,

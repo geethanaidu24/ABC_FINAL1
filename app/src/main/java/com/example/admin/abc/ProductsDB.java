@@ -4,7 +4,7 @@ package com.example.admin.abc;
  * Created by Geetha on 4/7/2017 for single data item.
  */
 
-public class ProductImages {
+public class ProductsDB {
 
     public int ProductId;
 
@@ -12,7 +12,7 @@ public class ProductImages {
 
     public String ImageUrl;
 
-    public ProductImages(){
+    public ProductsDB(){
 
     }
 

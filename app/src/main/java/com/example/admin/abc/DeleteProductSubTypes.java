@@ -3,8 +3,8 @@ package com.example.admin.abc;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,9 +29,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class DeleteProductTypes extends AppCompatActivity {
+/**
+ * Created by Geetha on 5/4/2017.
+ */
 
-    final ArrayList<ProductTypesDB> productTypesDBs = new ArrayList<>();
+public class DeleteProductSubTypes extends AppCompatActivity {
+    final ArrayList<ProductSubTypesDB> productSubTypesDBs = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<ProductTypesDB> adapter ;
@@ -40,10 +43,13 @@ public class DeleteProductTypes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_product_types);
+        setContentView(R.layout.activity_delete_product_subtypes);
+        // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -52,9 +58,11 @@ public class DeleteProductTypes extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
+                    Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
                     in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);
+                    in.putExtra("PRODUCTNAME_KEY", ptid);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     startActivity(in);
                 }
             });
@@ -66,8 +74,8 @@ public class DeleteProductTypes extends AppCompatActivity {
     {
 
 
-        btnAdd= (Button) findViewById(R.id.deletebtn);
-        sp= (Spinner) findViewById(R.id.spdelete);
+        btnAdd= (Button) findViewById(R.id.deletesubbtn);
+        sp= (Spinner) findViewById(R.id.spsubdelete);
     }
     /*
     HANDLE CLICK EVENTS
@@ -89,13 +97,13 @@ public class DeleteProductTypes extends AppCompatActivity {
                 s.setId(rpid);
                 if(s==null)
                 {
-                    Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("producttypeid", String.valueOf(s.getId()))
+                            .addBodyParameter("productsubtypeid", String.valueOf(s.getId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -105,23 +113,23 @@ public class DeleteProductTypes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSubTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
                                                 //CLEAR EDITXTS
 
                                             }else
                                             {
-                                                Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProductTypes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSubTypes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR
                                 @Override
                                 public void onError(ANError anError) {
-                                    Toast.makeText(DeleteProductTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DeleteProductSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -131,7 +139,7 @@ public class DeleteProductTypes extends AppCompatActivity {
     }
     public void onStart() {
         super.onStart();
-        BackTask bt = new BackTask();
+        DeleteProductSubTypes.BackTask bt = new BackTask();
         bt.execute();
     }
 
@@ -142,13 +150,13 @@ public class DeleteProductTypes extends AppCompatActivity {
             super.onPreExecute();
             list = new ArrayList<>();
         }
-
+// for spinner
         protected Void doInBackground(Void... params) {
             InputStream is = null;
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
+                HttpPost httppost = new HttpPost(Config.productSubTypeSpinner);
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -173,17 +181,17 @@ public class DeleteProductTypes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productTypesDBs.clear();
-                ProductTypesDB productTypesDB;
+                productSubTypesDBs.clear();
+                ProductSubTypesDB productSubTypesDB;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int ptid = jo.getInt("ProductTypeId");
-                    String ptname = jo.getString("ProductType");
-                    productTypesDB=new ProductTypesDB();
-                    productTypesDB.setProductTypeId(ptid);
-                    productTypesDB.setProductType(ptname);
-                    productTypesDBs.add(productTypesDB);
+                    int pstid = jo.getInt("ProductSubTypeId");
+                    String pstname = jo.getString("ProductSubTypeName");
+                    productSubTypesDB=new ProductSubTypesDB();
+                    productSubTypesDB.setProductSubTypeId(pstid);
+                    productSubTypesDB.setProductSubTypeName(pstname);
+                    productSubTypesDBs.add(productSubTypesDB);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -195,21 +203,21 @@ public class DeleteProductTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productTypesDBs.size();i++){
-                listItems.add(productTypesDBs.get(i).getProductType());
+            for(int i=0;i<productSubTypesDBs.size();i++){
+                listItems.add(productSubTypesDBs.get(i).getProductSubTypeName());
             }
 
-            adapter=new ArrayAdapter(DeleteProductTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
+            adapter=new ArrayAdapter(DeleteProductSubTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
-                    final String name = productTypesDB.getProductType();
+                    ProductSubTypesDB productSubTypesDB = (ProductSubTypesDB) productSubTypesDBs.get(position);
+                    final String name = productSubTypesDB.getProductSubTypeName();
                     //  final int pid
-                    final int pid =productTypesDB.getProductTypeId() ;
+                    final int pid =productSubTypesDB.getProductSubTypeId() ;
                     handleClickEvents(pid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
@@ -221,7 +229,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
-                    Toast.makeText(DeleteProductTypes.this,
+                    Toast.makeText(DeleteProductSubTypes.this,
                             "Your Selected : Nothing",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -233,4 +241,5 @@ public class DeleteProductTypes extends AppCompatActivity {
     }
 
 }
+
 

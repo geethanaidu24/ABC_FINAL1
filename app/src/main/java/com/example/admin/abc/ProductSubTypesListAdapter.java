@@ -15,17 +15,17 @@ import java.util.ArrayList;
  * Created by Geetha on 4/20/2017 for displaying products sub types in listview.
  */
 
-public class ProductTypeSubTypesListAdapter extends BaseAdapter {
+public class ProductSubTypesListAdapter extends BaseAdapter {
 
     Context c;
 
-    ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems;
+    ArrayList<ProductSubTypesDB> productSubTypesDBs;
     int pid,ptid;
     String pname,ptname;
     LayoutInflater inflater;
-    public ProductTypeSubTypesListAdapter(Context c, ArrayList<ProductTypeSubTypeItem> productTypeSubTypeItems, int pid, String pname, int ptid, String ptname) {
+    public ProductSubTypesListAdapter(Context c, ArrayList<ProductSubTypesDB> productSubTypesDBs, int pid, String pname, int ptid, String ptname) {
         this.c = c;
-        this.productTypeSubTypeItems = productTypeSubTypeItems;
+        this.productSubTypesDBs = productSubTypesDBs;
         this.pid = pid;
         this.pname = pname;
         this.ptid = ptid;
@@ -34,11 +34,11 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return productTypeSubTypeItems.size();
+        return productSubTypesDBs.size();
     }
     @Override
     public Object getItem(int position) {
-        return productTypeSubTypeItems.get(position);
+        return productSubTypesDBs.get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -53,13 +53,13 @@ public class ProductTypeSubTypesListAdapter extends BaseAdapter {
         TextView typeNameTxt= (TextView) convertView.findViewById(R.id.txtSubTypePro);
         ImageView img= (ImageView) convertView.findViewById(R.id.imageSubTypePro);
         //BIND DATA
-        ProductTypeSubTypeItem  productTypeSubTypeItem=(ProductTypeSubTypeItem) this.getItem(position);
-        final int pstid = productTypeSubTypeItem.getProductSubTypeId();
-        final int ptid = productTypeSubTypeItem.getProductTypeId();
-        final String pstname = productTypeSubTypeItem.getProductSubTypeName();
-        final String url = productTypeSubTypeItem.getImageUrl();
+        ProductSubTypesDB  productSubTypesDB=(ProductSubTypesDB) this.getItem(position);
+        final int pstid = productSubTypesDB.getProductSubTypeId();
+        final int ptid = productSubTypesDB.getProductTypeId();
+        final String pstname = productSubTypesDB.getProductSubTypeName();
+        final String url = productSubTypesDB.getImageUrl();
         final String finalUrl=Config.mainUrlAddress + url;
-        typeNameTxt.setText(productTypeSubTypeItem.getProductSubTypeName());
+        typeNameTxt.setText(productSubTypesDB.getProductSubTypeName());
         //IMG
         PicassoClient.downloadImage(c,finalUrl,img);
 

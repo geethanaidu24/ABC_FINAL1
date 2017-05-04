@@ -48,7 +48,7 @@ import java.util.UUID;
 import static android.view.View.OnClickListener;
 
 public class AddProductsTypes extends AppCompatActivity implements OnClickListener {
-    private static final String UPLOAD_URL = Config.addProductTypes;
+    private static final String UPLOAD_URL = Config.productTypesCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -59,14 +59,18 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Uri filePath;
     public int pid=0;
     Context context;
-    final ArrayList<ProductImages> productcrafts =new ArrayList<>();
+    final ArrayList<ProductsDB> productsDBs =new ArrayList<>();
     private Spinner sp;
-    private ArrayAdapter<ProductImages> adapter ;
+    private ArrayAdapter<ProductsDB> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_products_types);
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -76,16 +80,18 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",name);
                     startActivity(in);
                 }
             });
 
         }
-        setContentView(R.layout.activity_add_products_types);
+
         imageView = (ImageView)findViewById(R.id.image2);
-        etCaption = (EditText)findViewById(R.id.productsubtypes);
+        etCaption = (EditText)findViewById(R.id.producttypes);
         tvPath    = (TextView)findViewById(R.id.path);
-        sp = (Spinner)findViewById(R.id.addProTySp);
+        sp = (Spinner)findViewById(R.id.addProSp);
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
@@ -111,7 +117,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSpinner);
+                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -136,17 +142,17 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productcrafts.clear();
-                ProductImages productcraft;
+                productsDBs.clear();
+                ProductsDB productsDB;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    pid = jo.getInt("ProductId");
+                  int pid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
-                    productcraft=new ProductImages();
-                    productcraft.setId(pid);
-                    productcraft.setName(pname);
-                    productcrafts.add(productcraft);
+                    productsDB=new ProductsDB();
+                    productsDB.setId(pid);
+                    productsDB.setName(pname);
+                    productsDBs.add(productsDB);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -156,39 +162,13 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
         protected void onPostExecute(Void result) {
 
-            // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productcrafts.size();i++){
-                listItems.add(productcrafts.get(i).getName());
+            for(int i=0;i<productsDBs.size();i++){
+                listItems.add(productsDBs.get(i).getName());
             }
-            adapter=new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
+            adapter = new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
-            /*sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                           int position, long id) {
-                    ProductImages productcraft = (ProductImages) productcrafts.get(position);
-                    final String name = productcraft.getName();
-                    //  final int pid
-                    final int pid =productcraft.getId() ;
-                    //uploadMultipart();
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
-                }
-                public void onNothingSelected(AdapterView<?> arg0) {
-                    // TODO Auto-generated method stub
-                    Toast.makeText(AddProductsTypes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }
-
-            });*/
         }
     }
 
@@ -201,7 +181,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else if(view == btnUpload){
             checkData();
-            //uploadMultipart();
+            //for checking empty values
         }
     }
 
@@ -210,8 +190,12 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
+            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+            etCaption.setText("");
+            tvPath.setText("");
+            imageView.setImageResource(R.mipmap.browseimage);
         }
-      //  checkupload();
+
     }
 
     @Override
@@ -237,11 +221,11 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                ProductImages productcraft = (ProductImages) productcrafts.get(position);
-                final String name = productcraft.getName();
-                //  final int pid
-               pid =productcraft.getId() ;
-                //uploadMultipart();
+                ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
+                final String name = productsDB.getName();
+
+               pid =productsDB.getId() ;
+
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
@@ -258,61 +242,28 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             }
 
         });
+        ProductsDB s = new ProductsDB();
+        s.setName(caption);
+        s.setId(pid);
+        //Uploading code
+        try {
+            String uploadId = UUID.randomUUID().toString();
 
-       /* if((caption.length()<1))
-        {
-            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
-        }
-        else {*/
-            ProductImages s = new ProductImages();
-            s.setName(caption);
-            s.setId(pid);
-            //s.setId(pid);
-            //Uploading code
-            try {
-                String uploadId = UUID.randomUUID().toString();
+            //Creating a multi part request
+            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                    .addParameter("action","save")
+                    .addFileToUpload(path, "image") //Adding file
+                    .addParameter("caption", caption) //Adding text parameter to the request
+                    .addParameter("productid", String.valueOf(pid))
+                    .setNotificationConfig(new UploadNotificationConfig())
+                    .setMaxRetries(2)
+                    .startUpload(); //Starting the upload
 
-                //Creating a multi part request
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("caption", caption) //Adding text parameter to the request
-                        .addParameter("productid", String.valueOf(pid))
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload
-
-            } catch (Exception exc) {
+        } catch (Exception exc) {
                 Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+        }
 
     }
-    /*public void checkupload(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage("Do You want to Continue.");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
-                        startActivity(in);
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,Products.class);
-                        startActivity(in);
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-       /* }}*/
-
 
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
@@ -339,6 +290,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             //If the user has denied the permission previously your code will come to this block
             //Here you can explain why you need this permission
             //Explain here why you need this permission
+            Toast.makeText(this, "You Need Permission to read from the storage", Toast.LENGTH_LONG).show();
         }
         //And finally ask for the permission
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);

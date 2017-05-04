@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
@@ -28,7 +27,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class AddProducts extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = Config.addProducts;
+    private static final String UPLOAD_URL = Config.productsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -57,6 +56,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             });
 
         }
+
         imageView = (ImageView)findViewById(R.id.image2);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.path);
@@ -81,7 +81,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
-                    Toast.makeText(this, "Successfull Completed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                     etCaption.setText("");
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);

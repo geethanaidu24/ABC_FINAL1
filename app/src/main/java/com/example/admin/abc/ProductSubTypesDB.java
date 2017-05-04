@@ -4,7 +4,7 @@ package com.example.admin.abc;
  * Created by Geetha on 4/20/2017 for storing data from database into local variables using below functions.
  */
 
-public class ProductTypeSubTypeItem {
+public class ProductSubTypesDB {
     public int ProductSubTypeId;
     public String ProductSubTypeName;
     public String ImageUrl;

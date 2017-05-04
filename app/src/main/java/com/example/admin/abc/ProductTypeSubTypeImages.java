@@ -47,13 +47,12 @@ public class ProductTypeSubTypeImages extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(ProductTypeSubTypeImages.this,ProductTypeSubTypes.class);
+                    Intent intent=new Intent(ProductTypeSubTypeImages.this,ProductSubTypes.class);
                     intent.putExtra("PRODUCTID_KEY",pid);
                     intent.putExtra("PRODUCTNAME_KEY",pname);
                     intent.putExtra("PRODUCTTYPEID_KEY", ptid);
                     intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
                     intent.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-
                     startActivity(intent);
                 }
             });

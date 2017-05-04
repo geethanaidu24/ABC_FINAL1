@@ -4,7 +4,7 @@ package com.example.admin.abc;
  * Created by Geetha on 4/11/2017.
  */
 
-public class ProductTypeItem {
+public class ProductTypesDB {
 
     public int ProductTypeId;
     public String ProductType;
