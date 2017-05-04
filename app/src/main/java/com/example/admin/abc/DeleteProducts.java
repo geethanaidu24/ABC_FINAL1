@@ -3,9 +3,8 @@ package com.example.admin.abc;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,6 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -26,17 +29,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import cz.msebera.android.httpclient.HttpEntity;
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.methods.HttpUriRequest;
-
 public class DeleteProducts extends AppCompatActivity {
-    final ArrayList<Productcraft> productcrafts = new ArrayList<>();
+    final ArrayList<ProductImages> productcrafts = new ArrayList<>();
     // ArrayAdapter<String> adapter;
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<Productcraft> adapter ;
+    private ArrayAdapter<ProductImages> adapter ;
+    private static final String DATA_INSERT_URL="http://192.168.0.8/abc/CRUD.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -61,10 +60,8 @@ public class DeleteProducts extends AppCompatActivity {
     private void initializeViews()
     {
 
-        //txtPropellant= (TextInputEditText) findViewById(R.id.propellantTxt);
 
         btnAdd= (Button) findViewById(R.id.addBtn);
-        // btnRetrieve= (Button) findViewById(R.id.refreshBtn);
         sp= (Spinner) findViewById(R.id.sp);
     }
     /*
@@ -83,13 +80,46 @@ public class DeleteProducts extends AppCompatActivity {
                 final int rpid = pid;
 
                     //SAVE
-                    Productcraft s=new Productcraft();
+                    ProductImages s=new ProductImages();
+                    s.setId(rpid);
+                if(s==null)
+                {
+                    Toast.makeText(DeleteProducts.this, "No Data To Save", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    AndroidNetworking.post(DATA_INSERT_URL)
+                            .addBodyParameter("action","delete")
+                            .addBodyParameter("id", String.valueOf(s.getId()))
+                            .setTag("TAG_ADD")
+                            .build()
+                            .getAsJSONArray(new JSONArrayRequestListener() {
+                                @Override
+                                public void onResponse(JSONArray response) {
+                                    if(response != null)
+                                        try {
+                                            //SHOW RESPONSE FROM SERVER
+                                            String responseString = response.get(0).toString();
+                                            Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Success")) {
+                                                //CLEAR EDITXTS
 
-                    // s.setPname();
-
-                    s.setPRODUCTID(rpid);
-                    new MySQLClient(DeleteProducts.this).add(s,spinSelVal);
-
+                                            }else
+                                            {
+                                                Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            Toast.makeText(DeleteProducts.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                }
+                                //ERROR
+                                @Override
+                                public void onError(ANError anError) {
+                                    Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
 
@@ -139,15 +169,15 @@ public class DeleteProducts extends AppCompatActivity {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
                 productcrafts.clear();
-                Productcraft productcraft;
+                ProductImages productcraft;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     int pid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
-                    productcraft=new Productcraft();
-                    productcraft.setPRODUCTID(pid);
-                    productcraft.setPRODUCTNAME(pname);
+                    productcraft=new ProductImages();
+                    productcraft.setId(pid);
+                    productcraft.setName(pname);
                     productcrafts.add(productcraft);
 
 
@@ -163,11 +193,9 @@ public class DeleteProducts extends AppCompatActivity {
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
             for(int i=0;i<productcrafts.size();i++){
-                listItems.add(productcrafts.get(i).getPRODUCTNAME());
+                listItems.add(productcrafts.get(i).getName());
             }
-            //listItems.addAll(list);
-            // SpinnerAdapter spinnerAdapter = new SpinnerAdapter(MainActivity.this,productcrafts);
-            // sp.setAdapter(spinnerAdapter);
+
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             // adapter.notifyDataSetChanged();
@@ -175,10 +203,10 @@ public class DeleteProducts extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    Productcraft productcraft = (Productcraft)productcrafts.get(position);
-                    final String name = productcraft.getPRODUCTNAME();
+                    ProductImages productcraft = (ProductImages) productcrafts.get(position);
+                    final String name = productcraft.getName();
                     //  final int pid
-                    final int pid =productcraft.getPRODUCTID() ;
+                    final int pid =productcraft.getId() ;
                     handleClickEvents(pid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
