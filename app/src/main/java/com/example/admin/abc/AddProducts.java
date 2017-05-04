@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class AddProducts extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = "http://192.168.0.4/abc/insert_image.php";
+    private static final String UPLOAD_URL = Config.addProducts;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -82,6 +82,10 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                 } else {
                     uploadMultipart();
                     Toast.makeText(this, "Successfull Completed", Toast.LENGTH_SHORT).show();
+                    etCaption.setText("");
+                    tvPath.setText("");
+                    imageView.setImageResource(R.mipmap.browseimage);
+
                 }
             }
         }
@@ -113,11 +117,13 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
 
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                    .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
-                    .startUpload(); //Starting the upload
+                    .startUpload();
+            //Starting the upload
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
