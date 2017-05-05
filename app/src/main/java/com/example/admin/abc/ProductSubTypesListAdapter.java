@@ -75,7 +75,7 @@ public class ProductSubTypesListAdapter extends BaseAdapter {
     }
 
     public void openProductTypeSizeImagessActivity(int pid, String pname, int ptid, String ptname,  int pstid){
-        Intent intent = new Intent(c,ProductTypeSubTypeImages.class);
+        Intent intent = new Intent(c,ProductSubTypeGridView.class);
         intent.putExtra("PRODUCTID_KEY",pid);
         intent.putExtra("PRODUCTNAME_KEY",pname);
         intent.putExtra("PRODUCTTYPEID_KEY", ptid);

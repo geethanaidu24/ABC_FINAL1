@@ -340,10 +340,11 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
+                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
 
 
                 //  final int pid
-                ptid = gridDataDB.getProductTypeId();
+               ptid = gridDataDB.getProductTypeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -367,10 +368,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
-                final String name = productcraft.getProductType();
+                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+
                 //  final int pid
-                pid = productcraft.getProductId();
+               pid = gridDataDB.getProductId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -398,6 +399,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         s.setNname(namec);
         s.setBrand(brandc);
         s.setColor(colorc);
+    s.setProductSizeId(psid);
         s.setProductSubTypeId(pstid);
         s.setProductTypeId(ptid);
         s.setProductId(pid);
