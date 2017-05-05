@@ -148,6 +148,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
 
         <activity android:name="DeleteProductSubTypes">
         </activity>
+        <activity android:name=".DeleteProductTypeSizes"></activity>
     </application>
 
 </manifest>

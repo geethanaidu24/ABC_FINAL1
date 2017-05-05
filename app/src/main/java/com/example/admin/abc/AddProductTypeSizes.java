@@ -211,7 +211,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             int heig=Integer.parseInt(height);
 
             String length=txtlength.getText().toString();
-           // int leng=Integer.parseInt(length);
+            int leng=Integer.parseInt(length);
 
 
             String spinSelVal = sp1.getSelectedItem().toString();
@@ -270,7 +270,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             SizesDB s = new SizesDB();
             s.setWidth(wid);
             s.setHeight(heig);
-            s.setLength(length);
+            s.setLength(leng);
             s.setProductId(ipid);
             s.setProductTypeId(iptid);
             //Uploading code
@@ -279,7 +279,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                         .addBodyParameter("action","save")
                         .addBodyParameter("width", String.valueOf(wid))
                         .addBodyParameter("height",String.valueOf(heig))
-                         .addBodyParameter("length",String.valueOf(length))
+                        .addBodyParameter("length",String.valueOf(length))
                         .addBodyParameter("productid", String.valueOf(ipid))
                         .addBodyParameter("producttypeid",String.valueOf(iptid))
                         .setTag("TAG_ADD")

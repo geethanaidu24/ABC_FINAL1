@@ -71,9 +71,6 @@ public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSiz
 
 
 
-
-
-
                                             // FOR Spinners
 
     // For product Types spinner
@@ -82,8 +79,11 @@ public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinn
 public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
     // For product Subtypes Grid spinner
 public final static String productSubTypeGridSpinner = mainUrlAddress+"productSubTypeGridSpinner.php";
-    // For product All Sizes Spinner
+    // For product All product and types for Sizes Spinner for adding
 public final static String productAllSizeSpinner = mainUrlAddress+"productAllSizeSpinner.php";
+    // For product all sizes spinner for deleting
+public final static String productTypeSizeDelSpinner = mainUrlAddress+"productTypeSizeDelSpinner.php";
+
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";

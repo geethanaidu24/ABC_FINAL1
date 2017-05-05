@@ -90,7 +90,7 @@ public class ProductTypeSizes extends AppCompatActivity {
                                     startActivity(in);
                                 }
                                 if (id == R.id.griddelete) {
-                                    Intent in = new Intent(ProductTypeSizes.this, DeleteProducts.class);
+                                    Intent in = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
                                     in.putExtra("PRODUCTID_KEY", pid);
                                     in.putExtra("PRODUCTNAME_KEY",pname);
                                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
