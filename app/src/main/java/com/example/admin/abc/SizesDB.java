@@ -38,7 +38,7 @@ class SizesDB {
         public void setHeight(int height){
             this.Height = height;
         }
-        public String getLength(String leng){
+        public String getLength(){
             return Length;
         }
         public void setLength(String length){

@@ -110,12 +110,14 @@
             android:textColor="@color/cred"
             android:textSize="18sp" />
 
-        <Spinner
+        <android.support.v7.widget.AppCompatSpinner
             android:id="@+id/addProSp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textView15"
-            android:layout_toEndOf="@+id/textView15" />
+            android:layout_toEndOf="@+id/textView15"
+
+             />
 
 
     </RelativeLayout>
