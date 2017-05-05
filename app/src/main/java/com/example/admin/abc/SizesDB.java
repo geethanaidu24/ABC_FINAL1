@@ -9,7 +9,7 @@ class SizesDB {
 
         public int Width;
         public int Height;
-        public int Length;
+        public String Length;
 
         public int ProductSizeImageId;
 
@@ -38,10 +38,10 @@ class SizesDB {
         public void setHeight(int height){
             this.Height = height;
         }
-        public int getLength(){
+        public String getLength(){
             return Length;
         }
-        public void setLength(int length){
+        public void setLength(String length){
             this.Length = length;
         }
 

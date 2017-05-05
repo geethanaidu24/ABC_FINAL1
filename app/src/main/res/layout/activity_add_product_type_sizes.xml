@@ -52,7 +52,7 @@
             android:textSize="24sp"/>
 
         <Button
-            android:id="@+id/addbtn"
+            android:id="@+id/addbtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -75,12 +75,11 @@
             android:textSize="18sp"/>
 
         <EditText
-            android:id="@+id/wid"
+            android:id="@+id/width1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView35"
             android:layout_alignBottom="@+id/textView35"
-            android:layout_alignStart="@+id/addbtn"
+            android:layout_alignStart="@+id/addbtn1"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:textColor="@color/cred"
@@ -92,41 +91,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textView35"
-            android:layout_below="@+id/wid"
+            android:layout_below="@+id/width1"
             android:layout_marginTop="15dp"
             android:textColor="@color/cred"
             android:textSize="18sp"
             android:text="Enter Height"/>
 
         <EditText
-            android:id="@+id/hei"
+            android:id="@+id/height1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/wid"
-            android:layout_below="@+id/wid"
             android:ems="10"
             android:textColor="@color/cred"
             android:textSize="18sp"
             android:inputType="textPersonName"
-            />
+            android:layout_below="@+id/width1"
+            android:layout_alignStart="@+id/width1"/>
 
         <TextView
             android:id="@+id/textView37"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textView36"
-            android:layout_below="@+id/hei"
+            android:layout_below="@+id/height1"
             android:layout_marginTop="15dp"
             android:textColor="@color/cred"
             android:textSize="18sp"
             android:text="Enter Length"/>
 
         <EditText
-            android:id="@+id/len"
+            android:id="@+id/length1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/hei"
-            android:layout_below="@+id/hei"
+            android:layout_alignStart="@+id/height1"
+            android:layout_below="@+id/height1"
             android:ems="10"
             android:textColor="@color/cred"
             android:textSize="18sp"
@@ -138,40 +136,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textView37"
-            android:layout_below="@+id/len"
+            android:layout_below="@+id/length1"
             android:layout_marginTop="15dp"
+            android:text="Products Types"
             android:textColor="@color/cred"
-            android:textSize="18sp"
-            android:text="Product Types"/>
+            android:textSize="18sp"/>
 
         <Spinner
-            android:id="@+id/spinner7"
+            android:id="@+id/productsspinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView38"
-            android:layout_alignStart="@+id/len"
+            android:layout_alignEnd="@+id/length1"
+            android:layout_alignStart="@+id/length1"
             android:textColor="@color/cred"
-            android:textSize="18sp"
-            android:layout_alignEnd="@+id/len"/>
+            android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textView38"
             android:layout_below="@+id/textView38"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
+            android:text="Products"
             android:textColor="@color/cred"
-            android:textSize="18sp"
-            android:text="Products"/>
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/spinner8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView39"
-            android:layout_alignStart="@+id/spinner7"
-            android:layout_alignEnd="@+id/spinner7"/>
+            android:layout_alignBottom="@+id/textView12"
+            android:textColor="@color/cred"
+            android:textSize="18sp"
+            android:layout_alignEnd="@+id/productsspinner"
+            android:layout_toEndOf="@+id/textView38"/>
 
 
     </RelativeLayout>

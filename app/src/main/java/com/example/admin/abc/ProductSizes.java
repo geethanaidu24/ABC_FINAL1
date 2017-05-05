@@ -64,7 +64,7 @@ public class ProductSizes extends AppCompatActivity {
                             int id = item.getItemId();
 
                             if (id == R.id.gridadd) {
-                                Intent in = new Intent(ProductSizes.this, AddTypesSizes.class);
+                                Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
                                 startActivity(in);
                             }
                             if (id == R.id.griddelete) {

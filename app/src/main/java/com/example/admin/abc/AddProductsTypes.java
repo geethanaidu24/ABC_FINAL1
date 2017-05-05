@@ -59,9 +59,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Uri filePath;
     public int spid=0;
     Context context;
+    private String Select;
     final ArrayList<ProductsDB> productsDBs =new ArrayList<>();
     private Spinner sp;
-    private ArrayAdapter<ProductsDB> adapter ;
+    private ArrayAdapter<String> adapter ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,8 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         etCaption = (EditText)findViewById(R.id.producttypes);
         tvPath    = (TextView)findViewById(R.id.path);
         sp = (Spinner)findViewById(R.id.addProSp);
+        //sp.setPrompt("Select");
+
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
@@ -163,10 +166,13 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         protected void onPostExecute(Void result) {
 
             final ArrayList<String> listItems = new ArrayList<>();
+
             for(int i=0;i<productsDBs.size();i++){
-                listItems.add(productsDBs.get(i).getName());
+
+      listItems.add(productsDBs.get(i).getName());
             }
             adapter = new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
+
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
@@ -225,19 +231,23 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
-                final String productName = productsDB.getName();
+                //  sp.setSelection(adapter.getPosition(Select));
+                // sp.setSelection(position);
 
-               spid =productsDB.getId() ;
+                    ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
+                    final String productName = productsDB.getName();
 
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
+                    spid = productsDB.getId();
+
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog,
+                                            int which) {
+                            // TODO Auto-generated method stub
+                            dialog.dismiss();
+                        }
+                    };
+                }
+
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
                 Toast.makeText(AddProductsTypes.this,

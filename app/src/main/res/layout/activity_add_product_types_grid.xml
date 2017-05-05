@@ -166,15 +166,14 @@
 
 
             <Spinner
-                android:id="@+id/subtypesspinner"
+                android:id="@+id/subtypesspinner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/sizespinner2"
                 android:layout_alignTop="@+id/textView21"/>
 
             <EditText
-                android:id="@+id/color"
+                android:id="@+id/color2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView17"
@@ -195,7 +194,7 @@
 
 
             <Spinner
-                android:id="@+id/typesspinner"
+                android:id="@+id/typesspinner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -215,38 +214,31 @@
 
 
             <Spinner
-                android:id="@+id/productspinner"
+                android:id="@+id/productspinner2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/textView23"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignStart="@+id/typesspinner2"/>
 
 
 
-    <Button
-        android:id="@+id/btnadd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textView23"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@color/cred"
-        android:text="ADD"
-        android:textColor="@color/white"/>
+            <Button
+                android:id="@+id/btnadd2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@+id/textView23"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/cred"
+                android:text="ADD"
+                android:textColor="@color/white"/>
         </RelativeLayout>
     </ScrollView>
 
-    <TextView
-        android:id="@+id/path"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/toolbar"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="200dp"
-        android:text="Path"/>
+
 
 </RelativeLayout>
 

@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.6/abc/";
+public final static String mainUrlAddress = "http://192.168.0.2/abc/";
 
     // For admin login
 
@@ -69,7 +69,8 @@ public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubT
     //For performing crud on product type sizes
 public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
 
-
+// For performin crud on product sizes
+public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.php";
 
                                             // FOR Spinners
 

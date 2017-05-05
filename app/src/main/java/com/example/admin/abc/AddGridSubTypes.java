@@ -45,7 +45,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static com.example.admin.abc.R.id.name1;
+import static com.example.admin.abc.R.id.name2;
 
 public class AddGridSubTypes extends AppCompatActivity implements View.OnClickListener {
     private static final String addGridData = Config.productSubTypeGridsCRUD;
@@ -66,7 +66,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
 
     private Spinner sp1,sp2,sp3,sp4;
-    private ArrayAdapter<GridDataDB> adapter ;
+    private ArrayAdapter<GridDataDB> adapter1 ;
+    private ArrayAdapter<GridDataDB> adapter2 ;
+    private ArrayAdapter<GridDataDB> adapter3 ;
+    private ArrayAdapter<GridDataDB> adapter4 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getSupportActionBar().hide();
@@ -85,11 +88,11 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 }
             });
             imageView = (ImageView) findViewById(R.id.image);
-            name = (EditText) findViewById(name1);
+            name = (EditText) findViewById(name2);
             Path = (TextView) findViewById(R.id.path);
-            brand = (EditText) findViewById(R.id.brand);
+            brand = (EditText) findViewById(R.id.brand2);
             color = (EditText) findViewById(R.id.color);
-            sp1 = (Spinner) findViewById(R.id.sizespinner);
+            sp1 = (Spinner) findViewById(R.id.sizespinner2);
             sp2 = (Spinner) findViewById(R.id.subtypesspinner);
             sp3 = (Spinner) findViewById(R.id.typesspinner);
             sp4 = (Spinner) findViewById(R.id.productspinner);
@@ -159,12 +162,12 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         String ProductName = jo.getString("ProductName");
                         String productType = jo.getString("ProductType");
                         String subTypeName = jo.getString("ProductSubTypeName");
-                        int width = jo.getInt("Width");
-                        int height = jo.getInt("Height");
-                        int length = jo.getInt("Length");
-                        String name = jo.getString("Name");
-                        String brand = jo.getString("Brand");
-                        String color = jo.getString("Color");
+                       // int width = jo.getInt("Width");
+                       // int height = jo.getInt("Height");
+                      //  int length = jo.getInt("Length");
+                      //  String name = jo.getString("Name");
+                      //  String brand = jo.getString("Brand");
+                      //  String color = jo.getString("Color");
 
                         gridDataDB = new GridDataDB();
                         gridDataDB.setProductSizeId(psid);
@@ -174,12 +177,11 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         gridDataDB.setName(ProductName);
                         gridDataDB.setProductType(productType);
                         gridDataDB.setProductSubTypeName(subTypeName);
-                        gridDataDB.setWidth(width);
-                        gridDataDB.setHeight(height);
-                        gridDataDB.setLength(length);
-                        gridDataDB.setNname(name);
-                        gridDataDB.setBrand(brand);
-                        gridDataDB.setColor(color);
+                       // gridDataDB.setWidth(width);
+                       // gridDataDB.setHeight(height);
+//                        gridDataDB.setNname(name);
+                        //gridDataDB.setBrand(brand);
+                        //gridDataDB.setColor(color);
                         gridDataDBs.add(gridDataDB);
                     }
                 } catch (JSONException e) {
@@ -190,54 +192,69 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             protected void onPostExecute(Void result) {
 
-              /*  // productcrafts.addAll(productcrafts);
-                final ArrayList<String> listItems = new ArrayList<>();
-                for(int i=0;i<productcrafts.size();i++){
-                    listItems.add(productcrafts.get(i).getProductSizeId());
-
-                }
-                adapter=new ArrayAdapter(AddGridSubTypes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
-                sp1.setAdapter(adapter);
-                adapter.notifyDataSetChanged();*/
-
+               // productcrafts.addAll(productcrafts);
+                final ArrayList<Integer> listItems = new ArrayList<>();
                 final ArrayList<String> listItems2 = new ArrayList<>();
-                for (int i = 0; i < gridDataDBs.size(); i++) {
-                    listItems2.add(gridDataDBs.get(i).getProductSubTypeName());
-
-                }
-                adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
-                sp2.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
                 final ArrayList<String> listItems3 = new ArrayList<>();
-                for (int i = 0; i < gridDataDBs.size(); i++) {
-                    listItems3.add(gridDataDBs.get(i).getProductType());
-
-                }
-                adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
-                sp3.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
                 final ArrayList<String> listItems4 = new ArrayList<>();
-                for (int i = 0; i < gridDataDBs.size(); i++) {
-                    listItems4.add(gridDataDBs.get(i).getName());
 
+                for(int i=0;i<gridDataDBs.size();i++){
+                    listItems.add(gridDataDBs.get(i).getProductSizeId());
+                    listItems2.add(gridDataDBs.get(i).getProductSubTypeName());
+                    listItems3.add(gridDataDBs.get(i).getProductType());
+                    listItems4.add(gridDataDBs.get(i).getName());
                 }
-                adapter = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout4, R.id.txt4, listItems4);
-                sp4.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                adapter1=new ArrayAdapter(AddGridSubTypes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
+                sp1.setAdapter(adapter1);
+                adapter1.notifyDataSetChanged();
+
+                adapter2 = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
+                sp2.setAdapter(adapter2);
+                adapter2.notifyDataSetChanged();
+
+                adapter3 = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
+                sp3.setAdapter(adapter3);
+                adapter3.notifyDataSetChanged();
+
+
+                adapter4 = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout4, R.id.txt4, listItems4);
+                sp4.setAdapter(adapter4);
+                adapter4.notifyDataSetChanged();
             }
         }
 
-
+    @Override
+    public void onClick(View v) {
+        if (v == imageView) {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
+        } else if (v == btnadd) {
+            checkData();
+            //uploadMultipart();
+        }
+    }
 
 
 
     private void checkData() {
-        if (name.length() < 1 || Path.length() < 1) {
+        if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1) {
             Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
+            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+          name.setText("");
+            Path.setText("");
+            brand.setText("");
+            color.setText("");
+            //txtlength.setText("");
+            adapter1.notifyDataSetChanged();
+            adapter2.notifyDataSetChanged();
+            adapter3.notifyDataSetChanged();
+            adapter4.notifyDataSetChanged();
+            BackTask bt = new BackTask();
+            bt.execute();
         }
         //  checkupload();
     }
@@ -260,17 +277,21 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         String namec = name.getText().toString().trim();
         String brandc = brand.getText().toString().trim();
         String colorc = color.getText().toString().trim();
+        String spinSelVal1 = sp1.getSelectedItem().toString();
+        String spinSelVal2=sp2.getSelectedItem().toString();
+        String spinSelVal3 = sp3.getSelectedItem().toString();
+        String spinSelVal4=sp4.getSelectedItem().toString();
 
         //getting the actual path of the image
         String path = getPath(filePath);
-     /*   sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+      sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) productcrafts.get(position);
-                final String name = productcraft.getProductType();
+                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+                final String name = gridDataDB.getProductType();
                 //  final int pid
-                psid =productcraft.getProductSizeId() ;
+                psid =gridDataDB.getProductSizeId() ;
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -287,15 +308,15 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         Toast.LENGTH_SHORT).show();
             }
 
-        });*/
+        });
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
-                final String name = productcraft.getProductType();
+                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+
                 //  final int pid
-                pstid = productcraft.getProductSubTypeId();
+                pstid = gridDataDB.getProductSubTypeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -319,10 +340,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB productcraft = (GridDataDB) gridDataDBs.get(position);
-                final String name = productcraft.getProductType();
+
+
                 //  final int pid
-                ptid = productcraft.getProductTypeId();
+                ptid = gridDataDB.getProductTypeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -479,17 +500,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v == imageView) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        } else if (v == btnadd) {
-            checkData();
-            //uploadMultipart();
-        }
-    }
+
 }
 
