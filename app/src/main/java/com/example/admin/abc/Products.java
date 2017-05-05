@@ -20,11 +20,13 @@ public class Products extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
+
         final ListView lv = (ListView) findViewById(R.id.productLv);
 
         new ProductsDownloader(Products.this, urlAddress, lv).execute();
-
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
 
@@ -53,7 +55,7 @@ public class Products extends AppCompatActivity {
                             Intent in = new Intent(Products.this, AddProducts.class);
                             startActivity(in);
                         }
-                        if (id ==R.id.productdelete){
+                        if (id == R.id.productdelete) {
                             Intent in = new Intent(Products.this, DeleteProducts.class);
                             startActivity(in);
                         }
