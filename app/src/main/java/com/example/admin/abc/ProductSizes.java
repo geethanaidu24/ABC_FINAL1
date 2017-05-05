@@ -65,10 +65,12 @@ public class ProductSizes extends AppCompatActivity {
 
                             if (id == R.id.gridadd) {
                                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
                                 startActivity(in);
                             }
                             if (id == R.id.griddelete) {
-                                Intent in = new Intent(ProductSizes.this, DeleteProducts.class);
+                                Intent in = new Intent(ProductSizes.this, DeleteProductSizes.class);
+                                in.putExtra("PRODUCTID_KEY", pid);
                                 startActivity(in);
                             }
                             return true;

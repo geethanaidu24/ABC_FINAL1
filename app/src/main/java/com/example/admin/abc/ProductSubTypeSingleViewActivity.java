@@ -88,7 +88,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductTypeSubTypeImages.class);
+                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);

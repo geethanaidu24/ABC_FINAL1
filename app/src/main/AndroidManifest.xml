@@ -130,7 +130,7 @@
         </activity>
         <activity android:name=".AddGridSubTypes">
         </activity>
-<activity android:name=".ProductSubTypeGridView"></activity>
+        <activity android:name=".ProductSubTypeGridView"/>
         <!--
 ATTENTION: This was auto-generated to add Google Play services to your project for
     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -153,7 +153,9 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         </activity>
         <activity android:name=".AddProductTypesGrid">
         </activity>
-        <activity android:name=".DeleteProductTypeSizes"></activity>
+        <activity android:name=".DeleteProductTypeSizes"/>
+        <activity android:name=".DeleteProductSizes">
+        </activity>
     </application>
 
 </manifest>
