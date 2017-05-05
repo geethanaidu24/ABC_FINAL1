@@ -22,7 +22,6 @@ public class ProductTypeSizes extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-  //  final static String url = "http://192.168.0.4/abc/getProductSizes.php?ProductId="+"&ProductTypeId=";
     final static String url = Config.productTypeSizesUrlAddress;
 
         @Override
@@ -84,27 +83,24 @@ public class ProductTypeSizes extends AppCompatActivity {
                                 int id = item.getItemId();
 
                                 if (id == R.id.gridadd) {
-                                    Intent in = new Intent(ProductTypeSizes.this, AddTypesSizes.class);
+                                    Intent in = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
+                                    in.putExtra("PRODUCTID_KEY", pid);
+                                    in.putExtra("PRODUCTNAME_KEY",pname);
+                                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
                                     startActivity(in);
                                 }
                                 if (id == R.id.griddelete) {
                                     Intent in = new Intent(ProductTypeSizes.this, DeleteProducts.class);
+                                    in.putExtra("PRODUCTID_KEY", pid);
+                                    in.putExtra("PRODUCTNAME_KEY",pname);
+                                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
                                     startActivity(in);
                                 }
                                 return true;
                             }
                         });
             }
-       /* back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
-                in.putExtra("PRODUCTID_KEY", pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                startActivity(in);
-            }
-        });*/
+
     }
 
 }

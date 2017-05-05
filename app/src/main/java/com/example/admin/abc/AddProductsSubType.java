@@ -55,7 +55,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pstid=0;
+    public int pstid;
 
     Context context;
     final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
@@ -201,6 +201,9 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
+            adapter.notifyDataSetChanged();
+            BackTask bt = new BackTask();
+            bt.execute();
         }
 
     }

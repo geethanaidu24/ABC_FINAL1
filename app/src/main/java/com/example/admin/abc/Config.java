@@ -1,15 +1,5 @@
 package com.example.admin.abc;
 
-import android.widget.EditText;
-import android.widget.Toast;
-
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
 /**
  * Created by Geetha on 4/21/2017.
  */
@@ -18,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+public final static String mainUrlAddress = "http://192.168.0.6/abc/";
 
     // For admin login
 
@@ -76,6 +66,9 @@ public final static String productSubTypesCRUD = mainUrlAddress+"productSubTypes
     //For performing crud on product sub types grid view
 public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubTypeGridsCRUD.php";
 
+    //For performing crud on product type sizes
+public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
+
 
 
 
@@ -89,6 +82,8 @@ public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinn
 public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
     // For product Subtypes Grid spinner
 public final static String productSubTypeGridSpinner = mainUrlAddress+"productSubTypeGridSpinner.php";
+    // For product All Sizes Spinner
+public final static String productAllSizeSpinner = mainUrlAddress+"productAllSizeSpinner.php";
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";

@@ -7,10 +7,9 @@ package com.example.admin.abc;
 class SizesDB {
 
 
-
         public int Width;
         public int Height;
-        public int Length;
+        public String Length;
 
         public int ProductSizeImageId;
 
@@ -27,7 +26,6 @@ class SizesDB {
 
 
 
-
         public int getWidth(){
             return Width;
         }
@@ -40,10 +38,10 @@ class SizesDB {
         public void setHeight(int height){
             this.Height = height;
         }
-        public int getLength(int leng){
+        public String getLength(String leng){
             return Length;
         }
-        public void setLength(int length){
+        public void setLength(String length){
             this.Length = length;
         }
 
@@ -98,9 +96,7 @@ class SizesDB {
             this.ProductName = ProductName;
         }
 
-    public char[] setLength() {
-        return new char[0];
-    }
+
 }
 
 

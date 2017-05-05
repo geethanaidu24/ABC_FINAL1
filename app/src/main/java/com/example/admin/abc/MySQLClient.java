@@ -41,7 +41,7 @@ class MySQLClient {
                     .addBodyParameter("action","save")
                     .addBodyParameter("width", String.valueOf(s.getWidth()))
                    .addBodyParameter("height",String.valueOf(s.getHeight()))
-                    .addBodyParameter("length",String.valueOf(s.setLength()))
+                   // .addBodyParameter("length",String.valueOf(s.getLength()))
                     .addBodyParameter("pname",s.getName())
                     .addBodyParameter("pid", String.valueOf(s.getProductId()))
                     .addBodyParameter("pname1",s.getProductType())

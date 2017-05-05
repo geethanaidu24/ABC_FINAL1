@@ -194,6 +194,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
+            adapter.notifyDataSetChanged();
+            BackTask bt = new BackTask();
+            bt.execute();
+
         }
 
     }

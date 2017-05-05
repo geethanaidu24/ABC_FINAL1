@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,13 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-
-import net.gotev.uploadservice.MultipartUploadRequest;
-import net.gotev.uploadservice.UploadNotificationConfig;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -36,15 +29,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class AddTypesSizes extends AppCompatActivity {
-    private static final String DATA_INSERT_URL="http://10.0.2.2/abc/CRUD.php";
+    private static final String DATA_INSERT_URL= Config.productTypeSizesCRUD;
     private EditText txtwidth, txtheight, txtlength;
 
     private final Context c;
     final ArrayList<SizesDB> productcrafts = new ArrayList<>();
-    // ArrayAdapter<String> adapter;
     private Spinner sp1, sp2;
     private Button btnAdd;
     private ArrayAdapter<SizesDB> adapter;
@@ -104,7 +95,7 @@ public class AddTypesSizes extends AppCompatActivity {
                 int heig=Integer.parseInt(height);
 
                 String length=txtlength.getText().toString();
-                int leng=Integer.parseInt(length);
+                //int leng=Integer.parseInt(length);
 
 
                 String spinSelVal = sp1.getSelectedItem().toString();
@@ -126,7 +117,7 @@ public class AddTypesSizes extends AppCompatActivity {
                     s.setWidth(wid);
                     // s.setPname();
                     s.setHeight(heig);
-                    s.getLength(leng);
+                   // s.getLength(leng);
                     s.setProductId(pid);
                     s.setProductTypeId(ptid);
                     new MySQLClient(AddTypesSizes.this).add(s,spinSelVal,spinSelVal1,txtwidth,txtheight,txtlength);
@@ -283,6 +274,7 @@ public class AddTypesSizes extends AppCompatActivity {
                     final String name = productcraft.getName();
                     //  final int pid
                     final int pid =productcraft.getProductId() ;
+
                     handleClickEvents(pid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
