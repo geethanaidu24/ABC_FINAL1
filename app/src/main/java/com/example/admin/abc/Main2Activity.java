@@ -47,7 +47,7 @@ public class Main2Activity extends AppCompatActivity
      *
      *
      */
-
+private boolean menuOptionState=false;
 
    private static ViewPager mPager;
     private static int currentPage = 0;
@@ -398,6 +398,7 @@ public class Main2Activity extends AppCompatActivity
                         editor.putString(Config.LOGIN_CHECK, "fail");
                         //Saving the sharedpreferences
                         editor.commit();
+                        invalidateOptionsMenu();
                        // menu.getItem(R.id.menuLogout).setEnabled(true);
                         //Starting login activity
                         Intent intent = new Intent(Main2Activity.this, Main2Activity.class);

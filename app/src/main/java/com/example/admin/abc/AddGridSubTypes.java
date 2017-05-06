@@ -9,12 +9,12 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +46,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static com.example.admin.abc.ProductTypeSizeImagesGirdAdapter.finalSize;
 import static com.example.admin.abc.R.id.name2;
 
 public class AddGridSubTypes extends AppCompatActivity implements View.OnClickListener {
@@ -281,6 +280,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             Path.setText("");
             brand.setText("");
             color.setText("");
+            imageView.setImageResource(R.mipmap.browseimage);
             //txtlength.setText("");
             adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
@@ -289,7 +289,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             BackTask bt = new BackTask();
             bt.execute();
         }
-        //  checkupload();
     }
 
     @Override

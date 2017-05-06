@@ -76,7 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //If we will get true
         if(loggedIn){
             //We will start the Main Activity
-            Intent intent = new Intent(Login.this, Main2Activity.class);
+            Intent intent = new Intent(Login.this, Products.class);
             startActivity(intent);
         }
     }

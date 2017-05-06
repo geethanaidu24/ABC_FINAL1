@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -238,6 +239,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     final String productName = productsDB.getName();
 
                     spid = productsDB.getId();
+                Log.d("result", ""+ spid);
 
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
@@ -268,7 +270,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
-                    .addParameter("productid", String.valueOf(spid))
+                    .addParameter("productid", String.valueOf(s.getId()))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

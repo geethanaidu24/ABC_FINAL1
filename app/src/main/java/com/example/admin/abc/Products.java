@@ -20,7 +20,6 @@ public class Products extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
-
         final ListView lv = (ListView) findViewById(R.id.productLv);
 
         new ProductsDownloader(Products.this, urlAddress, lv).execute();
@@ -35,7 +34,8 @@ public class Products extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(Products.this, Main2Activity.class);
-                    startActivity(in);
+                   // startActivity(in);
+                    finish();
                 }
             });
         }
@@ -64,6 +64,7 @@ public class Products extends AppCompatActivity {
                 });
 
     }
+
 }
 
 
