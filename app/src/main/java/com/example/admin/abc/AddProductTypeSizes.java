@@ -284,8 +284,9 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                     .addBodyParameter("width", String.valueOf(wid))
                     .addBodyParameter("height",String.valueOf(heig))
                     .addBodyParameter("length",String.valueOf(length))
-                    .addBodyParameter("productid", String.valueOf(ipid))
-                    .addBodyParameter("producttypeid",String.valueOf(iptid))
+                   // .addBodyParameter("productid", String.valueOf(ipid))
+                    .addBodyParameter("productid", String.valueOf(s.getProductId()))
+                    .addBodyParameter("producttypeid",String.valueOf(s.getProductTypeId()))
                     .setTag("TAG_ADD")
                     .build()
                     .getAsJSONArray(new JSONArrayRequestListener() {
