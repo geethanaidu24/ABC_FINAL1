@@ -83,7 +83,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridSubTypes.this, ProductTypeSubTypeImages.class);
+                    Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
                     startActivity(in);
                 }
             });
@@ -96,7 +96,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             sp2 = (Spinner) findViewById(R.id.subtypesspinner);
             sp3 = (Spinner) findViewById(R.id.typesspinner);
             sp4 = (Spinner) findViewById(R.id.productspinner);
-            // sp1=(Spinner)findViewById(R.id.sp1producttypes) ;
             btnadd = (Button) findViewById(R.id.btnadd);
 
             requestStoragePermission();
@@ -112,11 +111,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             bt.execute();
         }
         private class BackTask extends AsyncTask<Void, Void, Void> {
-            ArrayList<String> list;
 
             protected void onPreExecute() {
                 super.onPreExecute();
-                list = new ArrayList<>();
+
             }
 
 

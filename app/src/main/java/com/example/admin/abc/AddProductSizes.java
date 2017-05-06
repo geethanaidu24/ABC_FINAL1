@@ -199,7 +199,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         int heig=Integer.parseInt(height);
 
         String length=txtlength.getText().toString();
-        // int leng=Integer.parseInt(length);
+        int leng=Integer.parseInt(length);
 
 
         String spinSelVal = sp1.getSelectedItem().toString();
@@ -233,7 +233,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         SizesDB s = new SizesDB();
         s.setWidth(wid);
         s.setHeight(heig);
-        s.setLength(length);
+        s.setLength(leng);
         s.setProductId(ipid);
 
         //Uploading code
@@ -280,19 +280,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(AddProductSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-               /* String uploadId = UUID.randomUUID().toString();
 
-                //Creating a multi part request
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addParameter("action","save")
-                        .addParameter("width", String.valueOf(wid))
-                        .addParameter("height",String.valueOf(heig))
-                        .addParameter("length",String.valueOf(length))
-                        .addParameter("productid", String.valueOf(ipid))
-                        .addParameter("producttypeid",String.valueOf(iptid))
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload*/
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();

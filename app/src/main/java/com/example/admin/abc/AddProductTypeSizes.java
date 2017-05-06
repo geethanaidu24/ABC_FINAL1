@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 /**
@@ -158,13 +159,16 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
             final ArrayList<String> listItems = new ArrayList<>();
             final ArrayList<String> listItems2 = new ArrayList<>();
+            HashSet<String> hashSet = new HashSet<String>();
             for(int i=0;i<sizesDBs.size();i++){
                 listItems.add(sizesDBs.get(i).getName());
+
                 listItems2.add(sizesDBs.get(i).getProductType());
             }
-                /*for(int i=0;i<sizesDBs.size();i++){
+            hashSet.addAll(listItems);
+            listItems.clear();
+            listItems.addAll(hashSet);
 
-                }*/
             adapter = new ArrayAdapter(AddProductTypeSizes.this,R.layout.spinner_layout5, R.id.txt5,listItems);
             sp2.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -211,7 +215,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         int heig=Integer.parseInt(height);
 
         String length=txtlength.getText().toString();
-        // int leng=Integer.parseInt(length);
+        int leng=Integer.parseInt(length);
 
 
         String spinSelVal = sp1.getSelectedItem().toString();
@@ -247,7 +251,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
                 SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                //final String productTypeName = sizesDB.getProductType();
+
 
                 iptid =sizesDB.getProductTypeId() ;
 
@@ -270,7 +274,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         SizesDB s = new SizesDB();
         s.setWidth(wid);
         s.setHeight(heig);
-        s.setLength(length);
+        s.setLength(leng);
         s.setProductId(ipid);
         s.setProductTypeId(iptid);
         //Uploading code
@@ -317,19 +321,6 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                             Toast.makeText(AddProductTypeSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-               /* String uploadId = UUID.randomUUID().toString();
-
-                //Creating a multi part request
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addParameter("action","save")
-                        .addParameter("width", String.valueOf(wid))
-                        .addParameter("height",String.valueOf(heig))
-                        .addParameter("length",String.valueOf(length))
-                        .addParameter("productid", String.valueOf(ipid))
-                        .addParameter("producttypeid",String.valueOf(iptid))
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload(); //Starting the upload*/
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
