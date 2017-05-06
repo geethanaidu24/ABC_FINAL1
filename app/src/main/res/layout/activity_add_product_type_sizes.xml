@@ -126,10 +126,11 @@
             android:layout_alignStart="@+id/height1"
             android:layout_below="@+id/height1"
             android:ems="10"
-            android:hint="0"
-            android:inputType="textPersonName"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:text="0"
+            android:inputType="textPersonName"
+            />
 
         <TextView
             android:id="@+id/textView38"

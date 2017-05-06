@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +46,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import static com.example.admin.abc.ProductTypeSizeImagesGirdAdapter.finalSize;
 import static com.example.admin.abc.R.id.name2;
 
 public class AddGridSubTypes extends AppCompatActivity implements View.OnClickListener {
@@ -61,7 +63,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     public int ptid=0;
     public int pstid=0;
     public int psid=0;
-
+    String finalSize;
     Context context;
     final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
 
@@ -160,12 +162,12 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         String ProductName = jo.getString("ProductName");
                         String productType = jo.getString("ProductType");
                         String subTypeName = jo.getString("ProductSubTypeName");
-                       // int width = jo.getInt("Width");
-                       // int height = jo.getInt("Height");
-                      //  int length = jo.getInt("Length");
-                      //  String name = jo.getString("Name");
-                      //  String brand = jo.getString("Brand");
-                      //  String color = jo.getString("Color");
+                        int width = jo.getInt("Width");
+                        int height = jo.getInt("Height");
+                        int length = jo.getInt("Length");
+                        //  String name = jo.getString("Name");
+                        //  String brand = jo.getString("Brand");
+                        //  String color = jo.getString("Color");
 
                         gridDataDB = new GridDataDB();
                         gridDataDB.setProductSizeId(psid);
@@ -175,8 +177,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         gridDataDB.setName(ProductName);
                         gridDataDB.setProductType(productType);
                         gridDataDB.setProductSubTypeName(subTypeName);
-                       // gridDataDB.setWidth(width);
-                       // gridDataDB.setHeight(height);
+                        gridDataDB.setWidth(width);
+                        gridDataDB.setHeight(height);
+                        gridDataDB.setLength(length);
 //                        gridDataDB.setNname(name);
                         //gridDataDB.setBrand(brand);
                         //gridDataDB.setColor(color);
@@ -190,19 +193,51 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             protected void onPostExecute(Void result) {
 
-               // productcrafts.addAll(productcrafts);
-                final ArrayList<Integer> listItems = new ArrayList<>();
+                // productcrafts.addAll(productcrafts);
+
                 final ArrayList<String> listItems2 = new ArrayList<>();
                 final ArrayList<String> listItems3 = new ArrayList<>();
                 final ArrayList<String> listItems4 = new ArrayList<>();
-
-                for(int i=0;i<gridDataDBs.size();i++){
+                final ArrayList<Integer> listItems = new ArrayList<>();
+                for (int i = 0; i < gridDataDBs.size(); i++) {
                     listItems.add(gridDataDBs.get(i).getProductSizeId());
                     listItems2.add(gridDataDBs.get(i).getProductSubTypeName());
                     listItems3.add(gridDataDBs.get(i).getProductType());
                     listItems4.add(gridDataDBs.get(i).getName());
+
+                    final int width = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getWidth()).toString());
+                    final int height = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getHeight()).toString());
+                    final int length = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getLength()).toString());
+                    //final String measure =productTypeSizeDBData.getMeasurement().toString();
+
+                    if (length != 0 && width != 0 && height != 0) {
+                        finalSize = width + "X" + height + "X" + length;
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+
+                    } else if (length == 0 && width != 0 && height != 0) {
+                        finalSize = width + "X" + height;
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    } else if (length != 0 && width == 0 && height != 0) {
+                        finalSize = length + "X" + height;
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    } else if (length != 0 && width != 0 && height == 0) {
+                        finalSize = length + "X" + width;
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    } else if (length == 0 && width != 0 && height == 0) {
+                        finalSize = width + "";
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    } else if (length != 0 && width == 0 && height == 0) {
+                        finalSize = length + "";
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    } else if (length == 0 && width == 0 && height != 0) {
+                        finalSize = height + "";
+                        listItems.add(Integer.valueOf(String.valueOf(finalSize)));
+                    }
                 }
-                adapter1=new ArrayAdapter(AddGridSubTypes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
+
+
+
+            adapter1=new ArrayAdapter(AddGridSubTypes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
                 sp1.setAdapter(adapter1);
                 adapter1.notifyDataSetChanged();
 
@@ -280,6 +315,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         String spinSelVal3 = sp3.getSelectedItem().toString();
         String spinSelVal4=sp4.getSelectedItem().toString();
 
+
         //getting the actual path of the image
         String path = getPath(filePath);
       sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -287,9 +323,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
                 GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
-                final String name = gridDataDB.getProductType();
-                //  final int pid
-                psid =gridDataDB.getProductSizeId() ;
+                final int psid =gridDataDB.getProductSizeId();
+                Log.d("selected response: ", "> " + psid);
+                //handleClickEvents(psid);
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -413,6 +449,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
                     .addParameter("productsubtypeid", String.valueOf(pstid))
+                    .addParameter("productsizeid", String.valueOf(s.getProductSizeId()))
                     .addParameter("producttypeid", String.valueOf(ptid))
                     .addParameter("productid", String.valueOf(pid))
                     .setNotificationConfig(new UploadNotificationConfig())

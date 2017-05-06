@@ -50,8 +50,8 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_sizes);
-        //Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-      //  final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
        // final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
@@ -61,8 +61,8 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductSizes.this,Products.class);
-
+                    Intent in = new Intent(AddProductSizes.this,ProductSizes.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
                     startActivity(in);
                 }
             });
@@ -73,6 +73,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
         txtheight = (EditText) findViewById(R.id.height1);
         txtlength = (EditText) findViewById(R.id.length1);
+      //  txtlength.setText(0);
         btnAdd1 = (Button) findViewById(R.id.addbtn1);
 
         sp1 = (Spinner) findViewById(R.id.productsspinner);
@@ -199,7 +200,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         int heig=Integer.parseInt(height);
 
         String length=txtlength.getText().toString();
-        int leng=Integer.parseInt(length);
+         int leng=Integer.parseInt(length);
 
 
         String spinSelVal = sp1.getSelectedItem().toString();
@@ -280,7 +281,19 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                             Toast.makeText(AddProductSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
+               /* String uploadId = UUID.randomUUID().toString();
 
+                //Creating a multi part request
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addParameter("action","save")
+                        .addParameter("width", String.valueOf(wid))
+                        .addParameter("height",String.valueOf(heig))
+                        .addParameter("length",String.valueOf(length))
+                        .addParameter("productid", String.valueOf(ipid))
+                        .addParameter("producttypeid",String.valueOf(iptid))
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload(); //Starting the upload*/
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
