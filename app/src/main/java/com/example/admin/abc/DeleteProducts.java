@@ -49,7 +49,8 @@ public class DeleteProducts extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProducts.this, Products.class);
-                    startActivity(in);
+                    finish();
+                    //startActivity(in);
                 }
             });
 

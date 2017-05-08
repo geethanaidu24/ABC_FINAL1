@@ -54,7 +54,8 @@ public class Brands extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(Brands.this,Main2Activity.class);
-                    startActivity(in);
+                    finish();
+                  //  startActivity(in);
                 }
             });
 

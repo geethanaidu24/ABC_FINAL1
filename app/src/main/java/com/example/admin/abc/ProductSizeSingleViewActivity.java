@@ -82,10 +82,11 @@ public class ProductSizeSingleViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeSingleViewActivity.this, ProductSizeImages.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                   /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTSIZEID_KEY", psid);
                     in.putExtra("PRODUCTSIZE_KEY", size);
-                    startActivity(in);
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

@@ -85,7 +85,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
-                    startActivity(in);
+                   // startActivity(in);
+                    finish();
                 }
             });
             imageView = (ImageView) findViewById(R.id.image);

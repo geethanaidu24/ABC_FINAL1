@@ -88,12 +88,13 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                   /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-                    startActivity(in);
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

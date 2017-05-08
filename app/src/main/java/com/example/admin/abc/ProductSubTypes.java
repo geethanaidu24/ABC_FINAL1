@@ -55,12 +55,13 @@ public class ProductSubTypes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                   /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
 
-                    startActivity(in);
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

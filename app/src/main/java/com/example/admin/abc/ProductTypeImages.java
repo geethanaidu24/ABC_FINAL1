@@ -61,9 +61,10 @@ public class ProductTypeImages extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeImages.this,ProductTypes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
-                     startActivity(in);
+                     startActivity(in);*/
+                    finish();
                 }
             });
             actionbar.inflateMenu(R.menu.gridproducts);

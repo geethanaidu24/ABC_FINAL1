@@ -49,7 +49,8 @@ public class ProductSizes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductSizes.this,Products.class);
-                    startActivity(in);
+                    finish();
+                   // startActivity(in);
                 }
             });
             actionbar.inflateMenu(R.menu.sizes);

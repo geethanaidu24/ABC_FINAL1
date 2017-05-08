@@ -76,10 +76,12 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    startActivity(in);
+                    startActivity(in);*/
+                    finish();
+
                 }
             });
 

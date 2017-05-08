@@ -62,8 +62,9 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductSizes.this,ProductSizes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
-                    startActivity(in);
+                   // in.putExtra("PRODUCTID_KEY", pid);
+                   // startActivity(in);
+                    finish();
                 }
             });
 

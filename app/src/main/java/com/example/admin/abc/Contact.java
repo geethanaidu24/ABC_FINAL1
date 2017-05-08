@@ -24,7 +24,8 @@ ImageView bac;
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(Contact.this,Main2Activity.class);
-                    startActivity(in);
+                   finish();
+                    // startActivity(in);
                 }
             });
 

@@ -65,9 +65,10 @@ public class ProductTypeSizes extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent in=new Intent(ProductTypeSizes.this,ProductTypes.class);
-                        in.putExtra("PRODUCTID_KEY", pid);
+                       /* in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY",pname);
-                        startActivity(in);
+                        startActivity(in);*/
+                       finish();
                     }
                 });
 

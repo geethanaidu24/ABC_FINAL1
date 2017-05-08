@@ -53,8 +53,8 @@ public class AddProductTypesGrid extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductTypesGrid.this, ProductTypeSizes.class);
-
-                    startActivity(in);
+            finish();
+                    //startActivity(in);
                 }
             });
             imageView = (ImageView) findViewById(R.id.image);

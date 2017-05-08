@@ -49,7 +49,7 @@ public class SingleViewImageFull extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent in = new Intent(SingleViewImageFull.this, SingleViewActivity.class);
 
-                    in.putExtra("IMAGE_KEY",image);
+                   /* in.putExtra("IMAGE_KEY",image);
                     in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
@@ -58,7 +58,8 @@ public class SingleViewImageFull extends AppCompatActivity {
                     in.putExtra("NAME_KEY",name);
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
-                    startActivity(in);
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

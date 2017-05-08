@@ -55,7 +55,8 @@ ImageView back1;
                 @Override
                 public void onClick(View v) {
                    Intent in=new Intent(AboutUs.this,Main2Activity.class);
-                    startActivity(in);
+                   // startActivity(in);
+                    finish();
                 }
             });
 

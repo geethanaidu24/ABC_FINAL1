@@ -24,7 +24,8 @@ public class Offers extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(Offers.this, Main2Activity.class);
-                    startActivity(in);
+                    finish();
+                   // startActivity(in);
                 }
             });
         }

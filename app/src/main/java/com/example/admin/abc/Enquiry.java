@@ -23,7 +23,8 @@ ImageView im;
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(Enquiry.this,Main2Activity.class);
-                    startActivity(in);
+                    finish();
+                  //  startActivity(in);
                 }
             });
 

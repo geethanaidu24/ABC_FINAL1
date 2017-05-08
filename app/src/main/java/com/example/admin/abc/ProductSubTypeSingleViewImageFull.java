@@ -48,7 +48,7 @@ public  class ProductSubTypeSingleViewImageFull  extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypeSingleViewImageFull.this, ProductSubTypeSingleViewActivity.class);
-
+/*
                     in.putExtra("IMAGE_KEY",image);
                     in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
@@ -58,7 +58,8 @@ public  class ProductSubTypeSingleViewImageFull  extends AppCompatActivity {
                     in.putExtra("NAME_KEY",name);
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
-                    startActivity(in);
+                    startActivity(in);*/
+finish();
                 }
             });
 

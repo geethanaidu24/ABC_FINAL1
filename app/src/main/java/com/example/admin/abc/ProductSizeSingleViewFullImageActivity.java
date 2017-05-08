@@ -43,14 +43,15 @@ public class ProductSizeSingleViewFullImageActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeSingleViewFullImageActivity.this, ProductSizeSingleViewActivity.class);
-                    in.putExtra("IMAGE_KEY",image);
+                  /*  in.putExtra("IMAGE_KEY",image);
                     in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTSIZEID_KEY",psid);
                     in.putExtra("NAME_KEY",name);
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
                     in.putExtra("SIZE_KEY",size);
-                    startActivity(in);
+                    startActivity(in);*/
+                  finish();
                 }
             });
 
