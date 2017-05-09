@@ -18,7 +18,7 @@ public class ProductTypesDetails extends AppCompatActivity {
     final static String urlAddress ="http://192.168.0.2/abc/getProductImages.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
 

@@ -47,8 +47,8 @@ public class DeleteProductSizes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_sizes);
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");*//*
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
@@ -60,13 +60,14 @@ public class DeleteProductSizes extends AppCompatActivity {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        }*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);

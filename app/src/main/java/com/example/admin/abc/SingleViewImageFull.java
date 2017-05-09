@@ -18,7 +18,7 @@ public class SingleViewImageFull extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_size_single_view_full_image);
 
@@ -39,12 +39,13 @@ public class SingleViewImageFull extends AppCompatActivity {
         PicassoClient.downloadImage(c,image,im);
 
         // Picasso.with(c).load("http://192.168.0.3/abc/getProductSizeImages.php?").into(im);
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(SingleViewImageFull.this, SingleViewActivity.class);

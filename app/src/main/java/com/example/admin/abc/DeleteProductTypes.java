@@ -39,19 +39,20 @@ public class DeleteProductTypes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productTypesCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_types);
         // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);

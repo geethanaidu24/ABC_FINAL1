@@ -1,10 +1,13 @@
 package com.example.admin.abc;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.GridView;
@@ -26,7 +29,7 @@ public class ProductTypeImages extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_images);
 
@@ -52,12 +55,13 @@ public class ProductTypeImages extends AppCompatActivity {
         }
 
         new ProductTypeImagesDownloader(ProductTypeImages.this,urlAddress,gv,pid,ptid,pname).execute();
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeImages.this,ProductTypes.class);
@@ -67,7 +71,7 @@ public class ProductTypeImages extends AppCompatActivity {
                     finish();
                 }
             });
-            actionbar.inflateMenu(R.menu.gridproducts);
+            /*actionbar.inflateMenu(R.menu.gridproducts);
 
 
             actionbar.setOnMenuItemClickListener(
@@ -90,7 +94,7 @@ public class ProductTypeImages extends AppCompatActivity {
                         }
                     });
 
-        }
+        }*/
         /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,5 +105,45 @@ public class ProductTypeImages extends AppCompatActivity {
                 startActivity(in);
             }
         });*/
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
+
+        }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.productsadd) {
+            Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
+
+            startActivity(in);
+            return true;
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(ProductTypeImages.this, DeleteProducts.class);
+            startActivity(inn);
+
+
+            return true;
+                /*if (id == R.id.logout) {
+                    Intent innn = new Intent(Products.this, AddProducts.class);
+                    startActivity(innn);
+                    return true;   */
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

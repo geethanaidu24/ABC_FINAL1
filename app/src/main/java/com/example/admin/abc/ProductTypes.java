@@ -5,10 +5,13 @@ package com.example.admin.abc;
  */
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,7 +27,7 @@ public class ProductTypes extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types);
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
@@ -40,12 +43,13 @@ public class ProductTypes extends AppCompatActivity {
 
         new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypes.this,Products.class);
@@ -54,8 +58,50 @@ public class ProductTypes extends AppCompatActivity {
                 }
             });
 
-            actionbar.inflateMenu(R.menu.productstypes);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
 
+        }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+        getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.productsadd) {
+            Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
+
+            startActivity(in);
+            return true;
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
+            startActivity(inn);
+
+
+            return true;
+                /*if (id == R.id.logout) {
+                    Intent innn = new Intent(Products.this, AddProducts.class);
+                    startActivity(innn);
+                    return true;   */
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+/*
 
             actionbar.setOnMenuItemClickListener(
                     new Toolbar.OnMenuItemClickListener() {
@@ -65,13 +111,13 @@ public class ProductTypes extends AppCompatActivity {
 
                             int id = item.getItemId();
 
-                            if (id == R.id.producttypesadd) {
+                            if (id == R.id.productsadd) {
                                 Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
                                 in.putExtra("PRODUCTID_KEY", pid);
                                 in.putExtra("PRODUCTNAME_KEY",name);
                                 startActivity(in);
                             }
-                            if (id == R.id.producttypesdelete) {
+                            if (id == R.id.productdelete) {
                                 Intent in = new Intent(ProductTypes.this, DeleteProductTypes.class);
                                 in.putExtra("PRODUCTID_KEY", pid);
                                 in.putExtra("PRODUCTNAME_KEY",name);
@@ -85,4 +131,5 @@ public class ProductTypes extends AppCompatActivity {
     }
 
 }
+*/
 
