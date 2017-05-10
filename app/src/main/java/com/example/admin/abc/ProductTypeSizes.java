@@ -1,10 +1,14 @@
 package com.example.admin.abc;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -23,7 +27,7 @@ import java.net.URL;
 
 public class ProductTypeSizes extends AppCompatActivity {
     ImageView back;
-
+    private boolean loggedIn = false;
     //Context c;
     final static String url = Config.productTypeSizesUrlAddress;
 
@@ -115,9 +119,23 @@ public class ProductTypeSizes extends AppCompatActivity {
             }
         }
     public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
         // Inflate the menu; this adds items to the action bar if it is present.
-
         getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+
+        if (loggedIn == true) {
+            MenuItem item = menu.findItem(R.id.productsadd);
+            item.setVisible(true);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(true);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            items.setVisible(true);
+
+        } else if (loggedIn == false) {
+            return false;
+        }
 
         return true;
     }
@@ -139,15 +157,56 @@ public class ProductTypeSizes extends AppCompatActivity {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
             startActivity(inn);
 
-
             return true;
-                /*if (id == R.id.logout) {
-                    Intent innn = new Intent(Products.this, AddProducts.class);
-                    startActivity(innn);
-                    return true;   */
-
+        } else if (id == R.id.logout) {
+            logout();
+            return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
+    private void logout(){
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        //Getting out sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                        //Getting editor
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        //Puting the value false for loggedin
+                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+                        //Putting blank value to email
+                        editor.putString(Config.KEY_USER, "");
+
+                        //Saving the sharedpreferences
+                        editor.commit();
+
+                        //Starting login activity
+                        Intent intent = new Intent(ProductTypeSizes.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
 }
+

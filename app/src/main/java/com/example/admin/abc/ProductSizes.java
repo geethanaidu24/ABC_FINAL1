@@ -1,11 +1,14 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -39,6 +42,7 @@ import java.util.ArrayList;
 
 public class ProductSizes extends AppCompatActivity {
     ImageView back;
+    private boolean loggedIn = false;
     final static String url = Config.productSizesUrlAddress;
 
     @Override
@@ -81,9 +85,23 @@ public class ProductSizes extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
         // Inflate the menu; this adds items to the action bar if it is present.
-
         getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+
+        if (loggedIn == true) {
+            MenuItem item = menu.findItem(R.id.productsadd);
+            item.setVisible(true);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(true);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            items.setVisible(true);
+
+        } else if (loggedIn == false) {
+            return false;
+        }
 
         return true;
     }
@@ -104,8 +122,15 @@ public class ProductSizes extends AppCompatActivity {
             Intent in = new Intent(ProductSizes.this, DeleteProductSizes.class);
             //in.putExtra("PRODUCTID_KEY", pid);
             startActivity(in);
+
+            return true;
+        } else if (id == R.id.logout) {
+            logout();
+            return true;
         }
-        return true;
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     private class ProductSizesDownloader extends AsyncTask<Void, Void, String> {
@@ -335,5 +360,48 @@ public class ProductSizes extends AppCompatActivity {
             c.startActivity(intent);
         }
     }
+    private void logout(){
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        //Getting out sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                        //Getting editor
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        //Puting the value false for loggedin
+                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+                        //Putting blank value to email
+                        editor.putString(Config.KEY_USER, "");
+
+                        //Saving the sharedpreferences
+                        editor.commit();
+
+                        //Starting login activity
+                        Intent intent = new Intent(ProductSizes.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
 }
+
 
