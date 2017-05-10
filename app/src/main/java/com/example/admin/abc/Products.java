@@ -26,12 +26,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import static com.example.admin.abc.R.layout.item;
-
-public class Products extends AppCompatActivity {
-    private static final int ADD_MENU_ITEM = 0;
-    Menu menu;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,9 +38,11 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import static com.example.admin.abc.R.layout.item;
 
 public class Products extends AppCompatActivity implements Serializable {
-
+    private static final int ADD_MENU_ITEM = 0;
+    Menu menu;
     ImageView back;
     private boolean loggedIn = false;
 
@@ -60,25 +56,22 @@ public class Products extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
         //getSupportActionBar().hide();
-      // Intent in=getIntent();
-       // final String loggedin = String.valueOf(in.getExtras().getInt("loggedIn"));
-        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        setSupportActionBar(toolbar);
+        // Intent in=getIntent();
+        // final String loggedin = String.valueOf(in.getExtras().getInt("loggedIn"));
 
         final ListView productsListView = (ListView) findViewById(R.id.productLv);
 
 
+        // new ProductsDownloader(Products.this, urlAddress, lv).execute();
 
-        new ProductsDownloader(Products.this, urlAddress, lv).execute();
+        new ProductsDownloader(Products.this, productsUrl, productsListView).execute();
+
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
         if (null != toolbar) {
             toolbar.setNavigationIcon(R.mipmap.backbutton);
-        new ProductsDownloader(Products.this, productsUrl, productsListView).execute();
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-
-
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -86,41 +79,17 @@ public class Products extends AppCompatActivity implements Serializable {
                 public void onClick(View v) {
                     Intent in = new Intent(Products.this, Main2Activity.class);
                     // startActivity(in);
-                    Intent intent = new Intent(Products.this, Main2Activity.class);
-                   // startActivity(in);
+
                     finish();
                 }
             });
+
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
+            // toolbar.hideOverflowMenu();
         }
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-        toolbar.setOverflowIcon(drawable);
-        // toolbar.hideOverflowMenu();
     }
-    //SharedPreferences sharedPreferences = getSharedPreferences(Config.LOGGEDIN_SHARED_PREF, Context.MODE_PRIVATE);
- //   SharedPreferences sharedPreferences = getSharedPreferences(Config.LOGGEDIN_SHARED_PREF, Context.MODE_PRIVATE);
- //  boolean loggedin=sharedPreferences.getBoolean(Config.LOGIN_SUCCESS, Boolean.parseBoolean("not"));
 
-
-
-    /* public boolean onPrepareOptionsMenu(Menu menu) {
-             // Inflate the menu; this adds items to the action bar if it is present.
-             getMenuInflater().inflate(R.menu.mainproducts, menu);
-
-
-             if(loggedIn==true){
-                 MenuItem item = menu.findItem(R.id.productsadd);
-                 item.setVisible(true);
-                 MenuItem items = menu.findItem(R.id.productdelete);
-                 items.setVisible(true);
-
-             }
-             else {
-               return false;
-
-             }
-
-             return true;
-         }*/
     public boolean onCreateOptionsMenu(Menu menu) {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
@@ -160,13 +129,15 @@ public class Products extends AppCompatActivity implements Serializable {
             startActivity(inn);
 
 
-        return true;}
-         else   if (id == R.id.logout) {
+            return true;
+        } else if (id == R.id.logout) {
             logout();
             return true;
+        }
 
-
+        return super.onOptionsItemSelected(item);
     }
+
     private class ProductsDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
@@ -490,8 +461,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
     }
 
-        return super.onOptionsItemSelected(item);
-    }
+
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
