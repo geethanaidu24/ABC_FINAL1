@@ -28,8 +28,6 @@ import java.util.ArrayList;
 public class ProductTypes extends AppCompatActivity implements Serializable {
     ImageView back;
     Context c;
-   // ArrayList<ProductTypesDB> productTypesDBs1=new ArrayList<>();
-   // ArrayList<ProductTypesDB> productTypesDBs=new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,23 +40,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         Intent intent = getIntent();
         final String selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         final int selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
-        //productTypesDBs.clear();
-       // ProductTypesDB productTypesDB;
-        ArrayList<ProductTypesDB> productTypesDBs = (ArrayList<ProductTypesDB>) intent.getSerializableExtra("ProductTypeList");
-       /* for(int i=0;i<productTypesDBs1.size();i++){
-            int ProductTypeId1 = productTypesDBs1.get(i).getProductTypeId();
-            String ProductType1 = productTypesDBs1.get(i).getProductType();
-            String ImageUrl1 = productTypesDBs1.get(i).getImageUrl();
-            int ProductId1 = productTypesDBs1.get(i).getProductId();
-            Log.d("result response: ", "> " + ImageUrl1);
-            productTypesDB=new ProductTypesDB();
-            productTypesDB.setProductTypeId(ProductTypeId1);
-            productTypesDB.setProductType(ProductType1);
-            productTypesDB.setImageUrl(ImageUrl1);
-            productTypesDB.setProductId(ProductId1);
-            productTypesDBs.add(productTypesDB);
 
-        }*/
+        ArrayList<ProductTypesDB> productTypesDBs = (ArrayList<ProductTypesDB>) intent.getSerializableExtra("ProductTypeList");
+
         typeNameTxt.setText(selectedPname);
         Log.d("result response: ", "> " + productTypesDBs);
 
@@ -79,11 +63,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     finish();
                 }
             });
-                    Intent in=new Intent(ProductTypes.this,Products.class);
-                    finish();
-                   // startActivity(in);
-                }
-            });
+
 
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
@@ -126,37 +106,6 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
-}
-
-/*
-
-            actionbar.setOnMenuItemClickListener(
-                    new Toolbar.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Handle menu item click event
-
-                            int id = item.getItemId();
-
-                            if (id == R.id.productsadd) {
-                                Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
-                                in.putExtra("PRODUCTID_KEY", selectedPid);
-                                in.putExtra("PRODUCTNAME_KEY", selectedPname);
-                                startActivity(in);
-                            }
-                            if (id == R.id.productdelete) {
-                                Intent in = new Intent(ProductTypes.this, DeleteProductTypes.class);
-                                in.putExtra("PRODUCTID_KEY", selectedPid);
-                                in.putExtra("PRODUCTNAME_KEY", selectedPname);
-                                startActivity(in);
-                            }
-                            return true;
-                        }
-                    }
-            );
-
-        }
-    }
 
     private class ProductTypesListAdapter extends BaseAdapter {
 
@@ -165,7 +114,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         LayoutInflater inflater;
         String FinalPname;
         int FinalPid;
-        public ProductTypesListAdapter(Context c, ArrayList<ProductTypesDB> productTypesDBs,int selectdPid, String selectdPname) {
+        private ProductTypesListAdapter(Context c, ArrayList<ProductTypesDB> productTypesDBs,int selectdPid, String selectdPname) {
             this.c = c;
             this.productTypesDBs = productTypesDBs;
             this.FinalPname = selectdPname;
@@ -228,5 +177,5 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     }
 
 }
-*/
+
 

@@ -43,7 +43,7 @@ public class ProductSizes extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-       // getSupportActionBar().hide();
+        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_sizes);
 
@@ -79,6 +79,7 @@ public class ProductSizes extends AppCompatActivity {
 
         }
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
@@ -94,20 +95,17 @@ public class ProductSizes extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-                            if (id == R.id.gridadd) {
-                                Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
-                                in.putExtra("PRODUCTID_KEY", pid);
-                                startActivity(in);
-                            }
-                            if (id == R.id.griddelete) {
-                                Intent in = new Intent(ProductSizes.this, DeleteProductSizes.class);
-                                in.putExtra("PRODUCTID_KEY", pid);
-                                startActivity(in);
-                            }
-                            return true;
-                        }
-                    });
+        if (id == R.id.productsadd) {
+            Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
+            // in.putExtra("PRODUCTID_KEY", pid);
+            startActivity(in);
         }
+        if (id == R.id.productdelete) {
+            Intent in = new Intent(ProductSizes.this, DeleteProductSizes.class);
+            //in.putExtra("PRODUCTID_KEY", pid);
+            startActivity(in);
+        }
+        return true;
     }
 
     private class ProductSizesDownloader extends AsyncTask<Void, Void, String> {
@@ -116,14 +114,16 @@ public class ProductSizes extends AppCompatActivity {
         ListView lv;
         LinearLayout ll;
         int pid;
-        private ProductSizesDownloader(Context c, String urlAddress, ListView lv,LinearLayout ll, int pid) {
+
+        private ProductSizesDownloader(Context c, String urlAddress, ListView lv, LinearLayout ll, int pid) {
             this.c = c;
             this.urlAddress = urlAddress;
             this.lv = lv;
-            this.ll=ll;
+            this.ll = ll;
             this.pid = pid;
             Log.d("newActivity url: ", "> " + urlAddress);
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -135,18 +135,19 @@ public class ProductSizes extends AppCompatActivity {
             return data;
 
         }
+
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(s==null)
-            {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
-            }else {
+            if (s == null) {
+                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+            } else {
                 //CALL DATA PARSER TO PARSE
-                ProductSizesDataParser parser=new ProductSizesDataParser(c, lv,ll, s,pid);
+                ProductSizesDataParser parser = new ProductSizesDataParser(c, lv, ll, s, pid);
                 parser.execute();
             }
         }
+
         private String downloadTypeData() {
             HttpURLConnection con = Connector.connect(urlAddress);
             if (con == null) {
@@ -170,7 +171,7 @@ public class ProductSizes extends AppCompatActivity {
         }
     }
 
-   private class ProductSizesDataParser extends AsyncTask<Void,Void,Integer> {
+    private class ProductSizesDataParser extends AsyncTask<Void, Void, Integer> {
         Context c;
         ListView lv;
         LinearLayout ll;
@@ -179,57 +180,56 @@ public class ProductSizes extends AppCompatActivity {
 
         ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-        private ProductSizesDataParser(Context c, ListView lv,LinearLayout ll, String jsonData,int pid) {
+        private ProductSizesDataParser(Context c, ListView lv, LinearLayout ll, String jsonData, int pid) {
             this.c = c;
             this.lv = lv;
-            this.ll=ll;
+            this.ll = ll;
             this.jsonData = jsonData;
             this.pid = pid;
         }
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
         }
+
         @Override
         protected Integer doInBackground(Void... params) {
             return this.parseSizesData();
         }
+
         @Override
 
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
-            if(result==0)
-            {
-                Toast.makeText(c,"No Data For required Product",Toast.LENGTH_SHORT).show();
-            }else
-            {
+            if (result == 0) {
+                Toast.makeText(c, "No Data For required Product", Toast.LENGTH_SHORT).show();
+            } else {
 
-                final ProductSizesListAdapter adapter=new ProductSizesListAdapter(c,productTypeSizeDBDatas,pid);
+                final ProductSizesListAdapter adapter = new ProductSizesListAdapter(c, productTypeSizeDBDatas, pid);
                 lv.setAdapter(adapter);
             }
         }
-        private int parseSizesData()
-        {
-            try
-            {
-                JSONArray sizeArray=new JSONArray(jsonData);
-                JSONObject sizeObject=null;
+
+        private int parseSizesData() {
+            try {
+                JSONArray sizeArray = new JSONArray(jsonData);
+                JSONObject sizeObject = null;
                 productTypeSizeDBDatas.clear();
                 ProductTypeSizeDBData productTypeSizeDBData;
-                for(int i=0;i<sizeArray.length();i++)
-                {
-                    sizeObject=sizeArray.getJSONObject(i);
+                for (int i = 0; i < sizeArray.length(); i++) {
+                    sizeObject = sizeArray.getJSONObject(i);
                     Log.d("result response: ", "> " + sizeObject);
-                    int ProductSizeId=sizeObject.getInt("ProductSizeId");
+                    int ProductSizeId = sizeObject.getInt("ProductSizeId");
                     int Width = sizeObject.getInt("Width");
                     int Height = sizeObject.getInt("Height");
-                    int Length =sizeObject.getInt("Length");
+                    int Length = sizeObject.getInt("Length");
 
                     // String Measure =jo.getString("Measurement");
-                    int ProductTypeId=sizeObject.optInt("ProductTypeId", 0);
+                    int ProductTypeId = sizeObject.optInt("ProductTypeId", 0);
                     // int ProductTypeId=jo.getInt("ProductTypeId");
                     int ProductId = sizeObject.getInt("ProductId");
-                    productTypeSizeDBData=new ProductTypeSizeDBData();
+                    productTypeSizeDBData = new ProductTypeSizeDBData();
 
                     productTypeSizeDBData.setProductSizeId(ProductSizeId);
                     productTypeSizeDBData.setWidth(Width);
@@ -261,107 +261,79 @@ public class ProductSizes extends AppCompatActivity {
             this.c = c;
             this.productTypeSizeDBDatas = productTypeSizeDBDatas;
             this.pid = pid;
-            inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+
         @Override
         public int getCount() {
             return productTypeSizeDBDatas.size();
         }
+
         @Override
         public Object getItem(int position) {
             return productTypeSizeDBDatas.get(position);
         }
+
         @Override
         public long getItemId(int position) {
             return position;
         }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView==null)
-            {
-                convertView=inflater.inflate(R.layout.productsize_list_view,parent,false);
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.productsize_list_view, parent, false);
             }
-            TextView typeNameTxt= (TextView) convertView.findViewById(R.id.productSize);
+            TextView typeNameTxt = (TextView) convertView.findViewById(R.id.productSize);
 
             //BIND DATA
             ProductTypeSizeDBData productTypeSizeDBData = (ProductTypeSizeDBData) this.getItem(position);
 
             final int sizeid = productTypeSizeDBData.getProductSizeId();
-            final int length =Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString()) ;
+            final int length = Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString());
             final int width = Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString());
             final int height = Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
-            if(length !=0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height + "X" + length;
+            if (length != 0 && width != 0 && height != 0) {
+                finalSize = width + "X" + height + "X" + length;
                 typeNameTxt.setText(String.valueOf(finalSize));
-            }else if(length ==0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height;
+            } else if (length == 0 && width != 0 && height != 0) {
+                finalSize = width + "X" + height;
                 typeNameTxt.setText(String.valueOf(finalSize));
-            }else if(length !=0 && width ==0 && height !=0){
-                finalSize =  length + "X" + height;
+            } else if (length != 0 && width == 0 && height != 0) {
+                finalSize = length + "X" + height;
                 typeNameTxt.setText(String.valueOf(finalSize));
-            }else if(length !=0 && width !=0 && height ==0 ){
-                finalSize =  length + "X" + width ;
+            } else if (length != 0 && width != 0 && height == 0) {
+                finalSize = length + "X" + width;
                 typeNameTxt.setText(String.valueOf(finalSize));
-            }else if(length ==0 && width !=0 && height ==0 ){
-                finalSize = width + "" ;
+            } else if (length == 0 && width != 0 && height == 0) {
+                finalSize = width + "";
                 typeNameTxt.setText(finalSize);
-            }else if(length !=0 && width ==0 && height ==0 ){
-                finalSize = length + "" ;
+            } else if (length != 0 && width == 0 && height == 0) {
+                finalSize = length + "";
                 typeNameTxt.setText(finalSize);
-            }else if(length ==0 && width ==0 && height !=0 ){
-                finalSize = height + "" ;
+            } else if (length == 0 && width == 0 && height != 0) {
+                finalSize = height + "";
                 typeNameTxt.setText(finalSize);
             }
             // open new activity
-            convertView.setOnClickListener(new View.OnClickListener(){
+            convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
-                    openProductSizeImagesActivity(pid,sizeid);
+                public void onClick(View v) {
+                    openProductSizeImagesActivity(pid, sizeid);
                 }
             });
 
             return convertView;
         }
 
-        public void openProductSizeImagesActivity(int pid,int sizeid){
-            Intent intent = new Intent(c,ProductSizeGridViewImages.class);
-            intent.putExtra("PRODUCTID_KEY",pid);
+        public void openProductSizeImagesActivity(int pid, int sizeid) {
+            Intent intent = new Intent(c, ProductSizeGridViewImages.class);
+            intent.putExtra("PRODUCTID_KEY", pid);
             intent.putExtra("PRODUCTSIZEID_KEY", sizeid);
             c.startActivity(intent);
         }
     }
-
 }
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
-            startActivity(in);
-            return true;
-        } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
-            startActivity(inn);
-
-
-            return true;
-                /*if (id == R.id.logout) {
-                    Intent innn = new Intent(Products.this, AddProducts.class);
-                    startActivity(innn);
-                    return true;   */
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-}
-
-        /*back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductSizes.this,Products.class);
-                startActivity(in);
-            }
-        });*/
 
