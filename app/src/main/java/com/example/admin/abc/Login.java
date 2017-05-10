@@ -115,8 +115,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                             editor.commit();
 
                             //Starting profile activity
-                            Intent intent = new Intent(Login.this, Main2Activity.class);
-                           // intent.putExtra("logc", "sucs");
+                            Intent intent = new Intent(Login.this, Products.class);
+                          //intent.putExtra("loggedIn", "true");
 
                             startActivity(intent);
                         }else{
