@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -49,21 +50,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         sign_in_button = (Button) findViewById(R.id.sign_in_button);
         sign_in_button.setOnClickListener(this);
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(Login.this, Main2Activity.class);
-                    startActivity(in);
+                    finish();
+                    //startActivity(in);
                 }
             });
         }
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -72,8 +76,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         //Fetching the boolean value form sharedpreferences
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-
-        //If we will get true
+        //getMenuInflater().inflate(R.menu.mainproducts, menu);        //If we will get true
         if(loggedIn){
             //We will start the Main Activity
             Intent intent = new Intent(Login.this, Products.class);

@@ -21,7 +21,7 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
     Context c;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_size_single_view_full_image);
         selectedImage = (ImageView) findViewById(R.id.fullimage) ; //init a ImageView
@@ -38,23 +38,25 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
         final String color = i.getExtras().getString("COLOR_KEY");
 
         PicassoClient.downloadImage(c,image,selectedImage);
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypeImages.class);
-                    in.putExtra("PRODUCTID_KEY",pid);
+                    /*in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
                     in.putExtra("NAME_KEY",name);
                     in.putExtra("IMAGE_KEY",image);
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
-                    startActivity(in);
+                    startActivity(in);*/
+                    finish();
                 }
             });
 

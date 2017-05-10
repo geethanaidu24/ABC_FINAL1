@@ -23,7 +23,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_final);
 
@@ -79,21 +79,23 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                   /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
                     in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-                    startActivity(in);
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

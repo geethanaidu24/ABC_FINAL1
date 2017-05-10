@@ -3,11 +3,14 @@ package com.example.admin.abc;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +43,7 @@ public class ProductSizes extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_sizes);
 
@@ -51,34 +54,45 @@ public class ProductSizes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         Log.d("result PID: ", "> " + pid);
 
         String urlAddress = url + pid;
 
-        new ProductSizesDownloader(ProductSizes.this,urlAddress,lv,ll,pid).execute();
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, ll, pid).execute();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductSizes.this,Products.class);
-                    startActivity(in);
+                    Intent in = new Intent(ProductSizes.this, Products.class);
+                    finish();
+                    // startActivity(in);
                 }
             });
-            actionbar.inflateMenu(R.menu.sizes);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
 
+        }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
 
-            actionbar.setOnMenuItemClickListener(
-                    new Toolbar.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Handle menu item click event
+        getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-                            int id = item.getItemId();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
                             if (id == R.id.gridadd) {
                                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
@@ -320,3 +334,34 @@ public class ProductSizes extends AppCompatActivity {
     }
 
 }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.productsadd) {
+            Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
+            startActivity(in);
+            return true;
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
+            startActivity(inn);
+
+
+            return true;
+                /*if (id == R.id.logout) {
+                    Intent innn = new Intent(Products.this, AddProducts.class);
+                    startActivity(innn);
+                    return true;   */
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+        /*back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(ProductSizes.this,Products.class);
+                startActivity(in);
+            }
+        });*/
+

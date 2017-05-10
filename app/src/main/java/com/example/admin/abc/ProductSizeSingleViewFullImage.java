@@ -14,7 +14,7 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_size_single_view_full_image);
 
@@ -34,16 +34,19 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
             PicassoClient.downloadImage(c,image,im);
 
            // Picasso.with(c).load("http://192.168.0.3/abc/getProductSizeImages.php?").into(im);
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
                     /*in.putExtra("IMAGE_KEY",image);
+                    Intent in = new Intent(ProductSizeSingleViewFullImageActivity.this, ProductSizeSingleViewActivity.class);
+                  /*  in.putExtra("IMAGE_KEY",image);
                     in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTSIZEID_KEY",psid);
                     in.putExtra("NAME_KEY",name);
@@ -52,6 +55,8 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
                     in.putExtra("SIZE_KEY",size);
                     startActivity(in);*/
                     finish();
+                    startActivity(in);*/
+                  finish();
                 }
             });
 

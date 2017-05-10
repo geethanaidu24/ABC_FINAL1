@@ -60,6 +60,7 @@ dependencies {
     compile 'dev.dworks.libs:volleyplus:+'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.amitshekhar.android:android-networking:0.2.0'
+
     testCompile 'junit:junit:4.12'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }

@@ -73,7 +73,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     private ArrayAdapter<GridDataDB> adapter4 ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_sub_types);
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,7 +85,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
-                    startActivity(in);
+                   // startActivity(in);
+                    finish();
                 }
             });
             imageView = (ImageView) findViewById(R.id.image);

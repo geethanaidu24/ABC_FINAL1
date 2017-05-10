@@ -22,7 +22,7 @@ public class SingleViewActivity extends AppCompatActivity {
     Context c;
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
         selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
@@ -65,22 +65,24 @@ public class SingleViewActivity extends AppCompatActivity {
             }
         });
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(SingleViewActivity.this,ProductTypeSizeImages.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                  /*  in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
                     in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
 
-                    startActivity(in);
+                    startActivity(in);*/
+                  finish();
                 }
             });
 

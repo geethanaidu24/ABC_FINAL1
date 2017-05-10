@@ -72,10 +72,14 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
+                    Intent in = new Intent(ProductSizeSingleViewActivity.this, ProductSizeImages.class);
+                   /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTSIZEID_KEY", psid);
                     in.putExtra("PRODUCTSIZE_KEY", size);
                     startActivity(in);*/
                     finish();
+                    startActivity(in);*/
+                   finish();
                 }
             });
 

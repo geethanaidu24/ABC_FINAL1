@@ -41,29 +41,31 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_subtypes);
         // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
         final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                  /*  in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
                     in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    startActivity(in);
+                    startActivity(in);*/
+                  finish();
                 }
             });
 

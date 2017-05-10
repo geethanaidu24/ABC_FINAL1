@@ -47,11 +47,11 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_type_sizes);
         // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        /*Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
@@ -66,20 +66,23 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        }*/
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    startActivity(in);
+                    startActivity(in);*/
+                    finish();
+
                 }
             });
 

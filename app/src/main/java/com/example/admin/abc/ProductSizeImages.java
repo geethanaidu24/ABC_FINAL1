@@ -20,32 +20,28 @@ import java.net.URL;
  * Created by Geetha on 4/21/2017.
  */
 
-public class ProductTypeImages extends AppCompatActivity {
+public class ProductSizeImages extends AppCompatActivity {
     ImageView back;
 
     //Context c;
-    final static String url = Config.productTypeImgUrlAddress;
-
+    final static String url =Config.productSizeImgUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-      //  getSupportActionBar().hide();
+        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products_types_images);
+        setContentView(R.layout.activity_products_types_sizes_images);
 
         final GridView gv = (GridView) findViewById(R.id.gv);
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
-
+        final int psid = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(psid))
                 .build();
         URL urlAddress = null;
         try {
@@ -54,7 +50,8 @@ public class ProductTypeImages extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductTypeImagesDownloader(ProductTypeImages.this,urlAddress,gv,pid,ptid,pname).execute();
+
+        new ProductSizeImagesDownloader(ProductSizeImages.this, urlAddress, gv, pid, psid).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -64,47 +61,12 @@ public class ProductTypeImages extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeImages.this,ProductTypes.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                     startActivity(in);*/
+                    Intent in = new Intent(ProductSizeImages.this, ProductSizes.class);
+                    //in.putExtra("PRODUCTID_KEY",pid);
+                    //startActivity(in);
                     finish();
                 }
             });
-            /*actionbar.inflateMenu(R.menu.gridproducts);
-
-
-            actionbar.setOnMenuItemClickListener(
-                    new Toolbar.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Handle menu item click event
-
-                            int id = item.getItemId();
-
-                            if (id == R.id.gridadd) {
-                                Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
-                                startActivity(in);
-                            }
-                            if (id == R.id.griddelete) {
-                                Intent in = new Intent(ProductTypeImages.this, DeleteProducts.class);
-                                startActivity(in);
-                            }
-                            return true;
-                        }
-                    });
-
-        }*/
-        /*back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypeImages.this,ProductTypeSubTypes.class);
-                in.putExtra("PRODUCTID_KEY", pid);
-                in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                startActivity(in);
-            }
-        });*/
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
 
@@ -127,12 +89,11 @@ public class ProductTypeImages extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
-
+            Intent in = new Intent(ProductSizeImages.this, AddProductsSubType.class);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypeImages.this, DeleteProducts.class);
+            Intent inn = new Intent(ProductSizeImages.this, DeleteProductSubTypes.class);
             startActivity(inn);
 
 
@@ -147,3 +108,15 @@ public class ProductTypeImages extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+        /*back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(ProductSizeImages.this,ProductSizes.class);
+                in.putExtra("PRODUCTID_KEY",pid);
+                startActivity(in);
+            }
+        });*/
+
+
