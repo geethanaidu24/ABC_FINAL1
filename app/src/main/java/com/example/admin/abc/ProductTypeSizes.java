@@ -28,6 +28,7 @@ import java.net.URL;
 public class ProductTypeSizes extends AppCompatActivity {
     ImageView back;
     private boolean loggedIn = false;
+    public int pid,ptid;
     //Context c;
     final static String url = Config.productTypeSizesUrlAddress;
 
@@ -154,6 +155,9 @@ public class ProductTypeSizes extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
+            inn.putExtra("PRODUCTID_KEY", pid);
+
+            inn.putExtra("PRODUCTTYPEID_KEY",ptid);
             startActivity(inn);
             return true;
         } else if (id == R.id.logout) {

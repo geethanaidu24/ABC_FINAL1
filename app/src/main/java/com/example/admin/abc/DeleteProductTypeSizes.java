@@ -51,7 +51,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_type_sizes);
         // Get intent data
-        /*Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
         final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
@@ -66,7 +66,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }*/
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {

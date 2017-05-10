@@ -82,11 +82,10 @@
             android:id="@+id/producttypes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/textView18"
-            android:layout_alignBottom="@+id/textView18"
-            android:layout_alignParentEnd="true"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true" />
 
         <Button
             android:id="@+id/btnUpload"
@@ -110,14 +109,15 @@
             android:textColor="@color/cred"
             android:textSize="18sp" />
 
-        <android.support.v7.widget.AppCompatSpinner
+        <Spinner
             android:id="@+id/addProSp"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textView15"
             android:layout_toEndOf="@+id/textView15"
 
-             />
+            />
 
 
     </RelativeLayout>

@@ -177,6 +177,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             adapter = new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
 
             sp.setAdapter(adapter);
+sp.setPrompt("Select");
             adapter.notifyDataSetChanged();
         }
     }
