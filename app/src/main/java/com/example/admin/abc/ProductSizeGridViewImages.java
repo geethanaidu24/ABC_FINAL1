@@ -80,7 +80,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                     finish();
                 }
             });
-            actionbar.inflateMenu(R.menu.gridproducts);
+            actionbar.inflateMenu(R.menu.mainproducts);
 
 
             actionbar.setOnMenuItemClickListener(
@@ -91,11 +91,11 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
                             int id = item.getItemId();
 
-                            if (id == R.id.gridadd) {
+                            if (id == R.id.productsadd) {
                                 Intent in = new Intent(ProductSizeGridViewImages.this, AddGridSubTypes.class);
                                 startActivity(in);
                             }
-                            if (id == R.id.griddelete) {
+                            if (id == R.id.productdelete) {
                                 Intent in = new Intent(ProductSizeGridViewImages.this, DeleteProducts.class);
                                 startActivity(in);
                             }

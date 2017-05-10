@@ -4,18 +4,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -29,7 +25,6 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -38,7 +33,6 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
-import static com.example.admin.abc.R.layout.item;
 
 public class Products extends AppCompatActivity implements Serializable {
     private static final int ADD_MENU_ITEM = 0;
@@ -55,14 +49,8 @@ public class Products extends AppCompatActivity implements Serializable {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-        //getSupportActionBar().hide();
-        // Intent in=getIntent();
-        // final String loggedin = String.valueOf(in.getExtras().getInt("loggedIn"));
 
         final ListView productsListView = (ListView) findViewById(R.id.productLv);
-
-
-        // new ProductsDownloader(Products.this, urlAddress, lv).execute();
 
         new ProductsDownloader(Products.this, productsUrl, productsListView).execute();
 
@@ -73,20 +61,18 @@ public class Products extends AppCompatActivity implements Serializable {
         if (null != toolbar) {
             toolbar.setNavigationIcon(R.mipmap.backbutton);
 
-            //  actionbar.setTitle(R.string.title_activity_settings);
+
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(Products.this, Main2Activity.class);
-                    // startActivity(in);
-
                     finish();
                 }
             });
 
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
-            // toolbar.hideOverflowMenu();
+
         }
     }
 

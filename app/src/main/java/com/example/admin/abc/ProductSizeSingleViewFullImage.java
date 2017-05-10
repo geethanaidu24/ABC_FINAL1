@@ -55,8 +55,7 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
                     in.putExtra("SIZE_KEY",size);
                     startActivity(in);*/
                     finish();
-                    startActivity(in);*/
-                  finish();
+
                 }
             });
 
