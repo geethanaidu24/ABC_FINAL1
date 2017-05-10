@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-public class ProductSizeSingleViewFullImageActivity extends AppCompatActivity {
+public class ProductSizeSingleViewFullImage extends AppCompatActivity {
     ImageView im;
     Context c;
 
@@ -43,6 +43,8 @@ public class ProductSizeSingleViewFullImageActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
+                    /*in.putExtra("IMAGE_KEY",image);
                     Intent in = new Intent(ProductSizeSingleViewFullImageActivity.this, ProductSizeSingleViewActivity.class);
                   /*  in.putExtra("IMAGE_KEY",image);
                     in.putExtra("PRODUCTID_KEY",pid);
@@ -51,6 +53,8 @@ public class ProductSizeSingleViewFullImageActivity extends AppCompatActivity {
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
                     in.putExtra("SIZE_KEY",size);
+                    startActivity(in);*/
+                    finish();
                     startActivity(in);*/
                   finish();
                 }

@@ -4,6 +4,7 @@ package com.example.admin.abc;
  * Created by Geetha on 4/10/2017 for opening Product types activity based on user clicked product .
  */
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,19 +12,22 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-public class ProductTypes extends AppCompatActivity {
+public class ProductTypes extends AppCompatActivity implements Serializable {
     ImageView back;
-
-    //Context c;
-    final static String url =Config.productTypesUrlAddress;
+    Context c;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,16 +36,18 @@ public class ProductTypes extends AppCompatActivity {
         setContentView(R.layout.activity_products_types);
         LinearLayout ll = (LinearLayout) findViewById(R.id.products_type);
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
-        TextView typeNameTxt= (TextView) findViewById(R.id.SelProductName);
-        // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-       final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
-        typeNameTxt.setText(name);
-        Log.d("result PID: ", "> " + pid);
-        String urlAddress = url + pid;
+        TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
+        Intent intent = getIntent();
+        final String selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        final int selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
 
-        new ProductTypesDownloader(ProductTypes.this,urlAddress,lv,ll,pid,name).execute();
+        ArrayList<ProductTypesDB> productTypesDBs = (ArrayList<ProductTypesDB>) intent.getSerializableExtra("ProductTypeList");
+
+        typeNameTxt.setText(selectedPname);
+        Log.d("result response: ", "> " + productTypesDBs);
+
+        final ProductTypesListAdapter adapter = new ProductTypesListAdapter(this, productTypesDBs, selectedPid, selectedPname);
+        lv.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,11 +58,12 @@ public class ProductTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypes.this,Products.class);
+                    Intent in = new Intent(ProductTypes.this, Products.class);
+                    //startActivity(in);
                     finish();
-                   // startActivity(in);
                 }
             });
+
 
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
@@ -99,37 +106,76 @@ public class ProductTypes extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
 
-/*
+    private class ProductTypesListAdapter extends BaseAdapter {
 
-            actionbar.setOnMenuItemClickListener(
-                    new Toolbar.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Handle menu item click event
+        Context c;
+        ArrayList<ProductTypesDB> productTypesDBs;
+        LayoutInflater inflater;
+        String FinalPname;
+        int FinalPid;
+        private ProductTypesListAdapter(Context c, ArrayList<ProductTypesDB> productTypesDBs,int selectdPid, String selectdPname) {
+            this.c = c;
+            this.productTypesDBs = productTypesDBs;
+            this.FinalPname = selectdPname;
+            this.FinalPid=selectdPid;
+            inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        @Override
+        public int getCount() {
+            return productTypesDBs.size();
+        }
+        @Override
+        public Object getItem(int position) {
+            return productTypesDBs.get(position);
+        }
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null)
+            {
+                convertView=inflater.inflate(R.layout.producttypeimage_list_view,parent,false);
+            }
+            TextView typeNameTypeTxt= (TextView) convertView.findViewById(R.id.textViewURL1);
+            ImageView img= (ImageView) convertView.findViewById(R.id.imageTypePro);
 
-                            int id = item.getItemId();
+            //BIND DATA
+            ProductTypesDB productTypesDB=(ProductTypesDB) this.getItem(position);
+            final int ProductTypeId = productTypesDB.getProductTypeId();
+            final String ProductTypeName = productTypesDB.getProductType();
+            final int ProductId = productTypesDB.getProductId();
+            final String imageUrl = productTypesDB.getImageUrl();
+            final String finalUrl=Config.mainUrlAddress + imageUrl;
 
-                            if (id == R.id.productsadd) {
-                                Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
-                                in.putExtra("PRODUCTID_KEY", pid);
-                                in.putExtra("PRODUCTNAME_KEY",name);
-                                startActivity(in);
-                            }
-                            if (id == R.id.productdelete) {
-                                Intent in = new Intent(ProductTypes.this, DeleteProductTypes.class);
-                                in.putExtra("PRODUCTID_KEY", pid);
-                                in.putExtra("PRODUCTNAME_KEY",name);
-                                startActivity(in);
-                            }
-                            return true;
-                        }
-                    });
+            typeNameTypeTxt.setText(productTypesDB.getProductType());
 
+            //IMG
+            PicassoClient.downloadImage(c,finalUrl,img);
+
+            // open new activity
+            convertView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    openProductTypeSubTypesActivity(FinalPid,FinalPname,ProductTypeId,ProductTypeName);
+                }
+            });
+
+            return convertView;
+        }
+
+        public void openProductTypeSubTypesActivity(int pid,String name,int ptid,String ptname){
+            Intent intent = new Intent(c,ProductSubTypes.class);
+            intent.putExtra("PRODUCTID_KEY",pid);
+            intent.putExtra("PRODUCTNAME_KEY",name);
+            intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+            intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
+            c.startActivity(intent);
         }
     }
 
 }
-*/
+
 

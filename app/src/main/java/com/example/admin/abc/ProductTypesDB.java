@@ -1,10 +1,12 @@
 package com.example.admin.abc;
 
+import java.io.Serializable;
+
 /**
  * Created by Geetha on 4/11/2017.
  */
 
-public class ProductTypesDB {
+public class ProductTypesDB implements Serializable {
 
     public int ProductTypeId;
     public String ProductType;
