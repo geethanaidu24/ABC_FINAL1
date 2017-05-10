@@ -62,12 +62,13 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
             }
         });
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
@@ -78,8 +79,8 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
                     in.putExtra("PRODUCTSIZE_KEY", size);
                     startActivity(in);*/
                     finish();
-                    startActivity(in);*/
-                   finish();
+
+
                 }
             });
 
