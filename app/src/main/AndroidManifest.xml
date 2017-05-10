@@ -78,9 +78,9 @@
         <activity
             android:name=".ProductSubTypes"
             android:screenOrientation="portrait"/>
-        <activity
+       <!-- <activity
             android:name=".ProductTypeSubTypeImages"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"/>-->
         <activity
             android:name=".ProductTypeImages"
             android:screenOrientation="portrait"/>
@@ -97,16 +97,16 @@
             android:name=".ProductSubTypeSingleViewActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ProductSizeImages"
+            android:name=".ProductSizeGridViewImages"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ProductSizeSingleViewActivity"
+            android:name=".ProductSizeImageSingleViewFullDetails"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".AddProducts"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ProductSizeSingleViewFullImageActivity"
+            android:name=".ProductSizeSingleViewFullImage"
             android:screenOrientation="portrait">
         </activity>
         <activity

@@ -13,7 +13,7 @@ import android.widget.TextView;
  * Created by Geetha on 4/21/2017.
  */
 
-public class ProductSizeSingleViewActivity extends AppCompatActivity {
+public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
 
     ImageView back;
 
@@ -46,22 +46,11 @@ public class ProductSizeSingleViewActivity extends AppCompatActivity {
         colorTxt.setText(color);
         sizeTxt.setText(size);
         PicassoClient.downloadImage(c, image, selectedImage);
-       /* back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductSizeSingleViewActivity.this,ProductSizeImages.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTSIZEID_KEY", psid);
-                in.putExtra("PRODUCTSIZE_KEY", size);
-                startActivity(in);
-            }
-        });*/
 
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductSizeSingleViewActivity.this,ProductSizeSingleViewFullImageActivity.class);
+                Intent in=new Intent(ProductSizeImageSingleViewFullDetails.this,ProductSizeSingleViewFullImage.class);
                 in.putExtra("IMAGE_KEY",image);
                 in.putExtra("PRODUCTID_KEY",pid);
                 in.putExtra("PRODUCTSIZEID_KEY",psid);
@@ -81,11 +70,12 @@ public class ProductSizeSingleViewActivity extends AppCompatActivity {
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeSingleViewActivity.this, ProductSizeImages.class);
-                    in.putExtra("PRODUCTID_KEY", pid);
+                    Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTSIZEID_KEY", psid);
                     in.putExtra("PRODUCTSIZE_KEY", size);
-                    startActivity(in);
+                    startActivity(in);*/
+                    finish();
                 }
             });
 
