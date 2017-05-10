@@ -150,13 +150,11 @@ public class ProductTypeSizes extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
-
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
             startActivity(inn);
-
             return true;
         } else if (id == R.id.logout) {
             logout();
