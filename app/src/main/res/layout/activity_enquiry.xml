@@ -111,11 +111,11 @@ android:layout_marginLeft="10dp"
             android:background="@android:color/holo_red_dark"
             android:id="@+id/button7"
             android:textColor="@android:color/white"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/editText5"
-            android:layout_alignStart="@+id/editText5"
+            android:layout_marginTop="21dp"
             android:textStyle="normal|bold"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_below="@+id/editText5"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:text="Make An Enquiry"
