@@ -86,7 +86,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
             txtheight = (EditText) findViewById(R.id.height1);
             txtlength = (EditText) findViewById(R.id.length1);
-            btnAdd = (Button) findViewById(R.id.addbtn1);
+            btnAdd = (Button) findViewById(R.id.brandbtn);
 
             sp1 = (Spinner) findViewById(R.id.productsspinner);
             sp2 = (Spinner) findViewById(R.id.spinner8);

@@ -92,9 +92,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
         }
 
-        imageView = (ImageView)findViewById(R.id.image2);
+        imageView = (ImageView)findViewById(R.id.brandimage);
         etCaption = (EditText)findViewById(R.id.producttypes);
-        tvPath    = (TextView)findViewById(R.id.path5);
+        tvPath    = (TextView)findViewById(R.id.brandpath);
         sp = (Spinner)findViewById(R.id.addProSp);
         //sp.setPrompt("Select");
 

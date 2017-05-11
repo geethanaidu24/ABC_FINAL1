@@ -142,7 +142,10 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity android:name=".DeleteGridSubTypes" />
         <activity android:name=".DeleteGridProductSizes" />
         <activity android:name=".DeleteGridProductTypes" />
-        <activity android:name=".DeleteGridProductTypeSizes"></activity>
+        <activity android:name=".DeleteGridProductTypeSizes" />
+        <activity android:name=".Products" />
+        <activity android:name=".AddBrands" />
+        <activity android:name=".AddNews"></activity>
     </application>
 
 </manifest>

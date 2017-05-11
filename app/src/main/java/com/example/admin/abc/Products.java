@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.util.LruCache;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,14 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,53 +35,20 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-public class Brands extends AppCompatActivity {
+public class Products extends AppCompatActivity {
 
+    final static String urlAddress = Config.productsUrlAddress;
     private boolean loggedIn = false;
-    private LruCache<String, Bitmap> mMemoryCache;
-    //Integer[] imageIDs = {
-    //        R.mipmap.brone, R.mipmap.brtwo, R.mipmap.brthree, R.mipmap.brfour, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone, R.mipmap.brone
-
-    //};
-
-    final static String urlAddress = Config.brandsImgUrlAddress;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //  getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_brands);
-        final GridView gridView1 = (GridView) findViewById(R.id.brandgrid_view);
+        setContentView(R.layout.activity_products);
 
-        new BrandsDownloader(Brands.this, urlAddress, gridView1).execute();
 
-        final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        final ListView lv = (ListView) findViewById(R.id.productLv);
 
-// Use 1/8th of the available memory for this memory cache.
-        final int cacheSize = maxMemory / 8;
-
-        mMemoryCache = new LruCache<String, Bitmap>(cacheSize) {
-            @Override
-            protected int sizeOf(String key, Bitmap bitmap) {
-                // The cache size will be measured in kilobytes rather than
-                // number of items.
-                return bitmap.getByteCount() / 1024;
-            }
-        };
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-        /*back5 = (ImageView) findViewById(R.id.back);
-        back5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(Brands.this, Main2Activity.class);
-                startActivity(in);
-            }
-        });*/
+        new ProductsDownloader(Products.this, urlAddress, lv).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -98,19 +58,18 @@ public class Brands extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Brands.this, Main2Activity.class);
+                    Intent in = new Intent(Products.this, Main2Activity.class);
+                    //startActivity(in);
                     finish();
-                    //  startActivity(in);
                 }
             });
+
 
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
 
         }
     }
-
-
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -140,24 +99,23 @@ public class Brands extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(Brands.this, AddBrands.class);
+            Intent in = new Intent(Products.this, AddProducts.class);
 
             startActivity(in);
             return true;
-        }/* else if (id == R.id.productdelete) {
-            Intent inn = new Intent(Brands.this, DeleteBrands.class);
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(Products.this, DeleteProducts.class);
             startActivity(inn);
 
-            return true;*/
-        else if (id == R.id.logout) {
+            return true;
+        } else if (id == R.id.logout) {
             logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    private void logout() {
+    private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure you want to logout?");
@@ -167,7 +125,7 @@ public class Brands extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         //Getting out sharedpreferences
-                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
                         //Getting editor
                         SharedPreferences.Editor editor = preferences.edit();
 
@@ -181,7 +139,7 @@ public class Brands extends AppCompatActivity {
                         editor.commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Brands.this, MainActivity.class);
+                        Intent intent = new Intent(Products.this, MainActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -199,70 +157,17 @@ public class Brands extends AppCompatActivity {
         alertDialog.show();
 
     }
-
-    public void addBitmapToMemoryCache(String key, Bitmap bitmap) {
-        if (getBitmapFromMemCache(key) == null) {
-            mMemoryCache.put(key, bitmap);
-        }
-    }
-
-    public Bitmap getBitmapFromMemCache(String key) {
-        return mMemoryCache.get(key);
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-
-
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Brands Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-    private class BrandsDownloader extends AsyncTask<Void, Void, String> {
+    public class ProductsDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
         String urlAddress;
-        GridView gridView1;
+        ListView lv;
 
 
-        public BrandsDownloader(Context c, String urlAddress, GridView gridView1) {
+        public ProductsDownloader(Context c, String urlAddress, ListView lv) {
             this.c = c;
             this.urlAddress = urlAddress;
-            this.gridView1 = gridView1;
+            this.lv = lv;
         }
 
         @Override
@@ -284,7 +189,7 @@ public class Brands extends AppCompatActivity {
             } else {
 
                 //CALL DATA PARSER TO PARSE
-                BrandsDataParser parser = new BrandsDataParser(c, gridView1, s);
+                ProductsDataParser parser = new ProductsDataParser(c, lv, s);
                 parser.execute();
             }
         }
@@ -311,18 +216,15 @@ public class Brands extends AppCompatActivity {
             return null;
         }
     }
-
-    class BrandsDataParser extends AsyncTask<Void, Void, Integer> {
+    public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
         Context c;
-
-        GridView gridView1;
+        ListView lv;
         String jsonData;
 
-        ArrayList<BrandsImages> brandsImages = new ArrayList<>();
-
-        public BrandsDataParser(Context c, GridView gridView1, String jsonData) {
+        ArrayList<ProductsDB> productsDBs=new ArrayList<>();
+        public ProductsDataParser(Context c, ListView lv, String jsonData) {
             this.c = c;
-            this.gridView1 = gridView1;
+            this.lv = lv;
             this.jsonData = jsonData;
         }
 
@@ -330,7 +232,6 @@ public class Brands extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
         }
-
         @Override
         protected Integer doInBackground(Void... params) {
             return this.parseData();
@@ -340,32 +241,37 @@ public class Brands extends AppCompatActivity {
 
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
-            if (result == 0) {
-                Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
-            } else {
+            if(result==0)
+            {
+                Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+            }else
+            {
 
-                final BrandsListAdapter adapter = new BrandsListAdapter(c, brandsImages);
-                gridView1.setAdapter(adapter);
+                final ProductsListAdapter adapter=new ProductsListAdapter(c,productsDBs);
+                lv.setAdapter(adapter);
             }
         }
 
-        private int parseData() {
-            try {
-                JSONArray ja = new JSONArray(jsonData);
-                JSONObject jo = null;
-                brandsImages.clear();
-                BrandsImages brandsImage;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo = ja.getJSONObject(i);
+        private int parseData()
+        {
+            try
+            {
+                JSONArray ja=new JSONArray(jsonData);
+                JSONObject jo=null;
+                productsDBs.clear();
+                ProductsDB productsDB;
+                for(int i=0;i<ja.length();i++)
+                {
+                    jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-                    int BrandId = jo.getInt("ID");
-                    String ImageUrl = jo.getString("ImagePath");
-                    brandsImage = new BrandsImages();
-                    brandsImage.setId(BrandId);
-
-                    brandsImage.setImagePath(ImageUrl);
-                    brandsImages.add(brandsImage);
-
+                    int ProductId=jo.getInt("ProductId");
+                    String ProductName =jo.getString("ProductName");
+                    String ImageUrl=jo.getString("ImageUrl");
+                    productsDB=new ProductsDB();
+                    productsDB.setId(ProductId);
+                    productsDB.setName(ProductName);
+                    productsDB.setImageUrl(ImageUrl);
+                    productsDBs.add(productsDB);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -375,54 +281,66 @@ public class Brands extends AppCompatActivity {
         }
 
     }
-
-    private class BrandsListAdapter extends BaseAdapter {
+    public class ProductsListAdapter extends BaseAdapter {
 
         Context c;
-        ArrayList<BrandsImages> brandsImages;
+        ArrayList<ProductsDB> productsDBs;
         LayoutInflater inflater;
 
-        private BrandsListAdapter(Context c, ArrayList<BrandsImages> brandsImages) {
+        public ProductsListAdapter(Context c, ArrayList<ProductsDB> productsDBs) {
             this.c = c;
-            this.brandsImages = brandsImages;
-            inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            this.productsDBs = productsDBs;
+            inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
-
         @Override
         public int getCount() {
-            return brandsImages.size();
+            return productsDBs.size();
         }
-
         @Override
         public Object getItem(int position) {
-            return brandsImages.get(position);
+            return productsDBs.get(position);
         }
-
         @Override
         public long getItemId(int position) {
             return position;
         }
-
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = inflater.inflate(R.layout.brands_list_gridview, parent, false);
+            if(convertView==null)
+            {
+                convertView=inflater.inflate(R.layout.productimage_list_view, parent,false);
             }
-
-            ImageView img = (ImageView) convertView.findViewById(R.id.brandgridimg);
+            TextView nametxt= (TextView) convertView.findViewById(R.id.textViewURL);
+            ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
             //BIND DATA
-            BrandsImages brandsImage = (BrandsImages) this.getItem(position);
-            final String url = brandsImage.getImagePath();
-            final String finalUrl = Config.mainUrlAddress + url;
+            ProductsDB productsDB=(ProductsDB) this.getItem(position);
+            final String name = productsDB.getName();
+            final String url = productsDB.getImageUrl();
+            final int pid = productsDB.getId();
+            final String finalUrl=Config.mainUrlAddress + url;
+            nametxt.setText(productsDB.getName());
 
             //IMG
-            PicassoClient.downloadImage(c, finalUrl, img);
+            PicassoClient.downloadImage(c,finalUrl,img);
+
+            // testing new activity condition
+            convertView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                    openProductTypesActivity(pid, name);
+                }
+            });
+
 
             return convertView;
         }
-
-
-
+        public void openProductTypesActivity(int pid, String name){
+            Intent intent = new Intent(c,ProductTypes.class);
+            intent.putExtra("PRODUCTID_KEY", pid);
+            intent.putExtra("PRODUCTNAME_KEY",name);
+            c.startActivity(intent);
+        }
     }
-}
 
+
+}

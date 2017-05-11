@@ -52,7 +52,7 @@
             android:textSize="24sp"/>
 
         <Button
-            android:id="@+id/addbtn1"
+            android:id="@+id/brandbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView35"
-            android:layout_alignStart="@+id/addbtn1"
+            android:layout_alignStart="@+id/brandbtn"
             android:layout_marginEnd="20dp"
             android:ems="10"
             android:textColor="@color/cred"

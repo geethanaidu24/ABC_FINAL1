@@ -62,16 +62,16 @@
             android:textSize="18sp"/>
 
         <Spinner
-            android:id="@+id/sp4"
+            android:id="@+id/gridsp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView25"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp" />
 
         <Button
-            android:id="@+id/delete4"
+            android:id="@+id/griddelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -79,6 +79,6 @@
             android:layout_marginBottom="96dp"
             android:background="@color/cred"
             android:text="DELETE"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
     </RelativeLayout>
 </LinearLayout>

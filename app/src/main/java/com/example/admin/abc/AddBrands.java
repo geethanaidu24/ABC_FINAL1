@@ -6,16 +6,15 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,22 +25,20 @@ import net.gotev.uploadservice.UploadNotificationConfig;
 import java.io.IOException;
 import java.util.UUID;
 
-public class AddProducts extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = Config.productsCRUD;
+public class AddBrands extends AppCompatActivity implements View.OnClickListener {
+    private static final String UPLOAD_URL = Config.brandsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private EditText etCaption;
+
     private TextView tvPath;
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_products);
+        setContentView(R.layout.activity_add_brands);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -51,16 +48,16 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProducts.this, Products.class);
+                    Intent in = new Intent(AddBrands.this, Products.class);
                     finish();
-                   // startActivity(in);
+                    // startActivity(in);
                 }
             });
 
         }
 
         imageView = (ImageView)findViewById(R.id.brandimage);
-        etCaption = (EditText)findViewById(R.id.productsubtypes);
+
         tvPath    = (TextView)findViewById(R.id.brandpath);
         btnUpload = (Button)findViewById(R.id.brandbtn);
 
@@ -79,12 +76,12 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
-                if (etCaption.length() < 1 && tvPath.length() < 1) {
+                if ( tvPath.length() < 1) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
                     Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
-                    etCaption.setText("");
+
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
 
@@ -108,7 +105,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     }
 
     public void uploadMultipart() {
-        String caption = etCaption.getText().toString().trim();
+
 
         //getting the actual path of the image
         String path = getPath(filePath);
@@ -121,7 +118,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
-                    .addParameter("caption", caption) //Adding text parameter to the request
+                    
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload();
