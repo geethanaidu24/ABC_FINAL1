@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -79,12 +80,12 @@ ImageView im;
                     Intent sendEmail = new Intent(Intent.ACTION_SEND);
 
             /* Fill it with Data */
-
-                    sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"khushbunahar@gmail.com"});
+                    sendEmail.setData(Uri.parse("mailto:"));
+                    sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"geethamca.naidu@gmail.com"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
                     sendEmail.putExtra(Intent.EXTRA_TEXT,
                             "name:" + name + '\n' + "Email ID:" + email + '\n' + "Message:" + '\n' + message);
-                    sendEmail.setType("message/rfc822");
+                    sendEmail.setType("plain/text");
             /* Send it off to the Activity-Chooser */
 
                     try {
