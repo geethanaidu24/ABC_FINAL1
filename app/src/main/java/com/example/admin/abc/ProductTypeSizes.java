@@ -108,9 +108,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
-            inn.putExtra("PRODUCTID_KEY", pid);
+           // inn.putExtra("PRODUCTID_KEY", pid);
 
-            inn.putExtra("PRODUCTTYPEID_KEY",ptid);
+           // inn.putExtra("PRODUCTTYPEID_KEY",ptid);
             startActivity(inn);
 
             return true;
@@ -204,7 +204,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         }
 
         public void openProductTypeSizeImagesActivity(int proid,int protid,int sizeid){
-            Intent intent = new Intent(c,ProductTypeSizeImages.class);
+            Intent intent = new Intent(c,ProductTypeSizeImagesGridView.class);
             intent.putExtra("PRODUCTID_KEY",proid);
             intent.putExtra("PRODUCTTYPEID_KEY",protid);
             intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
