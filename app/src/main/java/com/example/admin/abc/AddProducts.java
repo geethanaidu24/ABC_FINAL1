@@ -61,7 +61,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
 
         imageView = (ImageView)findViewById(R.id.image2);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
-        tvPath    = (TextView)findViewById(R.id.path);
+        tvPath    = (TextView)findViewById(R.id.path5);
         btnUpload = (Button)findViewById(R.id.addbtn1);
 
         requestStoragePermission();

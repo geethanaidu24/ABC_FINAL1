@@ -96,7 +96,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         imageView = (ImageView)findViewById(R.id.image2);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
-        tvPath    = (TextView)findViewById(R.id.path);
+        tvPath    = (TextView)findViewById(R.id.path5);
         sp1 = (Spinner)findViewById(R.id.spproductstypes);
         btnUpload = (Button)findViewById(R.id.btnUpload);
 

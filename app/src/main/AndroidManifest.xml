@@ -85,7 +85,7 @@
         -->
         <activity
             android:name=".ProductTypesGridView"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypeSizes"
             android:screenOrientation="portrait" />
@@ -147,7 +147,11 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity android:name=".DeleteProductSizes" />
         <activity android:name=".AddGridProductTypes" />
         <activity android:name=".AddGridProductTypeSizes" />
-        <activity android:name=".AddGridProductSizes"></activity>
+        <activity android:name=".AddGridProductSizes" />
+        <activity android:name=".DeleteGridSubTypes" />
+        <activity android:name=".DeleteGridProductSizes" />
+        <activity android:name=".DeleteGridProductTypes" />
+        <activity android:name=".DeleteGridProductTypeSizes"></activity>
     </application>
 
 </manifest>

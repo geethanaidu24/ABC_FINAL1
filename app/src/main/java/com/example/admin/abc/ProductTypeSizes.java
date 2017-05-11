@@ -108,9 +108,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
-            inn.putExtra("PRODUCTID_KEY", pid);
+            //inn.putExtra("PRODUCTID_KEY", pid);
 
-            inn.putExtra("PRODUCTTYPEID_KEY",ptid);
+           // inn.putExtra("PRODUCTTYPEID_KEY",ptid);
             startActivity(inn);
 
             return true;

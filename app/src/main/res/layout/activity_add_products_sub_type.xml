@@ -60,7 +60,7 @@
             app:srcCompat="@mipmap/browseimage"/>
 
         <TextView
-            android:id="@+id/path"
+            android:id="@+id/path5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
@@ -74,8 +74,8 @@
             android:id="@+id/textView18"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/path"
-            android:layout_below="@+id/path"
+            android:layout_alignStart="@+id/path5"
+            android:layout_below="@+id/path5"
             android:layout_marginTop="10dp"
             android:text="PRODUCTS SUB-TYPES"
             android:textColor="@color/cred"
@@ -107,7 +107,7 @@
             android:text="PRODUCTS TYPES"
             android:layout_below="@id/textView18"
             android:layout_marginTop="10dp"
-            android:layout_alignStart="@+id/path"
+            android:layout_alignStart="@+id/path5"
             android:textColor="@color/cred"
             android:textSize="18sp"
             android:id="@+id/textView15"/>
