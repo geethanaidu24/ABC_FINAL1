@@ -450,7 +450,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
                     .addParameter("productsubtypeid", String.valueOf(pstid))
-                    .addParameter("productsizeid", String.valueOf(s.getProductSizeId()))
+
                     .addParameter("producttypeid", String.valueOf(ptid))
                     .addParameter("productid", String.valueOf(pid))
                     .setNotificationConfig(new UploadNotificationConfig())
