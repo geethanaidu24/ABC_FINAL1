@@ -37,9 +37,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Products"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".Contact"
             android:screenOrientation="portrait" />
         <activity
@@ -61,13 +58,7 @@
             android:name=".Enquiry"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ShowBasinSingleRecord"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".UpdateActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".SingleViewActivity"
+            android:name=".ProductTypeSizeSingleViewFullDetails"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypes"
@@ -90,7 +81,7 @@
             android:name=".ProductTypeSizes"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProductTypeSizeImages"
+            android:name=".ProductTypeSizeImagesGridView"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypeSingleViewActivity"
