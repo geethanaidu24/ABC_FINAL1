@@ -66,6 +66,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     Context context;
     final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
 
+
     private Spinner sp1,sp2,sp3,sp4;
     private ArrayAdapter<GridDataDB> adapter1 ;
     private ArrayAdapter<GridDataDB> adapter2 ;
