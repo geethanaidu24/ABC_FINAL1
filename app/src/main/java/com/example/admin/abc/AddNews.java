@@ -6,12 +6,12 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +26,8 @@ import net.gotev.uploadservice.UploadNotificationConfig;
 import java.io.IOException;
 import java.util.UUID;
 
-public class AddProducts extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = Config.productsCRUD;
+public class AddNews extends AppCompatActivity implements View.OnClickListener {
+    private static final String UPLOAD_URL = Config.newsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -36,12 +36,10 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_products);
+        setContentView(R.layout.activity_add_news);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -51,18 +49,18 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProducts.this, Products.class);
+                    Intent in = new Intent(AddNews.this, Main2Activity.class);
                     finish();
-                   // startActivity(in);
+                    // startActivity(in);
                 }
             });
 
         }
 
-        imageView = (ImageView)findViewById(R.id.brandimage);
-        etCaption = (EditText)findViewById(R.id.productsubtypes);
-        tvPath    = (TextView)findViewById(R.id.brandpath);
-        btnUpload = (Button)findViewById(R.id.brandbtn);
+        imageView = (ImageView)findViewById(R.id.newsimage);
+        etCaption = (EditText)findViewById(R.id.news);
+        tvPath    = (TextView)findViewById(R.id.newspath);
+        btnUpload = (Button)findViewById(R.id.newsbtn);
 
         requestStoragePermission();
 

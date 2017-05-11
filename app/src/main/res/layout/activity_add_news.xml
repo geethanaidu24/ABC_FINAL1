@@ -3,15 +3,15 @@
 
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
 
-              android:layout_height="match_parent"
+    android:layout_height="match_parent"
 
 
-              tools:context=".MainActivity">
+    tools:context=".MainActivity">
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             android:textSize="24sp"/>
 
         <ImageView
-            android:id="@+id/brandimage"
+            android:id="@+id/newsimage"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@+id/textView13"
@@ -61,29 +61,29 @@
             app:srcCompat="@mipmap/browseimage"/>
 
         <TextView
-            android:id="@+id/brandpath"
+            android:id="@+id/newspath"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/brandimage"
             android:layout_marginLeft="10dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="13dp"
-            android:text="Path: "/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Path: "
+            android:layout_below="@+id/newsimage"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/brandpath"
-            android:layout_below="@+id/brandpath"
-            android:layout_marginTop="10dp"
-            android:text="PRODUCTS "
+            android:layout_alignStart="@+id/newspath"
+            android:layout_below="@+id/newspath"
+            android:layout_marginTop="16dp"
+            android:text="NEWS TITLE"
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/productsubtypes"
+            android:id="@+id/news"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -93,7 +93,7 @@
             android:layout_alignParentEnd="true"/>
 
         <Button
-            android:id="@+id/brandbtn"
+            android:id="@+id/newsbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"

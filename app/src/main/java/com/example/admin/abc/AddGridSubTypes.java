@@ -46,7 +46,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import static com.example.admin.abc.R.id.name5;
+import static com.example.admin.abc.R.id.name8;
 
 public class AddGridSubTypes extends AppCompatActivity implements View.OnClickListener {
     private static final String addGridData = Config.productSubTypeGridsCRUD;
@@ -90,15 +90,15 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     finish();
                 }
             });
-            imageView = (ImageView) findViewById(R.id.image5);
-            name = (EditText) findViewById(name5);
-            Path = (TextView) findViewById(R.id.path5);
-            brand = (EditText) findViewById(R.id.brand5);
+            imageView = (ImageView) findViewById(R.id.image8);
+            name = (EditText) findViewById(name8);
+            Path = (TextView) findViewById(R.id.brandpath);
+            brand = (EditText) findViewById(R.id.brand8);
             color = (EditText) findViewById(R.id.color);
-            sp1 = (Spinner) findViewById(R.id.typespinner5);
-            sp2 = (Spinner) findViewById(R.id.productspinner5);
+            sp1 = (Spinner) findViewById(R.id.sizespinner8);
+            sp2 = (Spinner) findViewById(R.id.typespinner8);
             sp3 = (Spinner) findViewById(R.id.typesspinner);
-            sp4 = (Spinner) findViewById(R.id.productspinner);
+            //sp4 = (Spinner) findViewById(R.id.productspinner);
             btnadd = (Button) findViewById(R.id.btnadd);
 
             requestStoragePermission();
