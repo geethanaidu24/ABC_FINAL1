@@ -343,14 +343,14 @@ public class Products extends AppCompatActivity implements Serializable {
     public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String urlAddress;
+        String finalProducturlAddress;
         int localpid;
         String localname;
 
 
         public ProductTypesDownloader(Context c, String urlAddress, int recivedpid, String recivedname) {
             this.c = c;
-            this.urlAddress = urlAddress;
+            this.finalProducturlAddress = urlAddress;
             this.localpid = recivedpid;
             this.localname = recivedname;
 
@@ -381,7 +381,7 @@ public class Products extends AppCompatActivity implements Serializable {
             }
         }
         private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(urlAddress);
+            HttpURLConnection con = Connector.connect(finalProducturlAddress);
             if (con == null) {
                 return null;
             }
@@ -440,6 +440,7 @@ public class Products extends AppCompatActivity implements Serializable {
                intent.putExtra("PRODUCTID_KEY",finalpid);
                intent.putExtra("PRODUCTNAME_KEY",finalname);
                intent.putExtra("ProductTypeList",productTypesDBs);
+               c.startActivity(intent);
             }
         }
         private int parseData()
