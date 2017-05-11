@@ -104,11 +104,13 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
-
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
+            inn.putExtra("PRODUCTID_KEY", pid);
+
+            inn.putExtra("PRODUCTTYPEID_KEY",ptid);
             startActivity(inn);
 
             return true;
@@ -116,6 +118,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             logout();
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }
@@ -253,3 +256,4 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     }
 
 }
+

@@ -86,10 +86,12 @@ public class ProductSizes extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+
         if (loggedIn == true) {
             MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
@@ -358,7 +360,6 @@ public class ProductSizes extends AppCompatActivity {
             c.startActivity(intent);
         }
     }
-
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -401,6 +402,6 @@ public class ProductSizes extends AppCompatActivity {
         alertDialog.show();
 
     }
-
 }
+
 

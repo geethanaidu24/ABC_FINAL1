@@ -50,8 +50,8 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_sizes);
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+       // Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+      // final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
        // final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

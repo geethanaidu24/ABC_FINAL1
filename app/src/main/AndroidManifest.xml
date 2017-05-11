@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.example.admin.abc">
+    package="com.example.admin.abc">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true"
-        android:xlargeScreens="true"/>
+        android:xlargeScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -21,142 +21,133 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Products"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Contact"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".News"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AboutUs"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Brands"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Offers"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Enquiry"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ShowBasinSingleRecord"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".UpdateActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SingleViewActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypes"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSizes"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSubTypes"
-            android:screenOrientation="portrait"/>
-       <!-- <activity
+            android:screenOrientation="portrait" />
+        <!--
+            <activity
             android:name=".ProductTypeSubTypeImages"
-            android:screenOrientation="portrait"/>-->
+            android:screenOrientation="portrait"/>
+        -->
         <activity
             android:name=".ProductTypesGridView"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ProductTypeSizes"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypeSizeImages"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypeSingleViewActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSubTypeSingleViewActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSizeGridViewImages"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSizeImageSingleViewFullDetails"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddProducts"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSizeSingleViewFullImage"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductSubTypeSingleViewImageFull"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SingleViewImageFull"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProductTypeSingleImageFullViewActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddProductsTypes">
-        </activity>
-        <activity android:name=".AddProductsSubType">
-        </activity>
-        <activity android:name=".DeleteProducts">
-        </activity>
-        <activity android:name=".DeleteProductTypes">
-        </activity>
-        <activity android:name=".AddGridSubTypes">
-        </activity>
-        <activity android:name=".ProductSubTypeGridView"/>
+            android:screenOrientation="portrait" />
+        <activity android:name=".AddProductsTypes" />
+        <activity android:name=".AddProductsSubType" />
+        <activity android:name=".DeleteProducts" />
+        <activity android:name=".DeleteProductTypes" />
+        <activity android:name=".AddGridSubTypes" />
+        <activity android:name=".ProductSubTypeGridView" />
         <!--
 ATTENTION: This was auto-generated to add Google Play services to your project for
     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <meta-data
             android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
+            android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.example.admin.abc.GlideConfiguration"
-            android:value="GlideModule"/>
+            android:value="GlideModule" />
 
         <!--
         <activity android:name=".AddProductSizes">
         </activity>
         -->
-        <activity android:name=".AddProductTypeSizes"/>
-        <activity android:name=".DeleteProductSubTypes">
-        </activity>
-        <activity android:name=".AddProductSizes">
-        </activity>
-        <activity android:name=".AddProductTypesGrid">
-        </activity>
-        <activity android:name=".DeleteProductTypeSizes"/>
-        <activity android:name=".DeleteProductSizes">
-        </activity>
+        <activity android:name=".AddProductTypeSizes" />
+        <activity android:name=".DeleteProductSubTypes" />
+        <activity android:name=".AddProductSizes" />
+        <activity android:name=".DeleteProductTypeSizes" />
+        <activity android:name=".DeleteProductSizes" />
+        <activity android:name=".AddGridProductTypes" />
+        <activity android:name=".AddGridProductTypeSizes" />
+        <activity android:name=".AddGridProductSizes"></activity>
     </application>
 
 </manifest>

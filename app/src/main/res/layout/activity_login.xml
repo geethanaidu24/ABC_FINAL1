@@ -83,6 +83,15 @@
                 android:textColor="@color/colorblack" />
 
 
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login For ADMIN Only"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+                android:layout_gravity="right" />
+
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

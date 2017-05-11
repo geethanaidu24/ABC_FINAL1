@@ -60,19 +60,7 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
                 }
             });
 
-            // Inflate a menu to be displayed in the toolbar
-            //  actionbar.inflateMenu(R.menu.actions);
         }
-        /*back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypeImages.class);
-                in.putExtra("PRODUCTID_KEY", pid);
-                in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                startActivity(in);
-            }
-        });*/
 
     }
 }

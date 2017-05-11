@@ -21,35 +21,35 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Created by Geetha on 4/18/2017 for opening size typed images.
+ * Created by Geetha on 4/21/2017.
  */
 
-public class ProductTypeSizeImages extends AppCompatActivity {
+public class ProductTypeImages extends AppCompatActivity {
     ImageView back;
     private boolean loggedIn = false;
     //Context c;
-    final static String url =Config.productTypeSizeImgUrlAddress;
+    final static String url = Config.productTypeImgUrlAddress;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products_types_sizes_images);
+        setContentView(R.layout.activity_products_types_images);
 
         final GridView gv = (GridView) findViewById(R.id.gv);
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String pname =intent.getExtras().getString("PRODUCTNAME_KEY");
-      final  int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-     final  int ptsid = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
                 .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
-                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(ptsid))
                 .build();
         URL urlAddress = null;
         try {
@@ -58,8 +58,7 @@ public class ProductTypeSizeImages extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-        new ProductTypeSizeImagesDownloader(ProductTypeSizeImages.this,urlAddress,gv,pid,pname,ptid,ptsid).execute();
+        new ProductTypeImagesDownloader(ProductTypeImages.this,urlAddress,gv,pid,ptid,pname).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -69,12 +68,10 @@ public class ProductTypeSizeImages extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSizeImages.this,ProductTypes.class);
+                    Intent in=new Intent(ProductTypeImages.this,ProductTypes.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-
-                    startActivity(in);*/
+                     startActivity(in);*/
                     finish();
                 }
             });
@@ -90,27 +87,28 @@ public class ProductTypeSizeImages extends AppCompatActivity {
                             int id = item.getItemId();
 
                             if (id == R.id.gridadd) {
-                                Intent in = new Intent(ProductTypeSizeImages.this, AddGridSubTypes.class);
+                                Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
                                 startActivity(in);
                             }
                             if (id == R.id.griddelete) {
-                                Intent in = new Intent(ProductTypeSizeImages.this, DeleteProducts.class);
+                                Intent in = new Intent(ProductTypeImages.this, DeleteProducts.class);
                                 startActivity(in);
                             }
                             return true;
                         }
                     });
-        }
-       *//* back=(ImageView)findViewById(R.id.back);
+
+        }*/
+        /*back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSizeImages.this,ProductTypeSizes.class);
+                Intent in=new Intent(ProductTypeImages.this,ProductTypeSubTypes.class);
+                in.putExtra("PRODUCTID_KEY", pid);
+                in.putExtra("PRODUCTTYPEID_KEY", ptid);
                 startActivity(in);
             }
-        });*//*
-    }
-}*/
+        });*/
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
 
@@ -147,13 +145,14 @@ public class ProductTypeSizeImages extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypeSizeImages.this, AddGridSubTypes.class);
+            Intent in = new Intent(ProductTypeImages.this, AddGridSubTypes.class);
 
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypeSizeImages.this, DeleteProducts.class);
+            Intent inn = new Intent(ProductTypeImages.this, DeleteProducts.class);
             startActivity(inn);
+
 
             return true;
         } else if (id == R.id.logout) {
@@ -164,47 +163,47 @@ public class ProductTypeSizeImages extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-    private void logout(){
-        //Creating an alert dialog to confirm logout
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
-        alertDialogBuilder.setPositiveButton("Yes",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
+ private void logout(){
+    //Creating an alert dialog to confirm logout
+    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+    alertDialogBuilder.setMessage("Are you sure you want to logout?");
+    alertDialogBuilder.setPositiveButton("Yes",
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
 
-                        //Getting out sharedpreferences
-                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                        //Getting editor
-                        SharedPreferences.Editor editor = preferences.edit();
+                    //Getting out sharedpreferences
+                    SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    //Getting editor
+                    SharedPreferences.Editor editor = preferences.edit();
 
-                        //Puting the value false for loggedin
-                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+                    //Puting the value false for loggedin
+                    editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
 
-                        //Putting blank value to email
-                        editor.putString(Config.KEY_USER, "");
+                    //Putting blank value to email
+                    editor.putString(Config.KEY_USER, "");
 
-                        //Saving the sharedpreferences
-                        editor.commit();
+                    //Saving the sharedpreferences
+                    editor.commit();
 
-                        //Starting login activity
-                        Intent intent = new Intent(ProductTypeSizeImages.this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                    //Starting login activity
+                    Intent intent = new Intent(ProductTypeImages.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            });
 
-        alertDialogBuilder.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
+    alertDialogBuilder.setNegativeButton("No",
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
 
-                    }
-                });
+                }
+            });
 
-        //Showing the alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+    //Showing the alert dialog
+    AlertDialog alertDialog = alertDialogBuilder.create();
+    alertDialog.show();
 
-    }
+}
 }
 
