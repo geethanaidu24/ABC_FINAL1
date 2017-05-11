@@ -1,10 +1,12 @@
 package com.example.admin.abc;
 
+import java.io.Serializable;
+
 /**
  * Created by Geetha on 4/14/2017 to defining database field names as class variables.
  */
 
-public class ProductTypeSizeDBData {
+public class ProductTypeSizeDBData implements Serializable {
 
     public int ProductSizeId;
     public int Length;

@@ -1,11 +1,15 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -29,36 +33,51 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by Geetha on 4/20/2017 for accessing url to displaying images in gridview.
+ * Created by Geetha on 4/21/2017.
  */
 
-public class ProductSubTypeGridView extends AppCompatActivity {
+public class ProductTypesGridView extends AppCompatActivity implements Serializable{
     ImageView back;
-    //Context c;
-    final static String url = Config.productTypeSubTypeImgUrlAddress;
+    Context c;
+    private boolean loggedIn = false;
+
+    final static String url = Config.productTypeImgUrlAddress;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        //getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products_types_subtype_images);
+        setContentView(R.layout.activity_products_types_images);
 
         final GridView gv = (GridView) findViewById(R.id.gv);
-        gv.setNumColumns(2);
+
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final String productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
-        final int productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
-        String urlAddress = url + productSubTypeId;
+        Uri builtUri = Uri.parse(url)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
+                .build();
+        URL urlAddress = null;
+        try {
+            urlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-        new ProductSubTypeImagesDownloader(ProductSubTypeGridView.this, urlAddress, gv, productSubTypeId).execute();
-
+        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,pid,ptid).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -68,8 +87,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
-                  finish();
+                    Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
+
+                    finish();
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -79,12 +99,23 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
+        if (loggedIn == true) {
+            MenuItem item = menu.findItem(R.id.productsadd);
+            item.setVisible(true);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(true);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            items.setVisible(true);
+
+        } else if (loggedIn == false) {
+            return false;
+        }
 
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -94,41 +125,37 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
+            Intent in = new Intent(ProductTypesGridView.this, AddProductsTypes.class);
+
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSubTypeGridView.this, DeleteProductSizes.class);
+            Intent inn = new Intent(ProductTypesGridView.this, DeleteProductTypes.class);
             startActivity(inn);
 
-
             return true;
-                /*if (id == R.id.logout) {
-                    Intent innn = new Intent(Products.this, AddProducts.class);
-                    startActivity(innn);
-                    return true;   */
-
+        } else if (id == R.id.logout) {
+            logout();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
-
-    private class ProductSubTypeImagesDownloader extends AsyncTask<Void, Void, String> {
+    private class ProductTypeImagesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String urlAddress;
+        URL urlAddress;
         GridView gv;
-        int pstid;
-
-        private ProductSubTypeImagesDownloader(Context c, String urlAddress, GridView gv, int pstid) {
+        int pid;
+        int ptid;
+        private ProductTypeImagesDownloader(Context c, URL urlAddress, GridView gv, int pid, int ptid) {
             this.c = c;
             this.urlAddress = urlAddress;
             this.gv = gv;
-            this.pstid = pstid;
-
+            this.pid = pid;
+            this.ptid =ptid;
             Log.d("newActivity url: ", "> " + urlAddress);
         }
-
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -148,12 +175,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
-                ProductSubTypeImagesDataParser parser=new ProductSubTypeImagesDataParser(c, gv, s, pstid);
+                ProductTypeImagesDataParser parser=new ProductTypeImagesDataParser(c, gv, s,pid,ptid);
                 parser.execute();
             }
         }
         private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(urlAddress);
+            HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
             if (con == null) {
                 return null;
             }
@@ -174,19 +201,19 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             return null;
         }
     }
-
-    private class ProductSubTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
+    private class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
         Context c;
         GridView gv;
         String jsonData;
-        int pstid;
+        int pid,ptid;
         ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems=new ArrayList<>();
 
-        private ProductSubTypeImagesDataParser(Context c, GridView gv, String jsonData, int pstid) {
+        private ProductTypeImagesDataParser(Context c, GridView gv, String jsonData, int pid, int ptid) {
             this.c = c;
             this.gv = gv;
             this.jsonData = jsonData;
-            this.pstid = pstid;
+            this.pid=pid;
+            this.ptid=ptid;
         }
         @Override
         protected void onPreExecute() {
@@ -205,8 +232,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             }else
             {
-
-                final ProductSubTypeImagesGirdAdapter adapter=new ProductSubTypeImagesGirdAdapter(c,productTypeSubTypeImageItems,pstid);
+                final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,productTypeSubTypeImageItems,pid,ptid);
                 gv.setAdapter(adapter);
 
             }
@@ -224,15 +250,14 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 {
                     jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-
                     int ProductSizeImageId = jo.getInt("ProductSizeImageId");
                     String Name =jo.getString("Name");
                     String ImageUrl=jo.getString("ImagePath");
                     String Brands = jo.getString("Brand");
                     String Color = jo.getString("Color");
                     int ProductSizeId = jo.optInt("ProductSizeId");
-                    int ProductSubTypeId = jo.getInt("ProductSubTypeId");
-                    int ProductTypeId = jo.optInt("ProductTypeId");
+                    int ProductSubTypeId = jo.optInt("ProductSubTypeId");
+                    int ProductTypeId = jo.getInt("ProductTypeId");
                     int ProductId = jo.getInt("ProductId");
                     productTypeSubTypeImageItem=new ProductTypeSubTypeImageItem();
                     productTypeSubTypeImageItem.setProductSizeId(ProductSizeImageId);
@@ -253,18 +278,17 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             return 0;
         }
     }
-
-    public class ProductSubTypeImagesGirdAdapter extends BaseAdapter {
+    private class ProductTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
 
         ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems;
-        int pstid;
         LayoutInflater inflater;
-
-        public ProductSubTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems,int pstid) {
+        int pid,ptid;
+        private ProductTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeImageItems, int pid,int ptid) {
             this.c = c;
-            this.productTypeSubTypeImageItems = productTypeSubTypeImageItems;
-            this.pstid = pstid;
+            this.productTypeSubTypeImageItems = productTypeImageItems;
+            this.pid=pid;
+            this.ptid=ptid;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -311,22 +335,23 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             final String brand = productTypeSubTypeImageItem.getBrand();
             final String color = productTypeSubTypeImageItem.getColor();
             final int protypeid = productTypeSubTypeImageItem.getProductTypeId();
-            final int prosubtypeid = productTypeSubTypeImageItem.getProductSubTypeId();
+            final int proid = productTypeSubTypeImageItem.getProductId();
             // open new activity
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
                     //open detail activity
                     // startDeatilActivity();
-                    openDetailActivity(pstid,name,finalUrl,brand,color);
+                    openDetailActivity(pid,ptid,name,finalUrl,brand,color);
                 }
             });
             return convertView;
         }
-        private void openDetailActivity(int pstid, String...details)
+        private void openDetailActivity(int pid, int ptid, String...details)
         {
-            Intent i = new Intent(c,ProductSubTypeSingleViewActivity.class);
-            i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+            Intent i = new Intent(c,ProductTypeSingleViewActivity.class);
+            i.putExtra("PRODUCTID_KEY", pid);
+            i.putExtra("PRODUCTTYPEID_KEY", ptid);
             i.putExtra("NAME_KEY", details[0]);
             i.putExtra("IMAGE_KEY",details[1]);
             i.putExtra("BRAND_KEY", details[2]);
@@ -334,6 +359,46 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             c.startActivity(i);
         }
     }
+    private void logout(){
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
 
+                        //Getting out sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                        //Getting editor
+                        SharedPreferences.Editor editor = preferences.edit();
 
+                        //Puting the value false for loggedin
+                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+                        //Putting blank value to email
+                        editor.putString(Config.KEY_USER, "");
+
+                        //Saving the sharedpreferences
+                        editor.commit();
+
+                        //Starting login activity
+                        Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
 }

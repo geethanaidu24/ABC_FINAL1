@@ -47,7 +47,7 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypeImages.class);
+                    Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypesGridView.class);
                     /*in.putExtra("PRODUCTID_KEY",pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);

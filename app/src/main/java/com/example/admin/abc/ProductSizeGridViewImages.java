@@ -1,14 +1,20 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +44,13 @@ import java.util.ArrayList;
 
 public class ProductSizeGridViewImages extends AppCompatActivity {
     ImageView back;
+    Context c;
+    private boolean loggedIn = false;
     final static String url =Config.productSizeImgUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_types_sizes_images);
 
@@ -64,49 +72,71 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         new ProductSizeImagesDownloader(ProductSizeGridViewImages.this,urlAddress,gv,pid,psid).execute();
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductSizeGridViewImages.this,ProductSizes.class);
-                    //in.putExtra("PRODUCTID_KEY",pid);
-                   // startActivity(in);
+                    Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
                     finish();
                 }
             });
-            actionbar.inflateMenu(R.menu.mainproducts);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
 
-
-            actionbar.setOnMenuItemClickListener(
-                    new Toolbar.OnMenuItemClickListener() {
-                        @Override
-                        public boolean onMenuItemClick(MenuItem item) {
-                            // Handle menu item click event
-
-                            int id = item.getItemId();
-
-                            if (id == R.id.productsadd) {
-                                Intent in = new Intent(ProductSizeGridViewImages.this, AddGridSubTypes.class);
-                                startActivity(in);
-                            }
-                            if (id == R.id.productdelete) {
-                                Intent in = new Intent(ProductSizeGridViewImages.this, DeleteProducts.class);
-                                startActivity(in);
-                            }
-                            return true;
-                        }
-                    }
-
-            );
         }
     }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+        getMenuInflater().inflate(R.menu.mainproducts, menu);
+        if (loggedIn == true) {
+            MenuItem item = menu.findItem(R.id.productsadd);
+            item.setVisible(true);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(true);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            items.setVisible(true);
 
+        } else if (loggedIn == false) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.productsadd) {
+            Intent in = new Intent(ProductSizeGridViewImages.this, AddProductSizes.class);
+
+            startActivity(in);
+            return true;
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteProductSizes.class);
+            startActivity(inn);
+
+            return true;
+        } else if (id == R.id.logout) {
+            logout();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private class ProductSizeImagesDownloader extends AsyncTask<Void, Void, String> {
 
@@ -345,7 +375,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //open detail activity
-                    openDetailActivity(pid,psid,name, finalUrl, brand, color,finalSize);
+                    openDetailActivity(pid,psid,name,finalUrl, brand, color,finalSize);
                 }
             });
             return convertView;
@@ -363,4 +393,46 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             c.startActivity(i);
         }
     }
+   private void logout(){
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        //Getting out sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                        //Getting editor
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        //Puting the value false for loggedin
+                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+                        //Putting blank value to email
+                        editor.putString(Config.KEY_USER, "");
+
+                        //Saving the sharedpreferences
+                        editor.commit();
+
+                        //Starting login activity
+                        Intent intent = new Intent(ProductSizeGridViewImages.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+   }
 }

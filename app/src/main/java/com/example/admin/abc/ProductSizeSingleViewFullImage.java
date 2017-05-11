@@ -2,6 +2,8 @@ package com.example.admin.abc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -44,20 +46,11 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
-                    /*in.putExtra("IMAGE_KEY",image);
-                    Intent in = new Intent(ProductSizeSingleViewFullImageActivity.this, ProductSizeSingleViewActivity.class);
-                  /*  in.putExtra("IMAGE_KEY",image);
-                    in.putExtra("PRODUCTID_KEY",pid);
-                    in.putExtra("PRODUCTSIZEID_KEY",psid);
-                    in.putExtra("NAME_KEY",name);
-                    in.putExtra("BRAND_KEY",brand);
-                    in.putExtra("COLOR_KEY",color);
-                    in.putExtra("SIZE_KEY",size);
-                    startActivity(in);*/
                     finish();
-
                 }
             });
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
 
         }
     }

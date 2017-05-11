@@ -27,10 +27,6 @@ public  class ProductSubTypeSingleViewImageFull  extends AppCompatActivity {
         im = (ImageView) findViewById(R.id.fullimage);
 
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-        final String pname = i.getExtras().getString("PRODUCTNAME_KEY");
-        final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String ptname = i.getExtras().getString("PRODUCTTYPENAME_KEY");
         final int pstid = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         final String name = i.getExtras().getString("NAME_KEY");
         final String image = i.getExtras().getString("IMAGE_KEY");

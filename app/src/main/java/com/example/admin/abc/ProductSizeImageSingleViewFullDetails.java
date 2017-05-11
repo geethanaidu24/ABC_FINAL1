@@ -2,7 +2,9 @@ package com.example.admin.abc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,14 +18,14 @@ import android.widget.TextView;
 public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
 
     ImageView back;
-
+    private boolean loggedIn = false;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
         selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
@@ -62,26 +64,21 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
             }
         });
 
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    Intent in = new Intent(ProductSizeSingleViewActivity.this, ProductSizeImages.class);
-                   /* in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTSIZEID_KEY", psid);
-                    in.putExtra("PRODUCTSIZE_KEY", size);
-                    startActivity(in);*/
-
-                   finish();
+                    finish();
                 }
             });
-
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            toolbar.setOverflowIcon(drawable);
 
         }
     }

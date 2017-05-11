@@ -1,10 +1,12 @@
 package com.example.admin.abc;
 
+import java.io.Serializable;
+
 /**
  * Created by Geetha on 4/20/2017 for storing data from database into local variables using below functions.
  */
 
-public class ProductSubTypesDB {
+public class ProductSubTypesDB implements Serializable{
     public int ProductSubTypeId;
     public String ProductSubTypeName;
     public String ImageUrl;

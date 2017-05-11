@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -25,13 +27,29 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ProductTypes extends AppCompatActivity implements Serializable {
     ImageView back;
     Context c;
     private boolean loggedIn = false;
+    final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
+    final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
     @Override
     public void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -171,21 +189,308 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    openProductTypeSubTypesActivity(FinalPid,FinalPname,ProductTypeId,ProductTypeName);
+                    openActivityCondition(ProductId,ProductTypeId,ProductTypeName);
                 }
             });
 
             return convertView;
         }
+        public void openActivityCondition(int recivedPid, int recivedPTid, String recivedPTname){
+            final String ConditionUrlAddress = productSubTypeCheckUrl + recivedPTid;
+            new ProductSubTypesDownloader(ProductTypes.this, ConditionUrlAddress,recivedPid, recivedPTid, recivedPTname).execute();
 
-        public void openProductTypeSubTypesActivity(int pid,String name,int ptid,String ptname){
-            Intent intent = new Intent(c,ProductSubTypes.class);
-            intent.putExtra("PRODUCTID_KEY",pid);
-            intent.putExtra("PRODUCTNAME_KEY",name);
-            intent.putExtra("PRODUCTTYPEID_KEY", ptid);
-            intent.putExtra("PRODUCTTYPENAME_KEY",ptname);
-            c.startActivity(intent);
         }
+    }
+    private class ProductSubTypesDownloader extends AsyncTask<Void, Void, String> {
+
+        Context c;
+        String finalUrlAddress;
+        int selectedProductId,selectedProductTypeId;
+        String selectedProductType;
+        private ProductSubTypesDownloader(Context c, String ConditionUrlAddress, int recivedPid, int recivedPTid, String recivedPTname) {
+            this.c = c;
+            this.finalUrlAddress = ConditionUrlAddress;
+            this.selectedProductId=recivedPid;
+            this.selectedProductTypeId = recivedPTid;
+            this.selectedProductType = recivedPTname;
+            Log.d("newActivity url: ", "> " + ConditionUrlAddress);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String data = downloadSubTypeData();
+            return data;
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (s == null) {
+                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+            } else {
+                //CALL DATA PARSER TO PARSE
+                ProductSubTypesDataParser parser = new ProductSubTypesDataParser(c,s,selectedProductId,selectedProductTypeId,selectedProductType);
+                parser.execute();
+            }
+        }
+
+        private String downloadSubTypeData() {
+            HttpURLConnection con = Connector.connect(finalUrlAddress);
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream is = new BufferedInputStream(con.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                br.close();
+                is.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+
+    private class ProductSubTypesDataParser extends AsyncTask<Void, Void, Integer> {
+        Context c;
+        String jsonData;
+        int finalProductId,finalProductTypeId;
+        String finalProductType;
+        ArrayList<ProductSubTypesDB> productSubTypesDBs = new ArrayList<>();
+
+        private ProductSubTypesDataParser(Context c, String jsonData, int pid,int ptid, String ptname) {
+            this.c = c;
+            this.jsonData = jsonData;
+            this.finalProductTypeId = ptid;
+            this.finalProductType = ptname;
+            this.finalProductId=pid;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseSubTypeData();
+        }
+
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if(result==0)
+            {
+
+                openAnotherActivityCondition(finalProductId,finalProductTypeId,finalProductType);
+
+            }else
+            {
+
+                Intent intent = new Intent(c,ProductSubTypes.class);
+                intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
+                intent.putExtra("PRODUCTTYPE_KEY",finalProductType);
+                intent.putExtra("ProductSubTypeList",productSubTypesDBs);
+                c.startActivity(intent);
+            }
+        }
+
+        private void openAnotherActivityCondition(int finalProductId, int finalProductTypeId, String finalProductType) {
+
+            Uri builtUri = Uri.parse(productSizeCheckUrl)
+                    .buildUpon()
+                    .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(finalProductId))
+                    .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(finalProductTypeId))
+                    .build();
+            URL urlAddress = null;
+            try {
+                urlAddress = new URL(builtUri.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            new ProductTypeSizesDownloader(ProductTypes.this,urlAddress,finalProductId,finalProductTypeId).execute();
+
+        }
+        private int parseSubTypeData() {
+            try {
+                JSONArray ja = new JSONArray(jsonData);
+                JSONObject jo = null;
+                productSubTypesDBs.clear();
+                ProductSubTypesDB productSubTypesDB;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo = ja.getJSONObject(i);
+                    Log.d("result response: ", "> " + jo);
+                    int ProductSubTypeId = jo.getInt("ProductSubTypeId");
+                    String ProductSubTypeName = jo.getString("ProductSubTypeName");
+                    String ImageUrl = jo.getString("ImageUrl");
+                    int ProductTypeId = jo.getInt("ProductTypeId");
+                    productSubTypesDB = new ProductSubTypesDB();
+                    productSubTypesDB.setProductSubTypeId(ProductSubTypeId);
+                    productSubTypesDB.setProductSubTypeName(ProductSubTypeName);
+                    productSubTypesDB.setImageUrl(ImageUrl);
+                    productSubTypesDB.setProductTypeId(ProductTypeId);
+                    productSubTypesDBs.add(productSubTypesDB);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+
+    }
+    private class ProductTypeSizesDownloader extends AsyncTask<Void, Void, String> {
+        Context c;
+        URL urlAddress;
+        int recivedProductId, recivedProductTypeId;
+        private ProductTypeSizesDownloader(Context c, URL urlAddress,int recvdProId,int recvdProTypId) {
+            this.c = c;
+            this.urlAddress = urlAddress;
+           this.recivedProductId = recvdProId;
+            this.recivedProductTypeId = recvdProTypId;
+            Log.d("newActivity url: ", "> " + urlAddress);
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String data = downloadTypeSizesData();
+            return data;
+
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(s==null)
+            {
+                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+            }else {
+                //CALL DATA PARSER TO PARSE
+                ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c,s,recivedProductId,recivedProductTypeId);
+                parser.execute();
+            }
+        }
+        private String downloadTypeSizesData() {
+            HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream is = new BufferedInputStream(con.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                br.close();
+                is.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    private class ProductTypeSizesDataParser extends AsyncTask<Void,Void,Integer> {
+        Context c;
+        String jsonData;
+        int finalProId, finalProTypeId;
+
+        ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
+
+        private ProductTypeSizesDataParser(Context c, String jsonData, int pid, int ptid) {
+            this.c = c;
+            this.jsonData = jsonData;
+            this.finalProId =pid;
+            this.finalProTypeId=ptid;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseData();
+        }
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if(result==0)
+            {
+                Intent intent = new Intent(c,ProductTypesGridView.class);
+                intent.putExtra("PRODUCTID_KEY",finalProId);
+                intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
+               // intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
+                c.startActivity(intent);
+
+            }else
+            {
+                Intent intent = new Intent(c,ProductTypeSizes.class);
+                intent.putExtra("PRODUCTID_KEY",finalProId);
+                intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
+                intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
+                c.startActivity(intent);
+            }
+        }
+        private int parseData()
+        {
+            try
+            {
+                JSONArray ja=new JSONArray(jsonData);
+                JSONObject jo=null;
+                productTypeSizeDBDatas.clear();
+                ProductTypeSizeDBData productTypeSizeDBData;
+                for(int i=0;i<ja.length();i++)
+                {
+                    jo=ja.getJSONObject(i);
+                    Log.d("result response: ", "> " + jo);
+                    int ProductSizeId=jo.getInt("ProductSizeId");
+                    int Width = jo.getInt("Width");
+                    int Height = jo.getInt("Height");
+                    int Length =jo.getInt("Length");
+
+                    // String Measure =jo.getString("Measurement");
+                    int ProductTypeId=jo.getInt("ProductTypeId");
+                    int ProductId = jo.getInt("ProductId");
+                    productTypeSizeDBData=new ProductTypeSizeDBData();
+
+                    productTypeSizeDBData.setProductSizeId(ProductSizeId);
+                    productTypeSizeDBData.setWidth(Width);
+                    productTypeSizeDBData.setHeight(Height);
+                    productTypeSizeDBData.setLength(Length);
+
+                    //productTypeSizeDBData.setMeasurement(Measure);
+                    productTypeSizeDBData.setProductTypeId(ProductTypeId);
+                    productTypeSizeDBData.setProductId(ProductId);
+                    productTypeSizeDBDatas.add(productTypeSizeDBData);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+
+
     }
     private void logout(){
         //Creating an alert dialog to confirm logout

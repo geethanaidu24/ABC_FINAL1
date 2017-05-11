@@ -35,10 +35,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
 
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-        final String pname = i.getExtras().getString("PRODUCTNAME_KEY");
-        final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String ptname = i.getExtras().getString("PRODUCTTYPENAME_KEY");
         final int pstid = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         final String name = i.getExtras().getString("NAME_KEY");
         final String image = i.getExtras().getString("IMAGE_KEY");
@@ -67,10 +63,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent in=new Intent(ProductSubTypeSingleViewActivity.this,ProductSubTypeSingleViewImageFull.class);
                 in.putExtra("IMAGE_KEY",image);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                in.putExtra("PRODUCTTYPENAME_KEY",ptname);
                 in.putExtra("PRODUCTSUBTYPEID_KEY",pstid);
                 in.putExtra("NAME_KEY",name);
                 in.putExtra("BRAND_KEY",brand);
@@ -89,12 +81,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                   /* in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-                    startActivity(in);*/
                    finish();
                 }
             });
