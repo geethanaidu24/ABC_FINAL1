@@ -32,19 +32,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-public class Products extends AppCompatActivity {
+public class Products extends AppCompatActivity implements Serializable {
 
     final static String urlAddress = Config.productsUrlAddress;
+    final static String productTypeUrlAddress = Config.productTypesUrlAddress;
     private boolean loggedIn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-
 
         final ListView lv = (ListView) findViewById(R.id.productLv);
 
@@ -281,13 +282,13 @@ public class Products extends AppCompatActivity {
         }
 
     }
-    public class ProductsListAdapter extends BaseAdapter {
+    private class ProductsListAdapter extends BaseAdapter {
 
         Context c;
         ArrayList<ProductsDB> productsDBs;
         LayoutInflater inflater;
 
-        public ProductsListAdapter(Context c, ArrayList<ProductsDB> productsDBs) {
+        private ProductsListAdapter(Context c, ArrayList<ProductsDB> productsDBs) {
             this.c = c;
             this.productsDBs = productsDBs;
             inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -327,20 +328,150 @@ public class Products extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    openProductTypesActivity(pid, name);
+                    openNextActivity(pid, name);
                 }
             });
 
 
             return convertView;
         }
-        public void openProductTypesActivity(int pid, String name){
-            Intent intent = new Intent(c,ProductTypes.class);
-            intent.putExtra("PRODUCTID_KEY", pid);
-            intent.putExtra("PRODUCTNAME_KEY",name);
-            c.startActivity(intent);
+        public void openNextActivity(int recivedpid, String recivedname){
+            String finalTypeUrl = productTypeUrlAddress + recivedpid;
+            new ProductTypesDownloader(Products.this,finalTypeUrl,recivedpid,recivedname).execute();
         }
     }
+    public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
+
+        Context c;
+        String finalProducturlAddress;
+        int localpid;
+        String localname;
 
 
+        public ProductTypesDownloader(Context c, String urlAddress, int recivedpid, String recivedname) {
+            this.c = c;
+            this.finalProducturlAddress = urlAddress;
+            this.localpid = recivedpid;
+            this.localname = recivedname;
+
+            Log.d("newActivity url: ", "> " + urlAddress);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String data = downloadTypeData();
+            return data;
+
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(s==null)
+            {
+                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+            }else {
+                //CALL DATA PARSER TO PARSE
+                ProductTypesDataParser parser=new ProductTypesDataParser(c,s,localpid,localname);
+                parser.execute();
+            }
+        }
+        private String downloadTypeData() {
+            HttpURLConnection con = Connector.connect(finalProducturlAddress);
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream is = new BufferedInputStream(con.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                br.close();
+                is.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    private class ProductTypesDataParser extends AsyncTask<Void,Void,Integer> {
+        Context c;
+        String jsonData;
+        int finalpid;
+        String finalname;
+        ArrayList<ProductTypesDB> productTypesDBs=new ArrayList<>();
+
+        private ProductTypesDataParser(Context c, String jsonData, int pid, String name) {
+            this.c = c;
+            this.jsonData = jsonData;
+            this.finalpid = pid;
+            this.finalname = name;
+
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseData();
+        }
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if(result==0)
+            {
+                Intent intent = new Intent(c,ProductSizes.class);
+                intent.putExtra("PRODUCTID_KEY", finalpid);
+                // intent.putExtra("PRODUCTNAME_KEY", name);
+                c.startActivity(intent);
+            }else
+            {
+               Intent intent = new Intent(c,ProductTypes.class);
+               intent.putExtra("PRODUCTID_KEY",finalpid);
+               intent.putExtra("PRODUCTNAME_KEY",finalname);
+               intent.putExtra("ProductTypeList",productTypesDBs);
+               c.startActivity(intent);
+            }
+        }
+        private int parseData()
+        {
+            try
+            {
+                JSONArray ja=new JSONArray(jsonData);
+                JSONObject jo=null;
+                productTypesDBs.clear();
+                ProductTypesDB productTypesDB;
+                for(int i=0;i<ja.length();i++)
+                {
+                    jo=ja.getJSONObject(i);
+                    Log.d("result response: ", "> " + jo);
+                    int ProductTypeId=jo.getInt("ProductTypeId");
+                    String ProductType =jo.getString("ProductType");
+                    String ImageUrl=jo.getString("ImageUrl");
+                    int ProductId = jo.getInt("ProductId");
+                    productTypesDB=new ProductTypesDB();
+                    productTypesDB.setProductTypeId(ProductTypeId);
+                    productTypesDB.setProductType(ProductType);
+                    productTypesDB.setImageUrl(ImageUrl);
+                    productTypesDB.setProductId(ProductId);
+                    productTypesDBs.add(productTypesDB);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+
+    }
 }
