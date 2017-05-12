@@ -43,6 +43,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -50,6 +52,7 @@ import static com.example.admin.abc.R.id.name8;
 
 public class AddGridProductSizes extends AppCompatActivity implements View.OnClickListener {
     private static final String addGridData = Config.productSizesGridsCRUD;
+    private static final String addSpinData = Config.sizeSpinner;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -66,12 +69,27 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     private Spinner sp1,sp2;
     private ArrayAdapter<MySQLDataBase> adapter1 ;
     private ArrayAdapter<MySQLDataBase> adapter2 ;
+    URL sizeSpinnerUrl = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_product_sizes);
+        Intent intent = getIntent();
+        final int productId= intent.getExtras().getInt("PRODUCTID_KEY");
+        final int productSizeId = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        Uri builtUri = Uri.parse(addSpinData)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
+             //   .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productSizeId))
+                .build();
+
+        try {
+            sizeSpinnerUrl = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -93,7 +111,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             sp1 = (Spinner) findViewById(R.id.sizespinner8);
             sp2 = (Spinner) findViewById(R.id.productspinner8);
 
-            btnadd = (Button) findViewById(R.id.btnadd9);
+            btnadd = (Button) findViewById(R.id.btnadd10);
 
             requestStoragePermission();
 
@@ -118,7 +136,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.sizeSpinner);
+                HttpPost httppost = new HttpPost(String.valueOf(sizeSpinnerUrl));
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -126,7 +144,6 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
             //convert response to string
             try {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
@@ -170,16 +187,44 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
 
         protected void onPostExecute(Void result) {
 
-            // productcrafts.addAll(productcrafts);
-
             final ArrayList<String> listItems = new ArrayList<>();
-            for (int i = 0; i < mySQLDataBases.size(); i++) {
-                listItems.add(mySQLDataBases.get(i).getProductSubTypeName());
+            for(int i=0;i<mySQLDataBases.size();i++){
+
+                final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
+                final int height = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getHeight()).toString());
+                final int length = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getLength()).toString());
+                //final String measure =productTypeSizeDBData.getMeasurement().toString();
+
+                if(length !=0 && width !=0 && height !=0){
+                    finalSize =  width + "X" + height + "X" + length;
+                    listItems.add(String.valueOf(finalSize));
+
+                }else if(length ==0 && width !=0 && height !=0){
+                    finalSize =  width + "X" + height;
+                    listItems.add(String.valueOf(finalSize));
+                }else if(length !=0 && width ==0 && height !=0){
+                    finalSize =  length + "X" + height;
+                    listItems.add(String.valueOf(finalSize));
+                }else if(length !=0 && width !=0 && height ==0 ){
+                    finalSize =  length + "X" + width ;
+                    listItems.add(String.valueOf(finalSize));
+                }else if(length ==0 && width !=0 && height ==0 ){
+                    finalSize = width + "" ;
+                    listItems.add(String.valueOf(finalSize));
+                }else if(length !=0 && width ==0 && height ==0 ){
+                    finalSize = length + "" ;
+                    listItems.add(String.valueOf(finalSize));
+                }else if(length ==0 && width ==0 && height !=0 ){
+                    finalSize = height + "" ;
+                    listItems.add(String.valueOf(finalSize));
+                }
+
             }
+
             adapter1=new ArrayAdapter(AddGridProductSizes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
             sp1.setAdapter(adapter1);
             adapter1.notifyDataSetChanged();
-          ProductTask productTask = new ProductTask();
+            ProductTask productTask = new ProductTask();
             productTask.execute();
 
         }
@@ -188,7 +233,6 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
 
         protected void onPreExecute() {
             super.onPreExecute();
-
         }
         protected Void doInBackground(Void... params) {
             InputStream is = null;
@@ -245,38 +289,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             // productcrafts.addAll(productcrafts);
 
             final ArrayList<String> listItems3 = new ArrayList<>();
-            int i;
-            for (i = 0; i < mySQLDataBases.size(); i++) {
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
                 listItems3.add(mySQLDataBases.get(i).getProductName());
-            }
 
-            final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getHeight()).toString());
-            final int length = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getLength()).toString());
-            //final String measure =productTypeSizeDBData.getMeasurement().toString();
-
-            if (length != 0 && width != 0 && height != 0) {
-                finalSize = width + "X" + height + "X" + length;
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-
-            } else if (length == 0 && width != 0 && height != 0) {
-                finalSize = width + "X" + height;
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-            } else if (length != 0 && width == 0 && height != 0) {
-                finalSize = length + "X" + height;
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-            } else if (length != 0 && width != 0 && height == 0) {
-                finalSize = length + "X" + width;
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-            } else if (length == 0 && width != 0 && height == 0) {
-                finalSize = width + "";
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-            } else if (length != 0 && width == 0 && height == 0) {
-                finalSize = length + "";
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
-            } else if (length == 0 && width == 0 && height != 0) {
-                finalSize = height + "";
-                listItems3.add(String.valueOf(Integer.valueOf(String.valueOf(finalSize))));
             }
             adapter2 = new ArrayAdapter(AddGridProductSizes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
             sp2.setAdapter(adapter2);

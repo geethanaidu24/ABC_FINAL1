@@ -99,7 +99,6 @@ public final static String productTypeSizeDelSpinner = mainUrlAddress+"productTy
 public final static String deleteGridSubTypeSpinner = mainUrlAddress+"productSubTypeGridDelSpinner.php?ProductSubTypeId=";
     //For product type grid view spinner delete
 public final static String deleteGridTypeSpinner = mainUrlAddress+"productTypeGridDelSpinner.php?ProductTypeId=";
-    public final static String deleteGridTypeSpinner = mainUrlAddress+"productTypeGridDelSpinner.php?ProductTypeId=";
     //for adding sizes in spinner
     public final static String productSizesGridSpinner = mainUrlAddress+"productSizesGridSpinner.php";
 

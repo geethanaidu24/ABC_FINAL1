@@ -47,6 +47,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
     Context c;
     private boolean loggedIn = false;
     final static String url =Config.productSizeImgUrlAddress;
+    private static int productId,productSizeId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,12 +59,12 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final  int psid = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        productId = intent.getExtras().getInt("PRODUCTID_KEY");
+        productSizeId = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(psid))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productSizeId))
                 .build();
         URL urlAddress = null;
         try {
@@ -72,7 +73,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new ProductSizeImagesDownloader(ProductSizeGridViewImages.this,urlAddress,gv,pid,psid).execute();
+        new ProductSizeImagesDownloader(ProductSizeGridViewImages.this,urlAddress,gv,productId,productSizeId).execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -122,11 +123,13 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSizeGridViewImages.this, AddGridProductSizes.class);
-
+            in.putExtra("PRODUCTID_KEY",productId);
+            in.putExtra("PRODUCTSIZEID_KEY",productSizeId);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteGridProductSizes.class);
+            //inn.putExtra("PRODUCTID_KEY",productId);
             startActivity(inn);
 
             return true;
