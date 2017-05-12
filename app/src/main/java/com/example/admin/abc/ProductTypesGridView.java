@@ -48,7 +48,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     ImageView back;
     Context c;
     private boolean loggedIn = false;
-
+    static int productTypeId;
     final static String url = Config.productTypeImgUrlAddress;
 
 
@@ -125,12 +125,13 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypesGridView.this, AddProductsTypes.class);
+            Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
 
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypesGridView.this, DeleteProductTypes.class);
+            Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
+            inn.putExtra("PRODUCTTYPEID_KEY",productTypeId);
             startActivity(inn);
 
             return true;
