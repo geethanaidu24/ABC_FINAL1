@@ -44,6 +44,7 @@ public class ProductSizes extends AppCompatActivity {
     ImageView back;
     Context c;
     private boolean loggedIn = false;
+    private static int localProductId;
 
     final static String url = Config.productSizesUrlAddress;
 
@@ -60,12 +61,12 @@ public class ProductSizes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        Log.d("result PID: ", "> " + pid);
+        localProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+        Log.d("result PID: ", "> " + localProductId);
 
-        String urlAddress = url + pid;
+        String urlAddress = url + localProductId;
 
-        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, ll, pid).execute();
+        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, ll, localProductId).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -122,6 +123,7 @@ public class ProductSizes extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
+            inn.putExtra("PRODUCTID_KEY", localProductId);
             startActivity(inn);
 
             return true;

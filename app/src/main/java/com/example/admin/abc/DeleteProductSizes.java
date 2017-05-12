@@ -39,7 +39,7 @@ public class DeleteProductSizes extends AppCompatActivity {
     private Button btnAdd;
     private ArrayAdapter<SizesDB> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesCRUD;
-    private static final String DATA_Size_Spin = Config.productTypeSizesUrlAddress;
+    private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
     URL DATA_Spinner = null;
     String finalSize;
 
@@ -47,20 +47,17 @@ public class DeleteProductSizes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_sizes);
-       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");*//*
+        Intent intent = getIntent();
+        final int recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
                 .build();
-
         try {
             DATA_Spinner = new URL(builtUri.toString());
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }*/
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -90,7 +87,7 @@ public class DeleteProductSizes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int psid)
+    private void handleClickEvents(final int productSizeId)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +95,11 @@ public class DeleteProductSizes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                //String spinSelVal = sp.getSelectedItem().toString();
-
-                final int rpsid = psid;
+               // final int recivedProductSizeId = psid;
 
                 //SAVE
                 SizesDB s=new SizesDB();
-                s.setProductSizeId(rpsid);
+                s.setProductSizeId(productSizeId);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -158,11 +153,10 @@ public class DeleteProductSizes extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        //  ArrayList<String> list;
 
         protected void onPreExecute() {
             super.onPreExecute();
-            // list = new ArrayList<>();
+
         }
 
         protected Void doInBackground(Void... params) {
@@ -204,8 +198,6 @@ public class DeleteProductSizes extends AppCompatActivity {
                     int width = jo.getInt("Width");
                     int height =jo.getInt("Height");
                     int length =jo.getInt("Length");
-
-
                     sizesDB=new SizesDB();
                     sizesDB.setProductSizeId(psid);
                     sizesDB.setWidth(width);
@@ -265,9 +257,9 @@ public class DeleteProductSizes extends AppCompatActivity {
                                            int position, long id) {
 
                     SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                    final int psid =sizesDB.getProductSizeId();
-                    Log.d("selected response: ", "> " + psid);
-                    handleClickEvents(psid);
+                    final int productSizeId =sizesDB.getProductSizeId();
+                    Log.d("selected response: ", "> " + productSizeId);
+                    handleClickEvents(productSizeId);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {
