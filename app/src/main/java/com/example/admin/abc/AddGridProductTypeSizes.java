@@ -49,7 +49,7 @@ import java.util.UUID;
 import static com.example.admin.abc.R.id.name8;
 
 public class AddGridProductTypeSizes extends AppCompatActivity implements View.OnClickListener {
-    private static final String addGridData = Config.productSubTypeGridsCRUD;
+    private static final String addGridData = Config.producttypeSizesGridsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -60,17 +60,13 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     private Uri filePath;
     public int pid=0;
     public int ptid=0;
-
     public int psid=0;
-    String finalSize;
     Context context;
-    final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
-
-
+    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
     private Spinner sp1,sp2,sp3;
-    private ArrayAdapter<GridDataDB> adapter1 ;
-    private ArrayAdapter<GridDataDB> adapter2 ;
-    private ArrayAdapter<GridDataDB> adapter3 ;
+    private ArrayAdapter<MySQLDataBase> adapter1 ;
+    private ArrayAdapter<MySQLDataBase> adapter2 ;
+    private ArrayAdapter<MySQLDataBase> adapter3 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,11 +102,11 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             btnadd.setOnClickListener(this);
         }
     }
-    @Override
     public void onStart() {
         super.onStart();
-        BackTask bt = new BackTask();
+       BackTask bt = new BackTask();
         bt.execute();
+
     }
     private class BackTask extends AsyncTask<Void, Void, Void> {
 
@@ -118,14 +114,12 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             super.onPreExecute();
 
         }
-
-
         protected Void doInBackground(Void... params) {
             InputStream is = null;
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSubTypeGridSpinner);
+                HttpPost httppost = new HttpPost(Config.sizeSpinner);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -150,40 +144,24 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo = null;
-                gridDataDBs.clear();
-                GridDataDB gridDataDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
                     // add interviewee name to arraylist
+                    // psid = jo.getInt("ProductSizeId");
                     psid = jo.getInt("ProductSizeId");
 
-                    ptid = jo.getInt("ProductTypeId");
-                    pid = jo.getInt("ProductId");
-                    String ProductName = jo.getString("ProductName");
-                    String productType = jo.getString("ProductType");
-
                     int width = jo.getInt("Width");
-                    int height = jo.getInt("Height");
-                    int length = jo.getInt("Length");
-                    //  String name = jo.getString("Name");
-                    //  String brand = jo.getString("Brand");
-                    //  String color = jo.getString("Color");
+                    int height=jo.getInt("Height");
+                    int length=jo.getInt("Length");
 
-                    gridDataDB = new GridDataDB();
-                    gridDataDB.setProductSizeId(psid);
-
-                    gridDataDB.setProductTypeId(ptid);
-                    gridDataDB.setProductId(pid);
-                    gridDataDB.setName(ProductName);
-                    gridDataDB.setProductType(productType);
-
-                    gridDataDB.setWidth(width);
-                    gridDataDB.setHeight(height);
-                    gridDataDB.setLength(length);
-//                        gridDataDB.setNname(name);
-                    //gridDataDB.setBrand(brand);
-                    //gridDataDB.setColor(color);
-                    gridDataDBs.add(gridDataDB);
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(psid);
+                    mySQLDataBase.setWidth(width);
+                    mySQLDataBase.setHeight(height);
+                    mySQLDataBase.setLength(length);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -195,64 +173,156 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
             // productcrafts.addAll(productcrafts);
 
-            final ArrayList<Integer> listItems1 = new ArrayList<>();
-            final ArrayList<String> listItems2 = new ArrayList<>();
-            final ArrayList<String> listItems3 = new ArrayList<>();
-
-            for (int i = 0; i < gridDataDBs.size(); i++) {
-                listItems1.add(gridDataDBs.get(i).getProductSizeId());
-                listItems2.add(gridDataDBs.get(i).getProductType());
-                listItems3.add(gridDataDBs.get(i).getName());
-
-
-                final int width = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getWidth()).toString());
-                final int height = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getHeight()).toString());
-                final int length = Integer.parseInt(String.valueOf(gridDataDBs.get(i).getLength()).toString());
-                //final String measure =productTypeSizeDBData.getMeasurement().toString();
-
-                if (length != 0 && width != 0 && height != 0) {
-                    finalSize = width + "X" + height + "X" + length;
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-
-                } else if (length == 0 && width != 0 && height != 0) {
-                    finalSize = width + "X" + height;
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                } else if (length != 0 && width == 0 && height != 0) {
-                    finalSize = length + "X" + height;
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                } else if (length != 0 && width != 0 && height == 0) {
-                    finalSize = length + "X" + width;
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                } else if (length == 0 && width != 0 && height == 0) {
-                    finalSize = width + "";
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                } else if (length != 0 && width == 0 && height == 0) {
-                    finalSize = length + "";
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                } else if (length == 0 && width == 0 && height != 0) {
-                    finalSize = height + "";
-                    listItems1.add(Integer.valueOf(String.valueOf(finalSize)));
-                }
+            final ArrayList<String> listItems = new ArrayList<>();
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
+                listItems.add(mySQLDataBases.get(i).getProductSubTypeName());
             }
-
-
-
-            adapter1=new ArrayAdapter(AddGridProductTypeSizes.this,R.layout.spinner_layout1, R.id.txt1,listItems1);
+            adapter1=new ArrayAdapter(AddGridProductTypeSizes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
             sp1.setAdapter(adapter1);
             adapter1.notifyDataSetChanged();
+          ProductTypeTask productTypeTask = new ProductTypeTask();
+            productTypeTask.execute();
+
+        }
+    }
+    private class ProductTypeTask extends AsyncTask<Void, Void, Void> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray ja = new JSONArray(result);
+                JSONObject jo = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo = ja.getJSONObject(i);
+                    ptid = jo.getInt("ProductTypeId");
+                    String productType = jo.getString("ProductType");
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setProductTypeId(ptid);
+                    mySQLDataBase.setProductType(productType);
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+
+            final ArrayList<String> listItems2 = new ArrayList<>();
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
+                listItems2.add(mySQLDataBases.get(i).getProductType());
+
+            }
 
             adapter2 = new ArrayAdapter(AddGridProductTypeSizes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
             sp2.setAdapter(adapter2);
             adapter2.notifyDataSetChanged();
-
-            adapter3 = new ArrayAdapter(AddGridProductTypeSizes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
-            sp3.setAdapter(adapter3);
-            adapter3.notifyDataSetChanged();
-
-
+           ProductTask productTask = new ProductTask();
+            productTask.execute();
         }
     }
 
+    private class ProductTask extends AsyncTask<Void, Void, Void> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray ja = new JSONArray(result);
+                JSONObject jo = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo = ja.getJSONObject(i);
+                    pid = jo.getInt("ProductId");
+                    String productName = jo.getString("ProductName");
+                    mySQLDataBase = new MySQLDataBase();
+
+                    mySQLDataBase.setProductId(pid);
+
+                    mySQLDataBase.setProductName(productName);
+
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+
+            // productcrafts.addAll(productcrafts);
+
+            final ArrayList<String> listItems3 = new ArrayList<>();
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
+                listItems3.add(mySQLDataBases.get(i).getProductName());
+            }
+            adapter3 = new ArrayAdapter(AddGridProductTypeSizes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
+            sp3.setAdapter(adapter3);
+            adapter3.notifyDataSetChanged();
+        }
+    }
     @Override
     public void onClick(View v) {
         if (v == imageView) {
@@ -265,9 +335,6 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             //uploadMultipart();
         }
     }
-
-
-
     private void checkData() {
         if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1) {
             Toast.makeText(AddGridProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
@@ -283,8 +350,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
             adapter3.notifyDataSetChanged();
-
-           BackTask bt = new BackTask();
+      BackTask bt = new BackTask();
             bt.execute();
         }
     }
@@ -311,17 +377,17 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         String spinSelVal2=sp2.getSelectedItem().toString();
         String spinSelVal3 = sp3.getSelectedItem().toString();
 
-
         //getting the actual path of the image
         String path = getPath(filePath);
+
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
-                final int psid =gridDataDB.getProductSizeId();
-                Log.d("selected response: ", "> " + psid);
-                //handleClickEvents(psid);
+                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+
+                //  final int pid
+                psid = mySQLDataBase.getProductSizeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -331,6 +397,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     }
                 };
             }
+
             public void onNothingSelected(AdapterView<?> arg0) {
                 // TODO Auto-generated method stub
                 Toast.makeText(AddGridProductTypeSizes.this,
@@ -340,16 +407,15 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
         });
 
-
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
 
 
                 //  final int pid
-                ptid = gridDataDB.getProductTypeId();
+                ptid = mySQLDataBase.getProductTypeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -373,10 +439,10 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
 
                 //  final int pid
-                pid = gridDataDB.getProductId();
+                pid = mySQLDataBase.getProductId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -400,12 +466,11 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
         else {*/
-        GridDataDB s = new GridDataDB();
-        s.setNname(namec);
+        MySQLDataBase s = new MySQLDataBase();
+        s.setName(namec);
         s.setBrand(brandc);
         s.setColor(colorc);
-        s.setProductSizeId(psid);
-
+        s.setProductSubTypeId(psid);
         s.setProductTypeId(ptid);
         s.setProductId(pid);
         //s.setId(pid);
@@ -415,12 +480,12 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, addGridData)
+                    .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
-
-                    .addParameter("productsizeid", String.valueOf(psid))
+                    .addParameter("productsubtypeid", String.valueOf(psid))
                     .addParameter("producttypeid", String.valueOf(ptid))
                     .addParameter("productid", String.valueOf(pid))
                     .setNotificationConfig(new UploadNotificationConfig())
@@ -432,32 +497,6 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         }
 
     }
-    /*public void checkupload(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage("Do You want to Continue.");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
-                        startActivity(in);
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,Products.class);
-                        startActivity(in);
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-       /* }}*/
 
 
     public String getPath(Uri uri) {
@@ -510,3 +549,4 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
 
 }
+

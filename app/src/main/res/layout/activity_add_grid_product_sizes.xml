@@ -166,7 +166,7 @@
 
 
             <Spinner
-                android:id="@+id/typespinner8"
+                android:id="@+id/productspinner8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -184,7 +184,7 @@
 
 
             <Button
-                android:id="@+id/btnadd6"
+                android:id="@+id/btnadd9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
