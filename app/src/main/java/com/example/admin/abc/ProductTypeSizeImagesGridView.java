@@ -47,7 +47,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     private boolean loggedIn = false;
     //Context c;
     final static String url =Config.productTypeSizeImgUrlAddress;
-
+    private static int productId,producttypeSizeId,productTypeId;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -58,16 +58,16 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
+      productId = intent.getExtras().getInt("PRODUCTID_KEY");
         final String pname =intent.getExtras().getString("PRODUCTNAME_KEY");
-      final  int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-     final  int ptsid = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+       productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+    producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
-                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(ptsid))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(productTypeId))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(producttypeSizeId))
                 .build();
         URL urlAddress = null;
         try {
@@ -77,7 +77,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         }
 
 
-        new ProductTypeSizeImagesDownloader(ProductTypeSizeImagesGridView.this,urlAddress,gv,pid,pname,ptid,ptsid).execute();
+        new ProductTypeSizeImagesDownloader(ProductTypeSizeImagesGridView.this,urlAddress,gv,productId,pname,productTypeId,producttypeSizeId).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -133,7 +133,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypeSizeImagesGridView.this, AddGridProductTypeSizes.class);
-
+            in.putExtra("PRODUCTID_KEY",productId);
+            in.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
+            in.putExtra("PRODUCTTYPEID_KEY",productTypeId);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {

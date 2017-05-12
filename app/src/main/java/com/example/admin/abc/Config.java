@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.5/abc/";
+public final static String mainUrlAddress = "http://192.168.0.3/abc/";
 
     // For admin login
 
