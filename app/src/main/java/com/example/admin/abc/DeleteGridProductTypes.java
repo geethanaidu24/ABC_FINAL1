@@ -33,10 +33,10 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private static int productTypeId;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypeGridsCRUD;
     private static final String Data_spinner_url = Config.deleteGridTypeSpinner;
+    private static  int productTypeId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +65,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
         sp= (Spinner) findViewById(R.id.gridproducttypesp);
     }
     private void handleClickEvents(final int prosizeimgid)
+
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -74,11 +75,9 @@ public class DeleteGridProductTypes extends AppCompatActivity {
 
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int recivedprosizeimgid = prosizeimgid;
-
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
-                s.setProductSizeImageId(recivedprosizeimgid);
+                s.setProductSizeImageId(prosizeimgid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteGridProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -171,10 +170,10 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int productsubtypeimageid = jo.getInt("ProductSizeImageId");
+                    int producttypeimageid = jo.getInt("ProductSizeImageId");
                     String imagename = jo.getString("Name");
                     mySQLDataBase=new MySQLDataBase();
-                    mySQLDataBase.setProductSizeImageId(productsubtypeimageid);
+                    mySQLDataBase.setProductSizeImageId(producttypeimageid);
                     mySQLDataBase.setName(imagename);
                     mySQLDataBases.add(mySQLDataBase);
                 }

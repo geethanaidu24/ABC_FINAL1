@@ -63,12 +63,12 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(productTypeId))
                 .build();
         URL urlAddress = null;
         try {
@@ -77,7 +77,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             e.printStackTrace();
         }
 
-        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,pid,ptid).execute();
+        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,pid,productTypeId).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
