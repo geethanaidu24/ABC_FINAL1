@@ -45,6 +45,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     URL DATA_Spinner = null;
     String finalSize;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
@@ -52,13 +53,12 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
         setContentView(R.layout.activity_delete_product_type_sizes);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
-        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+       final int productId = intent.getExtras().getInt("PRODUCTID_KEY");
+      final int productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(pid))
-                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(ptid))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(productTypeId))
                 .build();
 
         try {
@@ -77,10 +77,6 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    startActivity(in);*/
                     finish();
 
                 }
@@ -213,8 +209,6 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                     int width = jo.getInt("Width");
                     int height =jo.getInt("Height");
                     int length =jo.getInt("Length");
-
-
                     sizesDB=new SizesDB();
                     sizesDB.setProductSizeId(psid);
                     sizesDB.setWidth(width);

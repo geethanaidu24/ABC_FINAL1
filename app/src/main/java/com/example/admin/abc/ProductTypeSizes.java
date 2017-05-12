@@ -35,6 +35,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     ImageView back;
     Context c;
     private boolean loggedIn = false;
+    private static int selectedProdutId, selectedProdutTypeId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,8 +50,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-        final int selectedProdutId = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+         selectedProdutId = intent.getExtras().getInt("PRODUCTID_KEY");
+         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = (ArrayList<ProductTypeSizeDBData>) intent.getSerializableExtra("ProductTypeSizeList");
 
         final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, productTypeSizeDBDatas, selectedProdutId, selectedProdutTypeId);
@@ -108,9 +109,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
-           // inn.putExtra("PRODUCTID_KEY", pid);
+            inn.putExtra("PRODUCTID_KEY",selectedProdutId );
 
-           // inn.putExtra("PRODUCTTYPEID_KEY",ptid);
+            inn.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
             startActivity(inn);
 
             return true;
