@@ -46,6 +46,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     private boolean loggedIn = false;
     //Context c;
     final static String url = Config.productTypeSubTypeImgUrlAddress;
+    static int productSubTypeId;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         final String productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
-        final int productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
 
         String urlAddress = url + productSubTypeId;
 
@@ -118,10 +119,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSubTypeGridView.this, DeleteProductSizes.class);
+            Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
+            inn.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
             startActivity(inn);
-
-
             return true;
         } else if (id == R.id.logout) {
             logout();

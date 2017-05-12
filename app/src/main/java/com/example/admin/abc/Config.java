@@ -89,8 +89,8 @@ public final static String productSubTypeGridSpinner = mainUrlAddress+"productSu
 public final static String productAllSizeSpinner = mainUrlAddress+"productAllSizeSpinner.php";
     // For product all sizes spinner for deleting
 public final static String productTypeSizeDelSpinner = mainUrlAddress+"productTypeSizeDelSpinner.php";
-    // For All product type subtype sizes grid view spinner
-
+    // For All product type subtype sizes grid view spinner delete
+public final static String deleteGridSubTypeSpinner = mainUrlAddress+"productSubTypeGridDelSpinner.php?ProductSubTypeId=";
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";
