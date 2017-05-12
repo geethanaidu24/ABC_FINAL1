@@ -79,12 +79,16 @@ public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
     public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";
     //For adding grid product sizes
     public final static String productSizesGridsCRUD = mainUrlAddress+"productSizesGridsCRUD.php";
+    //For adding grid product type sizes
+    public final static String producttypeSizesGridsCRUD = mainUrlAddress+"productTypeSizeGridsCRUD.php";
                                             // FOR Spinners
 
     // For product Types spinner
 public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinner.php";
     // For product Subtypes spinner
 public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
+    //For size Spinner
+    public final static String sizeSpinner = mainUrlAddress+"sizeSpinner.php";
     // For product Subtypes Grid spinner
 public final static String productSubTypeGridSpinner = mainUrlAddress+"productSubTypeGridSpinner.php";
     // For product All product and types for Sizes Spinner for adding

@@ -121,12 +121,12 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductSizeGridViewImages.this, AddProductSizes.class);
+            Intent in = new Intent(ProductSizeGridViewImages.this, AddGridProductSizes.class);
 
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteProductSizes.class);
+            Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteGridProductSizes.class);
             startActivity(inn);
 
             return true;

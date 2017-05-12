@@ -93,7 +93,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             sp1 = (Spinner) findViewById(R.id.sizespinner8);
             sp2 = (Spinner) findViewById(R.id.productspinner8);
 
-            btnadd = (Button) findViewById(R.id.btnadd8);
+            btnadd = (Button) findViewById(R.id.btnadd9);
 
             requestStoragePermission();
 
@@ -118,7 +118,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSizesGridSpinner);
+                HttpPost httppost = new HttpPost(Config.sizeSpinner);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
