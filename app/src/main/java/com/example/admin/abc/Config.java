@@ -75,6 +75,8 @@ public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.p
 public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
     //For adding news
     public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
+    //For aadding grid products types
+    public final static String productTypeGridsCRUD = mainUrlAddress+"newsCRUD.php";
                                             // FOR Spinners
 
     // For product Types spinner

@@ -48,7 +48,7 @@ import java.util.UUID;
 import static com.example.admin.abc.R.id.name8;
 
 public class AddGridProductTypes extends AppCompatActivity implements View.OnClickListener {
-    private static final String addGridData = Config.productSubTypeGridsCRUD;
+    private static final String addGridData = Config.productTypeGridsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -61,7 +61,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     public int ptid=0;
 
     Context context;
-    final ArrayList<GridDataDB> gridDataDBs =new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
 
 
     private Spinner sp1,sp2;
@@ -87,14 +87,14 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             });
             imageView = (ImageView) findViewById(R.id.image8);
             name = (EditText) findViewById(name8);
-            Path = (TextView) findViewById(R.id.brandpath);
+            Path = (TextView) findViewById(R.id.path8);
             brand = (EditText) findViewById(R.id.brand8);
-            color = (EditText) findViewById(R.id.color7);
-            sp1 = (Spinner) findViewById(R.id.sizespinner8);
-            sp2 = (Spinner) findViewById(R.id.typespinner8);
+            color = (EditText) findViewById(R.id.color8);
+            sp1 = (Spinner) findViewById(R.id.typespinner8);
+            sp2 = (Spinner) findViewById(R.id.productspinner8);
 
             //sp4 = (Spinner) findViewById(R.id.productspinner);
-            btnadd = (Button) findViewById(R.id.btnadd7);
+            btnadd = (Button) findViewById(R.id.btnadd8);
 
             requestStoragePermission();
 
@@ -106,23 +106,23 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     @Override
     public void onStart() {
         super.onStart();
-        BackTask bt = new BackTask();
+        ProductTypeTask bt = new ProductTypeTask();
         bt.execute();
+
     }
-    private class BackTask extends AsyncTask<Void, Void, Void> {
+
+    private class ProductTypeTask extends AsyncTask<Void, Void, Void> {
 
         protected void onPreExecute() {
             super.onPreExecute();
 
         }
-
-
         protected Void doInBackground(Void... params) {
             InputStream is = null;
             String result = "";
             try {
                 HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSubTypeGridSpinner);
+                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
                 HttpResponse response = httpclient.execute(httppost);
                 HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -147,30 +147,88 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo = null;
-                gridDataDBs.clear();
-                GridDataDB gridDataDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-
                     ptid = jo.getInt("ProductTypeId");
-                    pid = jo.getInt("ProductId");
-                    String ProductName = jo.getString("ProductName");
                     String productType = jo.getString("ProductType");
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setProductTypeId(ptid);
+                    mySQLDataBase.setProductType(productType);
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
 
-                    //  String name = jo.getString("Name");
-                    //  String brand = jo.getString("Brand");
-                    //  String color = jo.getString("Color");
+        protected void onPostExecute(Void result) {
 
-                    gridDataDB = new GridDataDB();
-                    gridDataDB.setProductTypeId(ptid);
-                    gridDataDB.setProductId(pid);
-                    gridDataDB.setName(ProductName);
-                    gridDataDB.setProductType(productType);
-                    //                        gridDataDB.setNname(name);
-                    //gridDataDB.setBrand(brand);
-                    //gridDataDB.setColor(color);
-                    gridDataDBs.add(gridDataDB);
+            final ArrayList<String> listItems2 = new ArrayList<>();
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
+                listItems2.add(mySQLDataBases.get(i).getProductType());
+
+            }
+
+            adapter1 = new ArrayAdapter(AddGridProductTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
+            sp1.setAdapter(adapter1);
+            adapter1.notifyDataSetChanged();
+            ProductTask productTask = new ProductTask();
+            productTask.execute();
+        }
+    }
+
+    private class ProductTask extends AsyncTask<Void, Void, Void> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+        protected Void doInBackground(Void... params) {
+            InputStream is = null;
+            String result = "";
+            try {
+                HttpClient httpclient = new DefaultHttpClient();
+                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                // Get our response as a String.
+                is = entity.getContent();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            //convert response to string
+            try {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
+                String line = null;
+                while ((line = reader.readLine()) != null) {
+                    result += line;
+                }
+                is.close();
+                //result=sb.toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            // parse json data
+            try {
+                JSONArray ja = new JSONArray(result);
+                JSONObject jo = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < ja.length(); i++) {
+                    jo = ja.getJSONObject(i);
+                    pid = jo.getInt("ProductId");
+                    String productName = jo.getString("ProductName");
+                    mySQLDataBase = new MySQLDataBase();
+
+                    mySQLDataBase.setProductId(pid);
+
+                    mySQLDataBase.setProductName(productName);
+
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -182,28 +240,15 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
             // productcrafts.addAll(productcrafts);
 
-            final ArrayList<String> listItems1 = new ArrayList<>();
-            final ArrayList<String> listItems2 = new ArrayList<>();
-
-            for (int i = 0; i < gridDataDBs.size(); i++) {
-                listItems1.add(gridDataDBs.get(i).getProductType());
-                listItems2.add(gridDataDBs.get(i).getName());
-
-                //final String measure =productTypeSizeDBData.getMeasurement().toString();
-
-
-                adapter1 = new ArrayAdapter(AddGridProductTypes.this, R.layout.spinner_layout1, R.id.txt1, listItems1);
-                sp1.setAdapter(adapter1);
-                adapter1.notifyDataSetChanged();
-
-                adapter2 = new ArrayAdapter(AddGridProductTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
-                sp2.setAdapter(adapter2);
-                adapter2.notifyDataSetChanged();
-
+            final ArrayList<String> listItems3 = new ArrayList<>();
+            for (int i = 0; i < mySQLDataBases.size(); i++) {
+                listItems3.add(mySQLDataBases.get(i).getProductName());
             }
+            adapter2 = new ArrayAdapter(AddGridProductTypes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
+            sp2.setAdapter(adapter2);
+            adapter2.notifyDataSetChanged();
         }
     }
-
     @Override
     public void onClick(View v) {
         if (v == imageView) {
@@ -216,15 +261,12 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             //uploadMultipart();
         }
     }
-
-
-
     private void checkData() {
         if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1) {
             Toast.makeText(AddGridProductTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
-            Toast.makeText(this,"Successfully Completed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             name.setText("");
             Path.setText("");
             brand.setText("");
@@ -234,8 +276,11 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
 
-            BackTask bt = new BackTask();
+ProductTask bt = new ProductTask();
+            ProductTypeTask bt1=new ProductTypeTask();
+
             bt.execute();
+            bt1.execute();
         }
     }
 
@@ -261,20 +306,20 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         String spinSelVal2=sp2.getSelectedItem().toString();
 
 
-
         //getting the actual path of the image
         String path = getPath(filePath);
+
 
 
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
 
 
                 //  final int pid
-                ptid = gridDataDB.getProductTypeId();
+                ptid = mySQLDataBase.getProductTypeId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -298,10 +343,10 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
-                GridDataDB gridDataDB = (GridDataDB) gridDataDBs.get(position);
+                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
 
                 //  final int pid
-                pid = gridDataDB.getProductId();
+                pid = mySQLDataBase.getProductId();
                 //uploadMultipart();
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
@@ -325,8 +370,8 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
         else {*/
-        GridDataDB s = new GridDataDB();
-        s.setNname(namec);
+        MySQLDataBase s = new MySQLDataBase();
+        s.setName(namec);
         s.setBrand(brandc);
         s.setColor(colorc);
 
@@ -339,6 +384,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, addGridData)
+                    .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
@@ -355,32 +401,6 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         }
 
     }
-    /*public void checkupload(){
-        AlertDialog.Builder builder1 = new AlertDialog.Builder(context);
-        builder1.setMessage("Do You want to Continue.");
-        builder1.setCancelable(true);
-
-        builder1.setPositiveButton(
-                "Yes",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
-                        startActivity(in);
-                    }
-                });
-
-        builder1.setNegativeButton(
-                "No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent in=new Intent(AddProductsTypes.this,Products.class);
-                        startActivity(in);
-                    }
-                });
-
-        AlertDialog alert11 = builder1.create();
-        alert11.show();
-       /* }}*/
 
 
     public String getPath(Uri uri) {
