@@ -47,6 +47,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
     Context c;
     private boolean loggedIn = false;
     final static String url =Config.productSizeImgUrlAddress;
+    private static int psid,pid;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -127,6 +128,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteGridProductSizes.class);
+            inn.putExtra("PRODUCTID_KEY", pid);
+            inn.putExtra("PRODUCTSIZEID_KEY", psid);
             startActivity(inn);
 
             return true;
