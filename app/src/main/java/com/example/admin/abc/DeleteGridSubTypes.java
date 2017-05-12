@@ -30,30 +30,28 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DeleteGridSubTypes extends AppCompatActivity {
-    final ArrayList<ProductSubTypesDB> productSubTypesDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<ProductTypesDB> adapter ;
-    private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
+    private static int productSubTypeId;
+    private ArrayAdapter<MySQLDataBase> adapter ;
+    private static final String DATA_DELETE_URL=Config.productSubTypeGridsCRUD;
+    private static final String Data_spinner_url = Config.deleteGridSubTypeSpinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_grid_sub_types);
+        Intent in = getIntent();
+        productSubTypeId = in.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
             toolbar.setNavigationIcon(R.mipmap.backbutton);
 
-            //  actionbar.setTitle(R.string.title_activity_settings);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypes.class);
-                  /*  in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    startActivity(in);*/
+                    Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypeGridView.class);
                     finish();
                 }
             });
@@ -63,15 +61,13 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     }
     private void initializeViews()
     {
-
-
         btnAdd= (Button) findViewById(R.id.griddelete);
         sp= (Spinner) findViewById(R.id.gridsp);
     }
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int pstid)
+    private void handleClickEvents(final int prosizeimgid)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -81,11 +77,11 @@ public class DeleteGridSubTypes extends AppCompatActivity {
 
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpstid = pstid;
+                final int recivedprosizeimgid = prosizeimgid;
 
                 //SAVE
-                ProductSubTypesDB s=new ProductSubTypesDB();
-                s.setProductSubTypeId(rpstid);
+                MySQLDataBase s=new MySQLDataBase();
+                s.setProductSizeImageId(recivedprosizeimgid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -94,7 +90,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("productsubtypeid", String.valueOf(s.getProductSubTypeId()))
+                            .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -133,16 +129,14 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     }
     public void onStart() {
         super.onStart();
-    BackTask bt = new BackTask();
+        BackTask bt = new BackTask();
         bt.execute();
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
         }
         // for spinner
         protected Void doInBackground(Void... params) {
@@ -150,7 +144,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSubTypeSpinner);
+                HttpPost httppost = new HttpPost(Data_spinner_url + productSubTypeId);
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -175,17 +169,17 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productSubTypesDBs.clear();
-                ProductSubTypesDB productSubTypesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int pstid = jo.getInt("ProductSubTypeId");
-                    String pstname = jo.getString("ProductSubTypeName");
-                    productSubTypesDB=new ProductSubTypesDB();
-                    productSubTypesDB.setProductSubTypeId(pstid);
-                    productSubTypesDB.setProductSubTypeName(pstname);
-                    productSubTypesDBs.add(productSubTypesDB);
+                    int productsubtypeimageid = jo.getInt("ProductSizeImageId");
+                    String imagename = jo.getString("Name");
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeImageId(productsubtypeimageid);
+                    mySQLDataBase.setName(imagename);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -197,8 +191,8 @@ public class DeleteGridSubTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productSubTypesDBs.size();i++){
-                listItems.add(productSubTypesDBs.get(i).getProductSubTypeName());
+            for(int i=0;i<mySQLDataBases.size();i++){
+                listItems.add(mySQLDataBases.get(i).getName());
             }
 
             adapter=new ArrayAdapter(DeleteGridSubTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
@@ -208,10 +202,10 @@ public class DeleteGridSubTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductSubTypesDB productSubTypesDB = (ProductSubTypesDB) productSubTypesDBs.get(position);
-                    final String name = productSubTypesDB.getProductSubTypeName();
-                    final int pstid =productSubTypesDB.getProductSubTypeId() ;
-                    handleClickEvents(pstid);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final String name = mySQLDataBase.getName();
+                    final int prosizeimgid =mySQLDataBase.getProductSizeImageId() ;
+                    handleClickEvents(prosizeimgid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {
@@ -228,7 +222,6 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 }
 
             });
-
 
         }
     }
