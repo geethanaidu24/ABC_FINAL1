@@ -34,7 +34,7 @@ public class DeleteProducts extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<ProductsDB> adapter ;
-    private static final String DATA_INSERT_URL=Config.productsCRUD;
+    private static final String DATA_DELETE_URL=Config.productsCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -89,7 +89,7 @@ public class DeleteProducts extends AppCompatActivity {
                 }
                 else
                 {
-                    AndroidNetworking.post(DATA_INSERT_URL)
+                    AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("productid", String.valueOf(s.getId()))
                             .setTag("TAG_ADD")

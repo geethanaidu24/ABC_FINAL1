@@ -52,6 +52,7 @@ import static com.example.admin.abc.R.id.name8;
 
 public class AddGridProductTypeSizes extends AppCompatActivity implements View.OnClickListener {
     private static final String addGridData = Config.producttypeSizesGridsCRUD;
+    final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
     private static final String addSpinData = Config.sizeSpinner;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
@@ -81,10 +82,10 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         final int productId= intent.getExtras().getInt("PRODUCTID_KEY");
         final int producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
         final int productTypeId=intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        Uri builtUri = Uri.parse(addSpinData)
+        Uri builtUri = Uri.parse(productSizeCheckUrl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
-                //   .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productSizeId))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productTypeId))
                 .build();
 
         try {
@@ -167,14 +168,11 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                 MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-                    // psid = jo.getInt("ProductSizeId");
-                    psid = jo.getInt("ProductSizeId");
 
+                    psid = jo.getInt("ProductSizeId");
                     int width = jo.getInt("Width");
                     int height=jo.getInt("Height");
                     int length=jo.getInt("Length");
-
                     mySQLDataBase = new MySQLDataBase();
                     mySQLDataBase.setProductSizeId(psid);
                     mySQLDataBase.setWidth(width);
@@ -593,7 +591,6 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             }
         }
     }
-
 
 }
 

@@ -54,11 +54,13 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
     private EditText etCaption;
-    private TextView tvPath;
+    private TextView tvPath, productName;
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
     public int spid=0;
+    private int selectedProductId;
+    private String selectedProductName;
     Context context;
     private String Select;
     final ArrayList<ProductsDB> productsDBs =new ArrayList<>();
@@ -70,9 +72,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
      //   getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_types);
-        /*Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");*/
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -95,17 +97,19 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         imageView = (ImageView)findViewById(R.id.brandimage);
         etCaption = (EditText)findViewById(R.id.producttypes);
         tvPath    = (TextView)findViewById(R.id.brandpath);
-        sp = (Spinner)findViewById(R.id.addProSp);
+        productName = (TextView)findViewById(R.id.textView26);
+       // sp = (Spinner)findViewById(R.id.addProSp);
         //sp.setPrompt("Select");
 
         btnUpload = (Button)findViewById(R.id.btnUpload);
+        productName.setText(selectedProductName);
 
         requestStoragePermission();
 
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
-    @Override
+   /* @Override
     public void onStart(){
         super.onStart();
         BackTask bt = new BackTask();
@@ -181,7 +185,7 @@ sp.setPrompt("Select");
             adapter.notifyDataSetChanged();
         }
     }
-
+*/
     @Override
     public void onClick(View view) {
         if(view == imageView){
@@ -205,8 +209,8 @@ sp.setPrompt("Select");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
             adapter.notifyDataSetChanged();
-            BackTask bt = new BackTask();
-            bt.execute();
+           /* BackTask bt = new BackTask();
+            bt.execute();*/
 
         }
 
@@ -229,9 +233,10 @@ sp.setPrompt("Select");
     public void uploadMultipart() {
         String caption = etCaption.getText().toString().trim();
 
+
         //getting the actual path of the image
         String path = getPath(filePath);
-        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
@@ -260,10 +265,10 @@ sp.setPrompt("Select");
                         Toast.LENGTH_SHORT).show();
             }
 
-        });
-        ProductsDB s = new ProductsDB();
+        });*/
+      /*  ProductsDB s = new ProductsDB();
         s.setName(caption);
-        s.setId(spid);
+        s.setId(selectedProductId);*/
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -273,7 +278,7 @@ sp.setPrompt("Select");
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
-                    .addParameter("productid", String.valueOf(s.getId()))
+                    .addParameter("productid", String.valueOf(selectedProductId))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

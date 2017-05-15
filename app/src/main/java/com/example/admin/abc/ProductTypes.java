@@ -50,6 +50,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     private boolean loggedIn = false;
     final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
+    private static int selectedPid;
+    private static String selectedPname;
     @Override
     public void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -59,8 +61,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
         Intent intent = getIntent();
-        final String selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
-        final int selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
 
         ArrayList<ProductTypesDB> productTypesDBs = (ArrayList<ProductTypesDB>) intent.getSerializableExtra("ProductTypeList");
 
@@ -121,7 +123,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
-
+            in.putExtra("PRODUCTID_KEY",selectedPid);
+            in.putExtra("PRODUCTNAME_KEY",selectedPname);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
