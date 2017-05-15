@@ -51,28 +51,28 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
     private EditText etCaption;
-    private TextView tvPath;
+    private TextView tvPath,productTypeText;
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
     public int pstid;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
 
     Context context;
-    final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
+   // final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
 
-    private Spinner sp1;
-    private ArrayAdapter<ProductTypesDB> adapter ;
+    //private Spinner sp1;
+   // private ArrayAdapter<ProductTypesDB> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_sub_type);
         // Get intent data
-        /*Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
-        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");*/
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -97,15 +97,17 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         imageView = (ImageView)findViewById(R.id.brandimage);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
         tvPath    = (TextView)findViewById(R.id.brandpath);
-        sp1 = (Spinner)findViewById(R.id.spproductstypes);
+       // sp1 = (Spinner)findViewById(R.id.spproductstypes);
+        productTypeText = (TextView)findViewById(R.id.productTypeDisplay);
         btnUpload = (Button)findViewById(R.id.btnUpload);
 
         requestStoragePermission();
+        productTypeText.setText(selectedProducttype);
 
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
-    @Override
+    /*@Override
     public void onStart(){
         super.onStart();
        BackTask bt = new BackTask();
@@ -179,7 +181,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             adapter.notifyDataSetChanged();
         }
     }
-
+*/
 
     @Override
     public void onClick(View view) {
@@ -203,9 +205,9 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            adapter.notifyDataSetChanged();
+           /* adapter.notifyDataSetChanged();
             BackTask bt = new BackTask();
-            bt.execute();
+            bt.execute();*/
         }
 
     }
@@ -229,7 +231,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         //getting the actual path of the image
         String path = getPath(filePath);
-        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
@@ -253,12 +255,12 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                         Toast.LENGTH_SHORT).show();
             }
 
-        });
-
+        });*/
+/*
         ProductTypesDB s = new ProductTypesDB();
         s.setProductType(caption);
 
-        s.setProductTypeId(pstid);
+        s.setProductTypeId(pstid);*/
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -268,7 +270,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
-                    .addParameter("producttypeid",String.valueOf(pstid))
+                    .addParameter("producttypeid",String.valueOf(selectedProducttypeid))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
