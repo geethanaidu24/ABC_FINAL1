@@ -63,6 +63,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.griddelete);
         sp= (Spinner) findViewById(R.id.gridsp);
+        sp.setPrompt("Select One...");
     }
     /*
     HANDLE CLICK EVENTS

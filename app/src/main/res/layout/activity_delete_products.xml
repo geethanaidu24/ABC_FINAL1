@@ -34,9 +34,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"><![CDATA[
-        >
-        ]]>
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView24"
@@ -68,6 +66,8 @@
             android:layout_below="@+id/textView25"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:spinnerMode="dialog"
+            android:prompt="@string/prompt_text"
             android:layout_marginTop="15dp"/>
 
         <Button
@@ -79,6 +79,7 @@
             android:layout_marginBottom="96dp"
             android:background="@color/cred"
             android:text="DELETE"
+
             android:textColor="@color/white"/>
     </RelativeLayout>
     </LinearLayout>

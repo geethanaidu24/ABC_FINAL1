@@ -83,6 +83,7 @@ public class DeleteProductSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletebtn1);
         sp= (Spinner) findViewById(R.id.spdelete1);
+        sp.setPrompt("Select One....");
     }
     /*
     HANDLE CLICK EVENTS

@@ -171,7 +171,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/sizespinner8"
-                android:layout_alignTop="@+id/textView21"/>
+                android:layout_alignTop="@+id/textView21"
+              />
 
             <EditText
                 android:id="@+id/color6"

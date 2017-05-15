@@ -63,6 +63,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.gridproducttypedelete);
         sp= (Spinner) findViewById(R.id.gridproducttypesp);
+        sp.setPrompt("Select One....");
     }
     private void handleClickEvents(final int prosizeimgid)
 
