@@ -208,7 +208,7 @@ sp.setPrompt("Select");
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            adapter.notifyDataSetChanged();
+           // adapter.notifyDataSetChanged();
            /* BackTask bt = new BackTask();
             bt.execute();*/
 

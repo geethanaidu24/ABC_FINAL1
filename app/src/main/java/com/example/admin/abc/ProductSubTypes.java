@@ -35,6 +35,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     ImageView back;
     Context c;
     private boolean loggedIn = false;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -46,8 +49,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         // Get intent data
         Intent intent = getIntent();
-        final String selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
-        final int selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
         ArrayList<ProductSubTypesDB> productSubTypesDBs = (ArrayList<ProductSubTypesDB>) intent.getSerializableExtra("ProductSubTypeList");
 
@@ -56,7 +59,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         final ProductSubTypesListAdapter adapter = new ProductSubTypesListAdapter(this, productSubTypesDBs, selectedProducttypeid, selectedProducttype);
         lv.setAdapter(adapter);
-        typeNameTxt.setText(selectedProducttype);
+        //typeNameTxt.setText(selectedProducttype);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -107,7 +110,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
-
+            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
