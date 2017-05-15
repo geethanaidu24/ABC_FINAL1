@@ -52,26 +52,35 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private TextView Path;
+    private TextView Path,producttypetext,producttext;
     private EditText name,brand,color;
     private Button btnadd1;
     private Bitmap bitmap;
     private Uri filePath;
     public int pid=0;
     public int ptid=0;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
+    private static int selectedPid;
+    private static String selectedPname;
 
-    Context context;
+ /*   Context context;
     final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
 
 
     private Spinner sp5,sp6;
     private ArrayAdapter<MySQLDataBase> adapter5 ;
-    private ArrayAdapter<MySQLDataBase> adapter6 ;
+    private ArrayAdapter<MySQLDataBase> adapter6 ;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_product_types);
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -90,12 +99,15 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             Path = (TextView) findViewById(R.id.path8);
             brand = (EditText) findViewById(R.id.brand8);
             color = (EditText) findViewById(R.id.color8);
-            sp5 = (Spinner) findViewById(R.id.typespinner8);
+          /*  sp5 = (Spinner) findViewById(R.id.typespinner8);
             sp6 = (Spinner) findViewById(R.id.productspinner8);
-
+*/
             //sp4 = (Spinner) findViewById(R.id.productspinner);
+            producttext=(TextView)findViewById(R.id.prodname);
+            producttypetext=(TextView)findViewById(R.id.protypes);
             btnadd1 = (Button) findViewById(R.id.btnadd8);
-
+            producttext.setText(selectedPname);
+            producttypetext.setText(selectedProducttype);
             requestStoragePermission();
 
             imageView.setOnClickListener(this);
@@ -103,7 +115,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         }
     }
 
-    @Override
+  /*  @Override
     public void onStart() {
         super.onStart();
         ProductTypeTask bt = new ProductTypeTask();
@@ -248,7 +260,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             sp6.setAdapter(adapter6);
             adapter6.notifyDataSetChanged();
         }
-    }
+    }*/
     @Override
     public void onClick(View v) {
         if (v == imageView) {
@@ -273,11 +285,11 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
             //txtlength.setText("");
-            adapter5.notifyDataSetChanged();
+            /*adapter5.notifyDataSetChanged();
             adapter6.notifyDataSetChanged();
 
             ProductTypeTask bt=new ProductTypeTask();
-            bt.execute();
+            bt.execute();*/
         }
     }
 
@@ -299,15 +311,15 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         String namec = name.getText().toString().trim();
         String brandc = brand.getText().toString().trim();
         String colorc = color.getText().toString().trim();
-        String spinSelVal1 = sp5.getSelectedItem().toString();
-        String spinSelVal2=sp6.getSelectedItem().toString();
+        /*String spinSelVal1 = sp5.getSelectedItem().toString();
+        String spinSelVal2=sp6.getSelectedItem().toString();*/
 
 
         //getting the actual path of the image
         String path = getPath(filePath);
 
 
-
+/*
         sp5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
@@ -362,11 +374,11 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             }
 
         });
-       /* if((caption.length()<1))
+       *//* if((caption.length()<1))
         {
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
-        else {*/
+        else {*//*
         MySQLDataBase s = new MySQLDataBase();
         s.setName(namec);
         s.setBrand(brandc);
@@ -375,7 +387,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         s.setProductTypeId(ptid);
         s.setProductId(pid);
         //s.setId(pid);
-        //Uploading code
+        //Uploading code*/
         try {
             String uploadId = UUID.randomUUID().toString();
 
@@ -387,8 +399,8 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
 
-                    .addParameter("producttypeid", String.valueOf(ptid))
-                    .addParameter("productid", String.valueOf(pid))
+                    .addParameter("producttypeid", String.valueOf(selectedProducttypeid))
+                    .addParameter("productid", String.valueOf(selectedPid))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

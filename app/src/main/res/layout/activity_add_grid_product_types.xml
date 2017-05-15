@@ -145,13 +145,6 @@
                 android:textColor="@color/cred"
                 android:textSize="18sp" />
 
-            <Spinner
-                android:id="@+id/typespinner8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView19"
-                android:layout_alignStart="@+id/brand8"/>
-
 
             <TextView
                 android:id="@+id/textView21"
@@ -164,14 +157,6 @@
                 android:textColor="@color/cred"
                 android:textSize="18sp" />
 
-
-            <Spinner
-                android:id="@+id/productspinner8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/textView21"
-                android:layout_alignStart="@+id/typespinner8" />
 
             <EditText
                 android:id="@+id/color8"
@@ -205,9 +190,22 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="200dp"
                 android:text="Path" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/textView19"
+                android:layout_alignStart="@+id/color8"
+                android:id="@+id/protypes"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/textView21"
+                android:layout_alignStart="@+id/protypes"
+                android:id="@+id/prodname"/>
 
         </RelativeLayout>
     </ScrollView>
+
 
 
 </RelativeLayout>

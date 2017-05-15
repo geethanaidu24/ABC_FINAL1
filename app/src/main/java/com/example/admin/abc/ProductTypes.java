@@ -321,6 +321,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 intent.putExtra("PRODUCTTYPE_KEY",finalProductType);
                 intent.putExtra("PRODUCTID_KEY",selectedPid);
                 intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+
                 intent.putExtra("ProductSubTypeList",productSubTypesDBs);
                 c.startActivity(intent);
             }
@@ -456,7 +457,10 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent intent = new Intent(c,ProductTypesGridView.class);
                 intent.putExtra("PRODUCTID_KEY",finalProId);
                 intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
-               // intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
+                intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+                intent.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+
+                intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
                 c.startActivity(intent);
 
             }else
