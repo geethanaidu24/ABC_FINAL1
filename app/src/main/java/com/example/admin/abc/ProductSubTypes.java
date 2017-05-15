@@ -35,8 +35,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     ImageView back;
     Context c;
     private boolean loggedIn = false;
+    private int productSubTypeId;
+    private String productSubTypeName;
     private int selectedProducttypeid;
     private String selectedProducttype;
+    private static int selectedPid;
+    private static String selectedPname;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,9 +53,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         // Get intent data
         Intent intent = getIntent();
+        productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-
         ArrayList<ProductSubTypesDB> productSubTypesDBs = (ArrayList<ProductSubTypesDB>) intent.getSerializableExtra("ProductSubTypeList");
 
         typeNameTxt.setText(selectedProducttype);
@@ -110,6 +117,10 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
+            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
+            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
+            in.putExtra("PRODUCTID_KEY",selectedPid);
+            in.putExtra("PRODUCTNAME_KEY",selectedPname);
             in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
             startActivity(in);
@@ -192,6 +203,11 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             Intent intent = new Intent(c, ProductSubTypeGridView.class);
             intent.putExtra("PRODUCTSUBTYPEID_KEY", recvProSubId);
             intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvProSubName);
+            intent.putExtra("PRODUCTID_KEY",selectedPid);
+            intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+            intent.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
+            intent.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+
             c.startActivity(intent);
         }
     }
