@@ -109,15 +109,24 @@
             android:textColor="@color/cred"
             android:textSize="18sp" />
 
-        <Spinner
-            android:id="@+id/addProSp"
-
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/textView15"
-            android:layout_toEndOf="@+id/textView15"
+            android:layout_alignBottom="@+id/textView15"
+            android:layout_alignStart="@+id/producttypes"
+            android:layout_marginStart="49dp"
+            android:text="TextView" />
 
-            />
+        <!-- <Spinner
+             android:id="@+id/addProSp"
+
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@+id/textView15"
+             android:layout_toEndOf="@+id/textView15"
+
+             />-->
 
 
     </RelativeLayout>

@@ -38,7 +38,8 @@ import java.util.ArrayList;
 
 public class Products extends AppCompatActivity implements Serializable {
 
-    final static String urlAddress = Config.productsUrlAddress;
+    //final static String urlAddress = Config.productsUrlAddress;
+    final static String urlAddress = Config.procheck;
     final static String productTypeUrlAddress = Config.productTypesUrlAddress;
     private boolean loggedIn = false;
     @Override
