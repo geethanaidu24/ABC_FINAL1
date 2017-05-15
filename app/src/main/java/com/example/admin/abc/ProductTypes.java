@@ -50,6 +50,10 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     private boolean loggedIn = false;
     final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
+    private int productSubTypeId;
+    private String productSubTypeName;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
     @Override
@@ -61,8 +65,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
         Intent intent = getIntent();
+        productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
         ArrayList<ProductTypesDB> productTypesDBs = (ArrayList<ProductTypesDB>) intent.getSerializableExtra("ProductTypeList");
 
@@ -123,8 +131,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
+            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
+            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
             in.putExtra("PRODUCTID_KEY",selectedPid);
             in.putExtra("PRODUCTNAME_KEY",selectedPname);
+            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
@@ -309,6 +321,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent intent = new Intent(c,ProductSubTypes.class);
                 intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
                 intent.putExtra("PRODUCTTYPE_KEY",finalProductType);
+                intent.putExtra("PRODUCTID_KEY",selectedPid);
+                intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+
                 intent.putExtra("ProductSubTypeList",productSubTypesDBs);
                 c.startActivity(intent);
             }
@@ -450,7 +465,10 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent intent = new Intent(c,ProductTypesGridView.class);
                 intent.putExtra("PRODUCTID_KEY",finalProId);
                 intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
-               // intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
+                intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+                intent.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+
+                intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
                 c.startActivity(intent);
 
             }else

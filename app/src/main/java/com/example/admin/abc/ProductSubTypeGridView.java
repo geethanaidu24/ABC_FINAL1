@@ -46,8 +46,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     private boolean loggedIn = false;
     //Context c;
     final static String url = Config.productTypeSubTypeImgUrlAddress;
-    static int productSubTypeId;
-
+    private int productSubTypeId;
+    private String productSubTypeName;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
+    private static int selectedPid;
+    private static String selectedPname;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -58,9 +62,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         gv.setNumColumns(2);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final String productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+         productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
         productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
-
+        selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         String urlAddress = url + productSubTypeId;
 
         new ProductSubTypeImagesDownloader(ProductSubTypeGridView.this, urlAddress, gv, productSubTypeId).execute();
@@ -116,6 +123,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
+            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
+            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
+            in.putExtra("PRODUCTID_KEY",selectedPid);
+            in.putExtra("PRODUCTNAME_KEY",selectedPname);
+            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
