@@ -192,15 +192,15 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    openActivityCondition(ProductId,ProductTypeId,ProductTypeName);
+                    openActivityCondition(FinalPid,FinalPname,ProductTypeId,ProductTypeName);
                 }
             });
 
             return convertView;
         }
-        public void openActivityCondition(int recivedPid, int recivedPTid, String recivedPTname){
+        public void openActivityCondition(int recivedPid, String recivedPname, int recivedPTid, String recivedPTname){
             final String ConditionUrlAddress = productSubTypeCheckUrl + recivedPTid;
-            new ProductSubTypesDownloader(ProductTypes.this, ConditionUrlAddress,recivedPid, recivedPTid, recivedPTname).execute();
+            new ProductSubTypesDownloader(ProductTypes.this, ConditionUrlAddress,recivedPid,recivedPname, recivedPTid, recivedPTname).execute();
 
         }
     }
@@ -209,11 +209,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         Context c;
         String finalUrlAddress;
         int selectedProductId,selectedProductTypeId;
-        String selectedProductType;
-        private ProductSubTypesDownloader(Context c, String ConditionUrlAddress, int recivedPid, int recivedPTid, String recivedPTname) {
+        String selectedProductType,selectedProduct;
+        private ProductSubTypesDownloader(Context c, String ConditionUrlAddress, int recivedPid, String recivedPname,int recivedPTid, String recivedPTname) {
             this.c = c;
             this.finalUrlAddress = ConditionUrlAddress;
             this.selectedProductId=recivedPid;
+            this.selectedProduct=recivedPname;
             this.selectedProductTypeId = recivedPTid;
             this.selectedProductType = recivedPTname;
             Log.d("newActivity url: ", "> " + ConditionUrlAddress);
@@ -238,7 +239,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
             } else {
                 //CALL DATA PARSER TO PARSE
-                ProductSubTypesDataParser parser = new ProductSubTypesDataParser(c,s,selectedProductId,selectedProductTypeId,selectedProductType);
+                ProductSubTypesDataParser parser = new ProductSubTypesDataParser(c,s,selectedProductId,selectedProduct,selectedProductTypeId,selectedProductType);
                 parser.execute();
             }
         }
@@ -271,15 +272,16 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         Context c;
         String jsonData;
         int finalProductId,finalProductTypeId;
-        String finalProductType;
+        String finalProductType,finalProductName;
         ArrayList<ProductSubTypesDB> productSubTypesDBs = new ArrayList<>();
 
-        private ProductSubTypesDataParser(Context c, String jsonData, int pid,int ptid, String ptname) {
+        private ProductSubTypesDataParser(Context c, String jsonData, int pid,String pname,int ptid, String ptname) {
             this.c = c;
             this.jsonData = jsonData;
             this.finalProductTypeId = ptid;
             this.finalProductType = ptname;
             this.finalProductId=pid;
+            this.finalProductName=pname;
         }
 
         @Override
@@ -299,7 +301,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             if(result==0)
             {
 
-                openAnotherActivityCondition(finalProductId,finalProductTypeId,finalProductType);
+                openAnotherActivityCondition(finalProductId,finalProductName,finalProductTypeId,finalProductType);
 
             }else
             {
@@ -312,7 +314,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             }
         }
 
-        private void openAnotherActivityCondition(int finalProductId, int finalProductTypeId, String finalProductType) {
+        private void openAnotherActivityCondition(int finalProductId, String finalProductName,int finalProductTypeId, String finalProductType) {
 
             Uri builtUri = Uri.parse(productSizeCheckUrl)
                     .buildUpon()
@@ -325,7 +327,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
-            new ProductTypeSizesDownloader(ProductTypes.this,urlAddress,finalProductId,finalProductTypeId).execute();
+            new ProductTypeSizesDownloader(ProductTypes.this,urlAddress,finalProductId,finalProductName,finalProductTypeId,finalProductType).execute();
 
         }
         private int parseSubTypeData() {
@@ -360,11 +362,14 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         Context c;
         URL urlAddress;
         int recivedProductId, recivedProductTypeId;
-        private ProductTypeSizesDownloader(Context c, URL urlAddress,int recvdProId,int recvdProTypId) {
+        String recivedProductName,recivedProductType;
+        private ProductTypeSizesDownloader(Context c, URL urlAddress,int recvdProId,String recvdProName,int recvdProTypId,String recvdProType) {
             this.c = c;
             this.urlAddress = urlAddress;
            this.recivedProductId = recvdProId;
             this.recivedProductTypeId = recvdProTypId;
+            this.recivedProductName=recvdProName;
+            this.recivedProductType=recvdProType;
             Log.d("newActivity url: ", "> " + urlAddress);
         }
         @Override
@@ -386,7 +391,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
-                ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c,s,recivedProductId,recivedProductTypeId);
+                ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c,s,recivedProductId,recivedProductName,recivedProductTypeId,recivedProductType);
                 parser.execute();
             }
         }
@@ -416,14 +421,17 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         Context c;
         String jsonData;
         int finalProId, finalProTypeId;
+        String finalProName,finalProType;
 
         ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = new ArrayList<>();
 
-        private ProductTypeSizesDataParser(Context c, String jsonData, int pid, int ptid) {
+        private ProductTypeSizesDataParser(Context c, String jsonData, int pid,String pname, int ptid,String ptname) {
             this.c = c;
             this.jsonData = jsonData;
             this.finalProId =pid;
             this.finalProTypeId=ptid;
+            this.finalProName=pname;
+            this.finalProType=ptname;
         }
         @Override
         protected void onPreExecute() {
@@ -449,7 +457,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             {
                 Intent intent = new Intent(c,ProductTypeSizes.class);
                 intent.putExtra("PRODUCTID_KEY",finalProId);
+                intent.putExtra("PRODUCTNAME_KEY",finalProName);
                 intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
+                intent.putExtra("PRODUCTTYPE_KEY",finalProType);
                 intent.putExtra("ProductTypeSizeList",productTypeSizeDBDatas);
                 c.startActivity(intent);
             }

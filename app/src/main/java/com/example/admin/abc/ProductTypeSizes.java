@@ -36,6 +36,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     Context c;
     private boolean loggedIn = false;
     private static int selectedProdutId, selectedProdutTypeId;
+    private static String selectedProductName, selectedProductType;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
          selectedProdutId = intent.getExtras().getInt("PRODUCTID_KEY");
-         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        selectedProductType = intent.getExtras().getString("PRODUCTTYPE_KEY");
         ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = (ArrayList<ProductTypeSizeDBData>) intent.getSerializableExtra("ProductTypeSizeList");
 
         final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, productTypeSizeDBDatas, selectedProdutId, selectedProdutTypeId);
@@ -104,8 +107,12 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
-            startActivity(in);
+            Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
+            intent.putExtra("PRODUCTID_KEY",selectedProdutId);
+            intent.putExtra("PRODUCTNAME_KEY",selectedProductName);
+            intent.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
+            intent.putExtra("PRODUCTTYPE_KEY",selectedProductType);
+            startActivity(intent);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
@@ -197,18 +204,21 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    openProductTypeSizeImagesActivity(pid,ptid,sizeid);
+                    openProductTypeSizeImagesActivity(sizeid,finalSize);
                 }
             });
 
             return convertView;
         }
 
-        public void openProductTypeSizeImagesActivity(int proid,int protid,int sizeid){
+        public void openProductTypeSizeImagesActivity(int sizeid,String finalSize){
             Intent intent = new Intent(c,ProductTypeSizeImagesGridView.class);
-            intent.putExtra("PRODUCTID_KEY",proid);
-            intent.putExtra("PRODUCTTYPEID_KEY",protid);
+            intent.putExtra("PRODUCTID_KEY",selectedProdutId);
+            intent.putExtra("PRODUCTNAME_KEY",selectedProductName);
+            intent.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
+            intent.putExtra("PRODUCTTYPE_KEY",selectedProductType);
             intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
+            intent.putExtra("FINALSIZE_KEY",finalSize);
             c.startActivity(intent);
         }
     }

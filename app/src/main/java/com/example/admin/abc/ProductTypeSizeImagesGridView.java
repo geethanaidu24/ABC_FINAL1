@@ -48,6 +48,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     //Context c;
     final static String url =Config.productTypeSizeImgUrlAddress;
     private static int productId,producttypeSizeId,productTypeId;
+    private static String productName,productType,selectedProductSize;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -58,10 +59,12 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-      productId = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String pname =intent.getExtras().getString("PRODUCTNAME_KEY");
-       productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-    producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        productId = intent.getExtras().getInt("PRODUCTID_KEY");
+        productName =intent.getExtras().getString("PRODUCTNAME_KEY");
+        productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        productType = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        selectedProductSize = intent.getExtras().getString("FINALSIZE_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
@@ -77,7 +80,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         }
 
 
-        new ProductTypeSizeImagesDownloader(ProductTypeSizeImagesGridView.this,urlAddress,gv,productId,pname,productTypeId,producttypeSizeId).execute();
+        new ProductTypeSizeImagesDownloader(ProductTypeSizeImagesGridView.this,urlAddress,gv,productId,productName,productTypeId,producttypeSizeId).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -88,11 +91,6 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeSizeImagesGridView.this,ProductTypes.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-
-                    startActivity(in);*/
                     finish();
                 }
             });
@@ -134,8 +132,11 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypeSizeImagesGridView.this, AddGridProductTypeSizes.class);
             in.putExtra("PRODUCTID_KEY",productId);
+            in.putExtra("PRODUCTNAME_KEY",productName);
             in.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
             in.putExtra("PRODUCTTYPEID_KEY",productTypeId);
+            in.putExtra("PRODUCTTYPE_KEY",productType);
+            in.putExtra("FINALSIZE_KEY",selectedProductSize);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {

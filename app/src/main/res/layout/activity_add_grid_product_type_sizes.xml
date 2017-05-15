@@ -145,13 +145,13 @@
                 android:textSize="18sp"
                 android:layout_alignStart="@+id/textView17"/>
 
-            <Spinner
+           <!-- <Spinner
                 android:id="@+id/sizespinner8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/textView21"
                 android:layout_alignParentEnd="true"
-                android:layout_alignStart="@+id/color8" />
+                android:layout_alignStart="@+id/color8" />-->
 
 
             <TextView
@@ -166,13 +166,13 @@
                 android:textSize="18sp" />
 
 
-            <Spinner
+           <!-- <Spinner
                 android:id="@+id/typespinner8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/textView21"
-                android:layout_alignStart="@+id/color8" />
+                android:layout_alignStart="@+id/color8" />-->
 
             <EditText
                 android:id="@+id/color8"
@@ -187,21 +187,21 @@
                 android:id="@+id/textView22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="16dp"
                 android:text="PRODUCTS"
                 android:textColor="@color/cred"
                 android:textSize="18sp"
-                android:layout_below="@+id/typespinner8"
-                android:layout_alignStart="@+id/brandpath" />
+                android:layout_below="@+id/textView21"
+                android:layout_alignStart="@+id/textView21" />
 
 
-            <Spinner
+           <!-- <Spinner
                 android:id="@+id/productspinner8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/sizespinner8"
-                android:layout_alignTop="@+id/textView22" />
+                android:layout_alignTop="@+id/textView22" />-->
 
 
             <Button
@@ -227,8 +227,30 @@
                 android:layout_marginTop="200dp"
                 android:text="Path"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/textView21"
+                android:layout_alignStart="@+id/color8"
+                android:id="@+id/sizetext"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/typetext"
+                android:layout_above="@+id/textView22"
+                android:layout_alignParentEnd="true"
+                android:layout_alignStart="@+id/btnadd8" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignBottom="@+id/textView22"
+                android:layout_alignStart="@+id/typetext"
+                android:id="@+id/protext"/>
+
+
         </RelativeLayout>
     </ScrollView>
+
 
 
 </RelativeLayout>

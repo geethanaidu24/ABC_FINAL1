@@ -57,42 +57,47 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private TextView Path;
+    private TextView Path, txtSize,txtType,txtProduct;
     private EditText name,brand,color;
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pid=0;
-    public int ptid=0;
-    public int psid=0;
+    private static int recivedProductId,recivedProductTypeId,recivedProductTypeSizeId;
+    private static String recivedProductName,recivedProducttype,recivedFinalSize;
+   // public int pid=0;
+   // public int ptid=0;
+   // public int psid=0;
 
-    String finalSize;
+  //  String finalSize;
     Context context;
-    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
-    private Spinner sp1,sp2,sp3;
-    private ArrayAdapter<MySQLDataBase> adapter1 ;
-    private ArrayAdapter<MySQLDataBase> adapter2 ;
-    private ArrayAdapter<MySQLDataBase> adapter3 ;
+   // final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
+   // private Spinner sp1,sp2,sp3;
+   // private ArrayAdapter<MySQLDataBase> adapter1 ;
+   // private ArrayAdapter<MySQLDataBase> adapter2 ;
+   // private ArrayAdapter<MySQLDataBase> adapter3 ;
     URL sizeSpinnerUrl = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_product_type_sizes);
         Intent intent = getIntent();
-        final int productId= intent.getExtras().getInt("PRODUCTID_KEY");
-        final int producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
-        final int productTypeId=intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        Uri builtUri = Uri.parse(productSizeCheckUrl)
+        recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+        recivedProductName =intent.getExtras().getString("PRODUCTNAME_KEY");
+        recivedProductTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        recivedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        recivedProductTypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        recivedFinalSize = intent.getExtras().getString("FINALSIZE_KEY");
+       /* Uri builtUri = Uri.parse(productSizeCheckUrl)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
-                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productTypeId))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(recivedProductTypeId))
                 .build();
 
         try {
             sizeSpinnerUrl = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
+        }*/
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -111,11 +116,17 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             Path = (TextView) findViewById(R.id.brandpath);
             brand = (EditText) findViewById(R.id.brand8);
             color = (EditText) findViewById(R.id.color);
-            sp1 = (Spinner) findViewById(R.id.sizespinner8);
+           /* sp1 = (Spinner) findViewById(R.id.sizespinner8);
             sp2 = (Spinner) findViewById(R.id.typespinner8);
-            sp3 = (Spinner) findViewById(R.id.productspinner8);
+            sp3 = (Spinner) findViewById(R.id.productspinner8);*/
 
             btnadd = (Button) findViewById(R.id.btnadd8);
+            txtSize = (TextView) findViewById(R.id.sizetext);
+            txtType = (TextView) findViewById(R.id.typetext);
+            txtProduct = (TextView)findViewById(R.id.protext);
+            txtSize.setText(recivedFinalSize);
+            txtType.setText(recivedProducttype);
+            txtProduct.setText(recivedProductName);
 
             requestStoragePermission();
 
@@ -123,7 +134,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             btnadd.setOnClickListener(this);
         }
     }
-    public void onStart() {
+    /*public void onStart() {
         super.onStart();
      BackTask bt = new BackTask();
         bt.execute();
@@ -367,7 +378,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             sp3.setAdapter(adapter3);
             adapter3.notifyDataSetChanged();
         }
-    }
+    }*/
     @Override
     public void onClick(View v) {
         if (v == imageView) {
@@ -392,11 +403,11 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
             //txtlength.setText("");
-            adapter1.notifyDataSetChanged();
+           /* adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
             adapter3.notifyDataSetChanged();
       BackTask bt = new BackTask();
-            bt.execute();
+            bt.execute();*/
         }
     }
 
@@ -418,14 +429,14 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         String namec = name.getText().toString().trim();
         String brandc = brand.getText().toString().trim();
         String colorc = color.getText().toString().trim();
-        String spinSelVal1 = sp1.getSelectedItem().toString();
+        /*String spinSelVal1 = sp1.getSelectedItem().toString();
         String spinSelVal2=sp2.getSelectedItem().toString();
-        String spinSelVal3 = sp3.getSelectedItem().toString();
+        String spinSelVal3 = sp3.getSelectedItem().toString();*/
 
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /* sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
@@ -505,20 +516,20 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         Toast.LENGTH_SHORT).show();
             }
 
-        });
+        });*/
        /* if((caption.length()<1))
         {
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
         else {*/
-        MySQLDataBase s = new MySQLDataBase();
+       /* MySQLDataBase s = new MySQLDataBase();
         s.setName(namec);
         s.setBrand(brandc);
         s.setColor(colorc);
         s.setProductSizeId(psid);
         s.setProductTypeId(ptid);
         s.setProductId(pid);
-        //s.setId(pid);
+        //s.setId(pid);*/
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -530,9 +541,9 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
-                    .addParameter("productsizeid", String.valueOf(psid))
-                    .addParameter("producttypeid", String.valueOf(ptid))
-                    .addParameter("productid", String.valueOf(pid))
+                    .addParameter("productsizeid", String.valueOf(recivedProductTypeSizeId))
+                    .addParameter("producttypeid", String.valueOf(recivedProductTypeId))
+                    .addParameter("productid", String.valueOf(recivedProductId))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

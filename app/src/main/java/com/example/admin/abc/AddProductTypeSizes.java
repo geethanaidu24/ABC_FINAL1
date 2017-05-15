@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -44,24 +45,29 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
     private static final String UPLOAD_URL = Config.productTypeSizesCRUD;
     private EditText txtwidth, txtheight, txtlength;
+    private TextView displaySelectedProductType,displaySelectedProduct;
     Context context;
-    final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
+    private Button btnAdd;
+    private static int selectedProdutId1, selectedProdutTypeId1;
+    private static String selectedProductName1, selectedProductType1;
+   /* final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
     private Spinner sp1, sp2;
     private Button btnAdd;
     private ArrayAdapter<SizesDB> adapter;
     private ArrayAdapter<SizesDB> adapter1;
     public int ipid=0;
-    public int iptid=0;
+    public int iptid=0;*/
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
            // getSupportActionBar().hide();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_add_product_type_sizes);
-            /*Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-            final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-            final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
-            final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");*/
+            Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+            selectedProdutId1 = intent.getExtras().getInt("PRODUCTID_KEY");
+            selectedProductName1 = intent.getExtras().getString("PRODUCTNAME_KEY");
+            selectedProdutTypeId1 = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+            selectedProductType1 = intent.getExtras().getString("PRODUCTTYPE_KEY");
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             if (null != toolbar) {
@@ -87,12 +93,17 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             txtheight = (EditText) findViewById(R.id.height1);
             txtlength = (EditText) findViewById(R.id.length1);
             btnAdd = (Button) findViewById(R.id.brandbtn);
+            displaySelectedProductType =(TextView) findViewById(R.id.protypeDisplay);
+            displaySelectedProduct =(TextView)findViewById(R.id.proDisplay);
 
-            sp1 = (Spinner) findViewById(R.id.productsspinner);
-            sp2 = (Spinner) findViewById(R.id.spinner8);
+            displaySelectedProduct.setText(selectedProductName1);
+            displaySelectedProductType.setText(selectedProductType1);
+
+          /*  sp1 = (Spinner) findViewById(R.id.productsspinner);
+            sp2 = (Spinner) findViewById(R.id.spinner8);*/
             btnAdd.setOnClickListener(this);
         }
-    @Override
+   /* @Override
     public void onStart(){
         super.onStart();
         BackTask bt = new BackTask();
@@ -180,7 +191,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
         }
     }
-
+*/
     @Override
     public void onClick(View view) {
         if(view == btnAdd){
@@ -198,10 +209,10 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             txtwidth.setText("");
             txtheight.setText("");
             //txtlength.setText("");
-            adapter.notifyDataSetChanged();
+            /*adapter.notifyDataSetChanged();
             adapter1.notifyDataSetChanged();
             BackTask bt = new BackTask();
-            bt.execute();
+            bt.execute();*/
 
         }
 
@@ -220,7 +231,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         int leng=Integer.parseInt(length);
 
 
-        String spinSelVal = sp1.getSelectedItem().toString();
+        /*String spinSelVal = sp1.getSelectedItem().toString();
         String spinSelVal1=sp2.getSelectedItem().toString();
 
         sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -278,7 +289,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         s.setHeight(heig);
         s.setLength(leng);
         s.setProductId(ipid);
-        s.setProductTypeId(iptid);
+        s.setProductTypeId(iptid);*/
         //Uploading code
         try {
             AndroidNetworking.post(UPLOAD_URL)
@@ -287,8 +298,8 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                     .addBodyParameter("height",String.valueOf(heig))
                     .addBodyParameter("length",String.valueOf(length))
                    // .addBodyParameter("productid", String.valueOf(ipid))
-                    .addBodyParameter("productid", String.valueOf(s.getProductId()))
-                    .addBodyParameter("producttypeid",String.valueOf(s.getProductTypeId()))
+                    .addBodyParameter("productid", String.valueOf(selectedProdutId1))
+                    .addBodyParameter("producttypeid",String.valueOf(selectedProductType1))
                     .setTag("TAG_ADD")
                     .build()
                     .getAsJSONArray(new JSONArrayRequestListener() {
@@ -304,10 +315,10 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                                         txtwidth.setText("");
                                         txtheight.setText("");
                                         txtlength.setText("");
-                                        adapter.notifyDataSetChanged();
+                                       /* adapter.notifyDataSetChanged();
                                         adapter1.notifyDataSetChanged();
                                         BackTask bt = new BackTask();
-                                        bt.execute();
+                                        bt.execute();*/
 
                                     }else
                                     {
