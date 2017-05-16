@@ -78,6 +78,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletesubbtn);
         sp= (Spinner) findViewById(R.id.spsubdelete);
+        sp.setPrompt("Select One....");
     }
     /*
     HANDLE CLICK EVENTS

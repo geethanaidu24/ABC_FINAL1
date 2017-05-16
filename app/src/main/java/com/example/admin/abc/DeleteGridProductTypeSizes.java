@@ -69,6 +69,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletegrid1);
         sp= (Spinner) findViewById(R.id.spgrid1);
+        sp.setPrompt("Select One.....");
     }
     /*
     HANDLE CLICK EVENTS
