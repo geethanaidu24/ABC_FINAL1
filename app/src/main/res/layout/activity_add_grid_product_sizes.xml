@@ -144,14 +144,21 @@
                 android:textColor="@color/cred"
                 android:textSize="18sp"
                 android:layout_alignStart="@+id/textView17"/>
-
-            <Spinner
-                android:id="@+id/sizespinner8"
+            <TextView
+                android:id="@+id/sizeTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView19"
                 android:layout_alignStart="@+id/brand8"/>
 
+
+            <!--<Spinner
+                android:id="@+id/sizespinner8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView19"
+                android:layout_alignStart="@+id/brand8"/>
+-->
 
             <TextView
                 android:id="@+id/textView21"
@@ -163,15 +170,20 @@
                 android:text="PRODUCTS"
                 android:textColor="@color/cred"
                 android:textSize="18sp" />
+            <TextView
+                android:id="@+id/productTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView21"
+                android:layout_alignStart="@+id/btnadd10" />
 
-
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/productspinner8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignStart="@+id/sizespinner8"
-                android:layout_alignTop="@+id/textView21"/>
+                android:layout_alignTop="@+id/textView21"/>-->
 
             <EditText
                 android:id="@+id/color6"

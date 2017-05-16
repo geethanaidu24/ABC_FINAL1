@@ -51,7 +51,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
 
-         selectedProdutId = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedProdutId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         selectedProductType = intent.getExtras().getString("PRODUCTTYPE_KEY");
@@ -204,20 +204,23 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    openProductTypeSizeImagesActivity(sizeid,finalSize);
+                    openProductTypeSizeImagesActivity(sizeid,length,width,height,finalSize);
                 }
             });
 
             return convertView;
         }
 
-        public void openProductTypeSizeImagesActivity(int sizeid,String finalSize){
+        public void openProductTypeSizeImagesActivity(int sizeid,int length,int width, int height,String finalSize){
             Intent intent = new Intent(c,ProductTypeSizeImagesGridView.class);
             intent.putExtra("PRODUCTID_KEY",selectedProdutId);
             intent.putExtra("PRODUCTNAME_KEY",selectedProductName);
             intent.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
             intent.putExtra("PRODUCTTYPE_KEY",selectedProductType);
             intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
+            intent.putExtra("WIDTH_KEY",width);
+            intent.putExtra("LENGTH_KEY", length);
+            intent.putExtra("HEIGHT_KEY",height);
             intent.putExtra("FINALSIZE_KEY",finalSize);
             c.startActivity(intent);
         }

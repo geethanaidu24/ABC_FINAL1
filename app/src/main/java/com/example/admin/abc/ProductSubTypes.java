@@ -59,12 +59,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        ArrayList<ProductSubTypesDB> productSubTypesDBs = (ArrayList<ProductSubTypesDB>) intent.getSerializableExtra("ProductSubTypeList");
+        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
 
         typeNameTxt.setText(selectedProducttype);
-        Log.d("result response: ", "> " + productSubTypesDBs);
+        Log.d("result response: ", "> " + mySQLDataBases);
 
-        final ProductSubTypesListAdapter adapter = new ProductSubTypesListAdapter(this, productSubTypesDBs, selectedProducttypeid, selectedProducttype);
+        final ProductSubTypesListAdapter adapter = new ProductSubTypesListAdapter(this, mySQLDataBases, selectedProducttypeid, selectedProducttype);
         lv.setAdapter(adapter);
         //typeNameTxt.setText(selectedProducttype);
 
@@ -141,14 +141,14 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     private class ProductSubTypesListAdapter extends BaseAdapter {
 
         Context c;
-        ArrayList<ProductSubTypesDB> productSubTypesDBs;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         int finalProductTypeId;
         String finalProductType;
         LayoutInflater inflater;
 
-        public ProductSubTypesListAdapter(Context c, ArrayList<ProductSubTypesDB> productSubTypesDBs, int selectdPtid, String selectdPtname) {
+        public ProductSubTypesListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases, int selectdPtid, String selectdPtname) {
             this.c = c;
-            this.productSubTypesDBs = productSubTypesDBs;
+            this.mySQLDataBases = mySQLDataBases;
             this.finalProductTypeId = selectdPtid;
             this.finalProductType = selectdPtname;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -156,12 +156,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         @Override
         public int getCount() {
-            return productSubTypesDBs.size();
+            return mySQLDataBases.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return productSubTypesDBs.get(position);
+            return mySQLDataBases.get(position);
         }
 
         @Override
@@ -177,14 +177,14 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             TextView typeNameTxt = (TextView) convertView.findViewById(R.id.txtSubTypePro);
             ImageView img = (ImageView) convertView.findViewById(R.id.imageSubTypePro);
             //BIND DATA
-            ProductSubTypesDB productSubTypesDB = (ProductSubTypesDB) this.getItem(position);
-            final int ProductSubTypeId = productSubTypesDB.getProductSubTypeId();
-            final int ProductTypeId = productSubTypesDB.getProductTypeId();
-            final String ProductSubTypeName = productSubTypesDB.getProductSubTypeName();
-            final String ImageUrl = productSubTypesDB.getImageUrl();
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
+            final int ProductSubTypeId = mySQLDataBase.getProductSubTypeId();
+            final int ProductTypeId = mySQLDataBase.getProductTypeId();
+            final String ProductSubTypeName = mySQLDataBase.getProductSubTypeName();
+            final String ImageUrl = mySQLDataBase.getProductSubTypeImageUrl();
             final String finalUrl = Config.mainUrlAddress + ImageUrl;
 
-            typeNameTxt.setText(productSubTypesDB.getProductSubTypeName());
+            typeNameTxt.setText(mySQLDataBase.getProductSubTypeName());
             //IMG
             PicassoClient.downloadImage(c, finalUrl, img);
 

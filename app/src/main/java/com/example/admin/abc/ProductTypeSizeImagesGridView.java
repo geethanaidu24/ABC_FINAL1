@@ -47,7 +47,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     private boolean loggedIn = false;
     //Context c;
     final static String url =Config.productTypeSizeImgUrlAddress;
-    private static int productId,producttypeSizeId,productTypeId;
+    private static int productId,producttypeSizeId,productTypeId,selLength,selWidth,selHeight;
     private static String productName,productType,selectedProductSize;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         productType = intent.getExtras().getString("PRODUCTTYPE_KEY");
         producttypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
         selectedProductSize = intent.getExtras().getString("FINALSIZE_KEY");
-
+        selLength = intent.getExtras().getInt("LENGTH_KEY");
+        selWidth = intent.getExtras().getInt("WIDTH_KEY");
+        selHeight = intent.getExtras().getInt("HEIGHT_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -137,6 +139,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             in.putExtra("PRODUCTTYPEID_KEY",productTypeId);
             in.putExtra("PRODUCTTYPE_KEY",productType);
             in.putExtra("FINALSIZE_KEY",selectedProductSize);
+            in.putExtra("WIDTH_KEY",selWidth);
+            in.putExtra("LENGTH_KEY", selLength);
+            in.putExtra("HEIGHT_KEY",selHeight);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {

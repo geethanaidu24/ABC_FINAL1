@@ -255,7 +255,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         GridView gv;
         String jsonData;
         int pstid;
-        ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems=new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
 
         private ProductSubTypeImagesDataParser(Context c, GridView gv, String jsonData, int pstid) {
             this.c = c;
@@ -281,7 +281,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             }else
             {
 
-                final ProductSubTypeImagesGirdAdapter adapter=new ProductSubTypeImagesGirdAdapter(c,productTypeSubTypeImageItems,pstid);
+                final ProductSubTypeImagesGirdAdapter adapter=new ProductSubTypeImagesGirdAdapter(c,mySQLDataBases,pstid);
                 gv.setAdapter(adapter);
 
             }
@@ -292,8 +292,8 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                productTypeSubTypeImageItems.clear();
-                ProductTypeSubTypeImageItem productTypeSubTypeImageItem;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
 
                 for(int i=0;i<ja.length();i++)
                 {
@@ -309,17 +309,17 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                     int ProductSubTypeId = jo.getInt("ProductSubTypeId");
                     int ProductTypeId = jo.optInt("ProductTypeId");
                     int ProductId = jo.getInt("ProductId");
-                    productTypeSubTypeImageItem=new ProductTypeSubTypeImageItem();
-                    productTypeSubTypeImageItem.setProductSizeId(ProductSizeImageId);
-                    productTypeSubTypeImageItem.setName(Name);
-                    productTypeSubTypeImageItem.setImagePath(ImageUrl);
-                    productTypeSubTypeImageItem.setBrand(Brands);
-                    productTypeSubTypeImageItem.setColor(Color);
-                    productTypeSubTypeImageItem.setProductSizeId(ProductSizeId);
-                    productTypeSubTypeImageItem.setProductSubTypeId(ProductSubTypeId);
-                    productTypeSubTypeImageItem.setProductTypeId(ProductTypeId);
-                    productTypeSubTypeImageItem.setProductId(ProductId);
-                    productTypeSubTypeImageItems.add(productTypeSubTypeImageItem);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(ProductSizeImageId);
+                    mySQLDataBase.setName(Name);
+                    mySQLDataBase.setImagePath(ImageUrl);
+                    mySQLDataBase.setBrand(Brands);
+                    mySQLDataBase.setColor(Color);
+                    mySQLDataBase.setProductSizeId(ProductSizeId);
+                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -332,25 +332,25 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     public class ProductSubTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
 
-        ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         int pstid;
         LayoutInflater inflater;
 
-        public ProductSubTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems,int pstid) {
+        public ProductSubTypeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases,int pstid) {
             this.c = c;
-            this.productTypeSubTypeImageItems = productTypeSubTypeImageItems;
+            this.mySQLDataBases = mySQLDataBases;
             this.pstid = pstid;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return productTypeSubTypeImageItems.size();
+            return mySQLDataBases.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return productTypeSubTypeImageItems.get(position);
+            return mySQLDataBases.get(position);
         }
 
         @Override
@@ -366,12 +366,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             TextView typeNameTxt = (TextView) convertView.findViewById(R.id.txtTypeSizePro);
             ImageView img = (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
             //BIND DATA
-            ProductTypeSubTypeImageItem productTypeSubTypeImageItem = (ProductTypeSubTypeImageItem) this.getItem(position);
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
 
-            final int imageid = productTypeSubTypeImageItem.getProductSizeImageId();
-            typeNameTxt.setText(productTypeSubTypeImageItem.getName());
+            final int imageid = mySQLDataBase.getProductSizeImageId();
+            typeNameTxt.setText(mySQLDataBase.getName());
 
-            final String url = productTypeSubTypeImageItem.getImagePath();
+            final String url = mySQLDataBase.getImagePath();
             final String finalUrl=Config.mainUrlAddress + url;
             try {
                 java.net.URLEncoder.encode(url,"utf-8");
@@ -381,12 +381,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             //IMG
             PicassoClient.downloadImage(c, finalUrl, img);
             //BIND DATA
-            final String name = productTypeSubTypeImageItem.getName();
+            final String name = mySQLDataBase.getName();
 
-            final String brand = productTypeSubTypeImageItem.getBrand();
-            final String color = productTypeSubTypeImageItem.getColor();
-            final int protypeid = productTypeSubTypeImageItem.getProductTypeId();
-            final int prosubtypeid = productTypeSubTypeImageItem.getProductSubTypeId();
+            final String brand = mySQLDataBase.getBrand();
+            final String color = mySQLDataBase.getColor();
+            final int protypeid = mySQLDataBase.getProductTypeId();
+            final int prosubtypeid = mySQLDataBase.getProductSubTypeId();
             // open new activity
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override

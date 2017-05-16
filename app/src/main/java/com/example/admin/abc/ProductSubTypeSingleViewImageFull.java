@@ -56,7 +56,7 @@ public  class ProductSubTypeSingleViewImageFull  extends AppCompatActivity {
                     in.putExtra("BRAND_KEY",brand);
                     in.putExtra("COLOR_KEY",color);
                     startActivity(in);*/
-finish();
+                    finish();
                 }
             });
 

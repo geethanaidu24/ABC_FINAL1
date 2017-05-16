@@ -56,30 +56,58 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private TextView Path;
+    private TextView Path,dispSize,dispProduct;
     private EditText name,brand,color;
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pid=0;
-    public int psid=0;
+    /*public int pid=0;
+    public int psid=0;*/
     Context context;
-    String finalSize;
+   /* String finalSize;
     final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
     private Spinner sp1,sp2;
     private ArrayAdapter<MySQLDataBase> adapter1 ;
     private ArrayAdapter<MySQLDataBase> adapter2 ;
-    URL sizeSpinnerUrl = null;
-
+    URL sizeSpinnerUrl = null;*/
+    private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
+    private static String finalProName,finalSelProductSize,finalSelProSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_product_sizes);
         Intent intent = getIntent();
-        final int productId= intent.getExtras().getInt("PRODUCTID_KEY");
-        final int productSizeId = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
-        Uri builtUri = Uri.parse(addSpinData)
+        finalProId= intent.getExtras().getInt("PRODUCTID_KEY");
+        finalProSizeId = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        finalProName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        finalSelProductSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
+        finalLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        finalWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
+        finalHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
+        if(finalLength !=0 && finalWidth !=0 && finalHeight !=0){
+            finalSelProSize =  finalWidth + "X" + finalHeight + "X" + finalLength;
+
+        }else if(finalLength ==0 && finalWidth !=0 && finalHeight !=0){
+            finalSelProSize =  finalWidth + "X" + finalHeight;
+
+        }else if(finalLength !=0 && finalWidth ==0 && finalHeight !=0){
+            finalSelProSize =  finalLength + "X" + finalHeight;
+
+        }else if(finalLength !=0 && finalWidth !=0 && finalHeight ==0 ){
+            finalSelProSize =  finalLength + "X" + finalHeight ;
+
+        }else if(finalLength ==0 && finalWidth !=0 && finalHeight ==0 ){
+            finalSelProSize = finalWidth + "" ;
+
+        }else if(finalLength !=0 && finalWidth ==0 && finalHeight ==0 ){
+            finalSelProSize = finalLength + "" ;
+
+        }else if(finalLength ==0 && finalWidth ==0 && finalHeight !=0 ){
+            finalSelProSize = finalHeight + "" ;
+
+        }
+        /*Uri builtUri = Uri.parse(addSpinData)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
              //   .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productSizeId))
@@ -89,7 +117,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             sizeSpinnerUrl = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }
+        }*/
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -108,8 +136,13 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             Path = (TextView) findViewById(R.id.brandpath);
             brand = (EditText) findViewById(R.id.brand8);
             color = (EditText) findViewById(R.id.color6);
-            sp1 = (Spinner) findViewById(R.id.sizespinner8);
-            sp2 = (Spinner) findViewById(R.id.productspinner8);
+           /* sp1 = (Spinner) findViewById(R.id.sizespinner8);
+            sp2 = (Spinner) findViewById(R.id.productspinner8);*/
+
+           dispSize = (TextView)findViewById(R.id.sizeTxt);
+           dispProduct = (TextView) findViewById(R.id.productTxt);
+           dispSize.setText(finalSelProSize);
+           dispProduct.setText(finalProName);
 
             btnadd = (Button) findViewById(R.id.btnadd10);
 
@@ -119,7 +152,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             btnadd.setOnClickListener(this);
         }
     }
-    public void onStart() {
+    /*public void onStart() {
         super.onStart();
         BackTask bt = new BackTask();
         bt.execute();
@@ -300,7 +333,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         }
 
 
-    }
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -326,11 +359,11 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
             //txtlength.setText("");
-            adapter1.notifyDataSetChanged();
+            /*adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();
 
           BackTask bt = new BackTask();
-            bt.execute();
+            bt.execute();*/
         }
     }
 
@@ -353,14 +386,14 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         String namec = name.getText().toString().trim();
         String brandc = brand.getText().toString().trim();
         String colorc = color.getText().toString().trim();
-        String spinSelVal1 = sp1.getSelectedItem().toString();
+       /* String spinSelVal1 = sp1.getSelectedItem().toString();
         String spinSelVal2=sp2.getSelectedItem().toString();
-
+*/
 
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /* sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                        int position, long id) {
@@ -414,18 +447,18 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             }
 
         });
-       /* if((caption.length()<1))
+       *//* if((caption.length()<1))
         {
             Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
         }
-        else {*/
+        else {*//*
         MySQLDataBase s = new MySQLDataBase();
         s.setName(namec);
         s.setBrand(brandc);
         s.setColor(colorc);
         s.setProductSizeId(psid);
 
-        s.setProductId(pid);
+        s.setProductId(pid);*/
         //s.setId(pid);
         //Uploading code
         try {
@@ -439,9 +472,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
 
-                    .addParameter("productsizeid", String.valueOf(psid))
+                    .addParameter("productsizeid", String.valueOf(finalProSizeId))
 
-                    .addParameter("productid", String.valueOf(pid))
+                    .addParameter("productid", String.valueOf(finalProId))
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
@@ -500,6 +533,5 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             }
         }
     }
-
 
 }

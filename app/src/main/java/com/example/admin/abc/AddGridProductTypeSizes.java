@@ -63,7 +63,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     private Bitmap bitmap;
     private Uri filePath;
     private static int recivedProductId,recivedProductTypeId,recivedProductTypeSizeId;
-    private static String recivedProductName,recivedProducttype,recivedFinalSize;
+    private static String recivedProductName,recivedProducttype,recivedFinalSize,finalSelProtypeSize;
+    private static int finalProLength,finalProWidth,finalProHeight;
    // public int pid=0;
    // public int ptid=0;
    // public int psid=0;
@@ -87,6 +88,31 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         recivedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         recivedProductTypeSizeId = intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
         recivedFinalSize = intent.getExtras().getString("FINALSIZE_KEY");
+        finalProLength = intent.getExtras().getInt("LENGTH_KEY");
+        finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
+        finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
+        if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
+
+        }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight;
+
+        }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProLength + "X" + finalProHeight;
+
+        }else if(finalProLength !=0 && finalProWidth !=0 && finalProHeight ==0 ){
+            finalSelProtypeSize =  finalProLength + "X" + finalProHeight ;
+
+        }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight ==0 ){
+            finalSelProtypeSize = finalProWidth + "" ;
+
+        }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight ==0 ){
+            finalSelProtypeSize = finalProLength + "" ;
+
+        }else if(finalProLength ==0 && finalProWidth ==0 && finalProHeight !=0 ){
+            finalSelProtypeSize = finalProHeight + "" ;
+
+        }
        /* Uri builtUri = Uri.parse(productSizeCheckUrl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -124,7 +150,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             txtSize = (TextView) findViewById(R.id.sizetext);
             txtType = (TextView) findViewById(R.id.typetext);
             txtProduct = (TextView)findViewById(R.id.protext);
-            txtSize.setText(recivedFinalSize);
+            txtSize.setText(finalSelProtypeSize);
             txtType.setText(recivedProducttype);
             txtProduct.setText(recivedProductName);
 

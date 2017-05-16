@@ -223,7 +223,7 @@ public class Products extends AppCompatActivity implements Serializable {
         ListView lv;
         String jsonData;
 
-        ArrayList<ProductsDB> productsDBs=new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
         public ProductsDataParser(Context c, ListView lv, String jsonData) {
             this.c = c;
             this.lv = lv;
@@ -249,7 +249,7 @@ public class Products extends AppCompatActivity implements Serializable {
             }else
             {
 
-                final ProductsListAdapter adapter=new ProductsListAdapter(c,productsDBs);
+                final ProductsListAdapter adapter=new ProductsListAdapter(c,mySQLDataBases);
                 lv.setAdapter(adapter);
             }
         }
@@ -260,8 +260,8 @@ public class Products extends AppCompatActivity implements Serializable {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                productsDBs.clear();
-                ProductsDB productsDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for(int i=0;i<ja.length();i++)
                 {
                     jo=ja.getJSONObject(i);
@@ -269,11 +269,11 @@ public class Products extends AppCompatActivity implements Serializable {
                     int ProductId=jo.getInt("ProductId");
                     String ProductName =jo.getString("ProductName");
                     String ImageUrl=jo.getString("ImageUrl");
-                    productsDB=new ProductsDB();
-                    productsDB.setId(ProductId);
-                    productsDB.setName(ProductName);
-                    productsDB.setImageUrl(ImageUrl);
-                    productsDBs.add(productsDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBase.setProductName(ProductName);
+                    mySQLDataBase.setProductImageUrl(ImageUrl);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -286,21 +286,21 @@ public class Products extends AppCompatActivity implements Serializable {
     private class ProductsListAdapter extends BaseAdapter {
 
         Context c;
-        ArrayList<ProductsDB> productsDBs;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
 
-        private ProductsListAdapter(Context c, ArrayList<ProductsDB> productsDBs) {
+        private ProductsListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases) {
             this.c = c;
-            this.productsDBs = productsDBs;
+            this.mySQLDataBases = mySQLDataBases;
             inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         @Override
         public int getCount() {
-            return productsDBs.size();
+            return mySQLDataBases.size();
         }
         @Override
         public Object getItem(int position) {
-            return productsDBs.get(position);
+            return mySQLDataBases.get(position);
         }
         @Override
         public long getItemId(int position) {
@@ -315,12 +315,12 @@ public class Products extends AppCompatActivity implements Serializable {
             TextView nametxt= (TextView) convertView.findViewById(R.id.textViewURL);
             ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
             //BIND DATA
-            ProductsDB productsDB=(ProductsDB) this.getItem(position);
-            final String name = productsDB.getName();
-            final String url = productsDB.getImageUrl();
-            final int pid = productsDB.getId();
+            MySQLDataBase mySQLDataBase=(MySQLDataBase) this.getItem(position);
+            final String name = mySQLDataBase.getProductName();
+            final String url = mySQLDataBase.getProductImageUrl();
+            final int pid = mySQLDataBase.getProductId();
             final String finalUrl=Config.mainUrlAddress + url;
-            nametxt.setText(productsDB.getName());
+            nametxt.setText(mySQLDataBase.getProductName());
 
             //IMG
             PicassoClient.downloadImage(c,finalUrl,img);
@@ -408,7 +408,7 @@ public class Products extends AppCompatActivity implements Serializable {
         String jsonData;
         int finalpid;
         String finalname;
-        ArrayList<ProductTypesDB> productTypesDBs=new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
 
         private ProductTypesDataParser(Context c, String jsonData, int pid, String name) {
             this.c = c;
@@ -433,14 +433,14 @@ public class Products extends AppCompatActivity implements Serializable {
             {
                 Intent intent = new Intent(c,ProductSizes.class);
                 intent.putExtra("PRODUCTID_KEY", finalpid);
-                // intent.putExtra("PRODUCTNAME_KEY", name);
+                intent.putExtra("PRODUCTNAME_KEY", finalname);
                 c.startActivity(intent);
             }else
             {
                Intent intent = new Intent(c,ProductTypes.class);
                intent.putExtra("PRODUCTID_KEY",finalpid);
                intent.putExtra("PRODUCTNAME_KEY",finalname);
-               intent.putExtra("ProductTypeList",productTypesDBs);
+               intent.putExtra("ProductTypeList",mySQLDataBases);
                c.startActivity(intent);
             }
         }
@@ -450,8 +450,8 @@ public class Products extends AppCompatActivity implements Serializable {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                productTypesDBs.clear();
-                ProductTypesDB productTypesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for(int i=0;i<ja.length();i++)
                 {
                     jo=ja.getJSONObject(i);
@@ -460,12 +460,12 @@ public class Products extends AppCompatActivity implements Serializable {
                     String ProductType =jo.getString("ProductType");
                     String ImageUrl=jo.getString("ImageUrl");
                     int ProductId = jo.getInt("ProductId");
-                    productTypesDB=new ProductTypesDB();
-                    productTypesDB.setProductTypeId(ProductTypeId);
-                    productTypesDB.setProductType(ProductType);
-                    productTypesDB.setImageUrl(ImageUrl);
-                    productTypesDB.setProductId(ProductId);
-                    productTypesDBs.add(productTypesDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductType(ProductType);
+                    mySQLDataBase.setProductTypeImageUrl(ImageUrl);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {

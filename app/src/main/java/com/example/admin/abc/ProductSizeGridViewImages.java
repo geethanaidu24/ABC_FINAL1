@@ -48,6 +48,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
     private boolean loggedIn = false;
     final static String url =Config.productSizeImgUrlAddress;
     private static int productId,productSizeId;
+    private static String selProductName,selFinalProSize;
+    private static int selProWidth,selProLength,selProHeight;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,12 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         productId = intent.getExtras().getInt("PRODUCTID_KEY");
+        selProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         productSizeId = intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        selFinalProSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
+        selProLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        selProWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
+        selProHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -123,8 +130,13 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSizeGridViewImages.this, AddGridProductSizes.class);
-            in.putExtra("PRODUCTID_KEY",productId);
-            in.putExtra("PRODUCTSIZEID_KEY",productSizeId);
+            in.putExtra("PRODUCTID_KEY", productId);
+            in.putExtra("PRODUCTNAME_KEY",selProductName);
+            in.putExtra("PRODUCTSIZEID_KEY", productSizeId);
+            in.putExtra("FINALPROSELSIZE_KEY",selFinalProSize);
+            in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
+            in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
+            in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
@@ -210,7 +222,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         String jsonData;
         int pid,psid;
 
-        ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems=new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
 
         private ProductSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,int psid) {
             this.c = c;
@@ -239,7 +251,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             }else
             {
 
-                final ProductSizeImagesGirdAdapter adapter=new ProductSizeImagesGirdAdapter(c,productTypeSizeImageItems,pid,psid);
+                final ProductSizeImagesGirdAdapter adapter=new ProductSizeImagesGirdAdapter(c,mySQLDataBases,pid,psid);
                 gv.setAdapter(adapter);
 
             }
@@ -250,8 +262,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                productTypeSizeImageItems.clear();
-                ProductTypeSizeImageItem productTypeSizeImageItem;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for(int i=0;i<ja.length();i++)
                 {
                     jo=ja.getJSONObject(i);
@@ -269,21 +281,20 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                     int SizeWidth = jo.getInt("Width");
                     int SizeHeight = jo.getInt("Height");
                     int SizeLength = jo.getInt("Length");
-                    productTypeSizeImageItem=new ProductTypeSizeImageItem();
-                    productTypeSizeImageItem.setProductSizeImageId(ImageId);
-                    productTypeSizeImageItem.setName(Name);
-                    productTypeSizeImageItem.setImagePath(ImageUrl);
-                    productTypeSizeImageItem.setBrand(Brands);
-                    productTypeSizeImageItem.setColor(Color);
-                    productTypeSizeImageItem.setProductSizeId(SizeId);
-                    productTypeSizeImageItem.setProductSubTypeId(ProductSTypeId);
-                    productTypeSizeImageItem.setProductTypeId(ProductTypeId);
-                    productTypeSizeImageItem.setProductId(ProductId);
-                    productTypeSizeImageItem.setWidth(SizeWidth);
-                    productTypeSizeImageItem.setHeight(SizeHeight);
-                    productTypeSizeImageItem.setLength(SizeLength);
-
-                    productTypeSizeImageItems.add(productTypeSizeImageItem);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeImageId(ImageId);
+                    mySQLDataBase.setName(Name);
+                    mySQLDataBase.setImagePath(ImageUrl);
+                    mySQLDataBase.setBrand(Brands);
+                    mySQLDataBase.setColor(Color);
+                    mySQLDataBase.setProductSizeId(SizeId);
+                    mySQLDataBase.setProductSubTypeId(ProductSTypeId);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBase.setWidth(SizeWidth);
+                    mySQLDataBase.setHeight(SizeHeight);
+                    mySQLDataBase.setLength(SizeLength);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -297,14 +308,14 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
    private class ProductSizeImagesGirdAdapter  extends BaseAdapter {
         Context c;
 
-        ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
         String finalSize;
         int pid,psid;
 
-        private ProductSizeImagesGirdAdapter(Context c, ArrayList<ProductTypeSizeImageItem> productTypeSizeImageItems,int pid,int psid) {
+        private ProductSizeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases,int pid,int psid) {
             this.c = c;
-            this.productTypeSizeImageItems = productTypeSizeImageItems;
+            this.mySQLDataBases = mySQLDataBases;
             this.pid = pid;
             this.psid = psid;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -312,12 +323,12 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return productTypeSizeImageItems.size();
+            return mySQLDataBases.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return productTypeSizeImageItems.get(position);
+            return mySQLDataBases.get(position);
         }
 
         @Override
@@ -333,21 +344,21 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             TextView typeNameTxt = (TextView) convertView.findViewById(R.id.txtTypeSizePro);
             ImageView img = (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
             //BIND DATA
-            ProductTypeSizeImageItem productTypeSizeImageItem = (ProductTypeSizeImageItem) this.getItem(position);
-            typeNameTxt.setText(productTypeSizeImageItem.getName());
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
+            typeNameTxt.setText(mySQLDataBase.getName());
             //IMG
-            final String url = productTypeSizeImageItem.getImagePath();
+            final String url = mySQLDataBase.getImagePath();
             final String finalUrl=Config.mainUrlAddress + url;
             PicassoClient.downloadImage(c, finalUrl, img);
             //BIND DATA
-            final String name = productTypeSizeImageItem.getName();
+            final String name = mySQLDataBase.getName();
 
-            final String brand = productTypeSizeImageItem.getBrand();
-            final String color = productTypeSizeImageItem.getColor();
-            final int sizeid = productTypeSizeImageItem.getProductSizeId();
-            final int length =Integer.parseInt(String.valueOf(productTypeSizeImageItem.getLength()).toString()) ;
-            final int width = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(productTypeSizeImageItem.getHeight()).toString());
+            final String brand = mySQLDataBase.getBrand();
+            final String color = mySQLDataBase.getColor();
+            final int sizeid = mySQLDataBase.getProductSizeId();
+            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString()) ;
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
             if(length !=0 && width !=0 && height !=0){

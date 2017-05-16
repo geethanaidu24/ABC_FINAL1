@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -37,22 +38,25 @@ import java.util.ArrayList;
 public class AddProductSizes extends AppCompatActivity implements View.OnClickListener {
     private static final String UPLOAD_URL = Config.productSizesCRUD;
     private EditText txtwidth, txtheight, txtlength;
+    private TextView displayProducts;
     Context context;
-    final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
-    private Spinner sp1;
+    /*final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
+    private Spinner sp1;*/
     private Button btnAdd1;
-    private ArrayAdapter<SizesDB> adapter;
+    private static int selectdPId;
+    private static String selectdProName;
+   /* private ArrayAdapter<SizesDB> adapter;*/
 
-    public int ipid=0;
+   // public int ipid=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_sizes);
-       // Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-      // final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-       // final String name = intent.getExtras().getString("PRODUCTNAME_KEY");
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       selectdPId= intent.getExtras().getInt("PRODUCTID_KEY");
+       selectdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -77,12 +81,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         txtlength = (EditText) findViewById(R.id.length1);
       //  txtlength.setText(0);
         btnAdd1 = (Button) findViewById(R.id.brandbtn);
+        displayProducts = (TextView) findViewById(R.id.productsTxt);
+        displayProducts.setText(selectdProName);
 
-        sp1 = (Spinner) findViewById(R.id.productsspinner);
+        /*sp1 = (Spinner) findViewById(R.id.productsspinner);*/
 
         btnAdd1.setOnClickListener(this);
     }
-    @Override
+   /* @Override
     public void onStart(){
         super.onStart();
         BackTask bt = new BackTask();
@@ -155,9 +161,9 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                 listItems.add(sizesDBs.get(i).getName());
 
             }
-                /*for(int i=0;i<sizesDBs.size();i++){
+                *//*for(int i=0;i<sizesDBs.size();i++){
 
-                }*/
+                }*//*
             adapter = new ArrayAdapter(AddProductSizes.this,R.layout.spinner_layout5, R.id.txt5,listItems);
             sp1.setAdapter(adapter);
             adapter.notifyDataSetChanged();
@@ -165,7 +171,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
         }
     }
-
+*/
     @Override
     public void onClick(View view) {
         if(view == btnAdd1){
@@ -183,10 +189,10 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             txtwidth.setText("");
             txtheight.setText("");
             //txtlength.setText("");
-            adapter.notifyDataSetChanged();
+           /* adapter.notifyDataSetChanged();
 
             BackTask bt = new BackTask();
-            bt.execute();
+            bt.execute();*/
 
         }
 
@@ -205,7 +211,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
          int leng=Integer.parseInt(length);
 
 
-        String spinSelVal = sp1.getSelectedItem().toString();
+       /* String spinSelVal = sp1.getSelectedItem().toString();
 
         sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -237,7 +243,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         s.setWidth(wid);
         s.setHeight(heig);
         s.setLength(leng);
-        s.setProductId(ipid);
+        s.setProductId(ipid);*/
 
         //Uploading code
         try {
@@ -246,7 +252,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                     .addBodyParameter("width", String.valueOf(wid))
                     .addBodyParameter("height",String.valueOf(heig))
                     .addBodyParameter("length",String.valueOf(length))
-                    .addBodyParameter("productid", String.valueOf(ipid))
+                    .addBodyParameter("productid", String.valueOf(selectdPId))
 
                     .setTag("TAG_ADD")
                     .build()
@@ -263,10 +269,10 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                                         txtwidth.setText("");
                                         txtheight.setText("");
                                         txtlength.setText("");
-                                        adapter.notifyDataSetChanged();
+                                        /*adapter.notifyDataSetChanged();
 
                                        BackTask bt = new BackTask();
-                                        bt.execute();
+                                        bt.execute();*/
 
                                     }else
                                     {
@@ -289,5 +295,4 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         }
 
     }
-
 }

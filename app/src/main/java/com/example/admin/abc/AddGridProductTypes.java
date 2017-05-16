@@ -64,8 +64,8 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private static int selectedPid;
     private static String selectedPname;
 
- /*   Context context;
-    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
+    Context context;
+  /*  final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
 
 
     private Spinner sp5,sp6;

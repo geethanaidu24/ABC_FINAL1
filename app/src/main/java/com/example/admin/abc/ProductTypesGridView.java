@@ -50,8 +50,8 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private boolean loggedIn = false;
     private int selectedProducttypeid;
     private String selectedProducttype;
-    private static int selectedPid;
-    private static String selectedPname;
+    private static int selectedProductId;
+    private static String selectedProductName;
 
     final static String url = Config.productTypeImgUrlAddress;
 
@@ -66,14 +66,14 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
-        selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(selectedPid))
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(selectedProductId))
                 .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(selectedProducttypeid))
                 
                 .build();
@@ -84,7 +84,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             e.printStackTrace();
         }
 
-        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,selectedPid,selectedProducttypeid).execute();
+        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,selectedProductId,selectedProducttypeid).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -133,8 +133,8 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
-            in.putExtra("PRODUCTID_KEY",selectedPid);
-            in.putExtra("PRODUCTNAME_KEY",selectedPname);
+            in.putExtra("PRODUCTID_KEY",selectedProductId);
+            in.putExtra("PRODUCTNAME_KEY",selectedProductName);
             in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
             startActivity(in);

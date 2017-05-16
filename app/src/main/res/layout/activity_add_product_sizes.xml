@@ -141,9 +141,8 @@
             android:text="Products "
             android:textColor="@color/cred"
             android:textSize="18sp"/>
-
-        <Spinner
-            android:id="@+id/productsspinner"
+        <TextView
+            android:id="@+id/productsTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView38"
@@ -151,6 +150,16 @@
             android:layout_alignStart="@+id/length1"
             android:textColor="@color/cred"
             android:textSize="18sp"/>
+
+        <!--<Spinner
+            android:id="@+id/productsspinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textView38"
+            android:layout_alignEnd="@+id/length1"
+            android:layout_alignStart="@+id/length1"
+            android:textColor="@color/cred"
+            android:textSize="18sp"/>-->
 
 
     </RelativeLayout>
