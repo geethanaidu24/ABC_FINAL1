@@ -53,7 +53,7 @@ import static com.example.admin.abc.R.id.name8;
 public class AddGridProductTypeSizes extends AppCompatActivity implements View.OnClickListener {
     private static final String addGridData = Config.producttypeSizesGridsCRUD;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
-    private static final String addSpinData = Config.sizeSpinner;
+   // private static final String addSpinData = Config.sizeSpinner;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;

@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +43,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
     private static int recvdProTypeId;
+    URL ProSubTypeurlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -48,6 +52,16 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         recvdProTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        Uri builtUri = Uri.parse(Config.productSubTypesUrlAddress)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recvdProTypeId))
+                .build();
+
+        try {
+            ProSubTypeurlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -153,7 +167,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSubTypesUrlAddress + recvdProTypeId);
+                HttpPost httppost = new HttpPost(String.valueOf(ProSubTypeurlAddress));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.

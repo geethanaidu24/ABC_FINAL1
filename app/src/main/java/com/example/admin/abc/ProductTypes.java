@@ -212,20 +212,29 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             return convertView;
         }
         public void openActivityCondition(int recivedPid, String recivedPname, int recivedPTid, String recivedPTname){
-            final String ConditionUrlAddress = productSubTypeCheckUrl + recivedPTid;
-            new ProductSubTypesDownloader(ProductTypes.this, ConditionUrlAddress,recivedPid,recivedPname, recivedPTid, recivedPTname).execute();
+            Uri builtUri = Uri.parse(productSubTypeCheckUrl)
+                    .buildUpon()
+                    .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recivedPTid))
+                    .build();
+            URL ProSubTypeurlAddress = null;
+            try {
+                ProSubTypeurlAddress = new URL(builtUri.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            new ProductSubTypesDownloader(ProductTypes.this, ProSubTypeurlAddress,recivedPid,recivedPname, recivedPTid, recivedPTname).execute();
 
         }
     }
     private class ProductSubTypesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String finalUrlAddress;
+        URL finalSubTypeUrlAddress;
         int selectedProductId,selectedProductTypeId;
         String selectedProductType,selectedProduct;
-        private ProductSubTypesDownloader(Context c, String ConditionUrlAddress, int recivedPid, String recivedPname,int recivedPTid, String recivedPTname) {
+        private ProductSubTypesDownloader(Context c, URL ConditionUrlAddress, int recivedPid, String recivedPname, int recivedPTid, String recivedPTname) {
             this.c = c;
-            this.finalUrlAddress = ConditionUrlAddress;
+            this.finalSubTypeUrlAddress = ConditionUrlAddress;
             this.selectedProductId=recivedPid;
             this.selectedProduct=recivedPname;
             this.selectedProductTypeId = recivedPTid;
@@ -258,7 +267,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         }
 
         private String downloadSubTypeData() {
-            HttpURLConnection con = Connector.connect(finalUrlAddress);
+            HttpURLConnection con = Connector.connect(String.valueOf(finalSubTypeUrlAddress));
             if (con == null) {
                 return null;
             }

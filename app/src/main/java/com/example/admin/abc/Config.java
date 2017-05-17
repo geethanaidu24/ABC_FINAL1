@@ -8,9 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
-
-public final static String procheck = mainUrlAddress+"productscheck.php";
+public final static String mainUrlAddress = "http://192.168.0.5/abc/";
 
     // For admin login
 
@@ -22,23 +20,23 @@ public final static String productsUrlAddress = mainUrlAddress+"getProducts.php"
 
     // For getting all main products types from database
 
-public final static String productTypesUrlAddress = mainUrlAddress+"getProductTypes.php?ProductId=";
+public final static String productTypesUrlAddress = mainUrlAddress+"getProductTypes.php";
 
     // For getting all main products sizes if they have directly size only from DB
 
-public final static String productSizesUrlAddress = mainUrlAddress+"getProductSizes.php?ProductId=";
+public final static String productSizesUrlAddress = mainUrlAddress+"getProductSizes.php";
 
     // For getting all main products types subtypes data from DB
 
-public final static String productSubTypesUrlAddress = mainUrlAddress+"getProductTypeSubTypes.php?ProductTypeId=";
+public final static String productSubTypesUrlAddress = mainUrlAddress+"getProductSubTypes.php";
 
     // For getting all main products types sizes from DB
 
-public final static String productTypeSizesUrlAddress = mainUrlAddress+"getProductTypeSizes.php?";
+public final static String productTypeSizesUrlAddress = mainUrlAddress+"getProductTypeSizes.php";
 
     // For getting all main products typs subtypes Grid view images from DB
 
-public final static String productTypeSubTypeImgUrlAddress = mainUrlAddress+"getProductTypeSubTypeImages.php?ProductSubTypeId=";
+public final static String productSubTypeGridUrlAddress = mainUrlAddress+"getProductSubTypeGrid.php";
 
     // For getting all main products types Grid view images from DB
 
@@ -86,6 +84,7 @@ public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
                                             // FOR Spinners
 
     // For product Types spinner
+/*
 public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinner.php";
     // For product Subtypes spinner
 public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
@@ -103,11 +102,12 @@ public final static String deleteGridSubTypeSpinner = mainUrlAddress+"productSub
 public final static String deleteGridTypeSpinner = mainUrlAddress+"productTypeGridDelSpinner.php?ProductTypeId=";
     //for adding sizes in spinner
     public final static String productSizesGridSpinner = mainUrlAddress+"productSizesGridSpinner.php";
-
+*/
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";
 public final static String PRODUCTSIZEID_PARAM ="ProductSizeId";
+public final static String PRODUCTSUBTYPEID_PARAM = "ProductSubTypeId";
 public final static String KEY_USER = "username";
 public final static String KEY_PASS = "password";
 public final static String LOGIN_SUCCESS = "success";

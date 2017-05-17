@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -34,11 +35,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class Products extends AppCompatActivity implements Serializable {
 
-    final static String urlAddress = Config.productsUrlAddress;
+    final static String productsAddress = Config.productsUrlAddress;
     final static String productTypeUrlAddress = Config.productTypesUrlAddress;
     private boolean loggedIn = false;
     @Override
@@ -49,7 +52,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
         final ListView lv = (ListView) findViewById(R.id.productLv);
 
-        new ProductsDownloader(Products.this, urlAddress, lv).execute();
+        new ProductsDownloader(Products.this, productsAddress, lv).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -246,7 +249,7 @@ public class Products extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
             }else
             {
 
@@ -338,19 +341,28 @@ public class Products extends AppCompatActivity implements Serializable {
             return convertView;
         }
         public void openNextActivity(int recivedpid, String recivedname){
-            String finalTypeUrl = productTypeUrlAddress + recivedpid;
-            new ProductTypesDownloader(Products.this,finalTypeUrl,recivedpid,recivedname).execute();
+            Uri builtUri = Uri.parse(productTypeUrlAddress)
+                    .buildUpon()
+                    .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedpid))
+                    .build();
+            URL ProTypeurlAddress = null;
+            try {
+                ProTypeurlAddress = new URL(builtUri.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            new ProductTypesDownloader(Products.this,ProTypeurlAddress,recivedpid,recivedname).execute();
         }
     }
     public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String finalProducturlAddress;
+        URL finalProducturlAddress;
         int localpid;
         String localname;
 
 
-        public ProductTypesDownloader(Context c, String urlAddress, int recivedpid, String recivedname) {
+        public ProductTypesDownloader(Context c, URL urlAddress, int recivedpid, String recivedname) {
             this.c = c;
             this.finalProducturlAddress = urlAddress;
             this.localpid = recivedpid;
@@ -383,7 +395,7 @@ public class Products extends AppCompatActivity implements Serializable {
             }
         }
         private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(finalProducturlAddress);
+            HttpURLConnection con = Connector.connect(String.valueOf(finalProducturlAddress));
             if (con == null) {
                 return null;
             }

@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -39,6 +42,7 @@ public class DeleteProductTypes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productTypesCRUD;
     final static String productTypeUrlAddressDel = Config.productTypesUrlAddress;
     private static int recvdProId;
+    URL ProTypeSpinurlAddress = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,16 @@ public class DeleteProductTypes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
-        //final String name = intent.getExtras().getString("PRODUCTNAME_KEY");*/
+        Uri builtUri = Uri.parse(productTypeUrlAddressDel)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recvdProId))
+                .build();
+
+        try {
+            ProTypeSpinurlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -159,7 +172,7 @@ public class DeleteProductTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(productTypeUrlAddressDel + recvdProId);
+                HttpPost httppost = new HttpPost(String.valueOf(ProTypeSpinurlAddress));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -34,6 +35,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -46,7 +49,7 @@ public class ProductSizes extends AppCompatActivity {
     private boolean loggedIn = false;
     private static int selectdProductId;
     private static String selectdProductName, finalProductSelctedSize;
-    final static String url = Config.productSizesUrlAddress;
+    final static String productSizeUrl = Config.productSizesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,9 +68,19 @@ public class ProductSizes extends AppCompatActivity {
         selectdProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Log.d("result PID: ", "> " + selectdProductId);
 
-        String urlAddress = url + selectdProductId;
+        Uri builtUri = Uri.parse(productSizeUrl)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(selectdProductId))
+                .build();
+        URL ProSizeurlAddress = null;
+        try {
+            ProSizeurlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
-        new ProductSizesDownloader(ProductSizes.this, urlAddress, lv, ll, selectdProductId).execute();
+        new ProductSizesDownloader(ProductSizes.this, ProSizeurlAddress, lv, ll, selectdProductId).execute();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -139,18 +152,18 @@ public class ProductSizes extends AppCompatActivity {
 
     private class ProductSizesDownloader extends AsyncTask<Void, Void, String> {
         Context c;
-        String urlAddress;
+        URL sizeurlAddress;
         ListView lv;
         LinearLayout ll;
         int pid;
 
-        private ProductSizesDownloader(Context c, String urlAddress, ListView lv, LinearLayout ll, int pid) {
+        private ProductSizesDownloader(Context c, URL urlAddress, ListView lv, LinearLayout ll, int pid) {
             this.c = c;
-            this.urlAddress = urlAddress;
+            this.sizeurlAddress = urlAddress;
             this.lv = lv;
             this.ll = ll;
             this.pid = pid;
-            Log.d("newActivity url: ", "> " + urlAddress);
+            Log.d("newActivity url: ", "> " + sizeurlAddress);
         }
 
         @Override
@@ -178,7 +191,7 @@ public class ProductSizes extends AppCompatActivity {
         }
 
         private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(urlAddress);
+            HttpURLConnection con = Connector.connect(String.valueOf(sizeurlAddress));
             if (con == null) {
                 return null;
             }
@@ -232,7 +245,7 @@ public class ProductSizes extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast.makeText(c, "No Data For required Product", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();
             } else {
 
                 final ProductSizesListAdapter adapter = new ProductSizesListAdapter(c, mySQLDataBases, pid);

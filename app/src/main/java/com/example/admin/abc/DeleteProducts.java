@@ -104,15 +104,12 @@ public class DeleteProducts extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
-
-                                                //CLEAR EDITXTS
-
-
+                                                //Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             }else
                                             {
-                                                Intent in=new Intent(DeleteProducts.this,DeleteProducts.class);
-                                                startActivity(in);
-                                                //Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
