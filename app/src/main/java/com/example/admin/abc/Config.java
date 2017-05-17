@@ -54,6 +54,9 @@ public final static String productSizeImgUrlAddress = mainUrlAddress+"getProduct
 
 public final static String brandsImgUrlAddress = mainUrlAddress+"getAllBrandImages.php";
 
+    // For getting all New Items Form DB
+public final static String newsUrlAddress = mainUrlAddress+"getNews.php";
+
     //For performing crud on main products
 public final static String productsCRUD = mainUrlAddress+"productsCRUD.php";
 

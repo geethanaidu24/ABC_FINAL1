@@ -21,8 +21,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -40,14 +42,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
-import static com.example.admin.abc.R.id.brandgrid_view;
 
 public class News extends AppCompatActivity {
     private LruCache<String, Bitmap> mMemoryCache;
     private boolean loggedIn = false;
-    final static String urlAddress = Config.newsImgUrlAddress;
+    final static String newsUrlAddress = Config.newsUrlAddress;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -59,6 +65,10 @@ public class News extends AppCompatActivity {
         // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
+        final GridView gridView1 = (GridView) findViewById(R.id.newsgridview);
+
+        new NewsDownloader(News.this, newsUrlAddress, gridView1).execute();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -278,117 +288,140 @@ public class News extends AppCompatActivity {
             }
             return null;
         }
+    }
+    private class NewsDataParser extends AsyncTask<Void, Void, Integer> {
+        Context c;
+        GridView gridView1;
+        String jsonData;
 
+        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
 
-        private class NewsDataParser extends AsyncTask<Void, Void, Integer> {
-            Context c;
+        public NewsDataParser(Context c, GridView gridView1, String jsonData) {
+            this.c = c;
+            this.gridView1 = gridView1;
+            this.jsonData = jsonData;
+        }
 
-            GridView gridView1;
-            String jsonData;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
-            ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseData();
+        }
 
-            public NewsDataParser(Context c, GridView gridView1, String jsonData) {
-                this.c = c;
-                this.gridView1 = gridView1;
-                this.jsonData = jsonData;
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if (result == 0) {
+                Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();
+            } else {
+
+                final NewsListAdapter adapter = new NewsListAdapter(c, mySQLDataBases);
+                gridView1.setAdapter(adapter);
             }
+        }
 
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
-
-            @Override
-            protected Integer doInBackground(Void... params) {
-                return this.parseData();
-            }
-
-            @Override
-
-            protected void onPostExecute(Integer result) {
-                super.onPostExecute(result);
-                if (result == 0) {
-                    Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    final NewsListAdapter adapter = new NewsListAdapter(c, mySQLDataBases);
-                    gridView1.setAdapter(adapter);
-                }
-            }
-
-            private int parseData() {
-                try {
-                    JSONArray brandsArray = new JSONArray(jsonData);
-                    JSONObject brandsObject = null;
-                    mySQLDataBases.clear();
-                    MySQLDataBase mySQLDataBase;
-                    for (int i = 0; i < brandsArray.length(); i++) {
-                        brandsObject = brandsArray.getJSONObject(i);
-                        Log.d("result response: ", "> " + brandsObject);
-                        int BrandId = brandsObject.getInt("ID");
-                        String ImageUrl = brandsObject.getString("ImagePath");
-                        mySQLDataBase = new MySQLDataBase();
-                        mySQLDataBase.setBrandId(BrandId);
-                        mySQLDataBase.setBrandImageUrl(ImageUrl);
-                        mySQLDataBases.add(mySQLDataBase);
-
-                    }
-                    return 1;
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return 0;
-            }
-
-
-            private class NewsListAdapter extends BaseAdapter {
-
-                Context c;
-                ArrayList<MySQLDataBase> mySQLDataBases;
-                LayoutInflater inflater;
-
-                private NewsListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases) {
-                    this.c = c;
-                    this.mySQLDataBases = mySQLDataBases;
-                    inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                }
-
-                @Override
-                public int getCount() {
-                    return mySQLDataBases.size();
-                }
-
-                @Override
-                public Object getItem(int position) {
-                    return mySQLDataBases.get(position);
-                }
-
-                @Override
-                public long getItemId(int position) {
-                    return position;
-                }
-
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = inflater.inflate(R.layout.news_list_gridview, parent, false);
+        private int parseData() {
+            try {
+                JSONArray newsArray = new JSONArray(jsonData);
+                JSONObject newsObject = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < newsArray.length(); i++) {
+                    newsObject = newsArray.getJSONObject(i);
+                    Log.d("result response: ", "> " + newsObject);
+                    int newsId = newsObject.getInt("NewsId");
+                    String newsTitle = newsObject.getString("NewsTitle");
+                    String newsDescription = newsObject.getString("Description");
+                    String newsImageUrl = newsObject.getString("ImageUrl");
+                    String createdDate = newsObject.getString("CreatedDate");
+                    DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = null;
+                    try {
+                        date = iso8601Format.parse(createdDate);
+                    } catch (ParseException e) {
+                        Log.d("Parsing ISO8601 datetime failed", "" + e);
                     }
 
-                    ImageView img = (ImageView) convertView.findViewById(R.id.newsgridimg);
-                    //BIND DATA
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
-                    final String url = mySQLDataBase.getBrandImageUrl();
-                    final String finalUrl = Config.mainUrlAddress + url;
+                    long when = date.getTime();
+                    int flags = 0;
+                    flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+                    flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
+                    flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
+                    flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
 
-                    //IMG
-                    PicassoClient.downloadImage(c, finalUrl, img);
+                    String finalDateTime = android.text.format.DateUtils.formatDateTime(c,
+                            when + TimeZone.getDefault().getOffset(when), flags);
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setNewsId(newsId);
+                    mySQLDataBase.setNewsTitle(newsTitle);
+                    mySQLDataBase.setNewsDescription(newsDescription);
+                    mySQLDataBase.setNewsImageUrl(newsImageUrl);
+                    mySQLDataBase.setDateTime(finalDateTime);
+                    Log.d("datetime display", "" + finalDateTime);
+                    mySQLDataBases.add(mySQLDataBase);
 
-                    return convertView;
                 }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+    private class NewsListAdapter extends BaseAdapter {
 
+        Context c;
+        ArrayList<MySQLDataBase> mySQLDataBases;
+        LayoutInflater inflater;
+
+        private NewsListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases) {
+            this.c = c;
+            this.mySQLDataBases = mySQLDataBases;
+            inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        @Override
+        public int getCount() {
+            return mySQLDataBases.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return mySQLDataBases.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = inflater.inflate(R.layout.news_list_gridview, parent, false);
             }
 
+            TextView newsDatetxt =(TextView) convertView.findViewById(R.id.newsDate);
+            ImageView img = (ImageView) convertView.findViewById(R.id.newsgridimg);
+            TextView newsTiletxt = (TextView) convertView.findViewById(R.id.newsTitle);
+            Button readmore = (Button) convertView.findViewById(R.id.newsbutton);
+
+            //BIND DATA
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
+            final String url = mySQLDataBase.getNewsImageUrl();
+            final String finalUrl = Config.mainUrlAddress + url;
+            final String newsDate = mySQLDataBase.getDateTime();
+            final String newsTitle = mySQLDataBase.getNewsTitle();
+            //IMG
+            PicassoClient.downloadImage(c, finalUrl, img);
+            newsDatetxt.setText(newsDate);
+            newsTiletxt.setText(newsTitle);
+            return convertView;
         }
     }
 }

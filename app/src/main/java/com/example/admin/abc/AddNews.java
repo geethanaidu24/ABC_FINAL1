@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class AddNews extends AppCompatActivity implements View.OnClickListener {
-    private static final String UPLOAD_URL = Config.newsCRUD;
+    private static final String DATA_INSERT_URL = Config.newsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
@@ -116,7 +116,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             String uploadId = UUID.randomUUID().toString();
 
             //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+            new MultipartUploadRequest(this, uploadId, DATA_INSERT_URL)
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
