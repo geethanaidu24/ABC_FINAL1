@@ -13,7 +13,12 @@
         android:largeScreens="true"
         android:normalScreens="true"
         android:smallScreens="true"
-        android:xlargeScreens="true" />
+        android:xlargeScreens="true"
+
+        android:resizeable="true"/>
+     <!-- android:requiresSmallestWidthDp="integer"
+      android:compatibleWidthLimitDp="integer"
+      android:largestWidthLimitDp="integer"-->/>
 
     <application
         android:allowBackup="true"

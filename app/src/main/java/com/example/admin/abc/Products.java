@@ -116,6 +116,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
+
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
