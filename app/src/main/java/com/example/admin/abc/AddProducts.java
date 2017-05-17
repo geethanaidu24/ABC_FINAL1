@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,6 +38,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    ProgressDialog dialog = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +75,14 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        if(view == imageView){
+        if (view == imageView) {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        }else if (view == btnUpload) {
-                if (etCaption.length() < 1 && tvPath.length() < 1) {
-                    Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+        } else if (view == btnUpload) {
+         if ((etCaption.length()<1 || tvPath.length()<1 || bitmap ==null) ){
+                   Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
                     Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
@@ -90,6 +93,8 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                 }
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -111,23 +116,25 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
         //getting the actual path of the image
         String path = getPath(filePath);
 
-        //Uploading code
-        try {
-            String uploadId = UUID.randomUUID().toString();
 
-            //Creating a multi part request
-            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                    .addParameter("action","save")
-                    .addFileToUpload(path, "image") //Adding file
-                    .addParameter("caption", caption) //Adding text parameter to the request
-                    .setNotificationConfig(new UploadNotificationConfig())
-                    .setMaxRetries(2)
-                    .startUpload();
-            //Starting the upload
-        } catch (Exception exc) {
-            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            //Uploading code
+            try {
+                String uploadId = UUID.randomUUID().toString();
+
+                //Creating a multi part request
+                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                        .addParameter("action", "save")
+                        .addFileToUpload(path, "image") //Adding file
+                        .addParameter("caption", caption) //Adding text parameter to the request
+                        .setNotificationConfig(new UploadNotificationConfig())
+                        .setMaxRetries(2)
+                        .startUpload();
+                //Starting the upload
+            } catch (Exception exc) {
+                Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
-    }
+
 
     public String getPath(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);

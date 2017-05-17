@@ -71,7 +71,7 @@
             android:layout_marginTop="15dp"
 
             android:spinnerMode="dialog"
-            android:prompt="@string/prompt_text"/>
+            />
 
         <Button
             android:id="@+id/deletegrid1"

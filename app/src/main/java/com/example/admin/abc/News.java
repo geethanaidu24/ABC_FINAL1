@@ -47,7 +47,7 @@ import static com.example.admin.abc.R.id.brandgrid_view;
 public class News extends AppCompatActivity {
     private LruCache<String, Bitmap> mMemoryCache;
     private boolean loggedIn = false;
-    final static String urlAddress = Config.newsImgUrlAddress;
+   // final static String urlAddress = Config.newsImgUrlAddress;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.

@@ -76,7 +76,7 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
-                if ( tvPath.length() < 1) {
+                if ( tvPath.length() < 1 || bitmap ==null) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();

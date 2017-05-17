@@ -77,7 +77,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
-                if (etCaption.length() < 1 && tvPath.length() < 1) {
+                if (etCaption.length() < 1 && tvPath.length() < 1 || bitmap==null) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();

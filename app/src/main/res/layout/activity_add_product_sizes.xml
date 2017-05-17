@@ -130,17 +130,16 @@
             android:id="@+id/length1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:text="0"
+            android:layout_alignStart="@+id/height1"
+            android:layout_below="@+id/height1"
             android:layout_marginRight="20dp"
-
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="0"
 
             android:textColor="@color/colorblack"
-            android:inputType="textPersonName"
 
-            android:textSize="18sp"
-            android:layout_below="@+id/height1"
-            android:layout_alignStart="@+id/height1" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView38"
