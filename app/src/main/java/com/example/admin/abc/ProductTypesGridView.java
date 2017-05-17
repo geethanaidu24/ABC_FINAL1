@@ -141,6 +141,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
+            inn.putExtra("PRODUCTID_KEY",selectedProductId);
             inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             startActivity(inn);
 

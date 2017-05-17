@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridProductTypes extends AppCompatActivity {
@@ -35,14 +38,27 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     private Button btnAdd;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypeGridsCRUD;
-    private static final String Data_spinner_url = Config.deleteGridTypeSpinner;
-    private static  int productTypeId;
+    private static final String Data_spinner_url = Config.productTypeImgUrlAddress;
+    private static  int productId,productTypeId;
+    URL gridProTypeSpinUrlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_grid_product_types);
         Intent in = getIntent();
+        productId = in.getExtras().getInt("PRODUCTID_KEY");
         productTypeId = in.getExtras().getInt("PRODUCTTYPEID_KEY");
+        Uri builtUri = Uri.parse(Data_spinner_url)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(productTypeId))
+                .build();
+
+        try {
+            gridProTypeSpinUrlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -141,7 +157,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Data_spinner_url + productTypeId);
+                HttpPost httppost = new HttpPost(String.valueOf(gridProTypeSpinUrlAddress));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
