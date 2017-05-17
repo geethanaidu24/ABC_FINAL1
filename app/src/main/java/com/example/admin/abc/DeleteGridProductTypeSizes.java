@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridProductTypeSizes extends AppCompatActivity {
@@ -34,8 +37,9 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<MySQLDataBase> adapter ;
-    private static final String DATA_INSERT_URL=Config.productSizesGridsCRUD;
-
+    private static final String DATA_DELETE_URL=Config.producttypeSizesGridsCRUD;
+    final static String DelProTypeSizeurl =Config.productTypeSizeImgUrlAddress;
+    URL delGridProTypeSizeSpin = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +47,20 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
         Intent intent = getIntent();
         final int recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int recivedProductsizeID=intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        final int recivedProductTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        final int recivedProductsizeID=intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        Uri builtUri = Uri.parse(DelProTypeSizeurl)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
+                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recivedProductTypeId))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(recivedProductsizeID))
+                .build();
+
+        try {
+            delGridProTypeSizeSpin = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -67,8 +84,8 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     {
 
 
-        btnAdd= (Button) findViewById(R.id.deletegrid1);
-        sp= (Spinner) findViewById(R.id.spgrid1);
+        btnAdd= (Button) findViewById(R.id.delete2);
+        sp= (Spinner) findViewById(R.id.sp2);
         sp.setPrompt("Select One.....");
     }
     /*
@@ -95,7 +112,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                 }
                 else
                 {
-                    AndroidNetworking.post(DATA_INSERT_URL)
+                    AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
                             .setTag("TAG_ADD")
@@ -115,8 +132,9 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                Intent in=new Intent(DeleteGridProductTypeSizes.this,DeleteProducts.class);
-                                                startActivity(in);
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                                 //Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
@@ -154,7 +172,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
+                HttpPost httppost = new HttpPost(String.valueOf(delGridProTypeSizeSpin));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -234,7 +252,6 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                 }
 
             });
-
 
         }
     }

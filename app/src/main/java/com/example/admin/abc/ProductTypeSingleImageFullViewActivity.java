@@ -48,14 +48,6 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypesGridView.class);
-                    /*in.putExtra("PRODUCTID_KEY",pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    in.putExtra("NAME_KEY",name);
-                    in.putExtra("IMAGE_KEY",image);
-                    in.putExtra("BRAND_KEY",brand);
-                    in.putExtra("COLOR_KEY",color);
-                    startActivity(in);*/
                     finish();
                 }
             });

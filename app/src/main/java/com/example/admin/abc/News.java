@@ -128,13 +128,5 @@ public class News extends AppCompatActivity {
 
     }
 
-      /*  imageView=(ImageView)findViewById(R.id.back);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in=new Intent(News.this,Main2Activity.class);
-                startActivity(in);
-            }
-        });*/
-    }
+}
 

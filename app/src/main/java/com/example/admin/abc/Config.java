@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.5/abc/";
+public final static String mainUrlAddress = "http://192.168.0.3/abc/";
 
 public final static String procheck = mainUrlAddress+"productscheck.php";
 
@@ -103,6 +103,7 @@ public final static String deleteGridSubTypeSpinner = mainUrlAddress+"productSub
 public final static String deleteGridTypeSpinner = mainUrlAddress+"productTypeGridDelSpinner.php?ProductTypeId=";
     //for adding sizes in spinner
     public final static String productSizesGridSpinner = mainUrlAddress+"productSizesGridSpinner.php";
+
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";

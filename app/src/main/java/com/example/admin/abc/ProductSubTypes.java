@@ -127,8 +127,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
+            inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             startActivity(inn);
-
             return true;
         } else if (id == R.id.logout) {
             logout();

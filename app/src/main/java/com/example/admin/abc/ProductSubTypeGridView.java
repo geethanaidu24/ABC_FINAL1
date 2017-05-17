@@ -410,5 +410,4 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         }
     }
 
-
 }

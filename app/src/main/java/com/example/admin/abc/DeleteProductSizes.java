@@ -34,10 +34,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteProductSizes extends AppCompatActivity {
-    final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<SizesDB> adapter ;
+    private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesCRUD;
     private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
     URL DATA_Spinner = null;
@@ -99,7 +99,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                // final int recivedProductSizeId = psid;
 
                 //SAVE
-                SizesDB s=new SizesDB();
+                MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeId(productSizeId);
                 if(s==null)
                 {
@@ -190,8 +190,8 @@ public class DeleteProductSizes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                sizesDBs.clear();
-                SizesDB sizesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
@@ -199,12 +199,12 @@ public class DeleteProductSizes extends AppCompatActivity {
                     int width = jo.getInt("Width");
                     int height =jo.getInt("Height");
                     int length =jo.getInt("Length");
-                    sizesDB=new SizesDB();
-                    sizesDB.setProductSizeId(psid);
-                    sizesDB.setWidth(width);
-                    sizesDB.setHeight(height);
-                    sizesDB.setLength(length);
-                    sizesDBs.add(sizesDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(psid);
+                    mySQLDataBase.setWidth(width);
+                    mySQLDataBase.setHeight(height);
+                    mySQLDataBase.setLength(length);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -216,11 +216,11 @@ public class DeleteProductSizes extends AppCompatActivity {
 
 
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<sizesDBs.size();i++){
+            for(int i=0;i<mySQLDataBases.size();i++){
 
-                final int width = Integer.parseInt(String.valueOf(sizesDBs.get(i).getWidth()).toString());
-                final int height = Integer.parseInt(String.valueOf(sizesDBs.get(i).getHeight()).toString());
-                final int length = Integer.parseInt(String.valueOf(sizesDBs.get(i).getLength()).toString());
+                final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
+                final int height = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getHeight()).toString());
+                final int length = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getLength()).toString());
                 //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
                 if(length !=0 && width !=0 && height !=0){
@@ -257,8 +257,8 @@ public class DeleteProductSizes extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
 
-                    SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                    final int productSizeId =sizesDB.getProductSizeId();
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final int productSizeId =mySQLDataBase.getProductSizeId();
                     Log.d("selected response: ", "> " + productSizeId);
                     handleClickEvents(productSizeId);
                     new DialogInterface.OnClickListener() {

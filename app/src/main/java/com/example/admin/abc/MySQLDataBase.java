@@ -7,9 +7,9 @@ import java.io.Serializable;
  */
 
 public class MySQLDataBase implements Serializable {
-    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId;
+    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId;
     public String ProductName, ProductType, ProductSubTypeName;
-    public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl;
+    public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl;
     public int Width,Height,Length;
     public String Name,ImagePath,Brand,Color;
 
@@ -92,4 +92,17 @@ public class MySQLDataBase implements Serializable {
     public void setLength(int length){
         this.Length = length;
     }
+    public int getBrandId() {
+        return BrandId;
+    }
+    public void setBrandId(int Id) {
+        this.BrandId = Id;
+    }
+    public String getBrandImageUrl(){
+        return BrandImageUrl;
+    }
+    public void setBrandImageUrl(String imgpath){
+        this.BrandImageUrl = imgpath;
+    }
+
 }

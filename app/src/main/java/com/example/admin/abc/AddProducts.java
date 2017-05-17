@@ -77,8 +77,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
-        }else {
-            if (view == btnUpload) {
+        }else if (view == btnUpload) {
                 if (etCaption.length() < 1 && tvPath.length() < 1) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
@@ -89,7 +88,6 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     imageView.setImageResource(R.mipmap.browseimage);
 
                 }
-            }
         }
     }
 

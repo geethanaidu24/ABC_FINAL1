@@ -217,7 +217,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         GridView gv;
         String jsonData;
         int pid,ptid;
-        ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems=new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
 
         private ProductTypeImagesDataParser(Context c, GridView gv, String jsonData, int pid, int ptid) {
             this.c = c;
@@ -243,7 +243,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
                 Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             }else
             {
-                final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,productTypeSubTypeImageItems,pid,ptid);
+                final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,mySQLDataBases,pid,ptid);
                 gv.setAdapter(adapter);
 
             }
@@ -252,35 +252,35 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         {
             try
             {
-                JSONArray ja=new JSONArray(jsonData);
-                JSONObject jo=null;
-                productTypeSubTypeImageItems.clear();
-                ProductTypeSubTypeImageItem productTypeSubTypeImageItem;
+                JSONArray typesGridArray=new JSONArray(jsonData);
+                JSONObject typesGridObject=null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
 
-                for(int i=0;i<ja.length();i++)
+                for(int i=0;i<typesGridArray.length();i++)
                 {
-                    jo=ja.getJSONObject(i);
-                    Log.d("result response: ", "> " + jo);
-                    int ProductSizeImageId = jo.getInt("ProductSizeImageId");
-                    String Name =jo.getString("Name");
-                    String ImageUrl=jo.getString("ImagePath");
-                    String Brands = jo.getString("Brand");
-                    String Color = jo.getString("Color");
-                    int ProductSizeId = jo.optInt("ProductSizeId");
-                    int ProductSubTypeId = jo.optInt("ProductSubTypeId");
-                    int ProductTypeId = jo.getInt("ProductTypeId");
-                    int ProductId = jo.getInt("ProductId");
-                    productTypeSubTypeImageItem=new ProductTypeSubTypeImageItem();
-                    productTypeSubTypeImageItem.setProductSizeId(ProductSizeImageId);
-                    productTypeSubTypeImageItem.setName(Name);
-                    productTypeSubTypeImageItem.setImagePath(ImageUrl);
-                    productTypeSubTypeImageItem.setBrand(Brands);
-                    productTypeSubTypeImageItem.setColor(Color);
-                    productTypeSubTypeImageItem.setProductSizeId(ProductSizeId);
-                    productTypeSubTypeImageItem.setProductSubTypeId(ProductSubTypeId);
-                    productTypeSubTypeImageItem.setProductTypeId(ProductTypeId);
-                    productTypeSubTypeImageItem.setProductId(ProductId);
-                    productTypeSubTypeImageItems.add(productTypeSubTypeImageItem);
+                    typesGridObject=typesGridArray.getJSONObject(i);
+                    Log.d("result response: ", "> " + typesGridObject);
+                    int ProductSizeImageId = typesGridObject.getInt("ProductSizeImageId");
+                    String Name =typesGridObject.getString("Name");
+                    String ImageUrl=typesGridObject.getString("ImagePath");
+                    String Brands = typesGridObject.getString("Brand");
+                    String Color = typesGridObject.getString("Color");
+                    int ProductSizeId = typesGridObject.optInt("ProductSizeId");
+                    int ProductSubTypeId = typesGridObject.optInt("ProductSubTypeId");
+                    int ProductTypeId = typesGridObject.getInt("ProductTypeId");
+                    int ProductId = typesGridObject.getInt("ProductId");
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(ProductSizeImageId);
+                    mySQLDataBase.setName(Name);
+                    mySQLDataBase.setImagePath(ImageUrl);
+                    mySQLDataBase.setBrand(Brands);
+                    mySQLDataBase.setColor(Color);
+                    mySQLDataBase.setProductSizeId(ProductSizeId);
+                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -292,12 +292,12 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private class ProductTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
 
-        ArrayList<ProductTypeSubTypeImageItem> productTypeSubTypeImageItems;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
         int pid,ptid;
-        private ProductTypeImagesGirdAdapter(Context c, ArrayList<ProductTypeSubTypeImageItem> productTypeImageItems, int pid,int ptid) {
+        private ProductTypeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases, int pid,int ptid) {
             this.c = c;
-            this.productTypeSubTypeImageItems = productTypeImageItems;
+            this.mySQLDataBases = mySQLDataBases;
             this.pid=pid;
             this.ptid=ptid;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -305,12 +305,12 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
         @Override
         public int getCount() {
-            return productTypeSubTypeImageItems.size();
+            return mySQLDataBases.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return productTypeSubTypeImageItems.get(position);
+            return mySQLDataBases.get(position);
         }
 
         @Override
@@ -326,12 +326,12 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             TextView typeNameTxt = (TextView) convertView.findViewById(R.id.txtTypeSizePro);
             ImageView img = (ImageView) convertView.findViewById(R.id.imgTypeSizePro);
             //BIND DATA
-            ProductTypeSubTypeImageItem productTypeSubTypeImageItem = (ProductTypeSubTypeImageItem) this.getItem(position);
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
 
-            final int imageid = productTypeSubTypeImageItem.getProductSizeImageId();
-            typeNameTxt.setText(productTypeSubTypeImageItem.getName());
+            final int imageid = mySQLDataBase.getProductSizeImageId();
+            typeNameTxt.setText(mySQLDataBase.getName());
 
-            final String url = productTypeSubTypeImageItem.getImagePath();
+            final String url = mySQLDataBase.getImagePath();
             final String finalUrl=Config.mainUrlAddress + url;
             try {
                 java.net.URLEncoder.encode(url,"utf-8");
@@ -341,12 +341,12 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             //IMG
             PicassoClient.downloadImage(c, finalUrl, img);
             //BIND DATA
-            final String name = productTypeSubTypeImageItem.getName();
+            final String name = mySQLDataBase.getName();
 
-            final String brand = productTypeSubTypeImageItem.getBrand();
-            final String color = productTypeSubTypeImageItem.getColor();
-            final int protypeid = productTypeSubTypeImageItem.getProductTypeId();
-            final int proid = productTypeSubTypeImageItem.getProductId();
+            final String brand = mySQLDataBase.getBrand();
+            final String color = mySQLDataBase.getColor();
+            final int protypeid = mySQLDataBase.getProductTypeId();
+            final int proid = mySQLDataBase.getProductId();
             // open new activity
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override

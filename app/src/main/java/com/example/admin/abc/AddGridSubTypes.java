@@ -58,16 +58,16 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pid=0;
+   /* public int pid=0;
     public int ptid=0;
-    public int pstid=0;
+    public int pstid=0;*/
     Context context;
-    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
+    /*final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
     private Spinner sp1,sp2,sp3;
     private ArrayAdapter<MySQLDataBase> adapter1 ;
     private ArrayAdapter<MySQLDataBase> adapter2 ;
     private ArrayAdapter<MySQLDataBase> adapter3 ;
-
+*/
     private int productSubTypeId;
     private String productSubTypeName;
     private int selectedProducttypeid;

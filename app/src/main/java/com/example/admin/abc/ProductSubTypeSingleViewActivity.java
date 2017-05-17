@@ -44,19 +44,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         brandTxt.setText(brand);
         colorTxt.setText(color);
         PicassoClient.downloadImage(c, image, selectedImage);
-       /* back = (ImageView) findViewById(R.id.back);
-      back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductTypeSubTypeImages.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                in.putExtra("PRODUCTTYPENAME_KEY",ptname);
-                in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-                startActivity(in);
-            }
-        });*/
 
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override

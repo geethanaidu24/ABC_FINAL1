@@ -30,10 +30,10 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class DeleteProducts extends AppCompatActivity {
-    final ArrayList<ProductsDB> productsDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<ProductsDB> adapter ;
+    private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productsCRUD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +82,8 @@ public class DeleteProducts extends AppCompatActivity {
                 final int rpid = pid;
 
                     //SAVE
-                    ProductsDB s=new ProductsDB();
-                    s.setId(rpid);
+                    MySQLDataBase s=new MySQLDataBase();
+                    s.setProductId(rpid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProducts.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -92,7 +92,7 @@ public class DeleteProducts extends AppCompatActivity {
                 {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
-                            .addBodyParameter("productid", String.valueOf(s.getId()))
+                            .addBodyParameter("productid", String.valueOf(s.getProductId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -174,17 +174,17 @@ public class DeleteProducts extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productsDBs.clear();
-                ProductsDB productsDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     int pid = jo.getInt("ProductId");
                     String pname = jo.getString("ProductName");
-                    productsDB=new ProductsDB();
-                    productsDB.setId(pid);
-                    productsDB.setName(pname);
-                    productsDBs.add(productsDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductId(pid);
+                    mySQLDataBase.setProductName(pname);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -196,8 +196,8 @@ public class DeleteProducts extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productsDBs.size();i++){
-                listItems.add(productsDBs.get(i).getName());
+            for(int i=0;i<mySQLDataBases.size();i++){
+                listItems.add(mySQLDataBases.get(i).getProductName());
             }
 
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
@@ -207,10 +207,10 @@ public class DeleteProducts extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
-                    final String name = productsDB.getName();
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final String name = mySQLDataBase.getProductName();
                     //  final int pid
-                    final int pid =productsDB.getId() ;
+                    final int pid =mySQLDataBase.getProductId() ;
                     handleClickEvents(pid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
@@ -228,7 +228,6 @@ public class DeleteProducts extends AppCompatActivity {
                 }
 
             });
-
 
         }
     }

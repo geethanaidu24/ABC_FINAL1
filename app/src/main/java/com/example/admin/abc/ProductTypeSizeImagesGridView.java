@@ -146,6 +146,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
+            inn.putExtra("PRODUCTID_KEY",productId);
+            inn.putExtra("PRODUCTTYPEID_KEY",productTypeId);
+            inn.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
             startActivity(inn);
 
             return true;

@@ -43,7 +43,7 @@ import java.util.HashSet;
 
 public class AddProductTypeSizes extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String UPLOAD_URL = Config.productTypeSizesCRUD;
+    private static final String DATA_INSERT_URL = Config.productTypeSizesCRUD;
     private EditText txtwidth, txtheight, txtlength;
     private TextView displaySelectedProductType,displaySelectedProduct;
     Context context;
@@ -78,11 +78,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                     @Override
                     public void onClick(View v) {
                         Intent in = new Intent(AddProductTypeSizes.this,ProductTypeSizes.class);
-                     /*   in.putExtra("PRODUCTID_KEY", pid);
-                        in.putExtra("PRODUCTNAME_KEY",name);
-                        in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                        startActivity(in);*/
-                     finish();
+                        finish();
                     }
                 });
 
@@ -292,14 +288,14 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         s.setProductTypeId(iptid);*/
         //Uploading code
         try {
-            AndroidNetworking.post(UPLOAD_URL)
+            AndroidNetworking.post(DATA_INSERT_URL)
                     .addBodyParameter("action","save")
                     .addBodyParameter("width", String.valueOf(wid))
                     .addBodyParameter("height",String.valueOf(heig))
                     .addBodyParameter("length",String.valueOf(length))
                    // .addBodyParameter("productid", String.valueOf(ipid))
                     .addBodyParameter("productid", String.valueOf(selectedProdutId1))
-                    .addBodyParameter("producttypeid",String.valueOf(selectedProductType1))
+                    .addBodyParameter("producttypeid",String.valueOf(selectedProdutTypeId1))
                     .setTag("TAG_ADD")
                     .build()
                     .getAsJSONArray(new JSONArrayRequestListener() {
@@ -312,9 +308,9 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                                     Toast.makeText(AddProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                         //CLEAR EDITXTS
-                                        txtwidth.setText("");
+                                       /* txtwidth.setText("");
                                         txtheight.setText("");
-                                        txtlength.setText("");
+                                        txtlength.setText("");*/
                                        /* adapter.notifyDataSetChanged();
                                         adapter1.notifyDataSetChanged();
                                         BackTask bt = new BackTask();

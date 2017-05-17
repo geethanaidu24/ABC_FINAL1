@@ -55,9 +55,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         selectedProductType = intent.getExtras().getString("PRODUCTTYPE_KEY");
-        ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas = (ArrayList<ProductTypeSizeDBData>) intent.getSerializableExtra("ProductTypeSizeList");
+        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
 
-        final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, productTypeSizeDBDatas, selectedProdutId, selectedProdutTypeId);
+        final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, mySQLDataBases, selectedProdutId, selectedProdutTypeId);
         lv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -134,26 +134,26 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     private class ProductTypeSizesListAdapter extends BaseAdapter {
 
         Context c;
-        ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
 
         String finalSize;
         int pid,ptid;
 
-        private ProductTypeSizesListAdapter(Context c, ArrayList<ProductTypeSizeDBData> productTypeSizeDBDatas,int pid,int ptid) {
+        private ProductTypeSizesListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases,int pid,int ptid) {
             this.c = c;
-            this.productTypeSizeDBDatas = productTypeSizeDBDatas;
+            this.mySQLDataBases = mySQLDataBases;
             this.pid = pid;
             this.ptid=ptid;
             inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         @Override
         public int getCount() {
-            return productTypeSizeDBDatas.size();
+            return mySQLDataBases.size();
         }
         @Override
         public Object getItem(int position) {
-            return productTypeSizeDBDatas.get(position);
+            return mySQLDataBases.get(position);
         }
         @Override
         public long getItemId(int position) {
@@ -168,14 +168,14 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             TextView typeNameTxt= (TextView) convertView.findViewById(R.id.productTypeSize);
 
             //BIND DATA
-            ProductTypeSizeDBData productTypeSizeDBData = (ProductTypeSizeDBData) this.getItem(position);
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
 
-            final int sizeid = productTypeSizeDBData.getProductSizeId();
-            final int proid = productTypeSizeDBData.getProductId();
-            final int protid = productTypeSizeDBData.getProductTypeId();
-            final int length =Integer.parseInt(String.valueOf(productTypeSizeDBData.getLength()).toString()) ;
-            final int width = Integer.parseInt(String.valueOf(productTypeSizeDBData.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(productTypeSizeDBData.getHeight()).toString());
+            final int sizeid = mySQLDataBase.getProductSizeId();
+            final int proid = mySQLDataBase.getProductId();
+            final int protid = mySQLDataBase.getProductTypeId();
+            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString()) ;
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
             if(length !=0 && width !=0 && height !=0){

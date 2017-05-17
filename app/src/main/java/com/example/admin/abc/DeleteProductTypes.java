@@ -32,20 +32,23 @@ import java.util.ArrayList;
 
 public class DeleteProductTypes extends AppCompatActivity {
 
-    final ArrayList<ProductTypesDB> productTypesDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<ProductTypesDB> adapter ;
+    private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypesCRUD;
+    final static String productTypeUrlAddressDel = Config.productTypesUrlAddress;
+    private static int recvdProId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_types);
         // Get intent data
-       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-       final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String name = intent.getExtras().getString("PRODUCTNAME_KEY");*/
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+       recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
+        //final String name = intent.getExtras().getString("PRODUCTNAME_KEY");*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -90,7 +93,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                 final int rptid = ptid;
 
                 //SAVE
-                ProductTypesDB s=new ProductTypesDB();
+                MySQLDataBase s=new MySQLDataBase();
                 s.setProductTypeId(rptid);
                 if(s==null)
                 {
@@ -144,11 +147,11 @@ public class DeleteProductTypes extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
+
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
+
         }
 
         protected Void doInBackground(Void... params) {
@@ -156,7 +159,7 @@ public class DeleteProductTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
+                HttpPost httppost = new HttpPost(productTypeUrlAddressDel + recvdProId);
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -181,17 +184,17 @@ public class DeleteProductTypes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productTypesDBs.clear();
-                ProductTypesDB productTypesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     int ptid = jo.getInt("ProductTypeId");
                     String ptname = jo.getString("ProductType");
-                    productTypesDB=new ProductTypesDB();
-                    productTypesDB.setProductTypeId(ptid);
-                    productTypesDB.setProductType(ptname);
-                    productTypesDBs.add(productTypesDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductTypeId(ptid);
+                    mySQLDataBase.setProductType(ptname);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -203,8 +206,8 @@ public class DeleteProductTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productTypesDBs.size();i++){
-                listItems.add(productTypesDBs.get(i).getProductType());
+            for(int i=0;i<mySQLDataBases.size();i++){
+                listItems.add(mySQLDataBases.get(i).getProductType());
             }
 
             adapter=new ArrayAdapter(DeleteProductTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
@@ -214,10 +217,10 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
-                    final String name = productTypesDB.getProductType();
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final String name = mySQLDataBase.getProductType();
 
-                    final int ptid =productTypesDB.getProductTypeId() ;
+                    final int ptid =mySQLDataBase.getProductTypeId() ;
                     handleClickEvents(ptid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,

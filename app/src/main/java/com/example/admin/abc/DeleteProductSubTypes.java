@@ -34,22 +34,20 @@ import java.util.ArrayList;
  */
 
 public class DeleteProductSubTypes extends AppCompatActivity {
-    final ArrayList<ProductSubTypesDB> productSubTypesDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<ProductTypesDB> adapter ;
+    private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
+    private static int recvdProTypeId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_subtypes);
         // Get intent data
-       /* Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = intent.getExtras().getInt("PRODUCTID_KEY");
-        final String pname = intent.getExtras().getString("PRODUCTNAME_KEY");
-        final int ptid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final String ptname = intent.getExtras().getString("PRODUCTTYPENAME_KEY");*/
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        recvdProTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -60,12 +58,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
-                  /*  in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    startActivity(in);*/
-                  finish();
+                    finish();
                 }
             });
 
@@ -83,7 +76,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int pstid)
+    private void handleClickEvents(final int recivedproductSubTypeId)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -93,11 +86,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpstid = pstid;
-
                 //SAVE
-                ProductSubTypesDB s=new ProductSubTypesDB();
-                s.setProductSubTypeId(rpstid);
+                MySQLDataBase s=new MySQLDataBase();
+                s.setProductSubTypeId(recivedproductSubTypeId);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -150,11 +141,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
+       // ArrayList<String> list;
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
+           // list = new ArrayList<>();
         }
 // for spinner
         protected Void doInBackground(Void... params) {
@@ -162,7 +153,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productSubTypeSpinner);
+                HttpPost httppost = new HttpPost(Config.productSubTypesUrlAddress + recvdProTypeId);
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -187,17 +178,17 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                productSubTypesDBs.clear();
-                ProductSubTypesDB productSubTypesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int pstid = jo.getInt("ProductSubTypeId");
-                    String pstname = jo.getString("ProductSubTypeName");
-                    productSubTypesDB=new ProductSubTypesDB();
-                    productSubTypesDB.setProductSubTypeId(pstid);
-                    productSubTypesDB.setProductSubTypeName(pstname);
-                    productSubTypesDBs.add(productSubTypesDB);
+                    int productSubTypeId = jo.getInt("ProductSubTypeId");
+                    String productSubTypeName = jo.getString("ProductSubTypeName");
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSubTypeId(productSubTypeId);
+                    mySQLDataBase.setProductSubTypeName(productSubTypeName);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -209,8 +200,8 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productSubTypesDBs.size();i++){
-                listItems.add(productSubTypesDBs.get(i).getProductSubTypeName());
+            for(int i=0;i<mySQLDataBases.size();i++){
+                listItems.add(mySQLDataBases.get(i).getProductSubTypeName());
             }
 
             adapter=new ArrayAdapter(DeleteProductSubTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
@@ -220,10 +211,10 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    ProductSubTypesDB productSubTypesDB = (ProductSubTypesDB) productSubTypesDBs.get(position);
-                    final String name = productSubTypesDB.getProductSubTypeName();
-                    final int pstid =productSubTypesDB.getProductSubTypeId() ;
-                    handleClickEvents(pstid);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final String name = mySQLDataBase.getProductSubTypeName();
+                    final int productsubtypeId =mySQLDataBase.getProductSubTypeId() ;
+                    handleClickEvents(productsubtypeId);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {

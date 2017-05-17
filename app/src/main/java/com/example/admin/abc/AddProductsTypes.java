@@ -63,10 +63,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private String selectedProductName;
     Context context;
     private String Select;
-    final ArrayList<ProductsDB> productsDBs =new ArrayList<>();
+    /*final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
     private Spinner sp;
     private ArrayAdapter<String> adapter ;
-
+*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
      //   getSupportActionBar().hide();

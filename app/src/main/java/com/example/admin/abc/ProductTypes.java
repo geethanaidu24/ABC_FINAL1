@@ -141,6 +141,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
+            inn.putExtra("PRODUCTID_KEY",selectedPid);
             startActivity(inn);
 
             return true;

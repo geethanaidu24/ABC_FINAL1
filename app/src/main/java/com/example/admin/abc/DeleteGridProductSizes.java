@@ -38,25 +38,26 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     private ArrayAdapter<MySQLDataBase> adapter ;
-    private static final String DATA_INSERT_URL=Config.productSizesGridsCRUD;
-
+    private static final String DATA_DELETE_URL=Config.productSizesGridsCRUD;
+    private static final String Data_Spin = Config.productSizeImgUrlAddress;
+    URL Data_Del_Spin = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_grid_product_sizes);
         Intent intent = getIntent();
         final int recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int recivedProductsizeID=intent.getExtras().getInt("PRODUCTSIZEID_KEY");
-       /* Uri builtUri = Uri.parse(DATA_Size_Spin)
+        final int recivedProductsizeId=intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        Uri builtUri = Uri.parse(Data_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
-                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM,Integer.toString(recivedProductsizeID))
+                .appendQueryParameter(Config.PRODUCTSIZEID_PARAM,Integer.toString(recivedProductsizeId))
                 .build();
         try {
-            DATA_Spinner = new URL(builtUri.toString());
+            Data_Del_Spin = new URL(builtUri.toString());
         } catch (MalformedURLException e) {
             e.printStackTrace();
-        }*/
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -82,12 +83,12 @@ public class DeleteGridProductSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletegrid1);
         sp= (Spinner) findViewById(R.id.spgrid1);
-        sp.setPrompt("Select One........");
+        sp.setPrompt("Select One....");
     }
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int psiid)
+    private void handleClickEvents(final int productSizeImgId)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -95,20 +96,18 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpid = psiid;
 
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
-                s.setProductSizeImageId(rpid);
+                s.setProductSizeImageId(productSizeImgId);
                 if(s==null)
                 {
                     Toast.makeText(DeleteGridProductSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    AndroidNetworking.post(DATA_INSERT_URL)
+                    AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
                             .setTag("TAG_ADD")
@@ -128,8 +127,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                Intent in=new Intent(DeleteGridProductSizes.this,DeleteProducts.class);
-                                                startActivity(in);
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                                 //Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
@@ -155,19 +155,17 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
-        }
 
+        }
         protected Void doInBackground(Void... params) {
             InputStream is = null;
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
+                HttpPost httppost = new HttpPost(String.valueOf(Data_Del_Spin));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.
@@ -197,12 +195,11 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
-                    int psiid = jo.getInt("ProductSizeImageId");
-                    String pname = jo.getString("Name");
+                    int productSizeImageId = jo.getInt("ProductSizeImageId");
+                    String imageName = jo.getString("Name");
                     mySQLDataBase=new MySQLDataBase();
-                    mySQLDataBase.setProductSizeImageId(psiid);
-
-                    mySQLDataBase.setName(pname);
+                    mySQLDataBase.setProductSizeImageId(productSizeImageId);
+                    mySQLDataBase.setName(imageName);
                     mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
@@ -221,7 +218,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
 
             adapter=new ArrayAdapter(DeleteGridProductSizes.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
-            // adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
@@ -229,8 +226,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final String name = mySQLDataBase.getName();
                     //  final int pid
-                    final int psiid =mySQLDataBase.getProductSizeImageId() ;
-                    handleClickEvents(psiid);
+                    final int proSizeImgId =mySQLDataBase.getProductSizeImageId() ;
+                    handleClickEvents(proSizeImgId);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
                                             int which) {
@@ -251,5 +248,4 @@ public class DeleteGridProductSizes extends AppCompatActivity {
 
         }
     }
-
 }

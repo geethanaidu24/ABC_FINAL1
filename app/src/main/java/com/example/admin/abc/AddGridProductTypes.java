@@ -81,39 +81,41 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
-        if (null != actionbar) {
-            actionbar.setNavigationIcon(R.mipmap.backbutton);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
             //  actionbar.setTitle(R.string.title_activity_settings);
-            actionbar.setNavigationOnClickListener(new View.OnClickListener() {
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
-                    // startActivity(in);
+                    Intent in = new Intent(AddGridProductTypes.this,ProductTypesGridView.class);
                     finish();
                 }
             });
-            imageView = (ImageView) findViewById(R.id.image8);
-            name = (EditText) findViewById(name8);
-            Path = (TextView) findViewById(R.id.path8);
-            brand = (EditText) findViewById(R.id.brand8);
-            color = (EditText) findViewById(R.id.color8);
+
+        }
+        imageView = (ImageView) findViewById(R.id.image8);
+        name = (EditText) findViewById(name8);
+        Path = (TextView) findViewById(R.id.path8);
+        brand = (EditText) findViewById(R.id.brand8);
+        color = (EditText) findViewById(R.id.color8);
           /*  sp5 = (Spinner) findViewById(R.id.typespinner8);
             sp6 = (Spinner) findViewById(R.id.productspinner8);
 */
             //sp4 = (Spinner) findViewById(R.id.productspinner);
-            producttext=(TextView)findViewById(R.id.prodname);
-            producttypetext=(TextView)findViewById(R.id.protypes);
-            btnadd1 = (Button) findViewById(R.id.btnadd8);
-            producttext.setText(selectedPname);
-            producttypetext.setText(selectedProducttype);
-            requestStoragePermission();
+        producttext=(TextView)findViewById(R.id.prodname);
+        producttypetext=(TextView)findViewById(R.id.protypes);
+        btnadd1 = (Button) findViewById(R.id.btnadd8);
+        producttext.setText(selectedPname);
+        producttypetext.setText(selectedProducttype);
+        requestStoragePermission();
 
-            imageView.setOnClickListener(this);
-            btnadd1.setOnClickListener(this);
-        }
+        imageView.setOnClickListener(this);
+        btnadd1.setOnClickListener(this);
     }
+
 
   /*  @Override
     public void onStart() {

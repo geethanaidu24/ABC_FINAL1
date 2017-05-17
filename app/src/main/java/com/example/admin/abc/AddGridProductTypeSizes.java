@@ -141,7 +141,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             name = (EditText) findViewById(name8);
             Path = (TextView) findViewById(R.id.brandpath);
             brand = (EditText) findViewById(R.id.brand8);
-            color = (EditText) findViewById(R.id.color);
+            color = (EditText) findViewById(R.id.color8);
            /* sp1 = (Spinner) findViewById(R.id.sizespinner8);
             sp2 = (Spinner) findViewById(R.id.typespinner8);
             sp3 = (Spinner) findViewById(R.id.productspinner8);*/

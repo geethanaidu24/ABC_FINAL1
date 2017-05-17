@@ -312,13 +312,13 @@ public class Brands extends AppCompatActivity {
         }
     }
 
-    class BrandsDataParser extends AsyncTask<Void, Void, Integer> {
+    private class BrandsDataParser extends AsyncTask<Void, Void, Integer> {
         Context c;
 
         GridView gridView1;
         String jsonData;
 
-        ArrayList<BrandsImages> brandsImages = new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
 
         public BrandsDataParser(Context c, GridView gridView1, String jsonData) {
             this.c = c;
@@ -344,27 +344,26 @@ public class Brands extends AppCompatActivity {
                 Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
             } else {
 
-                final BrandsListAdapter adapter = new BrandsListAdapter(c, brandsImages);
+                final BrandsListAdapter adapter = new BrandsListAdapter(c, mySQLDataBases);
                 gridView1.setAdapter(adapter);
             }
         }
 
         private int parseData() {
             try {
-                JSONArray ja = new JSONArray(jsonData);
-                JSONObject jo = null;
-                brandsImages.clear();
-                BrandsImages brandsImage;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo = ja.getJSONObject(i);
-                    Log.d("result response: ", "> " + jo);
-                    int BrandId = jo.getInt("ID");
-                    String ImageUrl = jo.getString("ImagePath");
-                    brandsImage = new BrandsImages();
-                    brandsImage.setId(BrandId);
-
-                    brandsImage.setImagePath(ImageUrl);
-                    brandsImages.add(brandsImage);
+                JSONArray brandsArray = new JSONArray(jsonData);
+                JSONObject brandsObject = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < brandsArray.length(); i++) {
+                    brandsObject = brandsArray.getJSONObject(i);
+                    Log.d("result response: ", "> " + brandsObject);
+                    int BrandId = brandsObject.getInt("ID");
+                    String ImageUrl = brandsObject.getString("ImagePath");
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setBrandId(BrandId);
+                    mySQLDataBase.setBrandImageUrl(ImageUrl);
+                    mySQLDataBases.add(mySQLDataBase);
 
                 }
                 return 1;
@@ -379,23 +378,23 @@ public class Brands extends AppCompatActivity {
     private class BrandsListAdapter extends BaseAdapter {
 
         Context c;
-        ArrayList<BrandsImages> brandsImages;
+        ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
 
-        private BrandsListAdapter(Context c, ArrayList<BrandsImages> brandsImages) {
+        private BrandsListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases) {
             this.c = c;
-            this.brandsImages = brandsImages;
+            this.mySQLDataBases = mySQLDataBases;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         @Override
         public int getCount() {
-            return brandsImages.size();
+            return mySQLDataBases.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return brandsImages.get(position);
+            return mySQLDataBases.get(position);
         }
 
         @Override
@@ -411,8 +410,8 @@ public class Brands extends AppCompatActivity {
 
             ImageView img = (ImageView) convertView.findViewById(R.id.brandgridimg);
             //BIND DATA
-            BrandsImages brandsImage = (BrandsImages) this.getItem(position);
-            final String url = brandsImage.getImagePath();
+            MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
+            final String url = mySQLDataBase.getBrandImageUrl();
             final String finalUrl = Config.mainUrlAddress + url;
 
             //IMG
@@ -420,8 +419,6 @@ public class Brands extends AppCompatActivity {
 
             return convertView;
         }
-
-
 
     }
 }
