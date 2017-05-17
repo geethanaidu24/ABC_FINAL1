@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -35,6 +36,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +48,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     ImageView back;
     private boolean loggedIn = false;
     //Context c;
-    final static String url = Config.productTypeSubTypeImgUrlAddress;
+    final static String proSubUrl = Config.productSubTypeGridUrlAddress;
     private int productSubTypeId;
     private String productSubTypeName;
     private int selectedProducttypeid;
@@ -68,9 +71,17 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        String urlAddress = url + productSubTypeId;
-
-        new ProductSubTypeImagesDownloader(ProductSubTypeGridView.this, urlAddress, gv, productSubTypeId).execute();
+        Uri builtUri = Uri.parse(proSubUrl)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTSUBTYPEID_PARAM, Integer.toString(productSubTypeId))
+                .build();
+        URL ProSubTypeGridurlAddress = null;
+        try {
+            ProSubTypeGridurlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        new ProductSubTypeImagesDownloader(ProductSubTypeGridView.this, ProSubTypeGridurlAddress, gv, productSubTypeId).execute();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -191,13 +202,13 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     private class ProductSubTypeImagesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String urlAddress;
+        URL subGridUrlAddress;
         GridView gv;
         int pstid;
 
-        private ProductSubTypeImagesDownloader(Context c, String urlAddress, GridView gv, int pstid) {
+        private ProductSubTypeImagesDownloader(Context c, URL urlAddress, GridView gv, int pstid) {
             this.c = c;
-            this.urlAddress = urlAddress;
+            this.subGridUrlAddress = urlAddress;
             this.gv = gv;
             this.pstid = pstid;
 
@@ -228,7 +239,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             }
         }
         private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(urlAddress);
+            HttpURLConnection con = Connector.connect(String.valueOf(subGridUrlAddress));
             if (con == null) {
                 return null;
             }
@@ -277,7 +288,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
             }else
             {
 

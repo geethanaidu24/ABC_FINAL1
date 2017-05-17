@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridSubTypes extends AppCompatActivity {
@@ -36,13 +39,24 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     private static int productSubTypeId;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypeGridsCRUD;
-    private static final String Data_spinner_url = Config.deleteGridSubTypeSpinner;
+    private static final String Data_spinner_url = Config.productSubTypeGridUrlAddress;
+    URL ProSubTypeGridurlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_grid_sub_types);
         Intent in = getIntent();
         productSubTypeId = in.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        Uri builtUri = Uri.parse(Data_spinner_url)
+                .buildUpon()
+                .appendQueryParameter(Config.PRODUCTSUBTYPEID_PARAM, Integer.toString(productSubTypeId))
+                .build();
+
+        try {
+            ProSubTypeGridurlAddress = new URL(builtUri.toString());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -55,7 +69,6 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                     finish();
                 }
             });
-
         }
         this.initializeViews();
     }
@@ -108,7 +121,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                             }else
                                             {
                                                 adapter.notifyDataSetChanged();
-                                              BackTask bt = new BackTask();
+                                                BackTask bt = new BackTask();
                                                 bt.execute();
                                                 //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
                                             }
@@ -145,7 +158,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             String result = "";
             try {
                 org.apache.http.client.HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Data_spinner_url + productSubTypeId);
+                HttpPost httppost = new HttpPost(String.valueOf(ProSubTypeGridurlAddress));
                 org.apache.http.HttpResponse response = httpclient.execute(httppost);
                 org.apache.http.HttpEntity entity = response.getEntity();
                 // Get our response as a String.

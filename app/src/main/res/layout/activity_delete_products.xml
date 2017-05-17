@@ -45,7 +45,7 @@
             android:layout_marginTop="31dp"
             android:text="DELETE DATA"
             android:textColor="@color/cred"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView25"
@@ -57,7 +57,7 @@
             android:layout_marginTop="92dp"
             android:text="Select Products to be Deleted:"
             android:textColor="@color/colorblack"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Spinner
             android:id="@+id/sp"
@@ -66,9 +66,9 @@
             android:layout_below="@+id/textView25"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:spinnerMode="dialog"
+            android:layout_marginTop="15dp"
             android:prompt="@string/prompt_text"
-            android:layout_marginTop="15dp"/>
+            android:spinnerMode="dialog" />
 
         <Button
             android:id="@+id/addBtn"
@@ -80,6 +80,6 @@
             android:background="@color/cred"
             android:text="DELETE"
 
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
     </RelativeLayout>
-    </LinearLayout>
+</LinearLayout>
