@@ -52,13 +52,13 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private TextView Path,producttypetext,producttext;
-    private EditText name,brand,color;
+    private TextView Path, producttypetext, producttext;
+    private EditText name, brand, color;
     private Button btnadd1;
     private Bitmap bitmap;
     private Uri filePath;
-    public int pid=0;
-    public int ptid=0;
+    public int pid = 0;
+    public int ptid = 0;
     private int selectedProducttypeid;
     private String selectedProducttype;
     private static int selectedPid;
@@ -86,35 +86,35 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         if (null != toolbar) {
             toolbar.setNavigationIcon(R.mipmap.backbutton);
 
-            //  actionbar.setTitle(R.string.title_activity_settings);
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypes.this,ProductTypesGridView.class);
+                    Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
                     finish();
                 }
             });
 
         }
-        imageView = (ImageView) findViewById(R.id.image8);
-        name = (EditText) findViewById(name8);
-        Path = (TextView) findViewById(R.id.path8);
-        brand = (EditText) findViewById(R.id.brand8);
-        color = (EditText) findViewById(R.id.color8);
+            imageView = (ImageView) findViewById(R.id.image8);
+            name = (EditText) findViewById(name8);
+            Path = (TextView) findViewById(R.id.path8);
+            brand = (EditText) findViewById(R.id.brand8);
+            color = (EditText) findViewById(R.id.color8);
           /*  sp5 = (Spinner) findViewById(R.id.typespinner8);
             sp6 = (Spinner) findViewById(R.id.productspinner8);
 */
             //sp4 = (Spinner) findViewById(R.id.productspinner);
-        producttext=(TextView)findViewById(R.id.prodname);
-        producttypetext=(TextView)findViewById(R.id.protypes);
-        btnadd1 = (Button) findViewById(R.id.btnadd8);
-        producttext.setText(selectedPname);
-        producttypetext.setText(selectedProducttype);
-        requestStoragePermission();
+            producttext = (TextView) findViewById(R.id.prodname);
+            producttypetext = (TextView) findViewById(R.id.protypes);
+            btnadd1 = (Button) findViewById(R.id.btnadd8);
+            producttext.setText(selectedPname);
+            producttypetext.setText(selectedProducttype);
+            requestStoragePermission();
 
-        imageView.setOnClickListener(this);
-        btnadd1.setOnClickListener(this);
-    }
+            imageView.setOnClickListener(this);
+            btnadd1.setOnClickListener(this);
+        }
+
 
 
   /*  @Override
@@ -263,6 +263,8 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             adapter6.notifyDataSetChanged();
         }
     }*/
+
+
     @Override
     public void onClick(View v) {
         if (v == imageView) {
@@ -275,8 +277,9 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             //uploadMultipart();
         }
     }
+
     private void checkData() {
-        if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1) {
+        if (name.length() < 1 || Path.length() < 1 || brand.length() < 1 || color.length() < 1) {
             Toast.makeText(AddGridProductTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
@@ -395,7 +398,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
             //Creating a multi part request
             new MultipartUploadRequest(this, uploadId, addGridData)
-                    .addParameter("action","save")
+                    .addParameter("action", "save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
@@ -461,7 +464,6 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             }
         }
     }
-
-
 }
+
 

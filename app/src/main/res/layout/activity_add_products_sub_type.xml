@@ -36,7 +36,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
 
 
         <TextView
@@ -56,7 +58,7 @@
             android:layout_height="150dp"
             android:layout_below="@+id/textView13"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             app:srcCompat="@mipmap/browseimage" />
 
         <TextView
@@ -65,18 +67,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/brandimage"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="13dp"
-            android:text="Path: " />
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+
+            android:text="Path: "
+            android:textColor="@color/colorblack" />
 
         <TextView
             android:id="@+id/textView18"
-            android:layout_width="150dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/brandpath"
             android:layout_below="@+id/brandpath"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+
             android:text="PRODUCTS SUB-TYPES"
             android:textColor="@color/cred"
             android:textSize="18sp" />
@@ -86,10 +90,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView18"
-            android:layout_marginStart="33dp"
+            android:layout_marginRight="20dp"
             android:layout_toEndOf="@+id/textView18"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/colorblack" />
 
         <Button
             android:id="@+id/btnUpload"
@@ -104,33 +109,25 @@
 
         <TextView
             android:id="@+id/textView15"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_alignStart="@+id/brandpath"
             android:layout_below="@id/textView18"
-            android:layout_marginTop="10dp"
-            android:text="PRODUCTS TYPES"
-            android:textColor="@color/cred"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/brandpath"
-            android:layout_below="@id/textView18"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:text="PRODUCT-TYPES"
             android:textColor="@color/cred"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/productTypeDisplay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView15"
             android:layout_alignStart="@+id/productsubtypes"
-            android:layout_marginStart="11dp"
-            android:text="TextView" />
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorblack"
+
+            />
 
         <!--<Spinner
             android:id="@+id/spproductstypes"

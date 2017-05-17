@@ -50,6 +50,7 @@ ImageView im;
 
                     String name = your_name.getText().toString();
                     String email = your_email.getText().toString();
+
                     String subject = your_subject.getText().toString();
                     String message = your_message.getText().toString();
                     if (TextUtils.isEmpty(name)) {
@@ -82,9 +83,10 @@ ImageView im;
             /* Fill it with Data */
                     sendEmail.setData(Uri.parse("mailto:"));
                     sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"geethamca.naidu@gmail.com"});
-                    sendEmail.putExtra(Intent.EXTRA_SUBJECT, subject);
+                    sendEmail.putExtra(Intent.EXTRA_SUBJECT,"ABC Enquiry");
+                    sendEmail.putExtra(Intent.EXTRA_PHONE_NUMBER,subject);
                     sendEmail.putExtra(Intent.EXTRA_TEXT,
-                            "name:" + name + '\n' + "Email ID:" + email + '\n' + "Message:" + '\n' + message);
+                            "Name:" + name + '\n' + "Contact No:" + subject + '\n' +"Email ID:" + email + '\n' + "Message:" + '\n' + message);
                     sendEmail.setType("plain/text");
             /* Send it off to the Activity-Chooser */
 

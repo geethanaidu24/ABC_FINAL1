@@ -80,7 +80,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         txtheight = (EditText) findViewById(R.id.height1);
         txtlength = (EditText) findViewById(R.id.length1);
       //  txtlength.setText(0);
-        btnAdd1 = (Button) findViewById(R.id.brandbtn);
+        btnAdd1 = (Button) findViewById(R.id.productsizes);
         displayProducts = (TextView) findViewById(R.id.productsTxt);
         displayProducts.setText(selectdProName);
 
