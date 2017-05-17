@@ -100,6 +100,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
+
             Intent in = new Intent(Products.this, AddProducts.class);
 
             startActivity(in);
