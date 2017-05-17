@@ -360,7 +360,6 @@ public class Products extends AppCompatActivity implements Serializable {
         int localpid;
         String localname;
 
-
         public ProductTypesDownloader(Context c, URL urlAddress, int recivedpid, String recivedname) {
             this.c = c;
             this.finalProducturlAddress = urlAddress;

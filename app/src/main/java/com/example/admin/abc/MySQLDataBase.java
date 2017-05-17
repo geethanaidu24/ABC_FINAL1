@@ -7,11 +7,11 @@ import java.io.Serializable;
  */
 
 public class MySQLDataBase implements Serializable {
-    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId;
-    public String ProductName, ProductType, ProductSubTypeName;
-    public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl;
+    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId;
+    public String ProductName, ProductType, ProductSubTypeName,NewsTitle;
+    public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl,NewsImageUrl;
     public int Width,Height,Length;
-    public String Name,ImagePath,Brand,Color;
+    public String Name,ImagePath,Brand,Color,NewsDescription;
 
     public MySQLDataBase(){
 
@@ -32,6 +32,14 @@ public class MySQLDataBase implements Serializable {
         return ProductSizeImageId;
     }
     public void setProductSizeImageId(int productSizeImageId){this.ProductSizeImageId = productSizeImageId;}
+    public int getBrandId() {
+        return BrandId;
+    }
+    public void setBrandId(int Id) {
+        this.BrandId = Id;
+    }
+    public int getNewsId(){ return NewsId; }
+    public void setNewsId(int newsId){this.NewsId = newsId;}
     public String getProductName() {
         return ProductName;
     }
@@ -48,6 +56,8 @@ public class MySQLDataBase implements Serializable {
         return ProductSubTypeName;
     }
     public void setProductSubTypeName(String productSubTypeName){this.ProductSubTypeName = productSubTypeName; }
+    public String getNewsTitle(){return NewsTitle;}
+    public void setNewsTitle(String newsTitle){ this.NewsTitle=newsTitle;}
     public String getProductImageUrl(){return ProductImageUrl;}
     public void setProductImageUrl(String productImageUrl){this.ProductImageUrl=productImageUrl;}
     public String getProductTypeImageUrl(){return ProductTypeImageUrl;}
@@ -60,6 +70,14 @@ public class MySQLDataBase implements Serializable {
     public void setImagePath(String imagePath){
         this.ImagePath = imagePath;
     }
+    public String getBrandImageUrl(){
+        return BrandImageUrl;
+    }
+    public void setBrandImageUrl(String imgpath){
+        this.BrandImageUrl = imgpath;
+    }
+    public String getNewsImageUrl(){return NewsImageUrl;}
+    public void setNewsImageUrl(String newsImageUrl){this.NewsImageUrl = newsImageUrl;}
     public String getName(){return Name;}
     public void setName(String name){this.Name=name;}
     public String getBrand(){
@@ -92,17 +110,7 @@ public class MySQLDataBase implements Serializable {
     public void setLength(int length){
         this.Length = length;
     }
-    public int getBrandId() {
-        return BrandId;
-    }
-    public void setBrandId(int Id) {
-        this.BrandId = Id;
-    }
-    public String getBrandImageUrl(){
-        return BrandImageUrl;
-    }
-    public void setBrandImageUrl(String imgpath){
-        this.BrandImageUrl = imgpath;
-    }
+    public String getNewsDescription(){return NewsDescription;}
+    public void setNewsDescription(String newsDescription){ this.NewsDescription=newsDescription;}
 
 }

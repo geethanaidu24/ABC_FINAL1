@@ -37,8 +37,6 @@ public class News extends AppCompatActivity {
                     finish();
                 }
             });
-
-
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
 
