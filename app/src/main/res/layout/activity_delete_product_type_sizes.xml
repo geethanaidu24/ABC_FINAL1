@@ -60,7 +60,7 @@
             android:textSize="18sp"/>
 
         <Spinner
-            android:id="@+id/spdelete"
+            android:id="@+id/spdelete1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView25"
@@ -71,7 +71,7 @@
             android:layout_marginTop="15dp"/>
 
         <Button
-            android:id="@+id/deletebtn"
+            android:id="@+id/deletebtn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
