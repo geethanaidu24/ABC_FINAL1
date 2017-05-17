@@ -31,7 +31,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-    private EditText etCaption;
+    private EditText etCaption,etDescription;
     private TextView tvPath;
     private Button btnUpload;
     private Bitmap bitmap;
@@ -59,6 +59,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
         imageView = (ImageView)findViewById(R.id.newsimage);
         etCaption = (EditText)findViewById(R.id.news);
+        etDescription = (EditText)findViewById(R.id.descptext);
         tvPath    = (TextView)findViewById(R.id.newspath);
         btnUpload = (Button)findViewById(R.id.newsbtn);
 
@@ -77,7 +78,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
-                if (etCaption.length() < 1 && tvPath.length() < 1 || bitmap==null) {
+                if (etCaption.length() < 1 || tvPath.length() < 1 || bitmap==null) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
@@ -107,6 +108,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
     public void uploadMultipart() {
         String caption = etCaption.getText().toString().trim();
+        String description = etDescription.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
@@ -120,6 +122,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                     .addParameter("action","save")
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
+                    .addParameter("description", description)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload();
