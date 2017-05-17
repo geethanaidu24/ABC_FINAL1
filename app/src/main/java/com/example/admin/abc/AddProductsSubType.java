@@ -197,7 +197,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     }
 
     private void checkData() {
-        if (etCaption.length() < 1 || tvPath.length() < 1) {
+        if (etCaption.length() < 1 || tvPath.length() < 1 || bitmap==null) {
             Toast.makeText(AddProductsSubType.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();

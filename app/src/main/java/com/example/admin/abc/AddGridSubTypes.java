@@ -356,7 +356,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             }
     }
     private void checkData() {
-        if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1) {
+        if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1 || bitmap==null) {
             Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();

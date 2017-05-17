@@ -200,7 +200,7 @@ sp.setPrompt("Select");
     }
 
     private void checkData() {
-        if (etCaption.length() < 1 || tvPath.length() < 1) {
+        if (etCaption.length() < 1 || tvPath.length() < 1 || bitmap==null) {
             Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();

@@ -181,7 +181,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
     }
 
     private void checkData() {
-        if (txtwidth.length() < 1 || txtheight.length() < 1) {
+        if (txtwidth.length() < 1 || txtheight.length() < 1 ) {
             Toast.makeText(AddProductSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
@@ -265,10 +265,10 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                                     String responseString = response.get(0).toString();
                                     Toast.makeText(AddProductSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
-                                        //CLEAR EDITXTS
+                                      /*  //CLEAR EDITXTS
                                         txtwidth.setText("");
                                         txtheight.setText("");
-                                        txtlength.setText("");
+                                        txtlength.setText("");*/
                                         /*adapter.notifyDataSetChanged();
 
                                        BackTask bt = new BackTask();
