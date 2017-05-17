@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/activity_enquiry"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@color/white"
+                tools:context="com.example.admin.abc.Enquiry"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="7dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="2dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@mipmap/abctextlogo"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="350dp"
+        android:layout_height="700dp"
+        android:background="@color/colorblack"
+        android:gravity="center_horizontal"
+android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="130px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <EditText
+            android:layout_width="300dp"
+
+            android:ems="10"
+            android:id="@+id/editText5"
+
+            android:hint="Comment"
+            android:background="@color/white"
+            android:layout_below="@+id/editText4"
+            android:layout_alignStart="@+id/editText4"
+            android:layout_marginTop="20dp"
+            android:layout_height="100dp"
+            android:paddingTop="1dp"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/black"
+            android:inputType="text" />
+
+        <EditText
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:id="@+id/editText"
+            android:cursorVisible="true"
+            android:hint="Name"
+            android:layout_height="40dp"
+            android:layout_width="300dp"
+            android:layout_below="@+id/textView9"
+            android:layout_centerHorizontal="true"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:layout_marginTop="20dp"
+            android:id="@+id/editText3"
+            android:background="@color/white"
+            android:cursorVisible="true"
+            android:hint="Email"
+            android:layout_below="@+id/editText"
+            android:layout_alignStart="@+id/editText"
+            android:textAppearance="@style/TextAppearance.AppCompat" />
+
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:inputType="phone"
+            android:ems="10"
+            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            android:id="@+id/editText4"
+            android:hint="Contact No."
+            android:layout_below="@+id/editText3"
+            android:layout_alignStart="@+id/editText3"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:text="SEND"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_dark"
+            android:id="@+id/button7"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="21dp"
+            android:textStyle="normal|bold"
+            android:textSize="18sp"
+            android:layout_below="@+id/editText5"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:text="Make An Enquiry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView9"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            android:layout_marginTop="20dp"
+            android:textStyle="normal|bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
