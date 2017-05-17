@@ -77,7 +77,11 @@ public class News extends AppCompatActivity {
 
             startActivity(in);
             return true;
+        } else if (id == R.id.productdelete) {
+            Intent inn = new Intent(News.this, DeleteNews.class);
+            startActivity(inn);
 
+            return true;
         } else if (id == R.id.logout) {
             logout();
             return true;

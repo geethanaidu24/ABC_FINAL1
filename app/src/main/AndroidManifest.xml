@@ -12,14 +12,16 @@
         android:anyDensity="true"
         android:largeScreens="true"
         android:normalScreens="true"
+        android:resizeable="true"
         android:smallScreens="true"
-        android:xlargeScreens="true"
+        android:xlargeScreens="true" />
+    />
 
-        android:resizeable="true"/>
-     <!-- android:requiresSmallestWidthDp="integer"
+    <!--
+     android:requiresSmallestWidthDp="integer"
       android:compatibleWidthLimitDp="integer"
-      android:largestWidthLimitDp="integer"-->/>
-
+      android:largestWidthLimitDp="integer"
+    -->
     <application
         android:allowBackup="true"
         android:configChanges="orientation|screenSize|keyboardHidden"
@@ -150,7 +152,9 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity android:name=".DeleteGridProductTypeSizes" />
         <activity android:name=".Products" />
         <activity android:name=".AddBrands" />
-        <activity android:name=".AddNews"></activity>
+        <activity android:name=".AddNews" />
+        <activity android:name=".DeleteNews" />
+        <activity android:name=".NewsDescription"></activity>
     </application>
 
 </manifest>

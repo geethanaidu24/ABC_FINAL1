@@ -1,31 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:All4One="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/algo"
+    android:icon="@mipmap/dots"
+    android:title="nose"
+    All4One:showAsAction="always">
+    <menu>
+        <item android:id="@+id/productsadd"
+        android:icon="@mipmap/add"
+        android:title="NEW"/>
 
-    >
-    <group android:checkableBehavior="single"
-        >
-        <item
-            android:id="@+id/productsadd"
-            android:checkable="true"
-            android:icon="@mipmap/dots"
-            android:title="NEW"
-            android:visible="true" />
-
-        <item
-            android:id="@+id/productdelete"
-
-            android:checkable="true"
+        <item android:id="@+id/productdelete"
             android:icon="@android:drawable/ic_delete"
-            android:title="DELETE" />
+        android:title="DELETE"/>
 
-        <item
-            android:id="@+id/logout"
-            android:checkable="true"
-            android:title="Logout" />
+        <item android:id="@+id/logout"
+            android:icon="@mipmap/logout"
+            android:title="LOGOUT"/>
 
 
-</group>
-
-</menu>
+    </menu>
+</item>
+    </menu>
