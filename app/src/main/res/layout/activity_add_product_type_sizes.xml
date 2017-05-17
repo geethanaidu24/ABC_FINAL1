@@ -35,7 +35,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
 
 
         <TextView
@@ -44,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="ADD Sizes"
+            android:layout_marginTop="10dp"
+            android:text="ADD SIZES"
             android:textColor="@color/cred"
             android:textSize="24sp" />
 
@@ -55,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="19dp"
+            android:layout_marginBottom="40dp"
             android:background="@color/cred"
             android:text="ADD"
             android:textColor="@color/white" />
@@ -66,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView13"
-            android:layout_marginStart="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="60dp"
             android:text="Enter Width"
             android:textColor="@color/cred"
@@ -78,10 +80,11 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView35"
             android:layout_alignStart="@+id/brandbtn"
-            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+
             android:ems="10"
             android:inputType="textPersonName"
-            android:textColor="@color/cred"
+            android:textColor="@color/colorblack"
             android:textSize="18sp" />
 
         <TextView
@@ -101,9 +104,12 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/width1"
             android:layout_below="@+id/width1"
+            android:layout_marginRight="20dp"
             android:ems="10"
+
             android:inputType="textPersonName"
-            android:textColor="@color/cred"
+            android:textColor="@color/colorblack"
+
             android:textSize="18sp" />
 
         <TextView
@@ -123,32 +129,39 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/height1"
             android:layout_below="@+id/height1"
+            android:layout_marginRight="20dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="0"
-            android:textColor="@color/cred"
+
+            android:textColor="@color/colorblack"
+
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView38"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
             android:layout_alignStart="@+id/textView37"
             android:layout_below="@+id/length1"
             android:layout_marginTop="15dp"
-            android:text="Products Types"
+            android:text="Products-Types"
             android:textColor="@color/cred"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/protypeDisplay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView38"
             android:layout_alignBottom="@+id/textView38"
-            android:layout_marginStart="30dp"
+
+            android:layout_alignStart="@+id/length1"
+
+            android:layout_marginRight="20dp"
             android:layout_toEndOf="@+id/textView38"
-            android:textColor="@color/cred"
+
+            android:textColor="@color/colorblack"
             android:textSize="18sp" />
 
         <!--<Spinner
@@ -174,12 +187,15 @@
 
         <TextView
             android:id="@+id/proDisplay"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/textView12"
             android:layout_alignBottom="@+id/textView12"
             android:layout_alignStart="@+id/protypeDisplay"
-            android:textColor="@color/cred"
+
+            android:layout_marginRight="20dp"
+            android:textColor="@color/colorblack"
+
             android:textSize="18sp" />
 
         <!--<Spinner

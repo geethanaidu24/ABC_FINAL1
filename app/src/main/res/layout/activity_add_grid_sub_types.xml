@@ -47,9 +47,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            >
+            android:background="@color/white"  >
 
             <TextView
                 android:id="@+id/textView4"
@@ -58,22 +58,13 @@
 
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
-                android:text="ADD Data"
+                android:text="ADD DATA"
                 android:textColor="@color/cred"
                 android:textSize="24sp"/>
-            <TextView
-                android:id="@+id/brandpath"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/toolbar"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="200dp"
-                android:text="Path"/>
 
             <ImageView
                 android:id="@+id/image8"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_below="@+id/textView4"
                 android:layout_centerHorizontal="true"
@@ -84,7 +75,7 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="50dp"
                 android:text="NAME"
                 android:textColor="@color/cred"
                 android:textSize="18sp"
@@ -97,8 +88,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
-                android:textColor="@color/cred"
+                android:textColor="@color/colorblack"
                 android:layout_alignBaseline="@+id/textView11"
                 android:layout_alignBottom="@+id/textView11"
                 android:layout_alignParentEnd="true"/>
@@ -119,6 +111,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:textColor="@color/colorblack"
+                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:layout_alignBottom="@+id/textView14"
                 android:layout_alignParentEnd="true" />
@@ -148,12 +142,12 @@
 
             <TextView
                 android:id="@+id/textView21"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="40dp"
                 android:layout_alignStart="@+id/textView19"
                 android:layout_below="@+id/textView19"
                 android:layout_marginTop="15dp"
-                android:text="PRODUCT TYPES"
+                android:text="PRODUCT-TYPES"
                 android:textColor="@color/cred"
                 android:textSize="18sp" />
 
@@ -165,6 +159,8 @@
                 android:layout_alignBottom="@+id/textView17"
                 android:layout_alignParentEnd="true"
                 android:ems="10"
+                android:textColor="@color/colorblack"
+                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"/>
 
             <TextView
@@ -198,25 +194,33 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/toolbar"
-                android:layout_marginStart="17dp"
-                android:layout_marginTop="200dp"
-                android:text="Path"/>
+                android:layout_marginStart="20dp"
+                android:textColor="@color/colorblack"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="210dp"
+                android:text="Path:"/>
 <TextView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@+id/textView21"
+    android:textColor="@color/colorblack"
+    android:layout_marginRight="20dp"
     android:layout_alignStart="@+id/color"
     android:id="@+id/textView32" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/textView22"
+                android:textColor="@color/colorblack"
+                android:layout_marginRight="20dp"
                 android:layout_alignStart="@+id/textView32"
                 android:id="@+id/textView33" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/prod"
+                android:textColor="@color/colorblack"
+                android:layout_marginRight="20dp"
                 android:layout_alignBottom="@+id/textView22"
                 android:layout_alignStart="@+id/textView33" />
 

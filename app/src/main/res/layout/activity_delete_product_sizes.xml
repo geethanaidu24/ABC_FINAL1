@@ -34,14 +34,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_marginBottom="10dp">
         <TextView
             android:id="@+id/textView24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="10dp"
             android:text="DELETE DATA"
             android:textColor="@color/cred"
             android:textSize="24sp"/>
@@ -52,14 +54,15 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView24"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="92dp"
+          android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="90dp"
             android:text="Select Products Sizes to be Deleted:"
-            android:textColor="@color/colorblack"
+            android:textColor="@color/cred"
             android:textSize="18sp"/>
 
         <Spinner
-            android:id="@+id/spdelete1"
+            android:id="@+id/spdelete2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView25"
@@ -70,7 +73,7 @@
             android:prompt="@string/prompt_text"/>
 
         <Button
-            android:id="@+id/deletebtn1"
+            android:id="@+id/deletebtn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
