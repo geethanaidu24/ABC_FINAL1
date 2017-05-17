@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:All4One="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/algo"
+        android:icon="@mipmap/dots"
+        android:title="nose"
+        All4One:showAsAction="always">
+        <menu>
+            <item android:id="@+id/productsadd"
+                android:icon="@mipmap/add"
+                android:title="NEW"/>
+
+
+            <item android:id="@+id/logout"
+                android:icon="@mipmap/logout"
+                android:title="LOGOUT"/>
+
+        </menu>
+    </item>
+</menu>

@@ -39,6 +39,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.admin.abc.R.id.productsadd;
+
 public class Products extends AppCompatActivity implements Serializable {
 
     final static String productsAddress = Config.productsUrlAddress;
@@ -80,7 +82,7 @@ public class Products extends AppCompatActivity implements Serializable {
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
         if (loggedIn == true) {
-            MenuItem item = menu.findItem(R.id.productsadd);
+            MenuItem item = menu.findItem(productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(true);
@@ -102,7 +104,8 @@ public class Products extends AppCompatActivity implements Serializable {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.productsadd) {
+        if (id == productsadd) {
+
             Intent in = new Intent(Products.this, AddProducts.class);
 
             startActivity(in);
