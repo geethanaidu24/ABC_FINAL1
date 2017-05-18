@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+
+
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="7dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="2dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@mipmap/abctextlogo"/>
+
+    </android.support.v7.widget.Toolbar>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+
+
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@color/white"  >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="ADD CONTACTS"
+                android:textColor="@color/cred"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="100dp"
+                android:text="Contact Address"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+                android:layout_marginLeft="20dp"
+                android:layout_below="@+id/image8"
+                />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:layout_marginRight="20dp"
+                android:inputType="textMultiLine"
+                android:textColor="@color/colorblack"
+                android:layout_above="@+id/textView"
+                android:layout_alignParentEnd="true" />
+<TextView
+    android:layout_width="80dp"
+    android:layout_height="50dp"
+    android:text="Working Time"
+    android:layout_below="@+id/textView11"
+    android:layout_marginTop="30dp"
+    android:textColor="@color/cred"
+    android:textSize="18sp"
+    android:layout_marginLeft="20dp"
+    android:id="@+id/textView" />
+            <EditText
+                android:id="@+id/editText6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="184dp"
+                android:ems="10"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:inputType="textPersonName"
+                android:layout_below="@+id/toolbar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/textView"
+    android:text="Email-Id"
+    android:textColor="@color/cred"
+    android:textSize="18sp"
+    android:id="@+id/emailid"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/editText7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/toolbar"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:layout_marginTop="229dp"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/emailid"
+                android:text="Contact Number"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/cred"
+                android:id="@+id/cn"
+                android:textSize="18sp"
+                android:layout_marginTop="20dp"/>
+            <EditText
+                android:id="@+id/editText8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:ems="10"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:inputType="phone"
+
+                android:layout_alignStart="@+id/editText7"
+                android:layout_alignTop="@+id/cn" />
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="400dp"
+                android:background="@color/cred"
+                android:text="ADD" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+</RelativeLayout>
+
+
