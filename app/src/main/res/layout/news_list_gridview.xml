@@ -80,7 +80,7 @@
             android:background="@color/cred"
             android:text="Read More"
 
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="0dp"
             android:layout_gravity="center"
             android:textColor="@color/white" />
 

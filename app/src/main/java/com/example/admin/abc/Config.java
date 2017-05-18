@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+public final static String mainUrlAddress = "http://192.168.0.6/abc/";
 
     // For admin login
 
@@ -52,7 +52,7 @@ public final static String productSizeImgUrlAddress = mainUrlAddress+"getProduct
 
     // For getting all Brands from DB
 
-public final static String brandsImgUrlAddress = mainUrlAddress+"getAllBrandImages.php";
+public final static String brandsImgUrlAddress = mainUrlAddress+"getBrands.php";
 
     // For getting all New Items Form DB
 public final static String newsUrlAddress = mainUrlAddress+"getNews.php";

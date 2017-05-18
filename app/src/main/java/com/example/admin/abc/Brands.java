@@ -119,9 +119,9 @@ public class Brands extends AppCompatActivity {
         if (loggedIn == true) {
             MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
-            MenuItem items = menu.findItem(R.id.productdelete);
-            items.setVisible(true);
-            MenuItem itemss = menu.findItem(R.id.logout);
+           // MenuItem items = menu.findItem(R.id.productdelete);
+          //  items.setVisible(true);
+            MenuItem items = menu.findItem(R.id.logout);
             items.setVisible(true);
 
         } else if (loggedIn == false) {

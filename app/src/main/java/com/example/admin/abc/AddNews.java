@@ -78,13 +78,14 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
-                if (etCaption.length() < 1 || tvPath.length() < 1 || bitmap==null) {
+                if (etCaption.length() < 1 || etDescription.length()<1 || tvPath.length() < 1 || bitmap==null) {
                     Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
                     Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                     etCaption.setText("");
                     tvPath.setText("");
+                    etDescription.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
 
                 }

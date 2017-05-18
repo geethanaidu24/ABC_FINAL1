@@ -68,8 +68,10 @@ public class News extends AppCompatActivity {
         final GridView gridView1 = (GridView) findViewById(R.id.newsgridview);
 
         new NewsDownloader(News.this, newsUrlAddress, gridView1).execute();
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         if (null != toolbar) {
             toolbar.setNavigationIcon(R.mipmap.backbutton);
@@ -200,7 +202,7 @@ public class News extends AppCompatActivity {
      */
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
-                .setName("Brands Page") // TODO: Define a title for the content shown.
+                .setName("News Page") // TODO: Define a title for the content shown.
                 // TODO: Make sure this auto-generated URL is correct.
                 .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
                 .build();
@@ -233,13 +235,13 @@ public class News extends AppCompatActivity {
     private class NewsDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
-        String urlAddress;
+        String newsUrlAddress;
         GridView gridView1;
 
 
-        public NewsDownloader(Context c, String urlAddress, GridView gridView1) {
+        private NewsDownloader(Context c, String urlAddress, GridView gridView1) {
             this.c = c;
-            this.urlAddress = urlAddress;
+            this.newsUrlAddress = urlAddress;
             this.gridView1 = gridView1;
         }
 
@@ -250,8 +252,7 @@ public class News extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadData();
-            return data;
+            return downloadNewsData();
         }
 
         @Override
@@ -260,15 +261,14 @@ public class News extends AppCompatActivity {
             if (s == null) {
                 Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
             } else {
-
                 //CALL DATA PARSER TO PARSE
                 NewsDataParser parser = new NewsDataParser(c, gridView1, s);
                 parser.execute();
             }
         }
 
-        private String downloadData() {
-            HttpURLConnection con = Connector.connect(urlAddress);
+        private String downloadNewsData() {
+            HttpURLConnection con = Connector.connect(newsUrlAddress);
             if (con == null) {
                 return null;
             }
@@ -296,7 +296,7 @@ public class News extends AppCompatActivity {
 
         ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
 
-        public NewsDataParser(Context c, GridView gridView1, String jsonData) {
+        private NewsDataParser(Context c, GridView gridView1, String jsonData) {
             this.c = c;
             this.gridView1 = gridView1;
             this.jsonData = jsonData;
@@ -313,7 +313,6 @@ public class News extends AppCompatActivity {
         }
 
         @Override
-
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
@@ -339,6 +338,7 @@ public class News extends AppCompatActivity {
                     String newsDescription = newsObject.getString("Description");
                     String newsImageUrl = newsObject.getString("ImageUrl");
                     String createdDate = newsObject.getString("CreatedDate");
+                    String createdAt = newsObject.getString("CreatedAt");
                     DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = null;
                     try {
@@ -349,10 +349,10 @@ public class News extends AppCompatActivity {
 
                     long when = date.getTime();
                     int flags = 0;
-                    flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
+                  //  flags |= android.text.format.DateUtils.FORMAT_SHOW_TIME;
                     flags |= android.text.format.DateUtils.FORMAT_SHOW_DATE;
                     flags |= android.text.format.DateUtils.FORMAT_ABBREV_MONTH;
-                    flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
+                  //  flags |= android.text.format.DateUtils.FORMAT_SHOW_YEAR;
 
                     String finalDateTime = android.text.format.DateUtils.formatDateTime(c,
                             when + TimeZone.getDefault().getOffset(when), flags);
