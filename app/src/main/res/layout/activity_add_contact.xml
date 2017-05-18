@@ -65,14 +65,13 @@
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="100dp"
-                android:text="Contact Address"
-                android:textColor="@color/cred"
-                android:textSize="18sp"
-                android:layout_marginLeft="20dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/image8"
-                />
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Branch Name"
+                android:textColor="@color/cred"
+                android:textSize="18sp" />
 
             <EditText
                 android:id="@+id/editText2"
@@ -84,81 +83,127 @@
                 android:textColor="@color/colorblack"
                 android:layout_above="@+id/textView"
                 android:layout_alignParentEnd="true" />
-<TextView
-    android:layout_width="80dp"
-    android:layout_height="50dp"
-    android:text="Working Time"
-    android:layout_below="@+id/textView11"
-    android:layout_marginTop="30dp"
-    android:textColor="@color/cred"
-    android:textSize="18sp"
-    android:layout_marginLeft="20dp"
-    android:id="@+id/textView" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView11"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Address"
+                android:textColor="@color/cred"
+                android:textSize="18sp" />
             <EditText
                 android:id="@+id/editText6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="184dp"
                 android:ems="10"
                 android:layout_marginRight="20dp"
                 android:textColor="@color/colorblack"
                 android:inputType="textPersonName"
-                android:layout_below="@+id/toolbar"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp" />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/textView"
-    android:text="Email-Id"
-    android:textColor="@color/cred"
-    android:textSize="18sp"
-    android:id="@+id/emailid"
-    android:layout_marginLeft="20dp"
-    android:layout_marginTop="20dp"/>
-            <EditText
-                android:id="@+id/editText7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/toolbar"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/colorblack"
-                android:layout_marginTop="229dp"
-                android:ems="10"
-                android:inputType="textEmailAddress" />
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/emailid"
-                android:text="Contact Number"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/cred"
-                android:id="@+id/cn"
-                android:textSize="18sp"
-                android:layout_marginTop="20dp"/>
-            <EditText
-                android:id="@+id/editText8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/textView"
+                android:layout_alignBottom="@+id/textView"
+                android:layout_alignStart="@+id/editText2" />
 
-
-                android:ems="10"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/colorblack"
-                android:inputType="phone"
-
-                android:layout_alignStart="@+id/editText7"
-                android:layout_alignTop="@+id/cn" />
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="400dp"
+                android:layout_marginTop="33dp"
                 android:background="@color/cred"
-                android:text="ADD" />
+                android:text="ADD"
+                android:layout_below="@+id/editText15"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView"
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+                android:text="City" />
+
+            <EditText
+                android:id="@+id/editText11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+
+                android:ems="10"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:inputType="textPersonName"
+                android:layout_alignBaseline="@+id/textView31"
+                android:layout_alignBottom="@+id/textView31"
+                android:layout_alignStart="@+id/editText6" />
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="Contact Number"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView31"
+                android:id="@+id/textView34" />
+            <EditText
+                android:id="@+id/editText12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:ems="10"
+                android:inputType="phone"
+                android:layout_alignBottom="@+id/textView34"
+                android:layout_alignStart="@+id/editText11" />
+            <TextView
+                android:id="@+id/textView39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+
+                android:layout_below="@+id/textView34"
+                android:text="Email-ID" />
+
+            <EditText
+                android:id="@+id/editText14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorblack"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:layout_alignBaseline="@+id/textView39"
+                android:layout_alignBottom="@+id/textView39"
+                android:layout_alignParentEnd="true" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/cred"
+                android:textSize="18sp"
+                android:layout_below="@+id/textView39"
+                android:text="Working Time" />
+
+            <EditText
+                android:id="@+id/editText15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_alignBottom="@+id/textView40"
+                android:layout_alignStart="@+id/editText14" />
 
         </RelativeLayout>
     </ScrollView>
