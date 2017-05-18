@@ -1,28 +1,29 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/back1">
-
+    android:background="@drawable/back1"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
     <TableRow
         android:layout_width="match_parent"
+
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/cred"
-        android:gravity="center">
+
+
+
+        android:gravity="end">
 
 
         <TextView
             android:id="@+id/newsDate"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end"
+
             android:background="@color/cred"
             android:gravity="center"
-            android:text="10-3-1990"
             android:textColor="@color/white" />
 
     </TableRow>
@@ -31,59 +32,60 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginBottom="5dp"
+
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+
         android:gravity="center">
 
 
         <ImageView
             android:id="@+id/newsgridimg"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
+
             android:src="@mipmap/abclogo" />
 
 
     </TableRow>
 
-    <TableRow android:layout_marginTop="0dp"
+    <TableRow
         android:gravity="center_horizontal"
         android:background="@color/colorblack"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+
         >
 
         <TextView
+            android:layout_height="50dp"
+            android:layout_width="match_parent"
             android:id="@+id/newsTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-
-            android:layout_gravity="center"
-            android:background="@color/colorblack"
-            android:fontFamily="sans-serif"
-            android:gravity="center"
-            android:text="Basins"
-            android:textColor="@android:color/white"
             android:textSize="24sp"
-            android:typeface="normal" />
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/white"/>
+
+    </TableRow>
+    <TableRow android:layout_marginTop="0dp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorblack"
+
+        >
 
         <Button
             android:id="@+id/newsbutton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+
+
             android:background="@color/cred"
             android:text="Read More"
-
-            android:layout_marginLeft="0dp"
-            android:layout_gravity="center"
             android:textColor="@color/white" />
 
     </TableRow>
 
 
 </TableLayout>
+

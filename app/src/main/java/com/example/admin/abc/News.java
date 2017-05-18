@@ -423,6 +423,12 @@ public class News extends AppCompatActivity {
             PicassoClient.downloadImage(c, finalUrl, img);
             newsDatetxt.setText(newsDate);
             newsTiletxt.setText(newsTitle);
+            readmore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openDetailNewsActivity(finalUrl,newsTitle,newsDescription);
+                }
+            });
             convertView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -437,6 +443,7 @@ public class News extends AppCompatActivity {
             intent.putExtra("NEWSIMAGE_KEY",details[0]);
             intent.putExtra("NEWSTITLE",details[1]);
             intent.putExtra("NEWSDES_KEY",details[2]);
+            c.startActivity(intent);
         }
     }
 }

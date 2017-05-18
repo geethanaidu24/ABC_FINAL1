@@ -199,7 +199,7 @@ public class DeleteProducts extends AppCompatActivity {
 
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
-            // adapter.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,

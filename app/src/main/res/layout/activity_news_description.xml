@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
 
-        android:id="@+id/newsimg"
+        android:id="@+id/newsImage"
         android:layout_marginTop="35dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
@@ -63,11 +63,12 @@
         android:gravity="center"
         android:layout_marginLeft="20dp"
         android:id="@+id/newstxt"
-        android:layout_below="@+id/img1"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/cred"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:layout_below="@+id/newsImage"
+        android:layout_alignStart="@+id/description" />
 
     <TextView
         android:id="@+id/textView3"
@@ -78,25 +79,24 @@
         android:layout_marginTop="30dp"
         android:text="NEWS"
         android:typeface="normal"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="24sp"
         android:textColor="@android:color/holo_red_dark"
         android:lineSpacingExtra="8sp"
         android:fontFamily="sans-serif" />
 
-    <EditText
+    <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
         android:inputType="textMultiLine"
         android:selectAllOnFocus="false"
-        android:layout_below="@+id/nameTxt"
-        android:layout_alignStart="@+id/nameTxt" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="85dp" />
 
 
 </RelativeLayout>
