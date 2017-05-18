@@ -5,28 +5,51 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.util.ArrayList;
 
 import static com.example.admin.abc.R.id.productsadd;
 
 public class Contact extends AppCompatActivity {
 
     private boolean loggedIn = false;
+    final static String contactsAddress = Config.contactsUrlAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
+        final ListView lv = (ListView) findViewById(R.id.contactlist);
 
+        new ContactsDownloader(Contact.this, contactsAddress, lv).execute();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -138,6 +161,178 @@ public class Contact extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
+    }
+    public class ContactsDownloader extends AsyncTask<Void, Void, String> {
+
+        Context c;
+        String urlAddress;
+        ListView lv;
+
+
+        public ContactsDownloader(Context c, String urlAddress, ListView lv) {
+            this.c = c;
+            this.urlAddress = urlAddress;
+            this.lv = lv;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            String data = downloadData();
+            return data;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (s == null) {
+                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+            } else {
+
+                //CALL DATA PARSER TO PARSE
+                ContactsDataParser parser = new ContactsDataParser(c, lv, s);
+                parser.execute();
+            }
+        }
+
+        private String downloadData() {
+            HttpURLConnection con = Connector.connect(urlAddress);
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream is = new BufferedInputStream(con.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                br.close();
+                is.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    public class ContactsDataParser extends AsyncTask<Void,Void,Integer> {
+        Context c;
+        ListView lv;
+        String jsonData;
+
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
+        public ContactsDataParser(Context c, ListView lv, String jsonData) {
+            this.c = c;
+            this.lv = lv;
+            this.jsonData = jsonData;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseData();
+        }
+
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if(result==0)
+            {
+                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
+            }else
+            {
+
+                final ContactsListAdapter adapter=new ContactsListAdapter(c,mySQLDataBases);
+                lv.setAdapter(adapter);
+            }
+        }
+
+        private int parseData()
+        {
+            try
+            {
+                JSONArray ja=new JSONArray(jsonData);
+                JSONObject jo=null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for(int i=0;i<ja.length();i++)
+                {
+                    jo=ja.getJSONObject(i);
+                    Log.d("result response: ", "> " + jo);
+                    int ProductId=jo.getInt("ProductId");
+                    String ProductName =jo.getString("ProductName");
+                    String ImageUrl=jo.getString("ImageUrl");
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBase.setProductName(ProductName);
+                    mySQLDataBase.setProductImageUrl(ImageUrl);
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+
+    }
+    private class ContactsListAdapter extends BaseAdapter {
+
+        Context c;
+        ArrayList<MySQLDataBase> mySQLDataBases;
+        LayoutInflater inflater;
+
+        private ContactsListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases) {
+            this.c = c;
+            this.mySQLDataBases = mySQLDataBases;
+            inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+        @Override
+        public int getCount() {
+            return mySQLDataBases.size();
+        }
+        @Override
+        public Object getItem(int position) {
+            return mySQLDataBases.get(position);
+        }
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if(convertView==null)
+            {
+                convertView=inflater.inflate(R.layout.contact_list, parent,false);
+            }
+            TextView nametxt= (TextView) convertView.findViewById(R.id.textViewURL);
+            ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
+            //BIND DATA
+            MySQLDataBase mySQLDataBase=(MySQLDataBase) this.getItem(position);
+            final String name = mySQLDataBase.getProductName();
+            final String url = mySQLDataBase.getProductImageUrl();
+            final int pid = mySQLDataBase.getProductId();
+            final String finalUrl=Config.mainUrlAddress + url;
+            nametxt.setText(mySQLDataBase.getProductName());
+
+            //IMG
+            PicassoClient.downloadImage(c,finalUrl,img);
+
+            // testing new activity condition
+
+
+            return convertView;
+        }
     }
 }
 

@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.4/abc/";
+public final static String mainUrlAddress = "http://192.168.0.6/abc/";
 
     // For admin login
 
@@ -57,6 +57,9 @@ public final static String brandsImgUrlAddress = mainUrlAddress+"getBrands.php";
     // For getting all New Items Form DB
 public final static String newsUrlAddress = mainUrlAddress+"getNews.php";
 
+    // For getting all Contacts From DB
+public final static String contactsUrlAddress = mainUrlAddress+"getContacts.php";
+
     //For performing crud on main products
 public final static String productsCRUD = mainUrlAddress+"productsCRUD.php";
 
@@ -72,12 +75,16 @@ public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubT
     //For performing crud on product type sizes
 public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
 
-// For performin crud on product sizes
+// For performing crud on product sizes
 public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.php";
-//For adding brands
+//For performing crud brands
 public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
-    //For adding news
-    public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
+    //For performing crud news
+public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
+
+    // For perform crud contacts
+public final static String contactsCRUD = mainUrlAddress+"contactsCRUD.php";
+
     //For aadding grid products types
     public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";
     //For adding grid product sizes
