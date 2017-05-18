@@ -88,10 +88,10 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //GET VALUES
-
+                final int recivedprosizeimgid = prosizeimgid;
                 String spinSelVal = sp.getSelectedItem().toString();
 
-                final int recivedprosizeimgid = prosizeimgid;
+
 
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();

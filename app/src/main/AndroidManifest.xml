@@ -154,7 +154,9 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity android:name=".AddBrands" />
         <activity android:name=".AddNews" />
         <activity android:name=".DeleteNews" />
-        <activity android:name=".NewsDescription"></activity>
+        <activity android:name=".NewsDescription" />
+        <activity android:name=".AddContact" />
+        <activity android:name=".DeleteContact"></activity>
     </application>
 
 </manifest>
