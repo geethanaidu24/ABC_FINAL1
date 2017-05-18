@@ -83,7 +83,7 @@ public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
 public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
 
     // For perform crud contacts
-public final static String contactsCRUD = mainUrlAddress+"contactsCRUD.php";
+public final static String contactsCRUD = mainUrlAddress+"contactCRUD.php";
 
     //For aadding grid products types
     public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";

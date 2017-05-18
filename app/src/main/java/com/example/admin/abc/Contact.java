@@ -64,11 +64,8 @@ public class Contact extends AppCompatActivity {
                     // startActivity(in);
                 }
             });
-
-
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
-
         }
     }
 
@@ -269,13 +266,21 @@ public class Contact extends AppCompatActivity {
                 {
                     jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-                    int ProductId=jo.getInt("ProductId");
-                    String ProductName =jo.getString("ProductName");
-                    String ImageUrl=jo.getString("ImageUrl");
+                    int contactId=jo.getInt("ContactId");
+                    String branch =jo.getString("Branch");
+                    String address=jo.getString("Address");
+                    String city = jo.getString("City");
+                    String time = jo.getString("Working Houres");
+                    String email=jo.getString("Email");
+                    int number = jo.getInt("ContactNumber");
                     mySQLDataBase=new MySQLDataBase();
-                    mySQLDataBase.setProductId(ProductId);
-                    mySQLDataBase.setProductName(ProductName);
-                    mySQLDataBase.setProductImageUrl(ImageUrl);
+                    mySQLDataBase.setContactId(contactId);
+                    mySQLDataBase.setBranch(branch);
+                    mySQLDataBase.setAddress(address);
+                    mySQLDataBase.setCity(city);
+                    mySQLDataBase.setWorkingHrs(time);
+                    mySQLDataBase.setEmail(email);
+                    mySQLDataBase.setContactNumber(number);
                     mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
@@ -315,22 +320,43 @@ public class Contact extends AppCompatActivity {
             {
                 convertView=inflater.inflate(R.layout.contact_list, parent,false);
             }
-            TextView nametxt= (TextView) convertView.findViewById(R.id.textViewURL);
-            ImageView img= (ImageView) convertView.findViewById(R.id.imageDownloaded);
+            TextView branchTxt= (TextView) convertView.findViewById(R.id.textView2);
+            TextView addresstxt= (TextView) convertView.findViewById(R.id.textView3);
+            TextView workingHrTxt= (TextView) convertView.findViewById(R.id.textView4);
+            TextView emailTxt= (TextView) convertView.findViewById(R.id.textView5);
+            TextView contactTxt = (TextView)convertView.findViewById(R.id.textView6);
+            ImageView workingHrsImg = (ImageView) convertView.findViewById(R.id.imageView3);
+            ImageView emailImg =(ImageView) convertView.findViewById(R.id.imageView4);
+            ImageView phoneImg = (ImageView)convertView.findViewById(R.id.imageView5);
             //BIND DATA
             MySQLDataBase mySQLDataBase=(MySQLDataBase) this.getItem(position);
-            final String name = mySQLDataBase.getProductName();
-            final String url = mySQLDataBase.getProductImageUrl();
-            final int pid = mySQLDataBase.getProductId();
-            final String finalUrl=Config.mainUrlAddress + url;
-            nametxt.setText(mySQLDataBase.getProductName());
-
-            //IMG
-            PicassoClient.downloadImage(c,finalUrl,img);
-
-            // testing new activity condition
-
-
+            final String branchName = mySQLDataBase.getBranch();
+            final String branchAddress = mySQLDataBase.getAddress();
+            final String branchCity = mySQLDataBase.getCity();
+            final String branchTime = mySQLDataBase.getWorkingHrs();
+            final String email = mySQLDataBase.getEmail();
+            final int mobile = mySQLDataBase.getContactNumber();
+            final String location = branchAddress +","+ branchCity;
+            branchTxt.setText(branchName);
+            addresstxt.setText(location);
+            if(branchTime!=null){
+                workingHrTxt.setText(branchTime);
+            }else{
+                workingHrsImg.setVisibility(View.INVISIBLE);
+                workingHrTxt.setVisibility(View.INVISIBLE);
+            }
+            if(email!=null){
+                emailTxt.setText(email);
+            }else{
+                emailImg.setVisibility(View.INVISIBLE);
+                emailTxt.setVisibility(View.INVISIBLE);
+            }
+            if(mobile!=0){
+                contactTxt.setText(mobile);
+            }else{
+                phoneImg.setVisibility(View.INVISIBLE);
+                contactTxt.setVisibility(View.INVISIBLE);
+            }
             return convertView;
         }
     }

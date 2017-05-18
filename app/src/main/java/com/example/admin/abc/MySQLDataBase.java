@@ -7,12 +7,13 @@ import java.io.Serializable;
  */
 
 public class MySQLDataBase implements Serializable {
-    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId;
+    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId,ContactId;
     public String ProductName, ProductType, ProductSubTypeName,NewsTitle;
     public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl,NewsImageUrl;
-    public int Width,Height,Length;
+    public int Width,Height,Length,ContactNumber;
     public String Name,ImagePath,Brand,Color,NewsDescription;
     public String DateTime;
+    public String Branch,Address,Email,City,WorkingHrs;
     public MySQLDataBase(){
 
     }
@@ -40,6 +41,8 @@ public class MySQLDataBase implements Serializable {
     }
     public int getNewsId(){ return NewsId; }
     public void setNewsId(int newsId){this.NewsId = newsId;}
+    public int getContactId(){return ContactId;}
+    public void setContactId(int contactId){this.ContactId=contactId;}
     public String getProductName() {
         return ProductName;
     }
@@ -114,5 +117,16 @@ public class MySQLDataBase implements Serializable {
     public void setNewsDescription(String newsDescription){ this.NewsDescription=newsDescription;}
     public String getDateTime(){return DateTime;}
     public void setDateTime(String dateTime){this.DateTime=dateTime;}
-
+    public int getContactNumber(){return ContactNumber;}
+    public  void setContactNumber(int contactNumber){this.ContactNumber=contactNumber;}
+    public String getBranch(){return Branch;}
+    public void setBranch(String branch){this.Branch=branch;}
+    public String getAddress(){return Address;}
+    public void setAddress(String address){this.Address=address;}
+    public String getEmail(){return Email;}
+    public void setEmail(String email){this.Email=email;}
+    public String getCity(){return City;}
+    public void setCity(String city){this.City=city;}
+    public String getWorkingHrs(){return WorkingHrs;}
+    public void setWorkingHrs(String workingHrs){this.WorkingHrs=workingHrs;}
 }
