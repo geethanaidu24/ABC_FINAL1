@@ -90,14 +90,14 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int recivedproductSubTypeId)
+    private void handleClickEvents(final int prosizeimgid)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //GET VALUES
-
+                final int recivedproductSubTypeId = prosizeimgid;
                 String spinSelVal = sp.getSelectedItem().toString();
 
                 //SAVE
