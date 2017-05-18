@@ -67,7 +67,6 @@
             android:background="@color/colorblack"
             android:fontFamily="sans-serif"
             android:gravity="center"
-
             android:text="Basins"
             android:textColor="@android:color/white"
             android:textSize="24sp"
