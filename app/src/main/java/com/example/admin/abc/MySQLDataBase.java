@@ -12,7 +12,7 @@ public class MySQLDataBase implements Serializable {
     public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl,NewsImageUrl;
     public int Width,Height,Length;
     public String Name,ImagePath,Brand,Color,NewsDescription;
-
+    public String DateTime;
     public MySQLDataBase(){
 
     }
@@ -112,5 +112,7 @@ public class MySQLDataBase implements Serializable {
     }
     public String getNewsDescription(){return NewsDescription;}
     public void setNewsDescription(String newsDescription){ this.NewsDescription=newsDescription;}
+    public String getDateTime(){return DateTime;}
+    public void setDateTime(String dateTime){this.DateTime=dateTime;}
 
 }

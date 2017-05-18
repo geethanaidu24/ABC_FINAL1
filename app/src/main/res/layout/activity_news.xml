@@ -62,9 +62,6 @@
         android:layout_marginBottom="10dp"
         >
 
-
-
-
         <GridView
             android:id="@+id/newsgridview"
             android:layout_width="fill_parent"

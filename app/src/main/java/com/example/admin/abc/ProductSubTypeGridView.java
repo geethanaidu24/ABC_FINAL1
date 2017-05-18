@@ -65,7 +65,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         gv.setNumColumns(2);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-         productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+        productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
         productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
