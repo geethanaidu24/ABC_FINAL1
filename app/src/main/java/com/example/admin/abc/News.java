@@ -24,6 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,9 +66,9 @@ public class News extends AppCompatActivity {
         // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-        final GridView gridView1 = (GridView) findViewById(R.id.newsgridview);
+        final ListView listView1 = (ListView) findViewById(R.id.newslist);
 
-        new NewsDownloader(News.this, newsUrlAddress, gridView1).execute();
+        new NewsDownloader(News.this, newsUrlAddress, listView1).execute();
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -236,13 +237,13 @@ public class News extends AppCompatActivity {
 
         Context c;
         String newsUrlAddress;
-        GridView gridView1;
+        ListView listView1;
 
 
-        private NewsDownloader(Context c, String urlAddress, GridView gridView1) {
+        private NewsDownloader(Context c, String urlAddress, ListView listView1) {
             this.c = c;
             this.newsUrlAddress = urlAddress;
-            this.gridView1 = gridView1;
+            this.listView1 = listView1;
         }
 
         @Override
@@ -262,7 +263,7 @@ public class News extends AppCompatActivity {
                 Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
             } else {
                 //CALL DATA PARSER TO PARSE
-                NewsDataParser parser = new NewsDataParser(c, gridView1, s);
+                NewsDataParser parser = new NewsDataParser(c, listView1, s);
                 parser.execute();
             }
         }
@@ -291,14 +292,14 @@ public class News extends AppCompatActivity {
     }
     private class NewsDataParser extends AsyncTask<Void, Void, Integer> {
         Context c;
-        GridView gridView1;
+        ListView listView1;
         String jsonData;
 
         ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
 
-        private NewsDataParser(Context c, GridView gridView1, String jsonData) {
+        private NewsDataParser(Context c, ListView listView1, String jsonData) {
             this.c = c;
-            this.gridView1 = gridView1;
+            this.listView1 = listView1;
             this.jsonData = jsonData;
         }
 
@@ -320,7 +321,7 @@ public class News extends AppCompatActivity {
             } else {
 
                 final NewsListAdapter adapter = new NewsListAdapter(c, mySQLDataBases);
-                gridView1.setAdapter(adapter);
+                listView1.setAdapter(adapter);
             }
         }
 
@@ -417,11 +418,25 @@ public class News extends AppCompatActivity {
             final String finalUrl = Config.mainUrlAddress + url;
             final String newsDate = mySQLDataBase.getDateTime();
             final String newsTitle = mySQLDataBase.getNewsTitle();
+            final String newsDescription = mySQLDataBase.getNewsDescription();
             //IMG
             PicassoClient.downloadImage(c, finalUrl, img);
             newsDatetxt.setText(newsDate);
             newsTiletxt.setText(newsTitle);
+            convertView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v){
+                   openDetailNewsActivity(finalUrl,newsTitle,newsDescription);
+                }
+            });
+
             return convertView;
+        }
+        private void openDetailNewsActivity(String...details){
+            Intent intent = new Intent(c, NewsDescription.class);
+            intent.putExtra("NEWSIMAGE_KEY",details[0]);
+            intent.putExtra("NEWSTITLE",details[1]);
+            intent.putExtra("NEWSDES_KEY",details[2]);
         }
     }
 }
