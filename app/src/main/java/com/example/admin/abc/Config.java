@@ -85,6 +85,9 @@ public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
     // For perform crud contacts
 public final static String contactsCRUD = mainUrlAddress+"contactCRUD.php";
 
+    //
+public final static String contactsBranchSpin = mainUrlAddress+"contactBranchSpin.php?City=";
+
     //For aadding grid products types
     public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";
     //For adding grid product sizes
