@@ -270,7 +270,7 @@ public class Contact extends AppCompatActivity {
                     String branch =jo.getString("Branch");
                     String address=jo.getString("Address");
                     String city = jo.getString("City");
-                    String time = jo.getString("Working Houres");
+                    String time = jo.getString("WorkingHrs");
                     String email=jo.getString("Email");
                     int number = jo.getInt("ContactNumber");
                     mySQLDataBase=new MySQLDataBase();
@@ -335,28 +335,25 @@ public class Contact extends AppCompatActivity {
             final String branchCity = mySQLDataBase.getCity();
             final String branchTime = mySQLDataBase.getWorkingHrs();
             final String email = mySQLDataBase.getEmail();
-            final int mobile = mySQLDataBase.getContactNumber();
+            final int personContact = Integer.parseInt(String.valueOf(mySQLDataBase.getContactNumber()).toString());
             final String location = branchAddress +","+ branchCity;
-            branchTxt.setText(branchName);
             addresstxt.setText(location);
-            if(branchTime!=null){
-                workingHrTxt.setText(branchTime);
-            }else{
-                workingHrsImg.setVisibility(View.INVISIBLE);
-                workingHrTxt.setVisibility(View.INVISIBLE);
-            }
-            if(email!=null){
+            branchTxt.setText(branchName);
+            workingHrTxt.setText(branchTime);
+
+            //if(email!="")
+            if (email != null && !email.isEmpty() && !email.equals("null")) {
                 emailTxt.setText(email);
             }else{
                 emailImg.setVisibility(View.INVISIBLE);
                 emailTxt.setVisibility(View.INVISIBLE);
             }
-            if(mobile!=0){
-                contactTxt.setText(mobile);
+            if(personContact!=0){
+                contactTxt.setText(String.valueOf(personContact));
             }else{
-                phoneImg.setVisibility(View.INVISIBLE);
-                contactTxt.setVisibility(View.INVISIBLE);
-            }
+                phoneImg.setVisibility(View.GONE);
+                contactTxt.setVisibility(View.GONE);
+           }
             return convertView;
         }
     }
