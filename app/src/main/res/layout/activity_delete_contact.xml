@@ -9,7 +9,8 @@
 
 
     tools:context=".MainActivity">
-    <android.support.v7.widget.Toolbar
+    <include layout="@layout/activity_toolbar"></include>
+   <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,12 +32,12 @@
             app:srcCompat="@mipmap/abctextlogo"/>
 
     </android.support.v7.widget.Toolbar>
-
+-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_marginBottom="10dp"  >
+        android:layout_marginBottom="10dp"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/textView24"
@@ -47,7 +48,7 @@
             android:layout_marginTop="10dp"
             android:text="DELETE CONTACTS"
             android:textColor="@color/cred"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView25"
@@ -58,20 +59,20 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="90dp"
-            android:text="Select Contacts to be Deleted:"
+            android:text="Select City :"
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
 
         <Spinner
-            android:id="@+id/contactsp"
+            android:id="@+id/cityspinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView25"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:spinnerMode="dialog"
+            android:layout_marginTop="15dp"
             android:prompt="@string/prompt_text"
-            android:layout_marginTop="15dp"/>
+            android:spinnerMode="dialog" />
 
         <Button
             android:id="@+id/contactdelete"
@@ -83,6 +84,31 @@
             android:background="@color/cred"
             android:text="DELETE"
 
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/cityspinner"
+            android:layout_below="@+id/cityspinner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="29dp"
+            android:text="Select Branch Name :"
+            android:textColor="@color/cred"
+            android:textSize="18sp" />
+
+        <Spinner
+            android:id="@+id/branchspinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/contactsp"
+            android:layout_below="@+id/textView16"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:prompt="@string/prompt_text"
+            android:spinnerMode="dialog" />
     </RelativeLayout>
 </LinearLayout>

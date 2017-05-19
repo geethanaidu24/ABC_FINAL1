@@ -65,7 +65,9 @@ dependencies {
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }
 android {
-// ...
+
+
+    // ...
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
 // ...

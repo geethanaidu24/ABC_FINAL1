@@ -7,7 +7,7 @@ import java.io.Serializable;
  */
 
 public class MySQLDataBase implements Serializable {
-    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId,ContactId;
+    public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId,ContactId,BranchId,CityId;
     public String ProductName, ProductType, ProductSubTypeName,NewsTitle;
     public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl,NewsImageUrl;
     public int Width,Height,Length,ContactNumber;
@@ -121,12 +121,22 @@ public class MySQLDataBase implements Serializable {
     public  void setContactNumber(int contactNumber){this.ContactNumber=contactNumber;}
     public String getBranch(){return Branch;}
     public void setBranch(String branch){this.Branch=branch;}
+    public int getBranchId(){
+        return BranchId;}
+    public void setBranchId(int branchid){
+        this.BranchId = branchid;
+    }
     public String getAddress(){return Address;}
     public void setAddress(String address){this.Address=address;}
     public String getEmail(){return Email;}
     public void setEmail(String email){this.Email=email;}
     public String getCity(){return City;}
     public void setCity(String city){this.City=city;}
+    public int getCityId(){
+        return CityId;}
+    public void setCityId(int cityId){
+        this.CityId = cityId;
+    }
     public String getWorkingHrs(){return WorkingHrs;}
     public void setWorkingHrs(String workingHrs){this.WorkingHrs=workingHrs;}
 }

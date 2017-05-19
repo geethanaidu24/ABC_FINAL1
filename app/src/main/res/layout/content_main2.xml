@@ -6,24 +6,30 @@
     android:id="@+id/content_main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:layout_weight="1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.admin.abc.Main2Activity"
 
+
+    android:weightSum="2"
     tools:showIn="@layout/app_bar_main2"
     android:baselineAligned="false"
     android:orientation="vertical">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" >
     <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/pager1"
             android:layout_width="fill_parent"
-            android:layout_height="620px"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true" />
+            android:layout_height="fill_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator1"
@@ -39,12 +45,13 @@
             app:pageColor="#FF0000"
             app:snap="false" />
     </RelativeLayout>
-
+</LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:alpha="1.0"
+        android:layout_weight="1"
         android:background="@mipmap/bakgroundone"
         android:orientation="vertical">
 

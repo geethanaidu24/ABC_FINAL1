@@ -13,8 +13,8 @@
 
     android:orientation="vertical"
     >
-
-    <android.support.v7.widget.Toolbar
+    <include layout="@layout/activity_toolbar"></include>
+   <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
             android:layout_marginTop="2dp"
             app:srcCompat="@mipmap/abctextlogo"/>
 
-    </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>-->
     <TextView
         android:text="Visit Our Branches"
         android:layout_width="wrap_content"

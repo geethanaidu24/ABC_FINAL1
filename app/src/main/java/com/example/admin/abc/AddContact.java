@@ -93,7 +93,7 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
         String baddress = address.getText().toString();
         String bcontactno=contactnumber.getText().toString();
         String bcity = city.getText().toString();
-
+String bworkinghrs=workinghours.getText().toString();
         String bemail = email.getText().toString();
 
         if (TextUtils.isEmpty(bname)) {
@@ -119,6 +119,11 @@ Boolean onErrorr=false;
         if (TextUtils.isEmpty(bcity)) {
             city.setError("Enter Your Message");
             city.requestFocus();
+            return;
+        }
+        if(TextUtils.isEmpty(bworkinghrs)){
+            workinghours.setError("Fill all");
+            workinghours.requestFocus();
             return;
         }
 
