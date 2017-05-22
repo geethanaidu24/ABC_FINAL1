@@ -9,7 +9,7 @@
 
     <TableRow
         android:gravity="center_vertical"
-
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
 android:layout_height="175dp"
         android:layout_gravity="center_horizontal"
@@ -17,15 +17,16 @@ android:layout_height="175dp"
         android:layout_marginRight="10dp"   >
 
 
-        <ImageView android:id="@+id/imageDownloaded"
-            android:layout_marginTop="10dp"
-            android:layout_height="150dp"
-
-
-            android:layout_gravity="center"
+        <ImageView
+            android:id="@+id/imageDownloaded"
 
             android:layout_width="fill_parent"
-            />
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="true"
+
+            android:src="@mipmap/backfinaleight" />
 
     </TableRow>
 
