@@ -61,7 +61,7 @@ public class DeleteNews extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.newsdelete);
         sp= (Spinner) findViewById(R.id.newssp);
-        sp.setPrompt("Select One");
+       // sp.setPrompt("Select One");
     }
     /*
     HANDLE CLICK EVENTS
@@ -73,15 +73,20 @@ public class DeleteNews extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteNews.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
-                MySQLDataBase s=new MySQLDataBase();
-                s.setNewsId(deleteNewsId);
-                if(s==null)
-                {
-                    Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                    MySQLDataBase s=new MySQLDataBase();
+                    s.setNewsId(deleteNewsId);
+                    if(s==null)
+                    {
+                        Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("newsid", String.valueOf(s.getNewsId()))
@@ -114,6 +119,7 @@ public class DeleteNews extends AppCompatActivity {
                                     Toast.makeText(DeleteNews.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
+                    }
                 }
             }
         });
@@ -181,6 +187,7 @@ public class DeleteNews extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getNewsTitle());
             }
@@ -192,16 +199,22 @@ public class DeleteNews extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final int selNewsid =mySQLDataBase.getNewsId() ;
-                    handleClickEvents(selNewsid);
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteNews.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        final int selNewsid =mySQLDataBase.getNewsId() ;
+                        handleClickEvents(selNewsid);
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
                                             int which) {
                             // TODO Auto-generated method stub
                             dialog.dismiss();
-                        }
-                    };
+                            }
+                        };
+                    }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub

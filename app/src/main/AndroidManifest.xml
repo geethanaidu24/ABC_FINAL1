@@ -134,6 +134,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="com.example.admin.abc.GlideConfiguration"
             android:value="GlideModule" />
 
+
         <!--
         <activity android:name=".AddProductSizes">
         </activity>
