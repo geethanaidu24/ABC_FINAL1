@@ -62,7 +62,7 @@ public class DeleteContact extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.contactdelete);
         sp= (Spinner) findViewById(R.id.cityspinner);
-        sp.setPrompt("Select One");
+        //sp.setPrompt("Select One");
 
     }
     /*
@@ -75,6 +75,11 @@ public class DeleteContact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                if(sp.getSelectedItem().toString().equals("Select One") || sp1.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteContact.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setContactId(deleteContactId);
@@ -116,6 +121,7 @@ public class DeleteContact extends AppCompatActivity {
                                     Toast.makeText(DeleteContact.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
+                }
                 }
             }
         });
@@ -186,6 +192,7 @@ public class DeleteContact extends AppCompatActivity {
 
             final ArrayList<String> listItems = new ArrayList<>();
             final HashSet<String> hashSet = new HashSet<String>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getCity());
             }
@@ -200,19 +207,25 @@ public class DeleteContact extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final int contId =mySQLDataBase.getContactId() ;
-                    final String selectedCity = mySQLDataBase.getCity();
-                    BranchBackTask bt = new BranchBackTask(selectedCity);
-                    bt.execute();
-                    //handleClickEvents(selNewsid);
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteContact.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        final int contId = mySQLDataBase.getContactId();
+                        final String selectedCity = mySQLDataBase.getCity();
+                        BranchBackTask bt = new BranchBackTask(selectedCity);
+                        bt.execute();
+                        //handleClickEvents(selNewsid);
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                dialog.dismiss();
+                            }
+                        };
+                    }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
@@ -287,9 +300,10 @@ public class DeleteContact extends AppCompatActivity {
 
         protected void onPostExecute(Void result) {
             sp1 = (Spinner) findViewById(R.id.branchspinner);
-            sp1.setPrompt("Select One");
+            //sp1.setPrompt("Select One");
             sp1.setEnabled(true);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getBranch());
             }
@@ -301,6 +315,11 @@ public class DeleteContact extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
+                    if(sp1.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteContact.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final int contId2 =mySQLDataBase.getContactId() ;
                     final String selectedCity2 = mySQLDataBase.getCity();
@@ -313,6 +332,7 @@ public class DeleteContact extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
+                    }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub

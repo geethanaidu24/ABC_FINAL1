@@ -64,7 +64,7 @@ public class DeleteProducts extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.addBtn);
         sp= (Spinner) findViewById(R.id.sp);
-        sp.setPrompt("Select One");
+        //sp.setPrompt("Select One");
     }
     /*
     HANDLE CLICK EVENTS
@@ -77,13 +77,14 @@ public class DeleteProducts extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                String spinSelVal = sp.getSelectedItem().toString();
-
-                final int rpid = pid;
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteProducts.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                     //SAVE
                     MySQLDataBase s=new MySQLDataBase();
-                    s.setProductId(rpid);
+                    s.setProductId(pid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProducts.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
@@ -122,7 +123,7 @@ public class DeleteProducts extends AppCompatActivity {
                                     Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -134,11 +135,11 @@ public class DeleteProducts extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
+
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
+
         }
 
         protected Void doInBackground(Void... params) {
@@ -193,6 +194,7 @@ public class DeleteProducts extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getProductName());
             }
@@ -204,6 +206,11 @@ public class DeleteProducts extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteProducts.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final String name = mySQLDataBase.getProductName();
                     //  final int pid
@@ -216,7 +223,7 @@ public class DeleteProducts extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProducts.this,

@@ -36,10 +36,10 @@ import java.util.ArrayList;
 
 public class DeleteProductTypeSizes extends AppCompatActivity {
 
-    final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
-    private ArrayAdapter<SizesDB> adapter ;
+    private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypeSizesCRUD;
     private static final String DATA_Size_Spin = Config.productTypeSizesUrlAddress;
     URL DATA_Spinner = null;
@@ -91,7 +91,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletebtn1);
         sp= (Spinner) findViewById(R.id.spdelete1);
-        sp.setPrompt("Select One....");
+        //sp.setPrompt("Select One....");
     }
     /*
     HANDLE CLICK EVENTS
@@ -107,7 +107,11 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                 //String spinSelVal = sp.getSelectedItem().toString();
 
                 final int rpsid = psid;
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteProductTypeSizes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 SizesDB s=new SizesDB();
                 s.setProductSizeId(rpsid);
@@ -152,7 +156,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductTypeSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -201,8 +205,8 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
             try {
                 JSONArray ja = new JSONArray(result);
                 JSONObject jo=null;
-                sizesDBs.clear();
-                SizesDB sizesDB;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
@@ -210,12 +214,12 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                     int width = jo.getInt("Width");
                     int height =jo.getInt("Height");
                     int length =jo.getInt("Length");
-                    sizesDB=new SizesDB();
-                    sizesDB.setProductSizeId(psid);
-                    sizesDB.setWidth(width);
-                    sizesDB.setHeight(height);
-                    sizesDB.setLength(length);
-                    sizesDBs.add(sizesDB);
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(psid);
+                    mySQLDataBase.setWidth(width);
+                    mySQLDataBase.setHeight(height);
+                    mySQLDataBase.setLength(length);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -227,11 +231,12 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
 
             final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<sizesDBs.size();i++){
+            listItems.add("Select One");
+            for(int i=0;i<mySQLDataBases.size();i++){
 
-                final int width = Integer.parseInt(String.valueOf(sizesDBs.get(i).getWidth()).toString());
-                final int height = Integer.parseInt(String.valueOf(sizesDBs.get(i).getHeight()).toString());
-                final int length = Integer.parseInt(String.valueOf(sizesDBs.get(i).getLength()).toString());
+                final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
+                final int height = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getHeight()).toString());
+                final int length = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getLength()).toString());
                 //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
                 if(length !=0 && width !=0 && height !=0){
@@ -267,9 +272,13 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-
-                    SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                    final int psid =sizesDB.getProductSizeId();
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteProductTypeSizes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    final int psid =mySQLDataBase.getProductSizeId();
                     Log.d("selected response: ", "> " + psid);
                     handleClickEvents(psid);
                     new DialogInterface.OnClickListener() {
@@ -279,7 +288,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProductTypeSizes.this,

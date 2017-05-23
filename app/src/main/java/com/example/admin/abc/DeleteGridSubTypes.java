@@ -76,7 +76,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.griddelete);
         sp= (Spinner) findViewById(R.id.gridsp);
-        sp.setPrompt("Select One...");
+        //sp.setPrompt("Select One...");
     }
     /*
     HANDLE CLICK EVENTS
@@ -92,7 +92,11 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 String spinSelVal = sp.getSelectedItem().toString();
 
 
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteGridSubTypes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(recivedprosizeimgid);
@@ -136,7 +140,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteGridSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -205,6 +209,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getName());
             }
@@ -216,6 +221,11 @@ public class DeleteGridSubTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteGridSubTypes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final String name = mySQLDataBase.getName();
                     final int prosizeimgid =mySQLDataBase.getProductSizeImageId() ;
@@ -227,7 +237,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteGridSubTypes.this,

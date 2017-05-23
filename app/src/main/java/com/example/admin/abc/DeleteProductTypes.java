@@ -104,7 +104,11 @@ public class DeleteProductTypes extends AppCompatActivity {
                 String spinSelVal = sp.getSelectedItem().toString();
 
                 final int rptid = ptid;
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteProductTypes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductTypeId(rptid);
@@ -148,7 +152,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -219,6 +223,7 @@ public class DeleteProductTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getProductType());
             }
@@ -230,6 +235,11 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteProductTypes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final String name = mySQLDataBase.getProductType();
 
@@ -242,7 +252,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProductTypes.this,
