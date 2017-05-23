@@ -12,7 +12,8 @@
 
     android:orientation="vertical"
     >
-    <include layout="@layout/activity_toolbar"></include>
+    <include layout="@layout/activity_toolbar"
+        android:id="@+id/include"></include>
    <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -42,19 +43,19 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="10px"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_below="@+id/img1"
         android:background="@color/ddgrey" />
 
     <ImageView
         android:id="@+id/img1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="130px"
-        android:adjustViewBounds="true" />
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="60dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/include"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="CERA CLOISTER"
@@ -65,7 +66,7 @@
         android:id="@+id/nameTxt"
         android:layout_below="@+id/img1"
 
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/cred"
         android:textSize="24sp" />
 

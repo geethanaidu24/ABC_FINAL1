@@ -48,12 +48,13 @@
         android:background="@color/ddgrey" />
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
 android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/img1"
         android:layout_marginTop="100dp"
+      android:layout_below="@+id/toolbar"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -77,6 +78,7 @@ android:layout_marginLeft="20dp"
         android:layout_alignTop="@+id/nameTxt"
         android:layout_alignStart="@+id/nameTxt"
         android:layout_marginTop="50dp"
+        android:layout_below="@+id/nameTxt"
         android:id="@+id/brandview"
         android:textColor="@color/colorblack" />
 
