@@ -1,37 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
 
-    <TableRow
+    <RelativeLayout
         android:gravity="center_vertical"
         android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-     android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp" >
+     android:layout_marginLeft="10dp"
+        android:id="@+id/r1"
+        android:layout_marginRight="10dp" >
 
         <ImageView
             android:id="@+id/imageDownloaded"
-            android:layout_width="wrap_content"
-            android:layout_height="170dp"
+            android:layout_width="fill_parent"
+            android:layout_height="190dp"
             android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/backfinaleight" />
+            android:scaleType="fitXY"
+            android:src="@drawable/pageloader" />
 
-    </TableRow>
+    </RelativeLayout>
 
-    <TableRow android:layout_marginTop="0dp"
+    <RelativeLayout
+        android:layout_marginTop="0dp"
         android:gravity="center_horizontal"
         android:background="@color/colorblack"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        >
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/r1">
 
         <TextView
             android:id="@+id/textViewURL"
@@ -51,7 +55,7 @@
             android:typeface="normal"
             android:layout_width="wrap_content"   />
 
-    </TableRow>
+  </RelativeLayout>
 
 
-</TableLayout>
+</RelativeLayout>

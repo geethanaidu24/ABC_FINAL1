@@ -7,18 +7,23 @@
         android:title="Home"
        />
 
+
+
     <item
         android:id="@+id/ab"
+        android:drawableTint="@color/cred"
         android:icon="@drawable/aboutus"
         android:title="About Us"
-        android:drawableTint="@color/cred"/>
+
+     />
 
 
 
     <item
         android:id="@+id/product"
         android:icon="@drawable/productbar"
-        android:title="Products" />
+        android:title="Products"
+        />
     <item
         android:id="@+id/brands"
         android:icon="@drawable/brandbar"

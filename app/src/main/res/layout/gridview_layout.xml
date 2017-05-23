@@ -1,14 +1,17 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/back"   >
 
-    <TableRow
-        android:gravity="center"
+    <RelativeLayout
 
+android:id="@+id/r2"
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"   >
+
+        android:layout_height="fill_parent"
+
+
+        android:layout_alignParentStart="true">
 
 
 
@@ -17,16 +20,23 @@
             android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-android:src="@mipmap/abclogo"
+            android:layout_marginTop="15dp"
+android:src="@drawable/pageloader"
 android:background="@color/colorblack"
-            android:layout_gravity="center"/>
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
 
-    </TableRow>
+             />
 
-    <TableRow android:layout_marginTop="2dp"
+    </RelativeLayout>
+
+    <RelativeLayout android:layout_marginTop="2dp"
               android:layout_gravity="center_horizontal"
+android:layout_height="fill_parent"
+        android:gravity="center"
 
-        >
+        android:layout_width="fill_parent"
+       android:layout_below="@+id/r2" >
 
         <TextView
             android:id="@+id/txtTypeSizePro"
@@ -34,19 +44,22 @@ android:background="@color/colorblack"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="2"
+            android:layout_marginTop="10dp"
+
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/imgTypeSizePro"
             android:fontFamily="sans-serif"
+            android:gravity="center"
             android:text="hello"
             android:textAlignment="center"
             android:textColor="@color/colorblack"
             android:textSize="12dp"
             android:textStyle="normal"/>
 
-    </TableRow>
+    </RelativeLayout>
+    </RelativeLayout>
 
 
 
 
 
-</TableLayout>

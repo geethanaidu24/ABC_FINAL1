@@ -1,95 +1,107 @@
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="match_parent"
+android:layout_marginLeft="10dp"
+android:layout_marginRight="10dp">
+
+<RelativeLayout
+    android:gravity="end"
+    android:layout_marginTop="10dp"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/back1"
+    android:layout_height="fill_parent"
+    android:layout_gravity="end"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp">
-    <TableRow
-        android:layout_width="match_parent"
+    android:layout_alignParentTop="true"
+    android:id="@+id/r1"
 
-        android:layout_height="match_parent"
+     >
+    <TextView
+        android:id="@+id/newsDate"
+        android:layout_width="800dp"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+
+        android:background="@color/colorblack"
+        android:gravity="center"
+        android:textColor="@color/white" />
+
+    </RelativeLayout>
+<RelativeLayout
+    android:gravity="center_vertical"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_below="@+id/r1"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginLeft="10dp"
+    android:id="@+id/r2"
+
+    android:layout_marginRight="10dp" >
+    <ImageView
+        android:id="@+id/newsgridimg"
+        android:layout_width="fill_parent"
+        android:layout_height="190dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/pageloader" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_marginTop="0dp"
+    android:gravity="center_horizontal"
+    android:background="@color/colorblack"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:layout_below="@+id/r2"
+    android:id="@+id/r3">
+
+    <TextView
+        android:id="@+id/newsTitle"
+
+
+        android:layout_height="40dp"
+        android:text="Basins"
+        android:gravity="center"
+
+        android:textColor="@android:color/white"
+        android:background="@color/colorblack"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:typeface="normal"
+        android:layout_width="wrap_content"   />
+
+</RelativeLayout>
+<RelativeLayout
+    android:gravity="center_horizontal"
+    android:background="@color/colorblack"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:id="@+id/r4"
+    android:layout_below="@+id/r3"
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent">
+
+    <Button
+        android:id="@+id/newsbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="center"
 
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
 
-        android:gravity="end">
-
-
-        <TextView
-            android:id="@+id/newsDate"
-            android:layout_width="200dp"
-            android:layout_height="30dp"
-          android:layout_gravity="end"
-
-            android:background="@color/cred"
-            android:gravity="center"
-            android:textColor="@color/white" />
-
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-
-        android:gravity="center">
+        android:background="@color/cred"
+        android:text="Read More"
+        android:textColor="@color/white" />
+</RelativeLayout>
 
 
-        <ImageView
-            android:id="@+id/newsgridimg"
-            android:layout_width="fill_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/abclogo" />
-
-
-    </TableRow>
-
-    <TableRow
-        android:gravity="center_horizontal"
-        android:background="@color/colorblack"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-       <TextView
-           android:layout_height="50dp"
-           android:layout_width="match_parent"
-           android:id="@+id/newsTitle"
-           android:textSize="24sp"
-           android:layout_gravity="center"
-           android:gravity="center"
-           android:textColor="@color/white"/>
-
-    </TableRow>
-    <TableRow
-        android:gravity="center_horizontal"
-        android:background="@color/colorblack"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        >
-
-        <Button
-            android:id="@+id/newsbutton"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-       
-
-            android:background="@color/cred"
-            android:text="Read More"
-            android:textColor="@color/white" />
-
-    </TableRow>
-
-
-</TableLayout>
+</RelativeLayout>

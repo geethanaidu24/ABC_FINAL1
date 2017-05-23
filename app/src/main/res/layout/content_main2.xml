@@ -70,7 +70,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/product"
+                android:background="@drawable/producttrial"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
@@ -92,7 +92,7 @@
                 android:gravity="center"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:background="@drawable/abbbs" />
+                android:background="@drawable/abouttrial" />
 
 
         </LinearLayout>
@@ -121,7 +121,7 @@
                 android:layout_centerInParent="true"
 
                 android:layout_gravity="center"
-                android:background="@drawable/enquiry" />
+                android:background="@drawable/enquirytrial" />
 
             <View
                 android:layout_width="1dp"
@@ -139,7 +139,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:scaleType="centerCrop"
-                android:background="@drawable/cont" />
+                android:background="@drawable/contacttrial" />
 
         </LinearLayout>
 

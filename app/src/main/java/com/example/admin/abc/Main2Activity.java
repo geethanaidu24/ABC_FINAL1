@@ -111,7 +111,7 @@ private boolean menuOptionState=false;
 
 
        b1 = (Button) findViewById(R.id.button1);
-        b2 = (Button) findViewById(R.id.button2);
+        b2 = (Button) findViewById(R.id.buttonh);
         b3 = (Button) findViewById(R.id.button3);
         b4 = (Button) findViewById(R.id.button4);
 
@@ -287,6 +287,7 @@ private boolean menuOptionState=false;
         return super.onOptionsItemSelected(item);
     }
    */
+
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

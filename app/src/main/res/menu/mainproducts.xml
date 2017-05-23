@@ -9,7 +9,8 @@
     <menu>
         <item android:id="@+id/productsadd"
         android:icon="@mipmap/add"
-        android:title="NEW"/>
+        android:title="NEW"
+            />
 
         <item android:id="@+id/productdelete"
             android:icon="@android:drawable/ic_delete"

@@ -100,10 +100,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="10px"
+
         android:background="@color/cred"
         android:text="View All"
-        android:layout_marginTop="100px"
+        android:layout_marginTop="20dp"
         android:textColor="@color/white" />
 
 

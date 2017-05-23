@@ -54,7 +54,9 @@
 
         <ImageView
             android:id="@+id/newsimage"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="150dp"
             android:layout_below="@+id/textView13"
             android:layout_centerHorizontal="true"
@@ -67,11 +69,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
 
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="15dp"
             android:text="Path: "
             android:textColor="@color/colorblack"
 
-            android:layout_below="@+id/newsimage"
+            android:layout_below="@+id/textView43"
             android:layout_alignParentStart="true" />
 
         <TextView
@@ -129,6 +131,17 @@
             android:ems="10"
             android:inputType="textMultiLine"
             android:textColor="@color/colorblack" />
+
+        <TextView
+            android:id="@+id/textView43"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_below="@+id/newsimage"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorblack"
+            android:layout_marginTop="10dp"
+            android:text="Image Size Should be of highest Resolution 2160px width" />
 
 
     </RelativeLayout>

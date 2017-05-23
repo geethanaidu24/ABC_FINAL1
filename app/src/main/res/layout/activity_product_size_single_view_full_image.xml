@@ -33,11 +33,15 @@
 
 
     <ImageView
-        android:layout_width="200dp"
+        android:layout_width="fill_parent"
         android:layout_height="200dp"
         android:id="@+id/fullimage"
-        android:layout_marginTop="115dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/toolbar"
+
         android:layout_centerHorizontal="true"/>
 
 </RelativeLayout>

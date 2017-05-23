@@ -1,59 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
 
 
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="fill_parent"
+android:layout_height="match_parent"
+android:layout_marginLeft="10dp"
+android:layout_marginRight="10dp">
+
+<RelativeLayout
+    android:gravity="center_vertical"
+    android:layout_marginTop="10dp"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"  >
+    android:id="@+id/r1"
+    android:layout_marginRight="10dp" >
 
-    <TableRow
-        android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"  >
+    <ImageView
+        android:id="@+id/imageTypePro"
+        android:layout_width="fill_parent"
+        android:layout_height="190dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/pageloader" />
+
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_marginTop="0dp"
+    android:gravity="center_horizontal"
+    android:background="@color/colorblack"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:layout_below="@+id/r1">
+
+    <TextView
+        android:id="@+id/textViewURL1"
 
 
-        <ImageView android:id="@+id/imageTypePro"
+        android:layout_height="40dp"
+        android:text="Basins"
+        android:gravity="center"
 
-
-            android:layout_width="fill_parent"
-            android:layout_height="170dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/backfinaleight" />
-
-    </TableRow>
-
-    <TableRow android:layout_marginTop="0dp"
-        android:gravity="center_horizontal"
+        android:textColor="@android:color/white"
         android:background="@color/colorblack"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_gravity="center"
+        android:textSize="24sp"
 
-        >
+        android:layout_centerHorizontal="true"
+        android:fontFamily="sans-serif"
+        android:typeface="normal"
+        android:layout_width="wrap_content"   />
 
-
-        <TextView
-            android:id="@+id/textViewURL1"
-
-            android:text="Basins"
-            android:gravity="center"
-            android:layout_height="40dp"
-            android:layout_width="wrap_content"
-            android:textColor="@android:color/white"
-            android:background="@color/colorblack"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"
-            android:typeface="normal"
-            />
-
-    </TableRow>
+</RelativeLayout>
 
 
-</TableLayout>
+</RelativeLayout>

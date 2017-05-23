@@ -64,8 +64,10 @@
 
             <ImageView
                 android:id="@+id/image8"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_below="@+id/textView4"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
@@ -75,13 +77,13 @@
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="15dp"
                 android:text="NAME"
 
                 android:textColor="@color/cred"
                 android:textSize="18sp"
                 android:layout_marginLeft="20dp"
-                android:layout_below="@+id/image8"
+                android:layout_below="@+id/brandpath"
                 />
 
             <EditText
@@ -219,11 +221,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/toolbar"
+                android:layout_below="@+id/textView29"
 
                 android:textColor="@color/colorblack"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="210dp"
+               android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:text="Path"/>
 
             <TextView
@@ -251,9 +253,19 @@
                 android:layout_alignStart="@+id/typetext"
                 android:id="@+id/protext"/>
 
-
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/image8"
+               android:layout_marginLeft="20dp"
+                android:textColor="@color/colorblack"
+                android:layout_marginTop="10dp"
+                android:text="Image Size Should be of highest Resolution 2160px width"/>
         </RelativeLayout>
     </ScrollView>
+
 
 
 

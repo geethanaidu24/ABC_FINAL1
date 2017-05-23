@@ -56,9 +56,11 @@
 
         <ImageView
             android:id="@+id/brandimage"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="150dp"
             android:layout_below="@+id/textView13"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
             app:srcCompat="@mipmap/browseimage"/>
@@ -68,10 +70,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_below="@+id/brandimage"
+            android:layout_below="@+id/textView44"
             android:layout_marginLeft="20dp"
          android:textColor="@color/colorblack"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:text="Path: "/>
 
         <TextView
@@ -103,10 +105,21 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/cred"
             android:text="ADD"
             android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/textView44"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/brandimage"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorblack"
+            android:layout_marginTop="10dp"
+            android:text="Image Size Should be of highest Resolution 2160px width" />
 
 
     </RelativeLayout>
