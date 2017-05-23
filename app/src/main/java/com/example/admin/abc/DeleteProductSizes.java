@@ -97,7 +97,11 @@ public class DeleteProductSizes extends AppCompatActivity {
                 //GET VALUES
 
                // final int recivedProductSizeId = psid;
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteProductSizes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeId(productSizeId);
@@ -142,7 +146,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -216,6 +220,7 @@ public class DeleteProductSizes extends AppCompatActivity {
 
 
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
 
                 final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
@@ -256,7 +261,11 @@ public class DeleteProductSizes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteProductSizes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final int productSizeId =mySQLDataBase.getProductSizeId();
                     Log.d("selected response: ", "> " + productSizeId);
@@ -268,7 +277,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProductSizes.this,

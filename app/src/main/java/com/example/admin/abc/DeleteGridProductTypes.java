@@ -79,7 +79,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.gridproducttypedelete);
         sp= (Spinner) findViewById(R.id.gridproducttypesp);
-        sp.setPrompt("Select One....");
+        //sp.setPrompt("Select One....");
     }
     private void handleClickEvents(final int prosizeimgid)
 
@@ -91,7 +91,11 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                 //GET VALUES
 
                 String spinSelVal = sp.getSelectedItem().toString();
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteGridProductTypes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(prosizeimgid);
@@ -135,7 +139,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteGridProductTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -204,6 +208,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getName());
             }
@@ -215,17 +220,23 @@ public class DeleteGridProductTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final String name = mySQLDataBase.getName();
-                    final int prosizeimgid =mySQLDataBase.getProductSizeImageId() ;
-                    handleClickEvents(prosizeimgid);
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteGridProductTypes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        final String name = mySQLDataBase.getName();
+                        final int prosizeimgid = mySQLDataBase.getProductSizeImageId();
+                        handleClickEvents(prosizeimgid);
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                dialog.dismiss();
+                            }
+                        };
+                    }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub

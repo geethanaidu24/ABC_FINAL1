@@ -86,7 +86,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.delete2);
         sp= (Spinner) findViewById(R.id.sp2);
-        sp.setPrompt("Select One.....");
+        //sp.setPrompt("Select One.....");
     }
     /*
     HANDLE CLICK EVENTS
@@ -102,7 +102,11 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                 String spinSelVal = sp.getSelectedItem().toString();
 
                 final int rpid = psiid;
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteGridProductTypeSizes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(rpid);
@@ -148,7 +152,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                     Toast.makeText(DeleteGridProductTypeSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -160,11 +164,11 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     }
 
     private class BackTask extends AsyncTask<Void, Void, Void> {
-        ArrayList<String> list;
+
 
         protected void onPreExecute() {
             super.onPreExecute();
-            list = new ArrayList<>();
+
         }
 
         protected Void doInBackground(Void... params) {
@@ -220,6 +224,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getName());
             }
@@ -231,18 +236,24 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final String name = mySQLDataBase.getName();
-                    //  final int pid
-                    final int psiid =mySQLDataBase.getProductSizeImageId() ;
-                    handleClickEvents(psiid);
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteGridProductTypeSizes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else {
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        final String name = mySQLDataBase.getName();
+                        //  final int pid
+                        final int psiid = mySQLDataBase.getProductSizeImageId();
+                        handleClickEvents(psiid);
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+                                // TODO Auto-generated method stub
+                                dialog.dismiss();
+                            }
+                        };
+                    }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub

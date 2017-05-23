@@ -85,7 +85,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletesubbtn);
         sp= (Spinner) findViewById(R.id.spsubdelete);
-        sp.setPrompt("Select One....");
+        //sp.setPrompt("Select One....");
     }
     /*
     HANDLE CLICK EVENTS
@@ -99,7 +99,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 //GET VALUES
                 final int recivedproductSubTypeId = prosizeimgid;
                 String spinSelVal = sp.getSelectedItem().toString();
-
+                if(sp.getSelectedItem().toString().equals("Select One")){
+                    Toast.makeText(DeleteProductSubTypes.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSubTypeId(recivedproductSubTypeId);
@@ -143,7 +147,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }
+                }}
             }
         });
 
@@ -214,6 +218,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
             // productcrafts.addAll(productcrafts);
             final ArrayList<String> listItems = new ArrayList<>();
+            listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getProductSubTypeName());
             }
@@ -225,6 +230,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
+                    if(sp.getSelectedItem().toString().equals("Select One")){
+                        Toast.makeText(DeleteProductSubTypes.this,
+                                "Your Selected : Nothing",
+                                Toast.LENGTH_SHORT).show();
+                    }else{
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
                     final String name = mySQLDataBase.getProductSubTypeName();
                     final int productsubtypeId =mySQLDataBase.getProductSubTypeId() ;
@@ -236,7 +246,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                             dialog.dismiss();
                         }
                     };
-                }
+                }}
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProductSubTypes.this,
