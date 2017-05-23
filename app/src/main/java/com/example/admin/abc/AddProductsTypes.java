@@ -109,83 +109,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
-   /* @Override
-    public void onStart(){
-        super.onStart();
-        BackTask bt = new BackTask();
-        bt.execute();
-    }
-    private class BackTask extends AsyncTask<Void,Void,Void>{
-        ArrayList<String> list;
-        protected void onPreExecute() {
-            super.onPreExecute();
-            list = new ArrayList<>();
-        }
 
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo=null;
-                productsDBs.clear();
-                ProductsDB productsDB;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo=ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-                  int proid = jo.getInt("ProductId");
-                    String pname = jo.getString("ProductName");
-                    productsDB=new ProductsDB();
-                    productsDB.setId(proid);
-                    productsDB.setName(pname);
-                    productsDBs.add(productsDB);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            final ArrayList<String> listItems = new ArrayList<>();
-
-            for(int i=0;i<productsDBs.size();i++){
-
-      listItems.add(productsDBs.get(i).getName());
-            }
-            adapter = new ArrayAdapter(AddProductsTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
-
-            sp.setAdapter(adapter);
-sp.setPrompt("Select");
-            adapter.notifyDataSetChanged();
-        }
-    }
-*/
     @Override
     public void onClick(View view) {
         if(view == imageView){
@@ -236,39 +160,7 @@ sp.setPrompt("Select");
 
         //getting the actual path of the image
         String path = getPath(filePath);
-        /*sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                //  sp.setSelection(adapter.getPosition(Select));
-                // sp.setSelection(position);
-
-                    ProductsDB productsDB = (ProductsDB) productsDBs.get(position);
-                    final String productName = productsDB.getName();
-
-                    spid = productsDB.getId();
-                Log.d("result", ""+ spid);
-
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
-                                            int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
-                }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddProductsTypes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });*/
-      /*  ProductsDB s = new ProductsDB();
-        s.setName(caption);
-        s.setId(selectedProductId);*/
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();

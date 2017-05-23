@@ -13,7 +13,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-     android:layout_marginLeft="10dp"
+        android:layout_marginLeft="10dp"
         android:id="@+id/r1"
         android:layout_marginRight="10dp" >
 
@@ -22,8 +22,8 @@
             android:layout_width="fill_parent"
             android:layout_height="190dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@drawable/pageloader" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/backfinaleight" />
 
     </RelativeLayout>
 
@@ -55,7 +55,7 @@
             android:typeface="normal"
             android:layout_width="wrap_content"   />
 
-  </RelativeLayout>
+    </RelativeLayout>
 
 
 </RelativeLayout>

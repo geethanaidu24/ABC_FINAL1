@@ -106,15 +106,14 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
                 //String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rpsid = psid;
                 if(sp.getSelectedItem().toString().equals("Select One")){
                     Toast.makeText(DeleteProductTypeSizes.this,
                             "Your Selected : Nothing",
                             Toast.LENGTH_SHORT).show();
                 }else{
                 //SAVE
-                SizesDB s=new SizesDB();
-                s.setProductSizeId(rpsid);
+                MySQLDataBase s=new MySQLDataBase();
+                s.setProductSizeId(psid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductTypeSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();

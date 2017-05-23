@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 /**
  * Created by Admin on 4/24/2017.
  */
@@ -36,7 +39,13 @@ public class SingleViewImageFull extends AppCompatActivity {
         final String brand = i.getExtras().getString("BRAND_KEY");
         final String color = i.getExtras().getString("COLOR_KEY");
         final String size = i.getExtras().getString("SIZE_KEY");
-        PicassoClient.downloadImage(c,image,im);
+        Glide.with(this)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(im);
+       // PicassoClient.downloadImage(c,image,im);
 
         // Picasso.with(c).load("http://192.168.0.3/abc/getProductSizeImages.php?").into(im);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,17 +58,6 @@ public class SingleViewImageFull extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-
-                   /* in.putExtra("IMAGE_KEY",image);
-                    in.putExtra("PRODUCTID_KEY",pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-
-                    in.putExtra("PRODUCTSUBTYPEID_KEY",ptsid);
-                    in.putExtra("NAME_KEY",name);
-                    in.putExtra("BRAND_KEY",brand);
-                    in.putExtra("COLOR_KEY",color);
-                    startActivity(in);*/
                    finish();
                 }
             });

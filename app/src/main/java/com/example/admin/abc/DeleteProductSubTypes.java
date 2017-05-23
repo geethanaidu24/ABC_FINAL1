@@ -97,8 +97,6 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //GET VALUES
-                final int recivedproductSubTypeId = prosizeimgid;
-                String spinSelVal = sp.getSelectedItem().toString();
                 if(sp.getSelectedItem().toString().equals("Select One")){
                     Toast.makeText(DeleteProductSubTypes.this,
                             "Your Selected : Nothing",
@@ -106,7 +104,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
-                s.setProductSubTypeId(recivedproductSubTypeId);
+                s.setProductSubTypeId(prosizeimgid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();

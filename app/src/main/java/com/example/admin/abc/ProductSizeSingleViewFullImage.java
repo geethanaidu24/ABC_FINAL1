@@ -10,6 +10,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 public class ProductSizeSingleViewFullImage extends AppCompatActivity {
     ImageView im;
     Context c;
@@ -33,7 +36,12 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
             final String brand = i.getExtras().getString("BRAND_KEY");
             final String color = i.getExtras().getString("COLOR_KEY");
             final String size = i.getExtras().getString("SIZE_KEY");
-            PicassoClient.downloadImage(c,image,im);
+        Glide.with(this)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(im);
 
            // Picasso.with(c).load("http://192.168.0.3/abc/getProductSizeImages.php?").into(im);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

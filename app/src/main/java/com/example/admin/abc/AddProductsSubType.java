@@ -60,10 +60,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private String selectedProducttype;
 
     Context context;
-   // final ArrayList<ProductTypesDB> productTypesDBs =new ArrayList<>();
 
-    //private Spinner sp1;
-   // private ArrayAdapter<ProductTypesDB> adapter ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();

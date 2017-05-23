@@ -259,7 +259,7 @@ public class Brands extends AppCompatActivity {
         GridView gridView1;
 
 
-        public BrandsDownloader(Context c, String urlAddress, GridView gridView1) {
+        private BrandsDownloader(Context c, String urlAddress, GridView gridView1) {
             this.c = c;
             this.urlAddress = urlAddress;
             this.gridView1 = gridView1;
@@ -272,8 +272,8 @@ public class Brands extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadData();
-            return data;
+           return downloadData();
+
         }
 
         @Override

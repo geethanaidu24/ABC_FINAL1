@@ -211,19 +211,20 @@ public class DeleteProducts extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final String name = mySQLDataBase.getProductName();
-                    //  final int pid
-                    final int pid =mySQLDataBase.getProductId() ;
-                    handleClickEvents(pid);
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog,
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        final String name = mySQLDataBase.getProductName();
+                        //  final int pid
+                        final int pid =mySQLDataBase.getProductId() ;
+                        handleClickEvents(pid);
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
                                             int which) {
-                            // TODO Auto-generated method stub
-                            dialog.dismiss();
-                        }
-                    };
-                }}
+                             // TODO Auto-generated method stub
+                                dialog.dismiss();
+                            }
+                        };
+                    }
+                }
                 public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProducts.this,
