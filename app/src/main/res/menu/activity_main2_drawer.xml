@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/home"
         android:icon="@drawable/home"
         android:title="Home"
-       />
+     />
 
 
 
@@ -49,7 +51,7 @@
 
     <item
         android:id="@+id/of"
-        android:icon="@drawable/offers"
+        android:icon="@mipmap/discount"
         android:title="ABC Offers" />
 
 

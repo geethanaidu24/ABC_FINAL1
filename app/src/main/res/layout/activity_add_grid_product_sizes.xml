@@ -93,7 +93,7 @@
                 android:id="@+id/name8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="8"
                 android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
@@ -117,7 +117,7 @@
                 android:id="@+id/brand8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:ems="8"
                 android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
@@ -200,7 +200,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:textColor="@color/colorblack"
-                android:ems="10"
+                android:ems="8"
                 android:inputType="textPersonName" />
 
 

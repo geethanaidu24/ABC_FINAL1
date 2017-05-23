@@ -9,7 +9,7 @@ android:layout_marginRight="10dp">
 
 <RelativeLayout
     android:gravity="end"
-    android:layout_marginTop="10dp"
+    android:layout_marginTop="20dp"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="end"
@@ -95,9 +95,9 @@ android:layout_marginRight="10dp">
         android:id="@+id/newsbutton"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_gravity="center"
-
-
+        android:layout_gravity="end"
+android:layout_alignParentRight="true"
+android:gravity="end"
         android:background="@color/cred"
         android:text="Read More"
         android:textColor="@color/white" />
