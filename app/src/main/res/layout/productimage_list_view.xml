@@ -11,7 +11,7 @@
         android:gravity="center_vertical"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="170dp"
         android:layout_gravity="center_horizontal"
      android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp" >
@@ -23,9 +23,8 @@
 
             android:layout_width="fill_parent"
             android:layout_height="170dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/backfinaleight" />
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY" />
 
     </TableRow>
 
