@@ -51,7 +51,7 @@
 
     <item
         android:id="@+id/of"
-        android:icon="@drawable/offers"
+        android:icon="@mipmap/discount"
         android:title="ABC Offers" />
 
 

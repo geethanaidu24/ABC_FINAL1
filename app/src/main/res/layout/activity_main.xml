@@ -42,17 +42,14 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/toolbar"
-    android:layout_centerInParent="true">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
+    android:layout_below="@+id/linearLayout"
+   >
 
-        android:background="@color/cred"/>
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         app:srcCompat="@mipmap/abclogo"
         android:id="@+id/imageView_pic"
         android:layout_alignParentTop="true"

@@ -13,7 +13,7 @@
             />
 
         <item android:id="@+id/productdelete"
-            android:icon="@android:drawable/ic_delete"
+            android:icon="@mipmap/delete"
         android:title="DELETE"/>
 
         <item android:id="@+id/logout"
