@@ -23,7 +23,7 @@
             android:layout_height="190dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            android:src="@mipmap/backfinaleight" />
+            android:src="@drawable/pageloader" />
 
     </RelativeLayout>
 
