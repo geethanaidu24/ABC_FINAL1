@@ -154,6 +154,9 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
         <activity android:name=".NewsDescription" />
         <activity android:name=".AddContact" />
         <activity android:name=".DeleteContact"></activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="73af28913d7e9d4e7d50d8a1de7164b9484fdfcd" />
     </application>
 
 </manifest>

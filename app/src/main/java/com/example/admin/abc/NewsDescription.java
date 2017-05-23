@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 public class NewsDescription extends AppCompatActivity {
 
     ImageView back;
@@ -31,8 +34,13 @@ public class NewsDescription extends AppCompatActivity {
         final String descriptn = i.getExtras().getString("NEWSDES_KEY");
         titleTxt.setText(titleNews);
         descriptionTxt.setText(descriptn);
-
-        PicassoClient.downloadImage(c, image, selectedImage);
+        Glide.with(this)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(selectedImage);
+        //PicassoClient.downloadImage(c, image, selectedImage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {

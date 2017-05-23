@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
     ImageView im1;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
         im1 = (ImageView) findViewById(R.id.imageView_pic);
