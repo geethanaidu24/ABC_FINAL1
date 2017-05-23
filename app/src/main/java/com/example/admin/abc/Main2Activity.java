@@ -53,7 +53,7 @@ private boolean menuOptionState=false;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 
-    private static final Integer[] IMAGES= {R.mipmap.backfinalfour, R.mipmap.backfinalthree, R.mipmap.backfinaltwo, R.mipmap.backfinalfive,R.mipmap.backfinalseven,R.mipmap.backfinaleight};
+    private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
@@ -111,7 +111,7 @@ private boolean menuOptionState=false;
 
 
        b1 = (Button) findViewById(R.id.button1);
-        b2 = (Button) findViewById(R.id.buttonh);
+        b2 = (Button) findViewById(R.id.button2);
         b3 = (Button) findViewById(R.id.button3);
         b4 = (Button) findViewById(R.id.button4);
 

@@ -43,11 +43,12 @@
 
         <ImageView
             android:id="@+id/newsgridimg"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
-
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
             android:src="@mipmap/abclogo" />
 
 
@@ -70,7 +71,7 @@
            android:textColor="@color/white"/>
 
     </TableRow>
-    <TableRow android:layout_marginTop="0dp"
+    <TableRow
         android:gravity="center_horizontal"
         android:background="@color/colorblack"
         android:layout_marginLeft="10dp"
