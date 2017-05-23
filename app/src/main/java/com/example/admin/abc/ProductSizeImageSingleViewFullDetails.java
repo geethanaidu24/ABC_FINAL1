@@ -11,6 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 /**
  * Created by Geetha on 4/21/2017.
  */
@@ -47,7 +50,12 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
         brandTxt.setText(brand);
         colorTxt.setText(color);
         sizeTxt.setText(size);
-        PicassoClient.downloadImage(c, image, selectedImage);
+        Glide.with(this)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(selectedImage);
 
         selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override

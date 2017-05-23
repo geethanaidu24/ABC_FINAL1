@@ -27,24 +27,12 @@ public class PicassoClient {
             //Picasso.with(c).load(imageUrl).placeholder(R.drawable.pageloader).into(img);
             //Glide.with(c).load(imageUrl).centerCrop().crossFade().placeholder(R.drawable.pageloader).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
            Glide.with(c).load(imageUrl).dontAnimate()
-                   .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL).crossFade().fitCenter()
+                   .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL).crossFade().centerCrop()
                    .placeholder(R.drawable.pageloader).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
         }else {
             //Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
             Glide.with(c).load(R.mipmap.ic_launcher).centerCrop().into(img);
         }
     }
-    /*public static ColorDrawable getRandomDrawbleColor() {
-        int idx = new Random().nextInt(vibrantLightColorList.length);
-        return vibrantLightColorList[idx];
-    }
-    private static ColorDrawable[] vibrantLightColorList =
-            {
-                    new ColorDrawable(Color.parseColor("#9ACCCD")), new ColorDrawable(Color.parseColor("#8FD8A0")),
-                    new ColorDrawable(Color.parseColor("#CBD890")), new ColorDrawable(Color.parseColor("#DACC8F")),
-                    new ColorDrawable(Color.parseColor("#D9A790")), new ColorDrawable(Color.parseColor("#D18FD9")),
-                    new ColorDrawable(Color.parseColor("#FF6772")), new ColorDrawable(Color.parseColor("#DDFB5C"))
-            };*/
-
 
 }

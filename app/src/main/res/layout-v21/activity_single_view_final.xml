@@ -48,13 +48,13 @@
         android:background="@color/ddgrey" />
 
     <ImageView
+        android:id="@+id/img1"
         android:layout_width="200dp"
         android:layout_height="200dp"
-
-        android:id="@+id/img1"
-        android:layout_marginTop="130px"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130px"
+        android:adjustViewBounds="true" />
 
     <TextView
         android:text="CERA CLOISTER"

@@ -91,7 +91,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     /*
     HANDLE CLICK EVENTS
      */
-    private void handleClickEvents(final int psiid)
+    private void handleClickEvents(final int protypesizeid)
     {
         //EVENTS : ADD
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -99,9 +99,6 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                String spinSelVal = sp.getSelectedItem().toString();
-
-                final int rpid = psiid;
                 if(sp.getSelectedItem().toString().equals("Select One")){
                     Toast.makeText(DeleteGridProductTypeSizes.this,
                             "Your Selected : Nothing",
@@ -109,7 +106,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                 }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
-                s.setProductSizeImageId(rpid);
+                s.setProductSizeImageId(protypesizeid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteGridProductTypeSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();

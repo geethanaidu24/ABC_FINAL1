@@ -101,9 +101,9 @@ public class DeleteProductTypes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                String spinSelVal = sp.getSelectedItem().toString();
 
-                final int rptid = ptid;
+
+
                 if(sp.getSelectedItem().toString().equals("Select One")){
                     Toast.makeText(DeleteProductTypes.this,
                             "Your Selected : Nothing",
@@ -111,7 +111,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                 }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
-                s.setProductTypeId(rptid);
+                s.setProductTypeId(ptid);
                 if(s==null)
                 {
                     Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();

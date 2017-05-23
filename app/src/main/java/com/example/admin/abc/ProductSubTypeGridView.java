@@ -340,14 +340,14 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         }
     }
 
-    public class ProductSubTypeImagesGirdAdapter extends BaseAdapter {
+    private class ProductSubTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
 
         ArrayList<MySQLDataBase> mySQLDataBases;
         int pstid;
         LayoutInflater inflater;
 
-        public ProductSubTypeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases,int pstid) {
+        private ProductSubTypeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases,int pstid) {
             this.c = c;
             this.mySQLDataBases = mySQLDataBases;
             this.pstid = pstid;
@@ -404,7 +404,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 public void onClick(View v){
                     //open detail activity
                     // startDeatilActivity();
-                    openDetailActivity(pstid,name,finalUrl,brand,color);
+                    openDetailActivity(pstid,name,url,brand,color);
                 }
             });
             return convertView;

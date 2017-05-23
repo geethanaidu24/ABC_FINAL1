@@ -8,6 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 /**
  * Created by Geetha on 4/24/2017.
  */
@@ -36,8 +39,12 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
         final String image = i.getExtras().getString("IMAGE_KEY");
         final String brand = i.getExtras().getString("BRAND_KEY");
         final String color = i.getExtras().getString("COLOR_KEY");
-
-        PicassoClient.downloadImage(c,image,selectedImage);
+        Glide.with(this)
+                .load(image)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(selectedImage);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {

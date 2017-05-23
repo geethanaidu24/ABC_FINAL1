@@ -214,7 +214,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 listItems.add(mySQLDataBases.get(i).getName());
             }
 
-            adapter=new ArrayAdapter(DeleteGridSubTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
+            adapter= new ArrayAdapter(DeleteGridSubTypes.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

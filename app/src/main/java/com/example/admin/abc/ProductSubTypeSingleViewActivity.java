@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 /**
  * Created by Geetha on 4/21/2017.
@@ -17,7 +21,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
 
     ImageView back;
 
-    ImageView selectedImage;
+    ImageView img;
     TextView nameTxt, brandTxt, colorTxt;
     Context c;
 
@@ -28,7 +32,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_single_view_final);
 
 
-        selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
+        img = (ImageView) findViewById(R.id.img1); //init a ImageView
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);
         colorTxt = (TextView) findViewById(R.id.colorTxt);
@@ -43,13 +47,21 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
         nameTxt.setText(name);
         brandTxt.setText(brand);
         colorTxt.setText(color);
-        PicassoClient.downloadImage(c, image, selectedImage);
+        Log.d("selected img url",""+image);
+        final String finImgUrl = Config.mainUrlAddress+image;
+        Log.d("selected img url",""+finImgUrl);
+        Glide.with(this)
+                .load(finImgUrl)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .centerCrop()
+                .crossFade()
+                .into(img);
 
-        selectedImage.setOnClickListener(new View.OnClickListener() {
+        img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductSubTypeSingleViewActivity.this,ProductSubTypeSingleViewImageFull.class);
-                in.putExtra("IMAGE_KEY",image);
+                in.putExtra("IMAGE_KEY",finImgUrl);
                 in.putExtra("PRODUCTSUBTYPEID_KEY",pstid);
                 in.putExtra("NAME_KEY",name);
                 in.putExtra("BRAND_KEY",brand);
