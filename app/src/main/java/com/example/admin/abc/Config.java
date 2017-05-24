@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.6/abc/";
+public final static String mainUrlAddress = "http://192.168.0.5/abc/";
 
     // For admin login
 
@@ -17,6 +17,8 @@ public final static String loginUrlAddress = mainUrlAddress+"login.php";
     // For Getting all main products data from database
 
 public final static String productsUrlAddress = mainUrlAddress+"getProducts.php";
+
+    public final static String testing = mainUrlAddress+"productscheck.php";
 
     // For getting all main products types from database
 

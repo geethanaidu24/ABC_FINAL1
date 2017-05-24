@@ -71,6 +71,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:spinnerMode="dialog"
+            android:prompt="@string/prompt_text"
             android:layout_marginTop="15dp"/>
 
         <Button

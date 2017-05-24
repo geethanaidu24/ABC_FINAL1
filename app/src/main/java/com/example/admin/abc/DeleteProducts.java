@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class DeleteProducts extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
-    private Button btnAdd;
+    private Button btnAdd,btnSpin;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productsCRUD;
     @Override
@@ -63,8 +64,8 @@ public class DeleteProducts extends AppCompatActivity {
 
 
         btnAdd= (Button) findViewById(R.id.addBtn);
-        sp= (Spinner) findViewById(R.id.sp);
-        //sp.setPrompt("Select One");
+        sp= (Spinner) findViewById(R.id.spinner);
+
     }
     /*
     HANDLE CLICK EVENTS
@@ -75,13 +76,13 @@ public class DeleteProducts extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //GET VALUES
 
-                if(sp.getSelectedItem().toString().equals("Select One")){
+               /* if(getSelectedItem().toString().equals("Select One")){
                     Toast.makeText(DeleteProducts.this,
                             "Your Selected : Nothing",
                             Toast.LENGTH_SHORT).show();
-                }else{
+                }else {*/
+                    //listItems.remove(0);
                     //SAVE
                     MySQLDataBase s=new MySQLDataBase();
                     s.setProductId(pid);
@@ -103,7 +104,7 @@ public class DeleteProducts extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProducts.this, "Response  : "+ responseString , Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
                                                 //Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             }else
@@ -123,7 +124,7 @@ public class DeleteProducts extends AppCompatActivity {
                                     Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }/*}*/
             }
         });
 
@@ -198,31 +199,36 @@ public class DeleteProducts extends AppCompatActivity {
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getProductName());
             }
-
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
+            sp.setVisibility(View.VISIBLE);
             adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    if(sp.getSelectedItem().toString().equals("Select One")){
+
+                    if(sp.getSelectedItem().equals("Select One")){
                         Toast.makeText(DeleteProducts.this,
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
-                    }else{
-                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                        final String name = mySQLDataBase.getProductName();
+                    }else {
+
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position - 1);
+
                         //  final int pid
-                        final int pid =mySQLDataBase.getProductId() ;
+                        final int pid = mySQLDataBase.getProductId();
+                        Log.d("selected id", "" + pid);
                         handleClickEvents(pid);
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
-                                            int which) {
-                             // TODO Auto-generated method stub
+                                                int which) {
+                                // TODO Auto-generated method stub
                                 dialog.dismiss();
                             }
                         };
+
                     }
                 }
                 public void onNothingSelected(AdapterView<?> arg0) {
@@ -235,6 +241,7 @@ public class DeleteProducts extends AppCompatActivity {
             });
 
         }
+
     }
 
 }
