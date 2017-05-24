@@ -1,23 +1,23 @@
 [
     {
-        "outputFile": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+        "outputFile": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
         "map": [
             {
                 "to": {
                     "startLine": 2,
                     "startColumn": 4,
-                    "startOffset": 100,
+                    "startOffset": 55,
                     "endColumn": 44,
-                    "endOffset": 140
+                    "endOffset": 95
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 2,
                         "startColumn": 4,
-                        "startOffset": 100,
+                        "startOffset": 55,
                         "endColumn": 44,
-                        "endOffset": 140
+                        "endOffset": 95
                     }
                 }
             },
@@ -25,18 +25,18 @@
                 "to": {
                     "startLine": 3,
                     "startColumn": 4,
-                    "startOffset": 145,
+                    "startOffset": 100,
                     "endColumn": 47,
-                    "endOffset": 188
+                    "endOffset": 143
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 3,
                         "startColumn": 4,
-                        "startOffset": 145,
+                        "startOffset": 100,
                         "endColumn": 47,
-                        "endOffset": 188
+                        "endOffset": 143
                     }
                 }
             },
@@ -44,18 +44,18 @@
                 "to": {
                     "startLine": 4,
                     "startColumn": 4,
-                    "startOffset": 193,
+                    "startOffset": 148,
                     "endColumn": 49,
-                    "endOffset": 238
+                    "endOffset": 193
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
-                        "startOffset": 193,
+                        "startOffset": 148,
                         "endColumn": 49,
-                        "endOffset": 238
+                        "endOffset": 193
                     }
                 }
             },
@@ -63,18 +63,18 @@
                 "to": {
                     "startLine": 5,
                     "startColumn": 4,
-                    "startOffset": 243,
+                    "startOffset": 198,
                     "endColumn": 49,
-                    "endOffset": 288
+                    "endOffset": 243
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 5,
                         "startColumn": 4,
-                        "startOffset": 243,
+                        "startOffset": 198,
                         "endColumn": 49,
-                        "endOffset": 288
+                        "endOffset": 243
                     }
                 }
             },
@@ -82,18 +82,18 @@
                 "to": {
                     "startLine": 6,
                     "startColumn": 4,
-                    "startOffset": 293,
+                    "startOffset": 248,
                     "endColumn": 62,
-                    "endOffset": 351
+                    "endOffset": 306
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 293,
+                        "startOffset": 248,
                         "endColumn": 62,
-                        "endOffset": 351
+                        "endOffset": 306
                     }
                 }
             },
@@ -101,18 +101,18 @@
                 "to": {
                     "startLine": 7,
                     "startColumn": 4,
-                    "startOffset": 356,
+                    "startOffset": 311,
                     "endColumn": 59,
-                    "endOffset": 411
+                    "endOffset": 366
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
-                        "startOffset": 356,
+                        "startOffset": 311,
                         "endColumn": 59,
-                        "endOffset": 411
+                        "endOffset": 366
                     }
                 }
             },
@@ -120,18 +120,18 @@
                 "to": {
                     "startLine": 8,
                     "startColumn": 4,
-                    "startOffset": 416,
+                    "startOffset": 371,
                     "endColumn": 60,
-                    "endOffset": 472
+                    "endOffset": 427
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 8,
                         "startColumn": 4,
-                        "startOffset": 416,
+                        "startOffset": 371,
                         "endColumn": 60,
-                        "endOffset": 472
+                        "endOffset": 427
                     }
                 }
             },
@@ -139,18 +139,18 @@
                 "to": {
                     "startLine": 9,
                     "startColumn": 4,
-                    "startOffset": 477,
+                    "startOffset": 432,
                     "endColumn": 66,
-                    "endOffset": 539
+                    "endOffset": 494
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 9,
                         "startColumn": 4,
-                        "startOffset": 477,
+                        "startOffset": 432,
                         "endColumn": 66,
-                        "endOffset": 539
+                        "endOffset": 494
                     }
                 }
             },
@@ -158,18 +158,18 @@
                 "to": {
                     "startLine": 10,
                     "startColumn": 4,
-                    "startOffset": 544,
+                    "startOffset": 499,
                     "endColumn": 62,
-                    "endOffset": 602
+                    "endOffset": 557
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 10,
                         "startColumn": 4,
-                        "startOffset": 544,
+                        "startOffset": 499,
                         "endColumn": 62,
-                        "endOffset": 602
+                        "endOffset": 557
                     }
                 }
             },
@@ -177,18 +177,18 @@
                 "to": {
                     "startLine": 11,
                     "startColumn": 4,
-                    "startOffset": 607,
+                    "startOffset": 562,
                     "endColumn": 71,
-                    "endOffset": 674
+                    "endOffset": 629
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
-                        "startOffset": 607,
+                        "startOffset": 562,
                         "endColumn": 71,
-                        "endOffset": 674
+                        "endOffset": 629
                     }
                 }
             },
@@ -196,18 +196,18 @@
                 "to": {
                     "startLine": 12,
                     "startColumn": 4,
-                    "startOffset": 679,
+                    "startOffset": 634,
                     "endColumn": 71,
-                    "endOffset": 746
+                    "endOffset": 701
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 12,
                         "startColumn": 4,
-                        "startOffset": 679,
+                        "startOffset": 634,
                         "endColumn": 71,
-                        "endOffset": 746
+                        "endOffset": 701
                     }
                 }
             },
@@ -215,18 +215,18 @@
                 "to": {
                     "startLine": 13,
                     "startColumn": 4,
-                    "startOffset": 751,
+                    "startOffset": 706,
                     "endColumn": 73,
-                    "endOffset": 820
+                    "endOffset": 775
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 13,
                         "startColumn": 4,
-                        "startOffset": 751,
+                        "startOffset": 706,
                         "endColumn": 73,
-                        "endOffset": 820
+                        "endOffset": 775
                     }
                 }
             },
@@ -234,18 +234,18 @@
                 "to": {
                     "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 825,
+                    "startOffset": 780,
                     "endColumn": 73,
-                    "endOffset": 894
+                    "endOffset": 849
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 14,
                         "startColumn": 4,
-                        "startOffset": 825,
+                        "startOffset": 780,
                         "endColumn": 73,
-                        "endOffset": 894
+                        "endOffset": 849
                     }
                 }
             },
@@ -253,18 +253,18 @@
                 "to": {
                     "startLine": 15,
                     "startColumn": 4,
-                    "startOffset": 899,
+                    "startOffset": 854,
                     "endColumn": 75,
-                    "endOffset": 970
+                    "endOffset": 925
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 15,
                         "startColumn": 4,
-                        "startOffset": 899,
+                        "startOffset": 854,
                         "endColumn": 75,
-                        "endOffset": 970
+                        "endOffset": 925
                     }
                 }
             },
@@ -272,18 +272,18 @@
                 "to": {
                     "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 975,
+                    "startOffset": 930,
                     "endColumn": 72,
-                    "endOffset": 1043
+                    "endOffset": 998
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 16,
                         "startColumn": 4,
-                        "startOffset": 975,
+                        "startOffset": 930,
                         "endColumn": 72,
-                        "endOffset": 1043
+                        "endOffset": 998
                     }
                 }
             },
@@ -291,18 +291,18 @@
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 1048,
+                    "startOffset": 1003,
                     "endColumn": 74,
-                    "endOffset": 1118
+                    "endOffset": 1073
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 17,
                         "startColumn": 4,
-                        "startOffset": 1048,
+                        "startOffset": 1003,
                         "endColumn": 74,
-                        "endOffset": 1118
+                        "endOffset": 1073
                     }
                 }
             },
@@ -310,18 +310,18 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1123,
+                    "startOffset": 1078,
                     "endColumn": 70,
-                    "endOffset": 1189
+                    "endOffset": 1144
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
-                        "startOffset": 1123,
+                        "startOffset": 1078,
                         "endColumn": 70,
-                        "endOffset": 1189
+                        "endOffset": 1144
                     }
                 }
             },
@@ -329,18 +329,18 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1194,
+                    "startOffset": 1149,
                     "endColumn": 78,
-                    "endOffset": 1268
+                    "endOffset": 1223
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 19,
                         "startColumn": 4,
-                        "startOffset": 1194,
+                        "startOffset": 1149,
                         "endColumn": 78,
-                        "endOffset": 1268
+                        "endOffset": 1223
                     }
                 }
             },
@@ -348,18 +348,18 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1273,
+                    "startOffset": 1228,
                     "endColumn": 61,
-                    "endOffset": 1330
+                    "endOffset": 1285
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 20,
                         "startColumn": 4,
-                        "startOffset": 1273,
+                        "startOffset": 1228,
                         "endColumn": 61,
-                        "endOffset": 1330
+                        "endOffset": 1285
                     }
                 }
             },
@@ -367,18 +367,18 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 1335,
+                    "startOffset": 1290,
                     "endColumn": 60,
-                    "endOffset": 1391
+                    "endOffset": 1346
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 21,
                         "startColumn": 4,
-                        "startOffset": 1335,
+                        "startOffset": 1290,
                         "endColumn": 60,
-                        "endOffset": 1391
+                        "endOffset": 1346
                     }
                 }
             },
@@ -386,18 +386,18 @@
                 "to": {
                     "startLine": 22,
                     "startColumn": 4,
-                    "startOffset": 1396,
+                    "startOffset": 1351,
                     "endColumn": 77,
-                    "endOffset": 1469
+                    "endOffset": 1424
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 22,
                         "startColumn": 4,
-                        "startOffset": 1396,
+                        "startOffset": 1351,
                         "endColumn": 77,
-                        "endOffset": 1469
+                        "endOffset": 1424
                     }
                 }
             },
@@ -405,18 +405,18 @@
                 "to": {
                     "startLine": 23,
                     "startColumn": 4,
-                    "startOffset": 1474,
+                    "startOffset": 1429,
                     "endColumn": 78,
-                    "endOffset": 1548
+                    "endOffset": 1503
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 23,
                         "startColumn": 4,
-                        "startOffset": 1474,
+                        "startOffset": 1429,
                         "endColumn": 78,
-                        "endOffset": 1548
+                        "endOffset": 1503
                     }
                 }
             },
@@ -424,18 +424,18 @@
                 "to": {
                     "startLine": 24,
                     "startColumn": 4,
-                    "startOffset": 1553,
+                    "startOffset": 1508,
                     "endColumn": 92,
-                    "endOffset": 1641
+                    "endOffset": 1596
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 24,
                         "startColumn": 4,
-                        "startOffset": 1553,
+                        "startOffset": 1508,
                         "endColumn": 92,
-                        "endOffset": 1641
+                        "endOffset": 1596
                     }
                 }
             },
@@ -443,18 +443,18 @@
                 "to": {
                     "startLine": 25,
                     "startColumn": 4,
-                    "startOffset": 1646,
+                    "startOffset": 1601,
                     "endColumn": 92,
-                    "endOffset": 1734
+                    "endOffset": 1689
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
-                        "startOffset": 1646,
+                        "startOffset": 1601,
                         "endColumn": 92,
-                        "endOffset": 1734
+                        "endOffset": 1689
                     }
                 }
             },
@@ -462,18 +462,18 @@
                 "to": {
                     "startLine": 26,
                     "startColumn": 4,
-                    "startOffset": 1739,
+                    "startOffset": 1694,
                     "endColumn": 107,
-                    "endOffset": 1842
+                    "endOffset": 1797
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 26,
                         "startColumn": 4,
-                        "startOffset": 1739,
+                        "startOffset": 1694,
                         "endColumn": 107,
-                        "endOffset": 1842
+                        "endOffset": 1797
                     }
                 }
             },
@@ -481,18 +481,18 @@
                 "to": {
                     "startLine": 27,
                     "startColumn": 4,
-                    "startOffset": 1847,
+                    "startOffset": 1802,
                     "endColumn": 107,
-                    "endOffset": 1950
+                    "endOffset": 1905
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 27,
                         "startColumn": 4,
-                        "startOffset": 1847,
+                        "startOffset": 1802,
                         "endColumn": 107,
-                        "endOffset": 1950
+                        "endOffset": 1905
                     }
                 }
             },
@@ -500,18 +500,18 @@
                 "to": {
                     "startLine": 40,
                     "startColumn": 4,
-                    "startOffset": 4260,
+                    "startOffset": 4215,
                     "endColumn": 61,
-                    "endOffset": 4317
+                    "endOffset": 4272
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
-                        "startOffset": 4260,
+                        "startOffset": 4215,
                         "endColumn": 61,
-                        "endOffset": 4317
+                        "endOffset": 4272
                     }
                 }
             },
@@ -519,18 +519,18 @@
                 "to": {
                     "startLine": 41,
                     "startColumn": 4,
-                    "startOffset": 4322,
+                    "startOffset": 4277,
                     "endColumn": 67,
-                    "endOffset": 4385
+                    "endOffset": 4340
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
-                        "startOffset": 4322,
+                        "startOffset": 4277,
                         "endColumn": 67,
-                        "endOffset": 4385
+                        "endOffset": 4340
                     }
                 }
             },
@@ -538,18 +538,18 @@
                 "to": {
                     "startLine": 42,
                     "startColumn": 4,
-                    "startOffset": 4390,
+                    "startOffset": 4345,
                     "endColumn": 62,
-                    "endOffset": 4448
+                    "endOffset": 4403
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 42,
                         "startColumn": 4,
-                        "startOffset": 4390,
+                        "startOffset": 4345,
                         "endColumn": 62,
-                        "endOffset": 4448
+                        "endOffset": 4403
                     }
                 }
             },
@@ -557,18 +557,18 @@
                 "to": {
                     "startLine": 43,
                     "startColumn": 4,
-                    "startOffset": 4453,
+                    "startOffset": 4408,
                     "endColumn": 64,
-                    "endOffset": 4513
+                    "endOffset": 4468
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 43,
                         "startColumn": 4,
-                        "startOffset": 4453,
+                        "startOffset": 4408,
                         "endColumn": 64,
-                        "endOffset": 4513
+                        "endOffset": 4468
                     }
                 }
             },
@@ -576,18 +576,18 @@
                 "to": {
                     "startLine": 44,
                     "startColumn": 4,
-                    "startOffset": 4518,
+                    "startOffset": 4473,
                     "endColumn": 65,
-                    "endOffset": 4579
+                    "endOffset": 4534
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 44,
                         "startColumn": 4,
-                        "startOffset": 4518,
+                        "startOffset": 4473,
                         "endColumn": 65,
-                        "endOffset": 4579
+                        "endOffset": 4534
                     }
                 }
             },
@@ -595,18 +595,18 @@
                 "to": {
                     "startLine": 45,
                     "startColumn": 4,
-                    "startOffset": 4584,
+                    "startOffset": 4539,
                     "endColumn": 66,
-                    "endOffset": 4646
+                    "endOffset": 4601
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 45,
                         "startColumn": 4,
-                        "startOffset": 4584,
+                        "startOffset": 4539,
                         "endColumn": 66,
-                        "endOffset": 4646
+                        "endOffset": 4601
                     }
                 }
             },
@@ -614,18 +614,18 @@
                 "to": {
                     "startLine": 46,
                     "startColumn": 4,
-                    "startOffset": 4651,
+                    "startOffset": 4606,
                     "endColumn": 77,
-                    "endOffset": 4724
+                    "endOffset": 4679
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 46,
                         "startColumn": 4,
-                        "startOffset": 4651,
+                        "startOffset": 4606,
                         "endColumn": 77,
-                        "endOffset": 4724
+                        "endOffset": 4679
                     }
                 }
             },
@@ -633,18 +633,18 @@
                 "to": {
                     "startLine": 47,
                     "startColumn": 4,
-                    "startOffset": 4729,
+                    "startOffset": 4684,
                     "endColumn": 89,
-                    "endOffset": 4814
+                    "endOffset": 4769
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 47,
                         "startColumn": 4,
-                        "startOffset": 4729,
+                        "startOffset": 4684,
                         "endColumn": 89,
-                        "endOffset": 4814
+                        "endOffset": 4769
                     }
                 }
             },
@@ -652,18 +652,18 @@
                 "to": {
                     "startLine": 48,
                     "startColumn": 4,
-                    "startOffset": 4819,
+                    "startOffset": 4774,
                     "endColumn": 72,
-                    "endOffset": 4887
+                    "endOffset": 4842
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 48,
                         "startColumn": 4,
-                        "startOffset": 4819,
+                        "startOffset": 4774,
                         "endColumn": 72,
-                        "endOffset": 4887
+                        "endOffset": 4842
                     }
                 }
             },
@@ -671,18 +671,18 @@
                 "to": {
                     "startLine": 49,
                     "startColumn": 4,
-                    "startOffset": 4892,
+                    "startOffset": 4847,
                     "endColumn": 68,
-                    "endOffset": 4956
+                    "endOffset": 4911
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 49,
                         "startColumn": 4,
-                        "startOffset": 4892,
+                        "startOffset": 4847,
                         "endColumn": 68,
-                        "endOffset": 4956
+                        "endOffset": 4911
                     }
                 }
             },
@@ -690,18 +690,18 @@
                 "to": {
                     "startLine": 50,
                     "startColumn": 4,
-                    "startOffset": 4961,
+                    "startOffset": 4916,
                     "endColumn": 64,
-                    "endOffset": 5021
+                    "endOffset": 4976
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 50,
                         "startColumn": 4,
-                        "startOffset": 4961,
+                        "startOffset": 4916,
                         "endColumn": 64,
-                        "endOffset": 5021
+                        "endOffset": 4976
                     }
                 }
             },
@@ -709,18 +709,18 @@
                 "to": {
                     "startLine": 51,
                     "startColumn": 4,
-                    "startOffset": 5026,
+                    "startOffset": 4981,
                     "endColumn": 67,
-                    "endOffset": 5089
+                    "endOffset": 5044
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 51,
                         "startColumn": 4,
-                        "startOffset": 5026,
+                        "startOffset": 4981,
                         "endColumn": 67,
-                        "endOffset": 5089
+                        "endOffset": 5044
                     }
                 }
             },
@@ -728,18 +728,18 @@
                 "to": {
                     "startLine": 52,
                     "startColumn": 4,
-                    "startOffset": 5094,
+                    "startOffset": 5049,
                     "endColumn": 65,
-                    "endOffset": 5155
+                    "endOffset": 5110
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 52,
                         "startColumn": 4,
-                        "startOffset": 5094,
+                        "startOffset": 5049,
                         "endColumn": 65,
-                        "endOffset": 5155
+                        "endOffset": 5110
                     }
                 }
             },
@@ -747,18 +747,18 @@
                 "to": {
                     "startLine": 53,
                     "startColumn": 4,
-                    "startOffset": 5160,
+                    "startOffset": 5115,
                     "endColumn": 68,
-                    "endOffset": 5224
+                    "endOffset": 5179
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 53,
                         "startColumn": 4,
-                        "startOffset": 5160,
+                        "startOffset": 5115,
                         "endColumn": 68,
-                        "endOffset": 5224
+                        "endOffset": 5179
                     }
                 }
             },
@@ -766,18 +766,18 @@
                 "to": {
                     "startLine": 54,
                     "startColumn": 4,
-                    "startOffset": 5229,
+                    "startOffset": 5184,
                     "endColumn": 78,
-                    "endOffset": 5303
+                    "endOffset": 5258
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 54,
                         "startColumn": 4,
-                        "startOffset": 5229,
+                        "startOffset": 5184,
                         "endColumn": 78,
-                        "endOffset": 5303
+                        "endOffset": 5258
                     }
                 }
             },
@@ -785,18 +785,18 @@
                 "to": {
                     "startLine": 55,
                     "startColumn": 4,
-                    "startOffset": 5308,
+                    "startOffset": 5263,
                     "endColumn": 69,
-                    "endOffset": 5373
+                    "endOffset": 5328
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 55,
                         "startColumn": 4,
-                        "startOffset": 5308,
+                        "startOffset": 5263,
                         "endColumn": 69,
-                        "endOffset": 5373
+                        "endOffset": 5328
                     }
                 }
             },
@@ -804,18 +804,18 @@
                 "to": {
                     "startLine": 56,
                     "startColumn": 4,
-                    "startOffset": 5378,
+                    "startOffset": 5333,
                     "endColumn": 72,
-                    "endOffset": 5446
+                    "endOffset": 5401
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 56,
                         "startColumn": 4,
-                        "startOffset": 5378,
+                        "startOffset": 5333,
                         "endColumn": 72,
-                        "endOffset": 5446
+                        "endOffset": 5401
                     }
                 }
             },
@@ -823,18 +823,18 @@
                 "to": {
                     "startLine": 57,
                     "startColumn": 4,
-                    "startOffset": 5451,
+                    "startOffset": 5406,
                     "endColumn": 73,
-                    "endOffset": 5520
+                    "endOffset": 5475
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 57,
                         "startColumn": 4,
-                        "startOffset": 5451,
+                        "startOffset": 5406,
                         "endColumn": 73,
-                        "endOffset": 5520
+                        "endOffset": 5475
                     }
                 }
             },
@@ -842,123 +842,104 @@
                 "to": {
                     "startLine": 58,
                     "startColumn": 4,
-                    "startOffset": 5525,
-                    "endColumn": 164,
-                    "endOffset": 5685
+                    "startOffset": 5480,
+                    "endLine": 61,
+                    "endColumn": 12,
+                    "endOffset": 5675
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
                         "startLine": 58,
                         "startColumn": 4,
-                        "startOffset": 5525,
-                        "endColumn": 164,
-                        "endOffset": 5685
+                        "startOffset": 5480,
+                        "endLine": 61,
+                        "endColumn": 12,
+                        "endOffset": 5675
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 59,
+                    "startLine": 62,
                     "startColumn": 4,
-                    "startOffset": 5690,
-                    "endLine": 62,
+                    "startOffset": 5680,
+                    "endLine": 65,
                     "endColumn": 12,
-                    "endOffset": 5885
+                    "endOffset": 5928
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 59,
+                        "startLine": 62,
                         "startColumn": 4,
-                        "startOffset": 5690,
-                        "endLine": 62,
+                        "startOffset": 5680,
+                        "endLine": 65,
                         "endColumn": 12,
-                        "endOffset": 5885
+                        "endOffset": 5928
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 63,
+                    "startLine": 66,
                     "startColumn": 4,
-                    "startOffset": 5890,
-                    "endLine": 66,
+                    "startOffset": 5933,
+                    "endLine": 67,
                     "endColumn": 12,
-                    "endOffset": 6138
+                    "endOffset": 5967
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 63,
+                        "startLine": 66,
                         "startColumn": 4,
-                        "startOffset": 5890,
-                        "endLine": 66,
+                        "startOffset": 5933,
+                        "endLine": 67,
                         "endColumn": 12,
-                        "endOffset": 6138
+                        "endOffset": 5967
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 67,
+                    "startLine": 68,
                     "startColumn": 4,
-                    "startOffset": 6143,
-                    "endLine": 68,
+                    "startOffset": 5972,
+                    "endLine": 71,
                     "endColumn": 12,
-                    "endOffset": 6177
+                    "endOffset": 6157
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 67,
+                        "startLine": 68,
                         "startColumn": 4,
-                        "startOffset": 6143,
-                        "endLine": 68,
+                        "startOffset": 5972,
+                        "endLine": 71,
                         "endColumn": 12,
-                        "endOffset": 6177
+                        "endOffset": 6157
                     }
                 }
             },
             {
                 "to": {
-                    "startLine": 69,
+                    "startLine": 72,
                     "startColumn": 4,
-                    "startOffset": 6182,
-                    "endLine": 72,
+                    "startOffset": 6162,
+                    "endLine": 82,
                     "endColumn": 12,
-                    "endOffset": 6367
+                    "endOffset": 6759
                 },
                 "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "file": "C:\\Users\\SYS3\\AndroidStudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
                     "position": {
-                        "startLine": 69,
+                        "startLine": 72,
                         "startColumn": 4,
-                        "startOffset": 6182,
-                        "endLine": 72,
+                        "startOffset": 6162,
+                        "endLine": 82,
                         "endColumn": 12,
-                        "endOffset": 6367
-                    }
-                }
-            },
-            {
-                "to": {
-                    "startLine": 73,
-                    "startColumn": 4,
-                    "startOffset": 6372,
-                    "endLine": 83,
-                    "endColumn": 12,
-                    "endOffset": 6969
-                },
-                "from": {
-                    "file": "C:\\Users\\SYS2\\StudioProjects\\ABC\\libs\\ViewPagerIndicator-Library\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "position": {
-                        "startLine": 73,
-                        "startColumn": 4,
-                        "startOffset": 6372,
-                        "endLine": 83,
-                        "endColumn": 12,
-                        "endOffset": 6969
+                        "endOffset": 6759
                     }
                 }
             }

@@ -42,17 +42,20 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_below="@+id/linearLayout"
+
    >
 
     <ImageView
         android:layout_width="fill_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
         app:srcCompat="@mipmap/abclogo"
         android:id="@+id/imageView_pic"
-        android:layout_alignParentTop="true"
+        android:foregroundGravity="center"
+
+
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true" />
 
 
