@@ -90,8 +90,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="33dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_below="@+id/textView25"
             android:spinnerMode="dialog"
+
             android:layout_alignParentStart="true" />
     </RelativeLayout>
 

@@ -96,6 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:ems="8"
+
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
                 android:layout_marginEnd="16dp"
