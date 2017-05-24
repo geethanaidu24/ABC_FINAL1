@@ -2,7 +2,9 @@ package com.example.admin.abc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -28,7 +30,27 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_final);
-        selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypesGridView.class);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",pname);
+                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                    startActivity(in);*/
+                    finish();
+                }
+            });
+
+
+
+            selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
         nameTxt = (TextView)findViewById(R.id.nameTxt);
         brandTxt = (TextView)findViewById(R.id.brandTxt);
         colorTxt = (TextView)findViewById(R.id.colorTxt);
@@ -68,23 +90,7 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
 
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (null != toolbar) {
-            toolbar.setNavigationIcon(R.mipmap.backbutton);
 
-            //  actionbar.setTitle(R.string.title_activity_settings);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypesGridView.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    startActivity(in);*/
-                    finish();
-                }
-            });
 
             // Inflate a menu to be displayed in the toolbar
             //  actionbar.inflateMenu(R.menu.actions);

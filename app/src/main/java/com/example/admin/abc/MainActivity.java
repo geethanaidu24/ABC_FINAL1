@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.answers.Answers;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -29,13 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-
-
-        Fabric.with(this, new Answers(), new Crashlytics());
-        final Fabric fabric = new Fabric.Builder(this)
-                .kits(new Crashlytics())
-                .debuggable(true)
-                .build();
+      //  Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
         im1 = (ImageView) findViewById(R.id.imageView_pic);
