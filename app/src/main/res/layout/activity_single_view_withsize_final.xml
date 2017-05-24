@@ -12,29 +12,30 @@
 
     android:orientation="vertical"
     >
-    <include layout="@layout/activity_toolbar"></include>
-  <!--  <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/cred"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="7dp">
+    <include layout="@layout/activity_toolbar"
+        ></include>
+    <!--  <android.support.v7.widget.Toolbar
+          android:id="@+id/toolbar"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="@color/cred"
+          android:minHeight="?attr/actionBarSize"
+          android:theme="?attr/actionBarTheme"
+          tools:ignore="MissingConstraints"
+          tools:layout_editor_absoluteX="8dp"
+          tools:layout_editor_absoluteY="7dp">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="2dp"
+          <ImageView
+              android:id="@+id/imageView2"
+              android:layout_width="300dp"
+              android:layout_height="50dp"
+              android:layout_marginBottom="2dp"
 
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
-            app:srcCompat="@mipmap/abctextlogo"/>
+              android:layout_marginLeft="10dp"
+              android:layout_marginTop="2dp"
+              app:srcCompat="@mipmap/abctextlogo"/>
 
-    </android.support.v7.widget.Toolbar>-->
+      </android.support.v7.widget.Toolbar>-->
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,128 +47,148 @@
 
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true">
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:layout_below="@+id/img1"
-        android:background="@color/ddgrey" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:id="@+id/img1"
-        android:layout_marginTop="100dp"
-      android:layout_below="@+id/toolbar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+                android:layout_below="@+id/img1"
+                android:background="@color/ddgrey"
+                android:id="@+id/view" />
 
-    <TextView
-        android:text="CERA CLOISTER"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/nameTxt"
-        android:layout_below="@+id/img1"
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:id="@+id/img1"
+                android:layout_marginTop="60dp"
+                android:layout_below="@+id/toolbar"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
 
-        android:layout_marginTop="10dp"
-        android:textColor="@color/cred"
-        android:textSize="24sp" />
+            <TextView
+                android:text="CERA CLOISTER"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/nameTxt"
+                android:layout_below="@+id/view"
 
-    <TextView
-        android:text="BRANDS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/nameTxt"
-        android:layout_alignStart="@+id/nameTxt"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/nameTxt"
-        android:id="@+id/brandview"
-        android:textColor="@color/colorblack" />
+                android:layout_marginTop="20dp"
+                android:textColor="@color/cred"
+                android:textSize="24sp" />
 
-    <TextView
-        android:text=":"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/brandview"
-        android:layout_alignEnd="@+id/nameTxt"
-        android:layout_marginEnd="10dp"
-        android:id="@+id/brandview1"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:text="BRANDS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/nameTxt"
+                android:layout_alignStart="@+id/nameTxt"
+                android:layout_marginTop="50dp"
 
-    <TextView
-        android:text="SIZE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/brandview"
-        android:layout_alignStart="@+id/brandview"
-        android:layout_marginTop="20dp"
-        android:id="@+id/sizeview"
-        android:textColor="@color/colorblack" />
+                android:layout_below="@+id/nameTxt"
+                android:id="@+id/brandview"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:text=":"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/sizeview"
-        android:layout_alignStart="@+id/brandview1"
-        android:id="@+id/textView27"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/brandview"
+                android:layout_alignEnd="@+id/nameTxt"
+android:layout_centerInParent="true"
+                android:id="@+id/brandview1"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:text="400*300"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView27"
-        android:layout_alignStart="@+id/brandTxt"
-        android:id="@+id/sizeTxt"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:text="SIZE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/brandview"
+                android:layout_alignStart="@+id/brandview"
+                android:layout_marginTop="20dp"
+                android:id="@+id/sizeview"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/sizeview"
-        android:layout_alignStart="@+id/sizeview"
-        android:layout_marginTop="19dp"
-        android:id="@+id/colorTxtview"
-        android:text="COLOR"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/sizeview"
+                android:layout_alignStart="@+id/brandview1"
+                android:id="@+id/textView27"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:text=":"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/colorTxtview"
-        android:layout_alignStart="@+id/textView27"
-        android:id="@+id/textView30"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:text="400*300"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView27"
+                android:layout_alignStart="@+id/brandTxt"
+                android:id="@+id/sizeTxt"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:id="@+id/colorTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView30"
-        android:layout_alignStart="@+id/sizeTxt"
-        android:text="WHITE"
-        android:textColor="@color/colorblack" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sizeview"
+                android:layout_alignStart="@+id/sizeview"
+                android:layout_marginTop="20dp"
+                android:id="@+id/colorTxtview"
+                android:text="COLOR"
+                android:textColor="@color/colorblack" />
 
-    <TextView
-        android:text="CERA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/brandTxt"
-        android:layout_alignBaseline="@+id/brandview1"
-        android:layout_alignBottom="@+id/brandview1"
-        android:layout_alignEnd="@+id/img1"
-        android:textColor="@color/colorblack" />
-</RelativeLayout>
+            <TextView
+                android:text=":"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/colorTxtview"
+                android:layout_alignStart="@+id/textView27"
+                android:id="@+id/textView30"
+                android:layout_centerInParent="true"
+                android:textColor="@color/colorblack" />
+
+            <TextView
+                android:id="@+id/colorTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_alignBottom="@+id/textView30"
+                android:layout_alignStart="@+id/sizeTxt"
+                android:text="WHITE"
+                android:textColor="@color/colorblack" />
+
+            <TextView
+                android:text="CERA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/brandTxt"
+                android:layout_marginRight="30dp"
+                android:layout_alignBaseline="@+id/brandview1"
+                android:layout_alignBottom="@+id/brandview1"
+                android:layout_alignEnd="@+id/img1"
+                android:textColor="@color/colorblack" />
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+
+                android:layout_above="@+id/view"
+                android:adjustViewBounds="false"
+                android:tint="@color/colorblack"
+                app:srcCompat="@android:drawable/ic_menu_zoom"
+                android:layout_toEndOf="@+id/brandTxt" />
+
+        </RelativeLayout>
     </ScrollView>
+
 
 </RelativeLayout>

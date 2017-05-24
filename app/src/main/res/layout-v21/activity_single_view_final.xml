@@ -13,7 +13,7 @@
     android:orientation="vertical"
     >
     <include layout="@layout/activity_toolbar"
-        android:id="@+id/include"></include>
+       ></include>
    <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
