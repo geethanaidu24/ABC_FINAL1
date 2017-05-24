@@ -178,14 +178,14 @@ android:layout_centerInParent="true"
 
             <ImageButton
                 android:id="@+id/imageButton"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
                 android:layout_above="@+id/view"
+                android:layout_toEndOf="@+id/colorTxtview"
                 android:adjustViewBounds="false"
                 android:tint="@color/colorblack"
-                app:srcCompat="@android:drawable/ic_menu_zoom"
-                android:layout_toEndOf="@+id/brandTxt" />
+                app:srcCompat="@mipmap/zoomm" />
 
         </RelativeLayout>
     </ScrollView>

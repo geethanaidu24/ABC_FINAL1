@@ -36,25 +36,48 @@
 
     </android.support.v7.widget.Toolbar>
 -->
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+
+android:background="@color/white"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+
+            android:gravity="center_horizontal"
+
+            android:layout_below="@+id/toolbar"
+
+            android:layout_centerInParent="true"
+
+            android:layout_centerHorizontal="true">
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10px"
-        android:layout_gravity="center"
-        android:layout_below="@+id/img1"
-        android:background="@color/ddgrey" />
 
     <ImageView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="200dp"
-
+android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:id="@+id/newsImage"
         android:layout_marginTop="35dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:layout_below="@+id/newsImage"
+        android:background="@color/ddgrey"
+        android:id="@+id/view2" />
+
 
     <TextView
         android:text="CERA CLOISTER"
@@ -94,9 +117,11 @@
         android:ems="10"
         android:inputType="textMultiLine"
         android:selectAllOnFocus="false"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="85dp" />
+        android:layout_below="@+id/newstxt"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="13dp" />
 
 
 </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
