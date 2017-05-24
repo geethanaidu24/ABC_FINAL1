@@ -56,23 +56,24 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView24"
-      android:layout_marginLeft="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="90dp"
             android:text="Select Products to be Deleted:"
             android:textColor="@color/cred"
             android:textSize="18sp"/>
 
-        <Spinner
+        <!--<Button
             android:id="@+id/sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/textView25"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:text="Select One"
             android:spinnerMode="dialog"
-            android:layout_marginTop="15dp"/>
-
+            android:layout_marginTop="15dp"/>-->
+        <!--  android:prompt="@string/prompt_text"-->
         <Button
             android:id="@+id/addBtn"
             android:layout_width="wrap_content"
@@ -84,5 +85,14 @@
             android:text="DELETE"
 
             android:textColor="@color/white"/>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:layout_below="@+id/textView25"
+            android:spinnerMode="dialog"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
+
     </LinearLayout>

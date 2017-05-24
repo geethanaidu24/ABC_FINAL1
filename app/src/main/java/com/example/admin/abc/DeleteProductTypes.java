@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -88,7 +89,7 @@ public class DeleteProductTypes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletebtn);
         sp= (Spinner) findViewById(R.id.spdelete);
-        sp.setPrompt("Select One....");
+       // sp.setPrompt("Select One");
     }
     /*
     HANDLE CLICK EVENTS
@@ -99,16 +100,7 @@ public class DeleteProductTypes extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //GET VALUES
-
-
-
-
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteProductTypes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+                //GET VALUE
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductTypeId(ptid);
@@ -130,7 +122,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductTypes.this, "Response :" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
                                                 //CLEAR EDITXTS
 
@@ -152,7 +144,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }
             }
         });
 
@@ -235,15 +227,16 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    if(sp.getSelectedItem().toString().equals("Select One")){
+                    if(sp.getSelectedItem().equals("Select One")){
                         Toast.makeText(DeleteProductTypes.this,
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-                    final String name = mySQLDataBase.getProductType();
+
+                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
 
                     final int ptid =mySQLDataBase.getProductTypeId() ;
+                        Log.d("selected protype id",""+ptid);
                     handleClickEvents(ptid);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
@@ -253,7 +246,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                         }
                     };
                 }}
-                public void onNothingSelected(AdapterView<?> arg0) {
+        public void onNothingSelected(AdapterView<?> arg0) {
                     // TODO Auto-generated method stub
                     Toast.makeText(DeleteProductTypes.this,
                             "Your Selected : Nothing",
