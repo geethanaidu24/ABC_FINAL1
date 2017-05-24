@@ -13,7 +13,7 @@
     android:orientation="vertical"
     >
     <include layout="@layout/activity_toolbar"
-        android:id="@+id/include2"></include>
+        ></include>
    <!-- <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
         android:orientation="vertical"
 
 
-        android:layout_below="@+id/include2"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,7 +57,8 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_below="@+id/img1"
-        android:background="@color/ddgrey" />
+        android:background="@color/ddgrey"
+        android:id="@+id/view2" />
 
     <ImageView
         android:id="@+id/img1"
@@ -151,11 +152,9 @@
                 android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_below="@+id/include2"
-                android:layout_marginTop="160dp"
-                android:tint="@color/colorblack"
-                app:srcCompat="@android:drawable/ic_menu_zoom" />
+                app:srcCompat="@mipmap/zoomm"
+                android:layout_above="@+id/view2"
+                android:layout_alignStart="@+id/img1" />
 
         </RelativeLayout>
     </ScrollView>
