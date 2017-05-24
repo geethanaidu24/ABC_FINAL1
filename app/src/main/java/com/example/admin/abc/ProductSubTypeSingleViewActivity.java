@@ -2,7 +2,9 @@ package com.example.admin.abc;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,6 +32,20 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_final);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
+                    finish();
+                }
+            });
+
 
 
         img = (ImageView) findViewById(R.id.img1); //init a ImageView
@@ -70,19 +86,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (null != toolbar) {
-            toolbar.setNavigationIcon(R.mipmap.backbutton);
-
-            //  actionbar.setTitle(R.string.title_activity_settings);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                   finish();
-                }
-            });
 
 
 

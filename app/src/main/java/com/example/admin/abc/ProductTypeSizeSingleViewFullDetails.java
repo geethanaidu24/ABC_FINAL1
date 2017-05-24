@@ -28,6 +28,27 @@ public class ProductTypeSizeSingleViewFullDetails extends AppCompatActivity {
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in=new Intent(ProductTypeSizeSingleViewFullDetails.this,ProductTypeSizeImagesGridView.class);
+                  /*  in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",pname);
+                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                    in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
+
+                    startActivity(in);*/
+                    finish();
+                }
+            });
         selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
         nameTxt = (TextView)findViewById(R.id.nameTxt);
         brandTxt = (TextView)findViewById(R.id.brandTxt);
@@ -74,26 +95,7 @@ public class ProductTypeSizeSingleViewFullDetails extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        if (null != toolbar) {
-            toolbar.setNavigationIcon(R.mipmap.backbutton);
-
-            //  actionbar.setTitle(R.string.title_activity_settings);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSizeSingleViewFullDetails.this,ProductTypeSizeImagesGridView.class);
-                  /*  in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
-
-                    startActivity(in);*/
-                  finish();
-                }
-            });
 
 
         }

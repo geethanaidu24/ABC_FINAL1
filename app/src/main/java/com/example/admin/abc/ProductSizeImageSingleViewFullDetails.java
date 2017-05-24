@@ -20,9 +20,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
 
-    ImageView back;
+
     private boolean loggedIn = false;
-    ImageView selectedImage;
+    ImageView selectedImage,zoom;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
 
@@ -31,12 +31,28 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
-        selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (null != toolbar) {
+            toolbar.setNavigationIcon(R.mipmap.backbutton);
+
+            //  actionbar.setTitle(R.string.title_activity_settings);
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+                    finish();
+                }
+            });
+
+
+            selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);
         sizeTxt = (TextView) findViewById(R.id.sizeTxt);
         colorTxt = (TextView) findViewById(R.id.colorTxt);
-
+zoom=(ImageView)findViewById(R.id.imageButton);
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = i.getExtras().getInt("PRODUCTID_KEY");
@@ -57,7 +73,7 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
                 .crossFade()
                 .into(selectedImage);
 
-        selectedImage.setOnClickListener(new View.OnClickListener() {
+            selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductSizeImageSingleViewFullDetails.this,ProductSizeSingleViewFullImage.class);
@@ -72,21 +88,6 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        if (null != toolbar) {
-            toolbar.setNavigationIcon(R.mipmap.backbutton);
-
-            //  actionbar.setTitle(R.string.title_activity_settings);
-            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
-                    finish();
-                }
-            });
-            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-            toolbar.setOverflowIcon(drawable);
 
         }
     }
