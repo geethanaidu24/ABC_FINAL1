@@ -104,6 +104,7 @@
             android:layout_marginRight="20dp"
             android:textColor="@color/colorblack"
             android:inputType="textPersonName"
+
             android:layout_alignBaseline="@+id/textView18"
             android:layout_alignBottom="@+id/textView18"
             android:layout_alignParentEnd="true"/>

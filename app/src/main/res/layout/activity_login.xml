@@ -74,6 +74,7 @@
                     android:drawableTint="@color/cred"
                     android:id="@+id/editText_user"
                     android:hint="User Name"
+                    android:background="@drawable/edittext"
                     android:inputType="textEmailAddress" />
 
 
@@ -87,6 +88,7 @@
                     android:drawableLeft="@mipmap/pass"
                     android:drawableTint="@color/cred"
                     android:hint="Password"
+                    android:background="@drawable/edittext"
                     android:inputType="numberPassword" />
 
 
