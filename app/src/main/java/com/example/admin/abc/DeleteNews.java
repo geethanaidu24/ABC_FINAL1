@@ -73,11 +73,7 @@ public class DeleteNews extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteNews.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+
                 //SAVE
                     MySQLDataBase s=new MySQLDataBase();
                     s.setNewsId(deleteNewsId);
@@ -120,7 +116,7 @@ public class DeleteNews extends AppCompatActivity {
                                 }
                             });
                     }
-                }
+
             }
         });
 
@@ -204,7 +200,7 @@ public class DeleteNews extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                         final int selNewsid =mySQLDataBase.getNewsId() ;
                         handleClickEvents(selNewsid);
                         new DialogInterface.OnClickListener() {

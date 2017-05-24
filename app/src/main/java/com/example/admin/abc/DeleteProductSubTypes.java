@@ -97,11 +97,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //GET VALUES
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteProductSubTypes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSubTypeId(prosizeimgid);
@@ -145,7 +141,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }
             }
         });
 
@@ -233,7 +229,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final String name = mySQLDataBase.getProductSubTypeName();
                     final int productsubtypeId =mySQLDataBase.getProductSubTypeId() ;
                     handleClickEvents(productsubtypeId);

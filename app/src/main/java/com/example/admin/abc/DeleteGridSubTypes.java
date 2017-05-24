@@ -76,7 +76,6 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     {
         btnAdd= (Button) findViewById(R.id.griddelete);
         sp= (Spinner) findViewById(R.id.gridsp);
-        //sp.setPrompt("Select One...");
     }
     /*
     HANDLE CLICK EVENTS
@@ -89,14 +88,6 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
                 final int recivedprosizeimgid = prosizeimgid;
-                String spinSelVal = sp.getSelectedItem().toString();
-
-
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteGridSubTypes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(recivedprosizeimgid);
@@ -140,7 +131,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                     Toast.makeText(DeleteGridSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }
             }
         });
 
@@ -226,7 +217,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final String name = mySQLDataBase.getName();
                     final int prosizeimgid =mySQLDataBase.getProductSizeImageId() ;
                     handleClickEvents(prosizeimgid);

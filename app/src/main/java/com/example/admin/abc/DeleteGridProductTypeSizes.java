@@ -99,11 +99,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
             public void onClick(View view) {
                 //GET VALUES
 
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteGridProductTypeSizes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(protypesizeid);
@@ -149,7 +145,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                     Toast.makeText(DeleteGridProductTypeSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }
             }
         });
 
@@ -238,7 +234,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else {
-                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                         final String name = mySQLDataBase.getName();
                         //  final int pid
                         final int psiid = mySQLDataBase.getProductSizeImageId();

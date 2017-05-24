@@ -91,7 +91,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
         btnAdd= (Button) findViewById(R.id.deletebtn1);
         sp= (Spinner) findViewById(R.id.spdelete1);
-        //sp.setPrompt("Select One....");
+
     }
     /*
     HANDLE CLICK EVENTS
@@ -106,11 +106,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
                 //String spinSelVal = sp.getSelectedItem().toString();
 
-                if(sp.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteProductTypeSizes.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeId(psid);
@@ -155,7 +151,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                     Toast.makeText(DeleteProductTypeSizes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }}
+                }
             }
         });
 
@@ -276,7 +272,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else{
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final int psid =mySQLDataBase.getProductSizeId();
                     Log.d("selected response: ", "> " + psid);
                     handleClickEvents(psid);
