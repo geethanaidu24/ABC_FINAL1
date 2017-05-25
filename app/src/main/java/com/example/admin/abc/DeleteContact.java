@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -75,11 +76,7 @@ public class DeleteContact extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(sp.getSelectedItem().toString().equals("Select One") || sp1.getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteContact.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else{
+
                 //SAVE
                 MySQLDataBase s=new MySQLDataBase();
                 s.setContactId(deleteContactId);
@@ -122,7 +119,7 @@ public class DeleteContact extends AppCompatActivity {
                                 }
                             });
                 }
-                }
+
             }
         });
 
@@ -174,12 +171,12 @@ public class DeleteContact extends AppCompatActivity {
                     jo=ja.getJSONObject(i);
                     // add interviewee name to arraylist
                     int contactId=jo.getInt("ContactId");
-                    String branch =jo.getString("Branch");
                     String city = jo.getString("City");
+                    String branch =jo.getString("Branch");
                     mySQLDataBase=new MySQLDataBase();
                     mySQLDataBase.setContactId(contactId);
-                    mySQLDataBase.setBranch(branch);
                     mySQLDataBase.setCity(city);
+                    mySQLDataBase.setBranch(branch);
                     mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
@@ -191,33 +188,31 @@ public class DeleteContact extends AppCompatActivity {
         protected void onPostExecute(Void result) {
 
             final ArrayList<String> listItems = new ArrayList<>();
-            final HashSet<String> hashSet = new HashSet<String>();
+
             listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
-                listItems.add(mySQLDataBases.get(i).getCity());
-            }
-            hashSet.addAll(listItems);
-            listItems.clear();
-            listItems.addAll(hashSet);
+                listItems.add(mySQLDataBases.get(i).getCity()+","+ mySQLDataBases.get(i).getBranch());
 
+            }
             adapter=new ArrayAdapter(DeleteContact.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
+                public  void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
                     if(sp.getSelectedItem().toString().equals("Select One")){
                         Toast.makeText(DeleteContact.this,
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else {
-                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                        MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                         final int contId = mySQLDataBase.getContactId();
                         final String selectedCity = mySQLDataBase.getCity();
-                        BranchBackTask bt = new BranchBackTask(selectedCity);
-                        bt.execute();
-                        //handleClickEvents(selNewsid);
+                        Log.d(selectedCity,""+selectedCity);
+                       /* BranchBackTask bt = new BranchBackTask(selectedCity);
+                        bt.execute();*/
+                        handleClickEvents(contId);
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {
@@ -238,7 +233,7 @@ public class DeleteContact extends AppCompatActivity {
 
         }
     }
-    private class BranchBackTask extends AsyncTask<Void, Void, Void> {
+    /*private class BranchBackTask extends AsyncTask<Void, Void, Void> {
         String FinalSelCity;
         public BranchBackTask(String selectedCity) {
             this.FinalSelCity=selectedCity;
@@ -285,11 +280,9 @@ public class DeleteContact extends AppCompatActivity {
                     // add interviewee name to arraylist
                     int contactId2=jo.getInt("ContactId");
                     String branch2 =jo.getString("Branch");
-                    String city2 = jo.getString("City");
                     mySQLDataBase=new MySQLDataBase();
                     mySQLDataBase.setContactId(contactId2);
                     mySQLDataBase.setBranch(branch2);
-                    mySQLDataBase.setCity(city2);
                     mySQLDataBases.add(mySQLDataBase);
                 }
             } catch (JSONException e) {
@@ -302,13 +295,13 @@ public class DeleteContact extends AppCompatActivity {
             sp1 = (Spinner) findViewById(R.id.branchspinner);
             //sp1.setPrompt("Select One");
             sp1.setEnabled(true);
-            final ArrayList<String> listItems = new ArrayList<>();
-            listItems.add("Select One");
+            final ArrayList<String> listItems1 = new ArrayList<>();
+            listItems1.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
-                listItems.add(mySQLDataBases.get(i).getBranch());
+                listItems1.add(mySQLDataBases.get(i).getBranch());
             }
 
-            adapter=new ArrayAdapter(DeleteContact.this,R.layout.spinner_layout, R.id.txt,listItems);
+            adapter=new ArrayAdapter(DeleteContact.this,R.layout.spinner_layout, R.id.txt,listItems1);
             sp1.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -320,10 +313,12 @@ public class DeleteContact extends AppCompatActivity {
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else {
-                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final int contId2 =mySQLDataBase.getContactId() ;
                     final String selectedCity2 = mySQLDataBase.getCity();
                     final String selectedBranch2 = mySQLDataBase.getBranch();
+                    Log.d("selected branch:",""+selectedBranch2 );
+                    Log.d("selectd delete contact id:",""+contId2);
                     handleClickEvents(contId2);
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog,
@@ -343,7 +338,7 @@ public class DeleteContact extends AppCompatActivity {
 
             });
 
-        }
-    }
+        } }*/
+
 
 }

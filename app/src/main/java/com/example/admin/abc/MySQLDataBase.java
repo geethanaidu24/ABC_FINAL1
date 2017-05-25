@@ -10,10 +10,10 @@ public class MySQLDataBase implements Serializable {
     public int ProductId, ProductTypeId,ProductSubTypeId,ProductSizeId,ProductSizeImageId,BrandId,NewsId,ContactId,BranchId,CityId;
     public String ProductName, ProductType, ProductSubTypeName,NewsTitle;
     public String ProductImageUrl, ProductTypeImageUrl,ProductSubTypeImageUrl,BrandImageUrl,NewsImageUrl;
-    public int Width,Height,Length,ContactNumber;
+    public int Width,Height,Length;
     public String Name,ImagePath,Brand,Color,NewsDescription;
     public String DateTime;
-    public String Branch,Address,Email,City,WorkingHrs;
+    public String Branch,Address,Email,City,WorkingHrs,ContactNumber;
     public MySQLDataBase(){
 
     }
@@ -117,8 +117,8 @@ public class MySQLDataBase implements Serializable {
     public void setNewsDescription(String newsDescription){ this.NewsDescription=newsDescription;}
     public String getDateTime(){return DateTime;}
     public void setDateTime(String dateTime){this.DateTime=dateTime;}
-    public int getContactNumber(){return ContactNumber;}
-    public  void setContactNumber(int contactNumber){this.ContactNumber=contactNumber;}
+    public String getContactNumber(){return ContactNumber;}
+    public  void setContactNumber(String contactNumber){this.ContactNumber=contactNumber;}
     public String getBranch(){return Branch;}
     public void setBranch(String branch){this.Branch=branch;}
     public int getBranchId(){

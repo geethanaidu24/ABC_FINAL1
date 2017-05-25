@@ -72,10 +72,14 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view == imageView){
-            Intent intent = new Intent();
-            intent.setType("image/*");
+           /* Intent intent = new Intent();
+            intent.setType("image*//*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);*/
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            // Start the Intent
+            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
         }else {
             if (view == btnUpload) {
                 if (etCaption.length() < 1 || etDescription.length()<1 || tvPath.length() < 1 || bitmap==null) {

@@ -1,13 +1,18 @@
-<RelativeLayout android:layout_width="match_parent"
-    android:layout_height="240dp"
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#999999"
-    android:layout_marginTop="20dp"
-
+    android:background="@mipmap/bakgroundone"
+    android:layout_marginTop="5dp"
+android:layout_marginBottom="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp"
-    android:layout_below="@+id/r8"
-    android:layout_centerHorizontal="true"
+    android:alpha="150"
+
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
@@ -18,12 +23,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
+        android:layout_marginLeft="20dp"
+android:textColor="@color/cred"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:text="Name Place"
-        android:textSize="20sp"/>
+        android:textSize="24sp"/>
 
     <ImageView
         android:id="@+id/imageView"
@@ -32,9 +37,9 @@
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:srcCompat="@drawable/location"
-        android:tint="@color/colorblack"/>
+        android:tint="@color/white"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -43,7 +48,7 @@
         android:layout_alignTop="@+id/imageView"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-
+        android:textColor="@color/white"
         android:layout_toEndOf="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
         android:text="TextView" />
@@ -55,9 +60,9 @@
         android:layout_alignLeft="@+id/imageView"
         android:layout_alignStart="@+id/imageView"
         android:layout_below="@+id/imageView"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="35dp"
         app:srcCompat="@drawable/time"
-        android:tint="@color/colorblack"/>
+        android:tint="@color/white"/>
 
     <TextView
         android:id="@+id/textView4"
@@ -65,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView3"
         android:layout_marginRight="20dp"
+        android:textColor="@color/white"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
         android:text="TextView" />
@@ -78,7 +84,7 @@
         android:layout_below="@+id/imageView3"
         android:layout_marginTop="20dp"
         app:srcCompat="@mipmap/email"
-        android:tint="@color/colorblack"/>
+        android:tint="@color/white"/>
 
     <TextView
         android:id="@+id/textView5"
@@ -86,8 +92,10 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:text="TextView"
+        android:textColor="@color/white"
         android:layout_above="@+id/imageView5"
-        android:layout_alignStart="@+id/textView4" />
+        android:layout_alignStart="@+id/textView4"
+        android:layout_alignTop="@+id/imageView4" />
 
     <ImageView
         android:id="@+id/imageView5"
@@ -98,7 +106,7 @@
         android:layout_alignStart="@+id/imageView4"
         android:layout_marginTop="20dp"
         app:srcCompat="@mipmap/cont"
-        android:tint="@color/colorblack"/>
+        android:tint="@color/white"/>
 
     <TextView
         android:id="@+id/textView6"
@@ -106,8 +114,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView5"
         android:layout_alignLeft="@+id/textView5"
+        android:textColor="@color/white"
         android:layout_marginRight="20dp"
         android:layout_alignStart="@+id/textView5"
-        android:text="TextView" />
+        android:text="TextView"
+        android:layout_alignTop="@+id/imageView5" />
 
+</RelativeLayout>
 </RelativeLayout>
