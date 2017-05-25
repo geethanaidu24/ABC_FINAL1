@@ -51,7 +51,9 @@
 
     <item
         android:id="@+id/of"
+        android:checkable="false"
         android:icon="@mipmap/discount"
+        android:state_enabled="false"
         android:title="ABC Offers" />
 
 
