@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -323,8 +324,9 @@ private boolean menuOptionState=false;
             startActivity(in);
 
         } else if (id == R.id.of) {
-            Intent in = new Intent(Main2Activity.this,Offers.class);
-            startActivity(in);
+           /* Intent in = new Intent(Main2Activity.this,Offers.class);
+            startActivity(in);*/
+            Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();
 
 
         } else if (id == R.id.login) {

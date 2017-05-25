@@ -56,7 +56,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                 public void onClick(View v) {
                     Intent in = new Intent(AddProducts.this, Products.class);
                     finish();
-                   // startActivity(in);
+                    // startActivity(in);
                 }
             });
 
@@ -76,21 +76,25 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if (view == imageView) {
-            Intent intent = new Intent();
-            intent.setType("image/*");
+          /*  Intent intent = new Intent();
+            intent.setType("image*//*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);
+            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);*/
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            // Start the Intent
+            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
         } else if (view == btnUpload) {
-         if ((etCaption.length()<1 || tvPath.length()<1 || bitmap ==null) ){
-                   Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadMultipart();
-                    Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
-                    etCaption.setText("");
-                    tvPath.setText("");
-                    imageView.setImageResource(R.mipmap.browseimage);
+            if ((etCaption.length()<1 || tvPath.length()<1 || bitmap ==null) ){
+                Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+            } else {
+                uploadMultipart();
+                Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                etCaption.setText("");
+                tvPath.setText("");
+                imageView.setImageResource(R.mipmap.browseimage);
 
-                }
+            }
         }
     }
 
@@ -117,23 +121,23 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
         String path = getPath(filePath);
 
 
-            //Uploading code
-            try {
-                String uploadId = UUID.randomUUID().toString();
+        //Uploading code
+        try {
+            String uploadId = UUID.randomUUID().toString();
 
-                //Creating a multi part request
-                new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addParameter("action", "save")
-                        .addFileToUpload(path, "image") //Adding file
-                        .addParameter("caption", caption) //Adding text parameter to the request
-                        .setNotificationConfig(new UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload();
-                //Starting the upload
-            } catch (Exception exc) {
-                Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            //Creating a multi part request
+            new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
+                    .addParameter("action", "save")
+                    .addFileToUpload(path, "image") //Adding file
+                    .addParameter("caption", caption) //Adding text parameter to the request
+                    .setNotificationConfig(new UploadNotificationConfig())
+                    .setMaxRetries(2)
+                    .startUpload();
+            //Starting the upload
+        } catch (Exception exc) {
+            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
 
 
     public String getPath(Uri uri) {
