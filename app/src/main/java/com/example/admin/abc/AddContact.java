@@ -119,7 +119,7 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
         if(!TextUtils.isEmpty(bcontactno)) {
             if (!isValidPhone(bcontactno)) {
                 onError = true;
-                email.setError("Invalid contact");
+                contactnumber.setError("Invalid contact");
                 return;
             }
         }

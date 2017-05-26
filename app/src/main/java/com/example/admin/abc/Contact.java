@@ -10,7 +10,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -302,6 +305,20 @@ public class Contact extends AppCompatActivity {
             this.mySQLDataBases = mySQLDataBases;
             inflater= (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+        private class ViewHolder {
+
+            TextView emailTxt,branchTxt,addresstxt,workingHrTxt,contactTxt;
+            ImageView locationImg,workingHrsImg,emailImg;
+            ImageView phoneImg;
+        }
+        @Override
+        public  int getViewTypeCount(){
+            return getCount();
+        }
+        @Override
+        public int getItemViewType(int position){
+            return position;
+        }
         @Override
         public int getCount() {
             return mySQLDataBases.size();
@@ -316,47 +333,67 @@ public class Contact extends AppCompatActivity {
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView==null)
-            {
-                convertView=inflater.inflate(R.layout.contact_list, parent,false);
-            }
-            TextView branchTxt= (TextView) convertView.findViewById(R.id.textView2);
-            TextView addresstxt= (TextView) convertView.findViewById(R.id.textView3);
-            TextView workingHrTxt= (TextView) convertView.findViewById(R.id.textView4);
-            TextView emailTxt= (TextView) convertView.findViewById(R.id.textView5);
-            TextView contactTxt = (TextView)convertView.findViewById(R.id.textView6);
-            ImageView workingHrsImg = (ImageView) convertView.findViewById(R.id.imageView3);
-            ImageView emailImg =(ImageView) convertView.findViewById(R.id.imageView4);
-            ImageView phoneImg = (ImageView)convertView.findViewById(R.id.imageView5);
-            //BIND DATA
-            MySQLDataBase mySQLDataBase=(MySQLDataBase) this.getItem(position);
-            final String branchName = mySQLDataBase.getBranch();
-            final String branchAddress = mySQLDataBase.getAddress();
-            final String branchCity = mySQLDataBase.getCity();
-            final String branchTime = mySQLDataBase.getWorkingHrs();
-            final String email = mySQLDataBase.getEmail();
-            final String personContact = mySQLDataBase.getContactNumber();
-            final String location = branchName+"," + branchAddress +","+ branchCity;
-            addresstxt.setText(location);
-            branchTxt.setText(branchCity);
-            workingHrTxt.setText(branchTime);
-           // emailTxt.setText(email);
-            //contactTxt.setText(personContact);
-            //if(email!="")
-            if (email != null && !email.isEmpty() && !email.equals("null")) {
-                emailTxt.setText(email);
-            }else{
-                emailImg.setVisibility(View.INVISIBLE);
-                emailTxt.setVisibility(View.INVISIBLE);
-            }/*
-            if(personContact != null && !personContact.isEmpty() && !personContact.equals("null")){
-                contactTxt.setText(personContact);
-            }else{
-                phoneImg.setVisibility(View.GONE);
-                contactTxt.setVisibility(View.GONE);
-           }*/
-            return convertView;
+
+            ViewHolder holder = null;
+                // TODO Auto-generated method stub
+                if (convertView == null) {
+
+
+                    convertView = inflater.inflate(R.layout.contact_list, parent, false);
+                    holder = new ViewHolder();
+                    holder.branchTxt = (TextView) convertView.findViewById(R.id.textView2);
+                    holder. addresstxt = (TextView) convertView.findViewById(R.id.textView3);
+                    holder. workingHrTxt = (TextView) convertView.findViewById(R.id.textView4);
+                    holder.emailTxt = (TextView) convertView.findViewById(R.id.textView5);
+                    holder.contactTxt = (TextView) convertView.findViewById(R.id.textView6);
+                    holder.locationImg = (ImageView)convertView.findViewById(R.id.imageView);
+                    holder. workingHrsImg = (ImageView) convertView.findViewById(R.id.imageView3);
+                    holder.emailImg = (ImageView) convertView.findViewById(R.id.imageView4);
+                    holder.phoneImg = (ImageView) convertView.findViewById(R.id.imageView5);
+
+
+                    //BIND DATA
+                    MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
+                    final String branchName = mySQLDataBase.getBranch();
+                    final String branchAddress = mySQLDataBase.getAddress();
+                    final String branchCity = mySQLDataBase.getCity();
+                    final String branchTime = mySQLDataBase.getWorkingHrs();
+                    final String email = mySQLDataBase.getEmail();
+                    final String personContact = mySQLDataBase.getContactNumber();
+                    final String location = branchName + "," + branchAddress + "," + branchCity;
+                    holder.addresstxt.setText(location);
+                   holder. branchTxt.setText(branchCity);
+                   holder.workingHrTxt.setText(branchTime);
+                    if (!email.isEmpty() && !email.equals("null")) {
+                        holder.emailTxt.setText(email);
+                    } else {
+                        holder.emailImg.setVisibility(View.INVISIBLE);
+                        holder.emailTxt.setVisibility(View.INVISIBLE);
+                    }
+                    if (personContact != null && !personContact.isEmpty() && !personContact.equals("null")) {
+                        holder.contactTxt.setText(personContact);
+                    } else {
+                        holder.phoneImg.setVisibility(View.GONE);
+                        holder.contactTxt.setVisibility(View.GONE);
+                    }
+                    convertView.setTag(holder);
+                    convertView.setTag(R.id.textView2, holder.branchTxt);
+                    convertView.setTag(R.id.textView3, holder.addresstxt);
+                    convertView.setTag(R.id.imageView, holder.locationImg);
+                    convertView.setTag(R.id.textView4, holder.workingHrTxt);
+                    convertView.setTag(R.id.imageView3, holder.workingHrsImg);
+                    convertView.setTag(R.id.textView5, holder.emailTxt);
+                    convertView.setTag(R.id.textView6, holder.contactTxt);
+                    convertView.setTag(R.id.imageView4, holder.emailImg);
+                    convertView.setTag(R.id.imageView5, holder.phoneImg);
+                } else {
+                    holder = (ViewHolder) convertView.getTag();
+                }
+
+
+                return convertView;
         }
     }
+
 }
 

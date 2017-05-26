@@ -7,18 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_weight="1"
+    android:weightSum="100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.admin.abc.Main2Activity"
 
 
-    android:weightSum="2"
+
     tools:showIn="@layout/app_bar_main2"
     android:baselineAligned="false"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_weight="40" >
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,9 +51,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:alpha="1.0"
-        android:layout_weight="1"
-        android:background="@mipmap/bakgroundone"
+
+        android:layout_weight="60"
+        android:background="@mipmap/bckgroundthree"
         android:orientation="vertical">
 
 
@@ -70,7 +71,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/producttrial"
+                android:background="@drawable/pdschan"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
@@ -92,7 +93,7 @@
                 android:gravity="center"
                 android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:background="@drawable/abouttrial" />
+                android:background="@drawable/abschan" />
 
 
         </LinearLayout>
@@ -121,7 +122,7 @@
                 android:layout_centerInParent="true"
 
                 android:layout_gravity="center"
-                android:background="@drawable/enquirytrial" />
+                android:background="@drawable/enqchang" />
 
             <View
                 android:layout_width="1dp"
@@ -139,7 +140,7 @@
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:scaleType="centerCrop"
-                android:background="@drawable/contacttrial" />
+                android:background="@drawable/ctschan" />
 
         </LinearLayout>
 

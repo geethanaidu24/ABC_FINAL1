@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
-      //  Fabric.with(this, new Crashlytics());
+      Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
         im1 = (ImageView) findViewById(R.id.imageView_pic);

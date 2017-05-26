@@ -4,18 +4,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
+
     android:layout_marginLeft="10dp"
     android:layout_marginRight="10dp">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/proback">
 
     <RelativeLayout
         android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="2dp"
+
         android:id="@+id/r1"
-        android:layout_marginRight="10dp" >
+        android:layout_marginRight="2dp" >
 
         <ImageView
             android:id="@+id/imageDownloaded"
@@ -31,8 +41,9 @@
         android:layout_marginTop="0dp"
         android:gravity="center_horizontal"
         android:background="@color/colorblack"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+android:layout_marginBottom="2dp"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_below="@+id/r1">
@@ -46,7 +57,7 @@
             android:gravity="center"
 
             android:textColor="@android:color/white"
-            android:background="@color/colorblack"
+
             android:layout_gravity="center"
             android:textSize="24sp"
 
@@ -56,6 +67,6 @@
             android:layout_width="wrap_content"   />
 
     </RelativeLayout>
-
+    </RelativeLayout>
 
 </RelativeLayout>
