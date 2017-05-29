@@ -39,6 +39,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static java.security.AccessController.getContext;
+
 /**
  * Created by Geetha on 4/20/2017 for displaying main product sizes.
  */
@@ -245,7 +247,41 @@ public class ProductSizes extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ProductSizes.this);
+
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirm Delete...");
+
+                // Setting Dialog Message
+                alertDialog.setMessage("Are you sure you want delete this?");
+
+                // Setting Icon to Dialog
+                alertDialog.setIcon(R.mipmap.delete);
+
+                // Setting Positive "Yes" Button
+                final AlertDialog.Builder yes = alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        // Write your code here to invoke YES event
+                        Intent intent = new Intent(ProductSizes.this, AddProductsTypes.class);
+                        startActivity(intent);
+                    }
+                });
+
+                // Setting Negative "NO" Button
+                alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to invoke NO event
+                        Intent intentn=new Intent(ProductSizes.this,ProductSizes.class);
+                        startActivity(intentn);
+
+                    }
+                });
+
+                // Showing Alert Message
+                alertDialog.show();
+
+              /*  Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();*/
             } else {
 
                 final ProductSizesListAdapter adapter = new ProductSizesListAdapter(c, mySQLDataBases, pid);

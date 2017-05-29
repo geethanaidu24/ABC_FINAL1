@@ -42,8 +42,9 @@ android:background="@mipmap/backgroundfour"
 
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:layout_below="@+id/toolbar"
         android:text="ADD CONTACTS"
-        android:textColor="@color/cred"
+        android:textColor="@color/white"
         android:textSize="24sp" />
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -57,7 +58,7 @@ android:background="@mipmap/backgroundfour"
         android:background="@drawable/proback"
         android:fillViewport="true"
         android:layout_marginBottom="10dp"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true">
 
         <RelativeLayout
@@ -72,9 +73,9 @@ android:background="@mipmap/backgroundfour"
                 android:id="@+id/textView11"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:layout_below="@+id/image8"
+
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="20dp"
                 android:text="Branch Name"
                 android:textColor="@color/cred"
                 android:textSize="18sp" />
