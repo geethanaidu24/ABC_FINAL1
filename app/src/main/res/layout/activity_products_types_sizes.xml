@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@color/white"
+    android:background="@mipmap/backgroundfour"
 
     android:orientation="vertical"
     android:visibility="visible"
@@ -56,13 +56,18 @@
         android:layout_alignParentStart="true"
         android:fontFamily="sans-serif"
         android:textSize="24sp"
-        android:textColor="@color/cred" />
+        android:textColor="@color/white"/>
 
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/proback"
+        android:fillViewport="true"
+        android:layout_marginBottom="10dp"
 
         android:layout_below="@+id/toolbar"
         android:orientation="vertical">
@@ -74,29 +79,36 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="fill_parent"
                 android:layout_marginTop="20dp"
                 android:shrinkColumns="*"
                 android:stretchColumns="*"
-                android:id="@+id/tableLayout2">
+                android:layout_marginBottom="20dp"
+                android:id="@+id/tableLayout2"
+              >
 
                 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginTop="20px"
-                    android:background="@color/white"
+
                     android:elevation="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="8dp"
+
+                    android:background="@color/white"
                     android:fillViewport="true"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <ListView
                         android:id="@+id/productTypeSizesLv"
                         android:layout_width="match_parent"
-                        android:layout_height="400dp"
+                        android:layout_height="wrap_content"
 
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
+
+
                         android:layout_centerHorizontal="true"
 
                         android:background="@color/white"
@@ -106,18 +118,7 @@
                 </ScrollView>
             </TableLayout>
 
-            <Button
-                android:id="@+id/button_selectpic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
 
-                android:layout_marginTop="20dp"
-                android:background="@color/cred"
-                android:text="View All"
-                android:textColor="@color/white"
-                android:layout_below="@+id/tableLayout2"
-                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </ScrollView>
 

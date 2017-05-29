@@ -326,7 +326,14 @@ private boolean menuOptionState=false;
         } else if (id == R.id.of) {
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
-            Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();
+           /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No Current Offers.....",
+                    Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
 
 
         } else if (id == R.id.login) {
