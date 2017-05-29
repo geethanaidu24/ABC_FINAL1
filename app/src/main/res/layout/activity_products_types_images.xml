@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@color/white"
+    android:background="@mipmap/backgroundfour"
 
     android:orientation="vertical"
     >
@@ -41,9 +41,14 @@
         android:layout_height="fill_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:background="@color/white"
-        android:fillViewport="true"
+
         android:elevation="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/proback"
+        android:fillViewport="true"
+        android:layout_marginBottom="10dp"
         >
 
 
@@ -53,8 +58,7 @@
             android:layout_height="match_parent"
             android:columnWidth="360dp"
             android:gravity="center"
-            android:numColumns="2"
-            android:background="@drawable/back1">
+            android:numColumns="2">
 
         </GridView>
 

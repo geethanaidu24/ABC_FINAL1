@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/back"   >
+    android:background="@drawable/proback"   >
 
     <RelativeLayout
 
@@ -19,8 +19,8 @@ android:id="@+id/r2"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:layout_marginTop="15dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="20dp"
 android:src="@drawable/pageloader"
 android:background="@color/colorblack"
             android:layout_centerInParent="true"
@@ -30,7 +30,7 @@ android:background="@color/colorblack"
 
     </RelativeLayout>
 
-    <RelativeLayout android:layout_marginTop="2dp"
+    <RelativeLayout android:layout_marginTop="0dp"
               android:layout_gravity="center_horizontal"
 android:layout_height="fill_parent"
         android:gravity="center"
@@ -44,7 +44,7 @@ android:layout_height="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
 
             android:layout_centerInParent="true"
             android:layout_below="@+id/imgTypeSizePro"

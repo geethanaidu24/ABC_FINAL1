@@ -53,7 +53,7 @@
         android:layout_gravity="center"
 
         android:layout_weight="60"
-        android:background="@mipmap/bckgroundthree"
+        android:background="@mipmap/bakgroundone"
         android:orientation="vertical">
 
 

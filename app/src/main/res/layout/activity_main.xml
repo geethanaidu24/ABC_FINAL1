@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@mipmap/bckgroundthree">
+    android:background="@color/colorblack">
 
 
 
