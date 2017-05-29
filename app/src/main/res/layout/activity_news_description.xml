@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@color/white"
+    android:background="@mipmap/backgroundfour"
 
     android:orientation="vertical"
     >
@@ -43,7 +43,7 @@
         android:orientation="vertical"
 
 android:background="@color/white"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true">
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -58,23 +58,33 @@ android:background="@color/white"
             android:layout_centerHorizontal="true">
 
 
-
-
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/r8"
+            android:layout_below="@+id/textView3"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/proback">
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="200dp"
-android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
+android:layout_marginRight="2dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/newsImage"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true" />
+            </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:layout_below="@+id/newsImage"
+        android:layout_below="@+id/r8"
         android:background="@color/ddgrey"
         android:id="@+id/view2" />
 
@@ -90,7 +100,7 @@ android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
         android:textColor="@color/cred"
         android:textSize="24sp"
-        android:layout_below="@+id/newsImage"
+        android:layout_below="@+id/view2"
          />
 
     <TextView
@@ -108,25 +118,36 @@ android:layout_marginRight="20dp"
         android:lineSpacingExtra="8sp"
         android:fontFamily="sans-serif" />
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/newstxt"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/proback">
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
 
-        android:layout_marginRight="10dp"
+android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:ems="10"
-        android:layout_marginLeft="20dp"
+
         android:inputType="textMultiLine"
         android:selectAllOnFocus="false"
         android:gravity="center|center_horizontal"
-        android:textColor="@color/white"
-        android:background="@mipmap/bakgroundone"
+        android:textColor="@color/colorblack"
+
         android:layout_below="@+id/newstxt"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"/>
+        />
 
-
+</RelativeLayout>
 </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
