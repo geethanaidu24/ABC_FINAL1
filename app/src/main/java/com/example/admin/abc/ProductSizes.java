@@ -246,6 +246,7 @@ public class ProductSizes extends AppCompatActivity {
             super.onPostExecute(result);
             if (result == 0) {
                 Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();
+
             } else {
 
                 final ProductSizesListAdapter adapter = new ProductSizesListAdapter(c, mySQLDataBases, pid);
