@@ -10,7 +10,7 @@
 
     android:layout_height="match_parent"
 
-
+android:background="@mipmap/backgroundfour"
     tools:context=".MainActivity">
     <include layout="@layout/activity_toolbar"></include>
    <!-- <android.support.v7.widget.Toolbar
@@ -36,41 +36,54 @@
 
     </android.support.v7.widget.Toolbar>
 -->
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="ADD BRANDS"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
-        android:background="@color/white"
 
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/proback"
+        android:fillViewport="true"
+        android:layout_marginBottom="10dp"
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp">
 
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="ADD BRANDS"
-            android:textColor="@color/cred"
-            android:textSize="24sp" />
 
         <ImageView
             android:id="@+id/brandimage"
             android:layout_width="fill_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_below="@+id/textView13"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:background="@drawable/proback"
             app:srcCompat="@mipmap/browseimage" />
 
         <TextView
@@ -89,11 +102,10 @@
             android:id="@+id/brandbtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-android:layout_below="@+id/brandpath"
+            android:layout_below="@+id/brandpath"
             android:background="@color/cred"
+            android:layout_marginTop="50dp"
             android:text="ADD"
             android:textColor="@color/white" />
 
