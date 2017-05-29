@@ -7,7 +7,7 @@
               android:layout_width="match_parent"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
-
+android:background="@mipmap/backgroundfour"
               android:layout_height="match_parent"
 
 
@@ -35,14 +35,32 @@
             app:srcCompat="@mipmap/abctextlogo"/>
 
     </android.support.v7.widget.Toolbar>-->
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="ADD SIZES"
+        android:layout_below="@+id/toolbar"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"/>
+
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/proback"
+        android:fillViewport="true"
+        android:layout_marginBottom="10dp"
 
-        android:background="@color/white"
-        android:layout_below="@+id/toolbar"
+        android:layout_below="@+id/textView13"
         android:layout_alignParentStart="true">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,27 +69,16 @@
         android:background="@color/white">
 
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="ADD SIZES"
-            android:textColor="@color/cred"
-            android:textSize="24sp"/>
 
         <Button
             android:id="@+id/productsizes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/textView38"
             android:background="@color/cred"
             android:text="ADD"
-            android:layout_below="@+id/textView38"
             android:textColor="@color/white"/>
 
         <TextView
@@ -81,7 +88,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textView13"
        android:layout_marginLeft="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="30dp"
             android:text="Enter Width"
             android:textColor="@color/cred"
             android:textSize="18sp"/>
