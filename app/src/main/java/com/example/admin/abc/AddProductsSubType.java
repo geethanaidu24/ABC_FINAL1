@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -93,6 +94,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         imageView = (ImageView)findViewById(R.id.brandimage);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
+        etCaption.setInputType(InputType.TYPE_CLASS_TEXT);
         tvPath    = (TextView)findViewById(R.id.brandpath);
        // sp1 = (Spinner)findViewById(R.id.spproductstypes);
         productTypeText = (TextView)findViewById(R.id.productTypeDisplay);
@@ -104,81 +106,6 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
-    /*@Override
-    public void onStart(){
-        super.onStart();
-       BackTask bt = new BackTask();
-        bt.execute();
-    }
-    private class BackTask extends AsyncTask<Void,Void,Void>{
-        ArrayList<String> list;
-        protected void onPreExecute() {
-            super.onPreExecute();
-            list = new ArrayList<>();
-        }
-
-
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productTypeSpinner);
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo=null;
-                productTypesDBs.clear();
-                ProductTypesDB productTypesDB;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo=ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-                    pstid = jo.getInt("ProductTypeId");
-                    String pname = jo.getString("ProductType");
-                    productTypesDB=new ProductTypesDB();
-                    productTypesDB.setProductTypeId(pstid);
-                    productTypesDB.setProductType(pname);
-                    productTypesDBs.add(productTypesDB);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            // productcrafts.addAll(productcrafts);
-            final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<productTypesDBs.size();i++){
-                listItems.add(productTypesDBs.get(i).getProductType());
-            }
-            adapter=new ArrayAdapter(AddProductsSubType.this,R.layout.spinner_layout1, R.id.txt1,listItems);
-            sp1.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-        }
-    }
-*/
 
     @Override
     public void onClick(View view) {
@@ -232,36 +159,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
         //getting the actual path of the image
         String path = getPath(filePath);
-        /*sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                ProductTypesDB productTypesDB = (ProductTypesDB) productTypesDBs.get(position);
-                final String name = productTypesDB.getProductType();
-                //  final int pid
-                pstid =productTypesDB.getProductTypeId() ;
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddProductsSubType.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });*/
-/*
-        ProductTypesDB s = new ProductTypesDB();
-        s.setProductType(caption);
-
-        s.setProductTypeId(pstid);*/
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();

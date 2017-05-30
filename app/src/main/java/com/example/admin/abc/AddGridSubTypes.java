@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -62,12 +63,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     public int ptid=0;
     public int pstid=0;*/
     Context context;
-    /*final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
-    private Spinner sp1,sp2,sp3;
-    private ArrayAdapter<MySQLDataBase> adapter1 ;
-    private ArrayAdapter<MySQLDataBase> adapter2 ;
-    private ArrayAdapter<MySQLDataBase> adapter3 ;
-*/
     private int productSubTypeId;
     private String productSubTypeName;
     private int selectedProducttypeid;
@@ -103,13 +98,12 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             });
             imageView = (ImageView) findViewById(R.id.image8);
             name = (EditText) findViewById(name8);
+            name.setInputType(InputType.TYPE_CLASS_TEXT);
             Path = (TextView) findViewById(R.id.brandpath);
             brand = (EditText) findViewById(R.id.brand8);
+            brand.setInputType(InputType.TYPE_CLASS_TEXT);
             color = (EditText) findViewById(R.id.color);
-           // sp1 = (Spinner) findViewById(R.id.sizespinner8);
-           // sp2 = (Spinner) findViewById(R.id.typespinner8);
-           // sp3 = (Spinner) findViewById(R.id.typesspinner);
-            //sp4 = (Spinner) findViewById(R.id.productspinner);
+            color.setInputType(InputType.TYPE_CLASS_TEXT);
             producttext=(TextView)findViewById(R.id.prod);
             producttypetext=(TextView)findViewById(R.id.textView33);
             productsubtypetext=(TextView)findViewById(R.id.textView32);
@@ -125,224 +119,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             btnadd.setOnClickListener(this);
         }
     }
-   /* @Override
-    public void onStart() {
-            super.onStart();
-            BackTask bt = new BackTask();
-            bt.execute();
 
-    }
-    private class BackTask extends AsyncTask<Void, Void, Void> {
-
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-            }
-            protected Void doInBackground(Void... params) {
-                InputStream is = null;
-                String result = "";
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(Config.productSubTypeGridSpinner);
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();
-                    // Get our response as a String.
-                    is = entity.getContent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //convert response to string
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        result += line;
-                    }
-                    is.close();
-                    //result=sb.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                // parse json data
-                try {
-                    JSONArray ja = new JSONArray(result);
-                    JSONObject jo = null;
-                    mySQLDataBases.clear();
-                    MySQLDataBase mySQLDataBase;
-                    for (int i = 0; i < ja.length(); i++) {
-                        jo = ja.getJSONObject(i);
-                        // add interviewee name to arraylist
-                       // psid = jo.getInt("ProductSizeId");
-                        pstid = jo.getInt("ProductSubTypeId");
-
-                        String subTypeName = jo.getString("ProductSubTypeName");
-
-                        mySQLDataBase = new MySQLDataBase();
-                        mySQLDataBase.setProductSubTypeId(pstid);
-                        mySQLDataBase.setProductSubTypeName(subTypeName);
-                        mySQLDataBases.add(mySQLDataBase);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(Void result) {
-
-                // productcrafts.addAll(productcrafts);
-
-                final ArrayList<String> listItems = new ArrayList<>();
-                for (int i = 0; i < mySQLDataBases.size(); i++) {
-                    listItems.add(mySQLDataBases.get(i).getProductSubTypeName());
-                }
-                adapter1=new ArrayAdapter(AddGridSubTypes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
-                sp1.setAdapter(adapter1);
-                adapter1.notifyDataSetChanged();
-                ProductTypeTask productTypeTask = new ProductTypeTask();
-                productTypeTask.execute();
-
-            }
-    }
-    private class ProductTypeTask extends AsyncTask<Void, Void, Void> {
-
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-            }
-            protected Void doInBackground(Void... params) {
-                InputStream is = null;
-                String result = "";
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(Config.productTypeSpinner);
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();
-                    // Get our response as a String.
-                    is = entity.getContent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //convert response to string
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        result += line;
-                    }
-                    is.close();
-                    //result=sb.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                // parse json data
-                try {
-                    JSONArray ja = new JSONArray(result);
-                    JSONObject jo = null;
-                    mySQLDataBases.clear();
-                    MySQLDataBase mySQLDataBase;
-                    for (int i = 0; i < ja.length(); i++) {
-                        jo = ja.getJSONObject(i);
-                        ptid = jo.getInt("ProductTypeId");
-                        String productType = jo.getString("ProductType");
-                        mySQLDataBase = new MySQLDataBase();
-                        mySQLDataBase.setProductTypeId(ptid);
-                        mySQLDataBase.setProductType(productType);
-                        mySQLDataBases.add(mySQLDataBase);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(Void result) {
-
-                final ArrayList<String> listItems2 = new ArrayList<>();
-                for (int i = 0; i < mySQLDataBases.size(); i++) {
-                    listItems2.add(mySQLDataBases.get(i).getProductType());
-
-                }
-
-                adapter2 = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout2, R.id.txt2, listItems2);
-                sp2.setAdapter(adapter2);
-                adapter2.notifyDataSetChanged();
-                ProductTask productTask = new ProductTask();
-                productTask.execute();
-            }
-    }
-
-    private class ProductTask extends AsyncTask<Void, Void, Void> {
-
-            protected void onPreExecute() {
-                super.onPreExecute();
-
-            }
-            protected Void doInBackground(Void... params) {
-                InputStream is = null;
-                String result = "";
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httppost = new HttpPost(Config.productsUrlAddress);
-                    HttpResponse response = httpclient.execute(httppost);
-                    HttpEntity entity = response.getEntity();
-                    // Get our response as a String.
-                    is = entity.getContent();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                //convert response to string
-                try {
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                    String line = null;
-                    while ((line = reader.readLine()) != null) {
-                        result += line;
-                    }
-                    is.close();
-                    //result=sb.toString();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                // parse json data
-                try {
-                    JSONArray ja = new JSONArray(result);
-                    JSONObject jo = null;
-                    mySQLDataBases.clear();
-                    MySQLDataBase mySQLDataBase;
-                    for (int i = 0; i < ja.length(); i++) {
-                        jo = ja.getJSONObject(i);
-                       pid = jo.getInt("ProductId");
-                        String productName = jo.getString("ProductName");
-                        mySQLDataBase = new MySQLDataBase();
-
-                       mySQLDataBase.setProductId(pid);
-
-                        mySQLDataBase.setProductName(productName);
-
-                        mySQLDataBases.add(mySQLDataBase);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            protected void onPostExecute(Void result) {
-
-                // productcrafts.addAll(productcrafts);
-
-                final ArrayList<String> listItems3 = new ArrayList<>();
-                for (int i = 0; i < mySQLDataBases.size(); i++) {
-                    listItems3.add(mySQLDataBases.get(i).getProductName());
-                }
-                adapter3 = new ArrayAdapter(AddGridSubTypes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
-                sp3.setAdapter(adapter3);
-                adapter3.notifyDataSetChanged();
-            }
-    }*/
     @Override
     public void onClick(View v) {
             if (v == imageView) {
@@ -404,100 +181,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         //getting the actual path of the image
         String path = getPath(filePath);
 
-       /* sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-
-                //  final int pid
-                pstid = mySQLDataBase.getProductSubTypeId();
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddGridSubTypes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-
-
-                //  final int pid
-               ptid = mySQLDataBase.getProductTypeId();
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddGridSubTypes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-        sp3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-
-                //  final int pid
-               pid = mySQLDataBase.getProductId();
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddGridSubTypes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-       *//* if((caption.length()<1))
-        {
-            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
-        }
-        else {*//*
-        MySQLDataBase s = new MySQLDataBase();
-        s.setName(namec);
-        s.setBrand(brandc);
-        s.setColor(colorc);
-        s.setProductSubTypeId(pstid);
-        s.setProductTypeId(ptid);
-        s.setProductId(pid);*/
-        //s.setId(pid);
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();

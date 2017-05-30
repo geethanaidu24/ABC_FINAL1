@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,11 +62,6 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddContact.this, Contact.class);
-                   /* in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    startActivity(in);*/
                     finish();
                 }
             });
@@ -73,12 +69,18 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
         }
 
         branchname = (EditText) findViewById(R.id.editText2);
+        branchname.setInputType(InputType.TYPE_CLASS_TEXT);
         address = (EditText)findViewById(R.id.editText6);
+        address.setInputType(InputType.TYPE_CLASS_TEXT);
         city    = (EditText) findViewById(R.id.editText11);
+        city.setInputType(InputType.TYPE_CLASS_TEXT);
         // sp1 = (Spinner)findViewById(R.id.spproductstypes);
         contactnumber = (EditText) findViewById(R.id.editText12);
+        contactnumber.setInputType(InputType.TYPE_CLASS_TEXT);
         email=(EditText) findViewById(R.id.editText14);
+        email.setInputType(InputType.TYPE_CLASS_TEXT);
         workinghours=(EditText) findViewById(R.id.editText15);
+        workinghours.setInputType(InputType.TYPE_CLASS_TEXT);
         btnUpload = (Button)findViewById(R.id.button2);
 
         btnUpload.setOnClickListener(this);

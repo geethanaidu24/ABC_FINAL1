@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -76,9 +77,11 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         }
 
         txtwidth = (EditText) findViewById(R.id.width1);
-
+        txtwidth.setInputType(InputType.TYPE_CLASS_TEXT);
         txtheight = (EditText) findViewById(R.id.height1);
+        txtheight.setInputType(InputType.TYPE_CLASS_TEXT);
         txtlength = (EditText) findViewById(R.id.length1);
+        txtlength.setInputType(InputType.TYPE_CLASS_TEXT);
       //  txtlength.setText(0);
         btnAdd1 = (Button) findViewById(R.id.productsizes);
         displayProducts = (TextView) findViewById(R.id.productsTxt);
@@ -88,90 +91,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
         btnAdd1.setOnClickListener(this);
     }
-   /* @Override
-    public void onStart(){
-        super.onStart();
-        BackTask bt = new BackTask();
-        bt.execute();
-    }
-    private class BackTask extends AsyncTask<Void,Void,Void> {
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productAllSizeSpinner);
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo=null;
-                sizesDBs.clear();
-                SizesDB sizesDB;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo=ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-
-                    ipid =jo.getInt("ProductId");
-
-                    String pname =jo.getString("ProductName");
-                    sizesDB=new SizesDB();
-
-                    sizesDB.setProductId(ipid);
-                    sizesDB.setName(pname);
-
-                    sizesDBs.add(sizesDB);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            final ArrayList<String> listItems = new ArrayList<>();
-
-            for(int i=0;i<sizesDBs.size();i++){
-                listItems.add(sizesDBs.get(i).getName());
-
-            }
-                *//*for(int i=0;i<sizesDBs.size();i++){
-
-                }*//*
-            adapter = new ArrayAdapter(AddProductSizes.this,R.layout.spinner_layout5, R.id.txt5,listItems);
-            sp1.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-
-
-        }
-    }
-*/
     @Override
     public void onClick(View view) {
         if(view == btnAdd1){
@@ -211,39 +131,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
          int leng=Integer.parseInt(length);
 
 
-       /* String spinSelVal = sp1.getSelectedItem().toString();
 
-        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                //final String productName = sizesDB.getName();
-
-                ipid =sizesDB.getProductId() ;
-
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddProductSizes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-        SizesDB s = new SizesDB();
-        s.setWidth(wid);
-        s.setHeight(heig);
-        s.setLength(leng);
-        s.setProductId(ipid);*/
 
         //Uploading code
         try {
