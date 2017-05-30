@@ -18,7 +18,7 @@ public final static String loginUrlAddress = mainUrlAddress+"login.php";
 
 public final static String productsUrlAddress = mainUrlAddress+"getProducts.php";
 
-    public final static String testing = mainUrlAddress+"productscheck.php";
+   // public final static String testing = mainUrlAddress+"productscheck.php";
 
     // For getting all main products types from database
 
