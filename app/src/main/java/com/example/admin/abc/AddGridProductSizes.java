@@ -167,12 +167,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            //txtlength.setText("");
-            /*adapter1.notifyDataSetChanged();
-            adapter2.notifyDataSetChanged();
 
-          BackTask bt = new BackTask();
-            bt.execute();*/
         }
     }
 

@@ -50,6 +50,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     private boolean loggedIn = false;
     final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
+    final static String productTypesGridurl = Config.productTypeImgUrlAddress;
     private int productSubTypeId;
     private String productSubTypeName;
     private int selectedProducttypeid;
@@ -472,14 +473,15 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                Intent intent = new Intent(c,ProductTypesGridView.class);
+                openAnotherActivityCondition(finalProId,finalProName,finalProTypeId,finalProType);
+                /*Intent intent = new Intent(c,ProductTypesGridView.class);
                 intent.putExtra("PRODUCTID_KEY",finalProId);
                 intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
                 intent.putExtra("PRODUCTNAME_KEY",finalProName);
                 intent.putExtra("PRODUCTTYPE_KEY",finalProType);
                 intent.putExtra("ProductTypeSizeList",mySQLDataBases);
                 c.startActivity(intent);
-
+*/
             }else
             {
                 Intent intent = new Intent(c,ProductTypeSizes.class);
@@ -490,6 +492,21 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 intent.putExtra("ProductTypeSizeList",mySQLDataBases);
                 c.startActivity(intent);
             }
+        }
+        private void openAnotherActivityCondition(int proid,String proname,int protyid,String protyname){
+            Uri builtUri = Uri.parse(productTypesGridurl)
+                    .buildUpon()
+                    .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(proid))
+                    .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(protyid))
+                    .build();
+            URL urlAddress = null;
+            try {
+                urlAddress = new URL(builtUri.toString());
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+
+            new ProductTypeImagesDownloader(ProductTypes.this,urlAddress,proid,proname,protyid,protyname).execute();
         }
         private int parseData()
         {
@@ -531,6 +548,156 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         }
 
 
+    }
+    private class ProductTypeImagesDownloader extends AsyncTask<Void, Void, String> {
+
+        Context c;
+        URL urlAddress;
+        int productid;
+        int producttypeid;
+        String productname,producttypename;
+        private ProductTypeImagesDownloader(Context c, URL urlAddress, int pid,String pname, int ptid,String ptname) {
+            this.c = c;
+            this.urlAddress = urlAddress;
+           this.productid=pid;
+            this.productname=pname;
+            this.producttypeid=ptid;
+            this.producttypename = ptname;
+            Log.d("newActivity url: ", "> " + urlAddress);
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            return downloadTypeData();
+
+
+        }
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(s==null)
+            {
+                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+            }else {
+                //CALL DATA PARSER TO PARSE
+                ProductTypeImagesDataParser parser=new ProductTypeImagesDataParser(c, s,productid,productname,producttypeid,producttypename);
+                parser.execute();
+            }
+        }
+        private String downloadTypeData() {
+            HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream is = new BufferedInputStream(con.getInputStream());
+                BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = br.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                br.close();
+                is.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+    private class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
+        Context c;
+        String jsonData;
+        int pid,ptid;
+        String pname,ptname;
+        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
+
+        private ProductTypeImagesDataParser(Context c, String jsonData, int pid, String pname,int ptid,String ptname) {
+            this.c = c;
+
+            this.jsonData = jsonData;
+            this.pid=pid;
+            this.ptid=ptid;
+            this.pname=pname;
+            this.ptname=ptname;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseData();
+        }
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if(result==0)
+            {
+                Intent in=new Intent(ProductTypes.this,Trial1.class);
+                in.putExtra("PRODUCTID_KEY",pid);
+                in.putExtra("PRODUCTNAME_KEY",pname);
+                in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                in.putExtra("PRODUCTTYPE_KEY",ptname);
+                startActivity(in);
+                // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+            }else
+            {
+                Intent intent = new Intent(c,ProductTypesGridView.class);
+                intent.putExtra("PRODUCTID_KEY",pid);
+                intent.putExtra("PRODUCTNAME_KEY",pname);
+                intent.putExtra("PRODUCTTYPEID_KEY",ptid);
+                intent.putExtra("PRODUCTTYPE_KEY",ptname);
+                intent.putExtra("ProductTypeGridList",mySQLDataBases);
+                c.startActivity(intent);
+            }
+        }
+        private int parseData()
+        {
+            try
+            {
+                JSONArray typesGridArray=new JSONArray(jsonData);
+                JSONObject typesGridObject=null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+
+                for(int i=0;i<typesGridArray.length();i++)
+                {
+                    typesGridObject=typesGridArray.getJSONObject(i);
+                    Log.d("result response: ", "> " + typesGridObject);
+                    int ProductSizeImageId = typesGridObject.getInt("ProductSizeImageId");
+                    String Name =typesGridObject.getString("Name");
+                    String ImageUrl=typesGridObject.getString("ImagePath");
+                    String Brands = typesGridObject.getString("Brand");
+                    String Color = typesGridObject.getString("Color");
+                    int ProductSizeId = typesGridObject.optInt("ProductSizeId");
+                    int ProductSubTypeId = typesGridObject.optInt("ProductSubTypeId");
+                    int ProductTypeId = typesGridObject.getInt("ProductTypeId");
+                    int ProductId = typesGridObject.getInt("ProductId");
+                    mySQLDataBase=new MySQLDataBase();
+                    mySQLDataBase.setProductSizeId(ProductSizeImageId);
+                    mySQLDataBase.setName(Name);
+                    mySQLDataBase.setImagePath(ImageUrl);
+                    mySQLDataBase.setBrand(Brands);
+                    mySQLDataBase.setColor(Color);
+                    mySQLDataBase.setProductSizeId(ProductSizeId);
+                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
     }
     private void logout(){
         //Creating an alert dialog to confirm logout
@@ -574,6 +741,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         alertDialog.show();
 
     }
+
 
 }
 
