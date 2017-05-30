@@ -241,7 +241,13 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+                Intent in=new Intent(ProductTypesGridView.this,Trial1.class);
+                in.putExtra("PRODUCTID_KEY",selectedProductId);
+                in.putExtra("PRODUCTNAME_KEY",selectedProductName);
+                in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+                startActivity(in);
+               // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
             }else
             {
                 final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,mySQLDataBases,pid,ptid);

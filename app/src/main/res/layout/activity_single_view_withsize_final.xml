@@ -66,8 +66,8 @@ android:background="@mipmap/backgroundfour"
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:id="@+id/img1"
                 android:background="@drawable/proback"
 
@@ -113,8 +113,9 @@ android:background="@drawable/proback"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/brandview"
                 android:layout_alignEnd="@+id/nameTxt"
-android:layout_centerInParent="true"
-                android:layout_marginEnd="10dp"
+android:layout_alignParentLeft="true"
+                android:layout_marginLeft="100dp"
+
                 android:id="@+id/brandview1"
                 android:textColor="@color/colorblack" />
 
@@ -145,10 +146,11 @@ android:layout_centerInParent="true"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textView27"
                 android:id="@+id/sizeTxt"
+                android:layout_marginLeft="150dp"
                 android:layout_marginRight="10dp"
-
+android:layout_alignParentLeft="true"
                 android:textColor="@color/colorblack"
-                android:layout_alignEnd="@+id/img1" />
+                />
 
             <TextView
                 android:layout_width="wrap_content"

@@ -86,9 +86,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);
-                    startActivity(in);*/
+                    in.putExtra("PRODUCTNAME_KEY",name);*/
+                   // startActivity(in);
                     finish();
+
                 }
             });
 
