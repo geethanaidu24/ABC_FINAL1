@@ -178,6 +178,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
                     .addParameter("productid", String.valueOf(selectedProductId))
+                    .addParameter("productname", selectedProductName)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

@@ -81,10 +81,6 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddProductsSubType.this, Main2Activity.class);
-                   /* in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);*/
                     startActivity(in);
                  //  finish();
                 }
@@ -110,10 +106,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         if(view == imageView){
-           /* Intent intent = new Intent();
-            intent.setType("image*//*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);*/
+
             Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             // Start the Intent
@@ -133,9 +126,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-           /* adapter.notifyDataSetChanged();
-            BackTask bt = new BackTask();
-            bt.execute();*/
+
         }
 
     }
@@ -170,6 +161,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("caption", caption) //Adding text parameter to the request
                     .addParameter("producttypeid",String.valueOf(selectedProducttypeid))
+                    .addParameter("producttype",selectedProducttype)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

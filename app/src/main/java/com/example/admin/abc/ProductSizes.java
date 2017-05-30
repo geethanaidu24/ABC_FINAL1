@@ -51,7 +51,6 @@ public class ProductSizes extends AppCompatActivity {
     private boolean loggedIn = false;
     private static int selectdProductId;
     private static String selectdProductName, finalProductSelctedSize;
-    final static String productSizeUrl = Config.productSizesUrlAddress;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,19 +68,10 @@ public class ProductSizes extends AppCompatActivity {
         selectdProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectdProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Log.d("result PID: ", "> " + selectdProductId);
+        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
 
-        Uri builtUri = Uri.parse(productSizeUrl)
-                .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(selectdProductId))
-                .build();
-        URL ProSizeurlAddress = null;
-        try {
-            ProSizeurlAddress = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        new ProductSizesDownloader(ProductSizes.this, ProSizeurlAddress, lv, ll, selectdProductId).execute();
+        final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases, selectdProductId);
+        lv.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -152,151 +142,6 @@ public class ProductSizes extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private class ProductSizesDownloader extends AsyncTask<Void, Void, String> {
-        Context c;
-        URL sizeurlAddress;
-        ListView lv;
-        LinearLayout ll;
-        int pid;
-
-        private ProductSizesDownloader(Context c, URL urlAddress, ListView lv, LinearLayout ll, int pid) {
-            this.c = c;
-            this.sizeurlAddress = urlAddress;
-            this.lv = lv;
-            this.ll = ll;
-            this.pid = pid;
-            Log.d("newActivity url: ", "> " + sizeurlAddress);
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String data = downloadTypeData();
-            return data;
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if (s == null) {
-                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
-            } else {
-                //CALL DATA PARSER TO PARSE
-                ProductSizesDataParser parser = new ProductSizesDataParser(c, lv, ll, s, pid);
-                parser.execute();
-            }
-        }
-
-        private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(String.valueOf(sizeurlAddress));
-            if (con == null) {
-                return null;
-            }
-            try {
-                InputStream sizesReader = new BufferedInputStream(con.getInputStream());
-                BufferedReader sizeBufferReader = new BufferedReader(new InputStreamReader(sizesReader));
-                String line;
-                StringBuffer jsonData = new StringBuffer();
-                while ((line = sizeBufferReader.readLine()) != null) {
-                    jsonData.append(line + "n");
-                }
-                sizeBufferReader.close();
-                sizesReader.close();
-                return jsonData.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    private class ProductSizesDataParser extends AsyncTask<Void, Void, Integer> {
-        Context c;
-        ListView lv;
-        LinearLayout ll;
-        String jsonData;
-        int pid;
-
-        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
-
-        private ProductSizesDataParser(Context c, ListView lv, LinearLayout ll, String jsonData, int pid) {
-            this.c = c;
-            this.lv = lv;
-            this.ll = ll;
-            this.jsonData = jsonData;
-            this.pid = pid;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Integer doInBackground(Void... params) {
-            return this.parseSizesData();
-        }
-
-        @Override
-
-        protected void onPostExecute(Integer result) {
-            super.onPostExecute(result);
-            if (result == 0) {
-              Intent in=new Intent(ProductSizes.this,Trial.class);
-                in.putExtra("PRODUCTID_KEY", selectdProductId);
-                in.putExtra("PRODUCTNAME_KEY",selectdProductName);
-                startActivity(in);
-
-              /*  Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();*/
-            } else {
-
-                final ProductSizesListAdapter adapter = new ProductSizesListAdapter(c, mySQLDataBases, pid);
-                lv.setAdapter(adapter);
-            }
-        }
-
-        private int parseSizesData() {
-            try {
-                JSONArray sizeArray = new JSONArray(jsonData);
-                JSONObject sizeObject = null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
-                for (int i = 0; i < sizeArray.length(); i++) {
-                    sizeObject = sizeArray.getJSONObject(i);
-                    Log.d("result response: ", "> " + sizeObject);
-                    int ProductSizeId = sizeObject.getInt("ProductSizeId");
-                    int Width = sizeObject.getInt("Width");
-                    int Height = sizeObject.getInt("Height");
-                    int Length = sizeObject.getInt("Length");
-
-                    // String Measure =jo.getString("Measurement");
-                    int ProductTypeId = sizeObject.optInt("ProductTypeId", 0);
-                    // int ProductTypeId=jo.getInt("ProductTypeId");
-                    int ProductId = sizeObject.getInt("ProductId");
-                    mySQLDataBase = new MySQLDataBase();
-
-                    mySQLDataBase.setProductSizeId(ProductSizeId);
-                    mySQLDataBase.setWidth(Width);
-                    mySQLDataBase.setHeight(Height);
-                    mySQLDataBase.setLength(Length);
-
-                    //productTypeSizeDBData.setMeasurement(Measure);
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBase.setProductId(ProductId);
-                    mySQLDataBases.add(mySQLDataBase);
-                }
-                return 1;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return 0;
-        }
-    }
 
     private class ProductSizesListAdapter extends BaseAdapter {
 

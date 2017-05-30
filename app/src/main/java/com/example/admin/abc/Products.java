@@ -38,6 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import static com.example.admin.abc.R.id.productsadd;
 
@@ -45,6 +46,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
     final static String productsAddress = Config.productsUrlAddress;
     final static String productTypeUrlAddress = Config.productTypesUrlAddress;
+    final static String productSizeUrl = Config.productSizesUrlAddress;
     private boolean loggedIn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -445,10 +447,11 @@ public class Products extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                Intent intent = new Intent(c,ProductSizes.class);
-                intent.putExtra("PRODUCTID_KEY", finalpid);
-                intent.putExtra("PRODUCTNAME_KEY", finalname);
-                c.startActivity(intent);
+                openAnotherActivityCondition(finalpid,finalname);
+               // Intent intent = new Intent(c,ProductSizes.class);
+               // intent.putExtra("PRODUCTID_KEY", finalpid);
+              //  intent.putExtra("PRODUCTNAME_KEY", finalname);
+              //  c.startActivity(intent);
             }else
             {
                Intent intent = new Intent(c,ProductTypes.class);
@@ -458,6 +461,21 @@ public class Products extends AppCompatActivity implements Serializable {
                c.startActivity(intent);
             }
         }
+       private void openAnotherActivityCondition(int fpid, String fname){
+           Uri builtUri = Uri.parse(productSizeUrl)
+                   .buildUpon()
+                   .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(fpid))
+                   .build();
+           URL ProSizeurlAddress = null;
+           try {
+               ProSizeurlAddress = new URL(builtUri.toString());
+           } catch (MalformedURLException e) {
+               e.printStackTrace();
+           }
+
+           new ProductSizesDownloader(Products.this, ProSizeurlAddress, fpid,fname).execute();
+
+       }
         private int parseData()
         {
             try
@@ -489,4 +507,145 @@ public class Products extends AppCompatActivity implements Serializable {
         }
 
     }
+    private class ProductSizesDownloader extends AsyncTask<Void, Void, String> {
+        Context c;
+        URL sizeurlAddress;
+        int pid;
+        String pname;
+        private ProductSizesDownloader(Context c, URL urlAddress,int pid,String pname ) {
+            this.c = c;
+            this.sizeurlAddress = urlAddress;
+            this.pid = pid;
+            this.pname=pname;
+            Log.d("newActivity url: ", "> " + sizeurlAddress);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            return downloadTypeData();
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if (s == null) {
+                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+            } else {
+                //CALL DATA PARSER TO PARSE
+                ProductSizesDataParser parser = new ProductSizesDataParser(c,s, pid,pname);
+                parser.execute();
+            }
+        }
+
+        private String downloadTypeData() {
+            HttpURLConnection con = Connector.connect(String.valueOf(sizeurlAddress));
+            if (con == null) {
+                return null;
+            }
+            try {
+                InputStream sizesReader = new BufferedInputStream(con.getInputStream());
+                BufferedReader sizeBufferReader = new BufferedReader(new InputStreamReader(sizesReader));
+                String line;
+                StringBuffer jsonData = new StringBuffer();
+                while ((line = sizeBufferReader.readLine()) != null) {
+                    jsonData.append(line + "n");
+                }
+                sizeBufferReader.close();
+                sizesReader.close();
+                return jsonData.toString();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    private class ProductSizesDataParser extends AsyncTask<Void, Void, Integer> {
+        Context c;
+        String jsonData;
+        int pid;
+        String pname;
+        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+
+        private ProductSizesDataParser(Context c, String jsonData, int pid, String pname) {
+            this.c = c;
+            this.jsonData = jsonData;
+            this.pid = pid;
+            this.pname=pname;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Integer doInBackground(Void... params) {
+            return this.parseSizesData();
+        }
+
+        @Override
+
+        protected void onPostExecute(Integer result) {
+            super.onPostExecute(result);
+            if (result == 0) {
+                Intent in=new Intent(Products.this,Trial.class);
+                in.putExtra("PRODUCTID_KEY", pid);
+                in.putExtra("PRODUCTNAME_KEY",pname);
+                startActivity(in);
+
+
+            } else {
+                Intent intent = new Intent(c,ProductSizes.class);
+                intent.putExtra("PRODUCTID_KEY",pid);
+                intent.putExtra("PRODUCTNAME_KEY",pname);
+                intent.putExtra("ProductSizeList",mySQLDataBases);
+                c.startActivity(intent);
+            }
+        }
+
+        private int parseSizesData() {
+            try {
+                JSONArray sizeArray = new JSONArray(jsonData);
+                JSONObject sizeObject = null;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
+                for (int i = 0; i < sizeArray.length(); i++) {
+                    sizeObject = sizeArray.getJSONObject(i);
+                    Log.d("result response: ", "> " + sizeObject);
+                    int ProductSizeId = sizeObject.getInt("ProductSizeId");
+                    int Width = sizeObject.getInt("Width");
+                    int Height = sizeObject.getInt("Height");
+                    int Length = sizeObject.getInt("Length");
+
+                    // String Measure =jo.getString("Measurement");
+                    int ProductTypeId = sizeObject.optInt("ProductTypeId", 0);
+                    // int ProductTypeId=jo.getInt("ProductTypeId");
+                    int ProductId = sizeObject.getInt("ProductId");
+                    mySQLDataBase = new MySQLDataBase();
+
+                    mySQLDataBase.setProductSizeId(ProductSizeId);
+                    mySQLDataBase.setWidth(Width);
+                    mySQLDataBase.setHeight(Height);
+                    mySQLDataBase.setLength(Length);
+
+                    //productTypeSizeDBData.setMeasurement(Measure);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBase.setProductId(ProductId);
+                    mySQLDataBases.add(mySQLDataBase);
+                }
+                return 1;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return 0;
+        }
+    }
+
 }

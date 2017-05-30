@@ -50,9 +50,8 @@ public class DeleteProducts extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProducts.this, Main2Activity.class);
-                    //finish();
-                    startActivity(in);
+                    Intent in = new Intent(DeleteProducts.this, Products.class);
+                    finish();
                 }
             });
 
@@ -77,12 +76,6 @@ public class DeleteProducts extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               /* if(getSelectedItem().toString().equals("Select One")){
-                    Toast.makeText(DeleteProducts.this,
-                            "Your Selected : Nothing",
-                            Toast.LENGTH_SHORT).show();
-                }else {*/
-                    //listItems.remove(0);
                     //SAVE
                     MySQLDataBase s=new MySQLDataBase();
                     s.setProductId(pid);
@@ -124,7 +117,7 @@ public class DeleteProducts extends AppCompatActivity {
                                     Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
-                }/*}*/
+                }
             }
         });
 

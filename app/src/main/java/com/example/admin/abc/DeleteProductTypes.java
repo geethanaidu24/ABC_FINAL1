@@ -73,9 +73,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductTypes.this, Main2Activity.class);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);*/
-                    startActivity(in);
+                   startActivity(in);
                     //finish();
                 }
             });
@@ -124,7 +122,9 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductTypes.this, "Response :" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
 
                                             }else
                                             {

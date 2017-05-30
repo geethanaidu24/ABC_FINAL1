@@ -53,7 +53,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private static int selectedProductId;
     private static String selectedProductName;
 
-    final static String url = Config.productTypeImgUrlAddress;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,21 +69,9 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-
-        Uri builtUri = Uri.parse(url)
-                .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(selectedProductId))
-                .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(selectedProducttypeid))
-                
-                .build();
-        URL urlAddress = null;
-        try {
-            urlAddress = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
-        new ProductTypeImagesDownloader(ProductTypesGridView.this,urlAddress,gv,selectedProductId,selectedProducttypeid).execute();
+        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+        final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases, selectedProductId, selectedProducttypeid);
+        gv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -151,149 +139,6 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         }
 
         return super.onOptionsItemSelected(item);
-    }
-    private class ProductTypeImagesDownloader extends AsyncTask<Void, Void, String> {
-
-        Context c;
-        URL urlAddress;
-        GridView gv;
-        int pid;
-        int ptid;
-        private ProductTypeImagesDownloader(Context c, URL urlAddress, GridView gv, int pid, int ptid) {
-            this.c = c;
-            this.urlAddress = urlAddress;
-            this.gv = gv;
-            this.pid = pid;
-            this.ptid =ptid;
-            Log.d("newActivity url: ", "> " + urlAddress);
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String data = downloadTypeData();
-            return data;
-
-        }
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            if(s==null)
-            {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
-            }else {
-                //CALL DATA PARSER TO PARSE
-                ProductTypeImagesDataParser parser=new ProductTypeImagesDataParser(c, gv, s,pid,ptid);
-                parser.execute();
-            }
-        }
-        private String downloadTypeData() {
-            HttpURLConnection con = Connector.connect(String.valueOf(urlAddress));
-            if (con == null) {
-                return null;
-            }
-            try {
-                InputStream is = new BufferedInputStream(con.getInputStream());
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String line;
-                StringBuffer jsonData = new StringBuffer();
-                while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
-                }
-                br.close();
-                is.close();
-                return jsonData.toString();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-    private class ProductTypeImagesDataParser extends AsyncTask<Void,Void,Integer> {
-        Context c;
-        GridView gv;
-        String jsonData;
-        int pid,ptid;
-        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
-
-        private ProductTypeImagesDataParser(Context c, GridView gv, String jsonData, int pid, int ptid) {
-            this.c = c;
-            this.gv = gv;
-            this.jsonData = jsonData;
-            this.pid=pid;
-            this.ptid=ptid;
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-        @Override
-        protected Integer doInBackground(Void... params) {
-            return this.parseData();
-        }
-        @Override
-
-        protected void onPostExecute(Integer result) {
-            super.onPostExecute(result);
-            if(result==0)
-            {
-                Intent in=new Intent(ProductTypesGridView.this,Trial1.class);
-                in.putExtra("PRODUCTID_KEY",selectedProductId);
-                in.putExtra("PRODUCTNAME_KEY",selectedProductName);
-                in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-                in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-                startActivity(in);
-               // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
-            }else
-            {
-                final ProductTypeImagesGirdAdapter adapter=new ProductTypeImagesGirdAdapter(c,mySQLDataBases,pid,ptid);
-                gv.setAdapter(adapter);
-
-            }
-        }
-        private int parseData()
-        {
-            try
-            {
-                JSONArray typesGridArray=new JSONArray(jsonData);
-                JSONObject typesGridObject=null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
-
-                for(int i=0;i<typesGridArray.length();i++)
-                {
-                    typesGridObject=typesGridArray.getJSONObject(i);
-                    Log.d("result response: ", "> " + typesGridObject);
-                    int ProductSizeImageId = typesGridObject.getInt("ProductSizeImageId");
-                    String Name =typesGridObject.getString("Name");
-                    String ImageUrl=typesGridObject.getString("ImagePath");
-                    String Brands = typesGridObject.getString("Brand");
-                    String Color = typesGridObject.getString("Color");
-                    int ProductSizeId = typesGridObject.optInt("ProductSizeId");
-                    int ProductSubTypeId = typesGridObject.optInt("ProductSubTypeId");
-                    int ProductTypeId = typesGridObject.getInt("ProductTypeId");
-                    int ProductId = typesGridObject.getInt("ProductId");
-                    mySQLDataBase=new MySQLDataBase();
-                    mySQLDataBase.setProductSizeId(ProductSizeImageId);
-                    mySQLDataBase.setName(Name);
-                    mySQLDataBase.setImagePath(ImageUrl);
-                    mySQLDataBase.setBrand(Brands);
-                    mySQLDataBase.setColor(Color);
-                    mySQLDataBase.setProductSizeId(ProductSizeId);
-                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBase.setProductId(ProductId);
-                    mySQLDataBases.add(mySQLDataBase);
-                }
-                return 1;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return 0;
-        }
     }
     private class ProductTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
