@@ -85,11 +85,11 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
+                    Intent in = new Intent(AddProductsTypes.this, Main2Activity.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
-                   // startActivity(in);
-                    finish();
+                   startActivity(in);
+                    //finish();
 
                 }
             });

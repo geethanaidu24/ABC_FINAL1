@@ -49,8 +49,9 @@ public class DeleteNews extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteNews.this, News.class);
-                    finish();
+                    Intent in = new Intent(DeleteNews.this, Main2Activity.class);
+                   // finish();
+                    startActivity(in);
                 }
             });
 

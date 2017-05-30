@@ -80,13 +80,13 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
+                    Intent in = new Intent(AddProductsSubType.this, Main2Activity.class);
                    /* in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);
-                    startActivity(in);*/
-                   finish();
+                    in.putExtra("PRODUCTTYPENAME_KEY", ptname);*/
+                    startActivity(in);
+                 //  finish();
                 }
             });
 

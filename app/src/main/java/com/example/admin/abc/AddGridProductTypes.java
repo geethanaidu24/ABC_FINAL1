@@ -85,8 +85,9 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
-                    finish();
+                    Intent in = new Intent(AddGridProductTypes.this, Main2Activity.class);
+                    //finish();
+                    startActivity(in);
                 }
             });
 

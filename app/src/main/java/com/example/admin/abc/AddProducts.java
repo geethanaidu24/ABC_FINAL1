@@ -55,9 +55,9 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProducts.this, Products.class);
-                    finish();
-                    // startActivity(in);
+                    Intent in = new Intent(AddProducts.this, Main2Activity.class);
+                   // finish();
+                     startActivity(in);
                 }
             });
 

@@ -50,9 +50,9 @@ public class DeleteProducts extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProducts.this, Products.class);
-                    finish();
-                    //startActivity(in);
+                    Intent in = new Intent(DeleteProducts.this, Main2Activity.class);
+                    //finish();
+                    startActivity(in);
                 }
             });
 
