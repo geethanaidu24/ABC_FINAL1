@@ -65,8 +65,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypeGridView.class);
-                    finish();
+                    Intent in = new Intent(DeleteGridSubTypes.this, Main2Activity.class);
+                   // finish();
+                    startActivity(in);
                 }
             });
         }

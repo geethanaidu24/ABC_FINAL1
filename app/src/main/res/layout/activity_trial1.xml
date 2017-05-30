@@ -1,0 +1,168 @@
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@mipmap/backgroundfour"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/activity_toolbar"></include>
+    <!--<android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cred"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="7dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="2dp"
+
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            app:srcCompat="@mipmap/abctextlogo"/>
+
+    </android.support.v7.widget.Toolbar>-->
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:typeface="normal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:lineSpacingExtra="8sp"
+        android:fontFamily="sans-serif" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/proback"
+        android:elevation="2dp"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="40dp"
+                android:text="Please Select only one....."
+                android:textColor="@color/cred"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/bb1"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="46dp"
+                android:background="@drawable/disable_button"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:text="Add Product Sub-Types"
+                android:textColor="@color/white"
+                android:layout_below="@+id/textView16"
+                android:layout_alignEnd="@+id/textView16"
+                android:layout_marginEnd="18dp" />
+
+            <Button
+                android:id="@+id/bb2"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:background="@drawable/disable_button"
+                android:text=" Add Grid Product Types"
+                android:textColor="@color/white"
+                android:layout_below="@+id/bb1"
+                android:layout_alignEnd="@+id/bb1"
+                android:layout_alignStart="@+id/bb1" />
+            <Button
+                android:id="@+id/bb3"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingLeft="5dp"
+                android:background="@drawable/disable_button"
+                android:text=" Add Product Types Sizes"
+                android:textColor="@color/white"
+                android:layout_below="@+id/bb2"
+                android:layout_alignStart="@+id/bb2"
+                android:layout_alignEnd="@+id/bb2" />
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/bb1"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_toStartOf="@+id/bb1"
+                android:text="1."
+                android:textColor="@color/cred"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textView48"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bb3"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/bb1"
+                android:text="2."
+                android:textColor="@color/cred"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/textView49"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bb3"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toStartOf="@+id/bb1"
+                android:text="3."
+                android:textColor="@color/cred"
+                android:textSize="20sp"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+</LinearLayout>

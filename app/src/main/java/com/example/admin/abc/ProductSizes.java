@@ -247,39 +247,10 @@ public class ProductSizes extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ProductSizes.this);
-
-                // Setting Dialog Title
-                alertDialog.setTitle("Confirm Delete...");
-
-                // Setting Dialog Message
-                alertDialog.setMessage("Are you sure you want delete this?");
-
-                // Setting Icon to Dialog
-                alertDialog.setIcon(R.mipmap.delete);
-
-                // Setting Positive "Yes" Button
-                final AlertDialog.Builder yes = alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        // Write your code here to invoke YES event
-                        Intent intent = new Intent(ProductSizes.this, AddProductsTypes.class);
-                        startActivity(intent);
-                    }
-                });
-
-                // Setting Negative "NO" Button
-                alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Write your code here to invoke NO event
-                        Intent intentn=new Intent(ProductSizes.this,ProductSizes.class);
-                        startActivity(intentn);
-
-                    }
-                });
-
-                // Showing Alert Message
-                alertDialog.show();
+              Intent in=new Intent(ProductSizes.this,Trial.class);
+                in.putExtra("PRODUCTID_KEY", selectdProductId);
+                in.putExtra("PRODUCTNAME_KEY",selectdProductName);
+                startActivity(in);
 
               /*  Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();*/
             } else {

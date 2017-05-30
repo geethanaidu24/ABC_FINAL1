@@ -78,8 +78,9 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent in = new Intent(AddProductTypeSizes.this,ProductTypeSizes.class);
-                        finish();
+                        Intent in = new Intent(AddProductTypeSizes.this,Main2Activity.class);
+                       // finish();
+                        startActivity(in);
                     }
                 });
 

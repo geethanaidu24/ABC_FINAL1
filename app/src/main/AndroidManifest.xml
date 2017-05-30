@@ -8,11 +8,13 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <supports-screens android:smallScreens="true"
-        android:normalScreens="true"
+    <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:xlargeScreens="true"
-        android:anyDensity="true" />
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
     <!--
      android:requiresSmallestWidthDp="integer"
       android:compatibleWidthLimitDp="integer"
@@ -114,18 +116,24 @@
         <activity
             android:name=".ProductTypeSingleImageFullViewActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".AddProductsTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddProductsSubType"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteProducts"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteProductTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddGridSubTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ProductSubTypeGridView"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AddProductsTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddProductsSubType"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteProducts"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteProductTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddGridSubTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProductSubTypeGridView"
+            android:screenOrientation="portrait" />
         <!--
 ATTENTION: This was auto-generated to add Google Play services to your project for
     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -137,52 +145,74 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="com.example.admin.abc.GlideConfiguration"
             android:value="GlideModule" />
 
-
         <!--
         <activity android:name=".AddProductSizes">
         </activity>
         -->
-        <activity android:name=".AddProductTypeSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteProductSubTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddProductSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteProductTypeSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteProductSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddGridProductTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddGridProductTypeSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddGridProductSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteGridSubTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteGridProductSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteGridProductTypes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteGridProductTypeSizes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Products"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddBrands"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddNews"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteNews"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".NewsDescription"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".AddContact"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".DeleteContact"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".AddProductTypeSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteProductSubTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddProductSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteProductTypeSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteProductSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddGridProductTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddGridProductTypeSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddGridProductSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteGridSubTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteGridProductSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteGridProductTypes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteGridProductTypeSizes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Products"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddBrands"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddNews"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteNews"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewsDescription"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".AddContact"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".DeleteContact"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="73af28913d7e9d4e7d50d8a1de7164b9484fdfcd" />
+
+        <activity android:name=".Trial" />
+        <activity android:name=".Trial1"></activity>
     </application>
 
 </manifest>

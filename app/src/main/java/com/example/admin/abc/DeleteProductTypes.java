@@ -72,11 +72,11 @@ public class DeleteProductTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
+                    Intent in = new Intent(DeleteProductTypes.this, Main2Activity.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);
-                    startActivity(in);*/
-                    finish();
+                    in.putExtra("PRODUCTNAME_KEY",name);*/
+                  //  startActivity(in);
+                    //finish();
                 }
             });
 

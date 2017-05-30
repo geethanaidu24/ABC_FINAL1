@@ -9,7 +9,7 @@
               android:orientation="vertical"
 
               android:layout_height="match_parent"
-
+    android:background="@mipmap/backgroundfour"
 
               tools:context=".MainActivity">
     <include layout="@layout/activity_toolbar"></include>

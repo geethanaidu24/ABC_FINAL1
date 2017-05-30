@@ -67,8 +67,9 @@ public class DeleteGridProductTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridProductTypes.this, ProductTypesGridView.class);
-                    finish();
+                    Intent in = new Intent(DeleteGridProductTypes.this, Main2Activity.class);
+                    //finish();
+                    startActivity(in);
                 }
             });
 

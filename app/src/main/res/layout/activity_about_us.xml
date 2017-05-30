@@ -45,7 +45,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:orientation="vertical"
 android:elevation="2dp"
 android:fillViewport="false"
-    android:layout_marginBottom="20px">
+    android:layout_marginBottom="20dp">
 
 
 
@@ -96,7 +96,7 @@ android:fillViewport="false"
         android:textSize="24sp"
         android:gravity="center"
         android:textColor="@color/white"
-        android:textAlignment="textStart" />
+        android:textAlignment="center" />
 
 
 
@@ -116,7 +116,7 @@ android:background="@drawable/back1"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:id="@+id/tx9" />
 
     <TextView
@@ -137,7 +137,7 @@ android:background="@drawable/back1"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/textView6"
         android:layout_alignParentStart="true"
-        android:textAlignment="textStart" />
+        android:textAlignment="center" />
 
     <TextView
     android:text="WAREHOUSING"
@@ -170,7 +170,7 @@ android:background="@drawable/back1"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:id="@+id/tx10" />
 
 
@@ -205,7 +205,7 @@ android:background="@drawable/back1"
         android:gravity="center"
         android:layout_marginTop="10px"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:id="@+id/tx11" />
     <TextView
         android:text="OVERSEAS OPERATION"
@@ -236,7 +236,7 @@ android:background="@drawable/back1"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:id="@+id/tx13" />
 
     <TextView
@@ -269,7 +269,7 @@ android:background="@drawable/back1"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
-        android:textAlignment="textStart"
+        android:textAlignment="center"
         android:id="@+id/tx14" />
 </RelativeLayout>
 

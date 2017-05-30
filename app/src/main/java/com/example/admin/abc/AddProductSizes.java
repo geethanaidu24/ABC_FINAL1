@@ -67,10 +67,10 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductSizes.this,ProductSizes.class);
+                    Intent in = new Intent(AddProductSizes.this,Main2Activity.class);
                    // in.putExtra("PRODUCTID_KEY", pid);
-                   // startActivity(in);
-                    finish();
+                    startActivity(in);
+                   // finish();
                 }
             });
 

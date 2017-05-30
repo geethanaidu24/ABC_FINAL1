@@ -119,9 +119,9 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypeSizes.this, ProductSubTypeGridView.class);
-                    // startActivity(in);
-                    finish();
+                    Intent in = new Intent(AddGridProductTypeSizes.this, Main2Activity.class);
+                    startActivity(in);
+                   // finish();
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);

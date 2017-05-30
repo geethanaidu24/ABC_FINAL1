@@ -67,10 +67,10 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
-                    finish();
+                    Intent in = new Intent(DeleteGridProductSizes.this, Main2Activity.class);
+                   // finish();
                     // in.putExtra("PRODUCTID_KEY", pid);
-                    // startActivity(in);
+                    startActivity(in);
                 }
             });
 

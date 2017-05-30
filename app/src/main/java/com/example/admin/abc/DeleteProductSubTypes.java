@@ -71,8 +71,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
-                    finish();
+                    Intent in = new Intent(DeleteProductSubTypes.this, Main2Activity.class);
+                  //  finish();
+                    startActivity(in);
                 }
             });
 

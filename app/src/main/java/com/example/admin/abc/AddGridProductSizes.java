@@ -112,9 +112,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
-                    // startActivity(in);
-                    finish();
+                    Intent in = new Intent(AddGridProductSizes.this, Main2Activity.class);
+                     startActivity(in);
+                  //  finish();
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);

@@ -91,9 +91,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
-                   // startActivity(in);
-                    finish();
+                    Intent in = new Intent(AddGridSubTypes.this, Main2Activity.class);
+                    startActivity(in);
+                    //finish();
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);

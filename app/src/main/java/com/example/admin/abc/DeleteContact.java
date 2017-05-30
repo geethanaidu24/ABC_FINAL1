@@ -51,8 +51,9 @@ public class DeleteContact extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteContact.this, Contact.class);
-                    finish();
+                    Intent in = new Intent(DeleteContact.this, Main2Activity.class);
+                    //finish();
+                    startActivity(in);
                 }
             });
 

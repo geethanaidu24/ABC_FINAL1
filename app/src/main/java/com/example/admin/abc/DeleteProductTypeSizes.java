@@ -76,8 +76,9 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
-                    finish();
+                    Intent in = new Intent(DeleteProductTypeSizes.this, Main2Activity.class);
+                    //finish();
+                    startActivity(in);
 
                 }
             });
