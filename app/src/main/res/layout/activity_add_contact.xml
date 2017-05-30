@@ -89,7 +89,8 @@ android:background="@mipmap/backgroundfour"
                 android:inputType="textMultiLine"
                 android:textColor="@color/colorblack"
                 android:layout_above="@+id/textView"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                />
 
             <TextView
                 android:id="@+id/textView"

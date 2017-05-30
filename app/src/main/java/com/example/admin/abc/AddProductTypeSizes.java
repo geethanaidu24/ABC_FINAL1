@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -85,9 +86,11 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             }
 
             txtwidth = (EditText) findViewById(R.id.width1);
-
+            txtwidth.setInputType(InputType.TYPE_CLASS_TEXT);
             txtheight = (EditText) findViewById(R.id.height1);
+            txtheight.setInputType(InputType.TYPE_CLASS_TEXT);
             txtlength = (EditText) findViewById(R.id.length1);
+            txtlength.setInputType(InputType.TYPE_CLASS_TEXT);
             btnAdd = (Button) findViewById(R.id.brandbtn);
             displaySelectedProductType =(TextView) findViewById(R.id.protypeDisplay);
             displaySelectedProduct =(TextView)findViewById(R.id.proDisplay);
@@ -99,95 +102,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             sp2 = (Spinner) findViewById(R.id.spinner8);*/
             btnAdd.setOnClickListener(this);
         }
-   /* @Override
-    public void onStart(){
-        super.onStart();
-        BackTask bt = new BackTask();
-        bt.execute();
-    }
-    private class BackTask extends AsyncTask<Void,Void,Void> {
 
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productAllSizeSpinner);
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo=null;
-                sizesDBs.clear();
-                SizesDB sizesDB;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo=ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-                    iptid = jo.getInt("ProductTypeId");
-                    ipid =jo.getInt("ProductId");
-                    String ptname = jo.getString("ProductType");
-                    String pname =jo.getString("ProductName");
-                    sizesDB=new SizesDB();
-                    sizesDB.setProductTypeId(iptid);
-                    sizesDB.setProductId(ipid);
-                    sizesDB.setName(pname);
-                    sizesDB.setProductType(ptname);
-                    sizesDBs.add(sizesDB);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            final ArrayList<String> listItems = new ArrayList<>();
-            final ArrayList<String> listItems2 = new ArrayList<>();
-            HashSet<String> hashSet = new HashSet<String>();
-            for(int i=0;i<sizesDBs.size();i++){
-                listItems.add(sizesDBs.get(i).getName());
-
-                listItems2.add(sizesDBs.get(i).getProductType());
-            }
-            hashSet.addAll(listItems);
-            listItems.clear();
-            listItems.addAll(hashSet);
-
-            adapter = new ArrayAdapter(AddProductTypeSizes.this,R.layout.spinner_layout5, R.id.txt5,listItems);
-            sp2.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
-            adapter1 = new ArrayAdapter(AddProductTypeSizes.this,R.layout.spinner_layout6, R.id.txt6,listItems2);
-            sp1.setAdapter(adapter1);
-            adapter1.notifyDataSetChanged();
-
-        }
-    }
-*/
     @Override
     public void onClick(View view) {
         if(view == btnAdd){
@@ -227,65 +142,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         int leng=Integer.parseInt(length);
 
 
-        /*String spinSelVal = sp1.getSelectedItem().toString();
-        String spinSelVal1=sp2.getSelectedItem().toString();
 
-        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-                //final String productName = sizesDB.getName();
-
-                ipid =sizesDB.getProductId() ;
-
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddProductTypeSizes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                SizesDB sizesDB = (SizesDB) sizesDBs.get(position);
-
-
-                iptid =sizesDB.getProductTypeId() ;
-
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddProductTypeSizes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-        SizesDB s = new SizesDB();
-        s.setWidth(wid);
-        s.setHeight(heig);
-        s.setLength(leng);
-        s.setProductId(ipid);
-        s.setProductTypeId(iptid);*/
         //Uploading code
         try {
             AndroidNetworking.post(DATA_INSERT_URL)

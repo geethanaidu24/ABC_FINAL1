@@ -55,7 +55,6 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
     final static String url = Config.productTypeImgUrlAddress;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();

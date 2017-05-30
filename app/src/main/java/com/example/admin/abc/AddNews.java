@@ -13,6 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,7 +60,9 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
         imageView = (ImageView)findViewById(R.id.newsimage);
         etCaption = (EditText)findViewById(R.id.news);
+        etCaption.setInputType(InputType.TYPE_CLASS_TEXT);
         etDescription = (EditText)findViewById(R.id.descptext);
+        etDescription.setInputType(InputType.TYPE_CLASS_TEXT);
         tvPath    = (TextView)findViewById(R.id.newspath);
         btnUpload = (Button)findViewById(R.id.newsbtn);
 

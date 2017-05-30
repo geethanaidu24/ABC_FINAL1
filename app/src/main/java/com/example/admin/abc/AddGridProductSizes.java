@@ -16,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,12 +65,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     /*public int pid=0;
     public int psid=0;*/
     Context context;
-   /* String finalSize;
-    final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
-    private Spinner sp1,sp2;
-    private ArrayAdapter<MySQLDataBase> adapter1 ;
-    private ArrayAdapter<MySQLDataBase> adapter2 ;
-    URL sizeSpinnerUrl = null;*/
+
     private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
     private static String finalProName,finalSelProductSize,finalSelProSize;
 
@@ -107,17 +103,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             finalSelProSize = finalHeight + "" ;
 
         }
-        /*Uri builtUri = Uri.parse(addSpinData)
-                .buildUpon()
-                .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
-             //   .appendQueryParameter(Config.PRODUCTSIZEID_PARAM, Integer.toString(productSizeId))
-                .build();
 
-        try {
-            sizeSpinnerUrl = new URL(builtUri.toString());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }*/
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -133,12 +119,12 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             });
             imageView = (ImageView) findViewById(R.id.image8);
             name = (EditText) findViewById(name8);
+            name.setInputType(InputType.TYPE_CLASS_TEXT);
             Path = (TextView) findViewById(R.id.brandpath);
             brand = (EditText) findViewById(R.id.brand8);
+            brand .setInputType(InputType.TYPE_CLASS_TEXT);
             color = (EditText) findViewById(R.id.color6);
-           /* sp1 = (Spinner) findViewById(R.id.sizespinner8);
-            sp2 = (Spinner) findViewById(R.id.productspinner8);*/
-
+            color.setInputType(InputType.TYPE_CLASS_TEXT);
            dispSize = (TextView)findViewById(R.id.sizeTxt);
            dispProduct = (TextView) findViewById(R.id.productTxt);
            dispSize.setText(finalSelProSize);
@@ -152,188 +138,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             btnadd.setOnClickListener(this);
         }
     }
-    /*public void onStart() {
-        super.onStart();
-        BackTask bt = new BackTask();
-        bt.execute();
 
-    }
-    private class BackTask extends AsyncTask<Void, Void, Void> {
-
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(String.valueOf(sizeSpinnerUrl));
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo = null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo = ja.getJSONObject(i);
-                    // add interviewee name to arraylist
-                    // psid = jo.getInt("ProductSizeId");
-                    psid = jo.getInt("ProductSizeId");
-
-                    int width = jo.getInt("Width");
-                  int height=jo.getInt("Height");
-                int length=jo.getInt("Length");
-
-                    mySQLDataBase = new MySQLDataBase();
-                    mySQLDataBase.setProductSizeId(psid);
-                    mySQLDataBase.setWidth(width);
-                    mySQLDataBase.setHeight(height);
-                    mySQLDataBase.setLength(length);
-                    mySQLDataBases.add(mySQLDataBase);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            final ArrayList<String> listItems = new ArrayList<>();
-            for(int i=0;i<mySQLDataBases.size();i++){
-
-                final int width = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getWidth()).toString());
-                final int height = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getHeight()).toString());
-                final int length = Integer.parseInt(String.valueOf(mySQLDataBases.get(i).getLength()).toString());
-                //final String measure =productTypeSizeDBData.getMeasurement().toString();
-
-                if(length !=0 && width !=0 && height !=0){
-                    finalSize =  width + "X" + height + "X" + length;
-                    listItems.add(String.valueOf(finalSize));
-
-                }else if(length ==0 && width !=0 && height !=0){
-                    finalSize =  width + "X" + height;
-                    listItems.add(String.valueOf(finalSize));
-                }else if(length !=0 && width ==0 && height !=0){
-                    finalSize =  length + "X" + height;
-                    listItems.add(String.valueOf(finalSize));
-                }else if(length !=0 && width !=0 && height ==0 ){
-                    finalSize =  length + "X" + width ;
-                    listItems.add(String.valueOf(finalSize));
-                }else if(length ==0 && width !=0 && height ==0 ){
-                    finalSize = width + "" ;
-                    listItems.add(String.valueOf(finalSize));
-                }else if(length !=0 && width ==0 && height ==0 ){
-                    finalSize = length + "" ;
-                    listItems.add(String.valueOf(finalSize));
-                }else if(length ==0 && width ==0 && height !=0 ){
-                    finalSize = height + "" ;
-                    listItems.add(String.valueOf(finalSize));
-                }
-
-            }
-
-            adapter1=new ArrayAdapter(AddGridProductSizes.this,R.layout.spinner_layout1, R.id.txt1,listItems);
-            sp1.setAdapter(adapter1);
-            adapter1.notifyDataSetChanged();
-            ProductTask productTask = new ProductTask();
-            productTask.execute();
-
-        }
-    }
-    private class ProductTask extends AsyncTask<Void, Void, Void> {
-
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-        protected Void doInBackground(Void... params) {
-            InputStream is = null;
-            String result = "";
-            try {
-                HttpClient httpclient = new DefaultHttpClient();
-                HttpPost httppost = new HttpPost(Config.productsUrlAddress);
-                HttpResponse response = httpclient.execute(httppost);
-                HttpEntity entity = response.getEntity();
-                // Get our response as a String.
-                is = entity.getContent();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            //convert response to string
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "utf-8"));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    result += line;
-                }
-                is.close();
-                //result=sb.toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            // parse json data
-            try {
-                JSONArray ja = new JSONArray(result);
-                JSONObject jo = null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
-                for (int i = 0; i < ja.length(); i++) {
-                    jo = ja.getJSONObject(i);
-                    pid = jo.getInt("ProductId");
-                    String productName = jo.getString("ProductName");
-                    mySQLDataBase = new MySQLDataBase();
-
-                    mySQLDataBase.setProductId(pid);
-
-                    mySQLDataBase.setProductName(productName);
-
-                    mySQLDataBases.add(mySQLDataBase);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        protected void onPostExecute(Void result) {
-
-            // productcrafts.addAll(productcrafts);
-
-            final ArrayList<String> listItems3 = new ArrayList<>();
-            for (int i = 0; i < mySQLDataBases.size(); i++) {
-                listItems3.add(mySQLDataBases.get(i).getProductName());
-
-            }
-            adapter2 = new ArrayAdapter(AddGridProductSizes.this, R.layout.spinner_layout3, R.id.txt3, listItems3);
-            sp2.setAdapter(adapter2);
-            adapter2.notifyDataSetChanged();
-
-        }
-
-
-    }*/
 
     @Override
     public void onClick(View v) {
