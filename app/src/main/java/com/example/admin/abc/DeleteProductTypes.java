@@ -75,7 +75,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                     Intent in = new Intent(DeleteProductTypes.this, Main2Activity.class);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
-                  //  startActivity(in);
+                    startActivity(in);
                     //finish();
                 }
             });
