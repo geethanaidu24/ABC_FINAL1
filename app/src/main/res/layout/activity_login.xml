@@ -8,7 +8,8 @@
     android:layout_height="match_parent"
 
     tools:context="com.example.admin.abc.Login">
-    <include layout="@layout/activity_toolbar"></include>
+    <include layout="@layout/activity_toolbar"
+      ></include>
   <!--  <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -37,15 +38,16 @@
 
     <TextView
         android:id="@+id/login_title"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
 
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:text="Account Login For Only Admin"
         android:textColor="@color/white"
         android:textSize="20sp"
-        />
+        android:layout_below="@+id/toolbar"
+        android:layout_toStartOf="@+id/imageView9" />
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
@@ -54,12 +56,14 @@
 
 
         android:layout_below="@+id/login_title"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/scrollView2">
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
-            android:layout_height="500dp">
+
+            android:layout_height="400dp">
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -70,23 +74,27 @@
         android:background="#fff"
         android:elevation="4dp"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:id="@+id/relativeLayout">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="30dp">
+            android:paddingTop="30dp"
+            android:id="@+id/linearLayout2">
 
 
 
                 <EditText
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:drawableLeft="@mipmap/username"
                     android:drawableTint="@color/cred"
                     android:id="@+id/editText_user"
                     android:hint="User Name"
+                    android:textColor="@color/colorblack"
+                    android:paddingLeft="5dp"
                     android:background="@drawable/edittext"
                     android:inputType="textEmailAddress" />
 
@@ -95,12 +103,14 @@
 
                 <EditText
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginTop="16dp"
                     android:id="@+id/editText_password"
                     android:drawableLeft="@mipmap/pass"
                     android:drawableTint="@color/cred"
                     android:hint="Password"
+                    android:textColor="@color/colorblack"
+                    android:paddingLeft="5dp"
                     android:background="@drawable/edittext"
                     android:inputType="numberPassword" />
 
@@ -118,6 +128,7 @@
                 android:textColor="#fff"
                 android:textSize="18sp" />
         </LinearLayout>
+
     </RelativeLayout>
 
     <ImageButton
@@ -131,6 +142,15 @@
         android:elevation="4dp"
         android:src="@mipmap/abccircle" />
 
-</RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:srcCompat="@mipmap/ccc"
+        android:layout_marginEnd="40dp"
+        android:layout_below="@+id/toolbar"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>

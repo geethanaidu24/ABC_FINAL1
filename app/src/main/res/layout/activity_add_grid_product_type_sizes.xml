@@ -78,7 +78,7 @@ android:layout_below="@+id/toolbar"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:background="@drawable/proback"
-                android:layout_below="@+id/textView4"
+
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 app:srcCompat="@mipmap/browseimage"/>
