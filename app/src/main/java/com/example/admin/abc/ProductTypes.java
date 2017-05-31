@@ -474,14 +474,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             if(result==0)
             {
                 openAnotherActivityCondition(finalProId,finalProName,finalProTypeId,finalProType);
-                /*Intent intent = new Intent(c,ProductTypesGridView.class);
-                intent.putExtra("PRODUCTID_KEY",finalProId);
-                intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
-                intent.putExtra("PRODUCTNAME_KEY",finalProName);
-                intent.putExtra("PRODUCTTYPE_KEY",finalProType);
-                intent.putExtra("ProductTypeSizeList",mySQLDataBases);
-                c.startActivity(intent);
-*/
+
             }else
             {
                 Intent intent = new Intent(c,ProductTypeSizes.class);

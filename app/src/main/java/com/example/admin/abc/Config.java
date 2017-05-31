@@ -40,91 +40,69 @@ public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.p
 
 public final static String productSizeImgUrlAddress = mainUrlAddress+"getProductSizeImages.php?";
 
+    //For adding grid product sizes
+public final static String productSizesGridsCRUD = mainUrlAddress+"productSizesGridsCRUD.php";
+
     // For getting all main products types subtypes data from DB
 
 public final static String productSubTypesUrlAddress = mainUrlAddress+"getProductSubTypes.php";
+
+    //For performing crud on product subtypes
+public final static String productSubTypesCRUD = mainUrlAddress+"productSubTypesCRUD.php";
+
+
+    // For getting all main products typs subtypes Grid view images from DB
+public final static String productSubTypeGridUrlAddress = mainUrlAddress+"getProductSubTypeGrid.php";
+
+    //For performing crud on product sub types grid view
+public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubTypeGridsCRUD.php";
 
     // For getting all main products types sizes from DB
 
 public final static String productTypeSizesUrlAddress = mainUrlAddress+"getProductTypeSizes.php";
 
-    // For getting all main products typs subtypes Grid view images from DB
+    //For performing crud on product type sizes
+public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
 
-public final static String productSubTypeGridUrlAddress = mainUrlAddress+"getProductSubTypeGrid.php";
+
+    // For getting all main products types sizes images Grid view from DB
+public final static String productTypeSizeImgUrlAddress = mainUrlAddress+"getProductTypeSizeImages.php?";
+
+    //For adding grid product type sizes
+public final static String producttypeSizesGridsCRUD = mainUrlAddress+"productTypeSizeGridsCRUD.php";
 
     // For getting all main products types Grid view images from DB
 
 public final static String productTypeImgUrlAddress = mainUrlAddress+"getProductTypeImages.php?";
 
-    // For getting all main products types sizes images Grid view from DB
-
-public final static String productTypeSizeImgUrlAddress = mainUrlAddress+"getProductTypeSizeImages.php?";
-
+    //For aadding grid products types
+public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";
 
 
     // For getting all Brands from DB
 
 public final static String brandsImgUrlAddress = mainUrlAddress+"getBrands.php";
 
+    //For performing crud brands
+public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
+
     // For getting all New Items Form DB
 public final static String newsUrlAddress = mainUrlAddress+"getNews.php";
 
-    // For getting all Contacts From DB
-public final static String contactsUrlAddress = mainUrlAddress+"getContacts.php";
-
-
-
-
-    //For performing crud on product subtypes
-public final static String productSubTypesCRUD = mainUrlAddress+"productSubTypesCRUD.php";
-
-    //For performing crud on product sub types grid view
-public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubTypeGridsCRUD.php";
-
-    //For performing crud on product type sizes
-public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
-
-
-//For performing crud brands
-public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
     //For performing crud news
 public final static String newsCRUD = mainUrlAddress+"newsCRUD.php";
+
+    // FOR Spinners
+public final static String newsSpinner = mainUrlAddress+"newsSpinner.php";
+
+    // For getting all Contacts From DB
+public final static String contactsUrlAddress = mainUrlAddress+"getContacts.php";
 
     // For perform crud contacts
 public final static String contactsCRUD = mainUrlAddress+"contactCRUD.php";
 
     //
 public final static String contactsBranchSpin = mainUrlAddress+"contactBranchSpin.php?City=";
-
-    //For aadding grid products types
-    public final static String productTypeGridsCRUD = mainUrlAddress+"productTypeGridsCRUD.php";
-    //For adding grid product sizes
-    public final static String productSizesGridsCRUD = mainUrlAddress+"productSizesGridsCRUD.php";
-    //For adding grid product type sizes
-    public final static String producttypeSizesGridsCRUD = mainUrlAddress+"productTypeSizeGridsCRUD.php";
-                                            // FOR Spinners
-    public final static String newsSpinner = mainUrlAddress+"newsSpinner.php";
-
-    // For product Types spinner
-/*
-public final static String productTypeSpinner = mainUrlAddress+"productTypeSpinner.php";
-    // For product Subtypes spinner
-public final static String productSubTypeSpinner = mainUrlAddress+"productSubTypeSpinner.php";
-    //For size Spinner
-    public final static String sizeSpinner = mainUrlAddress+"sizeSpinner.php";
-    // For product Subtypes Grid spinner
-public final static String productSubTypeGridSpinner = mainUrlAddress+"productSubTypeGridSpinner.php";
-    // For product All product and types for Sizes Spinner for adding
-public final static String productAllSizeSpinner = mainUrlAddress+"productAllSizeSpinner.php";
-    // For product all sizes spinner for deleting
-public final static String productTypeSizeDelSpinner = mainUrlAddress+"productTypeSizeDelSpinner.php";
-    // For All product type subtype sizes grid view spinner delete
-public final static String deleteGridSubTypeSpinner = mainUrlAddress+"productSubTypeGridDelSpinner.php?ProductSubTypeId=";
-    //For product type grid view spinner delete
-public final static String deleteGridTypeSpinner = mainUrlAddress+"productTypeGridDelSpinner.php?ProductTypeId=";
-    //for adding sizes in spinner
-    public final static String productSizesGridSpinner = mainUrlAddress+"productSizesGridSpinner.php";
-*/
 
 public final static String PRODUCTID_PARAM ="ProductId";
 public final static String PRODUCTTYPEID_PARAM ="ProductTypeId";

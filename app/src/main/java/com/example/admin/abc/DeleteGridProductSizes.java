@@ -123,8 +123,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                             if (responseString.equalsIgnoreCase("Success")) {
 
                                                 //CLEAR EDITXTS
-
-
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                             }else
                                             {
                                                 adapter.notifyDataSetChanged();

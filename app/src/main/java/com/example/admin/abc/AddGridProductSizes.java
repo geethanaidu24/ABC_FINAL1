@@ -62,10 +62,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
-    /*public int pid=0;
-    public int psid=0;*/
     Context context;
-
     private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
     private static String finalProName,finalSelProductSize,finalSelProSize;
 
@@ -197,73 +194,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         //getting the actual path of the image
         String path = getPath(filePath);
 
-       /* sp1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-
-                //  final int pid
-                psid = mySQLDataBase.getProductSizeId();
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddGridProductSizes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-
-        sp2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
-                                       int position, long id) {
-                MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position);
-
-                //  final int pid
-                pid = mySQLDataBase.getProductId();
-                //uploadMultipart();
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        // TODO Auto-generated method stub
-                        dialog.dismiss();
-                    }
-                };
-            }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-                Toast.makeText(AddGridProductSizes.this,
-                        "Your Selected : Nothing",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-        });
-       *//* if((caption.length()<1))
-        {
-            Toast.makeText(AddProductsTypes.this, "Please Enter Product Name",Toast.LENGTH_SHORT).show();
-        }
-        else {*//*
-        MySQLDataBase s = new MySQLDataBase();
-        s.setName(namec);
-        s.setBrand(brandc);
-        s.setColor(colorc);
-        s.setProductSizeId(psid);
-
-        s.setProductId(pid);*/
-        //s.setId(pid);
         //Uploading code
         try {
             String uploadId = UUID.randomUUID().toString();
@@ -277,8 +208,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     .addParameter("color", colorc)
 
                     .addParameter("productsizeid", String.valueOf(finalProSizeId))
-
                     .addParameter("productid", String.valueOf(finalProId))
+                    .addParameter("productname",finalProName)
+                    .addParameter("selsize",finalSelProSize)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
