@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@mipmap/backgroundfour"
+    android:background="@drawable/backgroundfour"
     android:orientation="vertical">
     <include layout="@layout/activity_toolbar"></include>
   <!--  <android.support.v7.widget.Toolbar

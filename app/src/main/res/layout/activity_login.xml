@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
-    android:background="@mipmap/backgroundfour"
+    android:background="@drawable/backgroundfour"
     android:layout_height="match_parent"
 
     tools:context="com.example.admin.abc.Login">
@@ -67,7 +67,7 @@
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/login_title"
+
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="60dp"
@@ -135,7 +135,7 @@
         android:id="@+id/user_profile_photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/login_title"
+
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
         android:background="@drawable/user_profile_image_background"
