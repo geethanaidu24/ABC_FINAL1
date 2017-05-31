@@ -147,7 +147,7 @@ android:paddingLeft="10dp"
         android:gravity="center|center_horizontal"
         android:textColor="@color/colorblack"
 
-        android:layout_below="@+id/newstxt"
+
         android:layout_alignParentEnd="true"
         />
 

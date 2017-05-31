@@ -81,7 +81,7 @@
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
                 android:background="@drawable/proback"
-                android:layout_below="@+id/textView4"
+                android:layout_below="@+id/toolbar"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
               android:foregroundGravity="center"
@@ -122,7 +122,7 @@
                 android:textColor="@color/cred"
                 android:textSize="18sp"
                 android:layout_below="@+id/name8"
-                android:layout_alignStart="@+id/name" />
+               />
 
             <EditText
                 android:id="@+id/brand8"

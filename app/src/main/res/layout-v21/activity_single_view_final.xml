@@ -75,7 +75,7 @@
         android:paddingBottom="4dp"
         android:layout_marginTop="30dp"
         android:adjustViewBounds="true"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true" />
 
     <TextView

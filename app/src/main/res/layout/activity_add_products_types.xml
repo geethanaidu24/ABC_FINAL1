@@ -72,7 +72,7 @@ android:background="@mipmap/backgroundfour"
                 android:id="@+id/brandimage"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@+id/textView13"
+
                 android:layout_centerHorizontal="true"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
