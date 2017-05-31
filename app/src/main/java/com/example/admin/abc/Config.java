@@ -8,7 +8,7 @@ public class Config {
 
     //Main hosting address
 
-public final static String mainUrlAddress = "http://192.168.0.10/abc/";
+public final static String mainUrlAddress = "http://192.168.0.6/abc/";
 
     // For admin login
 
@@ -18,15 +18,27 @@ public final static String loginUrlAddress = mainUrlAddress+"login.php";
 
 public final static String productsUrlAddress = mainUrlAddress+"getProducts.php";
 
-   // public final static String testing = mainUrlAddress+"productscheck.php";
+    //For performing crud on main products
+public final static String productsCRUD = mainUrlAddress+"productsCRUD.php";
 
     // For getting all main products types from database
 
 public final static String productTypesUrlAddress = mainUrlAddress+"getProductTypes.php";
 
+    // For performing crud on product types
+public final static String productTypesCRUD = mainUrlAddress+"productTypesCRUD.php";
+
+
     // For getting all main products sizes if they have directly size only from DB
 
 public final static String productSizesUrlAddress = mainUrlAddress+"getProductSizes.php";
+
+    // For performing crud on product sizes
+public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.php";
+
+    // For getting all main products size images Grid view from DB
+
+public final static String productSizeImgUrlAddress = mainUrlAddress+"getProductSizeImages.php?";
 
     // For getting all main products types subtypes data from DB
 
@@ -48,9 +60,7 @@ public final static String productTypeImgUrlAddress = mainUrlAddress+"getProduct
 
 public final static String productTypeSizeImgUrlAddress = mainUrlAddress+"getProductTypeSizeImages.php?";
 
-    // For getting all main products size images Grid view from DB
 
-public final static String productSizeImgUrlAddress = mainUrlAddress+"getProductSizeImages.php?";
 
     // For getting all Brands from DB
 
@@ -62,11 +72,8 @@ public final static String newsUrlAddress = mainUrlAddress+"getNews.php";
     // For getting all Contacts From DB
 public final static String contactsUrlAddress = mainUrlAddress+"getContacts.php";
 
-    //For performing crud on main products
-public final static String productsCRUD = mainUrlAddress+"productsCRUD.php";
 
-   // For performing crud on product types
-public final static String productTypesCRUD = mainUrlAddress+"productTypesCRUD.php";
+
 
     //For performing crud on product subtypes
 public final static String productSubTypesCRUD = mainUrlAddress+"productSubTypesCRUD.php";
@@ -77,8 +84,7 @@ public final static String productSubTypeGridsCRUD = mainUrlAddress+"productSubT
     //For performing crud on product type sizes
 public final static String productTypeSizesCRUD = mainUrlAddress+"productTypeSizesCRUD.php";
 
-// For performing crud on product sizes
-public final static String productSizesCRUD = mainUrlAddress+"productSizesCRUD.php";
+
 //For performing crud brands
 public final static String brandsCRUD = mainUrlAddress+"brandsCRUD.php";
     //For performing crud news
