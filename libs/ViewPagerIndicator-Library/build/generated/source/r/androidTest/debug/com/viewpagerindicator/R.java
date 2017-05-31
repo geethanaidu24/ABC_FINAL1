@@ -93,11 +93,11 @@ public final class R {
         public static final int vpi__tab_unselected_pressed_holo = 0x7f020006;
     }
     public static final class id {
-        public static final int bottom = 0x7f090003;
-        public static final int none = 0x7f090000;
-        public static final int top = 0x7f090004;
-        public static final int triangle = 0x7f090001;
-        public static final int underline = 0x7f090002;
+        public static final int bottom = 0x7f080003;
+        public static final int none = 0x7f080000;
+        public static final int top = 0x7f080004;
+        public static final int triangle = 0x7f080001;
+        public static final int underline = 0x7f080002;
     }
     public static final class integer {
         public static final int default_circle_indicator_orientation = 0x7f060000;
@@ -106,15 +106,12 @@ public final class R {
         public static final int default_underline_indicator_fade_delay = 0x7f060003;
         public static final int default_underline_indicator_fade_length = 0x7f060004;
     }
-    public static final class string {
-        public static final int com_crashlytics_android_build_id = 0x7f070000;
-    }
     public static final class style {
-        public static final int TextAppearance_TabPageIndicator = 0x7f080000;
-        public static final int Theme_PageIndicatorDefaults = 0x7f080001;
-        public static final int Widget = 0x7f080002;
-        public static final int Widget_IconPageIndicator = 0x7f080003;
-        public static final int Widget_TabPageIndicator = 0x7f080004;
+        public static final int TextAppearance_TabPageIndicator = 0x7f070000;
+        public static final int Theme_PageIndicatorDefaults = 0x7f070001;
+        public static final int Widget = 0x7f070002;
+        public static final int Widget_IconPageIndicator = 0x7f070003;
+        public static final int Widget_TabPageIndicator = 0x7f070004;
     }
     public static final class styleable {
         public static final int[] CirclePageIndicator = { 0x010100c4, 0x010100d4, 0x7f010000, 0x7f010002, 0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007, 0x7f010008 };

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
 
 
-    android:background="@mipmap/backgroundfour"
+    android:background="@drawable/backgroundfour"
 
     android:orientation="vertical"
     >
@@ -73,6 +73,7 @@
         android:layout_marginRight="10dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="30dp"
         android:adjustViewBounds="true"
         android:layout_below="@+id/toolbar"

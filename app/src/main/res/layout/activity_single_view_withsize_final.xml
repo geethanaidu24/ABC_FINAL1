@@ -6,7 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@mipmap/backgroundfour"
+    android:background="@drawable/backgroundfour"
 
     android:orientation="vertical"
     >
@@ -70,7 +70,7 @@ android:background="@mipmap/backgroundfour"
                 android:layout_marginRight="20dp"
                 android:id="@+id/img1"
                 android:background="@drawable/proback"
-
+android:scaleType="fitXY"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:layout_marginTop="30dp"

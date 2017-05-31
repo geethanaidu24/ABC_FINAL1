@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@mipmap/backgroundfour"
+    android:background="@drawable/backgroundfour"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
     <include layout="@layout/activity_toolbar"></include>
