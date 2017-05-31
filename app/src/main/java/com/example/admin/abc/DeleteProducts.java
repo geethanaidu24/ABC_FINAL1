@@ -50,8 +50,9 @@ public class DeleteProducts extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProducts.this, Products.class);
-                    finish();
+                    Intent in = new Intent(DeleteProducts.this, Main2Activity.class);
+                    startActivity(in);
+                    //finish();
                 }
             });
 
@@ -99,6 +100,9 @@ public class DeleteProducts extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProducts.this, "Response  : "+ responseString , Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Success")) {
+                                                adapter.notifyDataSetChanged();
+                                                BackTask bt = new BackTask();
+                                                bt.execute();
                                                 //Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                             }else
                                             {

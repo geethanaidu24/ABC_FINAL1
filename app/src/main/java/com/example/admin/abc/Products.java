@@ -187,8 +187,8 @@ public class Products extends AppCompatActivity implements Serializable {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadData();
-            return data;
+            return downloadData();
+
         }
 
         @Override
@@ -381,8 +381,8 @@ public class Products extends AppCompatActivity implements Serializable {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadTypeData();
-            return data;
+            return downloadTypeData();
+
 
         }
         @Override
@@ -448,10 +448,7 @@ public class Products extends AppCompatActivity implements Serializable {
             if(result==0)
             {
                 openAnotherActivityCondition(finalpid,finalname);
-               // Intent intent = new Intent(c,ProductSizes.class);
-               // intent.putExtra("PRODUCTID_KEY", finalpid);
-              //  intent.putExtra("PRODUCTNAME_KEY", finalname);
-              //  c.startActivity(intent);
+
             }else
             {
                Intent intent = new Intent(c,ProductTypes.class);
