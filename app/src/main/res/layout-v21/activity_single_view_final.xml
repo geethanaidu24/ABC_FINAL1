@@ -67,16 +67,18 @@
     <ImageView
         android:id="@+id/img1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:background="@drawable/proback"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:scaleType="centerCrop"
-
-        android:layout_marginTop="30dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="30dp"
+
         android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true" />
 

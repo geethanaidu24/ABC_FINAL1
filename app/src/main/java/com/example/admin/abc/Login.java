@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         //getMenuInflater().inflate(R.menu.mainproducts, menu);        //If we will get true
         if(loggedIn){
             //We will start the Main Activity
-            Intent intent = new Intent(Login.this, Products.class);
+            Intent intent = new Intent(Login.this, Main2Activity.class);
             startActivity(intent);
         }
     }

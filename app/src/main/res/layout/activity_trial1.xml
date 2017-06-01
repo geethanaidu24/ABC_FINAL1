@@ -104,7 +104,7 @@
                 android:paddingRight="5dp"
                 android:paddingLeft="5dp"
                 android:background="@drawable/disable_button"
-                android:text=" Add Grid Product Types"
+                android:text=" Add Final Product Types Images"
                 android:textColor="@color/white"
                 android:layout_below="@+id/bb1"
                 android:layout_alignEnd="@+id/bb1"
