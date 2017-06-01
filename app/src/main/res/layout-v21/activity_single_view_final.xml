@@ -67,13 +67,14 @@
     <ImageView
         android:id="@+id/img1"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:background="@drawable/proback"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
+
         android:layout_marginTop="30dp"
         android:adjustViewBounds="true"
         android:layout_below="@+id/toolbar"
@@ -170,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@mipmap/zoomm"
-                android:layout_centerVertical="true"
+                android:layout_above="@+id/view2"
                 android:layout_alignStart="@+id/img1" />
 
         </RelativeLayout>

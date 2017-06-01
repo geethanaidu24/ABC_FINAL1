@@ -230,7 +230,7 @@ android:layout_marginLeft="10dp"
                 android:layout_marginLeft="20dp"
                 android:textColor="@color/colorblack"
                 android:layout_marginTop="10dp"
-                android:text="Image Size Should be of highest Resolution 2160px width" />
+                android:text="NOTE: Image Size Should be of highest Resolution 2160px width and 1124px height" />
 
         </RelativeLayout>
     </ScrollView>

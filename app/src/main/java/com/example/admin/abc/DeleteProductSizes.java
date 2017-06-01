@@ -37,6 +37,7 @@ public class DeleteProductSizes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+    int recivedProductId;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesCRUD;
     private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
@@ -48,7 +49,7 @@ public class DeleteProductSizes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_sizes);
         Intent intent = getIntent();
-        final int recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+     recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -120,17 +121,15 @@ public class DeleteProductSizes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                               BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteProductSizes.this,DeleteProductSizes.class);
+                                                intent.putExtra("PRODUCTID_KEY",recivedProductId);
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteProductSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

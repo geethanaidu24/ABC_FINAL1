@@ -100,13 +100,15 @@ public class DeleteContact extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteContact.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteContact.this,DeleteContact.class);
+
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteContact.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

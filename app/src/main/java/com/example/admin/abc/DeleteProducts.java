@@ -195,6 +195,7 @@ public class DeleteProducts extends AppCompatActivity {
             listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
                 listItems.add(mySQLDataBases.get(i).getProductName());
+               adapter.notifyDataSetChanged();
             }
             adapter=new ArrayAdapter(DeleteProducts.this,R.layout.spinner_layout, R.id.txt,listItems);
             sp.setAdapter(adapter);
@@ -206,6 +207,7 @@ public class DeleteProducts extends AppCompatActivity {
                                            int position, long id) {
 
                     if(sp.getSelectedItem().equals("Select One")){
+                        adapter.notifyDataSetChanged();
                         Toast.makeText(DeleteProducts.this,
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();

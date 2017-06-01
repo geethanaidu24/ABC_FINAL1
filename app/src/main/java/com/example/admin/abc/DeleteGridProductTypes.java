@@ -114,15 +114,16 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteGridProductTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
-
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteGridProductTypes.this,DeleteGridProductTypes.class);
+                                                intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                                                intent.putExtra("PRODUCTID_KEY",productId);
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteGridProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

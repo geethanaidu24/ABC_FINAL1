@@ -121,15 +121,16 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductSubTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteProductSubTypes.this,DeleteProductSubTypes.class);
+                                                intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
 
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteProductSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

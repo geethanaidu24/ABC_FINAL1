@@ -111,15 +111,16 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteGridSubTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteGridSubTypes.this,DeleteGridSubTypes.class);
+                                                intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
 
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProductSubTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteGridSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
@@ -214,10 +215,12 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
                     if(sp.getSelectedItem().toString().equals("Select One")){
+
                         Toast.makeText(DeleteGridSubTypes.this,
                                 "Your Selected : Nothing",
                                 Toast.LENGTH_SHORT).show();
                     }else {
+
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final String name = mySQLDataBase.getName();
                     final int prosizeimgid =mySQLDataBase.getProductSizeImageId() ;
@@ -227,6 +230,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                             int which) {
                             // TODO Auto-generated method stub
                             dialog.dismiss();
+
                         }
                     };
                 }}

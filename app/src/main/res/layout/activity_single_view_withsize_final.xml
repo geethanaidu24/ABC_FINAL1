@@ -65,12 +65,12 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:id="@+id/img1"
                 android:background="@drawable/proback"
-android:scaleType="fitXY"
+android:scaleType="centerCrop"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:layout_marginTop="30dp"

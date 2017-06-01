@@ -59,7 +59,7 @@
             android:layout_marginTop="90dp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
-            android:text="Select Products Types Sizes to be Deleted:"
+            android:text="Select Products Types Sizes Final Images to be Deleted:"
             android:textColor="@color/cred"
             android:textSize="18sp"/>
 

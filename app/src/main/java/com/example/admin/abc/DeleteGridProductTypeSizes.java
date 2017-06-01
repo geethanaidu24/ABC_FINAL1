@@ -36,6 +36,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+ int recivedProductId,recivedProductTypeId,recivedProductsizeID;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.producttypeSizesGridsCRUD;
     final static String DelProTypeSizeurl =Config.productTypeSizeImgUrlAddress;
@@ -46,9 +47,9 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         setContentView(R.layout.activity_delete_grid_product_type_sizes);
 
         Intent intent = getIntent();
-        final int recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
-        final int recivedProductTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        final int recivedProductsizeID=intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+         recivedProductTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        recivedProductsizeID=intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
         Uri builtUri = Uri.parse(DelProTypeSizeurl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -122,17 +123,17 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteGridProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-
-                                                //CLEAR EDITXTS
-
-
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProducts.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteGridProductTypeSizes.this,DeleteGridProductTypeSizes.class);
+                                                intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                                                intent.putExtra("PRODUCTID_KEY",recivedProductId);
+                                                intent.putExtra("PRODUCTTYPESIZEID_KEY",recivedProductsizeID);
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteGridProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

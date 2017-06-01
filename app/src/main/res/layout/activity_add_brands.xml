@@ -114,7 +114,7 @@ android:background="@drawable/backgroundfour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:text="Image Size Should be of highest Resolution 2160px width"
+            android:text="NOTE: Image Size Should be of highest Resolution 2160px width and 1124px height"
             android:textColor="@color/colorblack"
             android:layout_below="@+id/brandimage"
             android:layout_marginTop="10dp"

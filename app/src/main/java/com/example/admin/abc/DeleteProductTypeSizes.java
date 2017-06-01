@@ -39,6 +39,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+    int productId,productTypeId;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypeSizesCRUD;
     private static final String DATA_Size_Spin = Config.productTypeSizesUrlAddress;
@@ -53,8 +54,8 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
         setContentView(R.layout.activity_delete_product_type_sizes);
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-       final int productId = intent.getExtras().getInt("PRODUCTID_KEY");
-      final int productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+       productId = intent.getExtras().getInt("PRODUCTID_KEY");
+  productTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -131,15 +132,17 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                //CLEAR EDITXTS
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteProductTypeSizes.this,DeleteProductTypeSizes.class);
+                                                intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                                                intent.putExtra("PRODUCTID_KEY",productId);
 
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                startActivity(intent);
+   /* adapter.notifyDataSetChanged();
+    BackTask bt = new BackTask();
+    bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
