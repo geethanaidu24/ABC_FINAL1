@@ -181,9 +181,10 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
-
                     .addParameter("producttypeid", String.valueOf(selectedProducttypeid))
                     .addParameter("productid", String.valueOf(selectedPid))
+                    .addParameter("productname",selectedPname)
+                    .addParameter("producttype",selectedProducttype)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
