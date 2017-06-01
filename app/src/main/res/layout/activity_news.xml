@@ -51,12 +51,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:elevation="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/proback"
         android:fillViewport="true"
         android:layout_marginBottom="10dp">
+
+    <!--android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/proback"-->
 
 
 

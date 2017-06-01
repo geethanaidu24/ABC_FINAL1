@@ -127,7 +127,7 @@
                 android:layout_below="@+id/textView15"
                 android:layout_centerHorizontal="true"
 
-                android:background="@color/cred"
+                android:background="@drawable/addbutton"
                 android:text="ADD"
                 android:textColor="@color/white" />
 

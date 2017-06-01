@@ -109,6 +109,11 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             txtwidth.setText("");
             txtheight.setText("");
             txtlength.setText("0");
+           /* adapter.notifyDataSetChanged();
+
+            BackTask bt = new BackTask();
+            bt.execute();*/
+
         }
 
     }
@@ -124,6 +129,9 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
         String length=txtlength.getText().toString();
          int leng=Integer.parseInt(length);
+
+
+
 
         //Uploading code
         try {
@@ -145,7 +153,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                                     String responseString = response.get(0).toString();
                                     Toast.makeText(AddProductSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
+                                      /*  //CLEAR EDITXTS
+                                        txtwidth.setText("");
+                                        txtheight.setText("");
+                                        txtlength.setText("");*/
+                                        /*adapter.notifyDataSetChanged();
 
+                                       BackTask bt = new BackTask();
+                                        bt.execute();*/
 
                                     }else
                                     {

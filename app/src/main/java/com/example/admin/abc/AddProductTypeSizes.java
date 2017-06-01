@@ -121,6 +121,10 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             txtwidth.setText("");
             txtheight.setText("");
             txtlength.setText("0");
+            /*adapter.notifyDataSetChanged();
+            adapter1.notifyDataSetChanged();
+            BackTask bt = new BackTask();
+            bt.execute();*/
 
         }
 

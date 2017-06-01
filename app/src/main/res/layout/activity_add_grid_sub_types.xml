@@ -198,7 +198,7 @@ android:layout_below="@+id/toolbar"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:background="@color/cred"
+                android:background="@drawable/addbutton"
         android:text="ADD"
         android:textColor="@color/white"/>
 

@@ -78,7 +78,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
-            android:background="@color/cred"
+            android:background="@drawable/addbutton"
             android:text="DELETE"
             android:textColor="@color/white"/>
     </RelativeLayout>
