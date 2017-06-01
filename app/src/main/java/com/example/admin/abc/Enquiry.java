@@ -92,8 +92,19 @@ ImageView im;
 
                     try {
                         startActivity(Intent.createChooser(sendEmail, "Select email Client...."));
+                        your_name.setText(null);
+                        your_name.setHint("Name");
+                        your_email.setText(null);
+                        your_email.setHint("Email");
+                        your_subject.setText(null);
+                        your_subject.setHint("Contact Number");
+                        your_message.setText(null);
+                        your_message.setHint("Comment");
+
                     } catch (android.content.ActivityNotFoundException ex) {
+
                         Toast.makeText(Enquiry.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+
                     }
 
                 }

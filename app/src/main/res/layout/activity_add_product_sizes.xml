@@ -77,7 +77,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:layout_below="@+id/textView38"
-            android:background="@color/cred"
+            android:background="@drawable/addbutton"
             android:text="ADD"
             android:textColor="@color/white"/>
 

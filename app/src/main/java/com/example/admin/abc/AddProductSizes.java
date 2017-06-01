@@ -108,7 +108,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");
             txtheight.setText("");
-            //txtlength.setText("");
+            txtlength.setText("0");
            /* adapter.notifyDataSetChanged();
 
             BackTask bt = new BackTask();

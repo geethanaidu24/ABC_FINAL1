@@ -133,7 +133,7 @@
                 android:layout_centerHorizontal="true"
                android:layout_marginTop="40dp"
                 android:layout_below="@+id/textView15"
-                android:background="@color/cred"
+                android:background="@drawable/addbutton"
                 android:text="ADD"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/white" />
