@@ -120,11 +120,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");
             txtheight.setText("");
-            //txtlength.setText("");
-            /*adapter.notifyDataSetChanged();
-            adapter1.notifyDataSetChanged();
-            BackTask bt = new BackTask();
-            bt.execute();*/
+            txtlength.setText("0");
 
         }
 
