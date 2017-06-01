@@ -147,12 +147,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            //txtlength.setText("");
-            /*adapter1.notifyDataSetChanged();
-            adapter2.notifyDataSetChanged();
-            adapter3.notifyDataSetChanged();
-            BackTask bt = new BackTask();
-            bt.execute();*/
         }
     }
 
@@ -174,10 +168,6 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         String namec = name.getText().toString().trim();
         String brandc = brand.getText().toString().trim();
         String colorc = color.getText().toString().trim();
-       /* String spinSelVal1 = sp1.getSelectedItem().toString();
-        String spinSelVal2=sp2.getSelectedItem().toString();
-        String spinSelVal3 = sp3.getSelectedItem().toString();
-*/
         //getting the actual path of the image
         String path = getPath(filePath);
 
@@ -195,6 +185,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     .addParameter("productsubtypeid", String.valueOf(productSubTypeId))
                     .addParameter("producttypeid", String.valueOf(selectedProducttypeid))
                     .addParameter("productid", String.valueOf(selectedPid))
+                    .addParameter("productname",selectedPname)
+                    .addParameter("producttype",selectedProducttype)
+                    .addParameter("productsubtype",productSubTypeName)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

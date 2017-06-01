@@ -224,6 +224,9 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     .addParameter("productsizeid", String.valueOf(recivedProductTypeSizeId))
                     .addParameter("producttypeid", String.valueOf(recivedProductTypeId))
                     .addParameter("productid", String.valueOf(recivedProductId))
+                    .addParameter("productname",recivedProductName)
+                    .addParameter("producttype",recivedProducttype)
+                    .addParameter("productsize",finalSelProtypeSize)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload

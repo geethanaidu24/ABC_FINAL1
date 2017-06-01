@@ -206,7 +206,6 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     .addParameter("caption", namec) //Adding text parameter to the request
                     .addParameter("brand", brandc)
                     .addParameter("color", colorc)
-
                     .addParameter("productsizeid", String.valueOf(finalProSizeId))
                     .addParameter("productid", String.valueOf(finalProId))
                     .addParameter("productname",finalProName)

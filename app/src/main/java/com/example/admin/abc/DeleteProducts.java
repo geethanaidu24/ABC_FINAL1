@@ -78,6 +78,7 @@ public class DeleteProducts extends AppCompatActivity {
             public void onClick(View view) {
 
                     //SAVE
+                   // final int pos = sp.getSelectedItemPosition();
                     MySQLDataBase s=new MySQLDataBase();
                     s.setProductId(pid);
                 if(s==null)
@@ -98,17 +99,15 @@ public class DeleteProducts extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProducts.this, "Response  : "+ responseString , Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Success")) {
-                                                adapter.notifyDataSetChanged();
+                                            Toast.makeText(DeleteProducts.this, responseString , Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                Intent intent = new Intent(DeleteProducts.this,DeleteProducts.class);
+                                                startActivity(intent);
+                                               /* adapter.notifyDataSetChanged();
                                                 BackTask bt = new BackTask();
-                                                bt.execute();
-                                                //Toast.makeText(DeleteProducts.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
-                                            }else
-                                            {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
+                                                bt.execute();*/
+                                            }else {
+                                                Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();

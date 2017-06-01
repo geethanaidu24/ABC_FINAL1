@@ -128,10 +128,7 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                                             }else
                                             {
-                                                adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();
-                                               //Toast.makeText(DeleteProductTypes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
