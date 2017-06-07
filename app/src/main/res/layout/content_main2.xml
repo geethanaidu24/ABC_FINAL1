@@ -41,7 +41,7 @@
                 android:gravity="bottom"
                 android:padding="10dip"
                 app:centered="true"
-
+                android:layout_alignParentBottom="true"
                 app:fillColor="#FFFFFF"
                 app:pageColor="#FF0000"
                 app:snap="false" />
