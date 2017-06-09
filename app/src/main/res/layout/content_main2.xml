@@ -47,6 +47,7 @@
                 app:snap="false" />
         </RelativeLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,7 +75,6 @@
                 android:background="@drawable/pdschan"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
-
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
@@ -88,12 +88,12 @@
                 android:id="@+id/buttonh"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:layout_weight="1.0"
                 android:layout_centerInParent="true"
-                android:gravity="center"
-                android:scaleType="centerCrop"
                 android:layout_gravity="center"
-                android:background="@drawable/abschan" />
+                android:layout_weight="1.0"
+                android:background="@drawable/abschan"
+                android:gravity="center"
+                android:scaleType="centerCrop" />
 
 
         </LinearLayout>
@@ -108,21 +108,21 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.0"
             android:layout_gravity="center"
+            android:layout_weight="1.0"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:scaleType="centerCrop"
-                android:gravity="center"
-                android:layout_weight="1.0"
                 android:layout_centerInParent="true"
-
                 android:layout_gravity="center"
-                android:background="@drawable/enqchang" />
+                android:layout_weight="1.0"
+                android:background="@drawable/enqchang"
+
+                android:gravity="center"
+                android:scaleType="centerCrop" />
 
             <View
                 android:layout_width="1dp"
@@ -134,13 +134,13 @@
             <Button
                 android:id="@+id/button4"
                 android:layout_width="0dp"
-                android:layout_gravity="center"
                 android:layout_height="fill_parent"
-                android:layout_weight="1.0"
                 android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_weight="1.0"
+                android:background="@drawable/ctschan"
                 android:gravity="center"
-                android:scaleType="centerCrop"
-                android:background="@drawable/ctschan" />
+                android:scaleType="centerCrop" />
 
         </LinearLayout>
 

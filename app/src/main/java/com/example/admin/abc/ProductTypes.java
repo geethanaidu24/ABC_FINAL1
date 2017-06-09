@@ -105,7 +105,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
         if (loggedIn == true) {
             MenuItem item = menu.findItem(R.id.productsadd);

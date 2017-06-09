@@ -50,7 +50,7 @@ public class Products extends AppCompatActivity implements Serializable {
     private boolean loggedIn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-      //  getSupportActionBar().hide();
+        //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
 
@@ -72,16 +72,17 @@ public class Products extends AppCompatActivity implements Serializable {
                 }
             });
 
+                Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+                toolbar.setOverflowIcon(drawable);
 
-            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-            toolbar.setOverflowIcon(drawable);
+
 
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
         if (loggedIn == true) {
             MenuItem item = menu.findItem(productsadd);
