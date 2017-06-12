@@ -179,6 +179,7 @@ public class Products extends AppCompatActivity implements Serializable {
             this.c = c;
             this.urlAddress = urlAddress;
             this.lv = lv;
+            Log.d("result product url: ", "> " + urlAddress);
         }
 
         @Override
@@ -254,7 +255,7 @@ public class Products extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"No Collection available",Toast.LENGTH_SHORT).show();
             }else
             {
 
@@ -593,11 +594,14 @@ public class Products extends AppCompatActivity implements Serializable {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Intent in=new Intent(Products.this,Trial.class);
-                in.putExtra("PRODUCTID_KEY", pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                startActivity(in);
-
+                if(loggedIn==true) {
+                    Intent in = new Intent(Products.this, Trial.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
+                    startActivity(in);
+                }else{
+                    Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                }
 
             } else {
                 Intent intent = new Intent(c,ProductSizes.class);

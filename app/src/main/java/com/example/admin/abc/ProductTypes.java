@@ -633,13 +633,16 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                Intent in=new Intent(ProductTypes.this,Trial1.class);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                in.putExtra("PRODUCTTYPE_KEY",ptname);
-                startActivity(in);
-                // Toast.makeText(c,"Unable to parse",Toast.LENGTH_SHORT).show();
+                if(loggedIn==true) {
+                    Intent in = new Intent(ProductTypes.this, Trial1.class);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("PRODUCTTYPE_KEY", ptname);
+                    startActivity(in);
+                }else {
+                    Toast.makeText(c,"No Collection available",Toast.LENGTH_SHORT).show();
+                }
             }else
             {
                 Intent intent = new Intent(c,ProductTypesGridView.class);
