@@ -16,20 +16,21 @@ android:layout_marginRight="10dp">
         android:background="@drawable/listview_back">
 <RelativeLayout
     android:gravity="center_vertical"
-    android:layout_marginTop="2dp"
+
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_gravity="center_horizontal"
-    android:layout_marginLeft="2dp"
+
     android:id="@+id/r1"
-    android:layout_marginRight="2dp" >
+    android:background="@drawable/imageview"
+    >
 
     <ImageView
         android:id="@+id/imageSubTypePro"
         android:layout_width="fill_parent"
         android:layout_height="190dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitXY"
+
+        android:scaleType="centerCrop"
         android:src="@drawable/pageloader" />
 
 </RelativeLayout>

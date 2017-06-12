@@ -240,7 +240,7 @@ private boolean menuOptionState=false;
             public void run() {
                 handler.post(Update);
             }
-        }, 3000, 3000);
+        }, 6000, 6000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -323,7 +323,7 @@ private boolean menuOptionState=false;
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            finishAffinity();
+
             Intent in = new Intent(Main2Activity.this, Main2Activity.class);
 
             startActivity(in);
