@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -64,12 +61,20 @@ private boolean checkNetworkConnection;
 
     private GoogleApiClient client;
     private Menu menu;
-
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        boolean finish=getIntent().getBooleanExtra("finish",false);
+        if(finish)
+        {
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+            return;
+        }
+
        Button b1, b2, b3, b4;
         init();
 
@@ -273,9 +278,23 @@ private boolean checkNetworkConnection;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+          new AlertDialog.Builder(this) .setTitle("Exit")
+
+                    .setMessage("Are you sure you want to exit?")
+                  .setIcon(R.drawable.d)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+
+                        }
+                    }).setNegativeButton("No", null).show();
+
         }
     }
+
+
 
    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -309,12 +328,17 @@ private boolean checkNetworkConnection;
         int id = item.getItemId();
 
         if (id == R.id.home) {
+            finishAffinity();
             Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+
             startActivity(in);
+            finish();
+
 
         }else if (id == R.id.ab) {
             Intent in = new Intent(Main2Activity.this, AboutUs.class);
             startActivity(in);
+
 
         }
         else if (id == R.id.product) {
@@ -417,6 +441,7 @@ private boolean checkNetworkConnection;
 
 
         //Logout function
+  /*  private void logout(){
    /* private void logout(){
         //Creating an alert dialog to confirm logout
 

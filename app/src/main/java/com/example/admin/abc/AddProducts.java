@@ -57,7 +57,9 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                 public void onClick(View v) {
                     Intent in = new Intent(AddProducts.this, Main2Activity.class);
                    // finish();
-                     startActivity(in);
+
+                    startActivity(in);
+                    finish();
                 }
             });
 
