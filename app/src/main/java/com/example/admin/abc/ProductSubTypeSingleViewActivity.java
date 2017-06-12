@@ -86,9 +86,6 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         }
     }
 }

@@ -292,7 +292,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"No Collection available",Toast.LENGTH_SHORT).show();
             }else
             {
 
