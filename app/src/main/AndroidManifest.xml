@@ -28,7 +28,8 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:launchMode="singleTop">
+        android:launchMode="singleTop"
+        >
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"

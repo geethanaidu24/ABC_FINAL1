@@ -78,8 +78,6 @@ public class Products extends AppCompatActivity implements Serializable {
                 Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
                 toolbar.setOverflowIcon(drawable);
 
-
-
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
