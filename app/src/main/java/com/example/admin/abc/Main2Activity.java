@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,6 +52,7 @@ public class Main2Activity extends AppCompatActivity
      *
      */
 private boolean menuOptionState=false;
+private boolean checkNetworkConnection;
 
    private static ViewPager mPager;
     private static int currentPage = 0;
@@ -119,8 +123,11 @@ private boolean menuOptionState=false;
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Main2Activity.this, Products.class);
-                startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+                if(checkNetworkConnection == true) {
+                    Intent in = new Intent(Main2Activity.this, Products.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -134,15 +141,21 @@ private boolean menuOptionState=false;
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                startActivity(in);
+                checkNetworkConnection = isNetworkConnectionAvailable();
+                if(checkNetworkConnection == true) {
+                    Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                    startActivity(in);
+                }
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Main2Activity.this, Contact.class);
-                startActivity(in);
+                checkNetworkConnection = isNetworkConnectionAvailable();
+                if(checkNetworkConnection == true) {
+                    Intent in = new Intent(Main2Activity.this, Contact.class);
+                    startActivity(in);
+                }
             }
         });
 
@@ -305,41 +318,60 @@ private boolean menuOptionState=false;
 
         }
         else if (id == R.id.product) {
-            Intent in = new Intent(Main2Activity.this, Products.class);
-            startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, Products.class);
+                startActivity(in);
+            }
         } else if (id == R.id.brands) {
-            Intent in = new Intent(Main2Activity.this, Brands.class);
-            startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, Brands.class);
+                startActivity(in);
+            }
 
         }  else if (id == R.id.cu) {
-            Intent in = new Intent(Main2Activity.this, Contact.class);
-            startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, Contact.class);
+                startActivity(in);
+            }
 
         } else if (id == R.id.enquiry) {
-            Intent in = new Intent(Main2Activity.this, Enquiry.class);
-            startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                startActivity(in);
+            }
 
         }  else if (id == R.id.nw) {
-            Intent in = new Intent(Main2Activity.this,News.class);
-            startActivity(in);
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, News.class);
+                startActivity(in);
+            }
 
         } else if (id == R.id.of) {
+            checkNetworkConnection = isNetworkConnectionAvailable();
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
-            Toast toast = Toast.makeText(getApplicationContext(),
-                    "No Current Offers.....",
-                    Toast.LENGTH_SHORT);
+            if(checkNetworkConnection == true) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "No Current Offers.....",
+                        Toast.LENGTH_SHORT);
 
-            View toastView = toast.getView();
-            toastView.setBackgroundResource(R.drawable.toast_drawable);
-            toast.show();
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
 
-
+            }
         } else if (id == R.id.login) {
-            Intent in = new Intent(Main2Activity.this, Login.class);
-            startActivity(in);
-
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                Intent in = new Intent(Main2Activity.this, Login.class);
+                startActivity(in);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -462,5 +494,36 @@ private boolean menuOptionState=false;
             logout();
         }
         return super.onOptionsItemSelected(item);
+    }
+    public void checkNetworkConnection(){
+        AlertDialog.Builder builder =new AlertDialog.Builder(this);
+        builder.setTitle("No internet Connection");
+        builder.setMessage("Please turn on internet connection to continue");
+        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    public boolean isNetworkConnectionAvailable(){
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnected();
+        if(isConnected) {
+            Log.d("Network", "Connected");
+            return true;
+        }
+        else{
+            checkNetworkConnection();
+            Log.d("Network","Not Connected");
+            return false;
+        }
     }
 }
