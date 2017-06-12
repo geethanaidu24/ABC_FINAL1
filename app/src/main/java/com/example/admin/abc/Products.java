@@ -13,6 +13,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -133,8 +134,8 @@ public class Products extends AppCompatActivity implements Serializable {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
        // alertDialogBuilder.setMessage("Are you sure you want to logout?");
-        alertDialogBuilder.setTitle("Are you sure you want to logout?");
-        alertDialogBuilder.setIcon(R.mipmap.logout);
+        alertDialogBuilder.setTitle(" Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.drawable.logoutt);
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override

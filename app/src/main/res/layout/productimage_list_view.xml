@@ -31,9 +31,9 @@
             android:layout_width="fill_parent"
             android:layout_height="190dp"
 
-            android:scaleType="centerCrop"/>
+            android:scaleType="centerCrop"
 
-           <!-- android:src="@drawable/pageloader"-->
+           android:src="@drawable/gifabc"/>
 
     </RelativeLayout>
 
