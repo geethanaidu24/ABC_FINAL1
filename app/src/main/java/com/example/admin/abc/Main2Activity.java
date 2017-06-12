@@ -417,7 +417,7 @@ private boolean checkNetworkConnection;
 
 
         //Logout function
-    private void logout(){
+   /* private void logout(){
         //Creating an alert dialog to confirm logout
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -494,7 +494,7 @@ private boolean checkNetworkConnection;
             logout();
         }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
     public void checkNetworkConnection(){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
         builder.setTitle("No internet Connection");
