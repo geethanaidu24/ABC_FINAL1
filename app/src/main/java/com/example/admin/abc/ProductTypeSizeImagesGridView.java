@@ -429,7 +429,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
        // alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setTitle("Are you sure you want to logout?");
-        alertDialogBuilder.setIcon(R.mipmap.logout);
+        alertDialogBuilder.setIcon(R.drawable.logoutt);
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override

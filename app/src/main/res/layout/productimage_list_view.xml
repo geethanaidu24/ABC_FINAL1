@@ -33,7 +33,7 @@
 
             android:scaleType="centerCrop"
 
-           android:src="@drawable/pageloader"/>
+           android:src="@drawable/gifabc"/>
 
     </RelativeLayout>
 

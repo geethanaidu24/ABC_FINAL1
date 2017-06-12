@@ -17,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -248,7 +249,7 @@ private boolean checkNetworkConnection;
             public void run() {
                 handler.post(Update);
             }
-        }, 6000, 6000);
+        }, 5000, 4000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -525,8 +526,10 @@ private boolean checkNetworkConnection;
     }*/
     public void checkNetworkConnection(){
         AlertDialog.Builder builder =new AlertDialog.Builder(this);
-        builder.setTitle("No internet Connection");
-        builder.setMessage("Please turn on internet connection to continue");
+
+        builder.setTitle("No Internet Connection");
+        builder.setIcon(R.drawable.internet);
+        builder.setMessage(Html.fromHtml("<font color='#ff0000'> Please turn on Internet Connection to Continue</font>"));
         builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

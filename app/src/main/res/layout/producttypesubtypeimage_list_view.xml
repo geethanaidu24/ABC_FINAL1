@@ -31,7 +31,7 @@ android:layout_marginRight="10dp">
         android:layout_height="190dp"
 
         android:scaleType="centerCrop"
-        android:src="@drawable/pageloader" />
+        android:src="@drawable/gifabc" />
 
 </RelativeLayout>
 
