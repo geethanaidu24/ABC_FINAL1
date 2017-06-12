@@ -30,7 +30,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,6 +41,7 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
+
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -59,7 +61,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
         <activity
             android:name=".Enquiry"
             android:screenOrientation="portrait" />
@@ -187,7 +190,8 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:screenOrientation="portrait" />
         <activity
             android:name=".Products"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+           />
         <activity
             android:name=".AddBrands"
             android:screenOrientation="portrait" />
@@ -211,8 +215,10 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="io.fabric.ApiKey"
             android:value="73af28913d7e9d4e7d50d8a1de7164b9484fdfcd" />
 
-        <activity android:name=".Trial" />
-        <activity android:name=".Trial1"></activity>
+        <activity android:name=".Trial"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Trial1"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

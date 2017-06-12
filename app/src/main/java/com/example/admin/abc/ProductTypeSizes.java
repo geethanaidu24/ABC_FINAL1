@@ -229,7 +229,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+       // alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setTitle("Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.mipmap.logout);
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -251,6 +253,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypeSizes.this, MainActivity.class);
+                        intent.putExtra("finish",true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

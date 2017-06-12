@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,7 +15,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,7 +49,6 @@ public class Main2Activity extends AppCompatActivity
      *
      */
 private boolean menuOptionState=false;
-private boolean checkNetworkConnection;
 
    private static ViewPager mPager;
     private static int currentPage = 0;
@@ -64,12 +60,20 @@ private boolean checkNetworkConnection;
 
     private GoogleApiClient client;
     private Menu menu;
-
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        boolean finish=getIntent().getBooleanExtra("finish",false);
+        if(finish)
+        {
+            startActivity(new Intent(this,MainActivity.class));
+            finish();
+            return;
+        }
+
        Button b1, b2, b3, b4;
         init();
 
@@ -123,11 +127,10 @@ private boolean checkNetworkConnection;
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Products.class);
-                    startActivity(in);
-                }
+                Intent in = new Intent(Main2Activity.this, Products.class);
+
+                startActivity(in);
+
             }
         });
 
@@ -141,21 +144,15 @@ private boolean checkNetworkConnection;
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                    startActivity(in);
-                }
+                Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                startActivity(in);
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Contact.class);
-                    startActivity(in);
-                }
+                Intent in = new Intent(Main2Activity.this, Contact.class);
+                startActivity(in);
             }
         });
 
@@ -178,7 +175,10 @@ private boolean checkNetworkConnection;
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
     }
+
 
   /*  private void AnimateandSlideShow() {
 
@@ -273,9 +273,23 @@ private boolean checkNetworkConnection;
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+          new AlertDialog.Builder(this) .setTitle("Exit")
+
+                    .setMessage("Are you sure you want to exit?")
+                  .setIcon(R.drawable.d)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finishAffinity();
+
+                        }
+                    }).setNegativeButton("No", null).show();
+
         }
     }
+
+
 
    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -309,69 +323,61 @@ private boolean checkNetworkConnection;
         int id = item.getItemId();
 
         if (id == R.id.home) {
+            finishAffinity();
             Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+
             startActivity(in);
+            finish();
+
 
         }else if (id == R.id.ab) {
             Intent in = new Intent(Main2Activity.this, AboutUs.class);
             startActivity(in);
 
+
         }
         else if (id == R.id.product) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Products.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this, Products.class);
+            startActivity(in);
+
+
         } else if (id == R.id.brands) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Brands.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this, Brands.class);
+            startActivity(in);
+
 
         }  else if (id == R.id.cu) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Contact.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this, Contact.class);
+            startActivity(in);
+
 
         } else if (id == R.id.enquiry) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this, Enquiry.class);
+            startActivity(in);
 
         }  else if (id == R.id.nw) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, News.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this,News.class);
+            startActivity(in);
 
         } else if (id == R.id.of) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
-            if(checkNetworkConnection == true) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "No Current Offers.....",
-                        Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(getApplicationContext(),
+                    "No Current Offers.....",
+                    Toast.LENGTH_SHORT);
 
-                View toastView = toast.getView();
-                toastView.setBackgroundResource(R.drawable.toast_drawable);
-                toast.show();
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
 
-            }
+
         } else if (id == R.id.login) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Login.class);
-                startActivity(in);
-            }
+            Intent in = new Intent(Main2Activity.this, Login.class);
+
+            startActivity(in);
+
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -417,7 +423,7 @@ private boolean checkNetworkConnection;
 
 
         //Logout function
-    private void logout(){
+  /*  private void logout(){
         //Creating an alert dialog to confirm logout
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -494,36 +500,5 @@ private boolean checkNetworkConnection;
             logout();
         }
         return super.onOptionsItemSelected(item);
-    }
-    public void checkNetworkConnection(){
-        AlertDialog.Builder builder =new AlertDialog.Builder(this);
-        builder.setTitle("No internet Connection");
-        builder.setMessage("Please turn on internet connection to continue");
-        builder.setNegativeButton("close", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
-
-    public boolean isNetworkConnectionAvailable(){
-        ConnectivityManager cm =
-                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnected();
-        if(isConnected) {
-            Log.d("Network", "Connected");
-            return true;
-        }
-        else{
-            checkNetworkConnection();
-            Log.d("Network","Not Connected");
-            return false;
-        }
-    }
+    }*/
 }

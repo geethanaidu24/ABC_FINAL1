@@ -123,7 +123,9 @@ public class Contact extends AppCompatActivity {
     private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setTitle("Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.mipmap.logout);
+       // alertDialogBuilder.setMessage("Are you sure you want to logout?");
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override

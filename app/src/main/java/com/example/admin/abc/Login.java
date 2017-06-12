@@ -82,6 +82,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             //We will start the Main Activity
             Intent intent = new Intent(Login.this, Main2Activity.class);
             startActivity(intent);
+
         }
     }
 

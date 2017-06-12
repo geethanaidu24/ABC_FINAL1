@@ -18,22 +18,22 @@
 
     <RelativeLayout
         android:gravity="center_vertical"
-        android:layout_marginTop="2dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="2dp"
 
+        android:background="@drawable/imageview"
         android:id="@+id/r1"
-        android:layout_marginRight="2dp" >
+         >
 
         <ImageView
             android:id="@+id/imageDownloaded"
             android:layout_width="fill_parent"
             android:layout_height="190dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
-            android:src="@drawable/pageloader" />
+
+            android:scaleType="centerCrop"/>
+
+           <!-- android:src="@drawable/pageloader"-->
 
     </RelativeLayout>
 

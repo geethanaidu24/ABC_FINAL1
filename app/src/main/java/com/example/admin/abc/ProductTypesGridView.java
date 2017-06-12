@@ -224,7 +224,9 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+       // alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setTitle("Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.mipmap.logout);
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -246,6 +248,8 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);
+                        intent.putExtra("finish",true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                     }
                 });

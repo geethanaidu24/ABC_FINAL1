@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.IntentCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,8 +68,10 @@ public class Products extends AppCompatActivity implements Serializable {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(Products.this, Main2Activity.class);
-                    //startActivity(in);
+                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     finish();
+
                 }
             });
 
@@ -112,6 +115,7 @@ public class Products extends AppCompatActivity implements Serializable {
             Intent in = new Intent(Products.this, AddProducts.class);
 
             startActivity(in);
+
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(Products.this, DeleteProducts.class);
@@ -129,7 +133,10 @@ public class Products extends AppCompatActivity implements Serializable {
     private void logout(){
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure you want to logout?");
+
+       // alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setTitle("Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.mipmap.logout);
         alertDialogBuilder.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -150,8 +157,13 @@ public class Products extends AppCompatActivity implements Serializable {
                         editor.commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Products.this, MainActivity.class);
+
+                        Intent intent = new Intent(Products.this, Main2Activity.class);
+                       intent.putExtra("finish",true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+
+                        finish();
                     }
                 });
 
