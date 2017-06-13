@@ -34,7 +34,7 @@ public class PicassoClient {
         }else {
             //Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
            // Glide.with(c).load(R.drawable.cccc).override(100,100).into(img);
-            Glide.with(c).load(R.drawable.ccc).override(50,30).fitCenter().into(img);
+            Glide.with(c).load(R.drawable.cccc).override(50,30).fitCenter().into(img);
         }
 
     }
