@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         maven { url 'https://maven.fabric.io/public' }
+        mavenCentral() // jcenter() works as well because it pulls from Maven Central
     }
 
     dependencies {
@@ -80,7 +81,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
    // compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
 
-
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
 }
 android {
