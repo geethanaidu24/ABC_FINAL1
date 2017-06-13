@@ -26,12 +26,13 @@ public class PicassoClient {
         {
             //Picasso.with(c).load(imageUrl).placeholder(R.drawable.pageloader).into(img);
             //Glide.with(c).load(imageUrl).centerCrop().crossFade().placeholder(R.drawable.pageloader).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
-           Glide.with(c).load(imageUrl).asGif()
+           Glide.with(c).load(imageUrl)
+                   .thumbnail(Glide.with(c).load(R.drawable.ccc))
                    .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL).crossFade().centerCrop()
-                   .placeholder(R.drawable.ccc).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
+                   .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
         }else {
             //Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
-            Glide.with(c).load(R.mipmap.ic_launcher).centerCrop().into(img);
+            Glide.with(c).load(R.drawable.ccc).centerCrop().into(img);
         }
 
     }
