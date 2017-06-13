@@ -113,12 +113,13 @@ public class Products extends AppCompatActivity implements Serializable {
         if (id == productsadd) {
 
             Intent in = new Intent(Products.this, AddProducts.class);
-
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
 
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(Products.this, DeleteProducts.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(inn);
 
             return true;
@@ -466,6 +467,7 @@ public class Products extends AppCompatActivity implements Serializable {
             }else
             {
                Intent intent = new Intent(c,ProductTypes.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                intent.putExtra("PRODUCTID_KEY",finalpid);
                intent.putExtra("PRODUCTNAME_KEY",finalname);
                intent.putExtra("ProductTypeList",mySQLDataBases);
@@ -608,6 +610,7 @@ public class Products extends AppCompatActivity implements Serializable {
             if (result == 0) {
                 if(loggedIn==true) {
                     Intent in = new Intent(Products.this, Trial.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     startActivity(in);
@@ -617,6 +620,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
             } else {
                 Intent intent = new Intent(c,ProductSizes.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTID_KEY",pid);
                 intent.putExtra("PRODUCTNAME_KEY",pname);
                 intent.putExtra("ProductSizeList",mySQLDataBases);

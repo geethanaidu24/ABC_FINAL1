@@ -28,7 +28,10 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:launchMode="singleTop"
+        android:launchMode="singleInstance"
+        android:splitMotionEvents="false"
+        android:windowEnableSplitTouch="false"
+
         >
         <activity
             android:name=".MainActivity"

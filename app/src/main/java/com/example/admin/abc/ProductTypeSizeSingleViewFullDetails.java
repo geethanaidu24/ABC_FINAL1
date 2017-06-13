@@ -82,6 +82,7 @@ public class ProductTypeSizeSingleViewFullDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductTypeSizeSingleViewFullDetails.this,SingleViewImageFull.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("IMAGE_KEY",image);
                 in.putExtra("PRODUCTID_KEY",pid);
                 in.putExtra("PRODUCTNAME_KEY",pname);

@@ -5,7 +5,7 @@
                 android:id="@+id/activity_resources"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+    android:splitMotionEvents="false"
                 tools:context="com.example.admin.abc.Offers">
     <include layout="@layout/activity_toolbar"></include>
   <!--  <android.support.v7.widget.Toolbar

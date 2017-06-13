@@ -77,6 +77,7 @@ public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductSubTypeSingleViewActivity.this,ProductSubTypeSingleViewImageFull.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("IMAGE_KEY",finImgUrl);
                 in.putExtra("PRODUCTSUBTYPEID_KEY",pstid);
                 in.putExtra("NAME_KEY",name);

@@ -72,6 +72,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteProductSubTypes.this, Main2Activity.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                   //  finish();
                     startActivity(in);
                 }

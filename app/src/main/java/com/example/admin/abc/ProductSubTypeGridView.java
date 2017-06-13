@@ -134,6 +134,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
             in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
             in.putExtra("PRODUCTID_KEY",selectedPid);
@@ -144,6 +145,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
             startActivity(inn);
             return true;
@@ -183,6 +185,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSubTypeGridView.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -416,6 +419,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         private void openDetailActivity(int pstid, String...details)
         {
             Intent i = new Intent(c,ProductSubTypeSingleViewActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
             i.putExtra("NAME_KEY", details[0]);
             i.putExtra("IMAGE_KEY",details[1]);

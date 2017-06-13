@@ -135,6 +135,7 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
                     Intent in = new Intent(Main2Activity.this, Products.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -144,6 +145,7 @@ private boolean checkNetworkConnection;
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(Main2Activity.this, AboutUs.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
         });
@@ -153,6 +155,7 @@ private boolean checkNetworkConnection;
                 checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
                     Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -163,6 +166,7 @@ private boolean checkNetworkConnection;
                 checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
                     Intent in = new Intent(Main2Activity.this, Contact.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -283,9 +287,9 @@ private boolean checkNetworkConnection;
             drawer.closeDrawer(GravityCompat.START);
         } else {
 
-          new AlertDialog.Builder(this) .setTitle("Exit")
+          new AlertDialog.Builder(this) .setTitle(Html.fromHtml("<font color='#ff0000'>Exit</font>"))
 
-                    .setMessage("Are you sure you want to exit?")
+                    .setMessage(Html.fromHtml(" Are you sure you want to exit?"))
                   .setIcon(R.drawable.d)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
@@ -334,13 +338,14 @@ private boolean checkNetworkConnection;
         if (id == R.id.home) {
 
             Intent in = new Intent(Main2Activity.this, Main2Activity.class);
-
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
             finish();
 
 
         }else if (id == R.id.ab) {
             Intent in = new Intent(Main2Activity.this, AboutUs.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
 
 
@@ -349,12 +354,14 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, Products.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
         } else if (id == R.id.brands) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, Brands.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
@@ -362,6 +369,7 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, Contact.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
@@ -369,6 +377,7 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
@@ -376,6 +385,7 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, News.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
@@ -398,6 +408,7 @@ private boolean checkNetworkConnection;
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 Intent in = new Intent(Main2Activity.this, Login.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
         }

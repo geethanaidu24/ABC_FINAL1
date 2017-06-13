@@ -141,7 +141,7 @@ public class Brands extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(Brands.this, AddBrands.class);
-
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
             return true;
         }/* else if (id == R.id.productdelete) {
@@ -184,6 +184,7 @@ public class Brands extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(Brands.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

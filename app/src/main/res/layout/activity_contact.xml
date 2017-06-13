@@ -7,7 +7,7 @@
     android:id="@+id/activity_about_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:splitMotionEvents="false"
     tools:context="com.example.admin.abc.AboutUs"
     android:background="@drawable/backgroundfour"
 
@@ -69,7 +69,7 @@
         <ListView
 
             android:id="@+id/contactlist"
-
+            android:splitMotionEvents="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 

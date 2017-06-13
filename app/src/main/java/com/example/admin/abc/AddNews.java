@@ -51,6 +51,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(AddNews.this, Main2Activity.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     //finish();
                      startActivity(in);
                 }

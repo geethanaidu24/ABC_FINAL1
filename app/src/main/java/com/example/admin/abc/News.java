@@ -122,11 +122,12 @@ public class News extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(News.this, AddNews.class);
-
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(News.this, DeleteNews.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(inn);
 
             return true;
@@ -165,6 +166,7 @@ public class News extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(News.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });
@@ -442,6 +444,7 @@ public class News extends AppCompatActivity {
         }
         private void openDetailNewsActivity(String...details){
             Intent intent = new Intent(c, NewsDescription.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             intent.putExtra("NEWSIMAGE_KEY",details[0]);
             intent.putExtra("NEWSTITLE",details[1]);
             intent.putExtra("NEWSDES_KEY",details[2]);
