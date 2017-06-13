@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEWS"
+        android:text="News"
         android:gravity="center"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
@@ -64,7 +64,7 @@
         <ListView
 
             android:id="@+id/newslist"
-
+            android:splitMotionEvents="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 

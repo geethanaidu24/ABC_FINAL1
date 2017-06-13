@@ -133,6 +133,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypeSizeImagesGridView.this, AddGridProductTypeSizes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTID_KEY",productId);
             in.putExtra("PRODUCTNAME_KEY",productName);
             in.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
@@ -146,6 +147,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.putExtra("PRODUCTID_KEY",productId);
             inn.putExtra("PRODUCTTYPEID_KEY",productTypeId);
             inn.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
@@ -412,6 +414,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         private void openDetailActivity(int pid,String pname,int ptid,int ptsid,String...details)
         {
             Intent i = new Intent(c,ProductTypeSizeSingleViewFullDetails.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("PRODUCTID_KEY",pid);
             i.putExtra("PRODUCTNAME_KEY",pname);
             i.putExtra("PRODUCTTYPEID_KEY",ptid);
@@ -451,6 +454,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypeSizeImagesGridView.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

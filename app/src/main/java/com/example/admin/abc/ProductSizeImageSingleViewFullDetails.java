@@ -77,6 +77,7 @@ zoom=(ImageView)findViewById(R.id.imageButton);
             @Override
             public void onClick(View v) {
                 Intent in=new Intent(ProductSizeImageSingleViewFullDetails.this,ProductSizeSingleViewFullImage.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("IMAGE_KEY",image);
                 in.putExtra("PRODUCTID_KEY",pid);
                 in.putExtra("PRODUCTSIZEID_KEY",psid);

@@ -9,7 +9,7 @@
     android:id="@+id/productTypes_size"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:splitMotionEvents="false"
 
     android:background="@drawable/backgroundfour"
 
@@ -107,7 +107,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
 
-
+                        android:splitMotionEvents="false"
 
                         android:layout_centerHorizontal="true"
 

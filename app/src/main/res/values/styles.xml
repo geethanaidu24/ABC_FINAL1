@@ -6,7 +6,8 @@
         <item name="colorPrimary">@color/colorblack</item>
 
         <item name="colorAccent">@color/colorblack</item>
-
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
        </style>
 
 
@@ -17,6 +18,8 @@
         <item name="android:textSize">24sp</item>
         <item name="android:textAppearance">@color/white</item>
         <item name="windowActionBar">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
 
     </style>
 
@@ -24,6 +27,8 @@
         <item name="android:background">@color/white</item>
         <item name="android:titleTextStyle">@style/MyTitleTextStyle
         </item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
         <item name="windowActionBar">false</item>
 
     </style>
@@ -31,13 +36,15 @@
     <style name="MyTitleTextStyle" parent="AppTheme">
         <item name="android:textColor">#FFFFFF</item>
         <item name="windowActionBar">false</item>
-
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
-
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
         <item name="windowActionBar">false</item>
     </style>
 
@@ -45,6 +52,8 @@
 
     <style name="myCustomMenuTextApearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
         <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
     </style>
 
 </resources>

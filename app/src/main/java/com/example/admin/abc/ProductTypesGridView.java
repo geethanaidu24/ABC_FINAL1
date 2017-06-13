@@ -120,6 +120,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTID_KEY",selectedProductId);
             in.putExtra("PRODUCTNAME_KEY",selectedProductName);
             in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
@@ -128,6 +129,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.putExtra("PRODUCTID_KEY",selectedProductId);
             inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             startActivity(inn);
@@ -212,6 +214,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         private void openDetailActivity(int pid, int ptid, String...details)
         {
             Intent i = new Intent(c,ProductTypeSingleViewActivity.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("PRODUCTID_KEY", pid);
             i.putExtra("PRODUCTTYPEID_KEY", ptid);
             i.putExtra("NAME_KEY", details[0]);
@@ -248,6 +251,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

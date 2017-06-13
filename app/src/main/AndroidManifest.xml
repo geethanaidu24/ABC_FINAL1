@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -28,7 +28,10 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:launchMode="singleTop"
+        android:launchMode="singleInstance"
+        android:splitMotionEvents="false"
+        android:windowEnableSplitTouch="false"
+
         >
         <activity
             android:name=".MainActivity"

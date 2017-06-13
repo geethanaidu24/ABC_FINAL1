@@ -69,6 +69,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(DeleteGridProductSizes.this, Main2Activity.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                    // finish();
                     // in.putExtra("PRODUCTID_KEY", pid);
                     startActivity(in);

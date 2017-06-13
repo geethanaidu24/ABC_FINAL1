@@ -124,12 +124,14 @@ public class ProductSizes extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTID_KEY", selectdProductId);
             in.putExtra("PRODUCTNAME_KEY",selectdProductName);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.putExtra("PRODUCTID_KEY", selectdProductId);
             startActivity(inn);
 
@@ -224,6 +226,7 @@ public class ProductSizes extends AppCompatActivity {
 
         public void openProductSizeImagesActivity(int sizeid,int length,int width,int height,String finalSize) {
             Intent intent = new Intent(c, ProductSizeGridViewImages.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             intent.putExtra("PRODUCTID_KEY", selectdProductId);
             intent.putExtra("PRODUCTNAME_KEY",selectdProductName);
             intent.putExtra("PRODUCTSIZEID_KEY", sizeid);

@@ -5,6 +5,7 @@
               android:layout_height="match_parent"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
+    android:splitMotionEvents="false"
     android:background="@drawable/backgroundfour"
               android:visibility="visible"
               xmlns:android="http://schemas.android.com/apk/res/android">
@@ -67,7 +68,7 @@
         <ListView
 
             android:id="@+id/productTypeSubTypesLv"
-
+            android:splitMotionEvents="false"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" >
 

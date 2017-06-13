@@ -81,6 +81,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if(loggedIn){
             //We will start the Main Activity
             Intent intent = new Intent(Login.this, Main2Activity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         }
@@ -118,6 +119,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                             //Starting profile activity
                             Intent intent = new Intent(Login.this, Main2Activity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                           //intent.putExtra("loggedIn", "true");
 
                             startActivity(intent);

@@ -103,11 +103,12 @@ public class Contact extends AppCompatActivity {
         if (id == productsadd) {
 
             Intent in = new Intent(Contact.this, AddContact.class);
-
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(Contact.this, DeleteContact.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(inn);
 
             return true;
@@ -149,6 +150,7 @@ public class Contact extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(Contact.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

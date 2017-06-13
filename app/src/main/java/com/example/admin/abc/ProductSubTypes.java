@@ -117,6 +117,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
             Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
             in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
             in.putExtra("PRODUCTID_KEY",selectedPid);
@@ -127,6 +128,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             return true;
         } else if (id == R.id.productdelete) {
             Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
+            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
             startActivity(inn);
             return true;
@@ -201,6 +203,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         public void openProductSubTypesGridView(int recvProSubId, String recvProSubName) {
             Intent intent = new Intent(c, ProductSubTypeGridView.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             intent.putExtra("PRODUCTSUBTYPEID_KEY", recvProSubId);
             intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvProSubName);
             intent.putExtra("PRODUCTID_KEY",selectedPid);
@@ -238,6 +241,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSubTypes.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
