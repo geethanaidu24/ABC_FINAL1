@@ -52,7 +52,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private String selectedProducttype;
     private static int selectedProductId;
     private static String selectedProductName;
-
+int click=0;
 
 
     @Override
@@ -119,28 +119,48 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTID_KEY",selectedProductId);
-            in.putExtra("PRODUCTNAME_KEY",selectedProductName);
-            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-            startActivity(in);
-            return true;
-        } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTID_KEY",selectedProductId);
-            inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            return true;
+                Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.putExtra("PRODUCTID_KEY", selectedProductId);
+                in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                startActivity(in);
+                return true;
+            }
+        } else if (id == R.id.productdelete) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTID_KEY", selectedProductId);
+                inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
     }
     private class ProductTypeImagesGirdAdapter extends BaseAdapter {
         Context c;
@@ -213,15 +233,20 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
         }
         private void openDetailActivity(int pid, int ptid, String...details)
         {
-            Intent i = new Intent(c,ProductTypeSingleViewActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            i.putExtra("PRODUCTID_KEY", pid);
-            i.putExtra("PRODUCTTYPEID_KEY", ptid);
-            i.putExtra("NAME_KEY", details[0]);
-            i.putExtra("IMAGE_KEY",details[1]);
-            i.putExtra("BRAND_KEY", details[2]);
-            i.putExtra("COLOR_KEY", details[3]);
-            c.startActivity(i);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent i = new Intent(c, ProductTypeSingleViewActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("PRODUCTID_KEY", pid);
+                i.putExtra("PRODUCTTYPEID_KEY", ptid);
+                i.putExtra("NAME_KEY", details[0]);
+                i.putExtra("IMAGE_KEY", details[1]);
+                i.putExtra("BRAND_KEY", details[2]);
+                i.putExtra("COLOR_KEY", details[3]);
+                c.startActivity(i);
+            }
         }
     }
     private void logout(){

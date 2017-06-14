@@ -92,7 +92,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
         btnAdd1.setOnClickListener(this);
     }
-
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(AddProductSizes.this,Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        // in.putExtra("PRODUCTID_KEY", pid);
+        startActivity(in);
+        // finish();
+    }
     @Override
     public void onClick(View view) {
         if(view == btnAdd1){

@@ -111,6 +111,11 @@ ImageView im;
             });
         }
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(Enquiry.this, Main2Activity.class);
+        finish();
+    }
 
         @Override
         public void onResume() {

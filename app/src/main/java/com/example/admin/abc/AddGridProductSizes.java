@@ -136,6 +136,12 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             btnadd.setOnClickListener(this);
         }
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(AddGridProductSizes.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(in);
+    }
 
 
     @Override

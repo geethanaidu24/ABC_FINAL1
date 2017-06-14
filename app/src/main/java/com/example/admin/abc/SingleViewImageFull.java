@@ -64,4 +64,14 @@ public class SingleViewImageFull extends AppCompatActivity {
 
         }
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
+    }
 }

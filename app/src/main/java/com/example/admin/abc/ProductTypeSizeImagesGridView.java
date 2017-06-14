@@ -44,7 +44,9 @@ import java.util.ArrayList;
 
 public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     ImageView back;
+
     private boolean loggedIn = false;
+    private static int click=0;
     //Context c;
     final static String url =Config.productTypeSizeImgUrlAddress;
     private static int productId,producttypeSizeId,productTypeId,selLength,selWidth,selHeight;
@@ -132,28 +134,38 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypeSizeImagesGridView.this, AddGridProductTypeSizes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTID_KEY",productId);
-            in.putExtra("PRODUCTNAME_KEY",productName);
-            in.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
-            in.putExtra("PRODUCTTYPEID_KEY",productTypeId);
-            in.putExtra("PRODUCTTYPE_KEY",productType);
-            in.putExtra("FINALSIZE_KEY",selectedProductSize);
-            in.putExtra("WIDTH_KEY",selWidth);
-            in.putExtra("LENGTH_KEY", selLength);
-            in.putExtra("HEIGHT_KEY",selHeight);
-            startActivity(in);
-            return true;
-        } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTID_KEY",productId);
-            inn.putExtra("PRODUCTTYPEID_KEY",productTypeId);
-            inn.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            return true;
+                Intent in = new Intent(ProductTypeSizeImagesGridView.this, AddGridProductTypeSizes.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.putExtra("PRODUCTID_KEY", productId);
+                in.putExtra("PRODUCTNAME_KEY", productName);
+                in.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
+                in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                in.putExtra("PRODUCTTYPE_KEY", productType);
+                in.putExtra("FINALSIZE_KEY", selectedProductSize);
+                in.putExtra("WIDTH_KEY", selWidth);
+                in.putExtra("LENGTH_KEY", selLength);
+                in.putExtra("HEIGHT_KEY", selHeight);
+                startActivity(in);
+                return true;
+            }
+        } else if (id == R.id.productdelete) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTID_KEY", productId);
+                inn.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                inn.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -161,6 +173,16 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in=new Intent(ProductTypeSizeImagesGridView.this,ProductTypes.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
     }
     private class ProductTypeSizeImagesDownloader extends AsyncTask<Void, Void, String> {
 
@@ -321,16 +343,17 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
         ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
-        static String finalSize ;
-        int pid,ptid,ptsid;
+        static String finalSize;
+        int pid, ptid, ptsid;
         String pname;
+
         private ProductTypeSizeImagesGirdAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases, int pid, String pname, int ptid, int ptsid) {
             this.c = c;
             this.mySQLDataBases = mySQLDataBases;
-            this.pid= pid;
-            this.pname=pname;
-            this.ptid=ptid;
-            this.ptsid=ptsid;
+            this.pid = pid;
+            this.pname = pname;
+            this.ptid = ptid;
+            this.ptsid = ptsid;
             inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
@@ -363,8 +386,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
             //IMG
             final String url = mySQLDataBase.getImagePath();
-            final String finalUrl=Config.mainUrlAddress + url;
-            PicassoClient.downloadImage(c,finalUrl, img);
+            final String finalUrl = Config.mainUrlAddress + url;
+            PicassoClient.downloadImage(c, finalUrl, img);
             //BIND DATA
             final String name = mySQLDataBase.getName();
 
@@ -376,55 +399,59 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             final int length = Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString());
 
 
+            if (length != 0 && width != 0 && height != 0) {
+                finalSize = width + "X" + height + "X" + length;
 
+            } else if (length == 0 && width != 0 && height != 0) {
+                finalSize = width + "X" + height;
 
-            if(length !=0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height + "X" + length;
+            } else if (length != 0 && width == 0 && height != 0) {
+                finalSize = length + "X" + height;
 
-            }else if(length ==0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height;
+            } else if (length != 0 && width != 0 && height == 0) {
+                finalSize = length + "X" + width;
 
-            }else if(length !=0 && width ==0 && height !=0){
-                finalSize =  length + "X" + height;
+            } else if (length == 0 && width != 0 && height == 0) {
+                finalSize = width + "";
 
-            }else if(length !=0 && width !=0 && height ==0 ){
-                finalSize =  length + "X" + width ;
+            } else if (length != 0 && width == 0 && height == 0) {
+                finalSize = length + "";
 
-            }else if(length ==0 && width !=0 && height ==0 ){
-                finalSize = width + "" ;
-
-            }else if(length !=0 && width ==0 && height ==0 ){
-                finalSize = length + "" ;
-
-            }else if(length ==0 && width ==0 && height !=0 ){
-                finalSize = height + "" ;
+            } else if (length == 0 && width == 0 && height != 0) {
+                finalSize = height + "";
 
             }
 
             // open new activity
-            convertView.setOnClickListener(new View.OnClickListener(){
+            convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v){
+                public void onClick(View v) {
                     //open detail activity
-                    openDetailActivity(pid,pname,ptid,ptsid,name,finalUrl,brand,color,finalSize);
+                    openDetailActivity(pid, pname, ptid, ptsid, name, finalUrl, brand, color, finalSize);
                 }
             });
             return convertView;
         }
-        private void openDetailActivity(int pid,String pname,int ptid,int ptsid,String...details)
-        {
-            Intent i = new Intent(c,ProductTypeSizeSingleViewFullDetails.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            i.putExtra("PRODUCTID_KEY",pid);
-            i.putExtra("PRODUCTNAME_KEY",pname);
-            i.putExtra("PRODUCTTYPEID_KEY",ptid);
-            i.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
-            i.putExtra("NAME_KEY", details[0]);
-            i.putExtra("IMAGE_KEY",details[1]);
-            i.putExtra("BRAND_KEY", details[2]);
-            i.putExtra("COLOR_KEY", details[3]);
-            i.putExtra("SIZE_KEY", details[4]);
-            c.startActivity(i);
+
+        private void openDetailActivity(int pid,String pname,int ptid,int ptsid,String...details) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent i = new Intent(c, ProductTypeSizeSingleViewFullDetails.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("PRODUCTID_KEY", pid);
+                i.putExtra("PRODUCTNAME_KEY", pname);
+                i.putExtra("PRODUCTTYPEID_KEY", ptid);
+                i.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
+                i.putExtra("NAME_KEY", details[0]);
+                i.putExtra("IMAGE_KEY", details[1]);
+                i.putExtra("BRAND_KEY", details[2]);
+                i.putExtra("COLOR_KEY", details[3]);
+                i.putExtra("SIZE_KEY", details[4]);
+                c.startActivity(i);
+
+            }
         }
     }
     private void logout(){

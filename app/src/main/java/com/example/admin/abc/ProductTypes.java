@@ -47,6 +47,7 @@ import java.util.ArrayList;
 public class ProductTypes extends AppCompatActivity implements Serializable {
     ImageView back;
     Context c;
+    int click=0;
     private boolean loggedIn = false;
     final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
@@ -131,29 +132,49 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
-            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
-            in.putExtra("PRODUCTID_KEY",selectedPid);
-            in.putExtra("PRODUCTNAME_KEY",selectedPname);
-            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-            startActivity(in);
-            return true;
-        } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTID_KEY",selectedPid);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            return true;
+                Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                in.putExtra("PRODUCTID_KEY", selectedPid);
+                in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                startActivity(in);
+                return true;
+            }
+        } else if (id == R.id.productdelete) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTID_KEY", selectedPid);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(ProductTypes.this, Products.class);
+        //startActivity(in);
+        finish();
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
     }
 
     private class ProductTypesListAdapter extends BaseAdapter {
@@ -328,18 +349,21 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
                 openAnotherActivityCondition(finalProductId,finalProductName,finalProductTypeId,finalProductType);
 
-            }else
-            {
+            }else {
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
 
-                Intent intent = new Intent(c,ProductSubTypes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
-                intent.putExtra("PRODUCTTYPE_KEY",finalProductType);
-                intent.putExtra("PRODUCTID_KEY",selectedPid);
-                intent.putExtra("PRODUCTNAME_KEY",selectedPname);
+                    Intent intent = new Intent(c, ProductSubTypes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
+                    intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
+                    intent.putExtra("PRODUCTID_KEY", selectedPid);
+                    intent.putExtra("PRODUCTNAME_KEY", selectedPname);
 
-                intent.putExtra("ProductSubTypeList",mySQLDataBases);
-                c.startActivity(intent);
+                    intent.putExtra("ProductSubTypeList", mySQLDataBases);
+                    c.startActivity(intent);
+                }
             }
         }
 
@@ -478,16 +502,20 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             {
                 openAnotherActivityCondition(finalProId,finalProName,finalProTypeId,finalProType);
 
-            }else
-            {
-                Intent intent = new Intent(c,ProductTypeSizes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.putExtra("PRODUCTID_KEY",finalProId);
-                intent.putExtra("PRODUCTNAME_KEY",finalProName);
-                intent.putExtra("PRODUCTTYPEID_KEY",finalProTypeId);
-                intent.putExtra("PRODUCTTYPE_KEY",finalProType);
-                intent.putExtra("ProductTypeSizeList",mySQLDataBases);
-                c.startActivity(intent);
+            }else {
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent intent = new Intent(c, ProductTypeSizes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("PRODUCTID_KEY", finalProId);
+                    intent.putExtra("PRODUCTNAME_KEY", finalProName);
+                    intent.putExtra("PRODUCTTYPEID_KEY", finalProTypeId);
+                    intent.putExtra("PRODUCTTYPE_KEY", finalProType);
+                    intent.putExtra("ProductTypeSizeList", mySQLDataBases);
+                    c.startActivity(intent);
+                }
             }
         }
         private void openAnotherActivityCondition(int proid,String proname,int protyid,String protyname){
@@ -638,26 +666,35 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             if(result==0)
             {
                 if(loggedIn==true) {
-                    Intent in = new Intent(ProductTypes.this, Trial1.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTTYPE_KEY", ptname);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Intent in = new Intent(ProductTypes.this, Trial1.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", pid);
+                        in.putExtra("PRODUCTNAME_KEY", pname);
+                        in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                        in.putExtra("PRODUCTTYPE_KEY", ptname);
+                        startActivity(in);
+                    }
                 }else {
                     Toast.makeText(c,"No Collection available",Toast.LENGTH_SHORT).show();
                 }
-            }else
-            {
-                Intent intent = new Intent(c,ProductTypesGridView.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.putExtra("PRODUCTID_KEY",pid);
-                intent.putExtra("PRODUCTNAME_KEY",pname);
-                intent.putExtra("PRODUCTTYPEID_KEY",ptid);
-                intent.putExtra("PRODUCTTYPE_KEY",ptname);
-                intent.putExtra("ProductTypeGridList",mySQLDataBases);
-                c.startActivity(intent);
+            }else {
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent intent = new Intent(c, ProductTypesGridView.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("PRODUCTID_KEY", pid);
+                    intent.putExtra("PRODUCTNAME_KEY", pname);
+                    intent.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    intent.putExtra("PRODUCTTYPE_KEY", ptname);
+                    intent.putExtra("ProductTypeGridList", mySQLDataBases);
+                    c.startActivity(intent);
+                }
             }
         }
         private int parseData()

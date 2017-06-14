@@ -68,6 +68,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(Login.this, Main2Activity.class);
+        finish();
+    }
 
     @Override
     protected void onResume() {

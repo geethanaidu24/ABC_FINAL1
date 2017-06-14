@@ -9,6 +9,7 @@ import android.widget.Button;
 
 public class Trial1 extends AppCompatActivity {
     Button b1,b2,b3;
+    int click=0;
     private int selectedProducttypeid;
     private String selectedProducttype;
     private static int selectedProductId;
@@ -68,40 +69,57 @@ public class Trial1 extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(Trial1.this,AddGridProductTypes.class);
-                in.putExtra("PRODUCTID_KEY",selectedProductId);
-                in.putExtra("PRODUCTNAME_KEY",selectedProductName);
-                in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-                in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-                startActivity(in);
-                b2.setEnabled(true);
-               // b1.setEnabled(false);
-                //b3.setEnabled(false);
-                b1.setAlpha(.5f);
-                b1.setClickable(false);
-                b3.setAlpha(.5f);
-                b3.setClickable(false);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Trial1.this, AddGridProductTypes.class);
+                    in.putExtra("PRODUCTID_KEY", selectedProductId);
+                    in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                    in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                    in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    startActivity(in);
+                    b2.setEnabled(true);
+                    // b1.setEnabled(false);
+                    //b3.setEnabled(false);
+                    b1.setAlpha(.5f);
+                    b1.setClickable(false);
+                    b3.setAlpha(.5f);
+                    b3.setClickable(false);
+                }
             }
         });
     b3.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent in=new Intent(Trial1.this,AddProductTypeSizes.class);
-            in.putExtra("PRODUCTID_KEY",selectedProductId);
-            in.putExtra("PRODUCTNAME_KEY",selectedProductName);
-            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-            startActivity(in);
-           // b2.setEnabled(false);
-          //  b1.setEnabled(false);
-            b3.setEnabled(true);
-            b2.setAlpha(.5f);
-            b2.setClickable(false);
-            b1.setAlpha(.5f);
-            b1.setClickable(false);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent in = new Intent(Trial1.this, AddProductTypeSizes.class);
+                in.putExtra("PRODUCTID_KEY", selectedProductId);
+                in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                startActivity(in);
+                // b2.setEnabled(false);
+                //  b1.setEnabled(false);
+                b3.setEnabled(true);
+                b2.setAlpha(.5f);
+                b2.setClickable(false);
+                b1.setAlpha(.5f);
+                b1.setClickable(false);
+            }
         }
     });
     }
 
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(Trial1.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(in);
 
+
+    }
 }

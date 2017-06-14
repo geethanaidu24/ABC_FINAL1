@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +52,7 @@ public class Products extends AppCompatActivity implements Serializable {
     final static String productTypeUrlAddress = Config.productTypesUrlAddress;
     final static String productSizeUrl = Config.productSizesUrlAddress;
     private boolean loggedIn = false;
+    int click = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //  getSupportActionBar().hide();
@@ -110,24 +113,41 @@ public class Products extends AppCompatActivity implements Serializable {
 
         //noinspection SimplifiableIfStatement
         if (id == productsadd) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            Intent in = new Intent(Products.this, AddProducts.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
+                Intent in = new Intent(Products.this, AddProducts.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
 
-            return true;
+                return true;
+            }
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(Products.this, DeleteProducts.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            return true;
+                Intent inn = new Intent(Products.this, DeleteProducts.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+       //finishAffinity();
+        Intent in = new Intent(Products.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
     }
 
     private void logout(){
@@ -463,14 +483,20 @@ public class Products extends AppCompatActivity implements Serializable {
             {
                 openAnotherActivityCondition(finalpid,finalname);
 
-            }else
-            {
-               Intent intent = new Intent(c,ProductTypes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               intent.putExtra("PRODUCTID_KEY",finalpid);
-               intent.putExtra("PRODUCTNAME_KEY",finalname);
-               intent.putExtra("ProductTypeList",mySQLDataBases);
-               c.startActivity(intent);
+            }else {
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+
+                    Intent intent = new Intent(c, ProductTypes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("PRODUCTID_KEY", finalpid);
+                    intent.putExtra("PRODUCTNAME_KEY", finalname);
+                    intent.putExtra("ProductTypeList", mySQLDataBases);
+                    c.startActivity(intent);
+
+                }
             }
         }
        private void openAnotherActivityCondition(int fpid, String fname){
@@ -608,22 +634,32 @@ public class Products extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if (result == 0) {
                 if(loggedIn==true) {
-                    Intent in = new Intent(Products.this, Trial.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY", pname);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Intent in = new Intent(Products.this, Trial.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", pid);
+                        in.putExtra("PRODUCTNAME_KEY", pname);
+                        startActivity(in);
+                    }
                 }else{
                     Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
                 }
 
             } else {
-                Intent intent = new Intent(c,ProductSizes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.putExtra("PRODUCTID_KEY",pid);
-                intent.putExtra("PRODUCTNAME_KEY",pname);
-                intent.putExtra("ProductSizeList",mySQLDataBases);
-                c.startActivity(intent);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent intent = new Intent(c, ProductSizes.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.putExtra("PRODUCTID_KEY", pid);
+                    intent.putExtra("PRODUCTNAME_KEY", pname);
+                    intent.putExtra("ProductSizeList", mySQLDataBases);
+                    c.startActivity(intent);
+                }
             }
         }
 

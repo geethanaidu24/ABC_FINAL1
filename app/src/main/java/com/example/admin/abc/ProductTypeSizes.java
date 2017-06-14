@@ -32,6 +32,7 @@ import java.util.ArrayList;
  */
 
 public class ProductTypeSizes extends AppCompatActivity implements Serializable{
+    int click=0;
     ImageView back;
     Context c;
     private boolean loggedIn = false;
@@ -107,23 +108,33 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.putExtra("PRODUCTID_KEY",selectedProdutId);
-            intent.putExtra("PRODUCTNAME_KEY",selectedProductName);
-            intent.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
-            intent.putExtra("PRODUCTTYPE_KEY",selectedProductType);
-            startActivity(intent);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("PRODUCTID_KEY", selectedProdutId);
+                intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+                intent.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+                startActivity(intent);
+                return true;
+            }
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTID_KEY",selectedProdutId );
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            inn.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
-            startActivity(inn);
+                Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTID_KEY", selectedProdutId);
 
-            return true;
+                inn.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -131,6 +142,16 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
     }
 
     private class ProductTypeSizesListAdapter extends BaseAdapter {
@@ -214,18 +235,23 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         }
 
         public void openProductTypeSizeImagesActivity(int sizeid,int length,int width, int height,String finalSize){
-            Intent intent = new Intent(c,ProductTypeSizeImagesGridView.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.putExtra("PRODUCTID_KEY",selectedProdutId);
-            intent.putExtra("PRODUCTNAME_KEY",selectedProductName);
-            intent.putExtra("PRODUCTTYPEID_KEY",selectedProdutTypeId);
-            intent.putExtra("PRODUCTTYPE_KEY",selectedProductType);
-            intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
-            intent.putExtra("WIDTH_KEY",width);
-            intent.putExtra("LENGTH_KEY", length);
-            intent.putExtra("HEIGHT_KEY",height);
-            intent.putExtra("FINALSIZE_KEY",finalSize);
-            c.startActivity(intent);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent intent = new Intent(c, ProductTypeSizeImagesGridView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("PRODUCTID_KEY", selectedProdutId);
+                intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+                intent.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+                intent.putExtra("PRODUCTTYPESIZEID_KEY", sizeid);
+                intent.putExtra("WIDTH_KEY", width);
+                intent.putExtra("LENGTH_KEY", length);
+                intent.putExtra("HEIGHT_KEY", height);
+                intent.putExtra("FINALSIZE_KEY", finalSize);
+                c.startActivity(intent);
+            }
         }
     }
 
