@@ -79,7 +79,6 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-
                     finish();
                 }
             });
@@ -233,7 +232,6 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     public void onBackPressed() {
         //finishAffinity();
         Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-
 
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
