@@ -48,6 +48,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     ImageView back;
     private boolean loggedIn = false;
     //Context c;
+    int click=0;
     final static String proSubUrl = Config.productSubTypeGridUrlAddress;
     private int productSubTypeId;
     private String productSubTypeName;
@@ -133,22 +134,32 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
-            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
-            in.putExtra("PRODUCTID_KEY",selectedPid);
-            in.putExtra("PRODUCTNAME_KEY",selectedPname);
-            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-            startActivity(in);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                in.putExtra("PRODUCTID_KEY", selectedPid);
+                in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                startActivity(in);
+                return true;
+            }
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
-            startActivity(inn);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                startActivity(inn);
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -156,6 +167,17 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
 
         return super.onOptionsItemSelected(item);
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
+
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
     }
 
     private void logout(){
@@ -416,16 +438,20 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             });
             return convertView;
         }
-        private void openDetailActivity(int pstid, String...details)
-        {
-            Intent i = new Intent(c,ProductSubTypeSingleViewActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-            i.putExtra("NAME_KEY", details[0]);
-            i.putExtra("IMAGE_KEY",details[1]);
-            i.putExtra("BRAND_KEY", details[2]);
-            i.putExtra("COLOR_KEY", details[3]);
-            c.startActivity(i);
+        private void openDetailActivity(int pstid, String...details) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent i = new Intent(c, ProductSubTypeSingleViewActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+                i.putExtra("NAME_KEY", details[0]);
+                i.putExtra("IMAGE_KEY", details[1]);
+                i.putExtra("BRAND_KEY", details[2]);
+                i.putExtra("COLOR_KEY", details[3]);
+                c.startActivity(i);
+            }
         }
     }
 

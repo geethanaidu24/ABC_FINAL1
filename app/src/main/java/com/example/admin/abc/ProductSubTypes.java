@@ -34,6 +34,7 @@ import java.util.ArrayList;
 public class ProductSubTypes extends AppCompatActivity implements Serializable{
     ImageView back;
     Context c;
+    int click=0;
     private boolean loggedIn = false;
     private int productSubTypeId;
     private String productSubTypeName;
@@ -116,22 +117,32 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTSUBTYPENAME_KEY",productSubTypeName);
-            in.putExtra("PRODUCTSUBTYPEID_KEY",productSubTypeId);
-            in.putExtra("PRODUCTID_KEY",selectedPid);
-            in.putExtra("PRODUCTNAME_KEY",selectedPname);
-            in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-            startActivity(in);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                in.putExtra("PRODUCTID_KEY", selectedPid);
+                in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                startActivity(in);
+                return true;
+            }
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            inn.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            startActivity(inn);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                startActivity(inn);
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -202,17 +213,34 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         }
 
         public void openProductSubTypesGridView(int recvProSubId, String recvProSubName) {
-            Intent intent = new Intent(c, ProductSubTypeGridView.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.putExtra("PRODUCTSUBTYPEID_KEY", recvProSubId);
-            intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvProSubName);
-            intent.putExtra("PRODUCTID_KEY",selectedPid);
-            intent.putExtra("PRODUCTNAME_KEY",selectedPname);
-            intent.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-            intent.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            c.startActivity(intent);
+                Intent intent = new Intent(c, ProductSubTypeGridView.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("PRODUCTSUBTYPEID_KEY", recvProSubId);
+                intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvProSubName);
+                intent.putExtra("PRODUCTID_KEY", selectedPid);
+                intent.putExtra("PRODUCTNAME_KEY", selectedPname);
+                intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                intent.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+
+                c.startActivity(intent);
+            }
         }
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
+
+
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
     }
     private void logout(){
         //Creating an alert dialog to confirm logout

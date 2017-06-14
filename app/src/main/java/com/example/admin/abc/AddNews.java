@@ -72,6 +72,15 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
         imageView.setOnClickListener(this);
         btnUpload.setOnClickListener(this);
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(AddNews.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //finish();
+        startActivity(in);
+        //finish();
+    }
+
 
     @Override
     public void onClick(View view) {

@@ -21,7 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 public class ProductTypeSingleViewActivity extends AppCompatActivity {
 
     ImageView back;
-
+int click=0;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt;
     Context c;
@@ -78,16 +78,21 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypeSingleImageFullViewActivity.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTNAME_KEY",pname);
-                in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                in.putExtra("NAME_KEY",name);
-                in.putExtra("IMAGE_KEY",image);
-                in.putExtra("BRAND_KEY",brand);
-                in.putExtra("COLOR_KEY",color);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(ProductTypeSingleViewActivity.this, ProductTypeSingleImageFullViewActivity.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY", pname);
+                    in.putExtra("PRODUCTTYPEID_KEY", ptid);
+                    in.putExtra("NAME_KEY", name);
+                    in.putExtra("IMAGE_KEY", image);
+                    in.putExtra("BRAND_KEY", brand);
+                    in.putExtra("COLOR_KEY", color);
+                    startActivity(in);
+                }
 
             }
         });
@@ -96,6 +101,16 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
             // Inflate a menu to be displayed in the toolbar
             //  actionbar.inflateMenu(R.menu.actions);
         }
+
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in=new Intent(ProductTypeSingleViewActivity.this,ProductTypesGridView.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
 
     }
 }

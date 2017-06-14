@@ -62,4 +62,14 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
         }
 
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypesGridView.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        finish();
+
+
+
+    }
 }

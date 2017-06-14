@@ -66,6 +66,12 @@ ImageView back1;
         }
 
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in=new Intent(AboutUs.this,Main2Activity.class);
+        // startActivity(in);
+        finish();
 
+    }
 
 }

@@ -104,7 +104,13 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             sp2 = (Spinner) findViewById(R.id.spinner8);*/
             btnAdd.setOnClickListener(this);
         }
-
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(AddProductTypeSizes.this,Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        // finish();
+        startActivity(in);
+    }
     @Override
     public void onClick(View view) {
         if(view == btnAdd){

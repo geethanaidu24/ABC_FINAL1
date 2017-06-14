@@ -87,6 +87,13 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
 
         btnUpload.setOnClickListener(this);
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(AddContact.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        //  finish();
+        startActivity(in);
+    }
     @Override
     public void onClick(View view) {
 

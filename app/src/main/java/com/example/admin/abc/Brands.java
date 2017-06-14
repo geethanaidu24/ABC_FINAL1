@@ -109,7 +109,11 @@ public class Brands extends AppCompatActivity {
 
         }
     }
-
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(Brands.this, Main2Activity.class);
+        finish();
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

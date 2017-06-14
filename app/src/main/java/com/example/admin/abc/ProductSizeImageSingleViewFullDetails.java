@@ -19,7 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
  */
 
 public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
-
+int click=0;
 
     private boolean loggedIn = false;
     ImageView selectedImage,zoom;
@@ -45,6 +45,7 @@ public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
                     finish();
                 }
             });
+
 
 
             selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
@@ -76,20 +77,37 @@ zoom=(ImageView)findViewById(R.id.imageButton);
             selectedImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(ProductSizeImageSingleViewFullDetails.this,ProductSizeSingleViewFullImage.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.putExtra("IMAGE_KEY",image);
-                in.putExtra("PRODUCTID_KEY",pid);
-                in.putExtra("PRODUCTSIZEID_KEY",psid);
-                in.putExtra("NAME_KEY",name);
-                in.putExtra("BRAND_KEY",brand);
-                in.putExtra("COLOR_KEY",color);
-                in.putExtra("SIZE_KEY",size);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeSingleViewFullImage.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    in.putExtra("IMAGE_KEY", image);
+                    in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTSIZEID_KEY", psid);
+                    in.putExtra("NAME_KEY", name);
+                    in.putExtra("BRAND_KEY", brand);
+                    in.putExtra("COLOR_KEY", color);
+                    in.putExtra("SIZE_KEY", size);
+                    startActivity(in);
+                }
             }
         });
 
 
         }
+
+    }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+        finish();
+        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+
+
+
     }
 }

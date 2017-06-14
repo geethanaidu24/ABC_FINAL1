@@ -56,4 +56,9 @@ public class NewsDescription extends AppCompatActivity {
             });
         }
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(NewsDescription.this, News.class);
+        finish();
+    }
 }

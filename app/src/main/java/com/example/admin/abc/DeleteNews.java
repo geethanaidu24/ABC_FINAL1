@@ -59,6 +59,13 @@ public class DeleteNews extends AppCompatActivity {
         }
         this.initializeViews();
     }
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(DeleteNews.this, Main2Activity.class);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        // finish();
+        startActivity(in);
+    }
     private void initializeViews()
     {
         btnAdd= (Button) findViewById(R.id.newsdelete);

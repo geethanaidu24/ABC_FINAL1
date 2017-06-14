@@ -58,7 +58,7 @@ private boolean checkNetworkConnection;
    private static ViewPager mPager;
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-
+int click=0;
     private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
@@ -134,9 +134,14 @@ private boolean checkNetworkConnection;
             public void onClick(View v) {
             checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Products.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Intent in = new Intent(Main2Activity.this, Products.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                 }
             }
         });
@@ -144,19 +149,30 @@ private boolean checkNetworkConnection;
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Main2Activity.this, AboutUs.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, AboutUs.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
         });
+
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                 }
             }
         });
@@ -165,9 +181,14 @@ private boolean checkNetworkConnection;
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
                 if(checkNetworkConnection == true) {
-                    Intent in = new Intent(Main2Activity.this, Contact.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Intent in = new Intent(Main2Activity.this, Contact.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                 }
             }
         });
@@ -336,57 +357,90 @@ private boolean checkNetworkConnection;
         int id = item.getItemId();
 
         if (id == R.id.home) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            Intent in = new Intent(Main2Activity.this, Main2Activity.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
-            finish();
+                Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+                finish();
+            }
 
 
         }else if (id == R.id.ab) {
-            Intent in = new Intent(Main2Activity.this, AboutUs.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
+                Intent in = new Intent(Main2Activity.this, AboutUs.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+            }
 
         }
         else if (id == R.id.product) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Products.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, Products.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
         } else if (id == R.id.brands) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Brands.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, Brands.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
 
         }  else if (id == R.id.cu) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Contact.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, Contact.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
 
         } else if (id == R.id.enquiry) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, Enquiry.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
 
         }  else if (id == R.id.nw) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, News.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, News.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
 
         } else if (id == R.id.of) {
@@ -395,21 +449,30 @@ private boolean checkNetworkConnection;
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
             if(checkNetworkConnection == true) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "No Current Offers.....",
-                        Toast.LENGTH_SHORT);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
 
-                View toastView = toast.getView();
-                toastView.setBackgroundResource(R.drawable.toast_drawable);
-                toast.show();
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                            "No Current Offers.....",
+                            Toast.LENGTH_SHORT);
 
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                }
             }
         } else if (id == R.id.login) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
-                Intent in = new Intent(Main2Activity.this, Login.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+
+                    Intent in = new Intent(Main2Activity.this, Login.class);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    startActivity(in);
+                }
             }
         }
 

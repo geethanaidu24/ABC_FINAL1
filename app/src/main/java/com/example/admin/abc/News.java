@@ -55,6 +55,7 @@ public class News extends AppCompatActivity {
     private LruCache<String, Bitmap> mMemoryCache;
     private boolean loggedIn = false;
     final static String newsUrlAddress = Config.newsUrlAddress;
+    int click=0;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -121,16 +122,26 @@ public class News extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(News.this, AddNews.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
-            return true;
-        } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(News.this, DeleteNews.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-            return true;
+                Intent in = new Intent(News.this, AddNews.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+                return true;
+            }
+                } else if (id == R.id.productdelete) {
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent inn = new Intent(News.this, DeleteNews.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(inn);
+
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -138,7 +149,12 @@ public class News extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(News.this, Main2Activity.class);
+        //startActivity(in);
+        finish();
+    }
     private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -443,12 +459,17 @@ public class News extends AppCompatActivity {
             return convertView;
         }
         private void openDetailNewsActivity(String...details){
-            Intent intent = new Intent(c, NewsDescription.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            intent.putExtra("NEWSIMAGE_KEY",details[0]);
-            intent.putExtra("NEWSTITLE",details[1]);
-            intent.putExtra("NEWSDES_KEY",details[2]);
-            c.startActivity(intent);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+
+                Intent intent = new Intent(c, NewsDescription.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                intent.putExtra("NEWSIMAGE_KEY", details[0]);
+                intent.putExtra("NEWSTITLE", details[1]);
+                intent.putExtra("NEWSDES_KEY", details[2]);
+                c.startActivity(intent);
+            }
         }
     }
 }

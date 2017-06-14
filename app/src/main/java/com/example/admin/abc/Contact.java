@@ -120,7 +120,11 @@ public class Contact extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    public void onBackPressed() {
+        //finishAffinity();
+        Intent in = new Intent(Contact.this, Main2Activity.class);
+        finish();
+    }
     private void logout() {
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
