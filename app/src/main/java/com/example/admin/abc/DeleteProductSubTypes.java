@@ -111,8 +111,12 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSubTypeId(prosizeimgid);
                 if(s==null)
-                {
-                    Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                {Toast toast = Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                    //Toast.makeText(DeleteProductSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

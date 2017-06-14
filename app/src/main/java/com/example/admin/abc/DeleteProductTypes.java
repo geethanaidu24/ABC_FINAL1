@@ -111,8 +111,12 @@ public class DeleteProductTypes extends AppCompatActivity {
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductTypeId(ptid);
                 if(s==null)
-                {
-                    Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                {Toast toast = Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                   // Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

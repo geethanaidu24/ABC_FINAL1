@@ -101,8 +101,12 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(recivedprosizeimgid);
                 if(s==null)
-                {
-                    Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                {Toast toast = Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                    //Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

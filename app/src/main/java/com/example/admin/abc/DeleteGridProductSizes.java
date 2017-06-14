@@ -112,8 +112,12 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                 MySQLDataBase s=new MySQLDataBase();
                 s.setProductSizeImageId(productSizeImgId);
                 if(s==null)
-                {
-                    Toast.makeText(DeleteGridProductSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                { Toast toast = Toast.makeText(DeleteGridProductSizes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                    //Toast.makeText(DeleteGridProductSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

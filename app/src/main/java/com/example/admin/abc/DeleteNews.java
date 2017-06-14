@@ -87,8 +87,12 @@ public class DeleteNews extends AppCompatActivity {
                     MySQLDataBase s=new MySQLDataBase();
                     s.setNewsId(deleteNewsId);
                     if(s==null)
-                    {
-                        Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    {Toast toast = Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.show();
+                       // Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {

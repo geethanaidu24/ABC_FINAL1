@@ -83,8 +83,12 @@ public class DeleteContact extends AppCompatActivity {
                 MySQLDataBase s=new MySQLDataBase();
                 s.setContactId(deleteContactId);
                 if(s==null)
-                {
-                    Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                {  Toast toast = Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                    //Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
