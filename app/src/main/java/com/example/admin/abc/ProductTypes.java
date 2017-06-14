@@ -282,7 +282,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
             } else {
                 //CALL DATA PARSER TO PARSE
                 ProductSubTypesDataParser parser = new ProductSubTypesDataParser(c,s,selectedProductId,selectedProduct,selectedProductTypeId,selectedProductType);
@@ -441,7 +441,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c,s,recivedProductId,recivedProductName,recivedProductTypeId,recivedProductType);
@@ -606,7 +606,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypeImagesDataParser parser=new ProductTypeImagesDataParser(c, s,productid,productname,producttypeid,producttypename);
@@ -683,7 +683,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     if (click == 1) {
                         click = 0;
 
-                        Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
                     }
                 }
             }else {

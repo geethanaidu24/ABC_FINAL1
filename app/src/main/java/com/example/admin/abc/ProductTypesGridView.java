@@ -236,7 +236,6 @@ int click=0;
             click = click + 1;
             if (click == 1) {
                 click = 0;
-
                 Intent i = new Intent(c, ProductTypeSingleViewActivity.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
