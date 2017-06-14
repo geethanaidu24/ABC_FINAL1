@@ -121,10 +121,20 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
     private void checkData() {
         if (txtwidth.length() < 1 || txtheight.length() < 1) {
-            Toast.makeText(AddProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(AddProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+           // Toast.makeText(AddProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
-            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+           // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");
             txtheight.setText("");
             txtlength.setText("0");

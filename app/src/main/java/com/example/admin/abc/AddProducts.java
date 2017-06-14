@@ -102,10 +102,20 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
         } else if (view == btnUpload) {
             if ((etCaption.length()<1 || tvPath.length()<1 || bitmap ==null) ){
-                Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT);
+
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
+               // Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
             } else {
                 uploadMultipart();
-                Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
+
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
+               // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                 etCaption.setText("");
                 tvPath.setText("");
                 imageView.setImageResource(R.mipmap.browseimage);

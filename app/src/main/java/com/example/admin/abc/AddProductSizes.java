@@ -110,10 +110,20 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
     private void checkData() {
         if (txtwidth.length() < 1 || txtheight.length() < 1 ) {
-            Toast.makeText(AddProductSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(AddProductSizes.this, "Fill All", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+            //Toast.makeText(AddProductSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
-            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+           // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");
             txtheight.setText("");
             txtlength.setText("0");
