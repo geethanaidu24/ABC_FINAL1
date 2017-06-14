@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import static com.example.admin.abc.R.id.productsadd;
 
 public class Contact extends AppCompatActivity {
-
+int click=0;
     private boolean loggedIn = false;
     final static String contactsAddress = Config.contactsUrlAddress;
 
@@ -101,17 +101,24 @@ public class Contact extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == productsadd) {
-
-            Intent in = new Intent(Contact.this, AddContact.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+                Intent in = new Intent(Contact.this, AddContact.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+                return true;
+            }
         } else if (id == R.id.productdelete) {
-            Intent inn = new Intent(Contact.this, DeleteContact.class);
-            inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(inn);
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+                Intent inn = new Intent(Contact.this, DeleteContact.class);
+                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(inn);
 
-            return true;
+                return true;
+            }
         } else if (id == R.id.logout) {
             logout();
             return true;
@@ -258,7 +265,11 @@ public class Contact extends AppCompatActivity {
             super.onPostExecute(result);
             if(result==0)
             {
-                Toast.makeText(c,"No Data, Add New",Toast.LENGTH_SHORT).show();
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
+                }
             }else
             {
 

@@ -337,7 +337,11 @@ public class News extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast.makeText(c, "No Data, Add New", Toast.LENGTH_SHORT).show();
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
+                }
             } else {
 
                 final NewsListAdapter adapter = new NewsListAdapter(c, mySQLDataBases);

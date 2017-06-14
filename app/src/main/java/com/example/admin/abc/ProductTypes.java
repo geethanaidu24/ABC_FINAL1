@@ -679,7 +679,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         startActivity(in);
                     }
                 }else {
-                    Toast.makeText(c,"No Collection available",Toast.LENGTH_SHORT).show();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+
+                        Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }else {
                 click = click + 1;
