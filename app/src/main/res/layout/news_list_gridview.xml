@@ -80,7 +80,7 @@ android:textColor="@color/white"
         android:adjustViewBounds="true"
         android:background="@color/colorblack"
         android:scaleType="centerCrop"
-        android:src="@drawable/pageloader"
+
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
