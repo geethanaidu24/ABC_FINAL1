@@ -45,6 +45,7 @@ import java.util.ArrayList;
 public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     ImageView back;
     private boolean loggedIn = false;
+    private int click=0;
     //Context c;
     final static String url =Config.productTypeSizeImgUrlAddress;
     private static int productId,producttypeSizeId,productTypeId,selLength,selWidth,selHeight;
@@ -413,6 +414,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         }
         private void openDetailActivity(int pid,String pname,int ptid,int ptsid,String...details)
         {
+
             Intent i = new Intent(c,ProductTypeSizeSingleViewFullDetails.class);
             i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             i.putExtra("PRODUCTID_KEY",pid);

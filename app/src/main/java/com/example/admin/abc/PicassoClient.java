@@ -25,16 +25,20 @@ public class PicassoClient {
         if(imageUrl.length()>0 && imageUrl!=null)
         {
             //Picasso.with(c).load(imageUrl).placeholder(R.drawable.pageloader).into(img);
-            //Glide.with(c).load(imageUrl).centerCrop().crossFade().placeholder(R.drawable.pageloader).diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
-           Glide.with(c).load(imageUrl)
-                   .thumbnail(Glide.with(c).load(R.drawable.cccc).override(64,64).fitCenter())
+           /* Glide.with(c).load(imageUrl).centerCrop().crossFade().placeholder(R.drawable.cccc)
+                    .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);*/
+         Glide.with(c).load(imageUrl)
+                   .thumbnail(Glide.with(c).load(R.drawable.loadfinal).crossFade().fitCenter())
                    .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                    .crossFade().centerCrop()
                    .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);
         }else {
             //Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
            // Glide.with(c).load(R.drawable.cccc).override(100,100).into(img);
-            Glide.with(c).load(R.drawable.cccc).override(50,30).fitCenter().into(img);
+            Glide.with(c).load(R.drawable.loadfinal) .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL).crossFade().fitCenter()
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .into(img);
         }
 
     }
