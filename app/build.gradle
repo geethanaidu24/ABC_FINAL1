@@ -95,3 +95,9 @@ repositories {
     mavenCentral()
     maven { url 'https://maven.fabric.io/public' }
 }
+android {
+    lintOptions {
+        abortOnError false
+    }
+}
+
