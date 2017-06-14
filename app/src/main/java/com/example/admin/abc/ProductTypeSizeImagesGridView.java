@@ -220,7 +220,11 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    Toast.makeText(c, "Coming Soon....", Toast.LENGTH_SHORT).show();
+                }
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypeSizeImagesDataParser parser=new ProductTypeSizeImagesDataParser(c, gv, s,pid,pname,ptid,ptsid);
@@ -284,7 +288,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
-                    Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
                 }
             }else
             {

@@ -106,8 +106,5 @@ zoom=(ImageView)findViewById(R.id.imageButton);
         in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
-
-
     }
 }

@@ -51,19 +51,23 @@ public class Trial1 extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(Trial1.this,AddProductsSubType.class);
-                in.putExtra("PRODUCTID_KEY",selectedProductId);
-                in.putExtra("PRODUCTNAME_KEY",selectedProductName);
-                in.putExtra("PRODUCTTYPEID_KEY",selectedProducttypeid);
-                in.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
-                startActivity(in);
-                //b2.setEnabled(false);
-                b1.setEnabled(true);
-               // b3.setEnabled(false);
-                b2.setAlpha(.5f);
-                b2.setClickable(false);
-                b3.setAlpha(.5f);
-                b3.setClickable(false);
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    Intent in = new Intent(Trial1.this, AddProductsSubType.class);
+                    in.putExtra("PRODUCTID_KEY", selectedProductId);
+                    in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                    in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                    in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    startActivity(in);
+                    //b2.setEnabled(false);
+                    b1.setEnabled(true);
+                    // b3.setEnabled(false);
+                    b2.setAlpha(.5f);
+                    b2.setClickable(false);
+                    b3.setAlpha(.5f);
+                    b3.setClickable(false);
+                }
             }
         });
         b2.setOnClickListener(new View.OnClickListener() {
@@ -119,7 +123,5 @@ public class Trial1 extends AppCompatActivity {
         Intent in = new Intent(Trial1.this, Main2Activity.class);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(in);
-
-
     }
 }

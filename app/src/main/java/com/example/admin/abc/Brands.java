@@ -291,7 +291,7 @@ int click=0;
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
             } else {
 
                 //CALL DATA PARSER TO PARSE

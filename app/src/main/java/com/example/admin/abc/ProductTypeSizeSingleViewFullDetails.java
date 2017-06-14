@@ -91,7 +91,6 @@ int click=0;
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
-
                     in.putExtra("PRODUCTSUBTYPEID_KEY", ptsid);
                     in.putExtra("NAME_KEY", name);
                     in.putExtra("BRAND_KEY", brand);

@@ -230,7 +230,7 @@ public class Products extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
             } else {
 
                 //CALL DATA PARSER TO PARSE
@@ -291,7 +291,7 @@ public class Products extends AppCompatActivity implements Serializable {
                 if (click == 1) {
                     click = 0;
 
-                    Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
                 }
             }else
             {
@@ -429,7 +429,7 @@ public class Products extends AppCompatActivity implements Serializable {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast.makeText(c,"Unsuccessful,Null returned",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypesDataParser parser=new ProductTypesDataParser(c,s,localpid,localname);
@@ -578,7 +578,7 @@ public class Products extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
             } else {
                 //CALL DATA PARSER TO PARSE
                 ProductSizesDataParser parser = new ProductSizesDataParser(c,s, pid,pname);
@@ -654,7 +654,7 @@ public class Products extends AppCompatActivity implements Serializable {
                     if (click == 1) {
                         click = 0;
 
-                        Toast.makeText(c, "No Collection available", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
                     }
                 }
 
