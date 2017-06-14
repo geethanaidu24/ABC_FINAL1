@@ -43,7 +43,7 @@ import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
 public class Brands extends AppCompatActivity {
-
+int click=0;
     private boolean loggedIn = false;
     private LruCache<String, Bitmap> mMemoryCache;
     //Integer[] imageIDs = {
@@ -144,10 +144,14 @@ public class Brands extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.productsadd) {
-            Intent in = new Intent(Brands.this, AddBrands.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
-            return true;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+                Intent in = new Intent(Brands.this, AddBrands.class);
+                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+                return true;
+            }
         }/* else if (id == R.id.productdelete) {
             Intent inn = new Intent(Brands.this, DeleteBrands.class);
             startActivity(inn);
@@ -348,7 +352,7 @@ public class Brands extends AppCompatActivity {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast.makeText(c, "Unable to parse", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
             } else {
 
                 final BrandsListAdapter adapter = new BrandsListAdapter(c, mySQLDataBases);
