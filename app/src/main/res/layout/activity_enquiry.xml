@@ -5,7 +5,7 @@
     android:id="@+id/activity_enquiry"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:splitMotionEvents="false"
+
     android:background="@drawable/backgroundfour"
     tools:context="com.example.admin.abc.Enquiry"
     >
@@ -38,117 +38,117 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
 
-android:fillViewport="true"
+
         android:layout_below="@+id/toolbar"
         android:layout_alignParentStart="true">
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/back1"
-        android:gravity="center_horizontal"
-        android:layout_marginLeft="20dp"
-
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_centerInParent="true"
-android:layout_marginTop="50dp"
-
-        android:layout_centerHorizontal="true">
-
-        <EditText
-            android:layout_width="match_parent"
-
-            android:layout_marginRight="20dp"
-            android:ems="8"
-            android:id="@+id/editText5"
-            android:paddingLeft="10dp"
-            android:hint="Comment"
-            android:background="@color/white"
-            android:layout_below="@+id/editText4"
-            android:layout_alignStart="@+id/editText4"
-            android:layout_marginTop="20dp"
-            android:layout_height="100dp"
-            android:paddingTop="1dp"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/black"
-            android:inputType="text" />
-
-        <EditText
-            android:inputType="textPersonName"
-            android:ems="8"
-            android:layout_marginTop="20dp"
-            android:background="@color/white"
-            android:id="@+id/editText"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/back1"
+            android:gravity="center_horizontal"
             android:layout_marginLeft="20dp"
+
             android:layout_marginRight="20dp"
-            android:cursorVisible="true"
-            android:hint="Name"
-            android:layout_height="40dp"
-            android:paddingLeft="10dp"
-            android:layout_below="@+id/textView9"
-            android:layout_centerHorizontal="true"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/black" />
+            android:layout_marginBottom="20dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="50dp"
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:inputType="textEmailAddress"
-            android:ems="8"
-            android:layout_marginTop="20dp"
-            android:id="@+id/editText3"
-            android:background="@color/white"
-            android:cursorVisible="true"
-            android:hint="Email"
-            android:paddingLeft="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_below="@+id/editText"
-            android:layout_alignStart="@+id/editText"
-            android:textAppearance="@style/TextAppearance.AppCompat" />
+            android:layout_centerHorizontal="true">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_marginRight="20dp"
-            android:layout_height="30dp"
-            android:inputType="phone"
-            android:ems="8"
-            android:background="@color/white"
-            android:layout_marginTop="20dp"
-            android:id="@+id/editText4"
-            android:paddingLeft="10dp"
-            android:hint="Contact No."
-            android:layout_below="@+id/editText3"
-            android:layout_alignStart="@+id/editText3"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@android:color/black" />
+            <EditText
+                android:layout_width="match_parent"
 
-        <Button
-            android:text="SEND"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@android:color/holo_red_dark"
-            android:id="@+id/button7"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="21dp"
-            android:textStyle="normal|bold"
-            android:textSize="18sp"
-            android:layout_marginBottom="30dp"
-            android:layout_below="@+id/editText5"
-            android:layout_centerHorizontal="true" />
+                android:layout_marginRight="20dp"
+                android:ems="8"
+                android:id="@+id/editText5"
+                android:paddingLeft="10dp"
+                android:hint="Comment"
+                android:background="@color/white"
+                android:layout_below="@+id/editText4"
+                android:layout_alignStart="@+id/editText4"
+                android:layout_marginTop="20dp"
+                android:layout_height="100dp"
+                android:paddingTop="1dp"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/black"
+                android:inputType="text" />
 
-        <TextView
-            android:text="Make An Enquiry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView9"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:layout_marginTop="20dp"
-            android:textStyle="normal|bold"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            <EditText
+                android:inputType="textPersonName"
+                android:ems="8"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:id="@+id/editText"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:cursorVisible="true"
+                android:hint="Name"
+                android:layout_height="40dp"
+                android:paddingLeft="10dp"
+                android:layout_below="@+id/textView9"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/black" />
 
-    </RelativeLayout>
-</ScrollView>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:inputType="textEmailAddress"
+                android:ems="8"
+                android:layout_marginTop="20dp"
+                android:id="@+id/editText3"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:hint="Email"
+                android:paddingLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_below="@+id/editText"
+                android:layout_alignStart="@+id/editText"
+                android:textAppearance="@style/TextAppearance.AppCompat" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_height="30dp"
+                android:inputType="phone"
+                android:ems="8"
+                android:background="@color/white"
+                android:layout_marginTop="20dp"
+                android:id="@+id/editText4"
+                android:paddingLeft="10dp"
+                android:hint="Contact No."
+                android:layout_below="@+id/editText3"
+                android:layout_alignStart="@+id/editText3"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="@android:color/black" />
+
+            <Button
+                android:text="SEND"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/holo_red_dark"
+                android:id="@+id/button7"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="21dp"
+                android:textStyle="normal|bold"
+                android:textSize="18sp"
+                android:layout_marginBottom="30dp"
+                android:layout_below="@+id/editText5"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:text="Make An Enquiry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView9"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:layout_marginTop="20dp"
+                android:textStyle="normal|bold"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

@@ -425,7 +425,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
