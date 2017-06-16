@@ -3,4 +3,15 @@
 
     <solid android:color="@color/cred" />
 
+
+    <padding android:left="5dp"
+        android:top="2dp"
+        android:right="5dp"
+        android:bottom="2dp"
+        />
+
+    <corners android:bottomRightRadius="7dp"
+        android:bottomLeftRadius="7dp"
+        android:topLeftRadius="7dp"
+        android:topRightRadius="7dp"/>
 </shape>

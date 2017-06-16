@@ -152,7 +152,14 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
         }
 
         uploadMultipart();
-        Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+        Toast toast = Toast.makeText(this,
+                "Successfully Completed",
+                Toast.LENGTH_SHORT);
+
+        View toastView = toast.getView();
+        toastView.setBackgroundResource(R.drawable.toast_drawable);
+        toast.show();
+        //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
         branchname.setText("");
         address.setText("");
         city.setText("");

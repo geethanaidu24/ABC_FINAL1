@@ -90,10 +90,24 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
         }else {
             if (view == btnUpload) {
                 if ( tvPath.length() < 1 || bitmap ==null) {
-                    Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(this,
+                            "Please Complete it",
+                            Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                   // Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadMultipart();
-                    Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                    Toast toast = Toast.makeText(this,
+                            "Successfully Completed",
+                            Toast.LENGTH_SHORT);
+
+                    View toastView = toast.getView();
+                    toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.show();
+                   // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
 
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
@@ -137,7 +151,15 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
                     .startUpload();
             //Starting the upload
         } catch (Exception exc) {
-            Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,
+                    exc.getMessage(),
+                    Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+
+           // Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 

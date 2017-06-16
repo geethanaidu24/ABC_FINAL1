@@ -140,10 +140,20 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
     private void checkData() {
         if (etCaption.length() < 1 || tvPath.length() < 1 || bitmap==null) {
-            Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+            //Toast.makeText(AddProductsTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
             uploadMultipart();
-            Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
+
+            View toastView = toast.getView();
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.show();
+            //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);

@@ -291,7 +291,12 @@ int click=0;
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT);
+
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
+                //Toast.makeText(c, "Unsuccessful,Null returned", Toast.LENGTH_SHORT).show();
             } else {
 
                 //CALL DATA PARSER TO PARSE
@@ -352,7 +357,12 @@ int click=0;
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
+               // Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
             } else {
 
                 final BrandsListAdapter adapter = new BrandsListAdapter(c, mySQLDataBases);

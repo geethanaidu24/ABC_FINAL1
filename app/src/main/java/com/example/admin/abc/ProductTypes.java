@@ -605,8 +605,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if(s==null)
-            {
-                Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
+            { Toast toast = Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT);
+
+                View toastView = toast.getView();
+                toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.show();
+                //Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypeImagesDataParser parser=new ProductTypeImagesDataParser(c, s,productid,productname,producttypeid,producttypename);
@@ -682,8 +686,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
+                        Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
 
-                        Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.show();
+                       // Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT).show();
                     }
                 }
             }else {
