@@ -32,23 +32,36 @@
             app:srcCompat="@mipmap/abctextlogo"/>
 
     </android.support.v7.widget.Toolbar>-->
-
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="DELETE NEWS"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:textSize="24sp"/>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:elevation="2dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginBottom="10dp"
+        android:fillViewport="true"
+        >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:layout_marginBottom="10dp"  >
 
-        <TextView
-            android:id="@+id/textView24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="DELETE NEWS"
-            android:textColor="@color/cred"
-            android:textSize="24sp"/>
+
 
         <TextView
             android:id="@+id/textView25"
@@ -58,7 +71,7 @@
             android:layout_below="@+id/textView24"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="50dp"
             android:text="Select News to be Deleted:"
             android:textColor="@color/cred"
             android:textSize="18sp"/>
@@ -77,12 +90,13 @@
             android:id="@+id/newsdelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
+            android:layout_below="@+id/newssp"
+            android:layout_marginTop="80dp"
             android:background="@drawable/addbutton"
             android:text="DELETE"
 
             android:textColor="@color/white"/>
     </RelativeLayout>
+    </ScrollView>
 </LinearLayout>
