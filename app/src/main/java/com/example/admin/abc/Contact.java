@@ -62,9 +62,13 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Contact.this, Main2Activity.class);
-                    finish();
-                    // startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(Contact.this, Main2Activity.class);
+                        finish();
+                        // startActivity(in);
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -129,8 +133,12 @@ int click=0;
 
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(Contact.this, Main2Activity.class);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(Contact.this, Main2Activity.class);
+            finish();
+        }
     }
     private void logout() {
         //Creating an alert dialog to confirm logout

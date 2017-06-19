@@ -39,6 +39,7 @@ public class DeleteProductSizes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     int recivedProductId;
+    int click=0;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesCRUD;
     private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
@@ -69,11 +70,15 @@ public class DeleteProductSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  //  finish();
-                   // in.putExtra("PRODUCTID_KEY", pid);
-                   startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //  finish();
+                        // in.putExtra("PRODUCTID_KEY", pid);
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -81,12 +86,16 @@ public class DeleteProductSizes extends AppCompatActivity {
         this.initializeViews();
     }
     public void onBackPressed() {
-        //finishAffinity();
-        Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //  finish();
-        // in.putExtra("PRODUCTID_KEY", pid);
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //finishAffinity();
+            Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //  finish();
+            // in.putExtra("PRODUCTID_KEY", pid);
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {
@@ -135,7 +144,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductSizes.this,DeleteProductSizes.class);
                                                 intent.putExtra("PRODUCTID_KEY",recivedProductId);
@@ -148,7 +157,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProductSizes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSizes.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

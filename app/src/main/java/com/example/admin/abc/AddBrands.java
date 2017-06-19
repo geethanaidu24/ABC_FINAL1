@@ -31,7 +31,7 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
     private static final int IMAGE_REQUEST_CODE = 3;
     private static final int STORAGE_PERMISSION_CODE = 123;
     private ImageView imageView;
-
+int click=0;
     private TextView tvPath;
     private Button btnUpload;
     private Bitmap bitmap;
@@ -49,10 +49,14 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddBrands.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    //finish();
-                     startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddBrands.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -69,11 +73,15 @@ public class AddBrands extends AppCompatActivity implements View.OnClickListener
         btnUpload.setOnClickListener(this);
     }
     public void onBackPressed() {
-        //finishAffinity();
-        Intent in = new Intent(AddBrands.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //finishAffinity();
+            Intent in = new Intent(AddBrands.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //finish();
+            startActivity(in);
+        }
     }
 
 

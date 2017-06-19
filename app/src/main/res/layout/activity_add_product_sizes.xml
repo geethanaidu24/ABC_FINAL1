@@ -103,7 +103,7 @@
             android:textColor="@color/colorblack"
             android:ems="8"
             android:textSize="18sp"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:layout_alignBottom="@+id/textView35"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="22dp" />
@@ -129,7 +129,7 @@
 
 
             android:textColor="@color/colorblack"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:layout_below="@+id/width1"
             android:layout_alignStart="@+id/width1"/>
 
@@ -152,7 +152,7 @@
             android:layout_below="@+id/height1"
             android:layout_marginRight="20dp"
             android:ems="8"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:text="0"
 
             android:textColor="@color/colorblack"

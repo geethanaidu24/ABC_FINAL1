@@ -20,7 +20,7 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
     ImageView back;
 
     ImageView selectedImage;
-
+int click=0;
     Context c;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,12 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypesGridView.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductTypeSingleImageFullViewActivity.this, ProductTypesGridView.class);
+                        finish();
+                    }
                 }
             });
 
@@ -64,11 +68,14 @@ public class ProductTypeSingleImageFullViewActivity extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in=new Intent(ProductTypeSingleImageFullViewActivity.this,ProductTypesGridView.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
-
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductTypeSingleImageFullViewActivity.this, ProductTypesGridView.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
     }

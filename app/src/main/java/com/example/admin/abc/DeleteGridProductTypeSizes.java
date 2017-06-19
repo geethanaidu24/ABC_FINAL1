@@ -37,6 +37,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+    int click=0;
  int recivedProductId,recivedProductTypeId,recivedProductsizeID;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.producttypeSizesGridsCRUD;
@@ -72,11 +73,15 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                   // finish();
-                    // in.putExtra("PRODUCTID_KEY", pid);
-                     startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        // finish();
+                        // in.putExtra("PRODUCTID_KEY", pid);
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -85,11 +90,15 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        // finish();
-        // in.putExtra("PRODUCTID_KEY", pid);
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // finish();
+            // in.putExtra("PRODUCTID_KEY", pid);
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {
@@ -137,7 +146,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteGridProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteGridProductTypeSizes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteGridProductTypeSizes.this,DeleteGridProductTypeSizes.class);
                                                 intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
@@ -152,7 +161,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteGridProductTypeSizes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteGridProductTypeSizes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

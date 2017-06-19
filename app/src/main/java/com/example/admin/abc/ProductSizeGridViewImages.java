@@ -92,8 +92,12 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -167,12 +171,15 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
-        finish();
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
+            finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-
+        }
 
 
     }
@@ -438,7 +445,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent i = new Intent(c, ProductSizeImageSingleViewFullDetails.class);
-                //i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTSIZEID_KEY", psid);
                 i.putExtra("NAME_KEY", details[0]);

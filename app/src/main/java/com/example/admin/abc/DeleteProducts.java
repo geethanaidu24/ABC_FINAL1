@@ -37,6 +37,7 @@ import java.util.TimerTask;
 public class DeleteProducts extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
+    int click=0;
     private Button btnAdd,btnSpin;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productsCRUD;
@@ -54,9 +55,13 @@ public class DeleteProducts extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProducts.this, Refresh.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteProducts.this, Refresh.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                     //finish();
                 }
             });
@@ -66,10 +71,14 @@ public class DeleteProducts extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProducts.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(in);
-        //finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteProducts.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(in);
+            //finish();
+        }
     }
     private void initializeViews()
     {
@@ -143,7 +152,7 @@ public class DeleteProducts extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProducts.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProducts.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
 

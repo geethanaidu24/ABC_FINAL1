@@ -39,14 +39,18 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSizeSingleViewFullDetails.this,ProductTypeSizeImagesGridView.class);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
                   /*  in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
                     in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
 
                     startActivity(in);*/
-                    finish();
+                        finish();
+                    }
                 }
             });
         selectedImage = (ImageView) findViewById(R.id.img1) ; //init a ImageView
@@ -86,7 +90,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, SingleViewImageFull.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     in.putExtra("IMAGE_KEY", image);
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
@@ -106,12 +110,15 @@ int click=0;
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in=new Intent(ProductTypeSizeSingleViewFullDetails.this,ProductTypeSizeImagesGridView.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
 
 
-
+        }
     }
 }

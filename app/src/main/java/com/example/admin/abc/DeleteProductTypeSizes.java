@@ -41,6 +41,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     int productId,productTypeId;
+    int click=0;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypeSizesCRUD;
     private static final String DATA_Size_Spin = Config.productTypeSizesUrlAddress;
@@ -78,10 +79,14 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    //finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+                        startActivity(in);
+                    }
 
                 }
             });
@@ -91,10 +96,14 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
-        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
+            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //finish();
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {
@@ -145,7 +154,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductTypeSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductTypeSizes.this,DeleteProductTypeSizes.class);
                                                 intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
@@ -160,7 +169,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProductTypeSizes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductTypeSizes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

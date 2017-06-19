@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     ImageView im4;
-
+int click=0;
        //Defining views
     private EditText editName;
     private EditText editPassword;
@@ -60,8 +60,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Login.this, Main2Activity.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(Login.this, Main2Activity.class);
+                        finish();
+                    }
                     //startActivity(in);
                 }
             });
@@ -70,8 +74,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(Login.this, Main2Activity.class);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(Login.this, Main2Activity.class);
+            finish();
+        }
     }
 
     @Override
@@ -86,7 +94,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         if(loggedIn){
             //We will start the Main Activity
             Intent intent = new Intent(Login.this, Main2Activity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+           // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(intent);
 
         }
@@ -166,7 +174,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        login();
+
+            login();
 
     }
 }

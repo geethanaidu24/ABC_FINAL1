@@ -41,6 +41,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+    int click=0;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
     private static int recvdProTypeId;
@@ -72,10 +73,14 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  //  finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //  finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -84,10 +89,14 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //  finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //  finish();
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {
@@ -134,7 +143,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductSubTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductSubTypes.this,DeleteProductSubTypes.class);
                                                 intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
@@ -148,7 +157,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProductSubTypes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductSubTypes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

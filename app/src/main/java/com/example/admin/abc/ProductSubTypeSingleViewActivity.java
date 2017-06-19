@@ -41,8 +41,12 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
+                        finish();
+                    }
                 }
             });
 
@@ -81,7 +85,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeSingleViewImageFull.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     in.putExtra("IMAGE_KEY", finImgUrl);
                     in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
                     in.putExtra("NAME_KEY", name);
@@ -97,14 +101,17 @@ int click=0;
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
 
 
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
 
-
+        }
 
     }
 }

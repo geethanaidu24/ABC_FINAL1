@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 public class AboutUs extends AppCompatActivity {
 ImageView back1;
-
+int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -55,9 +55,13 @@ ImageView back1;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   Intent in=new Intent(AboutUs.this,Main2Activity.class);
-                   // startActivity(in);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AboutUs.this, Main2Activity.class);
+                        // startActivity(in);
+                        finish();
+                    }
                 }
             });
 
@@ -67,10 +71,14 @@ ImageView back1;
 
     }
     public void onBackPressed() {
-        //finishAffinity();
-        Intent in=new Intent(AboutUs.this,Main2Activity.class);
-        // startActivity(in);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //finishAffinity();
+            Intent in = new Intent(AboutUs.this, Main2Activity.class);
+            // startActivity(in);
+            finish();
+        }
 
     }
 

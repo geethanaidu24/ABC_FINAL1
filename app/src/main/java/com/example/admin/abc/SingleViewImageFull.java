@@ -18,7 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 public class SingleViewImageFull extends AppCompatActivity {
     ImageView im;
     Context c;
-
+int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
@@ -57,8 +57,12 @@ public class SingleViewImageFull extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-                   finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
+                        finish();
+                    }
                 }
             });
 
@@ -66,11 +70,14 @@ public class SingleViewImageFull extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
-
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
     }

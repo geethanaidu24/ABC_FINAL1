@@ -81,9 +81,13 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
 
-                    finish();
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -154,10 +158,14 @@ int click=0;
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
 
@@ -237,7 +245,7 @@ int click=0;
             if (click == 1) {
                 click = 0;
                 Intent i = new Intent(c, ProductTypeSingleViewActivity.class);
-               // i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTTYPEID_KEY", ptid);
                 i.putExtra("NAME_KEY", details[0]);

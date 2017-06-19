@@ -18,6 +18,7 @@ import cz.msebera.android.httpclient.util.TextUtils;
 
 public class Enquiry extends AppCompatActivity {
 ImageView im;
+    int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //  getSupportActionBar().hide();
@@ -32,8 +33,12 @@ ImageView im;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Enquiry.this, Main2Activity.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(Enquiry.this, Main2Activity.class);
+                        finish();
+                    }
                     //  startActivity(in);
                 }
             });

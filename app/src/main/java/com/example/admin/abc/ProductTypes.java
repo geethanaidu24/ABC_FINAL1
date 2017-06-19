@@ -91,9 +91,13 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductTypes.this, Products.class);
-                    //startActivity(in);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductTypes.this, Products.class);
+                        //startActivity(in);
+                        finish();
+                    }
                 }
             });
 
@@ -169,12 +173,15 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductTypes.this, Products.class);
-        //startActivity(in);
-        finish();
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductTypes.this, Products.class);
+            //startActivity(in);
+            finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
 
     }
 
@@ -356,7 +363,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductSubTypes.class);
-                   // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
@@ -509,7 +516,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductTypeSizes.class);
-                  //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalProId);
                     intent.putExtra("PRODUCTNAME_KEY", finalProName);
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProTypeId);
@@ -701,7 +708,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductTypesGridView.class);
-                  //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", pid);
                     intent.putExtra("PRODUCTNAME_KEY", pname);
                     intent.putExtra("PRODUCTTYPEID_KEY", ptid);

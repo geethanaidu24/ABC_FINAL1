@@ -61,6 +61,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private Bitmap bitmap;
     private Uri filePath;
     public int spid=0;
+    int click=0;
     private int selectedProductId;
     private String selectedProductName;
     Context context;
@@ -86,11 +87,15 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductsTypes.this, Refresh.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddProductsTypes.this, Refresh.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
-                   startActivity(in);
+                        startActivity(in);
+                    }
                     //finish();
 
                 }
@@ -116,11 +121,15 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddProductsTypes.this, Refresh.class);
-    //    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddProductsTypes.this, Refresh.class);
+            //    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
-        startActivity(in);
+            startActivity(in);
+        }
     }
     @Override
     public void onClick(View view) {

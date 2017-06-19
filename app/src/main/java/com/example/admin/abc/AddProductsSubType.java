@@ -56,6 +56,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     private TextView tvPath,productTypeText;
     private Button btnUpload;
     private Bitmap bitmap;
+    int click=0;
     private Uri filePath;
     public int pstid;
     private int selectedProducttypeid;
@@ -81,9 +82,13 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProductsSubType.this, Refresh.class);
-                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddProductsSubType.this, Refresh.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                  //  finish();
                 }
             });
@@ -106,10 +111,14 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddProductsSubType.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(in);
-        //  finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddProductsSubType.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(in);
+            //  finish();
+        }
     }
     @Override
     public void onClick(View view) {

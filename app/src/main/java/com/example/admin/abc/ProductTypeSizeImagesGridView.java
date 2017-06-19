@@ -94,8 +94,12 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in=new Intent(ProductTypeSizeImagesGridView.this,ProductTypes.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
+                        finish();
+                    }
                 }
             });
               Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -176,10 +180,14 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in=new Intent(ProductTypeSizeImagesGridView.this,ProductTypes.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
 
@@ -457,7 +465,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 click = 0;
 
                 Intent i = new Intent(c, ProductTypeSizeSingleViewFullDetails.class);
-              //  i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTNAME_KEY", pname);
                 i.putExtra("PRODUCTTYPEID_KEY", ptid);

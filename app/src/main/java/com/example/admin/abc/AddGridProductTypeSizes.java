@@ -64,6 +64,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
+    int click=0;
     private static int recivedProductId,recivedProductTypeId,recivedProductTypeSizeId;
     private static String recivedProductName,recivedProducttype,recivedFinalSize,finalSelProtypeSize;
     private static int finalProLength,finalProWidth,finalProHeight;
@@ -120,10 +121,14 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
-                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
-                   // finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                        // finish();
+                    }
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);

@@ -36,6 +36,7 @@ import java.util.ArrayList;
 public class DeleteGridSubTypes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
+    int click=0;
     private Button btnAdd;
     private static int productSubTypeId;
     private ArrayAdapter<MySQLDataBase> adapter ;
@@ -66,10 +67,14 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
-                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                   // finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        // finish();
+                        startActivity(in);
+                    }
                 }
             });
         }
@@ -77,10 +82,14 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        // finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // finish();
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {
@@ -124,7 +133,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteGridSubTypes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteGridSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteGridSubTypes.this,DeleteGridSubTypes.class);
                                                 intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
@@ -138,7 +147,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteGridSubTypes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteGridSubTypes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

@@ -38,6 +38,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
+    int click=0;
  int recivedProductId,recivedProductsizeId;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesGridsCRUD;
@@ -69,11 +70,15 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                   // finish();
-                    // in.putExtra("PRODUCTID_KEY", pid);
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        // finish();
+                        // in.putExtra("PRODUCTID_KEY", pid);
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -82,11 +87,15 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        // finish();
-        // in.putExtra("PRODUCTID_KEY", pid);
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // finish();
+            // in.putExtra("PRODUCTID_KEY", pid);
+            startActivity(in);
+        }
     }
     private void initializeViews()
     {

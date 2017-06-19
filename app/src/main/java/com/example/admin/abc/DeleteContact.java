@@ -35,6 +35,7 @@ import java.util.HashSet;
 public class DeleteContact extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp,sp1;
+    int click=0;
     private Button btnAdd;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.contactsCRUD;
@@ -52,10 +53,14 @@ public class DeleteContact extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteContact.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    //finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteContact.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -106,7 +111,7 @@ public class DeleteContact extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteContact.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteContact.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteContact.this,DeleteContact.class);
 
@@ -119,8 +124,8 @@ public class DeleteContact extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteContact.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
+                                            Toast.makeText(DeleteContact.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
                                 }
                                 //ERROR
                                 @Override
@@ -352,9 +357,13 @@ public class DeleteContact extends AppCompatActivity {
 
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteContact.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteContact.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //finish();
+            startActivity(in);
+        }
     }
 }

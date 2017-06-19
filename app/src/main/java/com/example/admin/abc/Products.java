@@ -73,10 +73,14 @@ public class Products extends AppCompatActivity implements Serializable {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Products.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(Products.this, Main2Activity.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
+                    }
 
                 }
             });
@@ -145,10 +149,14 @@ public class Products extends AppCompatActivity implements Serializable {
     }
     public void onBackPressed() {
        //finishAffinity();
-        Intent in = new Intent(Products.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(Products.this, Main2Activity.class);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
     }
 
@@ -507,7 +515,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
 
                     Intent intent = new Intent(c, ProductTypes.class);
-                    //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalpid);
                     intent.putExtra("PRODUCTNAME_KEY", finalname);
                     intent.putExtra("ProductTypeList", mySQLDataBases);
@@ -681,7 +689,7 @@ public class Products extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductSizes.class);
-                  //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", pid);
                     intent.putExtra("PRODUCTNAME_KEY", pname);
                     intent.putExtra("ProductSizeList", mySQLDataBases);

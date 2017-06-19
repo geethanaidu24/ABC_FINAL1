@@ -253,7 +253,7 @@ int click=0;
 
         final float density = getResources().getDisplayMetrics().density;
 
-        indicator.setRadius(5 * density);
+        indicator.setRadius(4 * density);
 
 
 
@@ -262,7 +262,7 @@ int click=0;
 
 
         // Auto start of viewpager
-       /*final Handler handler = new Handler();
+      final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -277,8 +277,8 @@ int click=0;
             public void run() {
                 handler.post(Update);
             }
-        }, 7000, 7000);
-*/Timer swipeTimer = new Timer();
+        }, 9000, 10000);
+/*Timer swipeTimer = new Timer();
         swipeTimer.schedule(new TimerTask() {
 
             @Override
@@ -293,7 +293,7 @@ int click=0;
                     }
                 });
             }
-        }, 9000, 9000);
+        }, 9000, 9000);*/
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

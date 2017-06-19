@@ -98,11 +98,16 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(Brands.this, Main2Activity.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(Brands.this, Main2Activity.class);
+                        finish();
+                    }
                     //  startActivity(in);
                 }
             });
+
 
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
             toolbar.setOverflowIcon(drawable);
@@ -111,8 +116,12 @@ int click=0;
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(Brands.this, Main2Activity.class);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(Brands.this, Main2Activity.class);
+            finish();
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

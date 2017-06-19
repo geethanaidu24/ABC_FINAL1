@@ -16,7 +16,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 public class ProductSizeSingleViewFullImage extends AppCompatActivity {
     ImageView im;
     Context c;
-
+int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -53,8 +53,12 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -63,12 +67,16 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
         }
     }
     public void onBackPressed() {
-        //finishAffinity();
-        Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //finishAffinity();
+            Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
 
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
 

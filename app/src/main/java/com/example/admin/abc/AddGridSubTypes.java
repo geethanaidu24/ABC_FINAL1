@@ -60,6 +60,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     private Button btnadd;
     private Bitmap bitmap;
     private Uri filePath;
+    int click=0;
    /* public int pid=0;
     public int ptid=0;
     public int pstid=0;*/
@@ -92,10 +93,14 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
-                    //finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                        //finish();
+                    }
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);
@@ -123,10 +128,14 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
-     //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(in);
-        //finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+            //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(in);
+            //finish();
+        }
     }
 
 

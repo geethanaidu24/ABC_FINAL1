@@ -43,7 +43,7 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
     private static final String UPLOAD_URL = Config.contactsCRUD;
 
     private EditText branchname,address,city,contactnumber,email,workinghours;
-
+int click=0;
     private Button btnUpload;
     String MobilePattern = "[0-9]{10}";
     //String email1 = email.getText().toString().trim();
@@ -62,10 +62,14 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddContact.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                  //  finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddContact.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //  finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -89,18 +93,26 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
         btnUpload.setOnClickListener(this);
     }
     public void onBackPressed() {
-        //finishAffinity();
-        Intent in = new Intent(AddContact.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //  finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //finishAffinity();
+            Intent in = new Intent(AddContact.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //  finish();
+            startActivity(in);
+        }
     }
     @Override
     public void onClick(View view) {
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
 
-        if(view == btnUpload){
+        if(view == btnUpload) {
             checkData();
             //uploadMultipart();
+        }
         }
     }
 
@@ -197,7 +209,7 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
                                 try {
                                     //SHOW RESPONSE FROM SERVER
                                     String responseString = response.get(0).toString();
-                                    Toast.makeText(AddContact.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddContact.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                       /*  //CLEAR EDITXTS
                                         txtwidth.setText("");
@@ -210,11 +222,11 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
 
                                     }else
                                     {
-                                        Toast.makeText(AddContact.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddContact.this, " ", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(AddContact.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddContact.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                         }
                         //ERROR

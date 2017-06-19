@@ -38,6 +38,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +52,14 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddNews.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    //finish();
-                     startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddNews.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -75,11 +80,15 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddNews.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //finish();
-        startActivity(in);
-        //finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddNews.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //finish();
+            startActivity(in);
+            //finish();
+        }
     }
 
 

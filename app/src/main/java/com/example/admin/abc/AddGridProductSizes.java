@@ -64,6 +64,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     private Bitmap bitmap;
     private Uri filePath;
     Context context;
+    int click=0;
     private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
     private static String finalProName,finalSelProductSize,finalSelProSize;
 
@@ -110,9 +111,13 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                     startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                   //  finish();
                 }
             });
@@ -139,9 +144,13 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(in);
+        }
     }
 
 

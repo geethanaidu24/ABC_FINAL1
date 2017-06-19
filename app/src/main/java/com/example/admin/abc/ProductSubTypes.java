@@ -78,8 +78,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -216,7 +220,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 click = 0;
 
                 Intent intent = new Intent(c, ProductSubTypeGridView.class);
-               // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTSUBTYPEID_KEY", recvProSubId);
                 intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvProSubName);
                 intent.putExtra("PRODUCTID_KEY", selectedPid);
@@ -230,11 +234,15 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
 
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
+        }
 
 
 

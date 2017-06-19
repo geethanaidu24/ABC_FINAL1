@@ -45,6 +45,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     private Button btnUpload;
     private Bitmap bitmap;
     private Uri filePath;
+    int click=0;
     ProgressDialog dialog = null;
 
     @Override
@@ -61,19 +62,22 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddProducts.this, Refresh.class);
 
-                 Intent in = new Intent(AddProducts.this, Refresh.class);
+                        // finish();
 
-                   // finish();
+                        startActivity(in);
 
-                    startActivity(in);
-
-                  //  finish();
-                   // finish();
+                        //  finish();
+                        // finish();
+                    }
                 }
             });
 
-        }
+                                                 }
 
         imageView = (ImageView)findViewById(R.id.brandimage);
         etCaption = (EditText)findViewById(R.id.productsubtypes);
@@ -88,15 +92,18 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     }
     public void onBackPressed() {
         //finishAffinity();
-      Intent in = new Intent(AddProducts.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        // finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddProducts.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // finish();
 
-        startActivity(in);
+            startActivity(in);
 
-        //finish();
+            //finish();
 
-
+        }
 
     }
     @Override

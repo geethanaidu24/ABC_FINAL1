@@ -59,6 +59,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private Button btnadd1;
     private Bitmap bitmap;
     private Uri filePath;
+    int click=0;
     public int pid = 0;
     public int ptid = 0;
     private int selectedProducttypeid;
@@ -86,10 +87,14 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    //finish();
-                    startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+                        startActivity(in);
+                    }
                 }
             });
 
@@ -116,10 +121,14 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        //finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //finish();
+            startActivity(in);
+        }
     }
 
 

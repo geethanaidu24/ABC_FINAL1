@@ -93,8 +93,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                  Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
-                  finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -170,13 +174,16 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        finish();
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            finish();
 
-
+        }
 
     }
 
@@ -457,7 +464,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 click = 0;
 
                 Intent i = new Intent(c, ProductSubTypeSingleViewActivity.class);
-             //   i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+             i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);

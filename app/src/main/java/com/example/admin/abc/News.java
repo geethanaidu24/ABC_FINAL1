@@ -82,9 +82,13 @@ public class News extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(News.this, Main2Activity.class);
-                    //startActivity(in);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(News.this, Main2Activity.class);
+                        //startActivity(in);
+                        finish();
+                    }
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
@@ -151,9 +155,13 @@ public class News extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(News.this, Main2Activity.class);
-        //startActivity(in);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(News.this, Main2Activity.class);
+            //startActivity(in);
+            finish();
+        }
     }
     private void logout() {
         //Creating an alert dialog to confirm logout

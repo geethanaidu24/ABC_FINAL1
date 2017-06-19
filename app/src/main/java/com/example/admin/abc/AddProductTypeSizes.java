@@ -50,6 +50,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
     private TextView displaySelectedProductType,displaySelectedProduct;
     Context context;
     private Button btnAdd;
+    int click=0;
     private static int selectedProdutId1, selectedProdutTypeId1;
     private static String selectedProductName1, selectedProductType1;
    /* final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
@@ -79,21 +80,26 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent in = new Intent(AddProductTypeSizes.this,Refresh.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                       // finish();
-                        startActivity(in);
+                        click = click + 1;
+                        if (click == 1) {
+                            click = 0;
+                            Intent in = new Intent(AddProductTypeSizes.this, Refresh.class);
+                            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            // finish();
+                            startActivity(in);
+                        }
                     }
                 });
 
             }
 
             txtwidth = (EditText) findViewById(R.id.width1);
-            txtwidth.setInputType(InputType.TYPE_CLASS_TEXT);
+            txtwidth.setInputType(InputType.TYPE_CLASS_NUMBER);
+
             txtheight = (EditText) findViewById(R.id.height1);
-            txtheight.setInputType(InputType.TYPE_CLASS_TEXT);
+            txtheight.setInputType(InputType.TYPE_CLASS_NUMBER);
             txtlength = (EditText) findViewById(R.id.length1);
-            txtlength.setInputType(InputType.TYPE_CLASS_TEXT);
+            txtlength.setInputType(InputType.TYPE_CLASS_NUMBER);
             btnAdd = (Button) findViewById(R.id.brandbtn);
             displaySelectedProductType =(TextView) findViewById(R.id.protypeDisplay);
             displaySelectedProduct =(TextView)findViewById(R.id.proDisplay);
@@ -107,10 +113,14 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddProductTypeSizes.this,Refresh.class);
-      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        // finish();
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(AddProductTypeSizes.this, Refresh.class);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // finish();
+            startActivity(in);
+        }
     }
     @Override
     public void onClick(View view) {
@@ -183,7 +193,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                                 try {
                                     //SHOW RESPONSE FROM SERVER
                                     String responseString = response.get(0).toString();
-                                    Toast.makeText(AddProductTypeSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddProductTypeSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                         //CLEAR EDITXTS
                                        /* txtwidth.setText("");
@@ -196,11 +206,11 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
                                     }else
                                     {
-                                        Toast.makeText(AddProductTypeSizes.this, "PHP WASN'T SUCCESSFUL. ", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AddProductTypeSizes.this, " ", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
-                                    Toast.makeText(AddProductTypeSizes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(AddProductTypeSizes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                         }
                         //ERROR

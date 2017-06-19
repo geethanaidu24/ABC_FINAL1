@@ -41,8 +41,12 @@ int click=0;
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+                        finish();
+                    }
                 }
             });
 
@@ -82,7 +86,7 @@ zoom=(ImageView)findViewById(R.id.imageButton);
                     click = 0;
 
                     Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeSingleViewFullImage.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     in.putExtra("IMAGE_KEY", image);
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -101,10 +105,13 @@ zoom=(ImageView)findViewById(R.id.imageButton);
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
-        finish();
-        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+            finish();
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
     }
 }

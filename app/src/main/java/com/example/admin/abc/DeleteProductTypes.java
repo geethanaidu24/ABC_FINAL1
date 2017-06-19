@@ -39,6 +39,7 @@ public class DeleteProductTypes extends AppCompatActivity {
 
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
+    int click=0;
     private Button btnAdd;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productTypesCRUD;
@@ -75,9 +76,13 @@ public class DeleteProductTypes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                   startActivity(in);
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+                    }
                     //finish();
                 }
             });
@@ -87,9 +92,13 @@ public class DeleteProductTypes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
-        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        startActivity(in);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
+            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            startActivity(in);
+        }
         //finish();
     }
     private void initializeViews()
@@ -137,7 +146,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProductTypes.this, "Response :" + responseString, Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductTypes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
                                                 intent.putExtra("PRODUCTID_KEY",recvdProId);
@@ -147,7 +156,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProductTypes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProductTypes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
                                 //ERROR

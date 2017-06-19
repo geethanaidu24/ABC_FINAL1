@@ -15,7 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 public class NewsDescription extends AppCompatActivity {
 
     ImageView back;
-
+int click=0;
     ImageView selectedImage;
     TextView titleTxt, descriptionTxt;
     Context c;
@@ -50,15 +50,23 @@ public class NewsDescription extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(NewsDescription.this, News.class);
-                    finish();
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
+                        Intent in = new Intent(NewsDescription.this, News.class);
+                        finish();
+                    }
                 }
             });
         }
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(NewsDescription.this, News.class);
-        finish();
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            Intent in = new Intent(NewsDescription.this, News.class);
+            finish();
+        }
     }
 }
