@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,7 +57,7 @@ private boolean menuOptionState=false;
 private boolean checkNetworkConnection;
 
    private static ViewPager mPager;
-    private static int currentPage = 0;
+   // private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 int click=0;
     private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
@@ -66,6 +67,8 @@ int click=0;
     private GoogleApiClient client;
     private Menu menu;
     boolean doubleBackToExitPressedOnce = false;
+    private int currentPage = -1;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,7 +262,7 @@ int click=0;
 
 
         // Auto start of viewpager
-        final Handler handler = new Handler();
+       final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -274,7 +277,8 @@ int click=0;
             public void run() {
                 handler.post(Update);
             }
-        }, 5000, 4000);
+        }, 7000, 7000);
+
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -362,7 +366,7 @@ int click=0;
                 click = 0;
 
                 Intent in = new Intent(Main2Activity.this, Main2Activity.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
                 finish();
             }
@@ -374,7 +378,7 @@ int click=0;
                 click = 0;
 
                 Intent in = new Intent(Main2Activity.this, AboutUs.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
@@ -387,7 +391,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Products.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -399,7 +403,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Brands.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -412,7 +416,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Contact.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -438,7 +442,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, News.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -459,6 +463,7 @@ int click=0;
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 }
             }
