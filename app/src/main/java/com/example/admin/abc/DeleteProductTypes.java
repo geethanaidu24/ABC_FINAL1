@@ -43,6 +43,7 @@ public class DeleteProductTypes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productTypesCRUD;
     final static String productTypeUrlAddressDel = Config.productTypesUrlAddress;
     private static int recvdProId;
+    private static String recvdProName;
     URL ProTypeSpinurlAddress = null;
 
     @Override
@@ -53,6 +54,7 @@ public class DeleteProductTypes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
+       //recvdProName = intent.getExtras().getString("PRODUCT_NAME");
         Uri builtUri = Uri.parse(productTypeUrlAddressDel)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recvdProId))
@@ -123,6 +125,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("producttypeid", String.valueOf(s.getProductTypeId()))
+                          //  .addBodyParameter("productname",recvdProName)
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -135,13 +138,8 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             Toast.makeText(DeleteProductTypes.this, "Response :" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
-
                                                 intent.putExtra("PRODUCTID_KEY",recvdProId);
-
                                                 startActivity(intent);
-   /* adapter.notifyDataSetChanged();
-    BackTask bt = new BackTask();
-    bt.execute();*/
                                             }else {
                                                 Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
