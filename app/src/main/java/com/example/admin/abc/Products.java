@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -234,6 +235,7 @@ public class Products extends AppCompatActivity implements Serializable {
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
+                toast.setGravity(Gravity.FILL_HORIZONTAL,0,0);
                 toast.show();
                 //Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
             } else {

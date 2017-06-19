@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,8 +62,8 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddContact.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(AddContact.this, Refresh.class);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                   //  finish();
                     startActivity(in);
                 }
@@ -89,8 +90,8 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddContact.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(AddContact.this, Refresh.class);
+       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         //  finish();
         startActivity(in);
     }
@@ -158,6 +159,7 @@ public class AddContact extends AppCompatActivity implements View.OnClickListene
 
         View toastView = toast.getView();
         toastView.setBackgroundResource(R.drawable.toast_drawable);
+        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
         toast.show();
         //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
         branchname.setText("");

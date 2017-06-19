@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -77,8 +78,8 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProductTypeSizes.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     //finish();
                     startActivity(in);
 
@@ -90,8 +91,8 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProductTypeSizes.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
+        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         //finish();
         startActivity(in);
     }
@@ -125,6 +126,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     //Toast.makeText(DeleteProductTypeSizes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
@@ -284,9 +286,9 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
                     if(sp.getSelectedItem().toString().equals("Select One")){
-                        Toast.makeText(DeleteProductTypeSizes.this,
+                        /*Toast.makeText(DeleteProductTypeSizes.this,
                                 "Your Selected : Nothing",
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT).show();*/
                     }else{
                     MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position-1);
                     final int psid =mySQLDataBase.getProductSizeId();

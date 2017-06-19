@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,8 +51,8 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddNews.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(AddNews.this, Refresh.class);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     //finish();
                      startActivity(in);
                 }
@@ -74,8 +75,8 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddNews.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(AddNews.this, Refresh.class);
+      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         //finish();
         startActivity(in);
         //finish();
@@ -100,6 +101,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     //Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
                 } else {
@@ -108,6 +110,7 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                     etCaption.setText("");

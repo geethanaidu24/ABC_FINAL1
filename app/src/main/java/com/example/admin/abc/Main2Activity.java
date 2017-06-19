@@ -262,7 +262,7 @@ int click=0;
 
 
         // Auto start of viewpager
-       final Handler handler = new Handler();
+       /*final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -278,7 +278,22 @@ int click=0;
                 handler.post(Update);
             }
         }, 7000, 7000);
+*/Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
 
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (currentPage == NUM_PAGES) {
+                            currentPage = 0;
+                        }
+                        mPager.setCurrentItem(currentPage++, true);
+                    }
+                });
+            }
+        }, 9000, 9000);
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -475,7 +490,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Login.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }

@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -119,8 +120,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridProductTypeSizes.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
+                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                    // finish();
                 }
@@ -149,8 +150,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridProductTypeSizes.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
+       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(in);
     }
 
@@ -177,6 +178,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             //Toast.makeText(AddGridProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
@@ -185,6 +187,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             name.setText("");

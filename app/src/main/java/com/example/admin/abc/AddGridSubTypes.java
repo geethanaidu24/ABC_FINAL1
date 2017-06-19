@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -91,8 +92,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             actionbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddGridSubTypes.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                     //finish();
                 }
@@ -122,8 +123,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridSubTypes.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+     //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(in);
         //finish();
     }
@@ -150,7 +151,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             Toast toast = Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT);
 
             View toastView = toast.getView();
-            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toastView.setBackgroundResource(R.drawable.toast_drawable);  toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+
             toast.show();
             //Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {
@@ -159,6 +161,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
           name.setText("");
