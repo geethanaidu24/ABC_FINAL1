@@ -124,7 +124,7 @@ int click=0;
                 click = 0;
 
                 Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTID_KEY", selectedProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -138,7 +138,7 @@ int click=0;
                 click = 0;
 
                 Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectedProductId);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 startActivity(inn);
@@ -237,7 +237,7 @@ int click=0;
             if (click == 1) {
                 click = 0;
                 Intent i = new Intent(c, ProductTypeSingleViewActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTTYPEID_KEY", ptid);
                 i.putExtra("NAME_KEY", details[0]);
@@ -275,7 +275,7 @@ int click=0;
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

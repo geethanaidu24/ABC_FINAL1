@@ -135,7 +135,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(ProductSizeGridViewImages.this, AddGridProductSizes.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTID_KEY", productId);
                 in.putExtra("PRODUCTNAME_KEY", selProductName);
                 in.putExtra("PRODUCTSIZEID_KEY", productSizeId);
@@ -152,7 +152,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteGridProductSizes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", productId);
                 inn.putExtra("PRODUCTSIZEID_KEY", productSizeId);
                 startActivity(inn);
@@ -438,7 +438,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent i = new Intent(c, ProductSizeImageSingleViewFullDetails.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTSIZEID_KEY", psid);
                 i.putExtra("NAME_KEY", details[0]);
@@ -475,7 +475,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSizeGridViewImages.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

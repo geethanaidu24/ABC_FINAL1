@@ -127,7 +127,7 @@ public class News extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(News.this, AddNews.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
                 return true;
             }
@@ -137,7 +137,7 @@ public class News extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(News.this, DeleteNews.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(inn);
 
                 return true;
@@ -182,7 +182,7 @@ public class News extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(News.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

@@ -129,7 +129,7 @@ public class ProductSizes extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 startActivity(in);
@@ -141,7 +141,7 @@ public class ProductSizes extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 startActivity(inn);
 
@@ -251,7 +251,7 @@ public class ProductSizes extends AppCompatActivity {
                 click = 0;
 
                 Intent intent = new Intent(c, ProductSizeGridViewImages.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTID_KEY", selectdProductId);
                 intent.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 intent.putExtra("PRODUCTSIZEID_KEY", sizeid);

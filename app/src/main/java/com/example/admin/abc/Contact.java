@@ -105,7 +105,7 @@ int click=0;
             if (click == 1) {
                 click = 0;
                 Intent in = new Intent(Contact.this, AddContact.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
                 return true;
             }
@@ -114,7 +114,7 @@ int click=0;
             if (click == 1) {
                 click = 0;
                 Intent inn = new Intent(Contact.this, DeleteContact.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(inn);
 
                 return true;
@@ -161,7 +161,7 @@ int click=0;
 
                         //Starting login activity
                         Intent intent = new Intent(Contact.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

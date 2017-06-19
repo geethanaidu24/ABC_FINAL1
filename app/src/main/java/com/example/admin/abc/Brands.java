@@ -192,7 +192,7 @@ int click=0;
 
                         //Starting login activity
                         Intent intent = new Intent(Brands.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }
                 });

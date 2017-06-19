@@ -139,7 +139,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                 in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -155,7 +155,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 startActivity(inn);
                 return true;
@@ -207,7 +207,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSubTypeGridView.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
@@ -457,7 +457,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 click = 0;
 
                 Intent i = new Intent(c, ProductSubTypeSingleViewActivity.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+             //   i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);

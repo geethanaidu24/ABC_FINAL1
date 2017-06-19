@@ -113,7 +113,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 click = 0;
 
                 Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTID_KEY", selectedProdutId);
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -127,7 +127,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 click = 0;
 
                 Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectedProdutId);
 
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -240,7 +240,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 click = 0;
 
                 Intent intent = new Intent(c, ProductTypeSizeImagesGridView.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTID_KEY", selectedProdutId);
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -282,7 +282,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypeSizes.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

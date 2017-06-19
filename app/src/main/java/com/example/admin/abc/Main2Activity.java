@@ -57,7 +57,7 @@ private boolean menuOptionState=false;
 private boolean checkNetworkConnection;
 
    private static ViewPager mPager;
-   // private static int currentPage = 0;
+   private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 int click=0;
     private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
@@ -67,7 +67,7 @@ int click=0;
     private GoogleApiClient client;
     private Menu menu;
     boolean doubleBackToExitPressedOnce = false;
-    private int currentPage = -1;
+  //  private int currentPage = -1;
     Timer timer;
 
     @Override
@@ -142,7 +142,7 @@ int click=0;
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Products.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
@@ -157,7 +157,7 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, AboutUs.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                 //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -173,7 +173,7 @@ int click=0;
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
@@ -189,7 +189,7 @@ int click=0;
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Contact.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }

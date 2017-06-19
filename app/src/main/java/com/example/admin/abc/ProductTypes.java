@@ -137,7 +137,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 click = 0;
 
                 Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
-                in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                 in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -153,7 +153,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 click = 0;
 
                 Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectedPid);
                // inn.putExtra("PRODUCT_NAME",selectedPname);
                 startActivity(inn);
@@ -356,7 +356,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductSubTypes.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProductTypeId);
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
@@ -509,7 +509,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductTypeSizes.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalProId);
                     intent.putExtra("PRODUCTNAME_KEY", finalProName);
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProTypeId);
@@ -676,7 +676,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         click = 0;
 
                         Intent in = new Intent(ProductTypes.this, Trial1.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY", pname);
                         in.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -701,7 +701,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = 0;
 
                     Intent intent = new Intent(c, ProductTypesGridView.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                  //  intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", pid);
                     intent.putExtra("PRODUCTNAME_KEY", pname);
                     intent.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -779,7 +779,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypes.this, MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
