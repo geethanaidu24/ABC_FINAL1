@@ -8,14 +8,18 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +31,8 @@ import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.UUID;
 
 public class AddProducts extends AppCompatActivity implements View.OnClickListener {
@@ -55,12 +61,15 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(AddProducts.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                 Intent in = new Intent(AddProducts.this, Refresh.class);
+
                    // finish();
 
                     startActivity(in);
-                    finish();
+
+                  //  finish();
+                   // finish();
                 }
             });
 
@@ -79,12 +88,13 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddProducts.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+      Intent in = new Intent(AddProducts.this, Refresh.class);
+       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         // finish();
 
         startActivity(in);
-        finish();
+
+        //finish();
 
 
 
@@ -101,28 +111,68 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             // Start the Intent
             startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
         } else if (view == btnUpload) {
-            if ((etCaption.length()<1 || tvPath.length()<1 || bitmap ==null) ){
+            if ((etCaption.length() < 1 || tvPath.length() < 1 || bitmap == null)) {
                 Toast toast = Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
+
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-               // Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
             } else {
                 uploadMultipart();
                 Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
+
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                 toast.show();
-               // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                 etCaption.setText("");
                 tvPath.setText("");
                 imageView.setImageResource(R.mipmap.browseimage);
+                //Creating an alert dialog to confirm logout
+              /*  AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
+                // alertDialogBuilder.setMessage("Are you sure you want to logout?");
+                alertDialogBuilder.setTitle(" Server will take Time To Upload and Refresh");
+                alertDialogBuilder.setIcon(R.drawable.logoutt);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                alertDialog.show();
+                alertDialog.getWindow().setLayout(600, 500);*/
+               /* new AlertDialog.Builder(this).setView
+                        (R.layout.activity_sorry).show();
+
+*/ /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(Html.fromHtml("<font color='#ff0000'>Server Will Take Time Refresh</font>"));
+                builder.setMessage("");
+                builder.setCancelable(true);
+            builder.setIcon(R.drawable.reload);
+builder.setPositiveButton("OK",null);
+
+                final AlertDialog dlg = builder.create();
+
+                dlg.show();
+                dlg.getWindow().setLayout(600, 300);*/
+                /*final Timer t = new Timer();
+                t.schedule(new TimerTask() {
+                    public void run() {
+                        dlg.dismiss(); // when the task active then close the dialog
+                        t.cancel(); // also just top the timer thread, otherwise, you may receive a crash report
+                    }
+                }, 5000); // after 2 second (or 2000 miliseconds), the task will be active.
+*/
             }
-        }
+
     }
+}
+
+
+
+
 
 
 
@@ -162,6 +212,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             //Starting the upload
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();
+
         }
     }
 

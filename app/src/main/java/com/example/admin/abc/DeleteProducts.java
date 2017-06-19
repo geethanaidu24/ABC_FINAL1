@@ -4,8 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +31,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class DeleteProducts extends AppCompatActivity {
     final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
@@ -50,8 +54,8 @@ public class DeleteProducts extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent in = new Intent(DeleteProducts.this, Main2Activity.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    Intent in = new Intent(DeleteProducts.this, Refresh.class);
+                    //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                     //finish();
                 }
@@ -62,8 +66,8 @@ public class DeleteProducts extends AppCompatActivity {
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(DeleteProducts.this, Main2Activity.class);
-        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        Intent in = new Intent(DeleteProducts.this, Refresh.class);
+       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(in);
         //finish();
     }
@@ -84,7 +88,15 @@ public class DeleteProducts extends AppCompatActivity {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(sp.getSelectedItem().equals("Select One")){
 
+                    Toast.makeText(DeleteProducts.this,
+                            "Your Selected : Nothing",
+                            Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
                     //SAVE
                    // final int pos = sp.getSelectedItemPosition();
                     MySQLDataBase s=new MySQLDataBase();
@@ -97,44 +109,55 @@ public class DeleteProducts extends AppCompatActivity {
                     toast.show();
                     //Toast.makeText(DeleteProducts.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
+                else {
+
                     AndroidNetworking.post(DATA_DELETE_URL)
-                            .addBodyParameter("action","delete")
+                            .addBodyParameter("action", "delete")
                             .addBodyParameter("productid", String.valueOf(s.getProductId()))
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
                                 @Override
                                 public void onResponse(JSONArray response) {
-                                    if(response != null)
+                                    if (response != null)
                                         try {
                                             //SHOW RESPONSE FROM SERVER
                                             String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteProducts.this, responseString , Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                Intent intent = new Intent(DeleteProducts.this,DeleteProducts.class);
+                                                Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
                                                 startActivity(intent);
+
+
+
+                                              /*  new AlertDialog.Builder(DeleteProducts.this) .setTitle(Html.fromHtml("<font color='#ff0000'>Exit</font>"))
+
+                                                        .setMessage(Html.fromHtml(" It will be taking time to Refresh"));*/
+
+                                              //  Toast.makeText(DeleteProducts.this, "It will be taking time to load", Toast.LENGTH_LONG).show();
                                                /* adapter.notifyDataSetChanged();
                                                 BackTask bt = new BackTask();
                                                 bt.execute();*/
-                                            }else {
+                                            } else {
                                                 Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
                                         } catch (JSONException e) {
                                             e.printStackTrace();
-                                            Toast.makeText(DeleteProducts.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(DeleteProducts.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                 }
+
                                 //ERROR
                                 @Override
                                 public void onError(ANError anError) {
-                                    Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DeleteProducts.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
+                }
             }
         });
+
 
     }
     public void onStart() {
@@ -218,10 +241,10 @@ public class DeleteProducts extends AppCompatActivity {
                                            int position, long id) {
 
                     if(sp.getSelectedItem().equals("Select One")){
-
+/*
                         Toast.makeText(DeleteProducts.this,
                                 "Your Selected : Nothing",
-                                Toast.LENGTH_SHORT).show();
+                                Toast.LENGTH_SHORT).show();*/
                     }else {
 
                         MySQLDataBase mySQLDataBase = (MySQLDataBase) mySQLDataBases.get(position - 1);

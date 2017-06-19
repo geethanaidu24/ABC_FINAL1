@@ -7,7 +7,11 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-feature android:name="android.hardware.touchscreen.multitouch" android:required="false" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen.multitouch"
+        android:required="false" />
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -26,19 +30,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:supportsRtl="true"
-
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:launchMode="singleInstance"
-
         android:splitMotionEvents="false"
-        android:windowEnableSplitTouch="false"
-
-        >
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:windowEnableSplitTouch="false">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true">
+            android:noHistory="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,7 +48,6 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -68,8 +67,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login"
-            android:screenOrientation="portrait"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Enquiry"
             android:screenOrientation="portrait" />
@@ -197,8 +196,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:screenOrientation="portrait" />
         <activity
             android:name=".Products"
-            android:screenOrientation="portrait"
-           />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".AddBrands"
             android:screenOrientation="portrait" />
@@ -222,10 +220,13 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
             android:name="io.fabric.ApiKey"
             android:value="73af28913d7e9d4e7d50d8a1de7164b9484fdfcd" />
 
-        <activity android:name=".Trial"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".Trial1"
-            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".Trial"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Trial1"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Refresh"></activity>
     </application>
 
 </manifest>
