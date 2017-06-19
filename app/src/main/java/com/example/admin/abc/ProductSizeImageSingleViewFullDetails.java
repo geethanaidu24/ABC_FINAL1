@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,9 +21,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 public class ProductSizeImageSingleViewFullDetails extends AppCompatActivity {
 int click=0;
-
+ImageButton zoom;
     private boolean loggedIn = false;
-    ImageView selectedImage,zoom;
+    ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
 
@@ -57,7 +58,7 @@ int click=0;
         brandTxt = (TextView) findViewById(R.id.brandTxt);
         sizeTxt = (TextView) findViewById(R.id.sizeTxt);
         colorTxt = (TextView) findViewById(R.id.colorTxt);
-zoom=(ImageView)findViewById(R.id.imageButton);
+zoom=(ImageButton) findViewById(R.id.imageButton);
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
         final int pid = i.getExtras().getInt("PRODUCTID_KEY");
@@ -78,7 +79,7 @@ zoom=(ImageView)findViewById(R.id.imageButton);
                 .crossFade()
                 .into(selectedImage);
 
-            selectedImage.setOnClickListener(new View.OnClickListener() {
+            zoom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 click = click + 1;

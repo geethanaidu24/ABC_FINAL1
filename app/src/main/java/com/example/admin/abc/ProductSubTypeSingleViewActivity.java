@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +21,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
  */
 
 public class ProductSubTypeSingleViewActivity extends AppCompatActivity {
-
+ImageButton im1;
     ImageView back;
 int click=0;
     ImageView img;
@@ -53,6 +54,7 @@ int click=0;
 
 
         img = (ImageView) findViewById(R.id.img1); //init a ImageView
+            im1=(ImageButton)findViewById(R.id.imageButton2);
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);
         colorTxt = (TextView) findViewById(R.id.colorTxt);
@@ -77,7 +79,7 @@ int click=0;
                 .crossFade()
                 .into(img);
 
-        img.setOnClickListener(new View.OnClickListener() {
+        im1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 click = click + 1;

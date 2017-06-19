@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class ProductTypeSingleViewActivity extends AppCompatActivity {
 
     ImageView back;
 int click=0;
+    ImageButton zoom;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt;
     Context c;
@@ -58,6 +60,7 @@ int click=0;
         nameTxt = (TextView)findViewById(R.id.nameTxt);
         brandTxt = (TextView)findViewById(R.id.brandTxt);
         colorTxt = (TextView)findViewById(R.id.colorTxt);
+            zoom=(ImageButton)findViewById(R.id.imageButton2);
 
         // Get intent data
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
@@ -78,7 +81,7 @@ int click=0;
                 .crossFade()
                 .into(selectedImage);
 
-        selectedImage.setOnClickListener(new View.OnClickListener(){
+        zoom.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View v) {
