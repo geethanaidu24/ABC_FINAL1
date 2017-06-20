@@ -74,8 +74,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                         click = 0;
                         Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
                         finish();
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -120,8 +121,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
                 Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
                // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("PRODUCTID_KEY", selectedProdutId);
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -136,8 +138,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
 
                 Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedProdutId);
 
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -159,8 +162,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
         }
 

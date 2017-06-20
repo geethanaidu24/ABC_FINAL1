@@ -39,8 +39,9 @@ public class Trial1 extends AppCompatActivity {
                         Intent in = new Intent(Trial1.this, Main2Activity.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         //finish();
                         // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
@@ -61,6 +62,9 @@ public class Trial1 extends AppCompatActivity {
                 if (click == 1) {
                     click = 0;
                     Intent in = new Intent(Trial1.this, AddProductsSubType.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     in.putExtra("PRODUCTID_KEY", selectedProductId);
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -84,6 +88,9 @@ public class Trial1 extends AppCompatActivity {
                     click = 0;
 
                     Intent in = new Intent(Trial1.this, AddGridProductTypes.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     in.putExtra("PRODUCTID_KEY", selectedProductId);
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -107,6 +114,9 @@ public class Trial1 extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(Trial1.this, AddProductTypeSizes.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectedProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -132,8 +142,9 @@ public class Trial1 extends AppCompatActivity {
             Intent in = new Intent(Trial1.this, Main2Activity.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 }

@@ -61,6 +61,9 @@ int click=0;
                         Intent in = new Intent(AboutUs.this, Main2Activity.class);
                         // startActivity(in);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -78,6 +81,9 @@ int click=0;
             Intent in = new Intent(AboutUs.this, Main2Activity.class);
             // startActivity(in);
             finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
     }

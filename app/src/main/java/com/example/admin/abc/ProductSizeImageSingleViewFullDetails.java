@@ -47,9 +47,10 @@ ImageButton zoom;
                         click = 0;
                         Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
                         finish();
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    }
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                }
                 }
             });
 
@@ -113,8 +114,9 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             click = 0;
             Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
             finish();
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 }

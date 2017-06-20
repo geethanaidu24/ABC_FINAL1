@@ -38,8 +38,9 @@ public class Refresh extends AppCompatActivity {
                 Intent in = new Intent(Refresh.this, MainActivity.class);
                 startActivity(in);
                 finish();
-                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             }
         });
     }

@@ -88,6 +88,9 @@ public class ProductSizes extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(ProductSizes.this, Products.class);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -134,8 +137,9 @@ public class ProductSizes extends AppCompatActivity {
 
                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.putExtra("PRODUCTID_KEY", selectdProductId);
-                in.putExtra("PRODUCTNAME_KEY", selectdProductName);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
                 return true;
             }
@@ -146,6 +150,9 @@ public class ProductSizes extends AppCompatActivity {
 
                 Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 startActivity(inn);
 
@@ -165,8 +172,9 @@ public class ProductSizes extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(ProductSizes.this, Products.class);
            // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
 
             finish();
         }
