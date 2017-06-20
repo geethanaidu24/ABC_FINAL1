@@ -37,8 +37,9 @@ Button b1,b2;
                         Intent in = new Intent(Trial.this, Main2Activity.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         //finish();
                         // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
@@ -59,7 +60,9 @@ Button b1,b2;
                     click = 0;
 
                     Intent in = new Intent(Trial.this, AddProductsTypes.class);
-
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     in.putExtra("PRODUCTID_KEY", selProductId);
                     in.putExtra("PRODUCTNAME_KEY", selProductName);
                     startActivity(in);
@@ -78,6 +81,9 @@ Button b1,b2;
                 click = 0;
 
                 Intent in = new Intent(Trial.this, AddProductSizes.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selProductId);
                 in.putExtra("PRODUCTNAME_KEY", selProductName);
                 startActivity(in);
@@ -97,8 +103,9 @@ Button b1,b2;
             Intent in = new Intent(Trial.this, Main2Activity.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
 
 

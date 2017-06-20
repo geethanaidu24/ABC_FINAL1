@@ -83,8 +83,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                         click = 0;
                         Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
                         finish();
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -128,8 +129,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
                 Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                 in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -146,8 +148,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
                 Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
                 return true;
             }
@@ -245,8 +248,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             click = 0;
             Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
 
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
         }
 

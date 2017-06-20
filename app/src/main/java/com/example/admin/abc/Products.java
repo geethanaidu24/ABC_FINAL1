@@ -77,8 +77,9 @@ public class Products extends AppCompatActivity implements Serializable {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(Products.this, Main2Activity.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         finish();
                     }
 
@@ -125,8 +126,9 @@ public class Products extends AppCompatActivity implements Serializable {
 
                 Intent in = new Intent(Products.this, AddProducts.class);
              //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
 
                 return true;
@@ -138,8 +140,9 @@ public class Products extends AppCompatActivity implements Serializable {
 
                 Intent inn = new Intent(Products.this, DeleteProducts.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
 
                 return true;
@@ -157,8 +160,9 @@ public class Products extends AppCompatActivity implements Serializable {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(Products.this, Main2Activity.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
         }
 

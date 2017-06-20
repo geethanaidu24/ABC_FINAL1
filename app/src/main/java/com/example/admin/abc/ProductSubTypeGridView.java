@@ -98,6 +98,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                         click = 0;
                         Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
                         finish();
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -144,8 +147,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                 Intent in = new Intent(ProductSubTypeGridView.this, AddGridSubTypes.class);
     //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                 in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -163,6 +167,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
         // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
                 return true;
             }
@@ -181,8 +188,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             click = 0;
             Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
 
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();
 
         }
