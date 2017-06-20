@@ -88,6 +88,9 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                         Intent in = new Intent(AddProductsSubType.this, Refresh.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                  //  finish();
                 }
@@ -118,19 +121,26 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
             //  finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     @Override
     public void onClick(View view) {
-        if(view == imageView){
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == imageView) {
 
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            // Start the Intent
-            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
-        }else if(view == btnUpload){
-            checkData();
-            //uploadMultipart();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Start the Intent
+                startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
+            } else if (view == btnUpload) {
+                checkData();
+                //uploadMultipart();
+            }
         }
     }
 

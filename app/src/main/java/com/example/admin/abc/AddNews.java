@@ -59,6 +59,9 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -87,6 +90,9 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //finish();
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             //finish();
         }
     }
@@ -94,39 +100,43 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if(view == imageView){
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == imageView) {
            /* Intent intent = new Intent();
             intent.setType("image*//*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Complete action using"), IMAGE_REQUEST_CODE);*/
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            // Start the Intent
-            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
-        }else {
-            if (view == btnUpload) {
-                if (etCaption.length() < 1 || etDescription.length()<1 || tvPath.length() < 1 || bitmap==null) {
-                    Toast toast = Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT);
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Start the Intent
+                startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
+            } else {
+                if (view == btnUpload) {
+                    if (etCaption.length() < 1 || etDescription.length() < 1 || tvPath.length() < 1 || bitmap == null) {
+                        Toast toast = Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT);
 
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                    //Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadMultipart();
-                    Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        //Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT).show();
+                    } else {
+                        uploadMultipart();
+                        Toast toast = Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT);
 
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                    //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
-                    etCaption.setText("");
-                    tvPath.setText("");
-                    etDescription.setText("");
-                    imageView.setImageResource(R.mipmap.browseimage);
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
+                        etCaption.setText("");
+                        tvPath.setText("");
+                        etDescription.setText("");
+                        imageView.setImageResource(R.mipmap.browseimage);
 
+                    }
                 }
             }
         }

@@ -74,6 +74,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         // finish();
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -89,6 +92,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // finish();
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void initializeViews()
@@ -100,66 +106,67 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     HANDLE CLICK EVENTS
      */
     private void handleClickEvents(final int prosizeimgid)
-    {
-        //EVENTS : ADD
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //GET VALUES
-                final int recivedprosizeimgid = prosizeimgid;
-                //SAVE
-                MySQLDataBase s=new MySQLDataBase();
-                s.setProductSizeImageId(recivedprosizeimgid);
-                if(s==null)
-                {Toast toast = Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+    {  click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //EVENTS : ADD
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //GET VALUES
+                    final int recivedprosizeimgid = prosizeimgid;
+                    //SAVE
+                    MySQLDataBase s = new MySQLDataBase();
+                    s.setProductSizeImageId(recivedprosizeimgid);
+                    if (s == null) {
+                        Toast toast = Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
 
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                    //Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    AndroidNetworking.post(DATA_DELETE_URL)
-                            .addBodyParameter("action","delete")
-                            .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
-                            .setTag("TAG_ADD")
-                            .build()
-                            .getAsJSONArray(new JSONArrayRequestListener() {
-                                @Override
-                                public void onResponse(JSONArray response) {
-                                    if(response != null)
-                                        try {
-                                            //SHOW RESPONSE FROM SERVER
-                                            String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteGridSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                Intent intent = new Intent(DeleteGridSubTypes.this,DeleteGridSubTypes.class);
-                                                intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        //Toast.makeText(DeleteGridSubTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AndroidNetworking.post(DATA_DELETE_URL)
+                                .addBodyParameter("action", "delete")
+                                .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .setTag("TAG_ADD")
+                                .build()
+                                .getAsJSONArray(new JSONArrayRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONArray response) {
+                                        if (response != null)
+                                            try {
+                                                //SHOW RESPONSE FROM SERVER
+                                                String responseString = response.get(0).toString();
+                                                Toast.makeText(DeleteGridSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                                if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                    Intent intent = new Intent(DeleteGridSubTypes.this, DeleteGridSubTypes.class);
+                                                    intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
 
-                                                startActivity(intent);
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
-                                            }else {
-                                                Toast.makeText(DeleteGridSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(DeleteGridSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(DeleteGridSubTypes.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                            Toast.makeText(DeleteGridSubTypes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                }
-                                //ERROR
-                                @Override
-                                public void onError(ANError anError) {
-                                    Toast.makeText(DeleteGridSubTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-            }
-        });
+                                    }
 
+                                    //ERROR
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Toast.makeText(DeleteGridSubTypes.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                }
+            });
+        }
     }
     public void onStart() {
         super.onStart();

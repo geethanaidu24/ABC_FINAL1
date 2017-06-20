@@ -97,6 +97,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
                         finish();
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -139,7 +141,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(ProductSizeGridViewImages.this, AddGridProductSizes.class);
-              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", productId);
                 in.putExtra("PRODUCTNAME_KEY", selProductName);
                 in.putExtra("PRODUCTSIZEID_KEY", productSizeId);
@@ -156,7 +160,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(ProductSizeGridViewImages.this, DeleteGridProductSizes.class);
-                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            //  inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", productId);
                 inn.putExtra("PRODUCTSIZEID_KEY", productSizeId);
                 startActivity(inn);
@@ -483,6 +489,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         //Starting login activity
                         Intent intent = new Intent(ProductSizeGridViewImages.this, MainActivity.class);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 });

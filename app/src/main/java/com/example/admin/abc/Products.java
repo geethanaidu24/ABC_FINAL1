@@ -124,7 +124,9 @@ public class Products extends AppCompatActivity implements Serializable {
                 click = 0;
 
                 Intent in = new Intent(Products.this, AddProducts.class);
-               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+             //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
 
                 return true;
@@ -135,7 +137,9 @@ public class Products extends AppCompatActivity implements Serializable {
                 click = 0;
 
                 Intent inn = new Intent(Products.this, DeleteProducts.class);
-               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
 
                 return true;
@@ -190,7 +194,9 @@ public class Products extends AppCompatActivity implements Serializable {
 
                         Intent intent = new Intent(Products.this, Main2Activity.class);
                        intent.putExtra("finish",true);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
 
                         finish();

@@ -133,7 +133,7 @@ public class ProductSizes extends AppCompatActivity {
                 click = 0;
 
                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
-               // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 startActivity(in);
@@ -145,7 +145,7 @@ public class ProductSizes extends AppCompatActivity {
                 click = 0;
 
                 Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
-                inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 startActivity(inn);
 
@@ -164,8 +164,10 @@ public class ProductSizes extends AppCompatActivity {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductSizes.this, Products.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+           // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
             finish();
         }
 
@@ -299,7 +301,9 @@ public class ProductSizes extends AppCompatActivity {
                         //Starting login activity
                         Intent intent = new Intent(ProductSizes.this, MainActivity.class);
                         intent.putExtra("finish",true);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 });

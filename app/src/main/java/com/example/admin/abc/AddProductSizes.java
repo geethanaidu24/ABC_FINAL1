@@ -76,6 +76,9 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         // in.putExtra("PRODUCTID_KEY", pid);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         // finish();
                     }
                 }
@@ -107,14 +110,21 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // in.putExtra("PRODUCTID_KEY", pid);
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         // finish();
     }
     @Override
     public void onClick(View view) {
-        if(view == btnAdd1){
-            checkData();
-            //for checking empty values
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == btnAdd1) {
+                checkData();
+                //for checking empty values
+            }
         }
     }
 

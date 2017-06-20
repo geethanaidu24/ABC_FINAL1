@@ -7,7 +7,9 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="25" />
     <uses-feature
         android:name="android.hardware.touchscreen.multitouch"
         android:required="false" />
@@ -49,7 +51,7 @@
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Contact"
             android:screenOrientation="portrait" />

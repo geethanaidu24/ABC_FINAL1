@@ -99,6 +99,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         //finish();
                     }
                 }
@@ -134,6 +137,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
             //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             //finish();
         }
     }
@@ -141,6 +147,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
             if (v == imageView) {
                 /*Intent intent = new Intent();
                 intent.setType("image*//*");
@@ -154,13 +163,15 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                 checkData();
                 //uploadMultipart();
             }
+        }
     }
     private void checkData() {
-        if (name.length() < 1 || Path.length() < 1|| brand.length() < 1 || color.length() < 1 || bitmap==null) {
+        if (name.length() < 1 || Path.length() < 1 || brand.length() < 1 || color.length() < 1 || bitmap == null) {
             Toast toast = Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT);
 
             View toastView = toast.getView();
-            toastView.setBackgroundResource(R.drawable.toast_drawable);  toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toastView.setBackgroundResource(R.drawable.toast_drawable);
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
 
             toast.show();
             //Toast.makeText(AddGridSubTypes.this, "Fill All", Toast.LENGTH_SHORT).show();
@@ -173,12 +184,13 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
-          name.setText("");
+            name.setText("");
             Path.setText("");
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
         }
+
     }
 
     @Override

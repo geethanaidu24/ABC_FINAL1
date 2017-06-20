@@ -62,6 +62,8 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
                         finish();
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });

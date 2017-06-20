@@ -76,6 +76,9 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -92,6 +95,9 @@ public class DeleteGridProductTypes extends AppCompatActivity {
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //finish();
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void initializeViews()
@@ -102,67 +108,68 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     }
     private void handleClickEvents(final int prosizeimgid)
 
-    {
-        //EVENTS : ADD
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //GET VALUES
+    {  click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //EVENTS : ADD
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //GET VALUES
 
 
-                //SAVE
-                MySQLDataBase s=new MySQLDataBase();
-                s.setProductSizeImageId(prosizeimgid);
-                if(s==null)
-                { Toast toast = Toast.makeText(DeleteGridProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+                    //SAVE
+                    MySQLDataBase s = new MySQLDataBase();
+                    s.setProductSizeImageId(prosizeimgid);
+                    if (s == null) {
+                        Toast toast = Toast.makeText(DeleteGridProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
 
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                   // Toast.makeText(DeleteGridProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    AndroidNetworking.post(DATA_DELETE_URL)
-                            .addBodyParameter("action","delete")
-                            .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
-                            .setTag("TAG_ADD")
-                            .build()
-                            .getAsJSONArray(new JSONArrayRequestListener() {
-                                @Override
-                                public void onResponse(JSONArray response) {
-                                    if(response != null)
-                                        try {
-                                            //SHOW RESPONSE FROM SERVER
-                                            String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteGridProductTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                Intent intent = new Intent(DeleteGridProductTypes.this,DeleteGridProductTypes.class);
-                                                intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
-                                                intent.putExtra("PRODUCTID_KEY",productId);
-                                                startActivity(intent);
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        // Toast.makeText(DeleteGridProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AndroidNetworking.post(DATA_DELETE_URL)
+                                .addBodyParameter("action", "delete")
+                                .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .setTag("TAG_ADD")
+                                .build()
+                                .getAsJSONArray(new JSONArrayRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONArray response) {
+                                        if (response != null)
+                                            try {
+                                                //SHOW RESPONSE FROM SERVER
+                                                String responseString = response.get(0).toString();
+                                                Toast.makeText(DeleteGridProductTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                                if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                    Intent intent = new Intent(DeleteGridProductTypes.this, DeleteGridProductTypes.class);
+                                                    intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                                                    intent.putExtra("PRODUCTID_KEY", productId);
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
-                                            }else {
-                                                Toast.makeText(DeleteGridProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(DeleteGridProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(DeleteGridProductTypes.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                            Toast.makeText(DeleteGridProductTypes.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-                                }
-                                //ERROR
-                                @Override
-                                public void onError(ANError anError) {
-                                    Toast.makeText(DeleteGridProductTypes.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
-            }
-        });
+                                    }
 
+                                    //ERROR
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Toast.makeText(DeleteGridProductTypes.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                }
+            });
+        }
     }
     public void onStart() {
         super.onStart();

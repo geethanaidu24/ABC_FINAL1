@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -277,7 +278,7 @@ int click=0;
             public void run() {
                 handler.post(Update);
             }
-        }, 9000, 10000);
+        }, 5000, 6000);
 /*Timer swipeTimer = new Timer();
         swipeTimer.schedule(new TimerTask() {
 
@@ -334,7 +335,9 @@ int click=0;
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            finishAffinity();
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                                finishAffinity();
+                            }
 
                         }
                     }).setNegativeButton("No", null).show();

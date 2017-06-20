@@ -52,6 +52,8 @@ int click=0;
 
                     startActivity(in);*/
                         finish();
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });

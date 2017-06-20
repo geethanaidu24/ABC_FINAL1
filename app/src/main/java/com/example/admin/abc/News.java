@@ -88,6 +88,9 @@ public class News extends AppCompatActivity {
                         Intent in = new Intent(News.this, Main2Activity.class);
                         //startActivity(in);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -132,6 +135,9 @@ public class News extends AppCompatActivity {
 
                 Intent in = new Intent(News.this, AddNews.class);
               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
                 return true;
             }
@@ -142,6 +148,9 @@ public class News extends AppCompatActivity {
 
                 Intent inn = new Intent(News.this, DeleteNews.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
 
                 return true;
@@ -161,6 +170,9 @@ public class News extends AppCompatActivity {
             Intent in = new Intent(News.this, Main2Activity.class);
             //startActivity(in);
             finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void logout() {
@@ -190,6 +202,9 @@ public class News extends AppCompatActivity {
 
                         //Starting login activity
                         Intent intent = new Intent(News.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                        // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }

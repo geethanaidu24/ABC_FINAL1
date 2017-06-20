@@ -82,6 +82,9 @@ public class DeleteProductTypes extends AppCompatActivity {
                         Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                     //finish();
                 }
@@ -98,6 +101,9 @@ public class DeleteProductTypes extends AppCompatActivity {
             Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
         //finish();
     }
@@ -114,16 +120,19 @@ public class DeleteProductTypes extends AppCompatActivity {
      */
     private void handleClickEvents(final int ptid)
     {
-        //EVENTS : ADD
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //GET VALUE
-                //SAVE
-                MySQLDataBase s=new MySQLDataBase();
-                s.setProductTypeId(ptid);
-                if(s==null)
-                {Toast toast = Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //EVENTS : ADD
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //GET VALUE
+                    //SAVE
+                    MySQLDataBase s = new MySQLDataBase();
+                    s.setProductTypeId(ptid);
+                    if (s == null) {
+                        Toast toast = Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT);
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -170,6 +179,49 @@ public class DeleteProductTypes extends AppCompatActivity {
             }
         });
 
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        // Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AndroidNetworking.post(DATA_DELETE_URL)
+                                .addBodyParameter("action", "delete")
+                                .addBodyParameter("producttypeid", String.valueOf(s.getProductTypeId()))
+                                //  .addBodyParameter("productname",recvdProName)
+                                .setTag("TAG_ADD")
+                                .build()
+                                .getAsJSONArray(new JSONArrayRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONArray response) {
+                                        if (response != null)
+                                            try {
+                                                //SHOW RESPONSE FROM SERVER
+                                                String responseString = response.get(0).toString();
+                                                Toast.makeText(DeleteProductTypes.this, "" + responseString, Toast.LENGTH_SHORT).show();
+                                                if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                    Intent intent = new Intent(DeleteProductTypes.this, DeleteProductTypes.class);
+                                                    intent.putExtra("PRODUCTID_KEY", recvdProId);
+                                                    startActivity(intent);
+                                                } else {
+                                                    Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(DeleteProductTypes.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                    }
+
+                                    //ERROR
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Toast.makeText(DeleteProductTypes.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+                }
+            });
+        }
     }
     public void onStart() {
         super.onStart();
