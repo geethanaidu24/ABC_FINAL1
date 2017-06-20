@@ -145,9 +145,10 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 click = 0;
 
                 Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
-                inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 startActivity(inn);
                 return true;
             }

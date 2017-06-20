@@ -45,6 +45,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
     private static int recvdProTypeId;
+    private static String recvdProType;
     URL ProSubTypeurlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         recvdProTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        recvdProType = intent.getExtras().getString("PRODUCTTYPE_KEY");
         Uri builtUri = Uri.parse(Config.productSubTypesUrlAddress)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recvdProTypeId))
@@ -140,6 +142,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                         AndroidNetworking.post(DATA_DELETE_URL)
                                 .addBodyParameter("action", "delete")
                                 .addBodyParameter("productsubtypeid", String.valueOf(s.getProductSubTypeId()))
+                                .addBodyParameter("producttype",recvdProType)
                                 .setTag("TAG_ADD")
                                 .build()
                                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -153,7 +156,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                     Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
-
+                                                    intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
                                                     startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();

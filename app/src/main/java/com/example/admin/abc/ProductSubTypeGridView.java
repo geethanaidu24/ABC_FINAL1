@@ -162,7 +162,12 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                 Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
         // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                inn.putExtra("PRODUCTNAME_KEY", selectedPname);
+                inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                inn.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                 startActivity(inn);
                 return true;
             }

@@ -39,6 +39,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
     int click=0;
     private Button btnAdd;
     private static int productSubTypeId;
+    private static String recvProName,recvProType,recvSubType;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypeGridsCRUD;
     private static final String Data_spinner_url = Config.productSubTypeGridUrlAddress;
@@ -49,6 +50,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
         setContentView(R.layout.activity_delete_grid_sub_types);
         Intent in = getIntent();
         productSubTypeId = in.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        recvProName = in.getExtras().getString("PRODUCTNAME_KEY");
+        recvProType = in.getExtras().getString("PRODUCTTYPE_KEY");
+        recvSubType = in.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
         Uri builtUri = Uri.parse(Data_spinner_url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTSUBTYPEID_PARAM, Integer.toString(productSubTypeId))
@@ -130,6 +134,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         AndroidNetworking.post(DATA_DELETE_URL)
                                 .addBodyParameter("action", "delete")
                                 .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .addBodyParameter("productname",recvProName)
+                                .addBodyParameter("producttype",recvProType)
+                                .addBodyParameter("productsubtype",recvSubType)
                                 .setTag("TAG_ADD")
                                 .build()
                                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -143,11 +150,10 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                     Intent intent = new Intent(DeleteGridSubTypes.this, DeleteGridSubTypes.class);
                                                     intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
-
+                                                    intent.putExtra("PRODUCTNAME_KEY", recvProName);
+                                                    intent.putExtra("PRODUCTTYPE_KEY", recvProType);
+                                                    intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
                                                     startActivity(intent);
-   /* adapter.notifyDataSetChanged();
-    BackTask bt = new BackTask();
-    bt.execute();*/
                                                 } else {
                                                     Toast.makeText(DeleteGridSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }
