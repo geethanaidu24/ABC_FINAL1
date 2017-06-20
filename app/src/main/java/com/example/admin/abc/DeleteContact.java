@@ -81,66 +81,67 @@ public class DeleteContact extends AppCompatActivity {
     HANDLE CLICK EVENTS
      */
     private void handleClickEvents(final int deleteContactId)
-    {
-        //EVENTS : ADD
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    {  click = click + 1;
+        if (click == 1) {
+            click = 0;
+            //EVENTS : ADD
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
 
-                //SAVE
-                MySQLDataBase s=new MySQLDataBase();
-                s.setContactId(deleteContactId);
-                if(s==null)
-                {  Toast toast = Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT);
+                    //SAVE
+                    MySQLDataBase s = new MySQLDataBase();
+                    s.setContactId(deleteContactId);
+                    if (s == null) {
+                        Toast toast = Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT);
 
-                    View toastView = toast.getView();
-                    toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                    toast.show();
-                    //Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    AndroidNetworking.post(DATA_DELETE_URL)
-                            .addBodyParameter("action","delete")
-                            .addBodyParameter("contactid", String.valueOf(s.getContactId()))
-                            .setTag("TAG_ADD")
-                            .build()
-                            .getAsJSONArray(new JSONArrayRequestListener() {
-                                @Override
-                                public void onResponse(JSONArray response) {
-                                    if(response != null)
-                                        try {
-                                            //SHOW RESPONSE FROM SERVER
-                                            String responseString = response.get(0).toString();
-                                            Toast.makeText(DeleteContact.this, " " + responseString, Toast.LENGTH_SHORT).show();
-                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                Intent intent = new Intent(DeleteContact.this,DeleteContact.class);
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
+                        //Toast.makeText(DeleteContact.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AndroidNetworking.post(DATA_DELETE_URL)
+                                .addBodyParameter("action", "delete")
+                                .addBodyParameter("contactid", String.valueOf(s.getContactId()))
+                                .setTag("TAG_ADD")
+                                .build()
+                                .getAsJSONArray(new JSONArrayRequestListener() {
+                                    @Override
+                                    public void onResponse(JSONArray response) {
+                                        if (response != null)
+                                            try {
+                                                //SHOW RESPONSE FROM SERVER
+                                                String responseString = response.get(0).toString();
+                                                Toast.makeText(DeleteContact.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                                if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                    Intent intent = new Intent(DeleteContact.this, DeleteContact.class);
 
-                                                startActivity(intent);
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
-                                            }else {
-                                                Toast.makeText(DeleteContact.this, responseString, Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(DeleteContact.this, responseString, Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                                Toast.makeText(DeleteContact.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                            Toast.makeText(DeleteContact.this, " "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                                }
-                                //ERROR
-                                @Override
-                                public void onError(ANError anError) {
-                                    Toast.makeText(DeleteContact.this, "UNSUCCESSFUL :  ERROR IS : "+anError.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                    }
+
+                                    //ERROR
+                                    @Override
+                                    public void onError(ANError anError) {
+                                        Toast.makeText(DeleteContact.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    }
+
                 }
-
-            }
-        });
-
+            });
+        }
     }
     public void onStart() {
         super.onStart();

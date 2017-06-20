@@ -128,15 +128,19 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
     }
     @Override
     public void onClick(View view) {
-        if(view == imageView){
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == imageView) {
 
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            // Start the Intent
-            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
-        }else if(view == btnUpload){
-            checkData();
-            //uploadMultipart();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Start the Intent
+                startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
+            } else if (view == btnUpload) {
+                checkData();
+                //uploadMultipart();
+            }
         }
     }
 

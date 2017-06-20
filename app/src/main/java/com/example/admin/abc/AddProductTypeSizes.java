@@ -130,9 +130,13 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
     }
     @Override
     public void onClick(View view) {
-        if(view == btnAdd){
-            checkData();
-            //for checking empty values
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == btnAdd) {
+                checkData();
+                //for checking empty values
+            }
         }
     }
 

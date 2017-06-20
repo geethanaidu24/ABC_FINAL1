@@ -114,11 +114,15 @@ int click=0;
         click = click + 1;
         if (click == 1) {
             click = 0;
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
 
-        if(view == btnUpload) {
-            checkData();
-            //uploadMultipart();
-        }
+                if (view == btnUpload) {
+                    checkData();
+                    //uploadMultipart();
+                }
+            }
         }
     }
 

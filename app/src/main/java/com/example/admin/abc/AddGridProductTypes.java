@@ -140,15 +140,19 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View v) {
-        if (v == imageView) {
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (v == imageView) {
 
-            Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                    android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            // Start the Intent
-            startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
-        } else if (v == btnadd1) {
-            checkData();
-            //uploadMultipart();
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                // Start the Intent
+                startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
+            } else if (v == btnadd1) {
+                checkData();
+                //uploadMultipart();
+            }
         }
     }
 

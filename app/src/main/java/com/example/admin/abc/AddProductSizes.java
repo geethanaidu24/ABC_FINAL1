@@ -118,9 +118,13 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
     }
     @Override
     public void onClick(View view) {
-        if(view == btnAdd1){
-            checkData();
-            //for checking empty values
+        click = click + 1;
+        if (click == 1) {
+            click = 0;
+            if (view == btnAdd1) {
+                checkData();
+                //for checking empty values
+            }
         }
     }
 
