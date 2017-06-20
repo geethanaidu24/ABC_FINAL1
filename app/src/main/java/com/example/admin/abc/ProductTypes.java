@@ -159,7 +159,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.putExtra("PRODUCTID_KEY", selectedPid);
-               // inn.putExtra("PRODUCT_NAME",selectedPname);
+                inn.putExtra("PRODUCT_NAME",selectedPname);
                 startActivity(inn);
 
                 return true;

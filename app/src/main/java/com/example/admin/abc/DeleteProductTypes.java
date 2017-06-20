@@ -56,7 +56,7 @@ public class DeleteProductTypes extends AppCompatActivity {
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
-       //recvdProName = intent.getExtras().getString("PRODUCT_NAME");
+       recvdProName = intent.getExtras().getString("PRODUCT_NAME");
         Uri builtUri = Uri.parse(productTypeUrlAddressDel)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recvdProId))
@@ -136,7 +136,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                     AndroidNetworking.post(DATA_DELETE_URL)
                             .addBodyParameter("action","delete")
                             .addBodyParameter("producttypeid", String.valueOf(s.getProductTypeId()))
-                          //  .addBodyParameter("productname",recvdProName)
+                            .addBodyParameter("productname",recvdProName)
                             .setTag("TAG_ADD")
                             .build()
                             .getAsJSONArray(new JSONArrayRequestListener() {
@@ -150,6 +150,7 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                 Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
                                                 intent.putExtra("PRODUCTID_KEY",recvdProId);
+                                                intent.putExtra("PRODUCT_NAME",recvdProName);
                                                 startActivity(intent);
                                             }else {
                                                 Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
