@@ -38,6 +38,9 @@ ImageView im;
                         click = 0;
                         Intent in = new Intent(Enquiry.this, Main2Activity.class);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                     //  startActivity(in);
                 }

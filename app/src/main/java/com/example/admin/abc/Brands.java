@@ -103,6 +103,9 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(Brands.this, Main2Activity.class);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                     //  startActivity(in);
                 }
@@ -121,6 +124,9 @@ int click=0;
             click = 0;
             Intent in = new Intent(Brands.this, Main2Activity.class);
             finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 
@@ -201,6 +207,9 @@ int click=0;
 
                         //Starting login activity
                         Intent intent = new Intent(Brands.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         //intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(intent);
                     }

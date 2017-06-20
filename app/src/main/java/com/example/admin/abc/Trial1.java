@@ -39,6 +39,8 @@ public class Trial1 extends AppCompatActivity {
                         Intent in = new Intent(Trial1.this, Main2Activity.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         //finish();
                         // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
@@ -130,6 +132,8 @@ public class Trial1 extends AppCompatActivity {
             Intent in = new Intent(Trial1.this, Main2Activity.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
+            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 }

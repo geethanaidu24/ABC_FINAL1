@@ -99,6 +99,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         //finish();
                     }
                 }
@@ -134,6 +137,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
             //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             //finish();
         }
     }

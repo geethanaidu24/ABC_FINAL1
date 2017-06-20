@@ -80,6 +80,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //  finish();
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -96,6 +99,9 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //  finish();
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void initializeViews()

@@ -55,6 +55,9 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(NewsDescription.this, News.class);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -67,6 +70,9 @@ int click=0;
             click = 0;
             Intent in = new Intent(NewsDescription.this, News.class);
             finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 }

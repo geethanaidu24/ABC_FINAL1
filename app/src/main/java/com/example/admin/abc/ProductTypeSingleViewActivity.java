@@ -48,8 +48,12 @@ int click=0;
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
+                    in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(in);*/
                         finish();
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });

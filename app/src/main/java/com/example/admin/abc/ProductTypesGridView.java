@@ -87,6 +87,8 @@ int click=0;
                         Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
 
                         finish();
+                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -129,6 +131,8 @@ int click=0;
 
                 Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
                // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectedProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -143,6 +147,8 @@ int click=0;
 
                 Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                inn.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedProductId);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 startActivity(inn);
@@ -285,7 +291,9 @@ int click=0;
                         Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);
                        // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         intent.putExtra("finish",true);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 });

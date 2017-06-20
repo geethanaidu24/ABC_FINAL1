@@ -67,6 +67,9 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(Contact.this, Main2Activity.class);
                         finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         // startActivity(in);
                     }
                 }
@@ -110,6 +113,9 @@ int click=0;
                 click = 0;
                 Intent in = new Intent(Contact.this, AddContact.class);
                // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(in);
                 return true;
             }
@@ -119,6 +125,9 @@ int click=0;
                 click = 0;
                 Intent inn = new Intent(Contact.this, DeleteContact.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(inn);
 
                 return true;
@@ -138,6 +147,9 @@ int click=0;
             click = 0;
             Intent in = new Intent(Contact.this, Main2Activity.class);
             finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void logout() {
@@ -170,6 +182,9 @@ int click=0;
                         //Starting login activity
                         Intent intent = new Intent(Contact.this, MainActivity.class);
                        // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 });

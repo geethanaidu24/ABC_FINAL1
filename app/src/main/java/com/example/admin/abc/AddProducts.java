@@ -70,6 +70,9 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                         // finish();
 
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         //  finish();
                         // finish();
@@ -100,6 +103,9 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             // finish();
 
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
 
             //finish();
 

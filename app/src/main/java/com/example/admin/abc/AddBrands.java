@@ -56,6 +56,9 @@ int click=0;
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -81,6 +84,9 @@ int click=0;
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //finish();
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
 

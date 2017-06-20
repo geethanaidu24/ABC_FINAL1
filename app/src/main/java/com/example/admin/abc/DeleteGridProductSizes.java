@@ -78,6 +78,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         // finish();
                         // in.putExtra("PRODUCTID_KEY", pid);
                         startActivity(in);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -95,6 +98,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             // finish();
             // in.putExtra("PRODUCTID_KEY", pid);
             startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     private void initializeViews()
