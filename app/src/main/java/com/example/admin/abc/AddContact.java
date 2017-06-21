@@ -219,7 +219,7 @@ int click=0;
                                 try {
                                     //SHOW RESPONSE FROM SERVER
                                     String responseString = response.get(0).toString();
-                                    Toast.makeText(AddContact.this, "" + responseString, Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(AddContact.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                       /*  //CLEAR EDITXTS
                                         txtwidth.setText("");

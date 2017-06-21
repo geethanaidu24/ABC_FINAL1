@@ -203,7 +203,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                                 try {
                                     //SHOW RESPONSE FROM SERVER
                                     String responseString = response.get(0).toString();
-                                    Toast.makeText(AddProductTypeSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(AddProductTypeSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                         //CLEAR EDITXTS
                                        /* txtwidth.setText("");

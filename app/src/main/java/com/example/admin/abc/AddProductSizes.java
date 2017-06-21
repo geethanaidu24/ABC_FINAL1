@@ -191,7 +191,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                                 try {
                                     //SHOW RESPONSE FROM SERVER
                                     String responseString = response.get(0).toString();
-                                    Toast.makeText(AddProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                 //   Toast.makeText(AddProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                     if (responseString.equalsIgnoreCase("Success")) {
                                       /*  //CLEAR EDITXTS
                                         txtwidth.setText("");
