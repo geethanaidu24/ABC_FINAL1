@@ -39,7 +39,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     private Spinner sp;
     private Button btnAdd;
     int click=0;
- int recivedProductId,recivedProductsizeId;
+ int recivedProductId,recivedProductsizeId,recvdWidth,recvdHeight,recvdLength;
+    String recvdProName,finalSelProSize;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSizesGridsCRUD;
     private static final String Data_Spin = Config.productSizeImgUrlAddress;
@@ -51,6 +52,32 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         Intent intent = getIntent();
         recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         recivedProductsizeId=intent.getExtras().getInt("PRODUCTSIZEID_KEY");
+        recvdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        recvdWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
+        recvdHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
+        recvdLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        if(recvdLength !=0 && recvdWidth !=0 && recvdHeight !=0){
+            finalSelProSize =  recvdWidth + "X" + recvdHeight + "X" + recvdLength;
+
+        }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight !=0){
+            finalSelProSize =  recvdWidth + "X" + recvdHeight;
+
+        }else if(recvdLength !=0 && recvdWidth ==0 && recvdHeight !=0){
+            finalSelProSize =  recvdLength + "X" + recvdHeight;
+
+        }else if(recvdLength !=0 && recvdWidth !=0 && recvdHeight ==0 ){
+            finalSelProSize =  recvdLength + "X" + recvdHeight ;
+
+        }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight ==0 ){
+            finalSelProSize = recvdWidth + "" ;
+
+        }else if(recvdLength !=0 && recvdWidth ==0 && recvdHeight ==0 ){
+            finalSelProSize = recvdLength + "" ;
+
+        }else if(recvdLength ==0 && recvdWidth ==0 && recvdHeight !=0 ){
+            finalSelProSize = recvdHeight + "" ;
+
+        }
         Uri builtUri = Uri.parse(Data_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -140,6 +167,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         AndroidNetworking.post(DATA_DELETE_URL)
                                 .addBodyParameter("action", "delete")
                                 .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .addBodyParameter("productname",recvdProName)
+                                .addBodyParameter("productsize",finalSelProSize)
                                 .setTag("TAG_ADD")
                                 .build()
                                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -154,6 +183,10 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                     Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
                                                     intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                    intent.putExtra("PRODUCTNAME_KEY",recvdProName );
+                                                    intent.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+                                                    intent.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+                                                    intent.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                                                     startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();

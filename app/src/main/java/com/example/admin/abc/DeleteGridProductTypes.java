@@ -42,6 +42,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productTypeGridsCRUD;
     private static final String Data_spinner_url = Config.productTypeImgUrlAddress;
     private static  int productId,productTypeId;
+    private static String recvdProName,recvdProType;
     URL gridProTypeSpinUrlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,8 @@ public class DeleteGridProductTypes extends AppCompatActivity {
         Intent in = getIntent();
         productId = in.getExtras().getInt("PRODUCTID_KEY");
         productTypeId = in.getExtras().getInt("PRODUCTTYPEID_KEY");
+        recvdProName = in.getExtras().getString("PRODUCTNAME_KEY");
+        recvdProType = in.getExtras().getString("PRODUCTTYPE_KEY");
         Uri builtUri = Uri.parse(Data_spinner_url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -133,6 +136,8 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                         AndroidNetworking.post(DATA_DELETE_URL)
                                 .addBodyParameter("action", "delete")
                                 .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .addBodyParameter("productname",recvdProName)
+                                .addBodyParameter("producttype",recvdProType)
                                 .setTag("TAG_ADD")
                                 .build()
                                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -147,10 +152,9 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                                                     Intent intent = new Intent(DeleteGridProductTypes.this, DeleteGridProductTypes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                     intent.putExtra("PRODUCTID_KEY", productId);
+                                                    intent.putExtra("PRODUCTNAME_KEY",recvdProName);
+                                                    intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
                                                     startActivity(intent);
-   /* adapter.notifyDataSetChanged();
-    BackTask bt = new BackTask();
-    bt.execute();*/
                                                 } else {
                                                     Toast.makeText(DeleteGridProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

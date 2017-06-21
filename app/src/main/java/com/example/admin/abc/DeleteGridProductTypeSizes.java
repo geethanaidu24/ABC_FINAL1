@@ -42,6 +42,8 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.producttypeSizesGridsCRUD;
     final static String DelProTypeSizeurl =Config.productTypeSizeImgUrlAddress;
+    private static int finalProLength,finalProWidth,finalProHeight;
+    private static String finalSelProtypeSize, recvdProName,recvdProtype;
     URL delGridProTypeSizeSpin = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,34 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
          recivedProductTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         recivedProductsizeID=intent.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+        recvdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        recvdProtype = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        finalProLength = intent.getExtras().getInt("LENGTH_KEY");
+        finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
+        finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
+        if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
+
+        }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight;
+
+        }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight !=0){
+            finalSelProtypeSize =  finalProLength + "X" + finalProHeight;
+
+        }else if(finalProLength !=0 && finalProWidth !=0 && finalProHeight ==0 ){
+            finalSelProtypeSize =  finalProLength + "X" + finalProHeight ;
+
+        }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight ==0 ){
+            finalSelProtypeSize = finalProWidth + "" ;
+
+        }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight ==0 ){
+            finalSelProtypeSize = finalProLength + "" ;
+
+        }else if(finalProLength ==0 && finalProWidth ==0 && finalProHeight !=0 ){
+            finalSelProtypeSize = finalProHeight + "" ;
+
+        }
+
         Uri builtUri = Uri.parse(DelProTypeSizeurl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -137,6 +167,9 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                         AndroidNetworking.post(DATA_DELETE_URL)
                                 .addBodyParameter("action", "delete")
                                 .addBodyParameter("productsizeimageid", String.valueOf(s.getProductSizeImageId()))
+                                .addBodyParameter("productname",recvdProName)
+                                .addBodyParameter("producttype",recvdProtype)
+                                .addBodyParameter("size",finalSelProtypeSize)
                                 .setTag("TAG_ADD")
                                 .build()
                                 .getAsJSONArray(new JSONArrayRequestListener() {
@@ -152,6 +185,11 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
                                                     intent.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
+                                                    intent.putExtra("PRODUCTNAME_KEY", recvdProName);
+                                                    intent.putExtra("PRODUCTTYPE_KEY", recvdProtype);
+                                                    intent.putExtra("WIDTH_KEY", finalProWidth);
+                                                    intent.putExtra("LENGTH_KEY", finalProLength);
+                                                    intent.putExtra("HEIGHT_KEY", finalProHeight);
                                                     startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();

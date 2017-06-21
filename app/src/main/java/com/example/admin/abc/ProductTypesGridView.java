@@ -153,7 +153,9 @@ int click=0;
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedProductId);
+                inn.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 startActivity(inn);
 
                 return true;

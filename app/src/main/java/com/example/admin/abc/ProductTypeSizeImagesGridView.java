@@ -175,8 +175,12 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 inn.putExtra("PRODUCTID_KEY", productId);
                 inn.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                 inn.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
+                inn.putExtra("PRODUCTNAME_KEY", productName);
+                inn.putExtra("PRODUCTTYPE_KEY", productType);
+                inn.putExtra("WIDTH_KEY", selWidth);
+                inn.putExtra("LENGTH_KEY", selLength);
+                inn.putExtra("HEIGHT_KEY", selHeight);
                 startActivity(inn);
-
                 return true;
             }
         } else if (id == R.id.logout) {

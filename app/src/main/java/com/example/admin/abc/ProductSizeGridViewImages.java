@@ -168,6 +168,10 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", productId);
                 inn.putExtra("PRODUCTSIZEID_KEY", productSizeId);
+                inn.putExtra("PRODUCTNAME_KEY", selProductName);
+                inn.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
+                inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
+                inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
                 startActivity(inn);
                 return true;
             }
