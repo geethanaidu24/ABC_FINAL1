@@ -178,7 +178,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                             try {
                                                 //SHOW RESPONSE FROM SERVER
                                                 String responseString = response.get(0).toString();
-                                                Toast.makeText(DeleteGridProductSizes.this, "PHP SERVER RESPONSE : " + responseString, Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(DeleteGridProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                     Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
                                                     intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
@@ -196,7 +196,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                 }
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
-                                                Toast.makeText(DeleteGridProductSizes.this, "GOOD RESPONSE BUT JAVA CAN'T PARSE JSON IT RECEIVED : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(DeleteGridProductSizes.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                     }
 
