@@ -58,13 +58,15 @@ public class DeleteProducts extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteProducts.this, Refresh.class);
-                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        finish();
-                       /* startActivity(in);
+                        Intent in = new Intent(DeleteProducts.this, Products.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                     //finish();
                 }
@@ -78,14 +80,16 @@ public class DeleteProducts extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProducts.this, Refresh.class);
+            Intent in = new Intent(DeleteProducts.this, Products.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            finish();
-            /*startActivity(in);
+            //finish();
+
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
-            //finish();
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(in);
+           finish();
+
         }
     }
     private void initializeViews()
@@ -142,9 +146,21 @@ public class DeleteProducts extends AppCompatActivity {
                                                     String responseString = response.get(0).toString();
                                                     Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                                     if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                        Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
-                                                        startActivity(intent);
 
+                                                        AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
+                                                        alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                                                        alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
+                                                        //alert.setMessage("Confirm Delete By Clicking on OK");
+                                                        alert.setIcon(R.drawable.reload);
+                                                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
+                                                                startActivity(intent);
+                                                                finish();
+                                                            }
+                                                        });
+                                                        alert.show();
 
 
                                               /*  new AlertDialog.Builder(DeleteProducts.this) .setTitle(Html.fromHtml("<font color='#ff0000'>Exit</font>"))

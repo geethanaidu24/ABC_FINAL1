@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -154,13 +156,30 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                    Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
+                                                  /*  Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
                                                     intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
-                                                    startActivity(intent);
+                                                    startActivity(intent);*/
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
+
+                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductSubTypes.this);
+                                                    alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                                                    alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
+                                                    //alert.setMessage("Confirm Delete By Clicking on OK");
+                                                    alert.setIcon(R.drawable.reload);
+                                                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
+                                                            intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
+                                                            intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    });
+                                                    alert.show();
                                                 } else {
                                                     Toast.makeText(DeleteProductSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

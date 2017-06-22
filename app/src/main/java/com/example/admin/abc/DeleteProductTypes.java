@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -81,15 +83,17 @@ public class DeleteProductTypes extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                        // Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
-                        Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                        Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.putExtra("PRODUCTID_KEY", recvdProId);
                         in.putExtra("PRODUCTNAME_KEY", recvdProName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
-                        startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                     //finish();
                 }
@@ -103,12 +107,14 @@ public class DeleteProductTypes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
+            Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
+
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
         //finish();
     }
@@ -162,10 +168,27 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductTypes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
+                                                /*Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
                                                 intent.putExtra("PRODUCTID_KEY",recvdProId);
                                                 intent.putExtra("PRODUCT_NAME",recvdProName);
-                                                startActivity(intent);
+                                                startActivity(intent);*/
+
+                                                AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypes.this);
+                                                alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                                                alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
+                                                //alert.setMessage("Confirm Delete By Clicking on OK");
+                                                alert.setIcon(R.drawable.reload);
+                                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
+                                                        intent.putExtra("PRODUCTID_KEY",recvdProId);
+                                                        intent.putExtra("PRODUCT_NAME",recvdProName);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                });
+                                                alert.show();
                                             }else {
                                                 Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
