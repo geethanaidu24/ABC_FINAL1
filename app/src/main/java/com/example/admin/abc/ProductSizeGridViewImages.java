@@ -51,7 +51,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
     private static String selProductName,selFinalProSize;
     private static int selProWidth,selProLength,selProHeight;
     int click=0;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     public void onCreate(Bundle savedInstanceState) {
        //  getSupportActionBar().hide();
@@ -69,6 +69,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         selProLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
         selProWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
         selProHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -96,10 +97,14 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
-                        finish();
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", productId);
+                        in.putExtra("PRODUCTNAME_KEY", selProductName);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -153,6 +158,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 in.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 in.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 in.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
+                in.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -167,11 +173,13 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", productId);
-                inn.putExtra("PRODUCTSIZEID_KEY", productSizeId);
                 inn.putExtra("PRODUCTNAME_KEY", selProductName);
+                inn.putExtra("PRODUCTSIZEID_KEY", productSizeId);
+                inn.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);
                 inn.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
+                inn.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(inn);
                 return true;
             }
@@ -188,10 +196,18 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
-            finish();
+            //finish();
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", productId);
+            in.putExtra("PRODUCTNAME_KEY", selProductName);
+            in.putExtra("ProductSizeList",mySQLDataBases);
+            startActivity(in);
+            finish();
 
         }
 

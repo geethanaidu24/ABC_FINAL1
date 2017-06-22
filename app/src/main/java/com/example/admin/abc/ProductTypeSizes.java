@@ -39,6 +39,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     private static int selectedProdutId, selectedProdutTypeId;
     private static String selectedProductName, selectedProductType;
     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         selectedProductType = intent.getExtras().getString("PRODUCTTYPE_KEY");
          mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
 
         final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, mySQLDataBases, selectedProdutId, selectedProdutTypeId);
         lv.setAdapter(adapter);
@@ -74,10 +76,16 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
-                        finish();
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", selectedProdutId);
+                        in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                       // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+                       // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -130,6 +138,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                 intent.putExtra("PRODUCTTYPE_KEY", selectedProductType);
                 intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                intent.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(intent);
                 return true;
             }
@@ -138,14 +147,18 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             if (click == 1) {
                 click = 0;
 
-                Intent inn = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
+                Intent in = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                inn.putExtra("PRODUCTID_KEY", selectedProdutId);
-                inn.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
-                startActivity(inn);
+                in.putExtra("PRODUCTID_KEY", selectedProdutId);
+                in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+                in.putExtra("ProductTypeSizeList",mySQLDataBases);
+                in.putExtra("ProductTypeList",mySQLDataBases1);
+                startActivity(in);
 
                 return true;
             }
@@ -166,10 +179,14 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", selectedProdutId);
+            in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+            // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
+            // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(in);
             finish();
         }
-
-
 
     }
 
@@ -269,6 +286,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 intent.putExtra("LENGTH_KEY", length);
                 intent.putExtra("HEIGHT_KEY", height);
                 intent.putExtra("FINALSIZE_KEY", finalSize);
+                intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                intent.putExtra("ProductTypeList",mySQLDataBases1);
                 c.startActivity(intent);
             }
         }

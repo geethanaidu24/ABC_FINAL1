@@ -56,6 +56,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
     private static int selectedProdutId1, selectedProdutTypeId1;
     private static String selectedProductName1, selectedProductType1;
     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,8 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             selectedProdutTypeId1 = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
             selectedProductType1 = intent.getExtras().getString("PRODUCTTYPE_KEY");
             mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+
+            mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             if (null != toolbar) {
@@ -91,6 +94,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                             intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
                             intent.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                             intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                            intent.putExtra("ProductTypeList",mySQLDataBases1);
                             startActivity(intent);
                          finish();
 
@@ -133,6 +137,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
             in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
             in.putExtra("ProductTypeSizeList",mySQLDataBases);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
             startActivity(in);
             finish();
         }

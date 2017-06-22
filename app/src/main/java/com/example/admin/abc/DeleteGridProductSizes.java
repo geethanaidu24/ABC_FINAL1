@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridProductSizes extends AppCompatActivity {
-    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+
     private Spinner sp;
     private Button btnAdd;
     int click=0;
@@ -47,6 +47,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productSizesGridsCRUD;
     private static final String Data_Spin = Config.productSizeImgUrlAddress;
     URL Data_Del_Spin = null;
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         recvdWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
         recvdHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
         recvdLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        finalSelProSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(recvdLength !=0 && recvdWidth !=0 && recvdHeight !=0){
             finalSelProSize =  recvdWidth + "X" + recvdHeight + "X" + recvdLength;
 
@@ -108,7 +111,14 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY",recvdProName );
+                        in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
+                        in.putExtra("FINALPROSELSIZE_KEY", finalSelProSize);
+                        in.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+                        in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+                        in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
                         finish();
                     }
@@ -129,7 +139,14 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-
+            in.putExtra("PRODUCTID_KEY", recivedProductId);
+            in.putExtra("PRODUCTNAME_KEY",recvdProName );
+            in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
+            in.putExtra("FINALPROSELSIZE_KEY", finalSelProSize);
+            in.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+            in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+            in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
+            in.putExtra("ProductSizeList",mySQLDataBases);
             startActivity(in);
             finish();
         }

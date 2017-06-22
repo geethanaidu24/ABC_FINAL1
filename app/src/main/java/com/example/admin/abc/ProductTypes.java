@@ -54,7 +54,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     final static String productTypesGridurl = Config.productTypeImgUrlAddress;
     private static int selectedPid;
     private static String selectedPname;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -67,12 +67,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
 
         typeNameTxt.setText(selectedPname);
-        Log.d("result response: ", "> " + mySQLDataBases);
+        Log.d("result response: ", "> " + mySQLDataBases1);
 
-        final ProductTypesListAdapter adapter = new ProductTypesListAdapter(this, mySQLDataBases, selectedPid, selectedPname);
+        final ProductTypesListAdapter adapter = new ProductTypesListAdapter(this, mySQLDataBases1, selectedPid, selectedPname);
         lv.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -88,6 +88,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypes.this, Products.class);
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -143,7 +144,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
-                in.putExtra("ProductTypeList", mySQLDataBases);
+                in.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -159,7 +160,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedPid);
                 inn.putExtra("PRODUCT_NAME",selectedPname);
-                inn.putExtra("ProductTypeList", mySQLDataBases);
+                inn.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(inn);
                 return true;
             }
@@ -328,7 +329,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         String jsonData;
         int finalProductId,finalProductTypeId;
         String finalProductType,finalProductName;
-        ArrayList<MySQLDataBase> mySQLSubTypes = new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
 
         private ProductSubTypesDataParser(Context c, String jsonData, int pid,String pname,int ptid, String ptname) {
             this.c = c;
@@ -369,8 +370,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
                     intent.putExtra("PRODUCTNAME_KEY", selectedPname);
-                    intent.putExtra("ProductSubTypeList", mySQLSubTypes);
-                    intent.putExtra("ProductTypeList",mySQLDataBases);
+                    intent.putExtra("ProductSubTypeList", mySQLDataBases);
+                    intent.putExtra("ProductTypeList",mySQLDataBases1);
                     c.startActivity(intent);
                 }
             }
@@ -396,8 +397,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             try {
                 JSONArray ja = new JSONArray(jsonData);
                 JSONObject jo = null;
-                mySQLSubTypes.clear();
-                MySQLDataBase mySQLSubType;
+                mySQLDataBases.clear();
+                MySQLDataBase mySQLDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
@@ -405,12 +406,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     String ProductSubTypeName = jo.getString("ProductSubTypeName");
                     String ImageUrl = jo.getString("ImageUrl");
                     int ProductTypeId = jo.getInt("ProductTypeId");
-                    mySQLSubType = new MySQLDataBase();
-                    mySQLSubType.setProductSubTypeId(ProductSubTypeId);
-                    mySQLSubType.setProductSubTypeName(ProductSubTypeName);
-                    mySQLSubType.setProductSubTypeImageUrl(ImageUrl);
-                    mySQLSubType.setProductTypeId(ProductTypeId);
-                    mySQLSubTypes.add(mySQLSubType);
+                    mySQLDataBase = new MySQLDataBase();
+                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
+                    mySQLDataBase.setProductSubTypeName(ProductSubTypeName);
+                    mySQLDataBase.setProductSubTypeImageUrl(ImageUrl);
+                    mySQLDataBase.setProductTypeId(ProductTypeId);
+                    mySQLDataBases.add(mySQLDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -523,6 +524,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProTypeId);
                     intent.putExtra("PRODUCTTYPE_KEY", finalProType);
                     intent.putExtra("ProductTypeSizeList", mySQLDataBases);
+                    intent.putExtra("ProductTypeList",mySQLDataBases1);
                     c.startActivity(intent);
                 }
             }
@@ -689,6 +691,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         in.putExtra("PRODUCTNAME_KEY", pname);
                         in.putExtra("PRODUCTTYPEID_KEY", ptid);
                         in.putExtra("PRODUCTTYPE_KEY", ptname);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
                         startActivity(in);
                     }
                 }else {
@@ -715,6 +718,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPEID_KEY", ptid);
                     intent.putExtra("PRODUCTTYPE_KEY", ptname);
                     intent.putExtra("ProductTypeGridList", mySQLDataBases);
+                    intent.putExtra("ProductTypeList",mySQLDataBases1);
                     c.startActivity(intent);
                 }
             }

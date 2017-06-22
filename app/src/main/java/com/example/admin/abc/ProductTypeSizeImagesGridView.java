@@ -51,6 +51,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
     final static String url =Config.productTypeSizeImgUrlAddress;
     private static int productId,producttypeSizeId,productTypeId,selLength,selWidth,selHeight;
     private static String productName,productType,selectedProductSize;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLDataBases2;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -70,6 +72,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         selLength = intent.getExtras().getInt("LENGTH_KEY");
         selWidth = intent.getExtras().getInt("WIDTH_KEY");
         selHeight = intent.getExtras().getInt("HEIGHT_KEY");
+        mySQLDataBases2 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Uri builtUri = Uri.parse(url)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -97,11 +101,23 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
-                        finish();
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypeSizes.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("PRODUCTID_KEY", productId);
+                        intent.putExtra("PRODUCTNAME_KEY", productName);
+                        intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                        intent.putExtra("PRODUCTTYPE_KEY", productType);
+                        intent.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
+                        intent.putExtra("WIDTH_KEY", selWidth);
+                        intent.putExtra("LENGTH_KEY", selLength);
+                        intent.putExtra("HEIGHT_KEY", selHeight);
+                        intent.putExtra("FINALSIZE_KEY", selectedProductSize);
+                        intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                        intent.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             });
@@ -196,10 +212,22 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("PRODUCTID_KEY", productId);
+            intent.putExtra("PRODUCTNAME_KEY", productName);
+            intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+            intent.putExtra("PRODUCTTYPE_KEY", productType);
+            intent.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
+            intent.putExtra("WIDTH_KEY", selWidth);
+            intent.putExtra("LENGTH_KEY", selLength);
+            intent.putExtra("HEIGHT_KEY", selHeight);
+            intent.putExtra("FINALSIZE_KEY", selectedProductSize);
+            intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
+            intent.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(intent);
             finish();
         }
 

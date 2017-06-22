@@ -69,7 +69,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     int click=0;
     private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
     private static String finalProName,finalSelProductSize,finalSelProSize;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +82,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         finalLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
         finalWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
         finalHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(finalLength !=0 && finalWidth !=0 && finalHeight !=0){
             finalSelProSize =  finalWidth + "X" + finalHeight + "X" + finalLength;
 
@@ -128,7 +129,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTSIZEWIDTH_KEY", finalWidth);
                         in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
-
+                        in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
                         finish();
                       /*  startActivity(in);
@@ -177,6 +178,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTSIZEWIDTH_KEY", finalWidth);
             in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
+            in.putExtra("ProductSizeList",mySQLDataBases);
             startActivity(in);
             finish();
 

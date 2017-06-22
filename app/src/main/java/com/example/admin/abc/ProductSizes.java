@@ -277,6 +277,7 @@ public class ProductSizes extends AppCompatActivity {
                 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.putExtra("PRODUCTID_KEY", selectdProductId);
                 intent.putExtra("PRODUCTNAME_KEY", selectdProductName);
+                intent.putExtra("ProductSizeList",mySQLDataBases);
                 intent.putExtra("PRODUCTSIZEID_KEY", sizeid);
                 intent.putExtra("PRODUCTSIZEWIDTH_KEY", width);
                 intent.putExtra("PRODUCTSIZELENGTH_KEY", length);
