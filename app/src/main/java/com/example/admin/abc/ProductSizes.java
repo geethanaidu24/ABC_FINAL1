@@ -52,7 +52,7 @@ public class ProductSizes extends AppCompatActivity {
     private boolean loggedIn = false;
     private static int selectdProductId;
     private static String selectdProductName, finalProductSelctedSize;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -69,7 +69,7 @@ public class ProductSizes extends AppCompatActivity {
         selectdProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectdProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Log.d("result PID: ", "> " + selectdProductId);
-        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
 
         final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases, selectdProductId);
         lv.setAdapter(adapter);
@@ -87,10 +87,12 @@ public class ProductSizes extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductSizes.this, Products.class);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -142,6 +144,7 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
+                in.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -156,8 +159,9 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
+                inn.putExtra("PRODUCTNAME_KEY", selectdProductName);
+                inn.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(inn);
-
                 return true;
             }
         } else if (id == R.id.logout) {
@@ -178,10 +182,9 @@ public class ProductSizes extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
 
+            startActivity(in);
             finish();
         }
-
-
 
     }
 
