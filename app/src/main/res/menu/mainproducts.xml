@@ -11,14 +11,19 @@
         app:showAsAction="always">
         </item>
 -->
-    <group android:id="@+id/overFlowItemsToHide">
+
     <item android:id="@+id/algo"
-    android:icon="@mipmap/dots"
+    android:icon="@mipmap/ho"
 
     android:title="nose"
 
     All4One:showAsAction="always">
     <menu>
+        <item android:id="@+id/h1"
+            android:icon="@mipmap/homee"
+
+            android:title="HOME"/>
+
         <item android:id="@+id/productsadd"
 
         android:icon="@mipmap/add"
@@ -38,5 +43,5 @@
 
     </menu>
 </item>
-    </group>
+
     </menu>

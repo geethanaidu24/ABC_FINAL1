@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -95,8 +96,8 @@ public class Products extends AppCompatActivity implements Serializable {
                 }
             });
 
-              /*  Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-                toolbar.setOverflowIcon(drawable);*/
+         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
+                toolbar.setOverflowIcon(drawable);
 
         }
     }
@@ -104,14 +105,13 @@ public class Products extends AppCompatActivity implements Serializable {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.home_menu, menu);
+
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        getMenuInflater().inflate(R.menu.mainproducts, menu);
+    getMenuInflater().inflate(R.menu.mainproducts, menu);
 
         if (loggedIn == true) {
 
@@ -120,17 +120,29 @@ public class Products extends AppCompatActivity implements Serializable {
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
-            items.setVisible(true);
+            itemss.setVisible(true);
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
+
 
         } else if (loggedIn == false) {
+            MenuItem item1 = menu.findItem(productsadd);
+            item1.setVisible(false);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(false);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            itemss.setVisible(false);
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
 
-            return false;
         }
 
         return true;
 
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -169,6 +181,16 @@ public class Products extends AppCompatActivity implements Serializable {
             }
         } else if (id == R.id.logout) {
             logout();
+            return true;
+        }else if(id==R.id.h1)
+        {
+            Intent inn = new Intent(Products.this, Main2Activity.class);
+            //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            startActivity(inn);
+
             return true;
         }
 
