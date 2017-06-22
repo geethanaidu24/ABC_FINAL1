@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.IntentCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,6 +59,8 @@ public class Products extends AppCompatActivity implements Serializable {
     final static String productTypeUrlAddress = Config.productTypesUrlAddress;
     final static String productSizeUrl = Config.productSizesUrlAddress;
     private boolean loggedIn = false;
+    private boolean checkNetworkConnection;
+
     int click = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +87,9 @@ public class Products extends AppCompatActivity implements Serializable {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
                         finish();
+
                     }
 
                 }
@@ -92,6 +100,10 @@ public class Products extends AppCompatActivity implements Serializable {
 
         }
     }
+
+
+
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
@@ -172,7 +184,9 @@ public class Products extends AppCompatActivity implements Serializable {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
             finish();
+
         }
 
     }

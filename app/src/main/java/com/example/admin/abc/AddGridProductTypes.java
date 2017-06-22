@@ -94,11 +94,12 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         click = 0;
                         Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                       finish();
-                      /*  startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -131,11 +132,13 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             click = 0;
             Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-     finish();
-           /* startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+
+         startActivity(in);
+            finish();
+
         }
     }
 

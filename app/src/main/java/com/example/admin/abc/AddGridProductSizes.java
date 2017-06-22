@@ -117,7 +117,12 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(in);
                         finish();
                       /*  startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -155,11 +160,13 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             click = 0;
             Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            finish();
-           /* startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(in);
+            finish();
+
         }
     }
 
