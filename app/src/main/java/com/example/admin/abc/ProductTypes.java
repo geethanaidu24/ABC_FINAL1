@@ -88,11 +88,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypes.this, Products.class);
-                        //startActivity(in);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
