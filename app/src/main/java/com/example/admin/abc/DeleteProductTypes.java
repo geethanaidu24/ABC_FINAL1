@@ -37,7 +37,7 @@ import java.util.ArrayList;
 
 public class DeleteProductTypes extends AppCompatActivity {
 
-    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+    //final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     int click=0;
     private Button btnAdd;
@@ -47,7 +47,7 @@ public class DeleteProductTypes extends AppCompatActivity {
     private static int recvdProId;
     private static String recvdProName;
     URL ProTypeSpinurlAddress = null;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
@@ -57,6 +57,7 @@ public class DeleteProductTypes extends AppCompatActivity {
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
        recvdProName = intent.getExtras().getString("PRODUCT_NAME");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Uri builtUri = Uri.parse(productTypeUrlAddressDel)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recvdProId))
@@ -79,8 +80,12 @@ public class DeleteProductTypes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
+                       // Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
                         Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", recvdProId);
+                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                        in.putExtra("ProductTypeList", mySQLDataBases);
                         startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
