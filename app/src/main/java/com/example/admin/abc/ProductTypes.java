@@ -67,7 +67,6 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
-
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
 
         typeNameTxt.setText(selectedPname);
@@ -142,13 +141,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                //in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-               // in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("ProductTypeList", mySQLDataBases);
-               // in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-               // in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 startActivity(in);
                 return true;
             }
@@ -374,7 +369,6 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
                     intent.putExtra("PRODUCTNAME_KEY", selectedPname);
-
                     intent.putExtra("ProductSubTypeList", mySQLDataBases);
                     c.startActivity(intent);
                 }

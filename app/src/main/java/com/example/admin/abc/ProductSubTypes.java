@@ -36,13 +36,13 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     Context c;
     int click=0;
     private boolean loggedIn = false;
-    private int productSubTypeId;
-    private String productSubTypeName;
+   // private int productSubTypeId;
+   // private String productSubTypeName;
     private int selectedProducttypeid;
     private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -54,13 +54,13 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
         // Get intent data
         Intent intent = getIntent();
-        productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
-        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+      /*  productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");*/
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
 
         typeNameTxt.setText(selectedProducttype);
         Log.d("result response: ", "> " + mySQLDataBases);
@@ -82,10 +82,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
+
                     }
                 }
             });
@@ -132,12 +134,11 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductSubTypeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }

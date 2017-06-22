@@ -100,11 +100,18 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         click = 0;
                         Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                     /*   startActivity(in);
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
-                    finish();
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -137,9 +144,19 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         if (click == 1) {
             click = 0;
             Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
-            //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-        finish();
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+            in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+            in.putExtra("PRODUCTID_KEY", selectedPid);
+            in.putExtra("PRODUCTNAME_KEY", selectedPname);
+            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+            startActivity(in);
+            finish();
         }
     }
 

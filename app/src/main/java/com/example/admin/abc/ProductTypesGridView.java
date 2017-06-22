@@ -52,6 +52,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private String selectedProducttype;
     private static int selectedProductId;
     private static String selectedProductName;
+    ArrayList<MySQLDataBase> mySQLDataBases;
 int click=0;
 
 
@@ -69,7 +70,7 @@ int click=0;
         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+      mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
         final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases, selectedProductId, selectedProducttypeid);
         gv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -139,6 +140,7 @@ int click=0;
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductTypeGridList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
