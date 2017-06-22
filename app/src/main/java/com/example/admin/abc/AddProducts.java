@@ -2,6 +2,7 @@ package com.example.admin.abc;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -35,6 +36,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
 
+import static com.example.admin.abc.R.id.view;
+
 public class AddProducts extends AppCompatActivity implements View.OnClickListener {
     private static final String UPLOAD_URL = Config.productsCRUD;
     private static final int IMAGE_REQUEST_CODE = 3;
@@ -46,6 +49,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     private Bitmap bitmap;
     private Uri filePath;
     int click=0;
+    boolean c=false;
     ProgressDialog dialog = null;
 
     @Override
@@ -94,10 +98,11 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
     }
     public void onBackPressed() {
         //finishAffinity();
-        click = click + 1;
-        if (click == 1) {
-            click = 0;
-            Intent in = new Intent(AddProducts.this, Products.class);
+
+            click = click + 1;
+            if (click == 1) {
+                click = 0;
+                Intent in = new Intent(AddProducts.this, Products.class);
 //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
        /*  in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -106,13 +111,15 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
 
            startActivity(in);
 */
-            finish();
+                finish();
 
-        }
+            }
 
     }
     @Override
     public void onClick(View view) {
+
+
         click = click + 1;
         if (click == 1) {
             click = 0;
@@ -126,6 +133,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                 // Start the Intent
                 startActivityForResult(galleryIntent, IMAGE_REQUEST_CODE);
             } else if (view == btnUpload) {
+                c=true;
                 if ((etCaption.length() < 1 || tvPath.length() < 1 || bitmap == null)) {
                     Toast toast = Toast.makeText(this, "Please Complete it", Toast.LENGTH_SHORT);
 
@@ -161,7 +169,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                /* new AlertDialog.Builder(this).setView
                         (R.layout.activity_sorry).show();*/
 
-AlertDialog.Builder builder = new AlertDialog.Builder(this);
+/*AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle(Html.fromHtml("<font color='#ff0000'>Server Will Take Time Refresh</font>"));
                 builder.setMessage("");
                 builder.setCancelable(true);
@@ -171,7 +179,22 @@ builder.setPositiveButton("OK",null);
                 final AlertDialog dlg = builder.create();
 
                 dlg.show();
-                dlg.getWindow().setLayout(600, 300);
+                dlg.getWindow().setLayout(600, 300)*/;
+
+
+                    AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
+                    alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                    alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
+                    alert.setIcon(R.drawable.reload);
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent in=new Intent(AddProducts.this,AddProducts.class);
+                            startActivity(in);
+                            finish();
+                        }
+                    });
+                    alert.show();
                 /*final Timer t = new Timer();
                 t.schedule(new TimerTask() {
                     public void run() {

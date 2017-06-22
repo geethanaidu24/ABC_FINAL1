@@ -14,8 +14,10 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -96,13 +98,13 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+                        Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivity(in);
+                     /*   startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //finish();
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    finish();
                     }
                 }
             });
@@ -134,13 +136,10 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+            Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
             //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            //finish();
+
+        finish();
         }
     }
 
@@ -189,6 +188,19 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
+            AlertDialog.Builder alert = new AlertDialog.Builder(AddGridSubTypes.this);
+            alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+            alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
+            alert.setIcon(R.drawable.reload);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent in=new Intent(AddGridSubTypes.this,AddGridSubTypes.class);
+                    startActivity(in);
+                    finish();
+                }
+            });
+            alert.show();
         }
 
     }

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
@@ -72,14 +74,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProductSizes.this, Refresh.class);
+                        Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         // in.putExtra("PRODUCTID_KEY", pid);
-                        startActivity(in);
+                       /* startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        // finish();
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                   finish();
                     }
                 }
             });
@@ -106,13 +108,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddProductSizes.this, Refresh.class);
+            Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // in.putExtra("PRODUCTID_KEY", pid);
-            startActivity(in);
+            finish();
+            /*startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
         }
         // finish();
     }
@@ -153,6 +156,19 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
             BackTask bt = new BackTask();
             bt.execute();*/
+            AlertDialog.Builder alert = new AlertDialog.Builder(AddProductSizes.this);
+            alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+            alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
+            alert.setIcon(R.drawable.reload);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent in=new Intent(AddProductSizes.this,AddProductSizes.class);
+                    startActivity(in);
+                    finish();
+                }
+            });
+            alert.show();
 
         }
 

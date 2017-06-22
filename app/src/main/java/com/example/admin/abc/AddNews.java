@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,9 +11,11 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
@@ -55,13 +58,13 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddNews.this, Refresh.class);
+                        Intent in = new Intent(AddNews.this, News.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        //finish();
-                        startActivity(in);
+                        finish();
+                       /* startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
                     }
                 }
             });
@@ -86,14 +89,14 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddNews.this, Refresh.class);
+            Intent in = new Intent(AddNews.this, News.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //finish();
-            startActivity(in);
+           /* startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            //finish();
+                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            finish();
         }
     }
 
@@ -135,6 +138,19 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                         tvPath.setText("");
                         etDescription.setText("");
                         imageView.setImageResource(R.mipmap.browseimage);
+                        AlertDialog.Builder alert = new AlertDialog.Builder(AddNews.this);
+                        alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                        alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
+                        alert.setIcon(R.drawable.reload);
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent in=new Intent(AddNews.this,AddNews.class);
+                                startActivity(in);
+                                finish();
+                            }
+                        });
+                        alert.show();
 
                     }
                 }
