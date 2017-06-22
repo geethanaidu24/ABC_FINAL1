@@ -164,6 +164,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedPid);
                 inn.putExtra("PRODUCT_NAME",selectedPname);
+                inn.putExtra("ProductTypeList", mySQLDataBases);
                 startActivity(inn);
 
                 return true;
