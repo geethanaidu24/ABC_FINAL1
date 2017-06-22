@@ -93,7 +93,6 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
-
                     }
                 }
             });
@@ -162,7 +161,6 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 inn.putExtra("PRODUCT_NAME",selectedPname);
                 inn.putExtra("ProductTypeList", mySQLDataBases);
                 startActivity(inn);
-
                 return true;
             }
         } else if (id == R.id.logout) {
@@ -330,7 +328,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         String jsonData;
         int finalProductId,finalProductTypeId;
         String finalProductType,finalProductName;
-        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+        ArrayList<MySQLDataBase> mySQLSubTypes = new ArrayList<>();
 
         private ProductSubTypesDataParser(Context c, String jsonData, int pid,String pname,int ptid, String ptname) {
             this.c = c;
@@ -371,7 +369,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
                     intent.putExtra("PRODUCTNAME_KEY", selectedPname);
-                    intent.putExtra("ProductSubTypeList", mySQLDataBases);
+                    intent.putExtra("ProductSubTypeList", mySQLSubTypes);
+                    intent.putExtra("ProductTypeList",mySQLDataBases);
                     c.startActivity(intent);
                 }
             }
@@ -397,8 +396,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             try {
                 JSONArray ja = new JSONArray(jsonData);
                 JSONObject jo = null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
+                mySQLSubTypes.clear();
+                MySQLDataBase mySQLSubType;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
@@ -406,12 +405,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     String ProductSubTypeName = jo.getString("ProductSubTypeName");
                     String ImageUrl = jo.getString("ImageUrl");
                     int ProductTypeId = jo.getInt("ProductTypeId");
-                    mySQLDataBase = new MySQLDataBase();
-                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
-                    mySQLDataBase.setProductSubTypeName(ProductSubTypeName);
-                    mySQLDataBase.setProductSubTypeImageUrl(ImageUrl);
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBases.add(mySQLDataBase);
+                    mySQLSubType = new MySQLDataBase();
+                    mySQLSubType.setProductSubTypeId(ProductSubTypeId);
+                    mySQLSubType.setProductSubTypeName(ProductSubTypeName);
+                    mySQLSubType.setProductSubTypeImageUrl(ImageUrl);
+                    mySQLSubType.setProductTypeId(ProductTypeId);
+                    mySQLSubTypes.add(mySQLSubType);
                 }
                 return 1;
             } catch (JSONException e) {

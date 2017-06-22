@@ -43,6 +43,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     private static int selectedPid;
     private static String selectedPname;
     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -61,6 +62,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+
+        mySQLProTypes = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList") ;
 
         typeNameTxt.setText(selectedProducttype);
         Log.d("result response: ", "> " + mySQLDataBases);
@@ -82,12 +85,14 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("ProductTypeList", mySQLProTypes);
+                        startActivity(in);
                         finish();
-
                     }
                 }
             });
@@ -253,10 +258,12 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTNAME_KEY", selectedPname);
+            in.putExtra("PRODUCTID_KEY", selectedPid);
+            in.putExtra("ProductTypeList", mySQLProTypes);
+            startActivity(in);
             finish();
         }
-
-
 
     }
     private void logout(){

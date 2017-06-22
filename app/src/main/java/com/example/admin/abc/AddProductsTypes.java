@@ -142,9 +142,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         if (click == 1) {
             click = 0;
             Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-            //     in.putExtra("PRODUCTID_KEY", selectedProductId);
-           /* in.putExtra("PRODUCTNAME_KEY", selectedProductName);
-            in.putExtra("ProductTypeList", mySQLDataBases);*/
+                 in.putExtra("PRODUCTID_KEY", selectedProductId);
+            in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+            in.putExtra("ProductTypeList", mySQLDataBases);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);

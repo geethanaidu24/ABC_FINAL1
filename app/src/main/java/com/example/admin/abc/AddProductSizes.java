@@ -53,7 +53,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
    /* private ArrayAdapter<SizesDB> adapter;*/
 
    // public int ipid=0;
-
+   ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -62,6 +62,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        selectdPId= intent.getExtras().getInt("PRODUCTID_KEY");
        selectdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -81,6 +82,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                          in.putExtra("PRODUCTID_KEY", selectdPId);
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
                         finish();
                     }
@@ -113,6 +115,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.putExtra("PRODUCTID_KEY", selectdPId);
             in.putExtra("PRODUCTNAME_KEY",selectdProName);
+            in.putExtra("ProductSizeList",mySQLDataBases);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);

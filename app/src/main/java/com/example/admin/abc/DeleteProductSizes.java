@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteProductSizes extends AppCompatActivity {
-    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+   // final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     int recivedProductId;
@@ -46,14 +46,17 @@ public class DeleteProductSizes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productSizesCRUD;
     private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
     URL DATA_Spinner = null;
-    String finalSize;
-
+    String finalSize,selectdProName;
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_sizes);
         Intent intent = getIntent();
      recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+        selectdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
@@ -80,6 +83,9 @@ public class DeleteProductSizes extends AppCompatActivity {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
                         finish();
                     }
@@ -99,6 +105,9 @@ public class DeleteProductSizes extends AppCompatActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", recivedProductId);
+            in.putExtra("PRODUCTNAME_KEY",selectdProName);
+            in.putExtra("ProductSizeList",mySQLDataBases);
             startActivity(in);
             finish();
         }

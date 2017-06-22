@@ -68,7 +68,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
     Context context;
 
 
@@ -81,6 +81,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -97,7 +98,11 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        in.putExtra("ProductTypeGridList",mySQLDataBases);
                         startActivity(in);
                         finish();
                     }
@@ -135,7 +140,11 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-
+            in.putExtra("PRODUCTID_KEY", selectedPid);
+            in.putExtra("PRODUCTNAME_KEY", selectedPname);
+            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+            in.putExtra("ProductTypeGridList",mySQLDataBases);
          startActivity(in);
             finish();
 
