@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -95,8 +96,8 @@ public class Products extends AppCompatActivity implements Serializable {
                 }
             });
 
-              /*  Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-                toolbar.setOverflowIcon(drawable);*/
+         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+                toolbar.setOverflowIcon(drawable);
 
         }
     }
@@ -104,11 +105,10 @@ public class Products extends AppCompatActivity implements Serializable {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        super.onCreateOptionsMenu(menu);
-        getMenuInflater().inflate(R.menu.home_menu, menu);
+
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
@@ -120,17 +120,22 @@ public class Products extends AppCompatActivity implements Serializable {
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
-            items.setVisible(true);
+            itemss.setVisible(true);
+
+
 
         } else if (loggedIn == false) {
 
             return false;
+
         }
 
         return true;
 
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

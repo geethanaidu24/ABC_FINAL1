@@ -11,7 +11,7 @@
         app:showAsAction="always">
         </item>
 -->
-    <group android:id="@+id/overFlowItemsToHide">
+
     <item android:id="@+id/algo"
     android:icon="@mipmap/dots"
 
@@ -36,7 +36,8 @@
             android:title="LOGOUT"/>
 
 
+
     </menu>
 </item>
-    </group>
+
     </menu>
