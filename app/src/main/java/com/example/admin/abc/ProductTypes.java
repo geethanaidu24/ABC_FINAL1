@@ -52,12 +52,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     final static String productSubTypeCheckUrl = Config.productSubTypesUrlAddress;
     final static String productSizeCheckUrl = Config.productTypeSizesUrlAddress;
     final static String productTypesGridurl = Config.productTypeImgUrlAddress;
-    private int productSubTypeId;
-    private String productSubTypeName;
-    private int selectedProducttypeid;
-    private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     public void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
@@ -67,14 +64,11 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
         Intent intent = getIntent();
-        productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
-        productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
-        selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
-        selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
 
-        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
 
         typeNameTxt.setText(selectedPname);
         Log.d("result response: ", "> " + mySQLDataBases);
@@ -148,12 +142,13 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                //in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+               // in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
-                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductTypeList", mySQLDataBases);
+               // in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+               // in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 startActivity(in);
                 return true;
             }

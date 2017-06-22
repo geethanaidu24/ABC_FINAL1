@@ -66,6 +66,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
     private String selectedProductName;
     Context context;
     private String Select;
+    ArrayList<MySQLDataBase> mySQLDataBases;
     /*final ArrayList<MySQLDataBase> mySQLDataBases =new ArrayList<>();
     private Spinner sp;
     private ArrayAdapter<String> adapter ;
@@ -78,6 +79,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
          selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
          selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -90,14 +92,19 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProductsTypes.this, Refresh.class);
+                        /*Intent in = new Intent(AddProductsTypes.this, Refresh.class);*/
+                        Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", selectedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                        in.putExtra("ProductTypeList", mySQLDataBases);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
                         startActivity(in);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
                     }
                     //finish();
 
