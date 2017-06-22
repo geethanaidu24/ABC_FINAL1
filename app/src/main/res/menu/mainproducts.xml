@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:All4One="http://schemas.android.com/apk/res-auto">
+    xmlns:All4One="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools">
+
+    <!--<item android:id="@+id/home"
+        android:visible="true"
+        android:title="Home"
+        android:icon="@drawable/location"
+        app:showAsAction="always">
+        </item>
+-->
+    <group android:id="@+id/overFlowItemsToHide">
     <item android:id="@+id/algo"
     android:icon="@mipmap/dots"
 
@@ -28,4 +38,5 @@
 
     </menu>
 </item>
+    </group>
     </menu>

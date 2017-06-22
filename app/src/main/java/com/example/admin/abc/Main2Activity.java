@@ -25,8 +25,13 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -72,6 +77,11 @@ int click=0;
   //  private int currentPage = -1;
     Timer timer;
 
+    //private ViewFlipper simpleViewFlipper;
+    //int[] images = {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};     // array of images
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,9 +93,30 @@ int click=0;
             finish();
             return;
         }
+// get The references of ViewFlipper
+     /*   simpleViewFlipper = (ViewFlipper) findViewById(R.id.simpleViewFlipper1); // get the reference of ViewFlipper
+
+        // loop for creating ImageView's
+        for (int i = 0; i < images.length; i++) {
+            // create the object of ImageView
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(images[i]); // set image in ImageView
+            simpleViewFlipper.addView(imageView); // add the created ImageView in ViewFlipper
+        }
+        // Declare in and out animations and load them using AnimationUtils class
+        Animation in = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
+        Animation out = AnimationUtils.loadAnimation(this, android.R.anim.slide_out_right);
+        // set the animation type's to ViewFlipper
+        simpleViewFlipper.setInAnimation(in);
+        simpleViewFlipper.setOutAnimation(out);
+        // set interval time for flipping between views
+        simpleViewFlipper.setFlipInterval(3000);
+        // set auto start for flipping between views
+        simpleViewFlipper.setAutoStart(true);*/
 
        Button b1, b2, b3, b4;
-        init();
+     init();
+
 
         // ViewPager viewPager;
         // int images[] = { R.mipmap.backfinalfour, R.mipmap.backfinaltwo,R.mipmap.backfinalthree,R.mipmap.backfinalfive,R.mipmap.backfinalsix,R.mipmap.backfour};
@@ -235,8 +266,7 @@ int click=0;
 
 
     }*/
-
-    private void init() {
+ private void init() {
 
 
         for(int i=0;i<IMAGES.length;i++)
@@ -246,7 +276,7 @@ int click=0;
 
 
         mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this,ImagesArray));
-
+     mPager.setOffscreenPageLimit(IMAGES.length-1);
 
         CirclePageIndicator indicator = (CirclePageIndicator)
                 findViewById(R.id.indicator1);
@@ -280,7 +310,9 @@ int click=0;
                 handler.post(Update);
             }
         }, 5000, 6000);
-/*Timer swipeTimer = new Timer();
+
+/*
+Timer swipeTimer = new Timer();
         swipeTimer.schedule(new TimerTask() {
 
             @Override
@@ -295,7 +327,8 @@ int click=0;
                     }
                 });
             }
-        }, 9000, 9000);*/
+        }, 9000, 9000)
+*/
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

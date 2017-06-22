@@ -60,10 +60,11 @@ public class DeleteProducts extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(DeleteProducts.this, Refresh.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivity(in);
+                        finish();
+                       /* startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
                     }
                     //finish();
                 }
@@ -79,10 +80,11 @@ public class DeleteProducts extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(DeleteProducts.this, Refresh.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
+            finish();
+            /*startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
             //finish();
         }
     }

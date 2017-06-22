@@ -30,7 +30,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true" />
+                android:rotationY="180"
+
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" />
 
             <com.viewpagerindicator.CirclePageIndicator
                 android:id="@+id/indicator1"

@@ -46,6 +46,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import static com.example.admin.abc.R.id.home;
 import static com.example.admin.abc.R.id.productsadd;
 
 public class Products extends AppCompatActivity implements Serializable {
@@ -86,29 +87,37 @@ public class Products extends AppCompatActivity implements Serializable {
                 }
             });
 
-                Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
-                toolbar.setOverflowIcon(drawable);
+              /*  Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+                toolbar.setOverflowIcon(drawable);*/
 
         }
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.home_menu, menu);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         getMenuInflater().inflate(R.menu.mainproducts, menu);
+
         if (loggedIn == true) {
-            MenuItem item = menu.findItem(productsadd);
-            item.setVisible(true);
+
+            MenuItem item1 = menu.findItem(productsadd);
+            item1.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
             items.setVisible(true);
 
         } else if (loggedIn == false) {
+
             return false;
         }
 
         return true;
+
+
     }
 
     @Override
@@ -125,10 +134,9 @@ public class Products extends AppCompatActivity implements Serializable {
                 click = 0;
 
                 Intent in = new Intent(Products.this, AddProducts.class);
-             //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                 in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+
                 startActivity(in);
 
                 return true;
@@ -140,9 +148,9 @@ public class Products extends AppCompatActivity implements Serializable {
 
                 Intent inn = new Intent(Products.this, DeleteProducts.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
                 startActivity(inn);
 
                 return true;
@@ -151,6 +159,7 @@ public class Products extends AppCompatActivity implements Serializable {
             logout();
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

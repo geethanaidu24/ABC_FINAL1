@@ -35,10 +35,10 @@ public class Refresh extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Refresh.this, MainActivity.class);
+    Intent in = new Intent(Refresh.this, MainActivity.class);
                 startActivity(in);
                 finish();
-                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
             }

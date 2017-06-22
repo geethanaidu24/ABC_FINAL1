@@ -4,4 +4,5 @@
     <item name="indicator1" type="id" />
     <item name="menuLogout" type="id"/>
     <item name="mainproducts" type="id"/>
+    <item name="simpleViewFlipper1" type="id" />
 </resources>
