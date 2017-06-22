@@ -55,13 +55,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
     int click=0;
     private static int selectedProdutId1, selectedProdutTypeId1;
     private static String selectedProductName1, selectedProductType1;
-   /* final ArrayList<SizesDB> sizesDBs = new ArrayList<>();
-    private Spinner sp1, sp2;
-    private Button btnAdd;
-    private ArrayAdapter<SizesDB> adapter;
-    private ArrayAdapter<SizesDB> adapter1;
-    public int ipid=0;
-    public int iptid=0;*/
+    ArrayList<MySQLDataBase> mySQLDataBases;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +67,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             selectedProductName1 = intent.getExtras().getString("PRODUCTNAME_KEY");
             selectedProdutTypeId1 = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
             selectedProductType1 = intent.getExtras().getString("PRODUCTTYPE_KEY");
+            mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             if (null != toolbar) {
@@ -85,13 +80,20 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                         click = click + 1;
                         if (click == 1) {
                             click = 0;
-                            Intent in = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
+                            Intent intent = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
+
                             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                         finish();
-                            /*startActivity(in);
-                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("PRODUCTID_KEY", selectedProdutId1);
+                            intent.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+                            intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
+                            intent.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+                            intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                            startActivity(intent);
+                         finish();
+
                         }
                     }
                 });
@@ -123,11 +125,16 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             click = 0;
             Intent in = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-  finish();
-            /*startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", selectedProdutId1);
+            in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+            in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
+            in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+            in.putExtra("ProductTypeSizeList",mySQLDataBases);
+            startActivity(in);
+            finish();
         }
     }
     @Override

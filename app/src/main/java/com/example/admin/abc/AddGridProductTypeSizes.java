@@ -128,10 +128,19 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         click = 0;
                         Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                       /* startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", recivedProductName);
+                        in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
+                        in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                        in.putExtra("PRODUCTTYPE_KEY", recivedProducttype);
+                        in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+                        in.putExtra("WIDTH_KEY", finalProWidth);
+                        in.putExtra("LENGTH_KEY", finalProLength);
+                        in.putExtra("HEIGHT_KEY", finalProHeight);
+                        startActivity(in);
                         finish();
                     }
                 }
@@ -162,11 +171,20 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         //finishAffinity();
         Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        finish();
-        /*startActivity(in);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                Intent.FLAG_ACTIVITY_NEW_TASK);
+        in.putExtra("PRODUCTID_KEY", recivedProductId);
+        in.putExtra("PRODUCTNAME_KEY", recivedProductName);
+        in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
+        in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+        in.putExtra("PRODUCTTYPE_KEY", recivedProducttype);
+        in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+        in.putExtra("WIDTH_KEY", finalProWidth);
+        in.putExtra("LENGTH_KEY", finalProLength);
+        in.putExtra("HEIGHT_KEY", finalProHeight);
+        startActivity(in);
+        finish();
     }
 
 

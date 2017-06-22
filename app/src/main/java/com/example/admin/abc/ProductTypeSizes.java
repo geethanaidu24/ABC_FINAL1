@@ -38,6 +38,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
     private boolean loggedIn = false;
     private static int selectedProdutId, selectedProdutTypeId;
     private static String selectedProductName, selectedProductType;
+    ArrayList<MySQLDataBase> mySQLDataBases;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,7 +57,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedProdutTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         selectedProductType = intent.getExtras().getString("PRODUCTTYPE_KEY");
-        ArrayList<MySQLDataBase> mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
 
         final ProductTypeSizesListAdapter adapter = new ProductTypeSizesListAdapter(this, mySQLDataBases, selectedProdutId, selectedProdutTypeId);
         lv.setAdapter(adapter);
@@ -128,6 +129,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                 intent.putExtra("PRODUCTTYPE_KEY", selectedProductType);
+                intent.putExtra("ProductTypeSizeList",mySQLDataBases);
                 startActivity(intent);
                 return true;
             }
@@ -142,7 +144,6 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 inn.putExtra("PRODUCTID_KEY", selectedProdutId);
-
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                 startActivity(inn);
 

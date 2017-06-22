@@ -76,12 +76,13 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                         click = 0;
                         Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        // in.putExtra("PRODUCTID_KEY", pid);
-                       /* startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
-                   finish();
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                         in.putExtra("PRODUCTID_KEY", selectdPId);
+                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -110,12 +111,13 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
             click = 0;
             Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            // in.putExtra("PRODUCTID_KEY", pid);
-            finish();
-            /*startActivity(in);
+            in.putExtra("PRODUCTID_KEY", selectdPId);
+            in.putExtra("PRODUCTNAME_KEY",selectdProName);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
         // finish();
     }

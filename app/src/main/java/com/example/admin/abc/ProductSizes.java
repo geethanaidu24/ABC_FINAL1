@@ -140,6 +140,8 @@ public class ProductSizes extends AppCompatActivity {
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
+                in.putExtra("PRODUCTID_KEY", selectdProductId);
+                in.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 startActivity(in);
                 return true;
             }
