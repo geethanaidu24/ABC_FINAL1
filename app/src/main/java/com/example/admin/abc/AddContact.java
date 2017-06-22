@@ -70,11 +70,12 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(AddContact.this, Contact.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+
+                      startActivity(in);
+                       finish();
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
-                        finish();
                     }
                 }
             });
@@ -105,11 +106,12 @@ int click=0;
             //finishAffinity();
             Intent in = new Intent(AddContact.this, Contact.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+      startActivity(in);
            finish();
-           /* startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
         }
     }
     @Override
@@ -184,7 +186,7 @@ int click=0;
 
         View toastView = toast.getView();
         toastView.setBackgroundResource(R.drawable.toast_drawable);
-        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+
         toast.show();
         //Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
         branchname.setText("");

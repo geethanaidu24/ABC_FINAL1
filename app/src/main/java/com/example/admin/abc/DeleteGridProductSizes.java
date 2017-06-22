@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -100,14 +102,15 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        // finish();
-                        // in.putExtra("PRODUCTID_KEY", pid);
-                        startActivity(in);
+
+                        Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -120,14 +123,15 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
+
+            Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            // finish();
-            // in.putExtra("PRODUCTID_KEY", pid);
-            startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(in);
+            finish();
         }
     }
     private void initializeViews()
@@ -180,7 +184,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                    Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
+                                                   /* Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
                                                     intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
                                                     intent.putExtra("PRODUCTNAME_KEY",recvdProName );
@@ -188,9 +192,29 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                     intent.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
                                                     intent.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                                                     startActivity(intent);
-   /* adapter.notifyDataSetChanged();
+   *//* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
+                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductSizes.this);
+                                                    alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                                                    alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
+                                                    //alert.setMessage("Confirm Delete By Clicking on OK");
+                                                    alert.setIcon(R.drawable.reload);
+                                                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            Intent intent=new Intent(DeleteGridProductSizes.this,DeleteGridProductSizes.class);
+                                                            intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
+                                                            intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            intent.putExtra("PRODUCTNAME_KEY",recvdProName );
+                                                            intent.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+                                                            intent.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+                                                            intent.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    });
+                                                    alert.show();
                                                 } else {
                                                     Toast.makeText(DeleteGridProductSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

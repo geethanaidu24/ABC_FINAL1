@@ -17,9 +17,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.text.Html;
-
+import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -80,7 +79,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_types);
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
-         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
+      selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
          selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -97,15 +96,22 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                         click = 0;
                         /*Intent in = new Intent(AddProductsTypes.this, Refresh.class);*/
                         Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.putExtra("PRODUCTID_KEY", selectedProductId);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                   in.putExtra("PRODUCTID_KEY", selectedProductId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",name);*/
+                //   finish();
                         startActivity(in);
                         finish();
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
                     }
                     //finish();
 
@@ -136,15 +142,22 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         if (click == 1) {
             click = 0;
             Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTID_KEY", selectedProductId);
-            in.putExtra("PRODUCTNAME_KEY", selectedProductName);
-            in.putExtra("ProductTypeList", mySQLDataBases);
+            //     in.putExtra("PRODUCTID_KEY", selectedProductId);
+           /* in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+            in.putExtra("ProductTypeList", mySQLDataBases);*/
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    /*in.putExtra("PRODUCTID_KEY", pid);
+                    in.putExtra("PRODUCTNAME_KEY",name);*/
+            //   finish();
             startActivity(in);
             finish();
+          /*  startActivity(in);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
         }
     }
     @Override
