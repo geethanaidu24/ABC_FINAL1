@@ -134,6 +134,9 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             click = 0;
             Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             in.putExtra("PRODUCTID_KEY", recvdproid);
             in.putExtra("PRODUCTNAME_KEY", recvdproname);
             in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
