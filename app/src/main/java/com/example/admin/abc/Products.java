@@ -96,7 +96,7 @@ public class Products extends AppCompatActivity implements Serializable {
                 }
             });
 
-         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
                 toolbar.setOverflowIcon(drawable);
 
         }
@@ -111,7 +111,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        getMenuInflater().inflate(R.menu.mainproducts, menu);
+    getMenuInflater().inflate(R.menu.mainproducts, menu);
 
         if (loggedIn == true) {
 
@@ -121,12 +121,19 @@ public boolean onCreateOptionsMenu(Menu menu) {
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
             itemss.setVisible(true);
-
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
 
 
         } else if (loggedIn == false) {
-
-            return false;
+            MenuItem item1 = menu.findItem(productsadd);
+            item1.setVisible(false);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(false);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            itemss.setVisible(false);
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
 
         }
 
@@ -174,6 +181,16 @@ public boolean onCreateOptionsMenu(Menu menu) {
             }
         } else if (id == R.id.logout) {
             logout();
+            return true;
+        }else if(id==R.id.h1)
+        {
+            Intent inn = new Intent(Products.this, Main2Activity.class);
+            //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            startActivity(inn);
+
             return true;
         }
 

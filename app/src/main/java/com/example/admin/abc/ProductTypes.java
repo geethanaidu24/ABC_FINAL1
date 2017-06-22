@@ -44,6 +44,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import static com.example.admin.abc.R.id.productsadd;
+
 public class ProductTypes extends AppCompatActivity implements Serializable {
     ImageView back;
     Context c;
@@ -98,7 +100,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             });
 
 
-            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.dots);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
             toolbar.setOverflowIcon(drawable);
 
         }
@@ -115,9 +117,19 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
             items.setVisible(true);
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
 
         } else if (loggedIn == false) {
-            return false;
+            MenuItem item1 = menu.findItem(productsadd);
+            item1.setVisible(false);
+            MenuItem items = menu.findItem(R.id.productdelete);
+            items.setVisible(false);
+            MenuItem itemss = menu.findItem(R.id.logout);
+            itemss.setVisible(false);
+            MenuItem items2 = menu.findItem(R.id.h1);
+            items2.setVisible(true);
+
         }
 
         return true;
@@ -165,6 +177,17 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             }
         } else if (id == R.id.logout) {
             logout();
+            return true;
+        }
+        else if(id==R.id.h1)
+        {
+            Intent inn = new Intent(ProductTypes.this, Main2Activity.class);
+            //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            startActivity(inn);
+
             return true;
         }
 
