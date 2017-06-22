@@ -14,8 +14,10 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -79,7 +81,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
          selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
          selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+      //  mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -95,9 +97,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                         /*Intent in = new Intent(AddProductsTypes.this, Refresh.class);*/
                         Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
                         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.putExtra("PRODUCTID_KEY", selectedProductId);
-                        in.putExtra("PRODUCTNAME_KEY", selectedProductName);
-                        in.putExtra("ProductTypeList", mySQLDataBases);
+                      //  in.putExtra("PRODUCTID_KEY", selectedProductId);
+                       // in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                       // in.putExtra("ProductTypeList", mySQLDataBases);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     /*in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",name);*/
@@ -189,6 +191,17 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
            // adapter.notifyDataSetChanged();
            /* BackTask bt = new BackTask();
             bt.execute();*/
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(Html.fromHtml("<font color='#ff0000'>Server Will Take Time Refresh</font>"));
+            builder.setMessage("");
+            builder.setCancelable(true);
+            builder.setIcon(R.drawable.reload);
+            builder.setPositiveButton("OK",null);
+
+            final AlertDialog dlg = builder.create();
+
+            dlg.show();
+            dlg.getWindow().setLayout(600, 300);
 
         }
 
