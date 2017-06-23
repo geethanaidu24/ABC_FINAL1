@@ -6,6 +6,7 @@
 
     android:layout_height="match_parent"
     android:splitMotionEvents="false"
+    android:focusableInTouchMode="true"
     android:background="@drawable/backgroundfour"
     tools:context=".MainActivity">
     <include layout="@layout/activity_toolbar"></include>
