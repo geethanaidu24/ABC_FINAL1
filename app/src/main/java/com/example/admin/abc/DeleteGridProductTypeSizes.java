@@ -62,16 +62,16 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
         finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
         if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
+            finalSelProtypeSize =  finalProLength +" "+"X"+" " +finalProWidth  +" "+"X"+" " + finalProHeight;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProWidth + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth !=0 && finalProHeight ==0 ){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight ;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProWidth ;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight ==0 ){
             finalSelProtypeSize = finalProWidth + "" ;
@@ -108,7 +108,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
+                        Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -126,7 +126,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
+            Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -185,7 +185,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridProductTypeSizes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                    /*Intent intent = new Intent(DeleteGridProductTypeSizes.this, DeleteGridProductTypeSizes.class);
+                                                  Intent intent = new Intent(DeleteGridProductTypeSizes.this, DeleteGridProductTypeSizes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
                                                     intent.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
@@ -194,12 +194,12 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                     intent.putExtra("WIDTH_KEY", finalProWidth);
                                                     intent.putExtra("LENGTH_KEY", finalProLength);
                                                     intent.putExtra("HEIGHT_KEY", finalProHeight);
-                                                    startActivity(intent);*/
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
 
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductTypeSizes.this);
+                                                   /* AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductTypeSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -220,7 +220,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                             finish();
                                                         }
                                                     });
-                                                    alert.show();
+                                                    alert.show();*/
                                                 } else {
                                                     Toast.makeText(DeleteGridProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

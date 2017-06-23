@@ -69,7 +69,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
     int click=0;
     private static int finalProId,finalProSizeId,finalWidth,finalLength,finalHeight;
     private static String finalProName,finalSelProductSize,finalSelProSize;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+  //  ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,18 +82,18 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         finalLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
         finalWidth = intent.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
         finalHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+       // mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(finalLength !=0 && finalWidth !=0 && finalHeight !=0){
-            finalSelProSize =  finalWidth + "X" + finalHeight + "X" + finalLength;
+            finalSelProSize =  finalLength +" "+"X"+" " + finalWidth + " "+"X"+" " + finalHeight;
 
         }else if(finalLength ==0 && finalWidth !=0 && finalHeight !=0){
-            finalSelProSize =  finalWidth + "X" + finalHeight;
+            finalSelProSize =  finalWidth + " "+"X"+" " + finalHeight;
 
         }else if(finalLength !=0 && finalWidth ==0 && finalHeight !=0){
-            finalSelProSize =  finalLength + "X" + finalHeight;
+            finalSelProSize =  finalLength + " "+"X"+" "+ finalHeight;
 
         }else if(finalLength !=0 && finalWidth !=0 && finalHeight ==0 ){
-            finalSelProSize =  finalLength + "X" + finalHeight ;
+            finalSelProSize =  finalLength +" "+"X"+" "+ finalWidth ;
 
         }else if(finalLength ==0 && finalWidth !=0 && finalHeight ==0 ){
             finalSelProSize = finalWidth + "" ;
@@ -106,6 +106,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
 
         }
 
+
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);
@@ -117,7 +118,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
+                        /*Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -131,13 +132,15 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
                         in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
-                        finish();
-                      /*  startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
-                  //  finish();
+
                 }
             });
             imageView = (ImageView) findViewById(R.id.image8);
@@ -166,19 +169,25 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+             /*Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", finalProId);
+                        in.putExtra("PRODUCTNAME_KEY", finalProName);
+                        in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
+                        in.putExtra("FINALPROSELSIZE_KEY", finalSelProductSize);
+                        in.putExtra("PRODUCTSIZEWIDTH_KEY", finalWidth);
+                        in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
+                        in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(AddGridProductSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", finalProId);
-            in.putExtra("PRODUCTNAME_KEY", finalProName);
-            in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
-            in.putExtra("FINALPROSELSIZE_KEY", finalSelProductSize);
-            in.putExtra("PRODUCTSIZEWIDTH_KEY", finalWidth);
-            in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
-            in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
-            in.putExtra("ProductSizeList",mySQLDataBases);
             startActivity(in);
             finish();
 
@@ -231,7 +240,8 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductSizes.this);
+
+            /*AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductSizes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -243,7 +253,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                     finish();
                 }
             });
-            alert.show();
+            alert.show();*/
 
         }
     }

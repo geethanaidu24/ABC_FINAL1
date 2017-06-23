@@ -93,16 +93,16 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
         finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
         if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
+            finalSelProtypeSize =  finalProLength +" "+"X"+" " +finalProWidth  +" "+"X"+" " + finalProHeight;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProWidth + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth !=0 && finalProHeight ==0 ){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight ;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProWidth ;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight ==0 ){
             finalSelProtypeSize = finalProWidth + "" ;
@@ -126,7 +126,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
+                       /* Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -140,6 +140,12 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         in.putExtra("WIDTH_KEY", finalProWidth);
                         in.putExtra("LENGTH_KEY", finalProLength);
                         in.putExtra("HEIGHT_KEY", finalProHeight);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -169,20 +175,26 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
     }
     public void onBackPressed() {
         //finishAffinity();
-        Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
-       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+     /* Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", recivedProductName);
+                        in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
+                        in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                        in.putExtra("PRODUCTTYPE_KEY", recivedProducttype);
+                        in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+                        in.putExtra("WIDTH_KEY", finalProWidth);
+                        in.putExtra("LENGTH_KEY", finalProLength);
+                        in.putExtra("HEIGHT_KEY", finalProHeight);
+                        startActivity(in);
+                        finish();*/
+        Intent in = new Intent(AddGridProductTypeSizes.this, Refresh.class);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
-        in.putExtra("PRODUCTID_KEY", recivedProductId);
-        in.putExtra("PRODUCTNAME_KEY", recivedProductName);
-        in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
-        in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
-        in.putExtra("PRODUCTTYPE_KEY", recivedProducttype);
-        in.putExtra("FINALSIZE_KEY", recivedFinalSize);
-        in.putExtra("WIDTH_KEY", finalProWidth);
-        in.putExtra("LENGTH_KEY", finalProLength);
-        in.putExtra("HEIGHT_KEY", finalProHeight);
         startActivity(in);
         finish();
     }
@@ -231,7 +243,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductTypeSizes.this);
+
+           /* AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductTypeSizes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -243,7 +256,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     finish();
                 }
             });
-            alert.show();
+            alert.show();*/
             //txtlength.setText("");
            /* adapter1.notifyDataSetChanged();
             adapter2.notifyDataSetChanged();

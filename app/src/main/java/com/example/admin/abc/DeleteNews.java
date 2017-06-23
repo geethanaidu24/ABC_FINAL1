@@ -58,7 +58,7 @@ public class DeleteNews extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(DeleteNews.this, News.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        //
+
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -131,7 +131,7 @@ public class DeleteNews extends AppCompatActivity {
                                             try {
                                                 //SHOW RESPONSE FROM SERVER
                                                 String responseString = response.get(0).toString();
-                                                Toast.makeText(DeleteNews.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                               // Toast.makeText(DeleteNews.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                    /* Intent intent = new Intent(DeleteNews.this, DeleteNews.class);
                                                     startActivity(intent);

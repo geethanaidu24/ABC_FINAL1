@@ -72,7 +72,7 @@ int click=0;
         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-      mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+     mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
         final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases, selectedProductId, selectedProducttypeid);
         gv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -89,10 +89,11 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
 
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
                     }
                 }
             });
@@ -147,11 +148,11 @@ int click=0;
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                in.putExtra("PRODUCTID_KEY", selectedProductId);
+               in.putExtra("PRODUCTID_KEY", selectedProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                in.putExtra("ProductTypeGridList",mySQLDataBases);
+              //  in.putExtra("ProductTypeGridList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -181,9 +182,9 @@ int click=0;
         {
             Intent inn = new Intent(ProductTypesGridView.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;

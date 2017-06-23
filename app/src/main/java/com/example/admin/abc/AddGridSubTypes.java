@@ -80,7 +80,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grid_sub_types);
 
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+      Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         productSubTypeName = intent.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
         productSubTypeId = intent.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
@@ -98,7 +98,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
+                        /*Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -110,6 +110,12 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         in.putExtra("PRODUCTNAME_KEY", selectedPname);
                         in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -143,18 +149,24 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
-            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+           /*Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(AddGridSubTypes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-            in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
-            in.putExtra("PRODUCTID_KEY", selectedPid);
-            in.putExtra("PRODUCTNAME_KEY", selectedPname);
-            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
             startActivity(in);
             finish();
         }
@@ -205,7 +217,8 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddGridSubTypes.this);
+
+           /* AlertDialog.Builder alert = new AlertDialog.Builder(AddGridSubTypes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -217,7 +230,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                     finish();
                 }
             });
-            alert.show();
+            alert.show();*/
         }
 
     }

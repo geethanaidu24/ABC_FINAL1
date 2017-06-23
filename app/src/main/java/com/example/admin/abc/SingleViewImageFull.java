@@ -61,9 +61,11 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                       // startActivity(in);
                         finish();
-                        in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                 }
             });
@@ -76,8 +78,10 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-            in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            //startActivity(in);
             finish();
         }
 

@@ -78,10 +78,10 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
      //   getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products_types);
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+    Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
       selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
          selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+    //    mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -94,26 +94,27 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        /*Intent in = new Intent(AddProductsTypes.this, Refresh.class);*/
-                        Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                   in.putExtra("PRODUCTID_KEY", selectedProductId);
+
+                      /* Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", selectedProductId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);*/
-                //   finish();
-                        startActivity(in);
+                                 startActivity(in);
                         finish();
-                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        */
+                        Intent in = new Intent(AddProductsTypes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+
+
                     }
-                    //finish();
+
 
                 }
             });
@@ -141,23 +142,23 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-                 in.putExtra("PRODUCTID_KEY", selectedProductId);
-            in.putExtra("PRODUCTNAME_KEY", selectedProductName);
-            in.putExtra("ProductTypeList", mySQLDataBases);
+             /* Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.putExtra("PRODUCTID_KEY", selectedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                        in.putExtra("ProductTypeList", mySQLDataBases);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                 startActivity(in);
+                        finish();
+                        */
+            Intent in = new Intent(AddProductsTypes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);*/
-            //   finish();
             startActivity(in);
-            finish();
-          /*  startActivity(in);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+
         }
     }
     @Override
@@ -202,7 +203,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddProductsTypes.this);
+
+
+           /*AlertDialog.Builder alert = new AlertDialog.Builder(AddProductsTypes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -210,11 +213,14 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
+                    in.putExtra("PRODUCTID_KEY", selectedProductId);
+                    in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                    in.putExtra("ProductTypeList", mySQLDataBases);
                     startActivity(in);
-                    finish();
+
                 }
             });
-            alert.show();
+            alert.show();*/
            // adapter.notifyDataSetChanged();
            /* BackTask bt = new BackTask();
             bt.execute();*/

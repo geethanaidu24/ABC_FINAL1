@@ -63,7 +63,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
            // getSupportActionBar().hide();
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_add_product_type_sizes);
-            Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
             selectedProdutId1 = intent.getExtras().getInt("PRODUCTID_KEY");
             selectedProductName1 = intent.getExtras().getString("PRODUCTNAME_KEY");
             selectedProdutTypeId1 = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
@@ -83,8 +83,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                         click = click + 1;
                         if (click == 1) {
                             click = 0;
-                            Intent intent = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
-
+                            /*Intent intent = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
                             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -96,8 +95,13 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                             intent.putExtra("ProductTypeSizeList",mySQLDataBases);
                             intent.putExtra("ProductTypeList",mySQLDataBases1);
                             startActivity(intent);
-                         finish();
-
+                         finish();*/
+                            Intent intent = new Intent(AddProductTypeSizes.this, Refresh.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                            finish();
                         }
                     }
                 });
@@ -127,18 +131,24 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+              /*Intent intent = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
+                            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("PRODUCTID_KEY", selectedProdutId1);
+                            intent.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+                            intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
+                            intent.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+                            intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                            intent.putExtra("ProductTypeList",mySQLDataBases1);
+                            startActivity(intent);
+                         finish();*/
+            Intent intent = new Intent(AddProductTypeSizes.this, Refresh.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", selectedProdutId1);
-            in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
-            in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
-            in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
-            in.putExtra("ProductTypeSizeList",mySQLDataBases);
-            in.putExtra("ProductTypeList",mySQLDataBases1);
-            startActivity(in);
+            startActivity(intent);
             finish();
         }
     }
@@ -169,7 +179,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+
             toast.show();
            // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");
@@ -179,7 +189,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             adapter1.notifyDataSetChanged();
             BackTask bt = new BackTask();
             bt.execute();*/
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddProductTypeSizes.this);
+           /* AlertDialog.Builder alert = new AlertDialog.Builder(AddProductTypeSizes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -188,10 +198,10 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductTypeSizes.this,AddProductTypeSizes.class);
                     startActivity(in);
-                    finish();
+
                 }
             });
-            alert.show();
+            alert.show();*/
 
         }
 

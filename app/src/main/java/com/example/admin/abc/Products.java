@@ -88,7 +88,7 @@ public class Products extends AppCompatActivity implements Serializable {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                       // startActivity(in);
                         finish();
 
                     }
@@ -158,7 +158,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 click = 0;
 
                 Intent in = new Intent(Products.this, AddProducts.class);
-                 in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                 //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
 
                 startActivity(in);
@@ -203,10 +203,10 @@ public boolean onCreateOptionsMenu(Menu menu) {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(Products.this, Main2Activity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+          //  startActivity(in);
             finish();
 
         }

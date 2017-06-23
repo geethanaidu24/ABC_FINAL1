@@ -81,7 +81,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+       // mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -93,7 +93,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
+                        /*Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -103,6 +103,12 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                         in.putExtra("ProductTypeGridList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -135,19 +141,24 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
-            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+           /*Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        in.putExtra("ProductTypeGridList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(AddGridProductTypes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", selectedPid);
-            in.putExtra("PRODUCTNAME_KEY", selectedPname);
-            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-            in.putExtra("ProductTypeGridList",mySQLDataBases);
-         startActivity(in);
+            startActivity(in);
             finish();
-
         }
     }
 
@@ -196,7 +207,8 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             brand.setText("");
             color.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductTypes.this);
+
+          /*  AlertDialog.Builder alert = new AlertDialog.Builder(AddGridProductTypes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -208,7 +220,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                     finish();
                 }
             });
-            alert.show();
+            alert.show();*/
 
         }
     }

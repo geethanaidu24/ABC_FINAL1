@@ -76,7 +76,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypeGridView.class);
+                        Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         // finish();
 
@@ -96,7 +96,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypeGridView.class);
+            Intent in = new Intent(DeleteGridSubTypes.this, Refresh.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // finish();
 
@@ -154,13 +154,13 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                   /* Intent intent = new Intent(DeleteGridSubTypes.this, DeleteGridSubTypes.class);
+                                                    Intent intent = new Intent(DeleteGridSubTypes.this, DeleteGridSubTypes.class);
                                                     intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                                                     intent.putExtra("PRODUCTNAME_KEY", recvProName);
                                                     intent.putExtra("PRODUCTTYPE_KEY", recvProType);
                                                     intent.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
-                                                    startActivity(intent);*/
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridSubTypes.this);
+                                                    startActivity(intent);
+                                                    /*AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridSubTypes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -177,7 +177,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                                             finish();
                                                         }
                                                     });
-                                                    alert.show();
+                                                    alert.show();*/
                                                 } else {
                                                     Toast.makeText(DeleteGridSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

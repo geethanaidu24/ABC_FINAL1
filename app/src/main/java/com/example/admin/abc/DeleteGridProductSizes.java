@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridProductSizes extends AppCompatActivity {
-
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     int click=0;
@@ -47,12 +47,12 @@ public class DeleteGridProductSizes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.productSizesGridsCRUD;
     private static final String Data_Spin = Config.productSizeImgUrlAddress;
     URL Data_Del_Spin = null;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+   // ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_grid_product_sizes);
-        Intent intent = getIntent();
+      Intent intent = getIntent();
         recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         recivedProductsizeId=intent.getExtras().getInt("PRODUCTSIZEID_KEY");
         recvdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
@@ -60,18 +60,18 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         recvdHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
         recvdLength = intent.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
         finalSelProSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+       // mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(recvdLength !=0 && recvdWidth !=0 && recvdHeight !=0){
-            finalSelProSize =  recvdWidth + "X" + recvdHeight + "X" + recvdLength;
+            finalSelProSize =  recvdLength + " "+"X"+" " + recvdWidth + " "+"X"+" " + recvdHeight;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight !=0){
-            finalSelProSize =  recvdWidth + "X" + recvdHeight;
+            finalSelProSize =  recvdWidth + " "+"X"+" " + recvdHeight;
 
         }else if(recvdLength !=0 && recvdWidth ==0 && recvdHeight !=0){
-            finalSelProSize =  recvdLength + "X" + recvdHeight;
+            finalSelProSize =  recvdLength + " "+"X"+" "+ recvdHeight;
 
         }else if(recvdLength !=0 && recvdWidth !=0 && recvdHeight ==0 ){
-            finalSelProSize =  recvdLength + "X" + recvdHeight ;
+            finalSelProSize =  recvdLength +" "+"X"+" " + recvdWidth ;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight ==0 ){
             finalSelProSize = recvdWidth + "" ;
@@ -106,7 +106,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
 
-                        Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
+                        /*Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -119,6 +119,12 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -134,19 +140,25 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         if (click == 1) {
             click = 0;
 
-            Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+          /*Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY",recvdProName );
+                        in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
+                        in.putExtra("FINALPROSELSIZE_KEY", finalSelProSize);
+                        in.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+                        in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+                        in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(DeleteGridProductSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", recivedProductId);
-            in.putExtra("PRODUCTNAME_KEY",recvdProName );
-            in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
-            in.putExtra("FINALPROSELSIZE_KEY", finalSelProSize);
-            in.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
-            in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
-            in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
-            in.putExtra("ProductSizeList",mySQLDataBases);
             startActivity(in);
             finish();
         }
@@ -201,7 +213,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                   /* Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
+                                                Intent intent = new Intent(DeleteGridProductSizes.this, DeleteGridProductSizes.class);
                                                     intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
                                                     intent.putExtra("PRODUCTNAME_KEY",recvdProName );
@@ -209,10 +221,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                     intent.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
                                                     intent.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                                                     startActivity(intent);
-   *//* adapter.notifyDataSetChanged();
-    BackTask bt = new BackTask();
-    bt.execute();*/
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductSizes.this);
+
+
+                                                   /* AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -231,7 +242,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                             finish();
                                                         }
                                                     });
-                                                    alert.show();
+                                                    alert.show();*/
                                                 } else {
                                                     Toast.makeText(DeleteGridProductSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

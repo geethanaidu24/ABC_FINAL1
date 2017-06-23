@@ -90,10 +90,10 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                      /*  in.putExtra("PRODUCTNAME_KEY", selectedPname);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
-                        in.putExtra("ProductTypeList", mySQLProTypes);
-                        startActivity(in);
+                        in.putExtra("ProductTypeList", mySQLProTypes);*/
+
                         finish();
                     }
                 }
@@ -154,7 +154,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                in.putExtra("ProductSubTypeList",mySQLDataBases);
+                //in.putExtra("ProductSubTypeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -180,9 +180,9 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         {
             Intent inn = new Intent(ProductSubTypes.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -280,10 +280,10 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTNAME_KEY", selectedPname);
+            /*in.putExtra("PRODUCTNAME_KEY", selectedPname);
             in.putExtra("PRODUCTID_KEY", selectedPid);
-            in.putExtra("ProductTypeList", mySQLProTypes);
-            startActivity(in);
+            in.putExtra("ProductTypeList", mySQLProTypes);*/
+
             finish();
         }
 

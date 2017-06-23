@@ -102,10 +102,10 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        in.putExtra("PRODUCTID_KEY", productId);
-                        in.putExtra("PRODUCTNAME_KEY", selProductName);
-                        in.putExtra("ProductSizeList",mySQLDataBases);
-                        startActivity(in);
+//                        in.putExtra("PRODUCTID_KEY", productId);
+//                        in.putExtra("PRODUCTNAME_KEY", selProductName);
+//                        in.putExtra("ProductSizeList",mySQLDataBases);
+                       // startActivity(in);
                         finish();
                     }
                 }
@@ -171,7 +171,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 in.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 in.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 in.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
-                in.putExtra("ProductSizeList",mySQLDataBases);
+              //  in.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -192,7 +192,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 inn.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
-                inn.putExtra("ProductSizeList",mySQLDataBases);
+              //  inn.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(inn);
                 return true;
             }
@@ -204,9 +204,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         {
             Intent inn = new Intent(ProductSizeGridViewImages.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+             inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -224,13 +224,11 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", productId);
+
+           /* in.putExtra("PRODUCTID_KEY", productId);
             in.putExtra("PRODUCTNAME_KEY", selProductName);
-            in.putExtra("ProductSizeList",mySQLDataBases);
-            startActivity(in);
+            in.putExtra("ProductSizeList",mySQLDataBases);*/
+          //  startActivity(in);
             finish();
 
         }
@@ -459,24 +457,25 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
+
             if(length !=0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height + "X" + length;
+                finalSize =  length + " "+"X"+" " + width + " "+"X"+" " + height;
+
 
             }else if(length ==0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height;
+                finalSize =  width + " "+"X"+" " + height;
 
             }else if(length !=0 && width ==0 && height !=0){
-                finalSize =  length + "X" + height;
+                finalSize =  length +" "+"X"+" "+ height;
 
             }else if(length !=0 && width !=0 && height ==0 ){
-                finalSize =  length + "X" + width ;
+                finalSize =  length + " "+"X"+" "+ width ;
 
             }else if(length ==0 && width !=0 && height ==0 ){
                 finalSize = width + "" ;
 
             }else if(length !=0 && width ==0 && height ==0 ){
                 finalSize = length + "" ;
-
             }else if(length ==0 && width ==0 && height !=0 ){
                 finalSize = height + "" ;
 

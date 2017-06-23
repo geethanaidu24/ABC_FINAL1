@@ -77,7 +77,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         recvdproid = intent.getExtras().getInt("PRODUCTID_KEY");
         recvdproname = intent.getExtras().getString("PRODUCTNAME_KEY");
-      mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+   //   mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -91,9 +91,8 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
-
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       /* Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -103,11 +102,15 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                         in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                         in.putExtra("ProductSubTypeList",mySQLDataBases);
                         startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddProductsSubType.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
                         finish();
-                      /*
-                        */
                     }
-                 //  finish();
+
                 }
             });
 
@@ -132,16 +135,22 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+           /* Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recvdproid);
+                        in.putExtra("PRODUCTNAME_KEY", recvdproname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        in.putExtra("ProductSubTypeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(AddProductsSubType.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", recvdproid);
-            in.putExtra("PRODUCTNAME_KEY", recvdproname);
-            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-            in.putExtra("ProductSubTypeList",mySQLDataBases);
             startActivity(in);
             finish();
         }
@@ -185,7 +194,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             etCaption.setText("");
             tvPath.setText("");
             imageView.setImageResource(R.mipmap.browseimage);
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddProductsSubType.this);
+            /*AlertDialog.Builder alert = new AlertDialog.Builder(AddProductsSubType.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -197,7 +206,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     finish();
                 }
             });
-            alert.show();
+            alert.show();*/
 
         }
 

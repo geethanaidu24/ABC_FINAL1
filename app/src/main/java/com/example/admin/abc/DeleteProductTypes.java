@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class DeleteProductTypes extends AppCompatActivity {
 
-    //final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     int click=0;
     private Button btnAdd;
@@ -49,17 +49,17 @@ public class DeleteProductTypes extends AppCompatActivity {
     private static int recvdProId;
     private static String recvdProName;
     URL ProTypeSpinurlAddress = null;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    //ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_types);
         // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        recvdProId = intent.getExtras().getInt("PRODUCTID_KEY");
        recvdProName = intent.getExtras().getString("PRODUCT_NAME");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+       // mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Uri builtUri = Uri.parse(productTypeUrlAddressDel)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recvdProId))
@@ -82,20 +82,20 @@ public class DeleteProductTypes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                       // Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
+                        Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
 
-                        Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
-                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.putExtra("PRODUCTID_KEY", recvdProId);
+                       /* Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
+                       in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                     in.putExtra("PRODUCTID_KEY", recvdProId);
                         in.putExtra("PRODUCTNAME_KEY", recvdProName);
-                        in.putExtra("ProductTypeList", mySQLDataBases);
+                        in.putExtra("ProductTypeList", mySQLDataBases);*/
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
-                        finish();
+
                     }
-                    //finish();
+
                 }
             });
 
@@ -107,14 +107,18 @@ public class DeleteProductTypes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
-            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            Intent in = new Intent(DeleteProductTypes.this, Refresh.class);
 
+                       /* Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
+                       in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                     in.putExtra("PRODUCTID_KEY", recvdProId);
+                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                        in.putExtra("ProductTypeList", mySQLDataBases);*/
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(in);
-            finish();
+
         }
         //finish();
     }
@@ -147,7 +151,7 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                   // toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                    // Toast.makeText(DeleteProductTypes.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
                 }
@@ -168,11 +172,11 @@ public class DeleteProductTypes extends AppCompatActivity {
                                             String responseString = response.get(0).toString();
                                             Toast.makeText(DeleteProductTypes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                             if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                /*Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
+                                                Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
                                                 intent.putExtra("PRODUCTID_KEY",recvdProId);
                                                 intent.putExtra("PRODUCT_NAME",recvdProName);
-                                                startActivity(intent);*/
-
+                                                startActivity(intent);
+/*
                                                 AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypes.this);
                                                 alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                 alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
@@ -181,14 +185,16 @@ public class DeleteProductTypes extends AppCompatActivity {
                                                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
-                                                        intent.putExtra("PRODUCTID_KEY",recvdProId);
-                                                        intent.putExtra("PRODUCT_NAME",recvdProName);
-                                                        startActivity(intent);
-                                                        finish();
+                                                        Intent in = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
+                                                 in.putExtra("PRODUCTID_KEY", recvdProId);
+                                                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                                                        in.putExtra("ProductTypeList", mySQLDataBases);
+                                                        startActivity(in);
+                                                    
+
                                                     }
                                                 });
-                                                alert.show();
+                                                alert.show();*/
                                             }else {
                                                 Toast.makeText(DeleteProductTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                             }

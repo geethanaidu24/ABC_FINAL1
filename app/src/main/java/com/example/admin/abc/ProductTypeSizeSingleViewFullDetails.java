@@ -51,10 +51,11 @@ int click=0;
                     in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
 
                     startActivity(in);*/
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
                     }
                 }
             });

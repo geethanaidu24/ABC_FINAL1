@@ -58,10 +58,11 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypeSingleImageFullViewActivity.this, ProductTypesGridView.class);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
                     }
                 }
             });

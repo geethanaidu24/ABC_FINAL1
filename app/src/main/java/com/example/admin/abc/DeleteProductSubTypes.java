@@ -55,7 +55,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_product_subtypes);
         // Get intent data
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+     Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         recvdProTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         recvdProType = intent.getExtras().getString("PRODUCTTYPE_KEY");
         Uri builtUri = Uri.parse(Config.productSubTypesUrlAddress)
@@ -82,11 +82,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        //  finish();
-                        startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -100,12 +100,12 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            //  finish();
-            startActivity(in);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
     }
     private void initializeViews()
@@ -156,15 +156,15 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductSubTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                  /*  Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
+                                                  Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
                                                     intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
-                                                    startActivity(intent);*/
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
 
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductSubTypes.this);
+                                                    /*AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductSubTypes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -179,7 +179,7 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                             finish();
                                                         }
                                                     });
-                                                    alert.show();
+                                                    alert.show();*/
                                                 } else {
                                                     Toast.makeText(DeleteProductSubTypes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

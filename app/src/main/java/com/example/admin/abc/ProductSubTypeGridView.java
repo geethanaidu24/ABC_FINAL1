@@ -99,10 +99,11 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
-                        finish();
+
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        finish();
                     }
                 }
             });
@@ -178,10 +179,11 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                 Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
         // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
+                inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+
                 inn.putExtra("PRODUCTNAME_KEY", selectedPname);
                 inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 inn.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
@@ -196,9 +198,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         {
             Intent inn = new Intent(ProductSubTypeGridView.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+           inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;

@@ -101,12 +101,11 @@ android:layout_below="@+id/toolbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="8"
-                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
-                android:layout_alignBaseline="@+id/textView11"
                 android:layout_alignBottom="@+id/textView11"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignLeft="@+id/brand8"
+                android:layout_alignStart="@+id/brand8" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -114,6 +113,7 @@ android:layout_below="@+id/toolbar"
                 android:layout_height="wrap_content"
                 android:layout_alignStart="@+id/textView11"
                 android:layout_below="@+id/name8"
+                android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
                 android:text="BRAND"
                 android:textColor="@color/cred"

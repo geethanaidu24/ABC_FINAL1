@@ -69,16 +69,17 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProducts.this, Products.class);
+                       /* Intent in = new Intent(AddProducts.this, Products.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    finish();
-                  /*  in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    finish();*/
+                        Intent in = new Intent(AddProducts.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                        startActivity(in);*/
-                        //  finish();
-                        // finish();
+                        startActivity(in);
+                        finish();
+
                     }
                 }
             });
@@ -102,15 +103,15 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             click = click + 1;
             if (click == 1) {
                 click = 0;
-                Intent in = new Intent(AddProducts.this, Products.class);
-//in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+              /* Intent in = new Intent(AddProducts.this, Products.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    finish();*/
+                Intent in = new Intent(AddProducts.this, Refresh.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
 
-       /*  in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-
-           startActivity(in);
-*/
+                startActivity(in);
                 finish();
 
             }
@@ -150,39 +151,18 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
 
-                   // toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                     etCaption.setText("");
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
-                    //Creating an alert dialog to confirm logout
-              /*  AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-                // alertDialogBuilder.setMessage("Are you sure you want to logout?");
-                alertDialogBuilder.setTitle(" Server will take Time To Upload and Refresh");
-                alertDialogBuilder.setIcon(R.drawable.logoutt);
-                AlertDialog alertDialog = alertDialogBuilder.create();
-
-                alertDialog.show();
-                alertDialog.getWindow().setLayout(600, 500);*/
-               /* new AlertDialog.Builder(this).setView
-                        (R.layout.activity_sorry).show();*/
-
-/*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(Html.fromHtml("<font color='#ff0000'>Server Will Take Time Refresh</font>"));
-                builder.setMessage("");
-                builder.setCancelable(true);
-            builder.setIcon(R.drawable.reload);
-builder.setPositiveButton("OK",null);
-
-                final AlertDialog dlg = builder.create();
-
-                dlg.show();
-                dlg.getWindow().setLayout(600, 300)*/;
+                    Intent in=new Intent(AddProducts.this,AddProducts.class);
+                    startActivity(in);
+                    finish();
 
 
-                    AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
+                   /* AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
                     alert.setIcon(R.drawable.reload);
@@ -194,7 +174,7 @@ builder.setPositiveButton("OK",null);
                             finish();
                         }
                     });
-                    alert.show();
+                    alert.show();*/
                 /*final Timer t = new Timer();
                 t.schedule(new TimerTask() {
                     public void run() {

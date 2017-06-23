@@ -92,7 +92,7 @@ public class ProductSizes extends AppCompatActivity {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                        //startActivity(in);
                         finish();
                     }
                 }
@@ -152,9 +152,9 @@ public class ProductSizes extends AppCompatActivity {
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                in.putExtra("PRODUCTID_KEY", selectdProductId);
+              in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                in.putExtra("ProductSizeList",mySQLDataBases);
+               // in.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(in);
                 return true;
             }
@@ -168,9 +168,9 @@ public class ProductSizes extends AppCompatActivity {
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                inn.putExtra("PRODUCTID_KEY", selectdProductId);
+               inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 inn.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                inn.putExtra("ProductSizeList",mySQLDataBases);
+                //inn.putExtra("ProductSizeList",mySQLDataBases);
                 startActivity(inn);
                 return true;
             }
@@ -182,9 +182,9 @@ public class ProductSizes extends AppCompatActivity {
         {
             Intent inn = new Intent(ProductSizes.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+          inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -203,7 +203,7 @@ public class ProductSizes extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            startActivity(in);
+            //startActivity(in);
             finish();
         }
 
@@ -256,26 +256,27 @@ public class ProductSizes extends AppCompatActivity {
             final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
-            if (length != 0 && width != 0 && height != 0) {
-                finalProductSelctedSize = width + "X" + height + "X" + length;
+
+            if(length !=0 && width !=0 && height !=0){
+                finalProductSelctedSize =  length + " "+"X"+" " +width  + " "+"X"+" " + height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length == 0 && width != 0 && height != 0) {
-                finalProductSelctedSize = width + "X" + height;
+            }else if(length ==0 && width !=0 && height !=0){
+                finalProductSelctedSize =  width + " "+"X"+" " + height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length != 0 && width == 0 && height != 0) {
-                finalProductSelctedSize = length + "X" + height;
+            }else if(length !=0 && width ==0 && height !=0){
+                finalProductSelctedSize =  length +" "+"X"+" "+ height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length != 0 && width != 0 && height == 0) {
-                finalProductSelctedSize = length + "X" + width;
+            }else if(length !=0 && width !=0 && height ==0 ){
+                finalProductSelctedSize =  length + " "+"X"+" " + width ;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length == 0 && width != 0 && height == 0) {
-                finalProductSelctedSize = width + "";
+            }else if(length ==0 && width !=0 && height ==0 ){
+                finalProductSelctedSize = width + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
-            } else if (length != 0 && width == 0 && height == 0) {
-                finalProductSelctedSize = length + "";
+            }else if(length !=0 && width ==0 && height ==0 ){
+                finalProductSelctedSize = length + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
-            } else if (length == 0 && width == 0 && height != 0) {
-                finalProductSelctedSize = height + "";
+            }else if(length ==0 && width ==0 && height !=0 ){
+                finalProductSelctedSize = height + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
             }
             // open new activity

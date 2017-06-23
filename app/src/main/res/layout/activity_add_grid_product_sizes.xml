@@ -105,11 +105,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="8"
-                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
-                android:layout_alignBaseline="@+id/textView11"
                 android:layout_alignBottom="@+id/textView11"
+                android:layout_marginRight="20dp"
                 android:layout_alignParentEnd="true"/>
 
             <TextView

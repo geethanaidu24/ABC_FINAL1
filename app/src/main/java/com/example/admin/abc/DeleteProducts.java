@@ -58,17 +58,17 @@ public class DeleteProducts extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteProducts.this, Products.class);
+                       /* Intent in = new Intent(DeleteProducts.this, Products.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        //finish();
-
+                       finish();*/
+                        Intent in = new Intent(DeleteProducts.this, Refresh.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
-                    //finish();
+
                 }
             });
 
@@ -80,15 +80,15 @@ public class DeleteProducts extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProducts.this, Products.class);
-            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            //finish();
-
+            /* Intent in = new Intent(DeleteProducts.this, Products.class);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       finish();*/
+            Intent in = new Intent(DeleteProducts.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(in);
-           finish();
+            startActivity(in);
+            finish();
 
         }
     }
@@ -146,8 +146,11 @@ public class DeleteProducts extends AppCompatActivity {
                                                     String responseString = response.get(0).toString();
                                                     Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                                     if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                                        Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
+                                                        startActivity(intent);
+                                                        finish();
 
-                                                        AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
+                                                       /* AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
                                                         alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                         alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                         //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -160,17 +163,10 @@ public class DeleteProducts extends AppCompatActivity {
                                                                 finish();
                                                             }
                                                         });
-                                                        alert.show();
+                                                        alert.show();*/
 
 
-                                              /*  new AlertDialog.Builder(DeleteProducts.this) .setTitle(Html.fromHtml("<font color='#ff0000'>Exit</font>"))
 
-                                                        .setMessage(Html.fromHtml(" It will be taking time to Refresh"));*/
-
-                                                        //  Toast.makeText(DeleteProducts.this, "It will be taking time to load", Toast.LENGTH_LONG).show();
-                                               /* adapter.notifyDataSetChanged();
-                                                BackTask bt = new BackTask();
-                                                bt.execute();*/
                                                     } else {
                                                         Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                                     }
