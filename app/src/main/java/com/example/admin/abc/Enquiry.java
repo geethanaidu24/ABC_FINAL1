@@ -73,6 +73,15 @@ ImageView im;
                     if (!isValidEmail(email)) {
                         onError = true;
                         your_email.setError("Invalid Email");
+                        Toast.makeText(Enquiry.this, "Please Enter valid Email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Boolean onErrorr = false;
+                    if (!isValidPhone(subject)) {
+                        onError = true;
+                        your_subject.setError("Invalid Contact Number");
+                        Toast.makeText(Enquiry.this, "Please Enter valid Contact Number", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -157,6 +166,20 @@ ImageView im;
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    public static boolean isValidPhone(String phone)
+    {
+        String expression = "^([0-9\\+]|\\(\\d{1,3}\\))[0-9\\-\\. ]{3,15}$";
+        CharSequence inputString = phone;
+        Pattern pattern = Pattern.compile(expression);
+        Matcher matcher = pattern.matcher(inputString);
+        if (matcher.matches())
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 
