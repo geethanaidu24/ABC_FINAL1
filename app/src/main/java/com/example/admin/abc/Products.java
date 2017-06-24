@@ -111,29 +111,30 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-    getMenuInflater().inflate(R.menu.mainproducts, menu);
+    //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
         if (loggedIn == true) {
 
-            MenuItem item1 = menu.findItem(productsadd);
+           /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(true);
             MenuItem itemss = menu.findItem(R.id.logout);
             itemss.setVisible(true);
             MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);
-
+            items2.setVisible(true);*/
+            getMenuInflater().inflate(R.menu.mainproducts, menu);
 
         } else if (loggedIn == false) {
-            MenuItem item1 = menu.findItem(productsadd);
+           /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
             items.setVisible(false);
             MenuItem itemss = menu.findItem(R.id.logout);
             itemss.setVisible(false);
             MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);
+            items2.setVisible(true);*/
+            getMenuInflater().inflate(R.menu.home, menu);
 
         }
 

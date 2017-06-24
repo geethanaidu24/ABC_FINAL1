@@ -415,7 +415,8 @@ Timer swipeTimer = new Timer();
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         int id = item.getItemId();
 
         if (id == R.id.home) {
@@ -531,26 +532,26 @@ Timer swipeTimer = new Timer();
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
-                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                    loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
                    // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                   /* if (loggedIn == true) {
+                   if (loggedIn == true) {
+                       Toast toast = Toast.makeText(getApplicationContext(),
+                               "Admin Already Login.....",
+                               Toast.LENGTH_SHORT);
 
-                        MenuItem itemss = menu.findItem(R.id.logout);
-                        itemss.setVisible(true);
-                        MenuItem items2 = menu.findItem(R.id.login);
-                        items2.setVisible(false);
+                       View toastView = toast.getView();
+                       toastView.setBackgroundResource(R.drawable.toast_drawable);
+                       toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                       toast.show();
+
                     } else if (loggedIn == false) {
-                        MenuItem itemss = menu.findItem(R.id.logout);
-                        itemss.setVisible(false);
-                        MenuItem items2 = menu.findItem(R.id.login);
-                        items2.setVisible(true);*/
+
                         Intent in = new Intent(Main2Activity.this, Login.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
 
-                   /* }*/
+                    }
 
                 }
             }

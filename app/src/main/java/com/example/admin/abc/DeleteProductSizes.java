@@ -182,7 +182,7 @@ public class DeleteProductSizes extends AppCompatActivity {
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
-                                                    /*AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductSizes.this);
+                                                 AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -202,7 +202,7 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                            // finish();
                                                         }
                                                     });
-                                                    alert.show();*/
+                                                    alert.show();
                                                 } else {
                                                     Toast.makeText(DeleteProductSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }
