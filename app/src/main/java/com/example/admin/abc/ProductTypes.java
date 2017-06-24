@@ -160,7 +160,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
-               // in.putExtra("ProductTypeList", mySQLDataBases1);
+                in.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -176,7 +176,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                inn.putExtra("PRODUCTID_KEY", selectedPid);
                 inn.putExtra("PRODUCT_NAME",selectedPname);
-                //inn.putExtra("ProductTypeList", mySQLDataBases1);
+                inn.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(inn);
                 return true;
             }

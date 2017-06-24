@@ -174,7 +174,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+           // toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
             //Toast.makeText(AddProductsSubType.this, "Fill All", Toast.LENGTH_SHORT).show();
         } else {

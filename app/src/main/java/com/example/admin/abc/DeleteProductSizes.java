@@ -174,11 +174,11 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                    Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
+                                                  /*  Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
 
                                                     intent.putExtra("PRODUCTNAME_KEY",selectdProName);
-                                                    startActivity(intent);
+                                                    startActivity(intent);*/
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/

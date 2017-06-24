@@ -49,16 +49,17 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
-                  /*  in.putExtra("PRODUCTID_KEY", pid);
+                 /*  in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
                     in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
+*/
 
-                    startActivity(in);*/
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
                         finish();
                     }
                 }

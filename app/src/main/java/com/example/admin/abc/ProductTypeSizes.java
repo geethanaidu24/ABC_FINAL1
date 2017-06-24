@@ -151,8 +151,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                 intent.putExtra("PRODUCTTYPE_KEY", selectedProductType);
-               // intent.putExtra("ProductTypeSizeList",mySQLDataBases);
-               // intent.putExtra("ProductTypeList",mySQLDataBases1);
+               intent.putExtra("ProductTypeSizeList",mySQLDataBases);
+                intent.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(intent);
                 return true;
             }
@@ -170,8 +170,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
-               // in.putExtra("ProductTypeSizeList",mySQLDataBases);
-                //in.putExtra("ProductTypeList",mySQLDataBases1);
+                in.putExtra("ProductTypeSizeList",mySQLDataBases);
+                in.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(in);
 
                 return true;
