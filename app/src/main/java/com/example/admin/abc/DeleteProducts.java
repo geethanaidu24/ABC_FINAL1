@@ -61,7 +61,7 @@ public class DeleteProducts extends AppCompatActivity {
                        /* Intent in = new Intent(DeleteProducts.this, Products.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                        finish();*/
-                        Intent in = new Intent(DeleteProducts.this, Refresh.class);
+                        Intent in = new Intent(DeleteProducts.this, Products.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -83,7 +83,7 @@ public class DeleteProducts extends AppCompatActivity {
             /* Intent in = new Intent(DeleteProducts.this, Products.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                        finish();*/
-            Intent in = new Intent(DeleteProducts.this, Refresh.class);
+            Intent in = new Intent(DeleteProducts.this, Products.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -150,7 +150,7 @@ public class DeleteProducts extends AppCompatActivity {
                                                         startActivity(intent);
                                                         finish();
 
-                                                       /* AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
+                                                        AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
                                                         alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                         alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                         //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -163,7 +163,7 @@ public class DeleteProducts extends AppCompatActivity {
                                                                 finish();
                                                             }
                                                         });
-                                                        alert.show();*/
+                                                        alert.show();
 
 
 

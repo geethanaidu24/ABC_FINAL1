@@ -201,7 +201,8 @@ android:background="@drawable/backgroundfour"
                 android:inputType="textEmailAddress"
                 android:layout_alignBaseline="@+id/textView39"
                 android:layout_alignBottom="@+id/textView39"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:id="@+id/textView40"
@@ -222,7 +223,8 @@ android:background="@drawable/backgroundfour"
                 android:textCursorDrawable="@null"
                 android:inputType="textPersonName"
                 android:layout_alignBottom="@+id/textView40"
-                android:layout_alignStart="@+id/editText14" />
+                android:layout_alignStart="@+id/editText14"
+                android:layout_alignLeft="@+id/editText14" />
 
         </RelativeLayout>
     </ScrollView>

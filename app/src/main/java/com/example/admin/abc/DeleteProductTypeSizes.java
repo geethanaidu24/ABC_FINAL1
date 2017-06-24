@@ -208,7 +208,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     BackTask bt = new BackTask();
     bt.execute();*/
 
-                                                  /*  AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypeSizes.this);
+                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypeSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -225,11 +225,11 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                             in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                             in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                                                             in.putExtra("ProductTypeSizeList",mySQLDataBases);
-                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                          //  in.putExtra("ProductTypeList",mySQLDataBases1);
                                                             startActivity(in);
                                                         }
                                                     });
-                                                    alert.show();*/
+                                                    alert.show();
                                                 } else {
                                                     Toast.makeText(DeleteProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }

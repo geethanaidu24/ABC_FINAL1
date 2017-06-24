@@ -96,7 +96,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //startActivity(in);
+                        startActivity(in);
                         finish();
                     }
                 }
@@ -207,7 +207,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            //startActivity(in);
+            startActivity(in);
             finish();
 
         }

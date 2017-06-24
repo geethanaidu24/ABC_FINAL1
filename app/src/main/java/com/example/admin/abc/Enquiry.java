@@ -1,10 +1,14 @@
 package com.example.admin.abc;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +51,8 @@ public class Enquiry extends AppCompatActivity {
                     //  startActivity(in);
                 }
             });
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
+            toolbar.setOverflowIcon(drawable);
             final EditText your_name = (EditText) findViewById(R.id.editText);
             final EditText your_email = (EditText) findViewById(R.id.editText3);
             final EditText your_subject = (EditText) findViewById(R.id.editText4);
@@ -180,6 +186,47 @@ public class Enquiry extends AppCompatActivity {
         else{
             return false;
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+
+
+
+        //getMenuInflater().inflate(R.menu.mainproducts, menu);
+
+
+        getMenuInflater().inflate(R.menu.home, menu);
+
+
+        return true;
+
+
+    }
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+        if(id==R.id.h1)
+        {
+            Intent inn = new Intent(Enquiry.this, Main2Activity.class);
+            //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            startActivity(inn);
+
+            return true;
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 
 

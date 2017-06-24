@@ -106,7 +106,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
               /* Intent in = new Intent(AddProducts.this, Products.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     finish();*/
-                Intent in = new Intent(AddProducts.this, Refresh.class);
+                Intent in = new Intent(AddProducts.this, Products.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);

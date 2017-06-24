@@ -60,7 +60,8 @@
         android:fillViewport="true"
         android:layout_marginBottom="20dp"
         android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -109,7 +110,8 @@
                 android:textColor="@color/colorblack"
                 android:layout_alignBottom="@+id/textView11"
                 android:layout_marginRight="20dp"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -132,7 +134,8 @@
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
                 android:layout_alignBottom="@+id/textView14"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
 
             <TextView
                 android:id="@+id/textView17"
@@ -143,7 +146,8 @@
                 android:layout_marginTop="15dp"
                 android:text="COLOR"
                 android:textColor="@color/cred"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                android:layout_alignLeft="@+id/textView14" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -154,7 +158,8 @@
                 android:text="SIZE"
                 android:textColor="@color/cred"
                 android:textSize="18sp"
-                android:layout_alignStart="@+id/textView17"/>
+                android:layout_alignStart="@+id/textView17"
+                android:layout_alignLeft="@+id/textView17" />
             <TextView
                 android:id="@+id/sizeTxt"
                 android:layout_width="match_parent"
@@ -162,7 +167,8 @@
                 android:layout_marginRight="20dp"
                 android:textColor="@color/colorblack"
                 android:layout_alignBottom="@+id/textView19"
-                android:layout_alignStart="@+id/brand8"/>
+                android:layout_alignStart="@+id/brand8"
+                android:layout_alignLeft="@+id/brand8" />
 
 
             <!--<Spinner
@@ -183,7 +189,8 @@
                 android:text="PRODUCTS"
 
                 android:textColor="@color/cred"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_alignLeft="@+id/textView19" />
             <TextView
                 android:id="@+id/productTxt"
                 android:layout_width="match_parent"
@@ -191,7 +198,8 @@
                 android:layout_marginRight="20dp"
                 android:textColor="@color/colorblack"
                 android:layout_alignBottom="@+id/textView21"
-                android:layout_alignStart="@+id/sizeTxt" />
+                android:layout_alignStart="@+id/sizeTxt"
+                android:layout_alignLeft="@+id/sizeTxt" />
 
             <!--<Spinner
                 android:id="@+id/productspinner8"
@@ -211,7 +219,8 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@color/colorblack"
                 android:ems="8"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:layout_alignParentRight="true" />
 
 
             <Button
@@ -236,7 +245,8 @@
                 android:textColor="@color/colorblack"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
-                android:text="Path"/>
+                android:text="Path"
+                android:layout_alignParentLeft="true" />
             <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
