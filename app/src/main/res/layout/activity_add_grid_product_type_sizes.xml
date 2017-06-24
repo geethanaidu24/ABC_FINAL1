@@ -208,7 +208,8 @@ android:layout_below="@+id/toolbar"
                 android:textColor="@color/cred"
                 android:textSize="18sp"
                 android:layout_below="@+id/textView21"
-                android:layout_alignStart="@+id/textView21" />
+                android:layout_alignStart="@+id/textView21"
+                android:layout_alignLeft="@+id/textView21" />
 
 
            <!-- <Spinner
@@ -252,7 +253,8 @@ android:layout_below="@+id/toolbar"
                 android:textColor="@color/colorblack"
                 android:layout_marginRight="20dp"
                 android:layout_alignStart="@+id/color8"
-                android:id="@+id/sizetext"/>
+                android:id="@+id/sizetext"
+                android:layout_alignLeft="@+id/color8" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -260,7 +262,8 @@ android:layout_below="@+id/toolbar"
                 android:textColor="@color/colorblack"
                 android:layout_marginRight="20dp"
                 android:layout_alignBottom="@+id/textView21"
-                android:layout_alignStart="@+id/sizetext" />
+                android:layout_alignStart="@+id/sizetext"
+                android:layout_alignLeft="@+id/sizetext" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -268,7 +271,8 @@ android:layout_below="@+id/toolbar"
                 android:layout_alignBottom="@+id/textView22"
                 android:layout_marginRight="20dp"
                 android:layout_alignStart="@+id/typetext"
-                android:id="@+id/protext"/>
+                android:id="@+id/protext"
+                android:layout_alignLeft="@+id/typetext" />
 
             <TextView
                 android:id="@+id/textView29"
@@ -279,7 +283,8 @@ android:layout_below="@+id/toolbar"
                android:layout_marginLeft="20dp"
                 android:textColor="@color/colorblack"
                 android:layout_marginTop="10dp"
-                android:text="NOTE: Image Size Should be of highest Resolution 2160px width and 1124px height"/>
+                android:text="NOTE: For Better Quality Please upload Image with highest Resolution 2160px width and 1124px height"
+                android:layout_alignParentLeft="true" />
         </RelativeLayout>
     </ScrollView>
 

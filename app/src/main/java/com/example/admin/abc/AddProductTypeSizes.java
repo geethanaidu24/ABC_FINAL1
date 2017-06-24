@@ -179,8 +179,8 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             BackTask bt = new BackTask();
             bt.execute();*/
             AlertDialog.Builder alert = new AlertDialog.Builder(AddProductTypeSizes.this);
-            alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
-            alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
+            alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
+            alert.setMessage("To Refresh Newly added content Go Back to Home Screen..");
             alert.setIcon(R.drawable.reload);
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override

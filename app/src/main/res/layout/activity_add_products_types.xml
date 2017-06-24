@@ -100,8 +100,8 @@
 
             <TextView
                 android:id="@+id/textView18"
-                android:layout_width="90dp"
-                android:layout_height="50dp"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
                 android:layout_alignStart="@+id/brandpath"
                 android:layout_below="@+id/brandpath"
                 android:layout_marginTop="15dp"
@@ -167,7 +167,7 @@
                 android:layout_below="@+id/brandimage"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
-                android:text="NOTE: Image Size Should be of highest Resolution 2160px width and 1124px height"
+                android:text="NOTE: For Better Quality Please upload Image with highest Resolution 2160px width and 1124px height"
                 android:textColor="@color/colorblack" />
 
             <!-- <Spinner

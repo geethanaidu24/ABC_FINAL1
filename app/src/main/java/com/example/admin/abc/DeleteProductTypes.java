@@ -177,8 +177,8 @@ public class DeleteProductTypes extends AppCompatActivity {
                                                 startActivity(intent);*/
 
                                                 AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypes.this);
-                                                alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
-                                                alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
+                                                alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
+                                                alert.setMessage("To Refresh Newly added content Go Back to Home Screen..\n Confirm Delete By Clicking on OK");
                                                 //alert.setMessage("Confirm Delete By Clicking on OK");
                                                 alert.setIcon(R.drawable.reload);
                                                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
