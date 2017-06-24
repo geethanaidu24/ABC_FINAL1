@@ -75,7 +75,8 @@
             android:layout_marginLeft="10dp"
             android:text="Select Products Types Sizes Final Images to be Deleted:"
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true" />
 
         <Spinner
             android:id="@+id/sp2"

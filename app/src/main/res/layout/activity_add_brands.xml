@@ -118,7 +118,7 @@ android:background="@drawable/backgroundfour"
             android:layout_height="wrap_content"
 
             android:text="NOTE: For Better Quality Please upload Image with highest Resolution 2160px width and 1124px height"
-            android:textColor="@color/colorblack"
+            android:textColor="@color/cred"
             android:layout_below="@+id/brandimage"
             android:layout_marginTop="10dp"
             android:layout_alignStart="@+id/brandpath"

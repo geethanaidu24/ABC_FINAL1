@@ -73,7 +73,8 @@
             android:layout_marginTop="50dp"
             android:text="Select Product Types to be Deleted:"
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true" />
 
         <Spinner
             android:id="@+id/gridproducttypesp"

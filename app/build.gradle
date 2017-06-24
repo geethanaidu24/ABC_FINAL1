@@ -16,7 +16,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.admin.abc"
-        minSdkVersion 12
+        minSdkVersion 14
 
         targetSdkVersion 25
         versionCode 1
@@ -82,6 +82,7 @@ dependencies {
     compile 'net.gotev:uploadservice:2.1'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.amitshekhar.android:android-networking:0.2.0'
+    compile 'com.chabbal:slidingdotsplash:1.0.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     testCompile 'junit:junit:4.12'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'

@@ -59,7 +59,8 @@
 
 
         android:layout_below="@+id/textView13"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,7 +91,8 @@
             android:layout_marginTop="60dp"
             android:text="Enter Width"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true" />
 
         <EditText
             android:id="@+id/width1"
@@ -103,7 +105,8 @@
             android:ems="10"
             android:inputType="number"
             android:textColor="@color/colorblack"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/brandbtn" />
 
         <TextView
             android:id="@+id/textView36"
@@ -114,7 +117,8 @@
             android:layout_marginTop="15dp"
             android:text="Enter Height"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/textView35" />
 
         <EditText
             android:id="@+id/height1"
@@ -128,7 +132,8 @@
             android:inputType="number"
             android:textColor="@color/colorblack"
 
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/width1" />
 
         <TextView
             android:id="@+id/textView37"
@@ -139,7 +144,8 @@
             android:layout_marginTop="15dp"
             android:text="Enter Length"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/textView36" />
 
         <EditText
             android:id="@+id/length1"
@@ -154,7 +160,8 @@
 
             android:textColor="@color/colorblack"
 
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/height1" />
 
         <TextView
             android:id="@+id/textView38"
@@ -165,7 +172,8 @@
             android:layout_marginTop="15dp"
             android:text="Products-Types"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/textView37" />
 
         <TextView
             android:id="@+id/protypeDisplay"
@@ -180,7 +188,9 @@
             android:layout_toEndOf="@+id/textView38"
 
             android:textColor="@color/colorblack"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_toRightOf="@+id/textView38"
+            android:layout_alignLeft="@+id/length1" />
 
         <!--<Spinner
             android:id="@+id/productsspinner"
@@ -201,7 +211,8 @@
             android:layout_marginTop="15dp"
             android:text="Products"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/textView38" />
 
         <TextView
             android:id="@+id/proDisplay"
@@ -214,7 +225,8 @@
             android:layout_marginRight="20dp"
             android:textColor="@color/colorblack"
 
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/protypeDisplay" />
 
         <!--<Spinner
             android:id="@+id/spinner8"
