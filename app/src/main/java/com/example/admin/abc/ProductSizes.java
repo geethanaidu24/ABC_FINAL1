@@ -258,26 +258,26 @@ public class ProductSizes extends AppCompatActivity {
             final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
-            if (length != 0 && width != 0 && height != 0) {
-                finalProductSelctedSize = length + "X" + width + "X" + height ;
+            if(length !=0 && width !=0 && height !=0){
+                finalProductSelctedSize =  length + " "+"X"+" " +width  + " "+"X"+" " + height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length == 0 && width != 0 && height != 0) {
-                finalProductSelctedSize = width + "X" + height;
+            }else if(length ==0 && width !=0 && height !=0){
+                finalProductSelctedSize =  width + " "+"X"+" " + height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length != 0 && width == 0 && height != 0) {
-                finalProductSelctedSize = length + "X" + height;
+            }else if(length !=0 && width ==0 && height !=0){
+                finalProductSelctedSize =  length +" "+"X"+" "+ height;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length != 0 && width != 0 && height == 0) {
-                finalProductSelctedSize = length + "X" + width;
+            }else if(length !=0 && width !=0 && height ==0 ){
+                finalProductSelctedSize =  length + " "+"X"+" " + width ;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
-            } else if (length == 0 && width != 0 && height == 0) {
-                finalProductSelctedSize = width + "";
+            }else if(length ==0 && width !=0 && height ==0 ){
+                finalProductSelctedSize = width + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
-            } else if (length != 0 && width == 0 && height == 0) {
-                finalProductSelctedSize = length + "";
+            }else if(length !=0 && width ==0 && height ==0 ){
+                finalProductSelctedSize = length + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
-            } else if (length == 0 && width == 0 && height != 0) {
-                finalProductSelctedSize = height + "";
+            }else if(length ==0 && width ==0 && height !=0 ){
+                finalProductSelctedSize = height + "" ;
                 typeNameTxt.setText(finalProductSelctedSize);
             }
             // open new activity

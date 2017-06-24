@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteProductSizes extends AppCompatActivity {
-    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+   // final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     int recivedProductId;
@@ -47,7 +47,7 @@ public class DeleteProductSizes extends AppCompatActivity {
     private static final String DATA_Size_Spin = Config.productSizesUrlAddress;
     URL DATA_Spinner = null;
     String finalSize,selectdProName;
-   // ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,7 @@ public class DeleteProductSizes extends AppCompatActivity {
       Intent intent = getIntent();
      recivedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
-        //mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
 
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
@@ -78,20 +78,14 @@ public class DeleteProductSizes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        /*Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                        Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         in.putExtra("PRODUCTID_KEY", recivedProductId);
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
                         in.putExtra("ProductSizeList",mySQLDataBases);
-                        startActivity(in);
-                        finish();*/
-                        Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
 
@@ -107,7 +101,7 @@ public class DeleteProductSizes extends AppCompatActivity {
         if (click == 1) {
             click = 0;
             //finishAffinity();
-            /*Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
+            Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -116,13 +110,13 @@ public class DeleteProductSizes extends AppCompatActivity {
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
                         in.putExtra("ProductSizeList",mySQLDataBases);
                         startActivity(in);
-                        finish();*/
-            Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
+                        finish();
+          /*  Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(in);
-            finish();
+            finish();*/
         }
     }
     private void initializeViews()
@@ -174,11 +168,11 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                    Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
-                                                    intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                   // Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
+                                                   /* intent.putExtra("PRODUCTID_KEY", recivedProductId);
 
                                                     intent.putExtra("PRODUCTNAME_KEY",selectdProName);
-                                                    startActivity(intent);
+                                                    startActivity(intent);*/
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/

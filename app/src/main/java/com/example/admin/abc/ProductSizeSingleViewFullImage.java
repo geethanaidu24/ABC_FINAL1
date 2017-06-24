@@ -15,9 +15,14 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 public class ProductSizeSingleViewFullImage extends AppCompatActivity {
     ImageView im;
     Context c;
+    ArrayList<MySQLDataBase> mySQLDataBases;
+    private static int pid,psid,selProLength,selProWidth,selProHeight;
+    private static String selProductName,selFinalProSize,image,name,brand,color,size;
 int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +34,22 @@ int click=0;
 
             im = (ImageView) findViewById(R.id.fullimage);
 
-            Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-            final String image = i.getExtras().getString("IMAGE_KEY");
-            final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-            final int psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
-            final String name = i.getExtras().getString("NAME_KEY");
+        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
 
-            final String brand = i.getExtras().getString("BRAND_KEY");
-            final String color = i.getExtras().getString("COLOR_KEY");
-            final String size = i.getExtras().getString("SIZE_KEY");
+
+        selProductName = i.getExtras().getString("PRODUCTNAME_KEY");
+        selFinalProSize = i.getExtras().getString("FINALPROSELSIZE_KEY");
+        selProLength = i.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        selProWidth = i.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
+        selProHeight = i.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductSizeList");
+             image = i.getExtras().getString("IMAGE_KEY");
+             pid = i.getExtras().getInt("PRODUCTID_KEY");
+            psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
+           name = i.getExtras().getString("NAME_KEY");
+             brand = i.getExtras().getString("BRAND_KEY");
+             color = i.getExtras().getString("COLOR_KEY");
+            size = i.getExtras().getString("SIZE_KEY");
         Glide.with(this)
                 .load(image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
@@ -63,6 +75,20 @@ int click=0;
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("IMAGE_KEY", image);
+                        in.putExtra("PRODUCTID_KEY", pid);
+                        in.putExtra("PRODUCTSIZEID_KEY", psid);
+                        in.putExtra("NAME_KEY", name);
+                        in.putExtra("BRAND_KEY", brand);
+                        in.putExtra("COLOR_KEY", color);
+                        in.putExtra("SIZE_KEY", size);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
+                        in.putExtra("PRODUCTNAME_KEY",selProductName);
+                        in.putExtra("FINALPROSELSIZE_KEY",selFinalProSize);
+                        in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
+                        in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
+                        in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
+                        startActivity(in);
                         finish();
                     }
                 }
@@ -123,6 +149,20 @@ int click=0;
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("IMAGE_KEY", image);
+            in.putExtra("PRODUCTID_KEY", pid);
+            in.putExtra("PRODUCTSIZEID_KEY", psid);
+            in.putExtra("NAME_KEY", name);
+            in.putExtra("BRAND_KEY", brand);
+            in.putExtra("COLOR_KEY", color);
+            in.putExtra("SIZE_KEY", size);
+            in.putExtra("ProductSizeList",mySQLDataBases);
+            in.putExtra("PRODUCTNAME_KEY",selProductName);
+            in.putExtra("FINALPROSELSIZE_KEY",selFinalProSize);
+            in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
+            in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
+            in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
+            startActivity(in);
             finish();
         }
 

@@ -500,6 +500,16 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
                 Intent i = new Intent(c, ProductSizeImageSingleViewFullDetails.class);
                 i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                i.putExtra("PRODUCTNAME_KEY", selProductName);
+                i.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);
+                i.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
+                i.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
+                i.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
+                i.putExtra("ProductSizeList",mySQLDataBases);
                 i.putExtra("PRODUCTID_KEY", pid);
                 i.putExtra("PRODUCTSIZEID_KEY", psid);
                 i.putExtra("NAME_KEY", details[0]);

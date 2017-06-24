@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Geetha on 4/21/2017.
  */
@@ -28,13 +30,29 @@ ImageButton zoom;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
-
+    ArrayList<MySQLDataBase> mySQLDataBases;
+    private static int pid,psid,selProLength,selProWidth,selProHeight;
+    private static String selProductName,selFinalProSize;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
+        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
+        pid = i.getExtras().getInt("PRODUCTID_KEY");
+        psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
+        final String name = i.getExtras().getString("NAME_KEY");
+        final String image = i.getExtras().getString("IMAGE_KEY");
+        final String brand = i.getExtras().getString("BRAND_KEY");
+        final String color = i.getExtras().getString("COLOR_KEY");
+        final String size = i.getExtras().getString("SIZE_KEY");
+        selProductName = i.getExtras().getString("PRODUCTNAME_KEY");
+        selFinalProSize = i.getExtras().getString("FINALPROSELSIZE_KEY");
+        selProLength = i.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
+        selProWidth = i.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
+        selProHeight = i.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
 
+        mySQLDataBases = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductSizeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -47,11 +65,21 @@ ImageButton zoom;
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+                        Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        inn.putExtra("PRODUCTID_KEY", pid);
+                        inn.putExtra("PRODUCTNAME_KEY", selProductName);
+                        inn.putExtra("PRODUCTSIZEID_KEY", psid);
+                        inn.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);
+                        inn.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
+                        inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
+                        inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
+                        inn.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(inn);
+
                         finish();
                 }
                 }
@@ -69,14 +97,7 @@ ImageButton zoom;
         colorTxt = (TextView) findViewById(R.id.colorTxt);
 zoom=(ImageButton) findViewById(R.id.imageButton);
         // Get intent data
-        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-        final int psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
-        final String name = i.getExtras().getString("NAME_KEY");
-        final String image = i.getExtras().getString("IMAGE_KEY");
-        final String brand = i.getExtras().getString("BRAND_KEY");
-        final String color = i.getExtras().getString("COLOR_KEY");
-        final String size = i.getExtras().getString("SIZE_KEY");
+
         nameTxt.setText(name);
         brandTxt.setText(brand);
         colorTxt.setText(color);
@@ -94,7 +115,6 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
-
                     Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeSingleViewFullImage.class);
                     in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     in.putExtra("IMAGE_KEY", image);
@@ -104,6 +124,12 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
                     in.putExtra("BRAND_KEY", brand);
                     in.putExtra("COLOR_KEY", color);
                     in.putExtra("SIZE_KEY", size);
+                    in.putExtra("ProductSizeList",mySQLDataBases);
+                    in.putExtra("PRODUCTNAME_KEY",selProductName);
+                    in.putExtra("FINALPROSELSIZE_KEY",selFinalProSize);
+                    in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
+                    in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
+                    in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
                     startActivity(in);
                 }
             }
@@ -159,11 +185,20 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
+            Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            inn.putExtra("PRODUCTID_KEY", pid);
+            inn.putExtra("PRODUCTNAME_KEY", selProductName);
+            inn.putExtra("PRODUCTSIZEID_KEY", psid);
+            inn.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);
+            inn.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
+            inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
+            inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
+            inn.putExtra("ProductSizeList",mySQLDataBases);
+            startActivity(inn);
             finish();
         }
     }
