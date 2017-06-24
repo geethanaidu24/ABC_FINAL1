@@ -107,23 +107,19 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                       /* intent.putExtra("PRODUCTID_KEY", productId);
+                        intent.putExtra("PRODUCTID_KEY", productId);
                         intent.putExtra("PRODUCTNAME_KEY", productName);
                         intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                         intent.putExtra("PRODUCTTYPE_KEY", productType);
-                        intent.putExtra("PRODUCTTYPESIZEID_KEY",producttypeSizeId);
-                        intent.putExtra("WIDTH_KEY", selWidth);
-                        intent.putExtra("LENGTH_KEY", selLength);
-                        intent.putExtra("HEIGHT_KEY", selHeight);
-                        intent.putExtra("FINALSIZE_KEY", selectedProductSize);
+
                         intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
-                        intent.putExtra("ProductTypeList",mySQLDataBases1);*/
-                       // startActivity(intent);
+                        intent.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(intent);
                         finish();
                     }
                 }
             });
-              Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
+            Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
             toolbar.setOverflowIcon(drawable);
 
         }

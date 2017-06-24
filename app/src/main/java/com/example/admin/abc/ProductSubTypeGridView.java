@@ -541,6 +541,14 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);
                 i.putExtra("COLOR_KEY", details[3]);
+                i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                i.putExtra("PRODUCTID_KEY", selectedPid);
+                i.putExtra("PRODUCTNAME_KEY", selectedPname);
+                i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                i.putExtra("ProductSubTypeList",mySQLDataBases1);
+                i.putExtra("ProductTypeList",mySQLProTypes);
                 c.startActivity(i);
             }
         }

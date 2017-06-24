@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 import static com.example.admin.abc.R.id.productsadd;
 
 /**
@@ -32,7 +34,14 @@ int click=0;
     ImageView img;
     TextView nameTxt, brandTxt, colorTxt;
     Context c;
-
+    private int productSubTypeId;
+    private String productSubTypeName;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
+    private static int selectedPid;
+    private static String selectedPname;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
