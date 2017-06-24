@@ -157,13 +157,11 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     etCaption.setText("");
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
-                    /*Intent in=new Intent(AddProducts.this,AddProducts.class);
-                    startActivity(in);
-                    finish();*/
+
 
 
                    AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
-                    alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
+                    alert.setTitle(Html.fromHtml("<font color='#ff0000'> NOTE....</font>"));
                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
                     alert.setIcon(R.drawable.reload);
                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
