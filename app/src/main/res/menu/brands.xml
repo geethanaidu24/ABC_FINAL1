@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:All4One="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/algo"
-        android:icon="@mipmap/dots"
+        android:icon="@mipmap/ho"
         android:title="nose"
         All4One:showAsAction="always">
         <menu>

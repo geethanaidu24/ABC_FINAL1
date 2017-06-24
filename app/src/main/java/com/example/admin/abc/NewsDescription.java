@@ -27,7 +27,7 @@ int click=0;
         titleTxt = (TextView) findViewById(R.id.newstxt);
         descriptionTxt = (TextView) findViewById(R.id.description);
 
-        // Get intent dataintent.putExtra("NEWSIMAGE_KEY",details[0]);
+       //  Get intent dataintent.putExtra("NEWSIMAGE_KEY",details[0]);
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
         final String titleNews = i.getExtras().getString("NEWSTITLE");
         final String image = i.getExtras().getString("NEWSIMAGE_KEY");

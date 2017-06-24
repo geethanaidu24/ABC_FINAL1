@@ -42,10 +42,11 @@ Button b1,b2;
                         click = 0;
                         Intent in = new Intent(Trial.this, Main2Activity.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                         //finish();
                         // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     }
@@ -110,10 +111,11 @@ Button b1,b2;
             click = 0;
             Intent in = new Intent(Trial.this, Main2Activity.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
 
 

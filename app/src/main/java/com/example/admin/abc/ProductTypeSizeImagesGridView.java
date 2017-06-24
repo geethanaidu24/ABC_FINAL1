@@ -107,7 +107,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("PRODUCTID_KEY", productId);
+                       /* intent.putExtra("PRODUCTID_KEY", productId);
                         intent.putExtra("PRODUCTNAME_KEY", productName);
                         intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                         intent.putExtra("PRODUCTTYPE_KEY", productType);
@@ -117,8 +117,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                         intent.putExtra("HEIGHT_KEY", selHeight);
                         intent.putExtra("FINALSIZE_KEY", selectedProductSize);
                         intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
-                        intent.putExtra("ProductTypeList",mySQLDataBases1);
-                        startActivity(intent);
+                        intent.putExtra("ProductTypeList",mySQLDataBases1);*/
+                       // startActivity(intent);
                         finish();
                     }
                 }
@@ -223,9 +223,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         {
             Intent inn = new Intent(ProductTypeSizeImagesGridView.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+               inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -243,7 +243,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("PRODUCTID_KEY", productId);
+            /*intent.putExtra("PRODUCTID_KEY", productId);
             intent.putExtra("PRODUCTNAME_KEY", productName);
             intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
             intent.putExtra("PRODUCTTYPE_KEY", productType);
@@ -253,8 +253,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             intent.putExtra("HEIGHT_KEY", selHeight);
             intent.putExtra("FINALSIZE_KEY", selectedProductSize);
             intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
-            intent.putExtra("ProductTypeList",mySQLDataBases1);
-            startActivity(intent);
+            intent.putExtra("ProductTypeList",mySQLDataBases1);*/
+           // startActivity(intent);
             finish();
         }
 

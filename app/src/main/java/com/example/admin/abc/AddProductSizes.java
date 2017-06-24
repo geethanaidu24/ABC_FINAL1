@@ -59,10 +59,10 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product_sizes);
-        Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
+   Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
        selectdPId= intent.getExtras().getInt("PRODUCTID_KEY");
        selectdProName = intent.getExtras().getString("PRODUCTNAME_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+        //mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -75,7 +75,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
+                      /*  Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
@@ -83,6 +83,12 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                          in.putExtra("PRODUCTID_KEY", selectdPId);
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(AddProductSizes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -111,18 +117,24 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
-            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.putExtra("PRODUCTID_KEY", selectdPId);
-            in.putExtra("PRODUCTNAME_KEY",selectdProName);
-            in.putExtra("ProductSizeList",mySQLDataBases);
+           /*  Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                         in.putExtra("PRODUCTID_KEY", selectdPId);
+                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                        in.putExtra("ProductSizeList",mySQLDataBases);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(AddProductSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(in);
             finish();
         }
-        // finish();
+
     }
     @Override
     public void onClick(View view) {
@@ -161,7 +173,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
 
             BackTask bt = new BackTask();
             bt.execute();*/
-            AlertDialog.Builder alert = new AlertDialog.Builder(AddProductSizes.this);
+            /*AlertDialog.Builder alert = new AlertDialog.Builder(AddProductSizes.this);
             alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
             alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
             alert.setIcon(R.drawable.reload);
@@ -180,7 +192,7 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                 }
             });
             alert.show();
-
+*/
         }
 
     }

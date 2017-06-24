@@ -36,11 +36,12 @@ public class Refresh extends AppCompatActivity {
             @Override
             public void onClick(View v) {
     Intent in = new Intent(Refresh.this, MainActivity.class);
-                startActivity(in);
-                finish();
+
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(in);
+                finish();
             }
         });
     }

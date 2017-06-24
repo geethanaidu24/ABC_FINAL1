@@ -89,10 +89,12 @@ public class News extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(News.this, Main2Activity.class);
                         //startActivity(in);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -175,9 +177,9 @@ public class News extends AppCompatActivity {
         {
             Intent inn = new Intent(News.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+             inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -192,10 +194,12 @@ public class News extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(News.this, Main2Activity.class);
             //startActivity(in);
-            finish();
+
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
     }
     private void logout() {

@@ -123,12 +123,11 @@ public class DeleteContact extends AppCompatActivity {
                                                // Toast.makeText(DeleteContact.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
                                                    /* Intent intent = new Intent(DeleteContact.this, DeleteContact.class);
-
                                                     startActivity(intent);*/
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteContact.this);
+                                                   AlertDialog.Builder alert = new AlertDialog.Builder(DeleteContact.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");

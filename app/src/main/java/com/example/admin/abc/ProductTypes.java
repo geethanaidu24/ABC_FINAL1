@@ -96,7 +96,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                        //startActivity(in);
                         finish();
                     }
                 }
@@ -158,7 +158,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         Intent.FLAG_ACTIVITY_NEW_TASK);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
-                in.putExtra("ProductTypeList", mySQLDataBases1);
+               // in.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -172,9 +172,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                inn.putExtra("PRODUCTID_KEY", selectedPid);
+               inn.putExtra("PRODUCTID_KEY", selectedPid);
                 inn.putExtra("PRODUCT_NAME",selectedPname);
-                inn.putExtra("ProductTypeList", mySQLDataBases1);
+                //inn.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(inn);
                 return true;
             }
@@ -186,9 +186,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         {
             Intent inn = new Intent(ProductTypes.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+                        Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -205,7 +205,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+            //startActivity(in);
             finish();
 
         }

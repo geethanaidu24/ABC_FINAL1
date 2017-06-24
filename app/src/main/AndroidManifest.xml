@@ -35,6 +35,7 @@
         android:launchMode="singleInstance"
         android:splitMotionEvents="false"
         android:supportsRtl="true"
+        android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:windowEnableSplitTouch="false">
         <activity

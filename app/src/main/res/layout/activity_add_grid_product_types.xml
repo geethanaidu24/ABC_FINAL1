@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:splitMotionEvents="false"
@@ -101,12 +101,11 @@ android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="8"
-                android:layout_marginRight="20dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/colorblack"
-                android:layout_alignBaseline="@+id/textView11"
                 android:layout_alignBottom="@+id/textView11"
-                android:layout_alignParentEnd="true"/>
+                android:layout_alignLeft="@+id/brand8"
+                android:layout_alignStart="@+id/brand8" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -169,12 +168,12 @@ android:layout_marginLeft="10dp"
                 android:id="@+id/color8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textView17"
-                android:layout_alignParentEnd="true"
                 android:ems="8"
                 android:textColor="@color/colorblack"
-                android:layout_marginRight="20dp"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                android:layout_below="@+id/brand8"
+                android:layout_alignLeft="@+id/brand8"
+                android:layout_alignStart="@+id/brand8" />
 
 
             <Button

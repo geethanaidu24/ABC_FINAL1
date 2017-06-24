@@ -75,7 +75,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/pdschan"
+                android:background="@drawable/pr"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
             <View
@@ -94,7 +94,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/abschan"
+                android:background="@drawable/absred"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
@@ -122,7 +122,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/enqchang"
+                android:background="@drawable/enqfred"
 
                 android:gravity="center"
                 android:scaleType="centerCrop" />
@@ -141,7 +141,7 @@
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/ctschan"
+                android:background="@drawable/ctsfred"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 

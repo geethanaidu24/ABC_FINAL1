@@ -66,11 +66,13 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(Contact.this, Main2Activity.class);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        // startActivity(in);
+
+                         startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -148,9 +150,9 @@ int click=0;
         {
             Intent inn = new Intent(Contact.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-               /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(inn);
 
             return true;
@@ -165,10 +167,12 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent in = new Intent(Contact.this, Main2Activity.class);
-            finish();
+
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(in);
+            finish();
         }
     }
     private void logout() {

@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class DeleteProductTypeSizes extends AppCompatActivity {
 
-   // final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+   final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     int productId,productTypeId;
@@ -49,8 +49,8 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
     private static final String DATA_Size_Spin = Config.productTypeSizesUrlAddress;
     URL DATA_Spinner = null;
     String finalSize,selectedProductName1,selectedProductType1;
-    ArrayList<MySQLDataBase> mySQLDataBases;
-    ArrayList<MySQLDataBase> mySQLDataBases1;
+   // ArrayList<MySQLDataBase> mySQLDataBases;
+  //  ArrayList<MySQLDataBase> mySQLDataBases1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +64,9 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
 
         selectedProductName1 = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedProductType1 = intent.getExtras().getString("PRODUCTTYPE_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
-
-        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+//        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+//
+//        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Uri builtUri = Uri.parse(DATA_Size_Spin)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(productId))
@@ -91,7 +91,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
+                       /* Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
 
@@ -104,6 +104,12 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                         in.putExtra("ProductTypeSizeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
+                        finish();*/
+                        Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
                         finish();
                     }
@@ -119,18 +125,25 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
-            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            //finish();
+             /* Intent in = new Intent(DeleteProductTypeSizes.this, ProductTypeSizes.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //finish();
+
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", productId);
+                        in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+                        in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+                        in.putExtra("ProductTypeSizeList",mySQLDataBases);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
+                        finish();*/
+            Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("PRODUCTID_KEY", productId);
-            in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
-            in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
-            in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
-            in.putExtra("ProductTypeSizeList",mySQLDataBases);
-            in.putExtra("ProductTypeList",mySQLDataBases1);
             startActivity(in);
             finish();
         }
@@ -186,16 +199,16 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductTypeSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                   /* Intent intent = new Intent(DeleteProductTypeSizes.this, DeleteProductTypeSizes.class);
+                                                Intent intent = new Intent(DeleteProductTypeSizes.this, DeleteProductTypeSizes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                     intent.putExtra("PRODUCTID_KEY", productId);
 
-                                                    startActivity(intent);*/
+                                                    startActivity(intent);
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
 
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypeSizes.this);
+                                                  /*  AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProductTypeSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -216,7 +229,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                             startActivity(in);
                                                         }
                                                     });
-                                                    alert.show();
+                                                    alert.show();*/
                                                 } else {
                                                     Toast.makeText(DeleteProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }
@@ -316,17 +329,17 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                 //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
                 if(length !=0 && width !=0 && height !=0){
-                    finalSize =  width + "X" + height + "X" + length;
+                    finalSize =  length + " "+"X"+" " + width + " "+"X"+" " + height;
                     listItems.add(String.valueOf(finalSize));
 
                 }else if(length ==0 && width !=0 && height !=0){
-                    finalSize =  width + "X" + height;
+                    finalSize =  width + " "+"X"+" " + height;
                     listItems.add(String.valueOf(finalSize));
                 }else if(length !=0 && width ==0 && height !=0){
-                    finalSize =  length + "X" + height;
+                    finalSize =  length +" "+"X"+" "+ height;
                     listItems.add(String.valueOf(finalSize));
                 }else if(length !=0 && width !=0 && height ==0 ){
-                    finalSize =  length + "X" + width ;
+                    finalSize =  length + " "+"X"+" "+ width ;
                     listItems.add(String.valueOf(finalSize));
                 }else if(length ==0 && width !=0 && height ==0 ){
                     finalSize = width + "" ;
