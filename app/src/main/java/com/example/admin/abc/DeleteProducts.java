@@ -146,10 +146,10 @@ public class DeleteProducts extends AppCompatActivity {
                                                     String responseString = response.get(0).toString();
                                                     Toast.makeText(DeleteProducts.this, responseString, Toast.LENGTH_SHORT).show();
                                                     if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                        Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
+                                                        /*Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
                                                         startActivity(intent);
                                                         finish();
-
+*/
                                                         AlertDialog.Builder alert = new AlertDialog.Builder(DeleteProducts.this);
                                                         alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
                                                         alert.setMessage("To Refresh Newly added content Go Back to Home Screen..\n Confirm Delete By Clicking on OK");

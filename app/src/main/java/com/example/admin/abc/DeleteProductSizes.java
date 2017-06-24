@@ -37,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteProductSizes extends AppCompatActivity {
-   // final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+   //final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     private Spinner sp;
     private Button btnAdd;
     int recivedProductId;
@@ -168,8 +168,8 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteProductSizes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                   // Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
-                                                   /* intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                  /*  Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
+                                                    intent.putExtra("PRODUCTID_KEY", recivedProductId);
 
                                                     intent.putExtra("PRODUCTNAME_KEY",selectdProName);
                                                     startActivity(intent);*/
@@ -317,7 +317,6 @@ public class DeleteProductSizes extends AppCompatActivity {
                     finalSize = height + "" ;
                     listItems.add(String.valueOf(finalSize));
                 }
-
             }
 
             adapter=new ArrayAdapter(DeleteProductSizes.this,R.layout.spinner_layout, R.id.txt,listItems);

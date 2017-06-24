@@ -351,7 +351,6 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                     finalSize = height + "" ;
                     listItems.add(String.valueOf(finalSize));
                 }
-
             }
 
             adapter=new ArrayAdapter(DeleteProductTypeSizes.this,R.layout.spinner_layout, R.id.txt,listItems);

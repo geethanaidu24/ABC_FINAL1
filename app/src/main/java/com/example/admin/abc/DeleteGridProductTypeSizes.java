@@ -90,6 +90,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
 
         }
 
+
         Uri builtUri = Uri.parse(DelProTypeSizeurl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedProductId))
