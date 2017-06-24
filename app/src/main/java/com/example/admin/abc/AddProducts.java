@@ -157,9 +157,9 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     etCaption.setText("");
                     tvPath.setText("");
                     imageView.setImageResource(R.mipmap.browseimage);
-                    Intent in=new Intent(AddProducts.this,AddProducts.class);
+                    /*Intent in=new Intent(AddProducts.this,AddProducts.class);
                     startActivity(in);
-                    finish();
+                    finish();*/
 
 
                    AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
