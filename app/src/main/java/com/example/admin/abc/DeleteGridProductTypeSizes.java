@@ -213,7 +213,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridProductTypeSizes.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                  Intent intent = new Intent(DeleteGridProductTypeSizes.this, DeleteGridProductTypeSizes.class);
+                                                  /*Intent intent = new Intent(DeleteGridProductTypeSizes.this, DeleteGridProductTypeSizes.class);
                                                     intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
                                                     intent.putExtra("PRODUCTID_KEY", recivedProductId);
                                                     intent.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
@@ -222,12 +222,12 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                     intent.putExtra("WIDTH_KEY", finalProWidth);
                                                     intent.putExtra("LENGTH_KEY", finalProLength);
                                                     intent.putExtra("HEIGHT_KEY", finalProHeight);
-                                                    startActivity(intent);
+                                                    startActivity(intent);*/
    /* adapter.notifyDataSetChanged();
     BackTask bt = new BackTask();
     bt.execute();*/
 
-                                                   /* AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductTypeSizes.this);
+                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductTypeSizes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                                                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...\n Confirm Delete By Clicking on OK");
                                                     //alert.setMessage("Confirm Delete By Clicking on OK");
@@ -236,6 +236,9 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent in=new Intent(DeleteGridProductTypeSizes.this,DeleteGridProductTypeSizes.class);
+                                                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             in.putExtra("PRODUCTID_KEY", recivedProductId);
                                                             in.putExtra("PRODUCTNAME_KEY", recvdProName);
                                                             in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
@@ -251,7 +254,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                             //finish();
                                                         }
                                                     });
-                                                    alert.show();*/
+                                                    alert.show();
                                                 } else {
                                                     Toast.makeText(DeleteGridProductTypeSizes.this, responseString, Toast.LENGTH_SHORT).show();
                                                 }
