@@ -62,7 +62,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         finalSelProSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(recvdLength !=0 && recvdWidth !=0 && recvdHeight !=0){
-            finalSelProSize =  recvdWidth + "X" + recvdHeight + "X" + recvdLength;
+            finalSelProSize =  recvdLength + "X" + recvdWidth + "X" +recvdHeight ;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight !=0){
             finalSelProSize =  recvdWidth + "X" + recvdHeight;
@@ -71,7 +71,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             finalSelProSize =  recvdLength + "X" + recvdHeight;
 
         }else if(recvdLength !=0 && recvdWidth !=0 && recvdHeight ==0 ){
-            finalSelProSize =  recvdLength + "X" + recvdHeight ;
+            finalSelProSize =  recvdLength + "X" + recvdWidth ;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight ==0 ){
             finalSelProSize = recvdWidth + "" ;
@@ -220,15 +220,19 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent=new Intent(DeleteGridProductSizes.this,DeleteGridProductSizes.class);
-                                                            intent.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
-                                                            intent.putExtra("PRODUCTID_KEY", recivedProductId);
-                                                            intent.putExtra("PRODUCTNAME_KEY",recvdProName );
-                                                            intent.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
-                                                            intent.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
-                                                            intent.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
-                                                            startActivity(intent);
-                                                            finish();
+                                                            Intent in=new Intent(DeleteGridProductSizes.this,DeleteGridProductSizes.class);
+                                                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            in.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            in.putExtra("PRODUCTNAME_KEY",recvdProName );
+                                                            in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
+                                                            in.putExtra("FINALPROSELSIZE_KEY", finalSelProSize);
+                                                            in.putExtra("PRODUCTSIZEWIDTH_KEY", recvdWidth);
+                                                            in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
+                                                            in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
+                                                            in.putExtra("ProductSizeList",mySQLDataBases);
+                                                            startActivity(in);
                                                         }
                                                     });
                                                     alert.show();

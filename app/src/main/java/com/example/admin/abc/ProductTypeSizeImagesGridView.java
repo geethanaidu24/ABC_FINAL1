@@ -186,6 +186,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 in.putExtra("WIDTH_KEY", selWidth);
                 in.putExtra("LENGTH_KEY", selLength);
                 in.putExtra("HEIGHT_KEY", selHeight);
+                in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                in.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -194,20 +196,23 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             if (click == 1) {
                 click = 0;
 
-                Intent inn = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
+                Intent in = new Intent(ProductTypeSizeImagesGridView.this, DeleteGridProductTypeSizes.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                inn.putExtra("PRODUCTID_KEY", productId);
-                inn.putExtra("PRODUCTTYPEID_KEY", productTypeId);
-                inn.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
-                inn.putExtra("PRODUCTNAME_KEY", productName);
-                inn.putExtra("PRODUCTTYPE_KEY", productType);
-                inn.putExtra("WIDTH_KEY", selWidth);
-                inn.putExtra("LENGTH_KEY", selLength);
-                inn.putExtra("HEIGHT_KEY", selHeight);
-                startActivity(inn);
+                in.putExtra("PRODUCTID_KEY", productId);
+                in.putExtra("PRODUCTNAME_KEY", productName);
+                in.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
+                in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                in.putExtra("PRODUCTTYPE_KEY", productType);
+                in.putExtra("FINALSIZE_KEY", selectedProductSize);
+                in.putExtra("WIDTH_KEY", selWidth);
+                in.putExtra("LENGTH_KEY", selLength);
+                in.putExtra("HEIGHT_KEY", selHeight);
+                in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                in.putExtra("ProductTypeList",mySQLDataBases1);
+                startActivity(in);
                 return true;
             }
         } else if (id == R.id.logout) {

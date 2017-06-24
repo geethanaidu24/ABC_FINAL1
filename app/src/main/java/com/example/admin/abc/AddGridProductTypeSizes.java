@@ -76,7 +76,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
   //  String finalSize;
     Context context;
-
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLDataBases2;
     URL sizeSpinnerUrl = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,9 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         finalProLength = intent.getExtras().getInt("LENGTH_KEY");
         finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
         finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
+        mySQLDataBases2 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
             finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
 
@@ -140,6 +144,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         in.putExtra("WIDTH_KEY", finalProWidth);
                         in.putExtra("LENGTH_KEY", finalProLength);
                         in.putExtra("HEIGHT_KEY", finalProHeight);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        in.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         startActivity(in);
                         finish();
                     }
@@ -183,6 +189,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         in.putExtra("WIDTH_KEY", finalProWidth);
         in.putExtra("LENGTH_KEY", finalProLength);
         in.putExtra("HEIGHT_KEY", finalProHeight);
+        in.putExtra("ProductTypeList",mySQLDataBases1);
+        in.putExtra("ProductTypeSizeList",mySQLDataBases2);
         startActivity(in);
         finish();
     }
@@ -239,8 +247,21 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddGridProductTypeSizes.this,AddGridProductTypeSizes.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                    in.putExtra("PRODUCTID_KEY", recivedProductId);
+                    in.putExtra("PRODUCTNAME_KEY", recivedProductName);
+                    in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
+                    in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                    in.putExtra("PRODUCTTYPE_KEY", recivedProducttype);
+                    in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+                    in.putExtra("WIDTH_KEY", finalProWidth);
+                    in.putExtra("LENGTH_KEY", finalProLength);
+                    in.putExtra("HEIGHT_KEY", finalProHeight);
+                    in.putExtra("ProductTypeList",mySQLDataBases1);
+                    in.putExtra("ProductTypeSizeList",mySQLDataBases2);
                     startActivity(in);
-                    finish();
                 }
             });
             alert.show();

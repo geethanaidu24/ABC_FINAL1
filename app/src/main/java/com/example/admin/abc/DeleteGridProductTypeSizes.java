@@ -45,8 +45,10 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
     private static final String DATA_DELETE_URL=Config.producttypeSizesGridsCRUD;
     final static String DelProTypeSizeurl =Config.productTypeSizeImgUrlAddress;
     private static int finalProLength,finalProWidth,finalProHeight;
-    private static String finalSelProtypeSize, recvdProName,recvdProtype;
+    private static String finalSelProtypeSize, recvdProName,recvdProtype,recivedFinalSize;
     URL delGridProTypeSizeSpin = null;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLDataBases2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +63,10 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         finalProLength = intent.getExtras().getInt("LENGTH_KEY");
         finalProWidth = intent.getExtras().getInt("WIDTH_KEY");
         finalProHeight = intent.getExtras().getInt("HEIGHT_KEY");
+        recivedFinalSize = intent.getExtras().getString("FINALSIZE_KEY");
+        mySQLDataBases2 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
             finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
 
@@ -112,6 +118,17 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recivedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                        in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
+                        in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                        in.putExtra("PRODUCTTYPE_KEY", recvdProtype);
+                        in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+                        in.putExtra("WIDTH_KEY", finalProWidth);
+                        in.putExtra("LENGTH_KEY", finalProLength);
+                        in.putExtra("HEIGHT_KEY", finalProHeight);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        in.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         startActivity(in);
                         finish();
                     }
@@ -130,6 +147,17 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", recivedProductId);
+            in.putExtra("PRODUCTNAME_KEY", recvdProName);
+            in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
+            in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+            in.putExtra("PRODUCTTYPE_KEY", recvdProtype);
+            in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+            in.putExtra("WIDTH_KEY", finalProWidth);
+            in.putExtra("LENGTH_KEY", finalProLength);
+            in.putExtra("HEIGHT_KEY", finalProHeight);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
+            in.putExtra("ProductTypeSizeList",mySQLDataBases2);
             startActivity(in);
             finish();
         }
@@ -207,17 +235,20 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                                                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent=new Intent(DeleteGridProductTypeSizes.this,DeleteGridProductTypeSizes.class);
-                                                            intent.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
-                                                            intent.putExtra("PRODUCTID_KEY", recivedProductId);
-                                                            intent.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
-                                                            intent.putExtra("PRODUCTNAME_KEY", recvdProName);
-                                                            intent.putExtra("PRODUCTTYPE_KEY", recvdProtype);
-                                                            intent.putExtra("WIDTH_KEY", finalProWidth);
-                                                            intent.putExtra("LENGTH_KEY", finalProLength);
-                                                            intent.putExtra("HEIGHT_KEY", finalProHeight);
-                                                            startActivity(intent);
-                                                            finish();
+                                                            Intent in=new Intent(DeleteGridProductTypeSizes.this,DeleteGridProductTypeSizes.class);
+                                                            in.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                                                            in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductsizeID);
+                                                            in.putExtra("PRODUCTTYPEID_KEY", recivedProductTypeId);
+                                                            in.putExtra("PRODUCTTYPE_KEY", recvdProtype);
+                                                            in.putExtra("FINALSIZE_KEY", recivedFinalSize);
+                                                            in.putExtra("WIDTH_KEY", finalProWidth);
+                                                            in.putExtra("LENGTH_KEY", finalProLength);
+                                                            in.putExtra("HEIGHT_KEY", finalProHeight);
+                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                                                            startActivity(in);
+                                                            //finish();
                                                         }
                                                     });
                                                     alert.show();

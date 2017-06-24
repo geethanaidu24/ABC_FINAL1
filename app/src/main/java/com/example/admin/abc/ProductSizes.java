@@ -257,7 +257,7 @@ public class ProductSizes extends AppCompatActivity {
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
             if (length != 0 && width != 0 && height != 0) {
-                finalProductSelctedSize = width + "X" + height + "X" + length;
+                finalProductSelctedSize = length + "X" + width + "X" + height ;
                 typeNameTxt.setText(String.valueOf(finalProductSelctedSize));
             } else if (length == 0 && width != 0 && height != 0) {
                 finalProductSelctedSize = width + "X" + height;

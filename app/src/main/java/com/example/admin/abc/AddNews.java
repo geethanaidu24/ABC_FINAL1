@@ -148,8 +148,10 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent in=new Intent(AddNews.this,AddNews.class);
+                                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                        Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(in);
-                                finish();
                             }
                         });
                         alert.show();

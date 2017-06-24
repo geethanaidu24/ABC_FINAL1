@@ -9,6 +9,7 @@
     android:splitMotionEvents="false"
               android:layout_height="match_parent"
     android:background="@drawable/backgroundfour"
+    android:focusableInTouchMode="true"
               tools:context=".MainActivity">
     <include layout="@layout/activity_toolbar"></include>
 <!--

@@ -62,7 +62,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
         final GridView gv = (GridView) findViewById(R.id.gv);
 
-        // Get intent data
+        // Get intent data in.putExtra("PRODUCTID_KEY", recivedProductId);
+
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         productId = intent.getExtras().getInt("PRODUCTID_KEY");
         selProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
@@ -221,9 +222,6 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
             //finish();
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);

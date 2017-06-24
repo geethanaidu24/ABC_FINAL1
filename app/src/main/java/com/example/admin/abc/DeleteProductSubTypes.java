@@ -40,14 +40,15 @@ import java.util.ArrayList;
  */
 
 public class DeleteProductSubTypes extends AppCompatActivity {
-    final ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     private Spinner sp;
     private Button btnAdd;
     int click=0;
     private ArrayAdapter<MySQLDataBase> adapter ;
     private static final String DATA_DELETE_URL=Config.productSubTypesCRUD;
-    private static int recvdProTypeId;
-    private static String recvdProType;
+    private static int recvdProTypeId,recvdproid;
+    private static String recvdProType,recvdproname;
     URL ProSubTypeurlAddress = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,11 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         recvdProTypeId = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         recvdProType = intent.getExtras().getString("PRODUCTTYPE_KEY");
+        recvdproid = intent.getExtras().getInt("PRODUCTID_KEY");
+        recvdproname = intent.getExtras().getString("PRODUCTNAME_KEY");
+        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+
         Uri builtUri = Uri.parse(Config.productSubTypesUrlAddress)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recvdProTypeId))
@@ -80,13 +86,20 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
+                        Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //  finish();
-                        startActivity(in);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recvdproid);
+                        in.putExtra("PRODUCTNAME_KEY", recvdproname);
+                        in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
+                        in.putExtra("PRODUCTTYPE_KEY", recvdProType);
+                        in.putExtra("ProductSubTypeList",mySQLDataBases);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -99,13 +112,21 @@ public class DeleteProductSubTypes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
-            //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+           // Intent in = new Intent(DeleteProductSubTypes.this, Refresh.class);
+            Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
+            // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //  finish();
-            startActivity(in);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", recvdproid);
+            in.putExtra("PRODUCTNAME_KEY", recvdproname);
+            in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
+            in.putExtra("PRODUCTTYPE_KEY", recvdProType);
+            in.putExtra("ProductSubTypeList",mySQLDataBases);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(in);
+            finish();
         }
     }
     private void initializeViews()
@@ -172,11 +193,18 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
-                                                            intent.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
-                                                            intent.putExtra("PRODUCTTYPE_KEY",recvdProType);
-                                                            startActivity(intent);
-                                                            finish();
+                                                            Intent in = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
+                                                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            in.putExtra("PRODUCTID_KEY", recvdproid);
+                                                            in.putExtra("PRODUCTNAME_KEY", recvdproname);
+                                                            in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
+                                                            in.putExtra("PRODUCTTYPE_KEY", recvdProType);
+                                                            in.putExtra("ProductSubTypeList",mySQLDataBases);
+                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            startActivity(in);
+
                                                         }
                                                     });
                                                     alert.show();

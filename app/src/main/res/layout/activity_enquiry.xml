@@ -8,6 +8,7 @@
 
     android:background="@drawable/backgroundfour"
     tools:context="com.example.admin.abc.Enquiry"
+    android:focusableInTouchMode="true"
     >
     <include layout="@layout/activity_toolbar"></include>
     <!--<android.support.v7.widget.Toolbar

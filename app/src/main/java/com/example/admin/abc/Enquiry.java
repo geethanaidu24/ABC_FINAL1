@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 import cz.msebera.android.httpclient.util.TextUtils;
 
 public class Enquiry extends AppCompatActivity {
-ImageView im;
+    ImageView im;
     int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,12 @@ ImageView im;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(Enquiry.this, Main2Activity.class);
-                        finish();
+
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(in);
+                        finish();
                     }
                     //  startActivity(in);
                 }
@@ -71,6 +73,15 @@ ImageView im;
                     if (!isValidEmail(email)) {
                         onError = true;
                         your_email.setError("Invalid Email");
+                        Toast.makeText(Enquiry.this, "Please Enter valid Email", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    Boolean onErrorr = false;
+                    if (!isValidPhone(subject)) {
+                        onError = true;
+                        your_subject.setError("Invalid Contact Number");
+                        Toast.makeText(Enquiry.this, "Please Enter valid Contact Number", Toast.LENGTH_SHORT).show();
                         return;
                     }
 
@@ -125,28 +136,28 @@ ImageView im;
         finish();
     }*/
 
-        @Override
-        public void onResume() {
-            super.onResume();
-            //Get a Tracker (should auto-report)
+    @Override
+    public void onResume() {
+        super.onResume();
+        //Get a Tracker (should auto-report)
 
 
-        }
+    }
 
-        @Override
-        protected void onStart() {
-            super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-        }
+    }
 
-        @Override
-        protected void onStop() {
-            super.onStop();
+    @Override
+    protected void onStop() {
+        super.onStop();
 
-        }
+    }
 
 
-        // validating email id
+    // validating email id
 
     private boolean isValidEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -155,6 +166,20 @@ ImageView im;
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    public static boolean isValidPhone(String phone)
+    {
+        String expression = "^([0-9\\+]|\\(\\d{1,3}\\))[0-9\\-\\. ]{3,15}$";
+        CharSequence inputString = phone;
+        Pattern pattern = Pattern.compile(expression);
+        Matcher matcher = pattern.matcher(inputString);
+        if (matcher.matches())
+        {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 

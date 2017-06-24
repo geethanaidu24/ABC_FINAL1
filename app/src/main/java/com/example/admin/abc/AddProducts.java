@@ -191,7 +191,7 @@ builder.setPositiveButton("OK",null);
                         public void onClick(DialogInterface dialog, int which) {
                             Intent in=new Intent(AddProducts.this,AddProducts.class);
                             startActivity(in);
-                            finish();
+                            //finish();
                         }
                     });
                     alert.show();

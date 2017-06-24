@@ -62,7 +62,11 @@
         android:id="@+id/login"
         android:icon="@drawable/logibar"
         android:title="Login" />
-
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logibar"
+        android:title="Logout"
+        android:visible="false"/>
 
 
 </menu>

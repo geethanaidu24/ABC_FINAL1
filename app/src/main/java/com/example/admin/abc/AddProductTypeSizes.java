@@ -157,7 +157,6 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
     private void checkData() {
         if (txtwidth.length() < 1 || txtheight.length() < 1) {
             Toast toast = Toast.makeText(AddProductTypeSizes.this, "Fill All", Toast.LENGTH_SHORT);
-
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
             toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
@@ -187,8 +186,16 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductTypeSizes.this,AddProductTypeSizes.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                    in.putExtra("PRODUCTID_KEY", selectedProdutId1);
+                    in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+                    in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
+                    in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+                    in.putExtra("ProductTypeSizeList",mySQLDataBases);
+                    in.putExtra("ProductTypeList",mySQLDataBases1);
                     startActivity(in);
-                    finish();
                 }
             });
             alert.show();

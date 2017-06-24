@@ -57,7 +57,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
     private static int selectedPid;
     private static String selectedPname;
     ArrayList<MySQLDataBase> mySQLDataBases1;
-    @Override
+    ArrayList<MySQLDataBase> mySQLProSubDataBases = new ArrayList<>();
+    ArrayList<MySQLDataBase> mySQLProTypeSizeDataBases = new ArrayList<>();
+       @Override
     public void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
@@ -352,7 +354,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         String jsonData;
         int finalProductId,finalProductTypeId;
         String finalProductType,finalProductName;
-        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+       /* ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();*/
 
         private ProductSubTypesDataParser(Context c, String jsonData, int pid,String pname,int ptid, String ptname) {
             this.c = c;
@@ -393,7 +395,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTTYPE_KEY", finalProductType);
                     intent.putExtra("PRODUCTID_KEY", selectedPid);
                     intent.putExtra("PRODUCTNAME_KEY", selectedPname);
-                    intent.putExtra("ProductSubTypeList", mySQLDataBases);
+                    intent.putExtra("ProductSubTypeList", mySQLProSubDataBases);
                     intent.putExtra("ProductTypeList",mySQLDataBases1);
                     c.startActivity(intent);
                 }
@@ -420,8 +422,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             try {
                 JSONArray ja = new JSONArray(jsonData);
                 JSONObject jo = null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
+                mySQLProSubDataBases.clear();
+                MySQLDataBase mySQLProSubDataBase;
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
@@ -429,12 +431,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     String ProductSubTypeName = jo.getString("ProductSubTypeName");
                     String ImageUrl = jo.getString("ImageUrl");
                     int ProductTypeId = jo.getInt("ProductTypeId");
-                    mySQLDataBase = new MySQLDataBase();
-                    mySQLDataBase.setProductSubTypeId(ProductSubTypeId);
-                    mySQLDataBase.setProductSubTypeName(ProductSubTypeName);
-                    mySQLDataBase.setProductSubTypeImageUrl(ImageUrl);
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBases.add(mySQLDataBase);
+                    mySQLProSubDataBase = new MySQLDataBase();
+                    mySQLProSubDataBase.setProductSubTypeId(ProductSubTypeId);
+                    mySQLProSubDataBase.setProductSubTypeName(ProductSubTypeName);
+                    mySQLProSubDataBase.setProductSubTypeImageUrl(ImageUrl);
+                    mySQLProSubDataBase.setProductTypeId(ProductTypeId);
+                    mySQLProSubDataBases.add(mySQLProSubDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -509,7 +511,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         int finalProId, finalProTypeId;
         String finalProName,finalProType;
 
-        ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
+        /*ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();*/
 
         private ProductTypeSizesDataParser(Context c, String jsonData, int pid,String pname, int ptid,String ptname) {
             this.c = c;
@@ -546,7 +548,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     intent.putExtra("PRODUCTNAME_KEY", finalProName);
                     intent.putExtra("PRODUCTTYPEID_KEY", finalProTypeId);
                     intent.putExtra("PRODUCTTYPE_KEY", finalProType);
-                    intent.putExtra("ProductTypeSizeList", mySQLDataBases);
+                    intent.putExtra("ProductTypeSizeList", mySQLProTypeSizeDataBases);
                     intent.putExtra("ProductTypeList",mySQLDataBases1);
                     c.startActivity(intent);
                 }
@@ -573,8 +575,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
+                mySQLProTypeSizeDataBases.clear();
+                MySQLDataBase mySQLProTypeSizeDataBase;
                 for(int i=0;i<ja.length();i++)
                 {
                     jo=ja.getJSONObject(i);
@@ -587,17 +589,17 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     // String Measure =jo.getString("Measurement");
                     int ProductTypeId=jo.getInt("ProductTypeId");
                     int ProductId = jo.getInt("ProductId");
-                    mySQLDataBase=new MySQLDataBase();
+                    mySQLProTypeSizeDataBase=new MySQLDataBase();
 
-                    mySQLDataBase.setProductSizeId(ProductSizeId);
-                    mySQLDataBase.setWidth(Width);
-                    mySQLDataBase.setHeight(Height);
-                    mySQLDataBase.setLength(Length);
+                    mySQLProTypeSizeDataBase.setProductSizeId(ProductSizeId);
+                    mySQLProTypeSizeDataBase.setWidth(Width);
+                    mySQLProTypeSizeDataBase.setHeight(Height);
+                    mySQLProTypeSizeDataBase.setLength(Length);
 
                     //productTypeSizeDBData.setMeasurement(Measure);
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBase.setProductId(ProductId);
-                    mySQLDataBases.add(mySQLDataBase);
+                    mySQLProTypeSizeDataBase.setProductTypeId(ProductTypeId);
+                    mySQLProTypeSizeDataBase.setProductId(ProductId);
+                    mySQLProTypeSizeDataBases.add(mySQLProTypeSizeDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -715,6 +717,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         in.putExtra("PRODUCTTYPEID_KEY", ptid);
                         in.putExtra("PRODUCTTYPE_KEY", ptname);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        in.putExtra("ProductSubTypeList", mySQLProSubDataBases);
+                        in.putExtra("ProductTypeSizeList", mySQLProTypeSizeDataBases);
+                        in.putExtra("ProductTypeGridList", mySQLDataBases);
                         startActivity(in);
                     }
                 }else {

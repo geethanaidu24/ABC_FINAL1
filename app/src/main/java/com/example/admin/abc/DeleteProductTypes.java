@@ -86,12 +86,12 @@ public class DeleteProductTypes extends AppCompatActivity {
 
                         Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.putExtra("PRODUCTID_KEY", recvdProId);
-                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
-                        in.putExtra("ProductTypeList", mySQLDataBases);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", recvdProId);
+                        in.putExtra("PRODUCTNAME_KEY", recvdProName);
+                        in.putExtra("ProductTypeList", mySQLDataBases);
                         startActivity(in);
                         finish();
                     }
@@ -113,6 +113,9 @@ public class DeleteProductTypes extends AppCompatActivity {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", recvdProId);
+            in.putExtra("PRODUCTNAME_KEY", recvdProName);
+            in.putExtra("ProductTypeList", mySQLDataBases);
             startActivity(in);
             finish();
         }
@@ -181,11 +184,15 @@ public class DeleteProductTypes extends AppCompatActivity {
                                                 alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialog, int which) {
-                                                        Intent intent = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
-                                                        intent.putExtra("PRODUCTID_KEY",recvdProId);
-                                                        intent.putExtra("PRODUCT_NAME",recvdProName);
-                                                        startActivity(intent);
-                                                        finish();
+                                                        Intent inn = new Intent(DeleteProductTypes.this,DeleteProductTypes.class);
+                                                        inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        inn.putExtra("PRODUCTID_KEY", recvdProId);
+                                                        inn.putExtra("PRODUCT_NAME",recvdProName);
+                                                        inn.putExtra("ProductTypeList", mySQLDataBases);
+                                                        startActivity(inn);
+                                                        //finish();
                                                     }
                                                 });
                                                 alert.show();

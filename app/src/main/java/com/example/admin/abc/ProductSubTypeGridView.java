@@ -58,6 +58,8 @@ public class ProductSubTypeGridView extends AppCompatActivity {
     private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -74,6 +76,10 @@ public class ProductSubTypeGridView extends AppCompatActivity {
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+
+        mySQLProTypes = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList") ;
+
         Uri builtUri = Uri.parse(proSubUrl)
                 .buildUpon()
                 .appendQueryParameter(Config.PRODUCTSUBTYPEID_PARAM, Integer.toString(productSubTypeId))
@@ -99,10 +105,19 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
-                        finish();
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                       /* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*/
+                        intent.putExtra("PRODUCTID_KEY", selectedPid);
+                        intent.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        intent.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        intent.putExtra("ProductSubTypeList",mySQLDataBases1);
+                        intent.putExtra("ProductTypeList",mySQLProTypes);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             });
@@ -168,6 +183,8 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductSubTypeList",mySQLDataBases1);
+                in.putExtra("ProductTypeList",mySQLProTypes);
                 startActivity(in);
                 return true;
             }
@@ -176,16 +193,21 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             if (click == 1) {
                 click = 0;
 
-                Intent inn = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
+                Intent in = new Intent(ProductSubTypeGridView.this, DeleteGridSubTypes.class);
         // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
-                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+               // inn.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                inn.putExtra("PRODUCTNAME_KEY", selectedPname);
-                inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                inn.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-                startActivity(inn);
+                in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                in.putExtra("PRODUCTID_KEY", selectedPid);
+                in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductSubTypeList",mySQLDataBases1);
+                in.putExtra("ProductTypeList",mySQLProTypes);
+                startActivity(in);
                 return true;
             }
         } else if (id == R.id.logout) {
@@ -217,6 +239,15 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+                       /* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*/
+            intent.putExtra("PRODUCTID_KEY", selectedPid);
+            intent.putExtra("PRODUCTNAME_KEY", selectedPname);
+            intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+            intent.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+            intent.putExtra("ProductSubTypeList",mySQLDataBases1);
+            intent.putExtra("ProductTypeList",mySQLProTypes);
+            startActivity(intent);
             finish();
 
         }

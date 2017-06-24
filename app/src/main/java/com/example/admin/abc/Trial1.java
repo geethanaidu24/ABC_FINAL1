@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 public class Trial1 extends AppCompatActivity {
     Button b1,b2,b3;
     int click=0;
@@ -14,6 +16,10 @@ public class Trial1 extends AppCompatActivity {
     private String selectedProducttype;
     private static int selectedProductId;
     private static String selectedProductName;
+    ArrayList<MySQLDataBase> mySQLProDataBases;
+    ArrayList<MySQLDataBase> mySQLProSubDataBases;
+    ArrayList<MySQLDataBase> mySQLProTypeSizeDataBases;
+    ArrayList<MySQLDataBase> mySQLProTypeGridDataBases;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,14 @@ public class Trial1 extends AppCompatActivity {
         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
+        mySQLProDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
+
+        mySQLProSubDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+
+        mySQLProTypeSizeDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeSizeList");
+
+        mySQLProTypeGridDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -69,6 +83,8 @@ public class Trial1 extends AppCompatActivity {
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                     in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    in.putExtra("ProductTypeList",mySQLProDataBases);
+                    in.putExtra("ProductSubTypeList", mySQLProSubDataBases);
                     startActivity(in);
                     //b2.setEnabled(false);
                     b1.setEnabled(true);
@@ -95,6 +111,8 @@ public class Trial1 extends AppCompatActivity {
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                     in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    in.putExtra("ProductTypeList",mySQLProDataBases);
+                    in.putExtra("ProductTypeGridList", mySQLProTypeGridDataBases);
                     startActivity(in);
                     b2.setEnabled(true);
                     // b1.setEnabled(false);
@@ -121,6 +139,8 @@ public class Trial1 extends AppCompatActivity {
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductTypeList",mySQLProDataBases);
+                in.putExtra("ProductTypeSizeList", mySQLProTypeSizeDataBases);
                 startActivity(in);
                 // b2.setEnabled(false);
                 //  b1.setEnabled(false);

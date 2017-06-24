@@ -69,6 +69,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
     private static int selectedPid;
     private static String selectedPname;
     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     Context context;
 
 
@@ -82,6 +83,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -103,6 +105,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                         in.putExtra("ProductTypeGridList",mySQLDataBases);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
                         startActivity(in);
                         finish();
                     }
@@ -145,6 +148,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
             in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
             in.putExtra("ProductTypeGridList",mySQLDataBases);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
          startActivity(in);
             finish();
 
@@ -172,7 +176,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
 
     private void checkData() {
         if (name.length() < 1 || Path.length() < 1 || brand.length() < 1 || color.length() < 1 || bitmap==null) {
-            uploadMultipart();
+           // uploadMultipart();
             Toast toast = Toast.makeText(AddGridProductTypes.this, "Fill All", Toast.LENGTH_SHORT);
 
             View toastView = toast.getView();
@@ -204,8 +208,16 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddGridProductTypes.this,AddGridProductTypes.class);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                    in.putExtra("PRODUCTID_KEY", selectedPid);
+                    in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                    in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                    in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    in.putExtra("ProductTypeGridList",mySQLDataBases);
+                    in.putExtra("ProductTypeList",mySQLDataBases1);
                     startActivity(in);
-                    finish();
                 }
             });
             alert.show();

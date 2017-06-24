@@ -84,7 +84,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
         finalHeight = intent.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(finalLength !=0 && finalWidth !=0 && finalHeight !=0){
-            finalSelProSize =  finalWidth + "X" + finalHeight + "X" + finalLength;
+            finalSelProSize = finalLength  + "X" + finalWidth + "X" + finalHeight;
 
         }else if(finalLength ==0 && finalWidth !=0 && finalHeight !=0){
             finalSelProSize =  finalWidth + "X" + finalHeight;
@@ -93,7 +93,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             finalSelProSize =  finalLength + "X" + finalHeight;
 
         }else if(finalLength !=0 && finalWidth !=0 && finalHeight ==0 ){
-            finalSelProSize =  finalLength + "X" + finalHeight ;
+            finalSelProSize =  finalLength + "X" + finalWidth ;
 
         }else if(finalLength ==0 && finalWidth !=0 && finalHeight ==0 ){
             finalSelProSize = finalWidth + "" ;
@@ -239,10 +239,21 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddGridProductSizes.this,AddGridProductSizes.class);
-                    startActivity(in);
-                    finish();
-                }
-            });
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", finalProId);
+            in.putExtra("PRODUCTNAME_KEY", finalProName);
+            in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
+            in.putExtra("FINALPROSELSIZE_KEY", finalSelProductSize);
+            in.putExtra("PRODUCTSIZEWIDTH_KEY", finalWidth);
+            in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
+            in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
+            in.putExtra("ProductSizeList",mySQLDataBases);
+            startActivity(in);
+           // finish();
+        }
+    });
             alert.show();
 
         }

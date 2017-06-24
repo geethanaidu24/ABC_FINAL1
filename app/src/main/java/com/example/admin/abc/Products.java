@@ -61,7 +61,7 @@ public class Products extends AppCompatActivity implements Serializable {
     final static String productSizeUrl = Config.productSizesUrlAddress;
     private boolean loggedIn = false;
     private boolean checkNetworkConnection;
-
+   ArrayList<MySQLDataBase> mySQLProTypeDataBases=new ArrayList<>();
     int click = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,8 +159,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
 
                 Intent in = new Intent(Products.this, AddProducts.class);
                  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
-
                 startActivity(in);
 
                 return true;
@@ -538,7 +536,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         String jsonData;
         int finalpid;
         String finalname;
-        ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
+        /*ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();*/
 
         private ProductTypesDataParser(Context c, String jsonData, int pid, String name) {
             this.c = c;
@@ -573,9 +571,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalpid);
                     intent.putExtra("PRODUCTNAME_KEY", finalname);
-                    intent.putExtra("ProductTypeList", mySQLDataBases);
+                    intent.putExtra("ProductTypeList", mySQLProTypeDataBases);
                     c.startActivity(intent);
-
                 }
             }
         }
@@ -600,8 +597,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
             {
                 JSONArray ja=new JSONArray(jsonData);
                 JSONObject jo=null;
-                mySQLDataBases.clear();
-                MySQLDataBase mySQLDataBase;
+                mySQLProTypeDataBases.clear();
+                MySQLDataBase mySQLProTypeDataBase;
                 for(int i=0;i<ja.length();i++)
                 {
                     jo=ja.getJSONObject(i);
@@ -610,12 +607,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
                     String ProductType =jo.getString("ProductType");
                     String ImageUrl=jo.getString("ImageUrl");
                     int ProductId = jo.getInt("ProductId");
-                    mySQLDataBase=new MySQLDataBase();
-                    mySQLDataBase.setProductTypeId(ProductTypeId);
-                    mySQLDataBase.setProductType(ProductType);
-                    mySQLDataBase.setProductTypeImageUrl(ImageUrl);
-                    mySQLDataBase.setProductId(ProductId);
-                    mySQLDataBases.add(mySQLDataBase);
+                    mySQLProTypeDataBase=new MySQLDataBase();
+                    mySQLProTypeDataBase.setProductTypeId(ProductTypeId);
+                    mySQLProTypeDataBase.setProductType(ProductType);
+                    mySQLProTypeDataBase.setProductTypeImageUrl(ImageUrl);
+                    mySQLProTypeDataBase.setProductId(ProductId);
+                    mySQLProTypeDataBases.add(mySQLProTypeDataBase);
                 }
                 return 1;
             } catch (JSONException e) {
@@ -727,6 +724,8 @@ public boolean onCreateOptionsMenu(Menu menu) {
                       //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY", pname);
+                        in.putExtra("ProductTypeList", mySQLProTypeDataBases);
+                        in.putExtra("ProductSizeList", mySQLDataBases);
                         startActivity(in);
                     }
                 }else{

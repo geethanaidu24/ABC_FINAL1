@@ -169,8 +169,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductSizes.this,AddProductSizes.class);
+                    in.putExtra("PRODUCTID_KEY", selectdPId);
+                    in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                    in.putExtra("ProductSizeList",mySQLDataBases);
+                    in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(in);
-                    finish();
+                    //finish();
                 }
             });
             alert.show();

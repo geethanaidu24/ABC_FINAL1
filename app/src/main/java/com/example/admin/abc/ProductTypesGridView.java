@@ -55,6 +55,7 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private static int selectedProductId;
     private static String selectedProductName;
     ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
 int click=0;
 
 
@@ -66,6 +67,7 @@ int click=0;
 
         final GridView gv = (GridView) findViewById(R.id.gv);
 
+
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
@@ -73,6 +75,8 @@ int click=0;
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
       mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases, selectedProductId, selectedProducttypeid);
         gv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -89,10 +93,14 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
 
-                        finish();
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        in.putExtra("PRODUCTID_KEY", selectedProductId);
+                        in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
+                        finish();
                     }
                 }
             });
@@ -152,6 +160,7 @@ int click=0;
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 in.putExtra("ProductTypeGridList",mySQLDataBases);
+                in.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -169,8 +178,9 @@ int click=0;
                 inn.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                inn.putExtra("ProductTypeGridList",mySQLDataBases);
+                inn.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(inn);
-
                 return true;
             }
         } else if (id == R.id.logout) {
@@ -200,6 +210,10 @@ int click=0;
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            in.putExtra("PRODUCTID_KEY", selectedProductId);
+            in.putExtra("PRODUCTNAME_KEY", selectedProductName);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(in);
             finish();
         }
 

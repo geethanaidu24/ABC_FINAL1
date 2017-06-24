@@ -62,7 +62,7 @@ public class Main2Activity extends AppCompatActivity
      */
 private boolean menuOptionState=false;
 private boolean checkNetworkConnection;
-
+    private boolean loggedIn = false;
    private static ViewPager mPager;
    private static int currentPage = 0;
     private static int NUM_PAGES = 0;
@@ -410,6 +410,7 @@ Timer swipeTimer = new Timer();
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+
         int id = item.getItemId();
 
         if (id == R.id.home) {
@@ -525,17 +526,119 @@ Timer swipeTimer = new Timer();
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
+                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+                   // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                    Intent in = new Intent(Main2Activity.this, Login.class);
-                   //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivity(in);
+                   /* if (loggedIn == true) {
+
+                        MenuItem itemss = menu.findItem(R.id.logout);
+                        itemss.setVisible(true);
+                        MenuItem items2 = menu.findItem(R.id.login);
+                        items2.setVisible(false);
+                    } else if (loggedIn == false) {
+                        MenuItem itemss = menu.findItem(R.id.logout);
+                        itemss.setVisible(false);
+                        MenuItem items2 = menu.findItem(R.id.login);
+                        items2.setVisible(true);*/
+                        Intent in = new Intent(Main2Activity.this, Login.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+
+                   /* }*/
+
+                }
+            }
+        }/*else if (id == R.id.logout) {
+            checkNetworkConnection = isNetworkConnectionAvailable();
+            if(checkNetworkConnection == true) {
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                    loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+                    getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
+
+                    if (loggedIn == true) {
+
+                        MenuItem itemss = menu.findItem(R.id.logout);
+                        itemss.setVisible(false);
+                        MenuItem items2 = menu.findItem(R.id.login);
+                        items2.setVisible(true);
+                        logout();
+                        return true;
+                    }
+                    *//* else if (loggedIn == false) {
+                        MenuItem itemss = menu.findItem(R.id.logout);
+                        itemss.setVisible(false);
+                        MenuItem items2 = menu.findItem(R.id.login);
+                        items2.setVisible(true);
+                        Intent in = new Intent(Main2Activity.this, Login.class);
+                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        startActivity(in);
+
+                    }*//*
+
                 }
             }
         }
-
+*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logout(){
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        // alertDialogBuilder.setMessage("Are you sure you want to logout?");
+        alertDialogBuilder.setTitle(" Are you sure you want to logout?");
+        alertDialogBuilder.setIcon(R.drawable.logoutt);
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        //Getting out sharedpreferences
+                        SharedPreferences preferences = getSharedPreferences(Config.SHARED_PREF_NAME,Context.MODE_PRIVATE);
+                        //Getting editor
+                        SharedPreferences.Editor editor = preferences.edit();
+
+                        //Puting the value false for loggedin
+                        editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+
+                        //Putting blank value to email
+                        editor.putString(Config.KEY_USER, "");
+
+                        //Saving the sharedpreferences
+                        editor.commit();
+
+                        //Starting login activity
+
+                        Intent intent = new Intent(Main2Activity.this, Main2Activity.class);
+                        intent.putExtra("finish",true);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+
+                        finish();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 
     /**

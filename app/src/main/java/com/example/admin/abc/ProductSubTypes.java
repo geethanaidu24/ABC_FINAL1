@@ -44,7 +44,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
     private String selectedProducttype;
     private static int selectedPid;
     private static String selectedPname;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,14 +63,14 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSubTypeList");
 
         mySQLProTypes = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList") ;
 
         typeNameTxt.setText(selectedProducttype);
-        Log.d("result response: ", "> " + mySQLDataBases);
+        Log.d("result response: ", "> " + mySQLDataBases1);
 
-        final ProductSubTypesListAdapter adapter = new ProductSubTypesListAdapter(this, mySQLDataBases, selectedProducttypeid, selectedProducttype);
+        final ProductSubTypesListAdapter adapter = new ProductSubTypesListAdapter(this, mySQLDataBases1, selectedProducttypeid, selectedProducttype);
         lv.setAdapter(adapter);
         //typeNameTxt.setText(selectedProducttype);
 
@@ -154,7 +154,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                in.putExtra("ProductSubTypeList",mySQLDataBases);
+                in.putExtra("ProductSubTypeList",mySQLDataBases1);
+                in.putExtra("ProductTypeList",mySQLProTypes);
                 startActivity(in);
                 return true;
             }
@@ -163,13 +164,17 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             if (click == 1) {
                 click = 0;
 
-                Intent inn = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
-                inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-                inn.putExtra("PRODUCTTYPE_KEY",selectedPname);
-                inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                Intent in = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(inn);
+                in.putExtra("PRODUCTID_KEY", selectedPid);
+                in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                in.putExtra("ProductSubTypeList",mySQLDataBases1);
+                in.putExtra("ProductTypeList",mySQLProTypes);
+                startActivity(in);
                 return true;
             }
         } else if (id == R.id.logout) {
@@ -265,6 +270,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 intent.putExtra("PRODUCTNAME_KEY", selectedPname);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 intent.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                intent.putExtra("ProductSubTypeList",mySQLDataBases1);
+                intent.putExtra("ProductTypeList",mySQLProTypes);
 
                 c.startActivity(intent);
             }

@@ -176,9 +176,15 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
+                                                            //intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
                                                             intent.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            intent.putExtra("PRODUCTNAME_KEY",selectdProName);
+                                                            intent.putExtra("ProductSizeList",mySQLDataBases);
                                                             startActivity(intent);
-                                                            finish();
+                                                           // finish();
                                                         }
                                                     });
                                                     alert.show();

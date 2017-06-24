@@ -203,12 +203,17 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent = new Intent(DeleteProductTypeSizes.this, DeleteProductTypeSizes.class);
-                                                            intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
-                                                            intent.putExtra("PRODUCTID_KEY", productId);
-
-                                                            startActivity(intent);
-                                                            finish();
+                                                            Intent in = new Intent(DeleteProductTypeSizes.this, DeleteProductTypeSizes.class);
+                                                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                            in.putExtra("PRODUCTID_KEY", productId);
+                                                            in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
+                                                            in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                                                            in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
+                                                            in.putExtra("ProductTypeSizeList",mySQLDataBases);
+                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            startActivity(in);
                                                         }
                                                     });
                                                     alert.show();
