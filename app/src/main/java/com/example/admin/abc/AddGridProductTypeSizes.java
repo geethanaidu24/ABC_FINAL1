@@ -97,16 +97,16 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
 
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
         if(finalProLength !=0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight + "X" + finalProLength;
+            finalSelProtypeSize =  finalProLength +" "+"X"+" " +finalProWidth  +" "+"X"+" " + finalProHeight;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProWidth + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProWidth + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth ==0 && finalProHeight !=0){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProHeight;
 
         }else if(finalProLength !=0 && finalProWidth !=0 && finalProHeight ==0 ){
-            finalSelProtypeSize =  finalProLength + "X" + finalProHeight ;
+            finalSelProtypeSize =  finalProLength + " "+"X"+" " + finalProWidth ;
 
         }else if(finalProLength ==0 && finalProWidth !=0 && finalProHeight ==0 ){
             finalSelProtypeSize = finalProWidth + "" ;
@@ -118,7 +118,6 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
             finalSelProtypeSize = finalProHeight + "" ;
 
         }
-
         Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
         if (null != actionbar) {
             actionbar.setNavigationIcon(R.mipmap.backbutton);

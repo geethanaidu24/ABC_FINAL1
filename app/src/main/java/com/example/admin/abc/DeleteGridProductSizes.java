@@ -62,16 +62,16 @@ public class DeleteGridProductSizes extends AppCompatActivity {
         finalSelProSize = intent.getExtras().getString("FINALPROSELSIZE_KEY");
         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
         if(recvdLength !=0 && recvdWidth !=0 && recvdHeight !=0){
-            finalSelProSize =  recvdLength + "X" + recvdWidth + "X" +recvdHeight ;
+            finalSelProSize =  recvdLength + " "+"X"+" " + recvdWidth + " "+"X"+" " + recvdHeight;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight !=0){
-            finalSelProSize =  recvdWidth + "X" + recvdHeight;
+            finalSelProSize =  recvdWidth + " "+"X"+" " + recvdHeight;
 
         }else if(recvdLength !=0 && recvdWidth ==0 && recvdHeight !=0){
-            finalSelProSize =  recvdLength + "X" + recvdHeight;
+            finalSelProSize =  recvdLength + " "+"X"+" "+ recvdHeight;
 
         }else if(recvdLength !=0 && recvdWidth !=0 && recvdHeight ==0 ){
-            finalSelProSize =  recvdLength + "X" + recvdWidth ;
+            finalSelProSize =  recvdLength +" "+"X"+" " + recvdWidth ;
 
         }else if(recvdLength ==0 && recvdWidth !=0 && recvdHeight ==0 ){
             finalSelProSize = recvdWidth + "" ;
