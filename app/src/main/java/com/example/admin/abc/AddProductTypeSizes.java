@@ -168,7 +168,7 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+           // toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
            // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             txtwidth.setText("");

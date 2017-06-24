@@ -117,9 +117,6 @@ Button b1,b2;
             startActivity(in);
             finish();
         }
-
-
-
     }
 
 }
