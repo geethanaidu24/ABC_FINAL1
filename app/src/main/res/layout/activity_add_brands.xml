@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true"
     android:splitMotionEvents="false"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
+
 android:background="@drawable/backgroundfour"
     tools:context=".MainActivity">
     <include layout="@layout/activity_toolbar"></include>

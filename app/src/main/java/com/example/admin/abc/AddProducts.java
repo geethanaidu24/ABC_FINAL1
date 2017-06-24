@@ -72,7 +72,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                        /* Intent in = new Intent(AddProducts.this, Products.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     finish();*/
-                        Intent in = new Intent(AddProducts.this, Refresh.class);
+                        Intent in = new Intent(AddProducts.this, Products.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -151,7 +151,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
 
-                    toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                   // toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                     // Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
                     etCaption.setText("");
@@ -162,7 +162,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     finish();
 
 
-                   /* AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
+                   AlertDialog.Builder alert = new AlertDialog.Builder(AddProducts.this);
                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Caution!!!!!!</font>"));
                     alert.setMessage("It will Take Couple of Minutes to make your Changes and Reload...");
                     alert.setIcon(R.drawable.reload);
@@ -174,7 +174,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                             //finish();
                         }
                     });
-                    alert.show();*/
+                    alert.show();
                 /*final Timer t = new Timer();
                 t.schedule(new TimerTask() {
                     public void run() {
