@@ -75,7 +75,8 @@
             android:layout_marginTop="50dp"
             android:text="Select City and Branch :"
             android:textColor="@color/cred"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true" />
 
         <Spinner
             android:id="@+id/cityspinner"

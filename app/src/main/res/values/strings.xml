@@ -7,5 +7,14 @@
     <string name="addProSp">hello</string>
     <string name="action_settings">Settings</string>
     <string name="prompt_text">Choose one</string>
+    <integer-array name="img_id_arr">
+        <item>@drawable/backfinalfour</item>
+        <item>@drawable/backfinalthree</item>
+        <item>@drawable/backfinaltwo</item>
+        <item>@drawable/backfinalfive</item>
+        <item>@drawable/backfinalseven</item>
+        <item>@drawable/backfinaleight</item>
+
+    </integer-array>
 </resources>
 

@@ -131,7 +131,8 @@
             android:textColor="@color/colorblack"
             android:inputType="number"
             android:layout_below="@+id/width1"
-            android:layout_alignStart="@+id/width1"/>
+            android:layout_alignStart="@+id/width1"
+            android:layout_alignLeft="@+id/width1" />
 
         <TextView
             android:id="@+id/textView37"
@@ -142,7 +143,8 @@
             android:layout_marginTop="15dp"
             android:textColor="@color/cred"
             android:textSize="18sp"
-            android:text="Enter Length"/>
+            android:text="Enter Length"
+            android:layout_alignLeft="@+id/textView36" />
 
         <EditText
             android:id="@+id/length1"
@@ -157,7 +159,8 @@
 
             android:textColor="@color/colorblack"
 
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/height1" />
 
         <TextView
             android:id="@+id/textView38"
@@ -168,7 +171,8 @@
             android:layout_marginTop="15dp"
             android:text="Products "
             android:textColor="@color/cred"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/textView37" />
         <TextView
             android:id="@+id/productsTxt"
             android:layout_width="match_parent"
@@ -181,7 +185,8 @@
 
             android:textColor="@color/colorblack"
 
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_alignLeft="@+id/length1" />
 
         <!--<Spinner
             android:id="@+id/productsspinner"

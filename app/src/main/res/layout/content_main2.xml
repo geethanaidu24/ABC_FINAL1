@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             >
 
-            <android.support.v4.view.ViewPager
+          <!--  <android.support.v4.view.ViewPager
                 android:id="@+id/pager1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -47,7 +47,12 @@
                 android:layout_alignParentBottom="true"
                 app:fillColor="#FFFFFF"
                 app:pageColor="#FF0000"
-                app:snap="false" />
+                app:snap="false" />-->
+            <com.chabbal.slidingdotsplash.SlidingSplashView
+                android:id="@+id/splash"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                app:imageResources="@array/img_id_arr"/>
         </RelativeLayout>
     </LinearLayout>
 

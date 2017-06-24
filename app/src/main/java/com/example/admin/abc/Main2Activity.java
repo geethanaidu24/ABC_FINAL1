@@ -116,7 +116,7 @@ int click=0;
 //        simpleViewFlipper.setAutoStart(true);
 
        Button b1, b2, b3, b4;
-     init();
+    // init();
 
 
         // ViewPager viewPager;
@@ -268,7 +268,7 @@ int click=0;
 
     }*/
 
- private void init() {
+/* private void init() {
 
 
         for(int i=0;i<IMAGES.length;i++)
@@ -296,7 +296,7 @@ int click=0;
 
 
         // Auto start of viewpager
-     /* final Handler handler = new Handler();
+     *//* final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -311,10 +311,10 @@ int click=0;
             public void run() {
                 handler.post(Update);
             }
-        }, 5000, 6000);*/
+        }, 5000, 6000);*//*
 
 
-/*
+*//*
 Timer swipeTimer = new Timer();
         swipeTimer.schedule(new TimerTask() {
 
@@ -331,7 +331,7 @@ Timer swipeTimer = new Timer();
                 });
             }
         }, 9000, 9000)
-*/
+*//*
 
 
         // Pager listener over indicator
@@ -354,7 +354,7 @@ Timer swipeTimer = new Timer();
             }
         });
 
-    }
+    }*/
 
 
 

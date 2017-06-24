@@ -61,7 +61,7 @@
         android:background="@drawable/proback"
         android:fillViewport="true"
 
-        >
+        android:layout_alignParentLeft="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -99,7 +99,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="Path: "
-                android:textColor="@color/colorblack" />
+                android:textColor="@color/colorblack"
+                android:layout_alignParentLeft="true" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -110,7 +111,8 @@
                 android:layout_marginTop="10dp"
                 android:text="PRODUCTS"
                 android:textColor="@color/cred"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_alignLeft="@+id/brandpath" />
 
             <EditText
                 android:id="@+id/productsubtypes"
@@ -123,7 +125,8 @@
 
                 android:ems="8"
                 android:inputType="textPersonName"
-                android:textColor="@color/colorblack" />
+                android:textColor="@color/colorblack"
+                android:layout_alignParentRight="true" />
 
             <Button
                 android:id="@+id/brandbtn"
@@ -145,7 +148,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:text="NOTE: For Better Quality Please upload Image with highest Resolution 2160px width and 1124px height"
-                android:textColor="@color/colorblack" />
+                android:textColor="@color/cred"
+                android:layout_alignParentLeft="true" />
 
 
         </RelativeLayout>
