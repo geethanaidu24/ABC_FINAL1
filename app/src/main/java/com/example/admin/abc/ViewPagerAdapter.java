@@ -51,7 +51,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         try {
             if(pagenumberTxt == 1){
                 pageImage.setBackgroundResource(R.drawable.abackone);
-                pagenumber1.setImageResource(R.drawable.dc);
+                pagenumber1.setImageResource(R.drawable.dcc);
                 pagenumber2.setImageResource(R.drawable.dot);
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
@@ -60,7 +60,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             else if(pagenumberTxt == 2){
                 pageImage.setBackgroundResource(R.drawable.dbackfour);
                 pagenumber1.setImageResource(R.drawable.dot);
-                pagenumber2.setImageResource(R.drawable.dc);
+                pagenumber2.setImageResource(R.drawable.dcc);
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dot);
@@ -69,7 +69,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pageImage.setBackgroundResource(R.drawable.b);
                 pagenumber1.setImageResource(R.drawable.dot);
                 pagenumber2.setImageResource(R.drawable.dot);
-                pagenumber3.setImageResource(R.drawable.dc);
+                pagenumber3.setImageResource(R.drawable.dcc);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dot);
 
@@ -79,7 +79,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber1.setImageResource(R.drawable.dot);
                 pagenumber2.setImageResource(R.drawable.dot);
                 pagenumber3.setImageResource(R.drawable.dot);
-                pagenumber4.setImageResource(R.drawable.dc);
+                pagenumber4.setImageResource(R.drawable.dcc);
                 pagenumber5.setImageResource(R.drawable.dot);
 
             }
@@ -89,7 +89,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber2.setImageResource(R.drawable.dot);
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
-                pagenumber5.setImageResource(R.drawable.dc);
+                pagenumber5.setImageResource(R.drawable.dcc);
 
             }
 

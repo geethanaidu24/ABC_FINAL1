@@ -18,30 +18,26 @@
             android:id="@+id/pagenumber1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
 
             android:onClick="pageOneClick"
          android:src="@drawable/dot"
-            android:textColor="#fff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+           />
 
         <ImageView
             android:id="@+id/pagenumber2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/dot"
 
-            android:textColor="#fff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            />
 
         <ImageView
             android:id="@+id/pagenumber3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/dot"
 
             android:textColor="#fff"
@@ -52,20 +48,16 @@
             android:id="@+id/pagenumber4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/dot"
-            android:textColor="#fff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            />
 
         <ImageView
             android:id="@+id/pagenumber5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:src="@drawable/dot"
-            android:textColor="#fff"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+         />
     </LinearLayout>
 </FrameLayout>
