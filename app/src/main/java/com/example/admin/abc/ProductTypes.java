@@ -98,7 +98,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
                                 Intent.FLAG_ACTIVITY_NEW_TASK*/);
-                        setResult(Activity.RESULT_OK,in);
+                       // setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -214,7 +214,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
                     Intent.FLAG_ACTIVITY_NEW_TASK*/);
-            setResult(Activity.RESULT_OK,in);
+           // setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
             super.onBackPressed();
@@ -328,7 +328,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT).show();
             } else {
                 //CALL DATA PARSER TO PARSE
                 ProductSubTypesDataParser parser = new ProductSubTypesDataParser(c,s,selectedProductId,selectedProduct,selectedProductTypeId,selectedProductType);
@@ -487,7 +487,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT).show();
+                Toast.makeText(c,"Our products are Coming Soon! Thank you for your patience.",Toast.LENGTH_SHORT).show();
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypeSizesDataParser parser=new ProductTypeSizesDataParser(c,s,recivedProductId,recivedProductName,recivedProductTypeId,recivedProductType);
@@ -652,7 +652,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if(s==null)
-            { Toast toast = Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT);
+            { Toast toast = Toast.makeText(c,"Our products are Coming Soon! Thank you for your patience.",Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -737,7 +737,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+                        Toast toast = Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT);
 
                         View toastView = toast.getView();
                         toastView.setBackgroundResource(R.drawable.toast_drawable);

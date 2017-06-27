@@ -342,7 +342,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             super.onPostExecute(s);
             if(s==null)
             {
-                Toast toast = Toast.makeText(c,"Coming Soon...",Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(c,"Our products are Coming Soon! Thank you for your patience.",Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -406,7 +406,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             { click = click + 1;
                 if (click == 1) {
                     click = 0;
-                    Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT);
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
