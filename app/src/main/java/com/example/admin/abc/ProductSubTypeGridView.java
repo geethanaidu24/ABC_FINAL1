@@ -540,12 +540,13 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                 Intent i = new Intent(c, ProductSubTypeSingleViewActivity.class);
              i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);
                 i.putExtra("COLOR_KEY", details[3]);
-                i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                 i.putExtra("PRODUCTID_KEY", selectedPid);
                 i.putExtra("PRODUCTNAME_KEY", selectedPname);
                 i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);

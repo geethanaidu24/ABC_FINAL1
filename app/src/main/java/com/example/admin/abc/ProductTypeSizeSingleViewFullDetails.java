@@ -17,6 +17,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 /**
  * Created by Geetha on 4/10/2017.
  */
@@ -29,12 +31,36 @@ int click=0;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
+    String productType,selectedProductSize,name,color,image,brand,size,pname;
+    int selLength,selWidth,selHeight,pid,ptid,ptsid;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLDataBases2;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_withsize_final);
+// Get intent data
+        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
+         pid = i.getExtras().getInt("PRODUCTID_KEY");
+         pname =i.getExtras().getString("PRODUCTNAME_KEY");
+         ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
+         ptsid = i.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
+         name = i.getExtras().getString("NAME_KEY");
+         image = i.getExtras().getString("IMAGE_KEY");
+         brand = i.getExtras().getString("BRAND_KEY");
+         color = i.getExtras().getString("COLOR_KEY");
+         size = i.getExtras().getString("SIZE_KEY");
 
+
+        productType = i.getExtras().getString("PRODUCTTYPE_KEY");
+
+        selectedProductSize = i.getExtras().getString("FINALSIZE_KEY");
+        selLength = i.getExtras().getInt("LENGTH_KEY");
+        selWidth = i.getExtras().getInt("WIDTH_KEY");
+        selHeight = i.getExtras().getInt("HEIGHT_KEY");
+        mySQLDataBases2 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeSizeList");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeList");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -48,7 +74,7 @@ int click=0;
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
+                        Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
                  /*  in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY",pname);
                     in.putExtra("PRODUCTTYPEID_KEY",ptid);
@@ -56,10 +82,22 @@ int click=0;
 */
 
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                        i.putExtra("PRODUCTID_KEY", pid);
+                        i.putExtra("PRODUCTNAME_KEY", pname);
+                        i.putExtra("PRODUCTTYPEID_KEY", ptid);
+                        i.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
+                        i.putExtra("NAME_KEY", name);
+                        i.putExtra("IMAGE_KEY", image);
+                        i.putExtra("BRAND_KEY", brand);
+                        i.putExtra("COLOR_KEY", color);
+                        i.putExtra("SIZE_KEY", size);
+                        i.putExtra("PRODUCTTYPE_KEY", productType);
+                        i.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                        i.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(i);
                         finish();
                     }
                 }
@@ -74,17 +112,9 @@ int click=0;
         colorTxt = (TextView)findViewById(R.id.sizeTxt);
             zoom=(ImageButton)findViewById(R.id.imageButton) ;
 
-        // Get intent data
-        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-      final int pid = i.getExtras().getInt("PRODUCTID_KEY");
-        final String pname =i.getExtras().getString("PRODUCTNAME_KEY");
-      final int ptid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
-      final int ptsid = i.getExtras().getInt("PRODUCTTYPESIZEID_KEY");
-      final String name = i.getExtras().getString("NAME_KEY");
-      final String image = i.getExtras().getString("IMAGE_KEY");
-      final String brand = i.getExtras().getString("BRAND_KEY");
-      final String color = i.getExtras().getString("COLOR_KEY");
-      final String size = i.getExtras().getString("SIZE_KEY");
+
+
+
       nameTxt.setText(name);
       brandTxt.setText(brand);
       colorTxt.setText(color);
@@ -114,6 +144,7 @@ int click=0;
                     in.putExtra("NAME_KEY", name);
                     in.putExtra("BRAND_KEY", brand);
                     in.putExtra("COLOR_KEY", color);
+
                     startActivity(in);
                 }
             }
@@ -169,10 +200,26 @@ int click=0;
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra("PRODUCTID_KEY", pid);
+            i.putExtra("PRODUCTNAME_KEY", pname);
+            i.putExtra("PRODUCTTYPEID_KEY", ptid);
+            i.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
+            i.putExtra("NAME_KEY", name);
+            i.putExtra("IMAGE_KEY", image);
+            i.putExtra("BRAND_KEY", brand);
+            i.putExtra("COLOR_KEY", color);
+            i.putExtra("SIZE_KEY", size);
+            i.putExtra("PRODUCTTYPE_KEY", productType);
+            i.putExtra("ProductTypeSizeList",mySQLDataBases2);
+            i.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(i);
             finish();
 
 

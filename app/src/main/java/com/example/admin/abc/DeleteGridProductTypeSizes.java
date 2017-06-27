@@ -115,7 +115,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
+                        Intent in = new Intent(DeleteGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -144,7 +144,7 @@ public class DeleteGridProductTypeSizes extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(DeleteGridProductTypeSizes.this, Refresh.class);
+            Intent in = new Intent(DeleteGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);

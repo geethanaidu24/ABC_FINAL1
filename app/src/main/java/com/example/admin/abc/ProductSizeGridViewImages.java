@@ -463,26 +463,28 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
+
             if(length !=0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height + "X" + length;
+                finalSize =  length + " "+"X"+" " + width + " "+"X"+" " + height;
+
 
             }else if(length ==0 && width !=0 && height !=0){
-                finalSize =  width + "X" + height;
+                finalSize =  width + " "+"X"+" " + height;
 
             }else if(length !=0 && width ==0 && height !=0){
-                finalSize =  length + "X" + height;
+                finalSize =  length +" "+"X"+" "+ height;
 
             }else if(length !=0 && width !=0 && height ==0 ){
-                finalSize =  length + "X" + width ;
+                finalSize =  length + " "+"X"+" "+ width ;
 
             }else if(length ==0 && width !=0 && height ==0 ){
                 finalSize = width + "" ;
 
             }else if(length !=0 && width ==0 && height ==0 ){
                 finalSize = length + "" ;
-
             }else if(length ==0 && width ==0 && height !=0 ){
                 finalSize = height + "" ;
+
 
             }
 

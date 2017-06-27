@@ -151,8 +151,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             MenuItem itemss = menu.findItem(R.id.logout);
             itemss.setVisible(false);
             MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);*/
-            getMenuInflater().inflate(R.menu.home, menu);
+            items2.setVisible(true);
         }
 
         return true;
@@ -238,17 +237,23 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypes.class);
+            Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypeSizes.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
                                 Intent.FLAG_ACTIVITY_NEW_TASK*/);
             intent.putExtra("PRODUCTID_KEY", productId);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                    Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("PRODUCTID_KEY", productId);
             intent.putExtra("PRODUCTNAME_KEY", productName);
             intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
             intent.putExtra("PRODUCTTYPE_KEY", productType);
+            //intent.putExtra("FINALSIZE_KEY", selectedProductSize);
             intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
             intent.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,intent);
+            startActivity(intent);
+            intent.putExtra("ProductTypeList",mySQLDataBases1);
             startActivity(intent);
             finish();
             super.onBackPressed();
@@ -429,12 +434,12 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             return 0;
         }
     }
-    private static class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
+    private class ProductTypeSizeImagesGirdAdapter extends BaseAdapter {
         Context c;
 
         ArrayList<MySQLDataBase> mySQLDataBases;
         LayoutInflater inflater;
-        static String finalSize;
+         String finalSize;
         int pid, ptid, ptsid;
         String pname;
 
@@ -491,16 +496,16 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
 
 
             if (length != 0 && width != 0 && height != 0) {
-                finalSize = width + "X" + height + "X" + length;
+                finalSize = length + " "+"X"+" " + width +  " "+"X"+" " + height;
 
             } else if (length == 0 && width != 0 && height != 0) {
-                finalSize = width + "X" + height;
+                finalSize = width +  " "+"X"+" " + height;
 
             } else if (length != 0 && width == 0 && height != 0) {
-                finalSize = length + "X" + height;
+                finalSize = length +" "+"X"+" "+ height;
 
             } else if (length != 0 && width != 0 && height == 0) {
-                finalSize = length + "X" + width;
+                finalSize = length + " "+"X"+" " + width;
 
             } else if (length == 0 && width != 0 && height == 0) {
                 finalSize = width + "";
@@ -540,6 +545,14 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 i.putExtra("BRAND_KEY", details[2]);
                 i.putExtra("COLOR_KEY", details[3]);
                 i.putExtra("SIZE_KEY", details[4]);
+                i.putExtra("PRODUCTID_KEY", productId);
+                i.putExtra("PRODUCTNAME_KEY", productName);
+                i.putExtra("PRODUCTTYPESIZEID_KEY", producttypeSizeId);
+                i.putExtra("PRODUCTTYPEID_KEY", productTypeId);
+                i.putExtra("PRODUCTTYPE_KEY", productType);
+                i.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                i.putExtra("ProductTypeList",mySQLDataBases1);
+
                 c.startActivity(i);
 
             }
