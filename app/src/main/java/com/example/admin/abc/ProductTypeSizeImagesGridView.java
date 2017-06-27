@@ -151,7 +151,8 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             MenuItem itemss = menu.findItem(R.id.logout);
             itemss.setVisible(false);
             MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);
+            items2.setVisible(true);*/
+            getMenuInflater().inflate(R.menu.home, menu);
         }
 
         return true;
@@ -242,9 +243,6 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                     Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
                                 Intent.FLAG_ACTIVITY_NEW_TASK*/);
             intent.putExtra("PRODUCTID_KEY", productId);
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.putExtra("PRODUCTID_KEY", productId);
             intent.putExtra("PRODUCTNAME_KEY", productName);
             intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
             intent.putExtra("PRODUCTTYPE_KEY", productType);
@@ -252,8 +250,6 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
             intent.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,intent);
-            startActivity(intent);
-            intent.putExtra("ProductTypeList",mySQLDataBases1);
             startActivity(intent);
             finish();
             super.onBackPressed();
