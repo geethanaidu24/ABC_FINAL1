@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -27,9 +29,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
@@ -46,7 +52,7 @@ import java.util.TimerTask;
 //import com.viewpagerindicator.CirclePageIndicator;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener  {
    // public int currentimageindex = 0;
 
    // ImageView slidingimage;
@@ -60,7 +66,8 @@ public class Main2Activity extends AppCompatActivity
      *
      *
      */
-private boolean menuOptionState=false;
+
+    private boolean menuOptionState=false;
 private boolean checkNetworkConnection;
     private boolean loggedIn = false;
    private static ViewPager mPager;
@@ -75,12 +82,15 @@ int click=0;
     private Menu menu;
     boolean doubleBackToExitPressedOnce = false;
   //  private int currentPage = -1;
+    //Timer timer;
+    int noofsize = 5;
+    ViewPager myPager = null;
+    int count = 0;
     Timer timer;
 
   /*  private ViewFlipper simpleViewFlipper;
     int[] images = {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};     // array of images
 */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +103,119 @@ int click=0;
             finish();
             return;
         }
+        ViewPagerAdapter adapter = new ViewPagerAdapter(Main2Activity.this, noofsize);
+        myPager = (ViewPager) findViewById(R.id.reviewpager);
+        myPager.setAdapter(adapter);
+        myPager.setCurrentItem(0);
+
+        // Timer for auto sliding
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (count <= 5) {
+                            myPager.setCurrentItem(count);
+                            count++;
+                        } else {
+                            count = 0;
+                            myPager.setCurrentItem(count);
+                        }
+                    }
+                });
+            }
+        }, 5000, 9000);
+
+   /*   for(int i=0;i<IMAGES.length;i++)
+            ImagesArray.add(IMAGES[i]);
+
+        mPager = (ViewPager) findViewById(R.id.pager1);
+
+
+        mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this,ImagesArray));
+       mPager.setOffscreenPageLimit(IMAGES.length-1);
+
+        CirclePageIndicator indicator = (CirclePageIndicator)
+                findViewById(R.id.indicator1);
+
+        indicator.setViewPager(mPager);
+
+        final float density = getResources().getDisplayMetrics().density;
+
+        indicator.setRadius(4 * density);
+
+
+
+        NUM_PAGES =IMAGES.length;
+
+
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES-1) {
+                    currentPage = 0;
+                    mPager.setCurrentItem(currentPage);
+                }else{
+                    mPager.setCurrentItem(currentPage++, true);
+                }
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 9000, 9000);
+
+
+
+        mPager.setCurrentItem(0);
+
+ *//* //Timer for auto sliding
+        timer  = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(NUM_PAGES<=6){
+                            mPager.setCurrentItem(NUM_PAGES);
+                            NUM_PAGES++;
+                        }else{
+                            NUM_PAGES = 0;
+                            mPager.setCurrentItem(NUM_PAGES);
+                        }
+                    }
+                });
+            }
+        }, 20000, 20000);
+*//*
+        // Pager listener over indicator
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageSelected(int position) {
+                currentPage = position;
+
+            }
+
+            @Override
+            public void onPageScrolled(int pos, float arg1, int arg2) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int pos) {
+
+            }
+        });
+*/
+
 // get The references of ViewFlipper
         // get The references of ViewFlipper
 //        simpleViewFlipper = (ViewFlipper) findViewById(R.id.simpleViewFlipper); // get the reference of ViewFlipper
@@ -116,7 +239,7 @@ int click=0;
 //        simpleViewFlipper.setAutoStart(true);
 
        Button b1, b2, b3, b4;
-    // init();
+    //init();
 
 
         // ViewPager viewPager;
@@ -246,6 +369,18 @@ int click=0;
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+        if(loggedIn)
+        {
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.menu_logout);
+        } else
+        {
+            navigationView.getMenu().clear();
+            navigationView.inflateMenu(R.menu.activity_main2_drawer);
+
+        }
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -268,7 +403,9 @@ int click=0;
 
     }*/
 
-/* private void init() {
+
+/*
+private void init() {
 
 
         for(int i=0;i<IMAGES.length;i++)
@@ -295,8 +432,8 @@ int click=0;
 
 
 
-        // Auto start of viewpager
-     *//* final Handler handler = new Handler();
+       // Auto start of viewpager
+        final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -311,27 +448,11 @@ int click=0;
             public void run() {
                 handler.post(Update);
             }
-        }, 5000, 6000);*//*
+        }, 9000, 9000);
 
 
-*//*
-Timer swipeTimer = new Timer();
-        swipeTimer.schedule(new TimerTask() {
 
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (currentPage == NUM_PAGES) {
-                            currentPage = 0;
-                        }
-                        mPager.setCurrentItem(currentPage++, true);
-                    }
-                });
-            }
-        }, 9000, 9000)
-*//*
+
 
 
         // Pager listener over indicator
@@ -354,7 +475,8 @@ Timer swipeTimer = new Timer();
             }
         });
 
-    }*/
+    }
+*/
 
 
 
@@ -415,11 +537,13 @@ Timer swipeTimer = new Timer();
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        int id = item.getItemId();
 
-        if (id == R.id.home) {
+        int id = item.getItemId();
+if(id == R.id.logout)
+{
+    logout();
+}
+      else  if (id == R.id.home) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -431,77 +555,76 @@ Timer swipeTimer = new Timer();
             }
 
 
-        }else if (id == R.id.ab) {
+        } else if (id == R.id.ab) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
 
                 Intent in = new Intent(Main2Activity.this, AboutUs.class);
-              //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
             }
 
-        }
-        else if (id == R.id.product) {
+        } else if (id == R.id.product) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Products.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
         } else if (id == R.id.brands) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Brands.class);
-                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
 
-        }  else if (id == R.id.cu) {
+        } else if (id == R.id.cu) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Contact.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
 
         } else if (id == R.id.enquiry) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                  //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
 
-        }  else if (id == R.id.nw) {
+        } else if (id == R.id.nw) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, News.class);
-                   // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
@@ -511,7 +634,7 @@ Timer swipeTimer = new Timer();
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -528,22 +651,22 @@ Timer swipeTimer = new Timer();
             }
         } else if (id == R.id.login) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if(checkNetworkConnection == true) {
+            if (checkNetworkConnection == true) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
-                   // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
+                    // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                   if (loggedIn == true) {
-                       Toast toast = Toast.makeText(getApplicationContext(),
-                               "Admin Already Login.....",
-                               Toast.LENGTH_SHORT);
+                    if (loggedIn == true) {
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "Admin Already Login.....",
+                                Toast.LENGTH_SHORT);
 
-                       View toastView = toast.getView();
-                       toastView.setBackgroundResource(R.drawable.toast_drawable);
-                       toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                       toast.show();
+                        View toastView = toast.getView();
+                        toastView.setBackgroundResource(R.drawable.toast_drawable);
+                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                        toast.show();
 
                     } else if (loggedIn == false) {
 
@@ -552,10 +675,12 @@ Timer swipeTimer = new Timer();
                         startActivity(in);
 
                     }
-
                 }
             }
-        }/*else if (id == R.id.logout) {
+        }
+
+
+        /*else if (id == R.id.logout) {
             checkNetworkConnection = isNetworkConnectionAvailable();
             if(checkNetworkConnection == true) {
                 click = click + 1;
@@ -589,10 +714,11 @@ Timer swipeTimer = new Timer();
             }
         }
 */
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+
 
     private void logout(){
         //Creating an alert dialog to confirm logout

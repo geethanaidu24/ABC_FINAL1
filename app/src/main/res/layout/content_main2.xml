@@ -19,13 +19,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="40" >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+      android:layout_weight="40">
 
-          <!--  <android.support.v4.view.ViewPager
+
+            <!--<android.support.v4.view.ViewPager
                 android:id="@+id/pager1"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
@@ -48,12 +45,25 @@
                 app:fillColor="#FFFFFF"
                 app:pageColor="#FF0000"
                 app:snap="false" />-->
-            <com.chabbal.slidingdotsplash.SlidingSplashView
+        <!-- <com.chabbal.slidingdotsplash.SlidingSplashView
                 android:id="@+id/splash"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                app:imageResources="@array/img_id_arr"/>
-        </RelativeLayout>
+                app:imageResources="@array/img_id_arr"
+             app:theme="@style/abctheme"
+             />-->
+            <RelativeLayout
+                android:id="@+id/relativeTextview"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+android:background="@color/white"
+                android:padding="1dp" >
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/reviewpager"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent" />
+            </RelativeLayout>
+
     </LinearLayout>
 
     <LinearLayout
