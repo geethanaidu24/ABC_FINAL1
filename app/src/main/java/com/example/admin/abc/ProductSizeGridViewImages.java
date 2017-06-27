@@ -370,7 +370,6 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 {
                     jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-
                     int ImageId=jo.getInt("ProductSizeImageId");
                     String Name =jo.getString("Name");
                     String ImageUrl=jo.getString("ImagePath");
@@ -493,13 +492,13 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //open detail activity
-                    openDetailActivity(pid,psid,name,url, brand, color,finalSize);
+                    openDetailActivity(name,url, brand, color,finalSize);
                 }
             });
             return convertView;
         }
 
-        private void openDetailActivity(int pid,int psid,String... details) {
+        private void openDetailActivity(String... details) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -514,9 +513,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 i.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 i.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 i.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
-                i.putExtra("ProductSizeList",mySQLDataBases);
-                i.putExtra("PRODUCTID_KEY", pid);
-                i.putExtra("PRODUCTSIZEID_KEY", psid);
+                i.putExtra("ProductSizeList",mySQLDataBases1);
+                i.putExtra("PRODUCTID_KEY", productId);
+                i.putExtra("PRODUCTSIZEID_KEY", productSizeId);
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);

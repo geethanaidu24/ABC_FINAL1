@@ -91,10 +91,6 @@ ImageButton zoom;
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
             toolbar.setOverflowIcon(drawable);
-
-
-
-
             selectedImage = (ImageView) findViewById(R.id.img1); //init a ImageView
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);

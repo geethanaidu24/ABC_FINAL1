@@ -54,7 +54,7 @@ public class ProductSizes extends AppCompatActivity {
     private boolean loggedIn = false;
     private static int selectdProductId;
     private static String selectdProductName, finalProductSelctedSize;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -71,9 +71,9 @@ public class ProductSizes extends AppCompatActivity {
         selectdProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectdProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Log.d("result PID: ", "> " + selectdProductId);
-         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+         mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
 
-        final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases, selectdProductId);
+        final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases1, selectdProductId);
         lv.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -158,7 +158,7 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                in.putExtra("ProductSizeList",mySQLDataBases);
+                in.putExtra("ProductSizeList",mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -174,7 +174,7 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 inn.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                inn.putExtra("ProductSizeList",mySQLDataBases);
+                inn.putExtra("ProductSizeList",mySQLDataBases1);
                 startActivity(inn);
                 return true;
             }
@@ -209,6 +209,7 @@ public class ProductSizes extends AppCompatActivity {
             setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
 
     }
