@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -90,8 +91,9 @@ public class ProductSizes extends AppCompatActivity {
                         Intent in = new Intent(ProductSizes.this, Products.class);
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -152,8 +154,8 @@ public class ProductSizes extends AppCompatActivity {
                 Intent in = new Intent(ProductSizes.this, AddProductSizes.class);
         in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 in.putExtra("ProductSizeList",mySQLDataBases);
@@ -168,8 +170,8 @@ public class ProductSizes extends AppCompatActivity {
                 Intent inn = new Intent(ProductSizes.this, DeleteProductSizes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 inn.putExtra("PRODUCTNAME_KEY", selectdProductName);
                 inn.putExtra("ProductSizeList",mySQLDataBases);
@@ -202,9 +204,9 @@ public class ProductSizes extends AppCompatActivity {
             Intent in = new Intent(ProductSizes.this, Products.class);
            // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
         }

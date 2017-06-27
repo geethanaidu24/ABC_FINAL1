@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -75,23 +76,15 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                      /*  Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
-                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                         in.putExtra("PRODUCTID_KEY", selectdPId);
-                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
-                        in.putExtra("ProductSizeList",mySQLDataBases);
-                        startActivity(in);
-                        finish();*/
+
                         Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", selectdPId);
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -120,23 +113,15 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
         click = click + 1;
         if (click == 1) {
             click = 0;
-           /*  Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
-                        //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                         in.putExtra("PRODUCTID_KEY", selectdPId);
-                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
-                        in.putExtra("ProductSizeList",mySQLDataBases);
-                        startActivity(in);
-                        finish();*/
+
             Intent in = new Intent(AddProductSizes.this, ProductSizes.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", selectdPId);
             in.putExtra("PRODUCTNAME_KEY",selectdProName);
             in.putExtra("ProductSizeList",mySQLDataBases);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
         }
@@ -191,11 +176,14 @@ public class AddProductSizes extends AppCompatActivity implements View.OnClickLi
                     in.putExtra("PRODUCTNAME_KEY",selectdProName);
                     in.putExtra("ProductSizeList",mySQLDataBases);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
-
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                            Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                    in.putExtra("PRODUCTID_KEY", selectdPId);
+                    in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                    in.putExtra("ProductSizeList",mySQLDataBases);
+                    setResult(Activity.RESULT_OK,in);
                     startActivity(in);
-                    //finish();
+                    finish();
                 }
             });
             alert.show();

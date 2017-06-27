@@ -4,6 +4,7 @@ package com.example.admin.abc;
  * Created by Geetha on 4/10/2017 for opening Product types activity based on user clicked product .
  */
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -91,11 +92,13 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(ProductTypes.this, Products.class);
 
+                      // ProductTypes.super.onBackPressed();
+                        Intent in = new Intent(ProductTypes.this, Products.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -156,12 +159,13 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent in = new Intent(ProductTypes.this, AddProductsTypes.class);
               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("ProductTypeList", mySQLDataBases1);
                 startActivity(in);
+                //startActivityForResult(in);
                 return true;
             }
         } else if (id == R.id.productdelete) {
@@ -172,8 +176,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 Intent inn = new Intent(ProductTypes.this, DeleteProductTypes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                inn.putExtra("PRODUCTID_KEY", selectedPid);
                 inn.putExtra("PRODUCT_NAME",selectedPname);
                 inn.putExtra("ProductTypeList", mySQLDataBases1);
@@ -189,8 +193,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             Intent inn = new Intent(ProductTypes.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
             startActivity(inn);
 
             return true;
@@ -198,6 +202,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
     public void onBackPressed() {
         //finishAffinity();
         click = click + 1;
@@ -205,10 +212,12 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             click = 0;
             Intent in = new Intent(ProductTypes.this, Products.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
 
         }
 

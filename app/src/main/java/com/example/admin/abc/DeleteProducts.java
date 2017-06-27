@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -61,12 +62,13 @@ public class DeleteProducts extends AppCompatActivity {
                        /* Intent in = new Intent(DeleteProducts.this, Products.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                        finish();*/
-                        Intent in = new Intent(DeleteProducts.this, Products.class);
+                        /*Intent in = new Intent(DeleteProducts.this, Products.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(in);
-                        finish();
+                        finish();*/
+                        DeleteProducts.super.onBackPressed();
                     }
 
                 }
@@ -85,10 +87,11 @@ public class DeleteProducts extends AppCompatActivity {
                        finish();*/
             Intent in = new Intent(DeleteProducts.this, Products.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            setResult(Activity.RESULT_OK,in);
             finish();
+            super.onBackPressed();
 
         }
     }
@@ -159,6 +162,9 @@ public class DeleteProducts extends AppCompatActivity {
                                                             @Override
                                                             public void onClick(DialogInterface dialog, int which) {
                                                                 Intent intent = new Intent(DeleteProducts.this, DeleteProducts.class);
+                                                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                                 startActivity(intent);
                                                                 finish();
                                                             }

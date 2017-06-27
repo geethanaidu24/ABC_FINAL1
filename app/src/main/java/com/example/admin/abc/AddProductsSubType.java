@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -93,24 +94,25 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
 
-                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //AddProductsSubType.super.onBackPressed();
+                        Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", recvdproid);
                         in.putExtra("PRODUCTNAME_KEY", recvdproname);
                         in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                         in.putExtra("ProductSubTypeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
-                      /*
-                        */
+
                     }
-                 //  finish();
+
                 }
             });
 
@@ -138,16 +140,18 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
             Intent in = new Intent(AddProductsSubType.this, ProductSubTypes.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", recvdproid);
             in.putExtra("PRODUCTNAME_KEY", recvdproname);
             in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
             in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
             in.putExtra("ProductSubTypeList",mySQLDataBases);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
     }
     @Override
@@ -183,7 +187,7 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
 
             View toastView = toast.getView();
             toastView.setBackgroundResource(R.drawable.toast_drawable);
-            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+          //  toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
             toast.show();
           //  Toast.makeText(this, "Successfully Completed", Toast.LENGTH_SHORT).show();
             etCaption.setText("");
@@ -198,15 +202,17 @@ public class AddProductsSubType extends AppCompatActivity implements View.OnClic
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductsSubType.this,AddProductsSubType.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                            Intent.FLAG_ACTIVITY_NEW_TASK*/);
                     in.putExtra("PRODUCTID_KEY", recvdproid);
                     in.putExtra("PRODUCTNAME_KEY", recvdproname);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                     in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                     in.putExtra("ProductSubTypeList",mySQLDataBases);
                     in.putExtra("ProductTypeList",mySQLDataBases1);
+                    setResult(Activity.RESULT_OK,in);
                     startActivity(in);
+                    finish();
                 }
             });
             alert.show();

@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -109,8 +110,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", recivedProductId);
                         in.putExtra("PRODUCTNAME_KEY",recvdProName );
                         in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
@@ -119,6 +120,7 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                         in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -137,8 +139,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             Intent in = new Intent(DeleteGridProductSizes.this, ProductSizeGridViewImages.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", recivedProductId);
             in.putExtra("PRODUCTNAME_KEY",recvdProName );
             in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
@@ -147,8 +149,10 @@ public class DeleteGridProductSizes extends AppCompatActivity {
             in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
             in.putExtra("ProductSizeList",mySQLDataBases);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
     }
     private void initializeViews()
@@ -222,8 +226,8 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent in=new Intent(DeleteGridProductSizes.this,DeleteGridProductSizes.class);
                                                             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                             in.putExtra("PRODUCTID_KEY", recivedProductId);
                                                             in.putExtra("PRODUCTNAME_KEY",recvdProName );
                                                             in.putExtra("PRODUCTSIZEID_KEY", recivedProductsizeId);
@@ -232,7 +236,9 @@ public class DeleteGridProductSizes extends AppCompatActivity {
                                                             in.putExtra("PRODUCTSIZELENGTH_KEY", recvdLength);
                                                             in.putExtra("PRODUCTSIZEHEIGHT_KEY", recvdHeight);
                                                             in.putExtra("ProductSizeList",mySQLDataBases);
+                                                            setResult(Activity.RESULT_OK,in);
                                                             startActivity(in);
+                                                            finish();
                                                         }
                                                     });
                                                     alert.show();

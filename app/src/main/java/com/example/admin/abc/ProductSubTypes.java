@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -88,13 +89,16 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                         click = 0;
                         Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTNAME_KEY", selectedPname);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
                         in.putExtra("ProductTypeList", mySQLProTypes);
+                        //startActivity(in);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
+                        //ProductSubTypes.super.onBackPressed();
                     }
                 }
             });
@@ -150,8 +154,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 Intent in = new Intent(ProductSubTypes.this, AddProductsSubType.class);
               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -168,8 +172,8 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
 
                 Intent in = new Intent(ProductSubTypes.this, DeleteProductSubTypes.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectedPid);
                 in.putExtra("PRODUCTNAME_KEY", selectedPname);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -274,7 +278,6 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                 intent.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
                 intent.putExtra("ProductSubTypeList",mySQLDataBases1);
                 intent.putExtra("ProductTypeList",mySQLProTypes);
-
                 c.startActivity(intent);
             }
         }
@@ -285,15 +288,17 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductSubTypes.this, ProductTypes.class);
-
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTNAME_KEY", selectedPname);
             in.putExtra("PRODUCTID_KEY", selectedPid);
             in.putExtra("ProductTypeList", mySQLProTypes);
+            //startActivity(in);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
 
     }

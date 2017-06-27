@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -84,10 +85,18 @@ public class Products extends AppCompatActivity implements Serializable {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(Products.this, Main2Activity.class);
+                        /*Intent in = new Intent(Products.this, Main2Activity.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        //startActivity(in);
+                        finish();*/
+                        //Products.super.onBackPressed();
+                        Intent in = new Intent(Products.this, Main2Activity.class);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
 
@@ -203,10 +212,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
             click = 0;
             Intent in = new Intent(Products.this, Main2Activity.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                   Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
 
         }
 

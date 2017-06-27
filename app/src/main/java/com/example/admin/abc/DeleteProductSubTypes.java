@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -86,18 +87,21 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
+
+                        //DeleteProductSubTypes.super.onBackPressed();
                         Intent in = new Intent(DeleteProductSubTypes.this, ProductSubTypes.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //  finish();
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", recvdproid);
                         in.putExtra("PRODUCTNAME_KEY", recvdproname);
                         in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
                         in.putExtra("PRODUCTTYPE_KEY", recvdProType);
                         in.putExtra("ProductSubTypeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -117,16 +121,18 @@ public class DeleteProductSubTypes extends AppCompatActivity {
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //  finish();
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", recvdproid);
             in.putExtra("PRODUCTNAME_KEY", recvdproname);
             in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
             in.putExtra("PRODUCTTYPE_KEY", recvdProType);
             in.putExtra("ProductSubTypeList",mySQLDataBases);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
     }
     private void initializeViews()
@@ -195,15 +201,17 @@ public class DeleteProductSubTypes extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent in = new Intent(DeleteProductSubTypes.this, DeleteProductSubTypes.class);
                                                             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                             in.putExtra("PRODUCTID_KEY", recvdproid);
                                                             in.putExtra("PRODUCTNAME_KEY", recvdproname);
                                                             in.putExtra("PRODUCTTYPEID_KEY", recvdProTypeId);
                                                             in.putExtra("PRODUCTTYPE_KEY", recvdProType);
                                                             in.putExtra("ProductSubTypeList",mySQLDataBases);
                                                             in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            setResult(Activity.RESULT_OK,in);
                                                             startActivity(in);
+                                                            finish();
 
                                                         }
                                                     });

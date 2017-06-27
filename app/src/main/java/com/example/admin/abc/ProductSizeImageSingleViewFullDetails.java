@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ ImageButton zoom;
     Context c;
     ArrayList<MySQLDataBase> mySQLDataBases;
     private static int pid,psid,selProLength,selProWidth,selProHeight;
-    private static String selProductName,selFinalProSize;
+    private static String selProductName,selFinalProSize,name,image,brand,color,size,finalUrl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         //getSupportActionBar().hide();
@@ -41,18 +43,18 @@ ImageButton zoom;
         Intent i = this.getIntent(); // get Intent which we set from Previous Activity
         pid = i.getExtras().getInt("PRODUCTID_KEY");
         psid = i.getExtras().getInt("PRODUCTSIZEID_KEY");
-        final String name = i.getExtras().getString("NAME_KEY");
-        final String image = i.getExtras().getString("IMAGE_KEY");
-        final String brand = i.getExtras().getString("BRAND_KEY");
-        final String color = i.getExtras().getString("COLOR_KEY");
-        final String size = i.getExtras().getString("SIZE_KEY");
+         name = i.getExtras().getString("NAME_KEY");
+        image = i.getExtras().getString("IMAGE_KEY");
+        brand = i.getExtras().getString("BRAND_KEY");
+         color = i.getExtras().getString("COLOR_KEY");
+         size = i.getExtras().getString("SIZE_KEY");
         selProductName = i.getExtras().getString("PRODUCTNAME_KEY");
         selFinalProSize = i.getExtras().getString("FINALPROSELSIZE_KEY");
         selProLength = i.getExtras().getInt("PRODUCTSIZELENGTH_KEY");
         selProWidth = i.getExtras().getInt("PRODUCTSIZEWIDTH_KEY");
         selProHeight = i.getExtras().getInt("PRODUCTSIZEHEIGHT_KEY");
-
         mySQLDataBases = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductSizeList");
+       finalUrl=Config.mainUrlAddress + image;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -68,8 +70,8 @@ ImageButton zoom;
                         Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
                         inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         inn.putExtra("PRODUCTID_KEY", pid);
                         inn.putExtra("PRODUCTNAME_KEY", selProductName);
                         inn.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -78,9 +80,12 @@ ImageButton zoom;
                         inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                         inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
                         inn.putExtra("ProductSizeList",mySQLDataBases);
+                        setResult(Activity.RESULT_OK,inn);
                         startActivity(inn);
-
                         finish();
+                        /*startActivity(inn);
+
+                        finish();*/
                 }
                 }
             });
@@ -103,8 +108,9 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
         colorTxt.setText(color);
         sizeTxt.setText(size);
         Glide.with(this)
-                .load(image)
+                .load(finalUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .centerCrop()
                 .crossFade()
                 .into(selectedImage);
@@ -134,7 +140,6 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
                 }
             }
         });
-
 
         }
 
@@ -188,8 +193,8 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
             inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             inn.putExtra("PRODUCTID_KEY", pid);
             inn.putExtra("PRODUCTNAME_KEY", selProductName);
             inn.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -198,8 +203,10 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             inn.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
             inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
             inn.putExtra("ProductSizeList",mySQLDataBases);
+            setResult(Activity.RESULT_OK,inn);
             startActivity(inn);
             finish();
+            super.onBackPressed();
         }
     }
 }

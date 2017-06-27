@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -96,14 +97,15 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         //finish();
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                         in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                         in.putExtra("ProductTypeSizeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                        /* Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
@@ -130,14 +132,15 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         //finish();
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                         in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                         in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                         in.putExtra("ProductTypeSizeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
             /*Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
@@ -218,15 +221,17 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent in = new Intent(DeleteProductTypeSizes.this, DeleteProductTypeSizes.class);
                                                             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                             in.putExtra("PRODUCTID_KEY", productId);
                                                             in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                                                             in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                             in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                                                             in.putExtra("ProductTypeSizeList",mySQLDataBases);
-                                                          //  in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            setResult(Activity.RESULT_OK,in);
                                                             startActivity(in);
+                                                            finish();
                                                         }
                                                     });
                                                     alert.show();

@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -89,8 +90,8 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         // finish();
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
                         in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -99,6 +100,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         in.putExtra("PRODUCTTYPE_KEY", recvProType);
                         in.putExtra("ProductSubTypeList",mySQLDataBases1);
                         in.putExtra("ProductTypeList",mySQLProTypes);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -116,8 +118,8 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // finish();
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
             in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
             in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -126,6 +128,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             in.putExtra("PRODUCTTYPE_KEY", recvProType);
             in.putExtra("ProductSubTypeList",mySQLDataBases1);
             in.putExtra("ProductTypeList",mySQLProTypes);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
         }
@@ -193,8 +196,8 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent in=new Intent(DeleteGridSubTypes.this,DeleteGridSubTypes.class);
                                                             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                             in.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
                                                             in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                                                             in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -203,8 +206,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                                                             in.putExtra("PRODUCTTYPE_KEY", recvProType);
                                                             in.putExtra("ProductSubTypeList",mySQLDataBases1);
                                                             in.putExtra("ProductTypeList",mySQLProTypes);
+                                                            setResult(Activity.RESULT_OK,in);
                                                             startActivity(in);
-                                                           // finish();
+                                                            finish();
                                                         }
                                                     });
                                                     alert.show();

@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -22,15 +24,13 @@ public class ProductSizeSingleViewFullImage extends AppCompatActivity {
     Context c;
     ArrayList<MySQLDataBase> mySQLDataBases;
     private static int pid,psid,selProLength,selProWidth,selProHeight;
-    private static String selProductName,selFinalProSize,image,name,brand,color,size;
+    private static String selProductName,selFinalProSize,image,name,brand,color,size,finalUrl;
 int click=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        // getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_size_single_view_full_image);
-
-
 
             im = (ImageView) findViewById(R.id.fullimage);
 
@@ -50,9 +50,11 @@ int click=0;
              brand = i.getExtras().getString("BRAND_KEY");
              color = i.getExtras().getString("COLOR_KEY");
             size = i.getExtras().getString("SIZE_KEY");
+        finalUrl=Config.mainUrlAddress + image;
         Glide.with(this)
-                .load(image)
+                .load(finalUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .centerCrop()
                 .crossFade()
                 .into(im);
@@ -73,8 +75,8 @@ int click=0;
                         Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
 
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("IMAGE_KEY", image);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -88,6 +90,7 @@ int click=0;
                         in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
                         in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -147,8 +150,8 @@ int click=0;
             Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
 
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("IMAGE_KEY", image);
             in.putExtra("PRODUCTID_KEY", pid);
             in.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -162,8 +165,10 @@ int click=0;
             in.putExtra("PRODUCTSIZELENGTH_KEY",selProLength);
             in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
 
 
