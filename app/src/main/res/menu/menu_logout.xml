@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="Home"
+        />
+
+
+
+    <item
+        android:id="@+id/ab"
+        android:drawableTint="@color/cred"
+        android:icon="@drawable/aboutus"
+        android:title="About Us"
+
+        />
+
+
+
+    <item
+        android:id="@+id/product"
+        android:icon="@drawable/productbar"
+        android:title="Products"
+        />
+    <item
+        android:id="@+id/brands"
+        android:icon="@drawable/brandbar"
+        android:title="Brands " />
+
+    <item
+        android:id="@+id/cu"
+        android:icon="@drawable/contactbar"
+        android:title="Contact Us" />
+
+    <item
+        android:id="@+id/enquiry"
+        android:icon="@drawable/enquirybar"
+        android:title="Enquiry" />
+
+
+
+    <item
+        android:id="@+id/nw"
+        android:icon="@drawable/news"
+        android:title="News" />
+
+
+    <item
+        android:id="@+id/of"
+        android:checkable="false"
+        android:icon="@mipmap/discount"
+        android:state_enabled="false"
+        android:title="ABC Offers" />
+
+
+
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logoutt"
+        android:title="Logout"
+       />
+
+
+</menu>

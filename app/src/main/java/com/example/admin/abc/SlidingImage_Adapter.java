@@ -1,19 +1,26 @@
 package com.example.admin.abc;
 
 import android.content.Context;
+import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import static com.example.admin.abc.R.id.time;
 
 /**
  * Created by Admin on 4/5/2017.
  */
 public class SlidingImage_Adapter extends PagerAdapter {
+
 
 
     private ArrayList<Integer> IMAGES;
@@ -70,6 +77,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
     public Parcelable saveState() {
         return null;
     }
+
 
 
 }
