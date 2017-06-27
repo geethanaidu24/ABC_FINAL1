@@ -519,7 +519,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //open detail activity
-                    openDetailActivity(pid, pname, ptid, ptsid, name, finalUrl, brand, color, finalSize);
+                    openDetailActivity(pid, pname, ptid, ptsid, name, url, brand, color, finalSize);
                 }
             });
             return convertView;
