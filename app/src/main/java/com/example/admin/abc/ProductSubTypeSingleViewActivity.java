@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import java.util.ArrayList;
+
 import static com.example.admin.abc.R.id.productsadd;
 
 /**
@@ -32,12 +34,34 @@ int click=0;
     ImageView img;
     TextView nameTxt, brandTxt, colorTxt;
     Context c;
-
+    private int productSubTypeId;
+    private String productSubTypeName;
+    private int selectedProducttypeid;
+    private String selectedProducttype;
+    private static int selectedPid;
+    private static String selectedPname,name,image,brand,color;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
+    ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
     public void onCreate(Bundle savedInstanceState) {
       //  getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_view_final);
+        // Get intent data
+        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
+         name = i.getExtras().getString("NAME_KEY");
+        image = i.getExtras().getString("IMAGE_KEY");
+         brand = i.getExtras().getString("BRAND_KEY");
+         color = i.getExtras().getString("COLOR_KEY");
+        productSubTypeName = i.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
+        productSubTypeId = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        selectedPname = i.getExtras().getString("PRODUCTNAME_KEY");
+        selectedPid = i.getExtras().getInt("PRODUCTID_KEY");
+        selectedProducttype = i.getExtras().getString("PRODUCTTYPE_KEY");
+        selectedProducttypeid = i.getExtras().getInt("PRODUCTTYPEID_KEY");
+        mySQLDataBases1 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductSubTypeList");
+
+        mySQLProTypes = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeList") ;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -50,11 +74,20 @@ int click=0;
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
+                        Intent i = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
+                        i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                        i.putExtra("PRODUCTID_KEY", selectedPid);
+                        i.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        i.putExtra("ProductSubTypeList",mySQLDataBases1);
+                        i.putExtra("ProductTypeList",mySQLProTypes);
+                        startActivity(i);
                         finish();
                     }
                 }
@@ -64,27 +97,13 @@ int click=0;
 
         }
 
-
-
-
-
-
-
-
-
         img = (ImageView) findViewById(R.id.img1); //init a ImageView
             im1=(ImageButton)findViewById(R.id.imageButton2);
         nameTxt = (TextView) findViewById(R.id.nameTxt);
         brandTxt = (TextView) findViewById(R.id.brandTxt);
         colorTxt = (TextView) findViewById(R.id.colorTxt);
 
-        // Get intent data
-        Intent i = this.getIntent(); // get Intent which we set from Previous Activity
-        final int pstid = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
-        final String name = i.getExtras().getString("NAME_KEY");
-        final String image = i.getExtras().getString("IMAGE_KEY");
-        final String brand = i.getExtras().getString("BRAND_KEY");
-        final String color = i.getExtras().getString("COLOR_KEY");
+
         nameTxt.setText(name);
         brandTxt.setText(brand);
         colorTxt.setText(color);
@@ -105,14 +124,27 @@ int click=0;
                 if (click == 1) {
                     click = 0;
 
-                    Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeSingleViewImageFull.class);
-                    in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    in.putExtra("IMAGE_KEY", finImgUrl);
-                    in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
-                    in.putExtra("NAME_KEY", name);
-                    in.putExtra("BRAND_KEY", brand);
-                    in.putExtra("COLOR_KEY", color);
-                    startActivity(in);
+                    Intent i = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeSingleViewImageFull.class);
+                    i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    i.putExtra("IMAGE_KEY", finImgUrl);
+                    i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+                    i.putExtra("NAME_KEY", name);
+                    i.putExtra("BRAND_KEY", brand);
+                    i.putExtra("COLOR_KEY", color);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
+                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+
+                    i.putExtra("PRODUCTID_KEY", selectedPid);
+                    i.putExtra("PRODUCTNAME_KEY", selectedPname);
+                    i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                    i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                    i.putExtra("ProductSubTypeList",mySQLDataBases1);
+                    i.putExtra("ProductTypeList",mySQLProTypes);
+                    startActivity(i);
+                    finish();
+
                 }
             }
         });
@@ -166,11 +198,20 @@ int click=0;
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
+            Intent i = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
+            i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+            i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
+            i.putExtra("PRODUCTID_KEY", selectedPid);
+            i.putExtra("PRODUCTNAME_KEY", selectedPname);
+            i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+            i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+            i.putExtra("ProductSubTypeList",mySQLDataBases1);
+            i.putExtra("ProductTypeList",mySQLProTypes);
+            startActivity(i);
             finish();
 
         }

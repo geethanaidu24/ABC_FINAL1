@@ -70,7 +70,7 @@ ImageButton zoom;
                         inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        inn.putExtra("PRODUCTID_KEY", pid);
+                       inn.putExtra("PRODUCTID_KEY", pid);
                         inn.putExtra("PRODUCTNAME_KEY", selProductName);
                         inn.putExtra("PRODUCTSIZEID_KEY", psid);
                         inn.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);
@@ -190,7 +190,7 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            inn.putExtra("PRODUCTID_KEY", pid);
+           inn.putExtra("PRODUCTID_KEY", pid);
             inn.putExtra("PRODUCTNAME_KEY", selProductName);
             inn.putExtra("PRODUCTSIZEID_KEY", psid);
             inn.putExtra("FINALPROSELSIZE_KEY", selFinalProSize);

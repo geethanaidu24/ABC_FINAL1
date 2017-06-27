@@ -225,7 +225,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                                                             in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                             in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                                                             in.putExtra("ProductTypeSizeList",mySQLDataBases);
-                                                          //  in.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            in.putExtra("ProductTypeList",mySQLDataBases1);
                                                             startActivity(in);
                                                         }
                                                     });

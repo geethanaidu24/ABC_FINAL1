@@ -81,12 +81,12 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                       /* in.putExtra("PRODUCTID_KEY", selectedProdutId);
+                        in.putExtra("PRODUCTID_KEY", selectedProdutId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                        // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                        // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
-                        in.putExtra("ProductTypeList",mySQLDataBases1);*/
-                        //startActivity(in);
+                        in.putExtra("ProductTypeList",mySQLDataBases1);
+                        startActivity(in);
                         finish();
                     }
                 }
@@ -204,12 +204,12 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-           /* in.putExtra("PRODUCTID_KEY", selectedProdutId);
+            in.putExtra("PRODUCTID_KEY", selectedProdutId);
             in.putExtra("PRODUCTNAME_KEY", selectedProductName);
             // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
             // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
-            in.putExtra("ProductTypeList",mySQLDataBases1);*/
-           // startActivity(in);
+            in.putExtra("ProductTypeList",mySQLDataBases1);
+            startActivity(in);
             finish();
         }
 

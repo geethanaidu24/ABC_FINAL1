@@ -149,7 +149,7 @@ int click=0;
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            in.putExtra("IMAGE_KEY", image);
+           in.putExtra("IMAGE_KEY", image);
             in.putExtra("PRODUCTID_KEY", pid);
             in.putExtra("PRODUCTSIZEID_KEY", psid);
             in.putExtra("NAME_KEY", name);
