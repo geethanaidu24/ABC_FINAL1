@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -87,14 +88,15 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
 
                             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                             intent.putExtra("PRODUCTID_KEY", selectedProdutId1);
                             intent.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                             intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
                             intent.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                             intent.putExtra("ProductTypeSizeList",mySQLDataBases);
                             intent.putExtra("ProductTypeList",mySQLDataBases1);
+                            setResult(Activity.RESULT_OK,intent);
                             startActivity(intent);
                          finish();
 
@@ -130,14 +132,15 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
             Intent in = new Intent(AddProductTypeSizes.this, ProductTypeSizes.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", selectedProdutId1);
             in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
             in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
             in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
             in.putExtra("ProductTypeSizeList",mySQLDataBases);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
         }
@@ -187,15 +190,17 @@ public class AddProductTypeSizes extends AppCompatActivity implements View.OnCli
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductTypeSizes.this,AddProductTypeSizes.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                            Intent.FLAG_ACTIVITY_NEW_TASK*/);
                     in.putExtra("PRODUCTID_KEY", selectedProdutId1);
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                     in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId1);
                     in.putExtra("PRODUCTTYPE_KEY", selectedProductType1);
                     in.putExtra("ProductTypeSizeList",mySQLDataBases);
                     in.putExtra("ProductTypeList",mySQLDataBases1);
+                    setResult(Activity.RESULT_OK,in);
                     startActivity(in);
+                    finish();
                 }
             });
             alert.show();

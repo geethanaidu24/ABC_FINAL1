@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -81,11 +82,12 @@ public class DeleteProductSizes extends AppCompatActivity {
 
                         Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", recivedProductId);
                         in.putExtra("PRODUCTNAME_KEY",selectdProName);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
 
@@ -103,20 +105,15 @@ public class DeleteProductSizes extends AppCompatActivity {
             //finishAffinity();
             Intent in = new Intent(DeleteProductSizes.this, ProductSizes.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        in.putExtra("PRODUCTID_KEY", recivedProductId);
-                        in.putExtra("PRODUCTNAME_KEY",selectdProName);
-                        in.putExtra("ProductSizeList",mySQLDataBases);
-                        startActivity(in);
-                        finish();
-          /*  Intent in = new Intent(DeleteProductSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            in.putExtra("PRODUCTID_KEY", recivedProductId);
+            in.putExtra("PRODUCTNAME_KEY",selectdProName);
+            in.putExtra("ProductSizeList",mySQLDataBases);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
-            finish();*/
+            finish();
         }
     }
     private void initializeViews()
@@ -184,16 +181,17 @@ public class DeleteProductSizes extends AppCompatActivity {
                                                     alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                                         @Override
                                                         public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
+                                                            Intent in = new Intent(DeleteProductSizes.this, DeleteProductSizes.class);
                                                             //intent.putExtra("PRODUCTID_KEY", recivedProductId);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                            intent.putExtra("PRODUCTID_KEY", recivedProductId);
-                                                            intent.putExtra("PRODUCTNAME_KEY",selectdProName);
-                                                            intent.putExtra("ProductSizeList",mySQLDataBases);
-                                                            startActivity(intent);
-                                                           // finish();
+                                                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                                                            in.putExtra("PRODUCTID_KEY", recivedProductId);
+                                                            in.putExtra("PRODUCTNAME_KEY",selectdProName);
+                                                            in.putExtra("ProductSizeList",mySQLDataBases);
+                                                            setResult(Activity.RESULT_OK,in);
+                                                            startActivity(in);
+                                                            finish();
                                                         }
                                                     });
                                                     alert.show();

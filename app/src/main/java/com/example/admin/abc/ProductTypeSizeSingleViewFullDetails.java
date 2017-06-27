@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -31,7 +33,7 @@ int click=0;
     ImageView selectedImage;
     TextView nameTxt, brandTxt, colorTxt, sizeTxt;
     Context c;
-    String productType,selectedProductSize,name,color,image,brand,size,pname;
+    String productType,selectedProductSize,name,color,image,brand,size,pname,finalUrl;
     int selLength,selWidth,selHeight,pid,ptid,ptsid;
     ArrayList<MySQLDataBase> mySQLDataBases1;
     ArrayList<MySQLDataBase> mySQLDataBases2;
@@ -51,16 +53,14 @@ int click=0;
          brand = i.getExtras().getString("BRAND_KEY");
          color = i.getExtras().getString("COLOR_KEY");
          size = i.getExtras().getString("SIZE_KEY");
-
-
         productType = i.getExtras().getString("PRODUCTTYPE_KEY");
-
         selectedProductSize = i.getExtras().getString("FINALSIZE_KEY");
         selLength = i.getExtras().getInt("LENGTH_KEY");
         selWidth = i.getExtras().getInt("WIDTH_KEY");
         selHeight = i.getExtras().getInt("HEIGHT_KEY");
         mySQLDataBases2 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeSizeList");
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeList");
+        finalUrl = Config.mainUrlAddress + image;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -75,31 +75,26 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
-                 /*  in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",pname);
-                    in.putExtra("PRODUCTTYPEID_KEY",ptid);
-                    in.putExtra("PRODUCTTYPESIZEID_KEY",ptsid);
-*/
-
 
                         i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         i.putExtra("PRODUCTID_KEY", pid);
                         i.putExtra("PRODUCTNAME_KEY", pname);
                         i.putExtra("PRODUCTTYPEID_KEY", ptid);
                         i.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
-                        i.putExtra("NAME_KEY", name);
-                        i.putExtra("IMAGE_KEY", image);
-                        i.putExtra("BRAND_KEY", brand);
-                        i.putExtra("COLOR_KEY", color);
-                        i.putExtra("SIZE_KEY", size);
+                        i.putExtra("FINALSIZE_KEY",selectedProductSize);
+                        i.putExtra("LENGTH_KEY",selLength);
+                        i.putExtra("WIDTH_KEY",selWidth);
+                        i.putExtra("HEIGHT_KEY",selHeight);
                         i.putExtra("PRODUCTTYPE_KEY", productType);
                         i.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         i.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,i);
                         startActivity(i);
                         finish();
                     }
+
                 }
             });
             Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
@@ -112,16 +107,14 @@ int click=0;
         colorTxt = (TextView)findViewById(R.id.sizeTxt);
             zoom=(ImageButton)findViewById(R.id.imageButton) ;
 
-
-
-
       nameTxt.setText(name);
       brandTxt.setText(brand);
       colorTxt.setText(color);
       sizeTxt.setText(size);
         Glide.with(this)
-                .load(image)
+                .load(finalUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .centerCrop()
                 .crossFade()
                 .into(selectedImage);
@@ -140,11 +133,18 @@ int click=0;
                     in.putExtra("PRODUCTID_KEY", pid);
                     in.putExtra("PRODUCTNAME_KEY", pname);
                     in.putExtra("PRODUCTTYPEID_KEY", ptid);
-                    in.putExtra("PRODUCTSUBTYPEID_KEY", ptsid);
+                    in.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
                     in.putExtra("NAME_KEY", name);
                     in.putExtra("BRAND_KEY", brand);
                     in.putExtra("COLOR_KEY", color);
-
+                    in.putExtra("SIZE_KEY",size);
+                    in.putExtra("PRODUCTTYPE_KEY",productType);
+                    in.putExtra("FINALSIZE_KEY",selectedProductSize);
+                    in.putExtra("LENGTH_KEY",selLength);
+                    in.putExtra("WIDTH_KEY",selWidth);
+                    in.putExtra("HEIGHT_KEY",selHeight);
+                    in.putExtra("ProductTypeList",mySQLDataBases1);
+                    in.putExtra("ProductTypeSizeList",mySQLDataBases2);
                     startActivity(in);
                 }
             }
@@ -202,26 +202,23 @@ int click=0;
             click = 0;
             Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
             i.putExtra("PRODUCTID_KEY", pid);
             i.putExtra("PRODUCTNAME_KEY", pname);
             i.putExtra("PRODUCTTYPEID_KEY", ptid);
             i.putExtra("PRODUCTTYPESIZEID_KEY", ptsid);
-            i.putExtra("NAME_KEY", name);
-            i.putExtra("IMAGE_KEY", image);
-            i.putExtra("BRAND_KEY", brand);
-            i.putExtra("COLOR_KEY", color);
-            i.putExtra("SIZE_KEY", size);
+            i.putExtra("FINALSIZE_KEY",selectedProductSize);
+            i.putExtra("LENGTH_KEY",selLength);
+            i.putExtra("WIDTH_KEY",selWidth);
+            i.putExtra("HEIGHT_KEY",selHeight);
             i.putExtra("PRODUCTTYPE_KEY", productType);
             i.putExtra("ProductTypeSizeList",mySQLDataBases2);
             i.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,i);
             startActivity(i);
             finish();
-
+super.onBackPressed();
 
         }
     }

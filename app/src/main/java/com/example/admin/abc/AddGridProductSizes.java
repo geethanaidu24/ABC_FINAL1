@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -120,8 +121,8 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", finalProId);
                         in.putExtra("PRODUCTNAME_KEY", finalProName);
                         in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
@@ -130,12 +131,10 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
                         in.putExtra("ProductSizeList",mySQLDataBases);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
-                      /*  startActivity(in);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
+
                     }
                   //  finish();
                 }
@@ -169,8 +168,8 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", finalProId);
             in.putExtra("PRODUCTNAME_KEY", finalProName);
             in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
@@ -179,8 +178,10 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
             in.putExtra("ProductSizeList",mySQLDataBases);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
 
         }
     }
@@ -240,8 +241,8 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddGridProductSizes.this,AddGridProductSizes.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", finalProId);
             in.putExtra("PRODUCTNAME_KEY", finalProName);
             in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
@@ -250,8 +251,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTSIZELENGTH_KEY", finalLength);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
             in.putExtra("ProductSizeList",mySQLDataBases);
-            startActivity(in);
-           // finish();
+                    setResult(Activity.RESULT_OK,in);
+                    startActivity(in);
+                    finish();
         }
     });
             alert.show();

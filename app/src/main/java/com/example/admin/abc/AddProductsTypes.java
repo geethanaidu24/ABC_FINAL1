@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -94,27 +95,22 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        /*Intent in = new Intent(AddProductsTypes.this, Refresh.class);*/
+
+                       //AddProductsTypes.super.onBackPressed();
                         Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                   in.putExtra("PRODUCTID_KEY", selectedProductId);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        in.putExtra("PRODUCTID_KEY", selectedProductId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
 
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);*/
-                //   finish();
+
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
-                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);*/
                     }
-                    //finish();
 
                 }
             });
@@ -144,22 +140,19 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             click = 0;
             Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                  in.putExtra("PRODUCTID_KEY", selectedProductId);
             in.putExtra("PRODUCTNAME_KEY", selectedProductName);
             in.putExtra("ProductTypeList", mySQLDataBases);
 
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    /*in.putExtra("PRODUCTID_KEY", pid);
-                    in.putExtra("PRODUCTNAME_KEY",name);*/
-            //   finish();
+
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
-          /*  startActivity(in);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
+            super.onBackPressed();
+
         }
     }
     @Override
@@ -213,13 +206,14 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddProductsTypes.this,AddProductsTypes.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                            Intent.FLAG_ACTIVITY_NEW_TASK*/);
                     in.putExtra("PRODUCTID_KEY", selectedProductId);
                     in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                     in.putExtra("ProductTypeList", mySQLDataBases);
+                    setResult(Activity.RESULT_OK,in);
                     startActivity(in);
-                    //finish();
+                    finish();
                 }
             });
             alert.show();

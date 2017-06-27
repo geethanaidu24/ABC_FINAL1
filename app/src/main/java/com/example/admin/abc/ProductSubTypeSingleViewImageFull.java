@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -14,8 +15,11 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
+
+
 
 /**
  * Created by Admin on 4/24/2017.
@@ -25,12 +29,9 @@ public  class ProductSubTypeSingleViewImageFull  extends AppCompatActivity {
     ImageView im;
     Context c;
 int click=0;
-    private int productSubTypeId;
-    private String productSubTypeName;
-    private int selectedProducttypeid;
-    private String selectedProducttype;
-    private static int selectedPid;
-    private static String selectedPname,name,image,brand,color;
+    private int pstid,selectedProducttypeid,selectedPid;
+
+    private static String name,image,brand,color, productSubTypeName,selectedProducttype,selectedPname;
     ArrayList<MySQLDataBase> mySQLDataBases1;
     ArrayList<MySQLDataBase> mySQLProTypes;
     @Override
@@ -49,7 +50,7 @@ int click=0;
         brand = i.getExtras().getString("BRAND_KEY");
         color = i.getExtras().getString("COLOR_KEY");
         productSubTypeName = i.getExtras().getString("PRODUCTSUBTYPENAME_KEY");
-        productSubTypeId = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
+        pstid = i.getExtras().getInt("PRODUCTSUBTYPEID_KEY");
         selectedPname = i.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = i.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = i.getExtras().getString("PRODUCTTYPE_KEY");
@@ -57,10 +58,11 @@ int click=0;
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductSubTypeList");
 
         mySQLProTypes = (ArrayList<MySQLDataBase>) i.getSerializableExtra("ProductTypeList") ;
-
+        final String finImgUrl = Config.mainUrlAddress+image;
         Glide.with(this)
-                .load(image)
+                .load(finImgUrl)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .centerCrop()
                 .crossFade()
                 .into(im);
@@ -77,25 +79,25 @@ int click=0;
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        Intent i = new Intent(ProductSubTypeSingleViewImageFull.this, ProductSubTypeSingleViewActivity.class);
+                        Intent in = new Intent(ProductSubTypeSingleViewImageFull.this, ProductSubTypeSingleViewActivity.class);
 
-                        i.putExtra("IMAGE_KEY", image);
-                        i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
-                        i.putExtra("NAME_KEY", name);
-                        i.putExtra("BRAND_KEY", brand);
-                        i.putExtra("COLOR_KEY", color);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-
-                        i.putExtra("PRODUCTID_KEY", selectedPid);
-                        i.putExtra("PRODUCTNAME_KEY", selectedPname);
-                        i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-                        i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                        i.putExtra("ProductSubTypeList",mySQLDataBases1);
-                        i.putExtra("ProductTypeList",mySQLProTypes);
-                        startActivity(i);
+                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        in.putExtra("IMAGE_KEY", image);
+                        in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+                        in.putExtra("NAME_KEY", name);
+                        in.putExtra("BRAND_KEY", brand);
+                        in.putExtra("COLOR_KEY", color);
+                        in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        in.putExtra("PRODUCTID_KEY", selectedPid);
+                        in.putExtra("PRODUCTNAME_KEY", selectedPname);
+                        in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+                        in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+                        in.putExtra("ProductSubTypeList",mySQLDataBases1);
+                        in.putExtra("ProductTypeList",mySQLProTypes);
+                        setResult(Activity.RESULT_OK,in);
+                        startActivity(in);
                         finish();
                     }
                 }
@@ -151,28 +153,26 @@ int click=0;
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent i = new Intent(ProductSubTypeSingleViewImageFull.this, ProductSubTypeSingleViewActivity.class);
-
-            i.putExtra("IMAGE_KEY", image);
-            i.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
-            i.putExtra("NAME_KEY", name);
-            i.putExtra("BRAND_KEY", brand);
-            i.putExtra("COLOR_KEY", color);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-
-            i.putExtra("PRODUCTID_KEY", selectedPid);
-            i.putExtra("PRODUCTNAME_KEY", selectedPname);
-            i.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
-            i.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-            i.putExtra("ProductSubTypeList",mySQLDataBases1);
-            i.putExtra("ProductTypeList",mySQLProTypes);
-            startActivity(i);
+            Intent in = new Intent(ProductSubTypeSingleViewImageFull.this, ProductSubTypeSingleViewActivity.class);
+            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            in.putExtra("IMAGE_KEY", image);
+            in.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
+            in.putExtra("NAME_KEY", name);
+            in.putExtra("BRAND_KEY", brand);
+            in.putExtra("COLOR_KEY", color);
+            in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+            in.putExtra("PRODUCTID_KEY", selectedPid);
+            in.putExtra("PRODUCTNAME_KEY", selectedPname);
+            in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
+            in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
+            in.putExtra("ProductSubTypeList",mySQLDataBases1);
+            in.putExtra("ProductTypeList",mySQLProTypes);
+            setResult(Activity.RESULT_OK,in);
+            startActivity(in);
             finish();
-
-
+            super.onBackPressed();
 
         }
     }

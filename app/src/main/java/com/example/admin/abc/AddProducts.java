@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -72,13 +73,14 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                        /* Intent in = new Intent(AddProducts.this, Products.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     finish();*/
-                        Intent in = new Intent(AddProducts.this, Products.class);
+                        /*Intent in = new Intent(AddProducts.this, Products.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         startActivity(in);
-                        finish();
+                        finish();*/
+                        AddProducts.super.onBackPressed();
 
                     }
                 }
@@ -108,11 +110,11 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                     finish();*/
                 Intent in = new Intent(AddProducts.this, Products.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                startActivity(in);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                setResult(Activity.RESULT_OK,in);
                 finish();
+                super.onBackPressed();
 
             }
 
@@ -168,8 +170,12 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent in=new Intent(AddProducts.this,AddProducts.class);
+                            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                            setResult(Activity.RESULT_OK,in);
                             startActivity(in);
-                            //finish();
+                            finish();
                         }
                     });
                     alert.show();

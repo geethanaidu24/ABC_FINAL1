@@ -1,6 +1,7 @@
 package com.example.admin.abc;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -132,8 +133,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", recivedProductId);
                         in.putExtra("PRODUCTNAME_KEY", recivedProductName);
                         in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
@@ -145,6 +146,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                         in.putExtra("HEIGHT_KEY", finalProHeight);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -177,8 +179,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         Intent in = new Intent(AddGridProductTypeSizes.this, ProductTypeSizeImagesGridView.class);
        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                Intent.FLAG_ACTIVITY_NEW_TASK);
+                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                Intent.FLAG_ACTIVITY_NEW_TASK*/);
         in.putExtra("PRODUCTID_KEY", recivedProductId);
         in.putExtra("PRODUCTNAME_KEY", recivedProductName);
         in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
@@ -190,6 +192,7 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
         in.putExtra("HEIGHT_KEY", finalProHeight);
         in.putExtra("ProductTypeList",mySQLDataBases1);
         in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+        setResult(Activity.RESULT_OK,in);
         startActivity(in);
         finish();
     }
@@ -247,8 +250,8 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                 public void onClick(DialogInterface dialog, int which) {
                     Intent in=new Intent(AddGridProductTypeSizes.this,AddGridProductTypeSizes.class);
                     in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                            Intent.FLAG_ACTIVITY_NEW_TASK);
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                            Intent.FLAG_ACTIVITY_NEW_TASK*/);
                     in.putExtra("PRODUCTID_KEY", recivedProductId);
                     in.putExtra("PRODUCTNAME_KEY", recivedProductName);
                     in.putExtra("PRODUCTTYPESIZEID_KEY", recivedProductTypeSizeId);
@@ -260,7 +263,9 @@ public class AddGridProductTypeSizes extends AppCompatActivity implements View.O
                     in.putExtra("HEIGHT_KEY", finalProHeight);
                     in.putExtra("ProductTypeList",mySQLDataBases1);
                     in.putExtra("ProductTypeSizeList",mySQLDataBases2);
+                    setResult(Activity.RESULT_OK,in);
                     startActivity(in);
+                    finish();
                 }
             });
             alert.show();

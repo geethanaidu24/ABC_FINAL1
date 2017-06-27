@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -36,7 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class DeleteGridProductTypes extends AppCompatActivity {
-     ArrayList<MySQLDataBase> mySQLDataBases;
+     ArrayList<MySQLDataBase> mySQLDataBases2;
     ArrayList<MySQLDataBase> mySQLDataBases1;
     private Spinner sp;
     private Button btnAdd;
@@ -47,6 +48,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
     private static  int productId,productTypeId;
     private static String recvdProName,recvdProType;
     URL gridProTypeSpinUrlAddress = null;
+    ArrayList<MySQLDataBase> mySQLDataBases = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +58,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
         productTypeId = in.getExtras().getInt("PRODUCTTYPEID_KEY");
         recvdProName = in.getExtras().getString("PRODUCTNAME_KEY");
         recvdProType = in.getExtras().getString("PRODUCTTYPE_KEY");
-        mySQLDataBases = (ArrayList<MySQLDataBase>) in.getSerializableExtra("ProductTypeGridList");
+        mySQLDataBases2 = (ArrayList<MySQLDataBase>) in.getSerializableExtra("ProductTypeGridList");
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) in.getSerializableExtra("ProductTypeList");
         Uri builtUri = Uri.parse(Data_spinner_url)
                 .buildUpon()
@@ -83,14 +85,15 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                         Intent in = new Intent(DeleteGridProductTypes.this, ProductTypesGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", recvdProName);
                         in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                         in.putExtra("PRODUCTTYPE_KEY", recvdProType);
-                        in.putExtra("ProductTypeGridList",mySQLDataBases);
+                        in.putExtra("ProductTypeGridList",mySQLDataBases2);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                        /* Intent in = new Intent(DeleteGridProductTypes.this, Refresh.class);
@@ -120,16 +123,18 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                         finish();*/
             Intent in = new Intent(DeleteGridProductTypes.this, ProductTypesGridView.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             in.putExtra("PRODUCTID_KEY", productId);
             in.putExtra("PRODUCTNAME_KEY", recvdProName);
             in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
             in.putExtra("PRODUCTTYPE_KEY", recvdProType);
-            in.putExtra("ProductTypeGridList",mySQLDataBases);
+            in.putExtra("ProductTypeGridList",mySQLDataBases2);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
     }
     private void initializeViews()
@@ -178,17 +183,7 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                                                 String responseString = response.get(0).toString();
                                                 Toast.makeText(DeleteGridProductTypes.this, " " + responseString, Toast.LENGTH_SHORT).show();
                                                 if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                  //Intent intent = new Intent(DeleteGridProductTypes.this, DeleteGridProductTypes.class);
-                                                    /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                            Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                            Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                    in.putExtra("PRODUCTID_KEY", productId);
-                                                    in.putExtra("PRODUCTNAME_KEY", recvdProName);
-                                                    in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
-                                                    in.putExtra("PRODUCTTYPE_KEY", recvdProType);
-                                                    in.putExtra("ProductTypeGridList",mySQLDataBases);
-                                                    in.putExtra("ProductTypeList",mySQLDataBases1);
-                                                    startActivity(in);*/
+
                                                     AlertDialog.Builder alert = new AlertDialog.Builder(DeleteGridProductTypes.this);
                                                     alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
                                                     alert.setMessage("To Refresh Newly added content Go Back to Home Screen..\n Confirm Delete By Clicking on OK");
@@ -199,16 +194,17 @@ public class DeleteGridProductTypes extends AppCompatActivity {
                                                         public void onClick(DialogInterface dialog, int which) {
                                                             Intent intent=new Intent(DeleteGridProductTypes.this,DeleteGridProductTypes.class);
                                                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                                                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                                                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
                                                             intent.putExtra("PRODUCTID_KEY", productId);
                                                             intent.putExtra("PRODUCTNAME_KEY", recvdProName);
                                                             intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
                                                             intent.putExtra("PRODUCTTYPE_KEY", recvdProType);
-                                                            intent.putExtra("ProductTypeGridList",mySQLDataBases);
+                                                            intent.putExtra("ProductTypeGridList",mySQLDataBases2);
                                                             intent.putExtra("ProductTypeList",mySQLDataBases1);
+                                                            setResult(Activity.RESULT_OK,intent);
                                                             startActivity(intent);
-
+                                                            finish();
                                                         }
                                                     });
                                                     alert.show();

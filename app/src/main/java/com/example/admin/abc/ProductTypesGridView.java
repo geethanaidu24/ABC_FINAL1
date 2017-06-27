@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,10 +55,9 @@ public class ProductTypesGridView extends AppCompatActivity implements Serializa
     private String selectedProducttype;
     private static int selectedProductId;
     private static String selectedProductName;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases2;
     ArrayList<MySQLDataBase> mySQLDataBases1;
 int click=0;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,18 +66,16 @@ int click=0;
         setContentView(R.layout.activity_products_types_images);
 
         final GridView gv = (GridView) findViewById(R.id.gv);
-
-
         // Get intent data
         Intent intent = this.getIntent(); // get Intent which we set from Previous Activity
         selectedProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectedProducttype = intent.getExtras().getString("PRODUCTTYPE_KEY");
         selectedProducttypeid = intent.getExtras().getInt("PRODUCTTYPEID_KEY");
-      mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
+      mySQLDataBases2 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeGridList");
 
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
-        final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases, selectedProductId, selectedProducttypeid);
+        final ProductTypeImagesGirdAdapter adapter = new ProductTypeImagesGirdAdapter(this, mySQLDataBases2, selectedProductId, selectedProducttypeid);
         gv.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -92,13 +90,13 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypesGridView.this, ProductTypes.class);
-
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", selectedProductId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -156,13 +154,13 @@ int click=0;
                 Intent in = new Intent(ProductTypesGridView.this, AddGridProductTypes.class);
                // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectedProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 in.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                in.putExtra("ProductTypeGridList",mySQLDataBases);
+                in.putExtra("ProductTypeGridList",mySQLDataBases2);
                 in.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(in);
                 return true;
@@ -175,13 +173,13 @@ int click=0;
                 Intent inn = new Intent(ProductTypesGridView.this, DeleteGridProductTypes.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 inn.putExtra("PRODUCTID_KEY", selectedProductId);
                 inn.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 inn.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
                 inn.putExtra("PRODUCTTYPE_KEY", selectedProducttype);
-                inn.putExtra("ProductTypeGridList",mySQLDataBases);
+                inn.putExtra("ProductTypeGridList",mySQLDataBases2);
                 inn.putExtra("ProductTypeList",mySQLDataBases1);
                 startActivity(inn);
                 return true;
@@ -216,8 +214,10 @@ int click=0;
             in.putExtra("PRODUCTID_KEY", selectedProductId);
             in.putExtra("PRODUCTNAME_KEY", selectedProductName);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
+            super.onBackPressed();
         }
 
 
@@ -287,7 +287,7 @@ int click=0;
                 public void onClick(View v){
                     //open detail activity
                     // startDeatilActivity();
-                    openDetailActivity(pid,ptid,name,finalUrl,brand,color);
+                    openDetailActivity(pid,ptid,name,url,brand,color);
                 }
             });
             return convertView;
@@ -305,6 +305,10 @@ int click=0;
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);
                 i.putExtra("COLOR_KEY", details[3]);
+                i.putExtra("PRODUCTNAME_KEY",selectedProductName);
+                i.putExtra("PRODUCTTYPE_KEY",selectedProducttype);
+                i.putExtra("ProductTypeGridList",mySQLDataBases2);
+                i.putExtra("ProductTypeList",mySQLDataBases1);
                 c.startActivity(i);
             }
         }

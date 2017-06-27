@@ -1,5 +1,6 @@
 package com.example.admin.abc;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -79,13 +80,14 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                         click = 0;
                         Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
                         in.putExtra("PRODUCTID_KEY", selectedProdutId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                        // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                        // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
+                        setResult(Activity.RESULT_OK,in);
                         startActivity(in);
                         finish();
                     }
@@ -145,8 +147,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 Intent intent = new Intent(ProductTypeSizes.this, AddProductTypeSizes.class);
                // intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                intent.putExtra("PRODUCTID_KEY", selectedProdutId);
                 intent.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 intent.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -164,8 +166,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                 Intent in = new Intent(ProductTypeSizes.this, DeleteProductTypeSizes.class);
                 //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectedProdutId);
                 in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                 in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
@@ -185,8 +187,8 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             Intent inn = new Intent(ProductTypeSizes.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
             startActivity(inn);
 
             return true;
@@ -209,6 +211,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
             // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
             in.putExtra("ProductTypeList",mySQLDataBases1);
+            setResult(Activity.RESULT_OK,in);
             startActivity(in);
             finish();
         }
