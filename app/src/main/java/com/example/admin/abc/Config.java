@@ -9,6 +9,7 @@ public class Config {
     //Main hosting address
 
 public final static String mainUrlAddress = "http://13.58.235.30/";
+
 //Main hosting adddress for php
 public final static String mainphpUrl = "http://13.58.235.30/php/";
     // For admin login

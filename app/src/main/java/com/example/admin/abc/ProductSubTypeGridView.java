@@ -106,11 +106,11 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
-                       /* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*/
+                        /*intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
+                       *//* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*//*
                         intent.putExtra("PRODUCTID_KEY", selectedPid);
                         intent.putExtra("PRODUCTNAME_KEY", selectedPname);
                         intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -118,7 +118,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                         intent.putExtra("ProductSubTypeList",mySQLDataBases1);
                         intent.putExtra("ProductTypeList",mySQLProTypes);
                         setResult(Activity.RESULT_OK,intent);
-                        startActivity(intent);
+                        startActivity(intent);*/
                         finish();
                     }
                 }
@@ -136,7 +136,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
       //  getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        if (loggedIn == true) {
+        if (loggedIn) {
 //            MenuItem item = menu.findItem(R.id.productsadd);
 //            item.setVisible(true);
 //            MenuItem items = menu.findItem(R.id.productdelete);
@@ -148,7 +148,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -240,11 +240,11 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             click = 0;
             Intent intent = new Intent(ProductSubTypeGridView.this, ProductSubTypes.class);
 
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
-                       /* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
-                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*/
+            /*intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
+                       *//* intent.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
+                        intent.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);*//*
             intent.putExtra("PRODUCTID_KEY", selectedPid);
             intent.putExtra("PRODUCTNAME_KEY", selectedPname);
             intent.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -252,7 +252,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
             intent.putExtra("ProductSubTypeList",mySQLDataBases1);
             intent.putExtra("ProductTypeList",mySQLProTypes);
             setResult(Activity.RESULT_OK,intent);
-            startActivity(intent);
+            startActivity(intent);*/
             finish();
             super.onBackPressed();
 

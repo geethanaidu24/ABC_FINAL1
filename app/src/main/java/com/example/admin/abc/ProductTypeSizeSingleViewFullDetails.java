@@ -76,9 +76,9 @@ int click=0;
                         click = 0;
                         Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
 
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                       /* i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         i.putExtra("PRODUCTID_KEY", pid);
                         i.putExtra("PRODUCTNAME_KEY", pname);
                         i.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -91,7 +91,7 @@ int click=0;
                         i.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         i.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,i);
-                        startActivity(i);
+                        startActivity(i);*/
                         finish();
                     }
 
@@ -201,9 +201,9 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent i = new Intent(ProductTypeSizeSingleViewFullDetails.this, ProductTypeSizeImagesGridView.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             i.putExtra("PRODUCTID_KEY", pid);
             i.putExtra("PRODUCTNAME_KEY", pname);
             i.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -216,7 +216,7 @@ int click=0;
             i.putExtra("ProductTypeSizeList",mySQLDataBases2);
             i.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,i);
-            startActivity(i);
+            startActivity(i);*/
             finish();
 super.onBackPressed();
 

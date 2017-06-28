@@ -79,16 +79,16 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", selectedProdutId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                        // in.putExtra("PRODUCTTYPEID_KEY", selectedProdutTypeId);
                        // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -104,7 +104,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
        // getMenuInflater().inflate(R.menu.mainproducts, menu);
-        if (loggedIn == true) {
+        if (loggedIn) {
             /*MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -115,7 +115,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else  {
             /*MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -203,7 +203,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductTypeSizes.this, ProductTypes.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             in.putExtra("PRODUCTID_KEY", selectedProdutId);
@@ -212,7 +212,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             // in.putExtra("PRODUCTTYPE_KEY", selectedProductType);
             in.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
 

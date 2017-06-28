@@ -88,14 +88,14 @@ public class DeleteProductTypes extends AppCompatActivity {
                         Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", recvdProId);
                         in.putExtra("PRODUCTNAME_KEY", recvdProName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
 
@@ -113,14 +113,14 @@ public class DeleteProductTypes extends AppCompatActivity {
             Intent in = new Intent(DeleteProductTypes.this, ProductTypes.class);
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTID_KEY", recvdProId);
             in.putExtra("PRODUCTNAME_KEY", recvdProName);
             in.putExtra("ProductTypeList", mySQLDataBases);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
         }

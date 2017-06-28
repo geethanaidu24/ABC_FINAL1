@@ -62,6 +62,7 @@ public class Products extends AppCompatActivity implements Serializable {
     final static String productSizeUrl = Config.productSizesUrlAddress;
     private boolean loggedIn = false;
     private boolean checkNetworkConnection;
+   // ArrayList<MySQLDataBase> mySQLProDataBases;
    ArrayList<MySQLDataBase> mySQLProTypeDataBases=new ArrayList<>();
     int click = 0;
     @Override
@@ -71,8 +72,11 @@ public class Products extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_products);
 
         final ListView lv = (ListView) findViewById(R.id.productLv);
-
         new ProductsDownloader(Products.this, productsAddress, lv).execute();
+       /* Intent intent = getIntent();
+        mySQLProDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductList");
+        final ProductsListAdapter adapter=new ProductsListAdapter(this,mySQLProDataBases);
+        lv.setAdapter(adapter);*/
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -85,19 +89,13 @@ public class Products extends AppCompatActivity implements Serializable {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
-                        /*Intent in = new Intent(Products.this, Main2Activity.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                                Intent.FLAG_ACTIVITY_NEW_TASK);
-                        //startActivity(in);
-                        finish();*/
-                        //Products.super.onBackPressed();
+
                         Intent in = new Intent(Products.this, Main2Activity.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
 
                     }
@@ -106,7 +104,7 @@ public class Products extends AppCompatActivity implements Serializable {
             });
 
          Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), R.mipmap.ho);
-                toolbar.setOverflowIcon(drawable);
+         toolbar.setOverflowIcon(drawable);
 
         }
     }
@@ -114,40 +112,40 @@ public class Products extends AppCompatActivity implements Serializable {
 
 
 
-public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(Menu menu) {
+            // Inflate the menu; this adds items to the action bar if it is present.
 
 
-        SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-    //getMenuInflater().inflate(R.menu.mainproducts, menu);
+            SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
+        //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        if (loggedIn == true) {
+            if (loggedIn) {
 
-           /* MenuItem item1 = menu.findItem(productsadd);
-            item1.setVisible(true);
-            MenuItem items = menu.findItem(R.id.productdelete);
-            items.setVisible(true);
-            MenuItem itemss = menu.findItem(R.id.logout);
-            itemss.setVisible(true);
-            MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);*/
-            getMenuInflater().inflate(R.menu.mainproducts, menu);
+               /* MenuItem item1 = menu.findItem(productsadd);
+                item1.setVisible(true);
+                MenuItem items = menu.findItem(R.id.productdelete);
+                items.setVisible(true);
+                MenuItem itemss = menu.findItem(R.id.logout);
+                itemss.setVisible(true);
+                MenuItem items2 = menu.findItem(R.id.h1);
+                items2.setVisible(true);*/
+                getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
-           /* MenuItem item1 = menu.findItem(productsadd);
-            item1.setVisible(false);
-            MenuItem items = menu.findItem(R.id.productdelete);
-            items.setVisible(false);
-            MenuItem itemss = menu.findItem(R.id.logout);
-            itemss.setVisible(false);
-            MenuItem items2 = menu.findItem(R.id.h1);
-            items2.setVisible(true);*/
-            getMenuInflater().inflate(R.menu.home, menu);
+            } else  {
+               /* MenuItem item1 = menu.findItem(productsadd);
+                item1.setVisible(false);
+                MenuItem items = menu.findItem(R.id.productdelete);
+                items.setVisible(false);
+                MenuItem itemss = menu.findItem(R.id.logout);
+                itemss.setVisible(false);
+                MenuItem items2 = menu.findItem(R.id.h1);
+                items2.setVisible(true);*/
+                getMenuInflater().inflate(R.menu.home, menu);
 
-        }
+            }
 
-        return true;
+            return true;
 
 
     }
@@ -168,7 +166,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 click = 0;
 
                 Intent in = new Intent(Products.this, AddProducts.class);
-                 in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
 
                 return true;
@@ -179,7 +177,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 click = 0;
 
                 Intent inn = new Intent(Products.this, DeleteProducts.class);
-                //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                /* inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                         Intent.FLAG_ACTIVITY_CLEAR_TASK |
                         Intent.FLAG_ACTIVITY_NEW_TASK);*/
@@ -211,13 +209,13 @@ public boolean onCreateOptionsMenu(Menu menu) {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(Products.this, Main2Activity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                   Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                   Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
-            super.onBackPressed();
+           // super.onBackPressed();
 
         }
 
@@ -456,13 +454,18 @@ public boolean onCreateOptionsMenu(Menu menu) {
             //IMG
             PicassoClient.downloadImage(c,finalUrl,img);
 
-            // testing new activity condition
-            convertView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v){
-                    openNextActivity(pid, name);
-                }
-            });
+                // testing new activity condition
+                convertView.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        click = click + 1;
+                        if (click == 1) {
+                            click = 0;
+                        openNextActivity(pid, name);
+                    }
+            }
+                });
 
 
             return convertView;
@@ -513,8 +516,11 @@ public boolean onCreateOptionsMenu(Menu menu) {
             super.onPostExecute(s);
             if(s==null)
             {
-
-                Toast.makeText(c,"Our products are Coming Soon! Thank you for your patience.",Toast.LENGTH_SHORT).show();
+                click = click + 1;
+                if (click == 1) {
+                    click = 0;
+                    Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT).show();
+                }
             }else {
                 //CALL DATA PARSER TO PARSE
                 ProductTypesDataParser parser=new ProductTypesDataParser(c,s,localpid,localname);
@@ -577,8 +583,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
-
-
                     Intent intent = new Intent(c, ProductTypes.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalpid);
@@ -727,13 +731,13 @@ public boolean onCreateOptionsMenu(Menu menu) {
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                if(loggedIn==true) {
+                if(loggedIn) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Products.this, Trial.class);
-                      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY", pname);
                         in.putExtra("ProductTypeList", mySQLProTypeDataBases);
@@ -801,7 +805,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
             return 0;
         }
     }
-    public static void disableTouchTheft(View view) {
+    /*public static void disableTouchTheft(View view) {
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -814,6 +818,6 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 return false;
             }
         });
-    }
+    }*/
 
 }

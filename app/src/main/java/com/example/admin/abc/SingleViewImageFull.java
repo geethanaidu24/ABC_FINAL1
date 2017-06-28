@@ -78,9 +78,9 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                        // startActivity(in);
                         in.putExtra("IMAGE_KEY", image);
                         in.putExtra("PRODUCTID_KEY", pid);
@@ -99,7 +99,7 @@ int click=0;
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         in.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -156,9 +156,9 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent in = new Intent(SingleViewImageFull.this, ProductTypeSizeSingleViewFullDetails.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             // startActivity(in);
             in.putExtra("IMAGE_KEY", image);
             in.putExtra("PRODUCTID_KEY", pid);
@@ -177,7 +177,7 @@ int click=0;
             in.putExtra("ProductTypeList",mySQLDataBases1);
             in.putExtra("ProductTypeSizeList",mySQLDataBases2);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
 

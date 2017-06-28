@@ -87,11 +87,7 @@
         <activity
             android:name=".ProductSubTypes"
             android:screenOrientation="portrait" />
-        <!--
-            <activity
-            android:name=".ProductTypeSubTypeImages"
-            android:screenOrientation="portrait"/>
-        -->
+
         <activity
             android:name=".ProductTypesGridView"
             android:screenOrientation="portrait" />

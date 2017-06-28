@@ -90,11 +90,11 @@ public class ProductSizes extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(ProductSizes.this, Products.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -112,7 +112,7 @@ public class ProductSizes extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        if (loggedIn == true) {
+        if (loggedIn ) {
             /*MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -123,7 +123,7 @@ public class ProductSizes extends AppCompatActivity {
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -203,11 +203,11 @@ public class ProductSizes extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(ProductSizes.this, Products.class);
            // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
         }

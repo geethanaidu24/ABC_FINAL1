@@ -69,9 +69,9 @@ ImageButton zoom;
                         click = 0;
                         Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
-                        inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         inn.putExtra("PRODUCTID_KEY", pid);
                         inn.putExtra("PRODUCTNAME_KEY", selProductName);
                         inn.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -81,7 +81,7 @@ ImageButton zoom;
                         inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
                         inn.putExtra("ProductSizeList",mySQLDataBases);
                         setResult(Activity.RESULT_OK,inn);
-                        startActivity(inn);
+                        startActivity(inn);*/
                         finish();
                         /*startActivity(inn);
 
@@ -188,9 +188,9 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             click = 0;
             Intent inn = new Intent(ProductSizeImageSingleViewFullDetails.this, ProductSizeGridViewImages.class);
 
-            inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             inn.putExtra("PRODUCTID_KEY", pid);
             inn.putExtra("PRODUCTNAME_KEY", selProductName);
             inn.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -200,7 +200,7 @@ zoom=(ImageButton) findViewById(R.id.imageButton);
             inn.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
             inn.putExtra("ProductSizeList",mySQLDataBases);
             setResult(Activity.RESULT_OK,inn);
-            startActivity(inn);
+            startActivity(inn);*/
             finish();
             super.onBackPressed();
         }

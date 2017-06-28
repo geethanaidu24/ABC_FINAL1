@@ -98,9 +98,9 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         click = 0;
                         Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
                         in.putExtra("PRODUCTNAME_KEY", selectedPname);
                         in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -108,7 +108,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
                         in.putExtra("ProductTypeGridList",mySQLDataBases2);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -142,9 +142,9 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             click = 0;
             Intent in = new Intent(AddGridProductTypes.this, ProductTypesGridView.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTID_KEY", selectedPid);
             in.putExtra("PRODUCTNAME_KEY", selectedPname);
             in.putExtra("PRODUCTTYPEID_KEY", selectedProducttypeid);
@@ -152,7 +152,7 @@ public class AddGridProductTypes extends AppCompatActivity implements View.OnCli
             in.putExtra("ProductTypeGridList",mySQLDataBases2);
             in.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,in);
-         startActivity(in);
+         startActivity(in);*/
             finish();
 super.onBackPressed();
         }

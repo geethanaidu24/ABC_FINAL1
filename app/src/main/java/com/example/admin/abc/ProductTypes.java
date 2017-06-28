@@ -95,11 +95,11 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
                       // ProductTypes.super.onBackPressed();
                         Intent in = new Intent(ProductTypes.this, Products.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
-                       // setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
+                        setResult(Activity.RESULT_OK,in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -116,7 +116,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
         //getMenuInflater().inflate(R.menu.mainproducts, menu);
-        if (loggedIn == true) {
+        if (loggedIn) {
            /* MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -127,7 +127,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             items2.setVisible(true);
 */
             getMenuInflater().inflate(R.menu.mainproducts, menu);
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -211,11 +211,11 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductTypes.this, Products.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);*/
            // setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+           // startActivity(in);
             finish();
             super.onBackPressed();
 
@@ -716,13 +716,13 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             super.onPostExecute(result);
             if(result==0)
             {
-                if(loggedIn==true) {
+                if(loggedIn) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(ProductTypes.this, Trial1.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY", pname);
                         in.putExtra("PRODUCTTYPEID_KEY", ptid);

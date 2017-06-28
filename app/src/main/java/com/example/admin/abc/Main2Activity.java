@@ -103,7 +103,7 @@ int click=0;
             finish();
             return;
         }
-        ViewPagerAdapter adapter = new ViewPagerAdapter(Main2Activity.this, noofsize);
+       /* ViewPagerAdapter adapter = new ViewPagerAdapter(Main2Activity.this, noofsize);
         myPager = (ViewPager) findViewById(R.id.reviewpager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
@@ -126,7 +126,7 @@ int click=0;
                     }
                 });
             }
-        }, 5000, 9000);
+        }, 5000, 9000);*/
 
    /*   for(int i=0;i<IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
@@ -239,7 +239,7 @@ int click=0;
 //        simpleViewFlipper.setAutoStart(true);
 
        Button b1, b2, b3, b4;
-    //init();
+    init();
 
 
         // ViewPager viewPager;
@@ -299,6 +299,7 @@ int click=0;
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Products.class);
+
                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
@@ -404,7 +405,7 @@ int click=0;
     }*/
 
 
-/*
+
 private void init() {
 
 
@@ -432,7 +433,7 @@ private void init() {
 
 
 
-       // Auto start of viewpager
+     /*  // Auto start of viewpager
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
@@ -448,8 +449,7 @@ private void init() {
             public void run() {
                 handler.post(Update);
             }
-        }, 9000, 9000);
-
+        }, 9000, 9000);*/
 
 
 
@@ -476,9 +476,20 @@ private void init() {
         });
 
     }
-*/
 
 
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+        public void run() {
+            if (currentPage >= 6) {
+                currentPage = 0;
+            } else {
+                currentPage = currentPage + 1;
+            }
+            mPager.setCurrentItem(currentPage, true);
+            handler.postDelayed(runnable, 10000);
+        }
+    };
 
 
 
@@ -548,10 +559,10 @@ if(id == R.id.logout)
             if (click == 1) {
                 click = 0;
 
-                Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+             /*   Intent in = new Intent(Main2Activity.this, Main2Activity.class);
                 //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
-                finish();
+                finish();*/
             }
 
 
@@ -573,6 +584,7 @@ if(id == R.id.logout)
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Products.class);
+
                     // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
@@ -658,7 +670,7 @@ if(id == R.id.logout)
 
                     // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                    if (loggedIn == true) {
+                    if (loggedIn ) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Admin Already Login.....",
                                 Toast.LENGTH_SHORT);
@@ -668,7 +680,7 @@ if(id == R.id.logout)
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                         toast.show();
 
-                    } else if (loggedIn == false) {
+                    } else if (!loggedIn ) {
 
                         Intent in = new Intent(Main2Activity.this, Login.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -807,6 +819,18 @@ if(id == R.id.logout)
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+    @Override
+    public void onPause(){
+        super.onPause();
+        if(handler!=null){
+            handler.removeCallbacks(runnable);
+        }
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        handler.postDelayed(runnable,10000);
     }
 
 

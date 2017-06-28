@@ -73,9 +73,9 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductTypeSingleImageFullViewActivity.this, ProductTypeSingleViewActivity.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTNAME_KEY", pname);
                         in.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -87,7 +87,7 @@ int click=0;
                         in.putExtra("ProductTypeGridList",mySQLDataBases2);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -145,9 +145,9 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent in = new Intent(ProductTypeSingleImageFullViewActivity.this, ProductTypeSingleViewActivity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTID_KEY", pid);
             in.putExtra("PRODUCTNAME_KEY", pname);
             in.putExtra("PRODUCTTYPEID_KEY", ptid);
@@ -159,7 +159,7 @@ int click=0;
             in.putExtra("ProductTypeGridList",mySQLDataBases2);
             in.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
         }

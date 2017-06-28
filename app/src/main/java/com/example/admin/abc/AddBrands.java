@@ -59,10 +59,10 @@ int click=0;
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                       startActivity(in);
+                       startActivity(in);*/
                         finish();
                     }
                 }
@@ -89,10 +89,10 @@ int click=0;
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

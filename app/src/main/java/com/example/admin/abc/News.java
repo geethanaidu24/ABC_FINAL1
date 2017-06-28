@@ -90,10 +90,10 @@ public class News extends AppCompatActivity {
                         Intent in = new Intent(News.this, Main2Activity.class);
                         //startActivity(in);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -109,7 +109,7 @@ public class News extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
       //  getMenuInflater().inflate(R.menu.mainproducts, menu);
-        if (loggedIn == true) {
+        if (loggedIn) {
             /*MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -120,7 +120,7 @@ public class News extends AppCompatActivity {
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -196,10 +196,10 @@ public class News extends AppCompatActivity {
             Intent in = new Intent(News.this, Main2Activity.class);
             //startActivity(in);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

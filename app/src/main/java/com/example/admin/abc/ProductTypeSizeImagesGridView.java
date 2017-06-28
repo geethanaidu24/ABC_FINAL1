@@ -105,9 +105,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypeSizes.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         intent.putExtra("PRODUCTID_KEY", productId);
                         intent.putExtra("PRODUCTNAME_KEY", productName);
                         intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
@@ -115,7 +115,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                         intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
                         intent.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,intent);
-                        startActivity(intent);
+                        startActivity(intent);*/
                         finish();
                     }
                 }
@@ -132,7 +132,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        if (loggedIn == true) {
+        if (loggedIn) {
            /* MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -143,7 +143,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else  {
             /*MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -239,9 +239,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         if (click == 1) {
             click = 0;
             Intent intent = new Intent(ProductTypeSizeImagesGridView.this, ProductTypeSizes.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             intent.putExtra("PRODUCTID_KEY", productId);
             intent.putExtra("PRODUCTNAME_KEY", productName);
             intent.putExtra("PRODUCTTYPEID_KEY", productTypeId);
@@ -250,7 +250,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             intent.putExtra("ProductTypeSizeList",mySQLDataBases2);
             intent.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,intent);
-            startActivity(intent);
+            startActivity(intent);*/
             finish();
             super.onBackPressed();
         }
