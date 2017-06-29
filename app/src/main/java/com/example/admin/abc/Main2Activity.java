@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
@@ -293,7 +294,7 @@ int click=0;
             @Override
             public void onClick(View v) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
@@ -325,7 +326,7 @@ int click=0;
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
@@ -341,7 +342,7 @@ int click=0;
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
@@ -546,7 +547,7 @@ private void init() {
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
         int id = item.getItemId();
@@ -578,7 +579,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.product) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -591,7 +592,7 @@ if(id == R.id.logout)
             }
         } else if (id == R.id.brands) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -604,7 +605,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.cu) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -617,7 +618,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.enquiry) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -630,7 +631,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.nw) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -646,7 +647,7 @@ if(id == R.id.logout)
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -663,7 +664,7 @@ if(id == R.id.logout)
             }
         } else if (id == R.id.login) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -680,7 +681,7 @@ if(id == R.id.logout)
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                         toast.show();
 
-                    } else if (!loggedIn ) {
+                    } else  {
 
                         Intent in = new Intent(Main2Activity.this, Login.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -756,7 +757,7 @@ if(id == R.id.logout)
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
 

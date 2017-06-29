@@ -245,7 +245,7 @@ public class Products extends AppCompatActivity implements Serializable {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
 
@@ -273,14 +273,14 @@ public class Products extends AppCompatActivity implements Serializable {
         alertDialog.show();
 
     }
-    public class ProductsDownloader extends AsyncTask<Void, Void, String> {
+    private class ProductsDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
         String urlAddress;
         ListView lv;
 
 
-        public ProductsDownloader(Context c, String urlAddress, ListView lv) {
+        ProductsDownloader(Context c, String urlAddress, ListView lv) {
             this.c = c;
             this.urlAddress = urlAddress;
             this.lv = lv;
@@ -326,9 +326,9 @@ public class Products extends AppCompatActivity implements Serializable {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -339,13 +339,13 @@ public class Products extends AppCompatActivity implements Serializable {
             return null;
         }
     }
-    public class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
+    private class ProductsDataParser extends AsyncTask<Void,Void,Integer> {
         Context c;
         ListView lv;
         String jsonData;
 
         ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
-        public ProductsDataParser(Context c, ListView lv, String jsonData) {
+        ProductsDataParser(Context c, ListView lv, String jsonData) {
             this.c = c;
             this.lv = lv;
             this.jsonData = jsonData;
@@ -454,23 +454,22 @@ public class Products extends AppCompatActivity implements Serializable {
             //IMG
             PicassoClient.downloadImage(c,finalUrl,img);
 
-                // testing new activity condition
-                convertView.setOnClickListener(new View.OnClickListener() {
+            // testing new activity condition
+            convertView.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View v) {
-                        click = click + 1;
-                        if (click == 1) {
-                            click = 0;
+                @Override
+                public void onClick(View v) {
+                    click = click + 1;
+                    if (click == 1) {
+                        click = 0;
                         openNextActivity(pid, name);
                     }
-            }
-                });
-
+                }
+            });
 
             return convertView;
         }
-        public void openNextActivity(int recivedpid, String recivedname){
+        private void openNextActivity(int recivedpid, String recivedname){
             Uri builtUri = Uri.parse(productTypeUrlAddress)
                     .buildUpon()
                     .appendQueryParameter(Config.PRODUCTID_PARAM, Integer.toString(recivedpid))
@@ -484,14 +483,14 @@ public class Products extends AppCompatActivity implements Serializable {
             new ProductTypesDownloader(Products.this,ProTypeurlAddress,recivedpid,recivedname).execute();
         }
     }
-    public class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
+    private class ProductTypesDownloader extends AsyncTask<Void, Void, String> {
 
         Context c;
         URL finalProducturlAddress;
         int localpid;
         String localname;
 
-        public ProductTypesDownloader(Context c, URL urlAddress, int recivedpid, String recivedname) {
+        ProductTypesDownloader(Context c, URL urlAddress, int recivedpid, String recivedname) {
             this.c = c;
             this.finalProducturlAddress = urlAddress;
             this.localpid = recivedpid;
@@ -536,9 +535,10 @@ public class Products extends AppCompatActivity implements Serializable {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    /*jsonData.append(line + "n");*/
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -688,9 +688,9 @@ public class Products extends AppCompatActivity implements Serializable {
                 InputStream sizesReader = new BufferedInputStream(con.getInputStream());
                 BufferedReader sizeBufferReader = new BufferedReader(new InputStreamReader(sizesReader));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = sizeBufferReader.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 sizeBufferReader.close();
                 sizesReader.close();
