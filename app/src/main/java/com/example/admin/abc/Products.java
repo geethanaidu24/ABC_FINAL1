@@ -122,7 +122,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
     //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        if (loggedIn == true) {
+        if (loggedIn) {
 
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(true);
@@ -134,7 +134,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else if (!loggedIn) {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -168,7 +168,7 @@ public boolean onCreateOptionsMenu(Menu menu) {
                 click = 0;
 
                 Intent in = new Intent(Products.this, AddProducts.class);
-                 in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(in);
 
                 return true;
@@ -210,12 +210,12 @@ public boolean onCreateOptionsMenu(Menu menu) {
         click = click + 1;
         if (click == 1) {
             click = 0;
-            Intent in = new Intent(Products.this, Main2Activity.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                   Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
-            setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+//            Intent in = new Intent(Products.this, Main2Activity.class);
+//            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                   Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+//                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+//            setResult(Activity.RESULT_OK,in);
+//            startActivity(in);
             finish();
             super.onBackPressed();
 

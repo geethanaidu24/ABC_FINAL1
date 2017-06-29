@@ -90,11 +90,11 @@ public class ProductSizes extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(ProductSizes.this, Products.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
-                        setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+//                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+//                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+//                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+//                        setResult(Activity.RESULT_OK,in);
+//                        startActivity(in);
                         finish();
                     }
                 }

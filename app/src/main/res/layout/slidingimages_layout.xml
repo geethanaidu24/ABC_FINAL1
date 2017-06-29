@@ -10,7 +10,7 @@ android:padding="1dip" >
     android:layout_height="fill_parent"
     android:adjustViewBounds="true"
     android:layout_gravity="center"
-    android:rotationY="180"
+
     android:src="@mipmap/ic_launcher"
     android:scaleType="centerCrop" />
 

@@ -18,7 +18,7 @@
             android:id="@+id/pagenumber1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
 
             android:onClick="pageOneClick"
          android:src="@drawable/dot"
@@ -28,7 +28,7 @@
             android:id="@+id/pagenumber2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:src="@drawable/dot"
 
             />
@@ -37,7 +37,7 @@
             android:id="@+id/pagenumber3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:src="@drawable/dot"
 
             android:textColor="#fff"
@@ -48,7 +48,7 @@
             android:id="@+id/pagenumber4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:src="@drawable/dot"
             />
 
@@ -56,8 +56,36 @@
             android:id="@+id/pagenumber5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:src="@drawable/dot"
          />
+        <ImageView
+            android:id="@+id/pagenumber6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:src="@drawable/dot"
+            />
+        <ImageView
+            android:id="@+id/pagenumber7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:src="@drawable/dot"
+            />
+        <ImageView
+            android:id="@+id/pagenumber8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:src="@drawable/dot"
+            />
+        <ImageView
+            android:id="@+id/pagenumber9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:src="@drawable/dot"
+            />
     </LinearLayout>
 </FrameLayout>

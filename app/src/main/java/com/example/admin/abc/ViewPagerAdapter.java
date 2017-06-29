@@ -20,7 +20,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     int size;
     Activity act;
     View layout;
- ImageView pagenumber1,pagenumber2,pagenumber3,pagenumber4,pagenumber5;
+ ImageView pagenumber1,pagenumber2,pagenumber3,pagenumber4,pagenumber5,pagenumber6,pagenumber7,pagenumber8,pagenumber9;
     ImageView pageImage;
     Button click;
     public ViewPagerAdapter(Main2Activity mainActivity, int noofsize) {
@@ -44,6 +44,10 @@ public class ViewPagerAdapter extends PagerAdapter {
         pagenumber3 = (ImageView)layout.findViewById(R.id.pagenumber3);
         pagenumber4 = (ImageView)layout.findViewById(R.id.pagenumber4);
         pagenumber5 = (ImageView)layout.findViewById(R.id.pagenumber5);
+        pagenumber6 = (ImageView)layout.findViewById(R.id.pagenumber6);
+        pagenumber7 = (ImageView)layout.findViewById(R.id.pagenumber7);
+        pagenumber8 = (ImageView)layout.findViewById(R.id.pagenumber8);
+        pagenumber9 = (ImageView)layout.findViewById(R.id.pagenumber9);
         pageImage = (ImageView)layout.findViewById(R.id.imageView1);
         int pagenumberTxt=position + 1;
         //pagenumber1.setText("Now your in Page No  " +pagenumberTxt );
@@ -56,6 +60,10 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
             }
             else if(pagenumberTxt == 2){
                 pageImage.setBackgroundResource(R.drawable.dbackfour);
@@ -64,6 +72,10 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
 
             }else if(pagenumberTxt == 3){
                 pageImage.setBackgroundResource(R.drawable.b);
@@ -72,6 +84,10 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber3.setImageResource(R.drawable.dcc);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
 
             }
             else if(pagenumberTxt == 4){
@@ -81,6 +97,10 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dcc);
                 pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
 
             }
             else if(pagenumberTxt == 5){
@@ -90,6 +110,60 @@ public class ViewPagerAdapter extends PagerAdapter {
                 pagenumber3.setImageResource(R.drawable.dot);
                 pagenumber4.setImageResource(R.drawable.dot);
                 pagenumber5.setImageResource(R.drawable.dcc);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
+
+            } else if(pagenumberTxt == 6){
+                pageImage.setBackgroundResource(R.drawable.showroomone);
+                pagenumber1.setImageResource(R.drawable.dot);
+                pagenumber2.setImageResource(R.drawable.dot);
+                pagenumber3.setImageResource(R.drawable.dot);
+                pagenumber4.setImageResource(R.drawable.dot);
+                pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dcc);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
+
+            }else if(pagenumberTxt ==7){
+                pageImage.setBackgroundResource(R.drawable.showroomtwo);
+                pagenumber1.setImageResource(R.drawable.dot);
+                pagenumber2.setImageResource(R.drawable.dot);
+                pagenumber3.setImageResource(R.drawable.dot);
+                pagenumber4.setImageResource(R.drawable.dot);
+                pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dcc);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dot);
+
+            }
+            else if(pagenumberTxt == 8){
+                pageImage.setBackgroundResource(R.drawable.showroomthree);
+                pagenumber1.setImageResource(R.drawable.dot);
+                pagenumber2.setImageResource(R.drawable.dot);
+                pagenumber3.setImageResource(R.drawable.dot);
+                pagenumber4.setImageResource(R.drawable.dot);
+                pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dcc);
+                pagenumber9.setImageResource(R.drawable.dot);
+
+            }
+            else if(pagenumberTxt == 9){
+                pageImage.setBackgroundResource(R.drawable.showroomfour);
+                pagenumber1.setImageResource(R.drawable.dot);
+                pagenumber2.setImageResource(R.drawable.dot);
+                pagenumber3.setImageResource(R.drawable.dot);
+                pagenumber4.setImageResource(R.drawable.dot);
+                pagenumber5.setImageResource(R.drawable.dot);
+                pagenumber6.setImageResource(R.drawable.dot);
+                pagenumber7.setImageResource(R.drawable.dot);
+                pagenumber8.setImageResource(R.drawable.dot);
+                pagenumber9.setImageResource(R.drawable.dcc);
 
             }
 

@@ -52,38 +52,36 @@ import java.util.TimerTask;
 //import com.viewpagerindicator.CirclePageIndicator;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener  {
-   // public int currentimageindex = 0;
+        implements NavigationView.OnNavigationItemSelectedListener {
+    // public int currentimageindex = 0;
 
-   // ImageView slidingimage;
+    // ImageView slidingimage;
 
-  //  private int[] IMAGE_IDS = {
-           // R.mipmap.backfinalfour, R.mipmap.backfinalthree, R.mipmap.backfinaltwo, R.mipmap.backfinalfive, R.mipmap.backfinalsix};
+    //  private int[] IMAGE_IDS = {
+    // R.mipmap.backfinalfour, R.mipmap.backfinalthree, R.mipmap.backfinaltwo, R.mipmap.backfinalfive, R.mipmap.backfinalsix};
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
-     *
-     *
      */
 
-    private boolean menuOptionState=false;
-private boolean checkNetworkConnection;
+    private boolean menuOptionState = false;
+    private boolean checkNetworkConnection;
     private boolean loggedIn = false;
-   private static ViewPager mPager;
-   private static int currentPage = 0;
+    private static ViewPager mPager;
+    private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-int click=0;
-    private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
+    int click = 0;
+    private static final Integer[] IMAGES = {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive, R.drawable.backfinalseven, R.drawable.backfinaleight};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
     private GoogleApiClient client;
     private Menu menu;
     boolean doubleBackToExitPressedOnce = false;
-  //  private int currentPage = -1;
+    //  private int currentPage = -1;
     //Timer timer;
-    int noofsize = 5;
+    int noofsize = 9;
     ViewPager myPager = null;
     int count = 0;
     Timer timer;
@@ -96,14 +94,13 @@ int click=0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        boolean finish=getIntent().getBooleanExtra("finish",false);
-        if(finish)
-        {
-            startActivity(new Intent(this,MainActivity.class));
+        boolean finish = getIntent().getBooleanExtra("finish", false);
+        if (finish) {
+            startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
         }
-        ViewPagerAdapter adapter = new ViewPagerAdapter(Main2Activity.this, noofsize);
+       /* ViewPagerAdapter adapter = new ViewPagerAdapter(Main2Activity.this, noofsize);
         myPager = (ViewPager) findViewById(R.id.reviewpager);
         myPager.setAdapter(adapter);
         myPager.setCurrentItem(0);
@@ -116,7 +113,7 @@ int click=0;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (count <= 5) {
+                        if (count <= 9) {
                             myPager.setCurrentItem(count);
                             count++;
                         } else {
@@ -126,8 +123,8 @@ int click=0;
                     }
                 });
             }
-        }, 5000, 9000);
-
+        }, 6000, 9000);
+*/
    /*   for(int i=0;i<IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
 
@@ -238,8 +235,8 @@ int click=0;
 //        // set auto start for flipping between views
 //        simpleViewFlipper.setAutoStart(true);
 
-       Button b1, b2, b3, b4;
-    //init();
+        Button b1, b2, b3, b4;
+        init();
 
 
         // ViewPager viewPager;
@@ -284,7 +281,7 @@ int click=0;
          */
 
 
-       b1 = (Button) findViewById(R.id.button1);
+        b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.buttonh);
         b3 = (Button) findViewById(R.id.button3);
         b4 = (Button) findViewById(R.id.button4);
@@ -292,17 +289,18 @@ int click=0;
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                checkNetworkConnection = isNetworkConnectionAvailable();
+                if (checkNetworkConnection == true) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Products.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
+
             }
         });
 
@@ -314,9 +312,10 @@ int click=0;
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, AboutUs.class);
-                 //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                    //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
+
             }
         });
 
@@ -324,41 +323,40 @@ int click=0;
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                if (checkNetworkConnection == true) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
+
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if(checkNetworkConnection == true) {
+                if (checkNetworkConnection == true) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Contact.class);
-                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
+
             }
         });
 
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -371,12 +369,10 @@ int click=0;
         navigationView.setNavigationItemSelectedListener(this);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        if(loggedIn)
-        {
+        if (loggedIn) {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_logout);
-        } else
-        {
+        } else {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.activity_main2_drawer);
 
@@ -404,18 +400,17 @@ int click=0;
     }*/
 
 
-/*
-private void init() {
+    private void init() {
 
 
-        for(int i=0;i<IMAGES.length;i++)
+        for (int i = 0; i < IMAGES.length; i++)
             ImagesArray.add(IMAGES[i]);
 
         mPager = (ViewPager) findViewById(R.id.pager1);
 
 
-        mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this,ImagesArray));
-     mPager.setOffscreenPageLimit(IMAGES.length-1);
+        mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this, ImagesArray));
+        mPager.setOffscreenPageLimit(IMAGES.length - 1);
 
         CirclePageIndicator indicator = (CirclePageIndicator)
                 findViewById(R.id.indicator1);
@@ -427,13 +422,12 @@ private void init() {
         indicator.setRadius(4 * density);
 
 
-
-        NUM_PAGES =IMAGES.length;
-
-
-
+        NUM_PAGES = IMAGES.length;
+       /* Timer timer=new Timer();
+        timer.schedule(new MyTimer(),9000,5000);
+*/
        // Auto start of viewpager
-        final Handler handler = new Handler();
+        /*final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -448,12 +442,27 @@ private void init() {
             public void run() {
                 handler.post(Update);
             }
-        }, 9000, 9000);
+        }, 9000, 9000);*/
 
 
+ /* timer = new Timer();
+    timer.schedule(new TimerTask() {
+        @Override
+        public void run() {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (currentPage == NUM_PAGES) {
+                        currentPage = 0;
+                    } else {
 
-
-
+                        mPager.setCurrentItem(currentPage++, true);
+                    }
+                }
+            });
+        }
+    }, 6000, 9000);
+*/
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -476,7 +485,8 @@ private void init() {
         });
 
     }
-*/
+
+
 
 
 
@@ -548,10 +558,10 @@ if(id == R.id.logout)
             if (click == 1) {
                 click = 0;
 
-                Intent in = new Intent(Main2Activity.this, Main2Activity.class);
-                //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                startActivity(in);
-                finish();
+//                Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+//                //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+//                startActivity(in);
+//                finish();
             }
 
 
@@ -658,7 +668,7 @@ if(id == R.id.logout)
 
                     // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                    if (loggedIn == true) {
+                    if (loggedIn) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Admin Already Login.....",
                                 Toast.LENGTH_SHORT);
@@ -668,7 +678,7 @@ if(id == R.id.logout)
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                         toast.show();
 
-                    } else if (loggedIn == false) {
+                    } else if (!loggedIn) {
 
                         Intent in = new Intent(Main2Activity.this, Login.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -793,6 +803,9 @@ if(id == R.id.logout)
     public void onStart() {
         super.onStart();
 
+
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -801,6 +814,7 @@ if(id == R.id.logout)
 
     @Override
     public void onStop() {
+
         super.onStop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -809,6 +823,47 @@ if(id == R.id.logout)
         client.disconnect();
     }
 
+
+    @Override
+    protected void onRestart() {
+        // TODO Auto-generated method stu
+
+
+        super.onRestart();
+
+
+    }
+
+    @Override
+    protected void onResume() {
+
+
+
+
+        // TODO Auto-generated method stub
+        super.onResume();
+
+        Log.i("onResume():","Activity Resumed");
+    }
+
+    @Override
+    protected void onPause() {
+        // TODO Auto-generated method stub
+
+        super.onPause();
+
+        Log.i("onPause():","Activity paused");
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
+        timer.cancel();
+        Log.i("onDestroy():","Activity destroyed");
+    }
 
         //Logout function
 
