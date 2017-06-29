@@ -58,6 +58,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
 //        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_products);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (null != toolbar) {
@@ -204,6 +205,8 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
             filePath = data.getData();
             try {
+
+
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 tvPath.setText("Path: ". concat(getPath(filePath)));
                 imageView.setImageBitmap(bitmap);
@@ -212,6 +215,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
             }
         }
     }
+
 
     public void uploadMultipart() {
         String caption = etCaption.getText().toString().trim();
@@ -248,7 +252,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
         cursor.close();
 
         cursor = getContentResolver().query(
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 null, MediaStore.Images.Media._ID + " = ? ", new String[]{document_id}, null);
         cursor.moveToFirst();
         String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
