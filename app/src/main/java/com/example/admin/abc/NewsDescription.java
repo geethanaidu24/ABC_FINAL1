@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.Target;
 
 public class NewsDescription extends AppCompatActivity {
 
@@ -37,6 +38,7 @@ int click=0;
         Glide.with(this)
                 .load(image)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //use this to cache
+                .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                 .centerCrop()
                 .crossFade()
                 .into(selectedImage);
@@ -70,9 +72,9 @@ int click=0;
             click = 0;
             Intent in = new Intent(NewsDescription.this, News.class);
             finish();
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_NEW_TASK);*/
         }
     }
 }

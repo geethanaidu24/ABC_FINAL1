@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.PagerAdapter;
@@ -52,36 +53,38 @@ import java.util.TimerTask;
 //import com.viewpagerindicator.CirclePageIndicator;
 
 public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    // public int currentimageindex = 0;
+        implements NavigationView.OnNavigationItemSelectedListener  {
+   // public int currentimageindex = 0;
 
-    // ImageView slidingimage;
+   // ImageView slidingimage;
 
-    //  private int[] IMAGE_IDS = {
-    // R.mipmap.backfinalfour, R.mipmap.backfinalthree, R.mipmap.backfinaltwo, R.mipmap.backfinalfive, R.mipmap.backfinalsix};
+  //  private int[] IMAGE_IDS = {
+           // R.mipmap.backfinalfour, R.mipmap.backfinalthree, R.mipmap.backfinaltwo, R.mipmap.backfinalfive, R.mipmap.backfinalsix};
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
+     *
+     *
      */
 
-    private boolean menuOptionState = false;
-    private boolean checkNetworkConnection;
+    private boolean menuOptionState=false;
+private boolean checkNetworkConnection;
     private boolean loggedIn = false;
-    private static ViewPager mPager;
-    private static int currentPage = 0;
+   private static ViewPager mPager;
+   private static int currentPage = 0;
     private static int NUM_PAGES = 0;
-    int click = 0;
-    private static final Integer[] IMAGES = {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive, R.drawable.backfinalseven, R.drawable.backfinaleight};
+int click=0;
+    private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
     private GoogleApiClient client;
     private Menu menu;
     boolean doubleBackToExitPressedOnce = false;
-    //  private int currentPage = -1;
+  //  private int currentPage = -1;
     //Timer timer;
-    int noofsize = 9;
+    int noofsize = 5;
     ViewPager myPager = null;
     int count = 0;
     Timer timer;
@@ -94,9 +97,10 @@ public class Main2Activity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        boolean finish = getIntent().getBooleanExtra("finish", false);
-        if (finish) {
-            startActivity(new Intent(this, MainActivity.class));
+        boolean finish=getIntent().getBooleanExtra("finish",false);
+        if(finish)
+        {
+            startActivity(new Intent(this,MainActivity.class));
             finish();
             return;
         }
@@ -113,7 +117,7 @@ public class Main2Activity extends AppCompatActivity
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (count <= 9) {
+                        if (count <= 5) {
                             myPager.setCurrentItem(count);
                             count++;
                         } else {
@@ -123,8 +127,8 @@ public class Main2Activity extends AppCompatActivity
                     }
                 });
             }
-        }, 6000, 9000);
-*/
+        }, 5000, 9000);*/
+
    /*   for(int i=0;i<IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
 
@@ -235,8 +239,8 @@ public class Main2Activity extends AppCompatActivity
 //        // set auto start for flipping between views
 //        simpleViewFlipper.setAutoStart(true);
 
-        Button b1, b2, b3, b4;
-        init();
+       Button b1, b2, b3, b4;
+    init();
 
 
         // ViewPager viewPager;
@@ -281,7 +285,7 @@ public class Main2Activity extends AppCompatActivity
          */
 
 
-        b1 = (Button) findViewById(R.id.button1);
+       b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.buttonh);
         b3 = (Button) findViewById(R.id.button3);
         b4 = (Button) findViewById(R.id.button4);
@@ -289,18 +293,18 @@ public class Main2Activity extends AppCompatActivity
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkNetworkConnection = isNetworkConnectionAvailable();
-                if (checkNetworkConnection == true) {
+            checkNetworkConnection = isNetworkConnectionAvailable();
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Products.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
-
             }
         });
 
@@ -312,10 +316,9 @@ public class Main2Activity extends AppCompatActivity
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, AboutUs.class);
-                    //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                 //   in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
-
             }
         });
 
@@ -323,40 +326,41 @@ public class Main2Activity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if (checkNetworkConnection == true) {
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Enquiry.class);
-                        //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                      //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
-
             }
         });
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 checkNetworkConnection = isNetworkConnectionAvailable();
-                if (checkNetworkConnection == true) {
+                if(checkNetworkConnection) {
                     click = click + 1;
                     if (click == 1) {
                         click = 0;
 
                         Intent in = new Intent(Main2Activity.this, Contact.class);
-                        // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                       // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         startActivity(in);
                     }
                 }
-
             }
         });
 
 
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+    setSupportActionBar(toolbar);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -369,10 +373,12 @@ public class Main2Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
-        if (loggedIn) {
+        if(loggedIn)
+        {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.menu_logout);
-        } else {
+        } else
+        {
             navigationView.getMenu().clear();
             navigationView.inflateMenu(R.menu.activity_main2_drawer);
 
@@ -400,17 +406,18 @@ public class Main2Activity extends AppCompatActivity
     }*/
 
 
-    private void init() {
+
+private void init() {
 
 
-        for (int i = 0; i < IMAGES.length; i++)
+        for(int i=0;i<IMAGES.length;i++)
             ImagesArray.add(IMAGES[i]);
 
         mPager = (ViewPager) findViewById(R.id.pager1);
 
 
-        mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this, ImagesArray));
-        mPager.setOffscreenPageLimit(IMAGES.length - 1);
+        mPager.setAdapter(new SlidingImage_Adapter(Main2Activity.this,ImagesArray));
+     mPager.setOffscreenPageLimit(IMAGES.length-1);
 
         CirclePageIndicator indicator = (CirclePageIndicator)
                 findViewById(R.id.indicator1);
@@ -422,12 +429,13 @@ public class Main2Activity extends AppCompatActivity
         indicator.setRadius(4 * density);
 
 
-        NUM_PAGES = IMAGES.length;
-       /* Timer timer=new Timer();
-        timer.schedule(new MyTimer(),9000,5000);
-*/
-       // Auto start of viewpager
-        /*final Handler handler = new Handler();
+
+        NUM_PAGES =IMAGES.length;
+
+
+
+     /*  // Auto start of viewpager
+        final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == NUM_PAGES) {
@@ -445,24 +453,8 @@ public class Main2Activity extends AppCompatActivity
         }, 9000, 9000);*/
 
 
- /* timer = new Timer();
-    timer.schedule(new TimerTask() {
-        @Override
-        public void run() {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (currentPage == NUM_PAGES) {
-                        currentPage = 0;
-                    } else {
 
-                        mPager.setCurrentItem(currentPage++, true);
-                    }
-                }
-            });
-        }
-    }, 6000, 9000);
-*/
+
 
         // Pager listener over indicator
         indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -487,8 +479,18 @@ public class Main2Activity extends AppCompatActivity
     }
 
 
-
-
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+        public void run() {
+            if (currentPage >= 6) {
+                currentPage = 0;
+            } else {
+                currentPage = currentPage + 1;
+            }
+            mPager.setCurrentItem(currentPage, true);
+            handler.postDelayed(runnable, 10000);
+        }
+    };
 
 
 
@@ -545,7 +547,7 @@ public class Main2Activity extends AppCompatActivity
 
 
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
 
         int id = item.getItemId();
@@ -558,10 +560,10 @@ if(id == R.id.logout)
             if (click == 1) {
                 click = 0;
 
-//                Intent in = new Intent(Main2Activity.this, Main2Activity.class);
-//                //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//                startActivity(in);
-//                finish();
+             /*   Intent in = new Intent(Main2Activity.this, Main2Activity.class);
+                //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(in);
+                finish();*/
             }
 
 
@@ -577,19 +579,20 @@ if(id == R.id.logout)
 
         } else if (id == R.id.product) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     Intent in = new Intent(Main2Activity.this, Products.class);
+
                     // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     startActivity(in);
                 }
             }
         } else if (id == R.id.brands) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -602,7 +605,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.cu) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -615,7 +618,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.enquiry) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -628,7 +631,7 @@ if(id == R.id.logout)
 
         } else if (id == R.id.nw) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -644,7 +647,7 @@ if(id == R.id.logout)
            /* Intent in = new Intent(Main2Activity.this,Offers.class);
             startActivity(in);*/
            /* Toast.makeText(this, "No Current Offers.....", Toast.LENGTH_LONG).show();*/
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
@@ -661,14 +664,14 @@ if(id == R.id.logout)
             }
         } else if (id == R.id.login) {
             checkNetworkConnection = isNetworkConnectionAvailable();
-            if (checkNetworkConnection == true) {
+            if (checkNetworkConnection) {
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
 
                     // getMenuInflater().inflate(R.menu.activity_main2_drawer, menu);
 
-                    if (loggedIn) {
+                    if (loggedIn ) {
                         Toast toast = Toast.makeText(getApplicationContext(),
                                 "Admin Already Login.....",
                                 Toast.LENGTH_SHORT);
@@ -678,7 +681,7 @@ if(id == R.id.logout)
                         toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
                         toast.show();
 
-                    } else if (!loggedIn) {
+                    } else  {
 
                         Intent in = new Intent(Main2Activity.this, Login.class);
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -754,7 +757,7 @@ if(id == R.id.logout)
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
 
@@ -803,9 +806,6 @@ if(id == R.id.logout)
     public void onStart() {
         super.onStart();
 
-
-
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
@@ -814,7 +814,6 @@ if(id == R.id.logout)
 
     @Override
     public void onStop() {
-
         super.onStop();
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -822,48 +821,19 @@ if(id == R.id.logout)
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
-
-
     @Override
-    protected void onRestart() {
-        // TODO Auto-generated method stu
-
-
-        super.onRestart();
-
-
-    }
-
-    @Override
-    protected void onResume() {
-
-
-
-
-        // TODO Auto-generated method stub
-        super.onResume();
-
-        Log.i("onResume():","Activity Resumed");
-    }
-
-    @Override
-    protected void onPause() {
-        // TODO Auto-generated method stub
-
+    public void onPause(){
         super.onPause();
-
-        Log.i("onPause():","Activity paused");
+        if(handler!=null){
+            handler.removeCallbacks(runnable);
+        }
     }
-
-
-
     @Override
-    protected void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-        timer.cancel();
-        Log.i("onDestroy():","Activity destroyed");
+    public void onResume(){
+        super.onResume();
+        handler.postDelayed(runnable,10000);
     }
+
 
         //Logout function
 

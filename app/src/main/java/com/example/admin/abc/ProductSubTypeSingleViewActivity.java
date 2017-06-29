@@ -75,9 +75,9 @@ int click=0;
                     if (click == 1) {
                         click = 0;
                         Intent i = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
                         i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                         i.putExtra("PRODUCTID_KEY", selectedPid);
@@ -88,7 +88,7 @@ int click=0;
                         i.putExtra("ProductTypeList",mySQLProTypes);
 
                         setResult(Activity.RESULT_OK,i);
-                        startActivity(i);
+                        startActivity(i);*/
                         finish();
                     }
                 }
@@ -195,9 +195,9 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent i = new Intent(ProductSubTypeSingleViewActivity.this, ProductSubTypeGridView.class);
-            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             i.putExtra("PRODUCTSUBTYPEID_KEY", pstid);
             i.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
             i.putExtra("PRODUCTID_KEY", selectedPid);
@@ -208,7 +208,7 @@ int click=0;
             i.putExtra("ProductTypeList",mySQLProTypes);
 
             setResult(Activity.RESULT_OK,i);
-            startActivity(i);
+            startActivity(i);*/
             finish();
             super.onBackPressed();
 

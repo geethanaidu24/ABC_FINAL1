@@ -106,9 +106,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
                         in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -118,7 +118,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
                         in.putExtra("ProductSubTypeList",mySQLDataBases1);
                         in.putExtra("ProductTypeList",mySQLProTypes);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -154,9 +154,9 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             Intent in = new Intent(AddGridSubTypes.this, ProductSubTypeGridView.class);
             // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTSUBTYPENAME_KEY", productSubTypeName);
             in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
             in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -166,7 +166,7 @@ public class AddGridSubTypes extends AppCompatActivity implements View.OnClickLi
             in.putExtra("ProductSubTypeList",mySQLDataBases1);
             in.putExtra("ProductTypeList",mySQLProTypes);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

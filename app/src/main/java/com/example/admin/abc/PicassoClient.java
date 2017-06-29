@@ -28,7 +28,7 @@ public class PicassoClient {
            /* Glide.with(c).load(imageUrl).centerCrop().crossFade().placeholder(R.drawable.cccc)
                     .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                     .diskCacheStrategy(DiskCacheStrategy.ALL).into(img);*/
-         Glide.with(c).load(imageUrl)
+         Glide.with(c).load(imageUrl).dontTransform()
                    .thumbnail(Glide.with(c).load(R.drawable.abcload).crossFade().fitCenter())
                    .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL)
                    .crossFade().centerCrop()
@@ -36,7 +36,7 @@ public class PicassoClient {
         }else {
             //Picasso.with(c).load(R.mipmap.ic_launcher).into(img);
            // Glide.with(c).load(R.drawable.cccc).override(100,100).into(img);
-            Glide.with(c).load(R.drawable.abcload) .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL).crossFade().fitCenter()
+            Glide.with(c).load(R.drawable.abcload).dontTransform() .override(Target.SIZE_ORIGINAL,Target.SIZE_ORIGINAL).crossFade().fitCenter()
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(img);
         }

@@ -101,14 +101,14 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                     if (click == 1) {
                         click = 0;
                         Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", selProductName);
                         in.putExtra("ProductSizeList",mySQLDataBases1);
                        setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
 
                     }
@@ -124,7 +124,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, true);
         //getMenuInflater().inflate(R.menu.mainproducts, menu);
-        if (loggedIn == true) {
+        if (loggedIn) {
           /*  MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -136,7 +136,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        } else if (loggedIn == false) {
+        } else  {
           /*  MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -227,14 +227,14 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(ProductSizeGridViewImages.this, ProductSizes.class);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTID_KEY", productId);
             in.putExtra("PRODUCTNAME_KEY", selProductName);
             in.putExtra("ProductSizeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
         }
@@ -275,7 +275,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if(s==null)
-            { Toast toast = Toast.makeText(c, "Coming Soon...", Toast.LENGTH_SHORT);
+            { Toast toast = Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -343,7 +343,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             { click = click + 1;
                 if (click == 1) {
                     click = 0;
-                    Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(c, "Our products are Coming Soon! Thank you for your patience.", Toast.LENGTH_SHORT);
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -370,7 +370,6 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 {
                     jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-
                     int ImageId=jo.getInt("ProductSizeImageId");
                     String Name =jo.getString("Name");
                     String ImageUrl=jo.getString("ImagePath");
@@ -493,13 +492,13 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //open detail activity
-                    openDetailActivity(pid,psid,name,url, brand, color,finalSize);
+                    openDetailActivity(name,url, brand, color,finalSize);
                 }
             });
             return convertView;
         }
 
-        private void openDetailActivity(int pid,int psid,String... details) {
+        private void openDetailActivity(String... details) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -514,9 +513,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 i.putExtra("PRODUCTSIZEWIDTH_KEY", selProWidth);
                 i.putExtra("PRODUCTSIZELENGTH_KEY", selProLength);
                 i.putExtra("PRODUCTSIZEHEIGHT_KEY", selProHeight);
-                i.putExtra("ProductSizeList",mySQLDataBases);
-                i.putExtra("PRODUCTID_KEY", pid);
-                i.putExtra("PRODUCTSIZEID_KEY", psid);
+                i.putExtra("ProductSizeList",mySQLDataBases1);
+                i.putExtra("PRODUCTID_KEY", productId);
+                i.putExtra("PRODUCTSIZEID_KEY", productSizeId);
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);

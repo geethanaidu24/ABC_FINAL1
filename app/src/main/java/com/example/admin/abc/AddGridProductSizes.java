@@ -120,9 +120,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         click = 0;
                         Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", finalProId);
                         in.putExtra("PRODUCTNAME_KEY", finalProName);
                         in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
@@ -132,7 +132,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
                         in.putExtra("ProductSizeList",mySQLDataBases);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
 
                     }
@@ -167,9 +167,9 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             click = 0;
             Intent in = new Intent(AddGridProductSizes.this, ProductSizeGridViewImages.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTID_KEY", finalProId);
             in.putExtra("PRODUCTNAME_KEY", finalProName);
             in.putExtra("PRODUCTSIZEID_KEY", finalProSizeId);
@@ -179,7 +179,7 @@ public class AddGridProductSizes extends AppCompatActivity implements View.OnCli
             in.putExtra("PRODUCTSIZEHEIGHT_KEY", finalHeight);
             in.putExtra("ProductSizeList",mySQLDataBases);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
 

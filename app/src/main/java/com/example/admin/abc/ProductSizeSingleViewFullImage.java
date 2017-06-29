@@ -74,9 +74,9 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("IMAGE_KEY", image);
                         in.putExtra("PRODUCTID_KEY", pid);
                         in.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -91,7 +91,7 @@ int click=0;
                         in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
                         in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -149,9 +149,9 @@ int click=0;
             //finishAffinity();
             Intent in = new Intent(ProductSizeSingleViewFullImage.this, ProductSizeImageSingleViewFullDetails.class);
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("IMAGE_KEY", image);
             in.putExtra("PRODUCTID_KEY", pid);
             in.putExtra("PRODUCTSIZEID_KEY", psid);
@@ -166,7 +166,7 @@ int click=0;
             in.putExtra("PRODUCTSIZEWIDTH_KEY",selProWidth);
             in.putExtra("PRODUCTSIZEHEIGHT_KEY",selProHeight);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
         }

@@ -89,9 +89,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         // finish();
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
                         in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
                         in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -101,7 +101,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
                         in.putExtra("ProductSubTypeList",mySQLDataBases1);
                         in.putExtra("ProductTypeList",mySQLProTypes);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -117,9 +117,9 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             Intent in = new Intent(DeleteGridSubTypes.this, ProductSubTypeGridView.class);
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             // finish();
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             in.putExtra("PRODUCTSUBTYPENAME_KEY", recvSubType);
             in.putExtra("PRODUCTSUBTYPEID_KEY", productSubTypeId);
             in.putExtra("PRODUCTID_KEY", selectedPid);
@@ -129,7 +129,7 @@ public class DeleteGridSubTypes extends AppCompatActivity {
             in.putExtra("ProductSubTypeList",mySQLDataBases1);
             in.putExtra("ProductTypeList",mySQLProTypes);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

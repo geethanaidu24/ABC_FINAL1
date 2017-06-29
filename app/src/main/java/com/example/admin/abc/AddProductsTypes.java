@@ -98,9 +98,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
 
                        //AddProductsTypes.super.onBackPressed();
                         Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", selectedProductId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName);
                         in.putExtra("ProductTypeList", mySQLDataBases);
@@ -108,7 +108,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
 
@@ -139,9 +139,9 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
         if (click == 1) {
             click = 0;
             Intent in = new Intent(AddProductsTypes.this, ProductTypes.class);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+            /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                  in.putExtra("PRODUCTID_KEY", selectedProductId);
             in.putExtra("PRODUCTNAME_KEY", selectedProductName);
             in.putExtra("ProductTypeList", mySQLDataBases);
@@ -149,7 +149,7 @@ public class AddProductsTypes extends AppCompatActivity implements OnClickListen
             //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
             super.onBackPressed();
 

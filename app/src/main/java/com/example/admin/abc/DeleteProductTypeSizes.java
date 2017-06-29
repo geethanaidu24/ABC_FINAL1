@@ -96,9 +96,9 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                         in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
@@ -106,7 +106,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         in.putExtra("ProductTypeSizeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
                         setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                        /* Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
                         in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
@@ -131,9 +131,9 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                         //finish();
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
                         in.putExtra("PRODUCTID_KEY", productId);
                         in.putExtra("PRODUCTNAME_KEY", selectedProductName1);
                         in.putExtra("PRODUCTTYPEID_KEY", productTypeId);
@@ -141,7 +141,7 @@ public class DeleteProductTypeSizes extends AppCompatActivity {
                         in.putExtra("ProductTypeSizeList",mySQLDataBases);
                         in.putExtra("ProductTypeList",mySQLDataBases1);
             setResult(Activity.RESULT_OK,in);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
             /*Intent in = new Intent(DeleteProductTypeSizes.this, Refresh.class);
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |

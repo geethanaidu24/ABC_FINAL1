@@ -67,11 +67,11 @@ int click=0;
                         click = 0;
                         Intent in = new Intent(Contact.this, Main2Activity.class);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                         startActivity(in);
+                         startActivity(in);*/
                         finish();
                     }
                 }
@@ -86,7 +86,7 @@ int click=0;
         SharedPreferences sharedPreferences = getSharedPreferences(Config.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         loggedIn = sharedPreferences.getBoolean(Config.LOGGEDIN_SHARED_PREF, false);
        // getMenuInflater().inflate(R.menu.mainproducts, menu);
-        if (loggedIn == true) {
+        if (loggedIn) {
             /*MenuItem item = menu.findItem(productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -98,7 +98,7 @@ int click=0;
 
 */
             getMenuInflater().inflate(R.menu.mainproducts, menu);
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -154,8 +154,8 @@ int click=0;
             Intent inn = new Intent(Contact.this, Main2Activity.class);
             //inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                    Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
             startActivity(inn);
 
             return true;
@@ -170,11 +170,11 @@ int click=0;
         if (click == 1) {
             click = 0;
             Intent in = new Intent(Contact.this, Main2Activity.class);
-
+/*
             in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

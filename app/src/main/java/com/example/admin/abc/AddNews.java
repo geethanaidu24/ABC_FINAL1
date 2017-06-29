@@ -61,10 +61,10 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
                         Intent in = new Intent(AddNews.this, News.class);
                         // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
-                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        /*in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                 Intent.FLAG_ACTIVITY_CLEAR_TASK |
                                 Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -94,10 +94,10 @@ public class AddNews extends AppCompatActivity implements View.OnClickListener {
             //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
             //finish();
 
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                     Intent.FLAG_ACTIVITY_CLEAR_TASK |
                     Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(in);
+            startActivity(in);*/
             finish();
         }
     }

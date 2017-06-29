@@ -54,7 +54,7 @@ public class ProductSizes extends AppCompatActivity {
     private boolean loggedIn = false;
     private static int selectdProductId;
     private static String selectdProductName, finalProductSelctedSize;
-    ArrayList<MySQLDataBase> mySQLDataBases;
+    ArrayList<MySQLDataBase> mySQLDataBases1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         // getSupportActionBar().hide();
@@ -71,9 +71,9 @@ public class ProductSizes extends AppCompatActivity {
         selectdProductId = intent.getExtras().getInt("PRODUCTID_KEY");
         selectdProductName = intent.getExtras().getString("PRODUCTNAME_KEY");
         Log.d("result PID: ", "> " + selectdProductId);
-         mySQLDataBases = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
+         mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductSizeList");
 
-        final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases, selectdProductId);
+        final ProductSizesListAdapter adapter = new ProductSizesListAdapter(this, mySQLDataBases1, selectdProductId);
         lv.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -90,11 +90,11 @@ public class ProductSizes extends AppCompatActivity {
                         click = 0;
                         Intent in = new Intent(ProductSizes.this, Products.class);
 
-//                        in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-//                                Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-//                                Intent.FLAG_ACTIVITY_NEW_TASK*/);
-//                        setResult(Activity.RESULT_OK,in);
-//                        startActivity(in);
+                       /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                                Intent.FLAG_ACTIVITY_NEW_TASK*//*);
+                        setResult(Activity.RESULT_OK,in);
+                        startActivity(in);*/
                         finish();
                     }
                 }
@@ -112,7 +112,7 @@ public class ProductSizes extends AppCompatActivity {
         //getMenuInflater().inflate(R.menu.mainproducts, menu);
 
 
-        if (loggedIn == true) {
+        if (loggedIn ) {
             /*MenuItem item = menu.findItem(R.id.productsadd);
             item.setVisible(true);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -123,7 +123,7 @@ public class ProductSizes extends AppCompatActivity {
             items2.setVisible(true);*/
             getMenuInflater().inflate(R.menu.mainproducts, menu);
 
-        } else if (loggedIn == false) {
+        } else  {
            /* MenuItem item1 = menu.findItem(productsadd);
             item1.setVisible(false);
             MenuItem items = menu.findItem(R.id.productdelete);
@@ -158,7 +158,7 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 in.putExtra("PRODUCTID_KEY", selectdProductId);
                 in.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                in.putExtra("ProductSizeList",mySQLDataBases);
+                in.putExtra("ProductSizeList",mySQLDataBases1);
                 startActivity(in);
                 return true;
             }
@@ -174,7 +174,7 @@ public class ProductSizes extends AppCompatActivity {
                         Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 inn.putExtra("PRODUCTID_KEY", selectdProductId);
                 inn.putExtra("PRODUCTNAME_KEY", selectdProductName);
-                inn.putExtra("ProductSizeList",mySQLDataBases);
+                inn.putExtra("ProductSizeList",mySQLDataBases1);
                 startActivity(inn);
                 return true;
             }
@@ -203,12 +203,13 @@ public class ProductSizes extends AppCompatActivity {
             click = 0;
             Intent in = new Intent(ProductSizes.this, Products.class);
            // in.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                    Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
-                    Intent.FLAG_ACTIVITY_NEW_TASK*/);
+           /* in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                    Intent.FLAG_ACTIVITY_CLEAR_TASK *//*|
+                    Intent.FLAG_ACTIVITY_NEW_TASK*//*);
             setResult(Activity.RESULT_OK,in);
-            startActivity(in);
+            startActivity(in);*/
             finish();
+            super.onBackPressed();
         }
 
     }
