@@ -151,8 +151,8 @@ public class News extends AppCompatActivity {
                 Intent in = new Intent(News.this, AddNews.class);
               //  in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 startActivity(in);
                 return true;
             }
@@ -164,8 +164,8 @@ public class News extends AppCompatActivity {
                 Intent inn = new Intent(News.this, DeleteNews.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 startActivity(inn);
 
                 return true;
@@ -226,7 +226,7 @@ public class News extends AppCompatActivity {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(News.this, MainActivity.class);
@@ -332,7 +332,7 @@ public class News extends AppCompatActivity {
             super.onPostExecute(s);
             if (s == null) {
                 Toast toast = Toast.makeText(c,
-                        "Coming Soon.....",
+                        "No Current News! Thank you for your patience",
                         Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
@@ -355,9 +355,9 @@ public class News extends AppCompatActivity {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -400,7 +400,7 @@ public class News extends AppCompatActivity {
                     click = 0;
 
                         Toast toast = Toast.makeText(c,
-                                "No Collection Available..",
+                                "No Current News! Thank you for your patience",
                                 Toast.LENGTH_SHORT);
 
                         View toastView = toast.getView();

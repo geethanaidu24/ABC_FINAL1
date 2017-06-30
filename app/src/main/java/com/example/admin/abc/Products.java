@@ -584,10 +584,12 @@ public class Products extends AppCompatActivity implements Serializable {
                 if (click == 1) {
                     click = 0;
                     Intent intent = new Intent(c, ProductTypes.class);
+                   // Bundle ProductTypeInfo = new Bundle();
+                   // ProductTypeInfo.putSerializable("ProductTypeList", mySQLProTypeDataBases);
                     intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                     intent.putExtra("PRODUCTID_KEY", finalpid);
                     intent.putExtra("PRODUCTNAME_KEY", finalname);
-                    intent.putExtra("ProductTypeList", mySQLProTypeDataBases);
+                    intent.putExtra("ProductTypeList",mySQLProTypeDataBases);
                     c.startActivity(intent);
                 }
             }

@@ -256,9 +256,9 @@ public class ProductSizes extends AppCompatActivity {
             MySQLDataBase mySQLDataBase = (MySQLDataBase) this.getItem(position);
 
             final int sizeid = mySQLDataBase.getProductSizeId();
-            final int length = Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString());
-            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
+            final int length = Integer.parseInt(String.valueOf(mySQLDataBase.getLength()));
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()));
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()));
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
             if(length !=0 && width !=0 && height !=0){
@@ -294,7 +294,7 @@ public class ProductSizes extends AppCompatActivity {
             return convertView;
         }
 
-        public void openProductSizeImagesActivity(int sizeid,int length,int width,int height,String finalSize) {
+        private void openProductSizeImagesActivity(int sizeid, int length, int width, int height, String finalSize) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -336,7 +336,7 @@ public class ProductSizes extends AppCompatActivity {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSizes.this, MainActivity.class);

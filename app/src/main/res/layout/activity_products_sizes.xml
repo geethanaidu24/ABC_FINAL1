@@ -44,17 +44,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
         android:gravity="center"
-
-
         android:layout_marginTop="10dp"
         android:typeface="normal"
-
-
-
         android:layout_alignParentStart="true"
         android:fontFamily="sans-serif"
         android:textSize="24sp"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:layout_alignParentLeft="true" />
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -68,7 +64,8 @@
         android:fillViewport="true"
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/toolbar"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

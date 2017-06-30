@@ -336,7 +336,7 @@ int click=0;
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypesGridView.this, MainActivity.class);

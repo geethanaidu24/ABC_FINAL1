@@ -105,69 +105,57 @@ public class DeleteNews extends AppCompatActivity {
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-
                     //SAVE
                     MySQLDataBase s = new MySQLDataBase();
                     s.setNewsId(deleteNewsId);
-                    if (s == null) {
-                        Toast toast = Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT);
-
-                        View toastView = toast.getView();
-                        toastView.setBackgroundResource(R.drawable.toast_drawable);
-                        toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                        toast.show();
-                        // Toast.makeText(DeleteNews.this, "No Data To Delete", Toast.LENGTH_SHORT).show();
-                    } else {
-                        AndroidNetworking.post(DATA_DELETE_URL)
-                                .addBodyParameter("action", "delete")
-                                .addBodyParameter("newsid", String.valueOf(s.getNewsId()))
-                                .setTag("TAG_ADD")
-                                .build()
-                                .getAsJSONArray(new JSONArrayRequestListener() {
-                                    @Override
-                                    public void onResponse(JSONArray response) {
-                                        if (response != null)
-                                            try {
-                                                //SHOW RESPONSE FROM SERVER
-                                                String responseString = response.get(0).toString();
-                                               // Toast.makeText(DeleteNews.this, " " + responseString, Toast.LENGTH_SHORT).show();
-                                                if (responseString.equalsIgnoreCase("Successfully Deleted")) {
-                                                   /* Intent intent = new Intent(DeleteNews.this, DeleteNews.class);
-                                                    startActivity(intent);
-   *//* adapter.notifyDataSetChanged();
-    BackTask bt = new BackTask();
-    bt.execute();*/
-                                                    AlertDialog.Builder alert = new AlertDialog.Builder(DeleteNews.this);
-                                                    alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
-                                                    alert.setMessage("To Refresh Newly added content Go Back to Home Screen..\n Confirm Delete By Clicking on OK");
-                                                    //alert.setMessage("Confirm Delete By Clicking on OK");
-                                                    alert.setIcon(R.drawable.reload);
-                                                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int which) {
-                                                            Intent intent = new Intent(DeleteNews.this, DeleteNews.class);
-                                                            startActivity(intent);
-                                                            finish();
-                                                        }
-                                                    });
-                                                    alert.show();
-                                                } else {
-                                                    Toast.makeText(DeleteNews.this, responseString, Toast.LENGTH_SHORT).show();
-                                                }
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                                Toast.makeText(DeleteNews.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    AndroidNetworking.post(DATA_DELETE_URL)
+                            .addBodyParameter("action", "delete")
+                            .addBodyParameter("newsid", String.valueOf(s.getNewsId()))
+                            .setTag("TAG_ADD")
+                            .build()
+                            .getAsJSONArray(new JSONArrayRequestListener() {
+                                @Override
+                                public void onResponse(JSONArray response) {
+                                    if (response != null)
+                                        try {
+                                            //SHOW RESPONSE FROM SERVER
+                                            String responseString = response.get(0).toString();
+                                           // Toast.makeText(DeleteNews.this, " " + responseString, Toast.LENGTH_SHORT).show();
+                                            if (responseString.equalsIgnoreCase("Successfully Deleted")) {
+                                               /* Intent intent = new Intent(DeleteNews.this, DeleteNews.class);
+                                                startActivity(intent);
+*//* adapter.notifyDataSetChanged();
+BackTask bt = new BackTask();
+bt.execute();*/
+                                                AlertDialog.Builder alert = new AlertDialog.Builder(DeleteNews.this);
+                                                alert.setTitle(Html.fromHtml("<font color='#ff0000'>Information!</font>"));
+                                                alert.setMessage("To Refresh Newly added content Go Back to Home Screen..\n Confirm Delete By Clicking on OK");
+                                                //alert.setMessage("Confirm Delete By Clicking on OK");
+                                                alert.setIcon(R.drawable.reload);
+                                                alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Intent intent = new Intent(DeleteNews.this, DeleteNews.class);
+                                                        startActivity(intent);
+                                                        finish();
+                                                    }
+                                                });
+                                                alert.show();
+                                            } else {
+                                                Toast.makeText(DeleteNews.this, responseString, Toast.LENGTH_SHORT).show();
                                             }
-                                    }
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                            Toast.makeText(DeleteNews.this, " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                }
 
-                                    //ERROR
-                                    @Override
-                                    public void onError(ANError anError) {
-                                        Toast.makeText(DeleteNews.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
+                                //ERROR
+                                @Override
+                                public void onError(ANError anError) {
+                                    Toast.makeText(DeleteNews.this, "UNSUCCESSFUL :  ERROR IS : " + anError.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
 
                 }
             });

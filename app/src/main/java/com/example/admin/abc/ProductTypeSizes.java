@@ -260,9 +260,9 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             final int sizeid = mySQLDataBase.getProductSizeId();
             final int proid = mySQLDataBase.getProductId();
             final int protid = mySQLDataBase.getProductTypeId();
-            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString()) ;
-            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
+            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength())) ;
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()));
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()));
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
             if(length !=0 && width !=0 && height !=0){
@@ -298,7 +298,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
             return convertView;
         }
 
-        public void openProductTypeSizeImagesActivity(int sizeid,int length,int width, int height,String finalSize){
+        private void openProductTypeSizeImagesActivity(int sizeid,int length,int width, int height,String finalSize){
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -344,7 +344,7 @@ public class ProductTypeSizes extends AppCompatActivity implements Serializable{
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypeSizes.this, MainActivity.class);

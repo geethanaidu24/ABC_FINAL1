@@ -180,8 +180,8 @@ int click=0;
                 click = 0;
                 Intent in = new Intent(Brands.this, AddBrands.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 startActivity(in);
                 return true;
             }
@@ -231,7 +231,7 @@ int click=0;
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(Brands.this, MainActivity.class);
@@ -337,7 +337,7 @@ int click=0;
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast toast = Toast.makeText(c, "Coming Soon", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(c, "Our Brands are Coming Soon! Thank you for your patience", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -360,9 +360,9 @@ int click=0;
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -403,7 +403,7 @@ int click=0;
         protected void onPostExecute(Integer result) {
             super.onPostExecute(result);
             if (result == 0) {
-                Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(c, "Our Brands are Coming Soon! Thank you for your patience", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);

@@ -128,8 +128,8 @@ int click=0;
                 Intent in = new Intent(Contact.this, AddContact.class);
                // in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 in.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 startActivity(in);
                 return true;
             }
@@ -140,8 +140,8 @@ int click=0;
                 Intent inn = new Intent(Contact.this, DeleteContact.class);
                // inn.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 inn.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
-                        Intent.FLAG_ACTIVITY_CLEAR_TASK |
-                        Intent.FLAG_ACTIVITY_NEW_TASK);
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK /*|
+                        Intent.FLAG_ACTIVITY_NEW_TASK*/);
                 startActivity(inn);
 
                 return true;
@@ -203,7 +203,7 @@ int click=0;
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(Contact.this, MainActivity.class);
@@ -248,15 +248,15 @@ int click=0;
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadData();
-            return data;
+            return downloadData();
+
         }
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (s == null) {
-                Toast toast = Toast.makeText(c, "Coming soon...", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(c, "No Current Contacts! Thank you for your patience", Toast.LENGTH_SHORT);
 
                 View toastView = toast.getView();
                 toastView.setBackgroundResource(R.drawable.toast_drawable);
@@ -279,9 +279,9 @@ int click=0;
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -322,7 +322,7 @@ int click=0;
                 click = click + 1;
                 if (click == 1) {
                     click = 0;
-                    Toast toast = Toast.makeText(c, "No Collection Available", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(c, "No Current Contacts! Thank you for your patience", Toast.LENGTH_SHORT);
 
                     View toastView = toast.getView();
                     toastView.setBackgroundResource(R.drawable.toast_drawable);

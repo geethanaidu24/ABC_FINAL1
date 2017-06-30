@@ -283,7 +283,7 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSubTypeGridView.this, MainActivity.class);
@@ -333,8 +333,8 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadTypeData();
-            return data;
+            return downloadTypeData();
+
 
         }
         @Override
@@ -363,9 +363,9 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -434,7 +434,6 @@ public class ProductSubTypeGridView extends AppCompatActivity {
                 {
                     jo=ja.getJSONObject(i);
                     Log.d("result response: ", "> " + jo);
-
                     int ProductSizeImageId = jo.getInt("ProductSizeImageId");
                     String Name =jo.getString("Name");
                     String ImageUrl=jo.getString("ImagePath");
@@ -540,7 +539,6 @@ public class ProductSubTypeGridView extends AppCompatActivity {
 
                 Intent i = new Intent(c, ProductSubTypeSingleViewActivity.class);
              i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-
                 i.putExtra("NAME_KEY", details[0]);
                 i.putExtra("IMAGE_KEY", details[1]);
                 i.putExtra("BRAND_KEY", details[2]);

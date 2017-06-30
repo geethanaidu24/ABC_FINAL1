@@ -266,7 +266,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         int pid,ptid,ptsid;
         String pname;
 
-        public ProductTypeSizeImagesDownloader(Context c, URL urlAddress, GridView gv,int pid, String pname, int ptid, int ptsid) {
+        private ProductTypeSizeImagesDownloader(Context c, URL urlAddress, GridView gv,int pid, String pname, int ptid, int ptsid) {
             this.c = c;
             this.urlAddress = urlAddress;
             this.gv = gv;
@@ -319,9 +319,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -340,7 +340,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
         String pname;
         ArrayList<MySQLDataBase> mySQLDataBases=new ArrayList<>();
 
-        public ProductTypeSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,String pname, int ptid,int ptsid) {
+        private ProductTypeSizeImagesDataParser(Context c, GridView gv, String jsonData,int pid,String pname, int ptid,int ptsid) {
             this.c = c;
             this.gv = gv;
             this.jsonData = jsonData;
@@ -486,9 +486,9 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
             final String brand = mySQLDataBase.getBrand();
             final String color = mySQLDataBase.getColor();
             final int sizeid = mySQLDataBase.getProductSizeId();
-            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
-            final int length = Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString());
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()));
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()));
+            final int length = Integer.parseInt(String.valueOf(mySQLDataBase.getLength()));
 
 
             if (length != 0 && width != 0 && height != 0) {
@@ -577,7 +577,7 @@ public class ProductTypeSizeImagesGridView extends AppCompatActivity {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypeSizeImagesGridView.this, MainActivity.class);

@@ -69,11 +69,11 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
         final ListView lv = (ListView) findViewById(R.id.productTypesLv);
         TextView typeNameTxt = (TextView) findViewById(R.id.SelProductName);
         Intent intent = getIntent();
-
+       // Bundle bundle = getIntent().getBundleExtra("ProductTypeList");
         selectedPname = intent.getExtras().getString("PRODUCTNAME_KEY");
         selectedPid = intent.getExtras().getInt("PRODUCTID_KEY");
         mySQLDataBases1 = (ArrayList<MySQLDataBase>) intent.getSerializableExtra("ProductTypeList");
-
+      //  mySQLDataBases1 = (ArrayList<MySQLDataBase>) bundle.getSerializable("ProductTypeList");
         typeNameTxt.setText(selectedPname);
         Log.d("result response: ", "> " + mySQLDataBases1);
 
@@ -281,7 +281,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
             return convertView;
         }
-        public void openActivityCondition(int recivedPid, String recivedPname, int recivedPTid, String recivedPTname){
+        private void openActivityCondition(int recivedPid, String recivedPname, int recivedPTid, String recivedPTname){
             Uri builtUri = Uri.parse(productSubTypeCheckUrl)
                     .buildUpon()
                     .appendQueryParameter(Config.PRODUCTTYPEID_PARAM, Integer.toString(recivedPTid))
@@ -319,8 +319,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadSubTypeData();
-            return data;
+            return downloadSubTypeData();
+
 
         }
 
@@ -345,9 +345,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -478,8 +478,8 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadTypeSizesData();
-            return data;
+            return downloadTypeSizesData();
+
 
         }
         @Override
@@ -503,9 +503,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -673,9 +673,9 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -767,7 +767,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
             try
             {
                 JSONArray typesGridArray=new JSONArray(jsonData);
-                JSONObject typesGridObject=null;
+                JSONObject typesGridObject;
                 mySQLDataBases.clear();
                 MySQLDataBase mySQLDataBase;
 
@@ -826,7 +826,7 @@ public class ProductTypes extends AppCompatActivity implements Serializable {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductTypes.this, MainActivity.class);

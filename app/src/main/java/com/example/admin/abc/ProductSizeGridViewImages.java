@@ -267,8 +267,8 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Void... params) {
-            String data = downloadTypeData();
-            return data;
+            return downloadTypeData();
+
 
         }
         @Override
@@ -296,9 +296,9 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                 InputStream is = new BufferedInputStream(con.getInputStream());
                 BufferedReader br = new BufferedReader(new InputStreamReader(is));
                 String line;
-                StringBuffer jsonData = new StringBuffer();
+                StringBuilder jsonData = new StringBuilder();
                 while ((line = br.readLine()) != null) {
-                    jsonData.append(line + "n");
+                    jsonData.append(line).append("n");
                 }
                 br.close();
                 is.close();
@@ -457,16 +457,14 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
             final String brand = mySQLDataBase.getBrand();
             final String color = mySQLDataBase.getColor();
             final int sizeid = mySQLDataBase.getProductSizeId();
-            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength()).toString()) ;
-            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()).toString());
-            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()).toString());
+            final int length =Integer.parseInt(String.valueOf(mySQLDataBase.getLength())) ;
+            final int width = Integer.parseInt(String.valueOf(mySQLDataBase.getWidth()));
+            final int height = Integer.parseInt(String.valueOf(mySQLDataBase.getHeight()));
             //final String measure =productTypeSizeDBData.getMeasurement().toString();
 
 
             if(length !=0 && width !=0 && height !=0){
                 finalSize =  length + " "+"X"+" " + width + " "+"X"+" " + height;
-
-
             }else if(length ==0 && width !=0 && height !=0){
                 finalSize =  width + " "+"X"+" " + height;
 
@@ -546,7 +544,7 @@ public class ProductSizeGridViewImages extends AppCompatActivity {
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSizeGridViewImages.this, MainActivity.class);

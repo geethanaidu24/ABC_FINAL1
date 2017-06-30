@@ -111,6 +111,7 @@ int click=0;
                     Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(in);*/
             finish();
+            super.onBackPressed();
         }
     }
     @Override
@@ -276,27 +277,14 @@ int click=0;
 
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
-        if (matcher.matches())
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+        return matcher.matches();
     }
     public static boolean isValidPhone(String phone)
     {
         String expression = "^([0-9\\+]|\\(\\d{1,3}\\))[0-9\\-\\. ]{3,15}$";
-        CharSequence inputString = phone;
         Pattern pattern = Pattern.compile(expression);
-        Matcher matcher = pattern.matcher(inputString);
-        if (matcher.matches())
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
     }
 }
 

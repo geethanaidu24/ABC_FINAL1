@@ -210,7 +210,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
         String finalProductType;
         LayoutInflater inflater;
 
-        public ProductSubTypesListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases, int selectdPtid, String selectdPtname) {
+        ProductSubTypesListAdapter(Context c, ArrayList<MySQLDataBase> mySQLDataBases, int selectdPtid, String selectdPtname) {
             this.c = c;
             this.mySQLDataBases = mySQLDataBases;
             this.finalProductTypeId = selectdPtid;
@@ -263,7 +263,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
             return convertView;
         }
 
-        public void openProductSubTypesGridView(int recvProSubId, String recvProSubName) {
+        private void openProductSubTypesGridView(int recvProSubId, String recvProSubName) {
             click = click + 1;
             if (click == 1) {
                 click = 0;
@@ -325,7 +325,7 @@ public class ProductSubTypes extends AppCompatActivity implements Serializable{
                         editor.putString(Config.KEY_USER, "");
 
                         //Saving the sharedpreferences
-                        editor.commit();
+                        editor.apply();
 
                         //Starting login activity
                         Intent intent = new Intent(ProductSubTypes.this, MainActivity.class);
