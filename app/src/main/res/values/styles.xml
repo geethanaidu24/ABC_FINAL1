@@ -7,7 +7,7 @@
         <item name="colorAccent">@color/colorblack</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="android:windowEnableSplitTouch">false</item>
-       </style>
+    </style>
 
 
     <style name="abctheme" parent="AppTheme">
