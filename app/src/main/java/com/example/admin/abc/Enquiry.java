@@ -107,7 +107,7 @@ public class Enquiry extends AppCompatActivity {
 
             /* Fill it with Data */
                     sendEmail.setData(Uri.parse("mailto:"));
-                    sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"geethamca.naidu@gmail.com"});
+                    sendEmail.putExtra(Intent.EXTRA_EMAIL, new String[]{"reddy@abcuganda.com"});
                     sendEmail.putExtra(Intent.EXTRA_SUBJECT,"ABC Enquiry");
                     sendEmail.putExtra(Intent.EXTRA_PHONE_NUMBER,subject);
                     sendEmail.putExtra(Intent.EXTRA_TEXT,

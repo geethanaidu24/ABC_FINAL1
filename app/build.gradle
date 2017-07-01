@@ -16,7 +16,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.admin.abc"
-        minSdkVersion 14
+        minSdkVersion 17
 
         targetSdkVersion 25
         versionCode 1
@@ -87,6 +87,7 @@ dependencies {
     compile 'com.chabbal:slidingdotsplash:1.0.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     testCompile 'junit:junit:4.12'
+    //compile 'com.iceteck.silicompressorr:silicompressor:2.0'
     provided 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
    // compile 'com.amazonaws:aws-android-sdk-core:2.2.+'
    // compile 'com.amazonaws:aws-android-sdk-s3:2.2.+'
