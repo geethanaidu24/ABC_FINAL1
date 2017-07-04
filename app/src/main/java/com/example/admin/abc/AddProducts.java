@@ -211,6 +211,7 @@ public class AddProducts extends AppCompatActivity implements View.OnClickListen
         }
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
