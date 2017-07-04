@@ -176,16 +176,9 @@ public class Enquiry extends AppCompatActivity {
     public static boolean isValidPhone(String phone)
     {
         String expression = "^([0-9\\+]|\\(\\d{1,3}\\))[0-9\\-\\. ]{3,15}$";
-        CharSequence inputString = phone;
         Pattern pattern = Pattern.compile(expression);
-        Matcher matcher = pattern.matcher(inputString);
-        if (matcher.matches())
-        {
-            return true;
-        }
-        else{
-            return false;
-        }
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
