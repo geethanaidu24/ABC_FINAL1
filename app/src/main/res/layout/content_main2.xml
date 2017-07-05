@@ -76,7 +76,7 @@ android:background="@color/white"
         android:layout_gravity="center"
 
         android:layout_weight="60"
-        android:background="@mipmap/bakgroundone"
+        android:background="@drawable/bnn"
         android:orientation="vertical">
 
 
@@ -94,7 +94,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/prodred"
+                android:background="@drawable/pdctss"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
             <View
@@ -113,7 +113,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/absred"
+                android:background="@drawable/abss"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
@@ -141,7 +141,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/enqfred"
+                android:background="@drawable/enqq"
 
                 android:gravity="center"
                 android:scaleType="centerCrop" />
@@ -160,7 +160,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/ctsfred"
+                android:background="@drawable/contactv1"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
