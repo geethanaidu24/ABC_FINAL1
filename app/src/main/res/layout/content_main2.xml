@@ -94,7 +94,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/pdctss"
+                android:background="@drawable/pdp"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
             <View
@@ -113,7 +113,7 @@ android:background="@color/white"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_weight="1.0"
-                android:background="@drawable/abss"
+                android:background="@drawable/asbf"
                 android:gravity="center"
                 android:scaleType="centerCrop" />
 
