@@ -79,8 +79,11 @@ android:background="@color/white"
         android:background="@drawable/bnn"
         android:orientation="vertical">
 
-
-        <LinearLayout
+      <!--  <com.hitomi.cmlibrary.CircleMenu
+            android:id="@+id/circlemenu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />-->
+     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1.0"

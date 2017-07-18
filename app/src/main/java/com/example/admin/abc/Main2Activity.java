@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -44,6 +45,9 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.hitomi.cmlibrary.CircleMenu;
+import com.hitomi.cmlibrary.OnMenuSelectedListener;
+import com.hitomi.cmlibrary.OnMenuStatusChangeListener;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -90,7 +94,7 @@ int click=0;
     ViewPager myPager = null;
     int count = 0;
     Timer timer;
-
+    String arrayName[]={"Contact Us","Products","About Us","Enquiry"};
   /*  private ViewFlipper simpleViewFlipper;
     int[] images = {R.drawable.backfinalfour, R.drawable.backfinalthree, R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinalseven,R.drawable.backfinaleight};     // array of images
 */
@@ -244,6 +248,73 @@ int click=0;
        Button b1, b2, b3, b4;
     init();
 
+       /* CircleMenu circleMenu=(CircleMenu)findViewById(R.id.circlemenu);
+        circleMenu.setMainMenu(Color.parseColor("#CDCDCD"),R.drawable.location,R.drawable.home)
+                .addSubMenu(Color.parseColor("#ec4141"),R.drawable.pdp)
+                .addSubMenu(Color.parseColor("#ec4141"),R.drawable.asbf)
+                .addSubMenu(Color.parseColor("#ec4141"),R.drawable.enqq)
+                .addSubMenu(Color.parseColor("#ec4141"),R.drawable.contactv1)
+                .setOnMenuSelectedListener(new OnMenuSelectedListener() {
+                                               @Override
+                                               public void onMenuSelected(int i) {
+*//*
+
+                        if(i == R.drawable.pdp)
+                        {
+                            Intent in = new Intent(MainActivity.this, Main2Activity.class);
+                            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            startActivity(in);
+
+                        }
+                        else if(i==R.drawable.location)
+                        {
+                            Intent in = new Intent(MainActivity.this, Second.class);
+                            //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                            startActivity(in);
+
+                        }
+*//*
+                                                   switch (i) {
+                                                       case 0:
+                                                           Intent in = new Intent(Main2Activity.this, Products.class);
+                                                           //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                                           startActivity(in);
+                                                           break;
+                                                       case 1:
+                                                           Intent inn = new Intent(Main2Activity.this, Contact.class);
+                                                           //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                                           startActivity(inn);
+                                                           break;
+                                                       case 2:
+                                                           Intent innn = new Intent(Main2Activity.this, Enquiry.class);
+                                                           //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                                           startActivity(innn);
+                                                           break;
+                                                       case 3:
+                                                           Intent inn1 = new Intent(Main2Activity.this, AboutUs.class);
+                                                           //in.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                                                           startActivity(inn1);
+                                                           break;
+                                                   }
+                                               }
+                                           }
+
+                );
+
+        circleMenu.setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+
+                                                     @Override
+                                                     public void onMenuOpened() {
+
+                                                     }
+
+                                                     @Override
+                                                     public void onMenuClosed() {
+
+                                                     }
+                                                 }
+        );*/
+
 
         // ViewPager viewPager;
         // int images[] = { R.mipmap.backfinalfour, R.mipmap.backfinaltwo,R.mipmap.backfinalthree,R.mipmap.backfinalfive,R.mipmap.backfinalsix,R.mipmap.backfour};
@@ -287,7 +358,7 @@ int click=0;
          */
 
 
-       b1 = (Button) findViewById(R.id.button1);
+     b1 = (Button) findViewById(R.id.button1);
         b2 = (Button) findViewById(R.id.buttonh);
         b3 = (Button) findViewById(R.id.button3);
         b4 = (Button) findViewById(R.id.button4);

@@ -229,7 +229,7 @@ public class DeleteContact extends AppCompatActivity {
 
             listItems.add("Select One");
             for(int i=0;i<mySQLDataBases.size();i++){
-                listItems.add(mySQLDataBases.get(i).getCity()+","+ mySQLDataBases.get(i).getBranch());
+                listItems.add(mySQLDataBases.get(i).getCity()+" "+ mySQLDataBases.get(i).getBranch());
 
             }
             adapter=new ArrayAdapter(DeleteContact.this,R.layout.spinner_layout, R.id.txt,listItems);

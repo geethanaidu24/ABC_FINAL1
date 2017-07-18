@@ -145,7 +145,7 @@ int click=0;
             return;
         }
 
-        Boolean onError = false;
+    /*    Boolean onError = false;
         if(!TextUtils.isEmpty(bemail)){
             if (!isValidEmail(bemail)) {
                 onError = true;
@@ -153,26 +153,41 @@ int click=0;
                 return;
             }
         }
-
+*/
         //Boolean onErrorr=false;
-        if(!TextUtils.isEmpty(bcontactno)) {
+       /* if(!TextUtils.isEmpty(bcontactno)) {
             if (!isValidPhone(bcontactno)) {
                 onError = true;
                 contactnumber.setError("Invalid contact");
                 return;
             }
+        }*/
+        if(TextUtils.isEmpty(bemail)){
+
+                email.setError(" Enter Email Id");
+                return;
+
         }
+      /*  if(TextUtils.isEmpty(bcontactno)) {
+
+
+                contactnumber.setError("Invalid contact");
+                return;
+
+        }*/
+
         if (TextUtils.isEmpty(baddress)) {
+
             address.setError("Enter Your Branch Address");
             address.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(bcity)) {
+      /*  if (TextUtils.isEmpty(bcity)) {
             city.setError("Enter Your city");
             city.requestFocus();
             return;
-        }
+        }*/
         if (TextUtils.isEmpty(bworkinghrs)) {
             workinghours.setError("Enter Your Timings");
             workinghours.requestFocus();
