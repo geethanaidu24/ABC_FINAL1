@@ -79,9 +79,8 @@ private boolean checkNetworkConnection;
    private static int currentPage = 0;
     private static int NUM_PAGES = 0;
 int click=0;
-    private static final Integer[] IMAGES= {R.drawable.backfinalfour, R.drawable.backfinalthree,
-            R.drawable.backfinaltwo, R.drawable.backfinalfive,R.drawable.backfinaleight,R.drawable.showroomone,
-            R.drawable.showroomtwo,R.drawable.showroomthree,R.drawable.showroomfour};
+    private static final Integer[] IMAGES= {R.drawable.backone, R.drawable.backtwo,
+            R.drawable.backthree, R.drawable.backfour,R.drawable.backfive};
 
     private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 

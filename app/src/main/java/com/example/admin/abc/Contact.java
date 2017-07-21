@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -422,15 +423,35 @@ int click=0;
                     convertView = inflater.inflate(R.layout.contact_list, parent, false);
                     holder = new ViewHolder();
                     holder.branchTxt = (TextView) convertView.findViewById(R.id.textView2);
+                    holder.branchTxt.setHorizontallyScrolling(true);
+                    holder.branchTxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    holder.branchTxt.setSingleLine();
                     holder.branchTxt.setSelected(true);
+
                     holder. addresstxt = (TextView) convertView.findViewById(R.id.textView3);
+                    holder.addresstxt.setHorizontallyScrolling(true);
+                    holder.addresstxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    holder.addresstxt.setSingleLine();
                     holder.addresstxt.setSelected(true);
+
                     holder. workingHrTxt = (TextView) convertView.findViewById(R.id.textView4);
+                    holder.workingHrTxt.setHorizontallyScrolling(true);
+                    holder.workingHrTxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    holder.workingHrTxt.setSingleLine();
                     holder.workingHrTxt.setSelected(true);
+
                     holder.emailTxt = (TextView) convertView.findViewById(R.id.textView5);
+                    holder.emailTxt.setHorizontallyScrolling(true);
+                    holder.emailTxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    holder.emailTxt.setSingleLine();
                     holder.emailTxt.setSelected(true);
+
                     holder.contactTxt = (TextView) convertView.findViewById(R.id.textView6);
+                    holder.contactTxt.setHorizontallyScrolling(true);
+                    holder.contactTxt.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+                    holder.contactTxt.setSingleLine();
                     holder.contactTxt.setSelected(true);
+
                     holder.locationImg = (ImageView)convertView.findViewById(R.id.imageView);
                     holder. workingHrsImg = (ImageView) convertView.findViewById(R.id.imageView3);
                     holder.emailImg = (ImageView) convertView.findViewById(R.id.imageView4);

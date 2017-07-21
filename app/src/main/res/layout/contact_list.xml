@@ -52,7 +52,7 @@ android:layout_marginBottom="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/imageView"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:singleLine="true"
         android:ellipsize="marquee"
@@ -63,7 +63,10 @@ android:layout_marginBottom="5dp"
         android:textColor="@color/white"
         android:layout_toEndOf="@+id/imageView"
         android:layout_toRightOf="@+id/imageView"
-        android:text="TextView" />
+        android:text="TextView" >
+        <requestFocus android:focusable="true" android:focusableInTouchMode="true"
+            android:duplicateParentState="true"/>
+    </TextView>
 
     <ImageView
         android:id="@+id/imageView3"
@@ -86,12 +89,16 @@ android:layout_marginBottom="5dp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit ="marquee_forever"
         android:focusable="true"
+
         android:focusableInTouchMode="true"
         android:scrollHorizontally="true"
         android:textColor="@color/white"
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3"
-        android:text="TextView" />
+        android:text="TextView" >
+        <requestFocus android:focusable="true" android:focusableInTouchMode="true"
+            android:duplicateParentState="true"/>
+    </TextView>
 
     <ImageView
         android:id="@+id/imageView4"
@@ -110,16 +117,19 @@ android:layout_marginBottom="5dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="5dp"
         android:text="TextView"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit ="marquee_forever"
         android:focusable="true"
         android:focusableInTouchMode="true"
+        android:singleLine="true"
         android:scrollHorizontally="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit ="marquee_forever"
     android:textColor="@color/white"
         android:layout_above="@+id/imageView5"
         android:layout_alignStart="@+id/textView4"
-        android:layout_alignTop="@+id/imageView4" />
+        android:layout_alignTop="@+id/imageView4">
+    <requestFocus android:focusable="true" android:focusableInTouchMode="true"
+        android:duplicateParentState="true"/>
+    </TextView>
 
     <ImageView
         android:id="@+id/imageView5"
@@ -164,7 +174,10 @@ android:layout_marginBottom="5dp"
 
 
 
-        android:typeface="normal" />
+        android:typeface="normal" >
+        <requestFocus android:focusable="true" android:focusableInTouchMode="true"
+            android:duplicateParentState="true"/>
+    </TextView>
 
 </RelativeLayout>
 </RelativeLayout>
