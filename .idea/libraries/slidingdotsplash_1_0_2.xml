@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="slidingdotsplash-1.0.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/06f8cb00dbbc26fb18080722e8f267b68cc9e0fd/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/06f8cb00dbbc26fb18080722e8f267b68cc9e0fd/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.chabbal/slidingdotsplash/1.0.2/ffde2bd454db7c5fed26e08377efe3a2b7f3ad20/slidingdotsplash-1.0.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

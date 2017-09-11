@@ -9,7 +9,7 @@
     android:layout_weight="1"
     android:weightSum="100"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.admin.abc.Main2Activity"
+    tools:context="com.atwyn.android.abc.Main2Activity"
 
 
 

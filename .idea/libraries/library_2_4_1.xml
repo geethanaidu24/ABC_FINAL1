@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="library-2.4.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.android/build-cache/09265123540067019e98fd17add9ef09a8a25cae/output/res" />
+      <root url="jar://$USER_HOME$/.android/build-cache/09265123540067019e98fd17add9ef09a8a25cae/output/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.viewpagerindicator/library/2.4.1/b92686ad1221b5c1571130c779a207673ebf3d4f/library-2.4.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

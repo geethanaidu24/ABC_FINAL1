@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
     android:background="@drawable/backgroundfour"
-    tools:context="com.example.admin.abc.Enquiry"
+    tools:context="com.atwyn.android.abc.Enquiry"
     >
     <include layout="@layout/activity_toolbar"></include>
     <!--<android.support.v7.widget.Toolbar

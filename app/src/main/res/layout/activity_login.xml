@@ -9,7 +9,7 @@
     android:layout_height="match_parent"
     android:splitMotionEvents="false"
 
-    tools:context="com.example.admin.abc.Login">
+    tools:context="com.atwyn.android.abc.Login">
     <include layout="@layout/activity_toolbar"
       ></include>
   <!--  <android.support.v7.widget.Toolbar

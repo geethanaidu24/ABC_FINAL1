@@ -15,7 +15,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     buildToolsVersion "25.0.3"
     defaultConfig {
-        applicationId "com.example.admin.abc"
+        applicationId "com.atwyn.android.abc"
         minSdkVersion 17
 
         targetSdkVersion 25
@@ -29,7 +29,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources true
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
